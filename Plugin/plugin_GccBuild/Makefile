@@ -353,7 +353,7 @@ Makefile: plugin_GccBuild.pro D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.c
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\qt_config.prf \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.conf \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\spec_post.prf \
-		..\..\.qmake.stash \
+		.qmake.stash \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\exclusive_builds.prf \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\common\msvc-version.conf \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\toolchain.prf \
@@ -384,6 +384,7 @@ Makefile: plugin_GccBuild.pro D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.c
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Gui.prl \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Core.prl \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\build_pass.prf \
+		res.qrc \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Widgetsd.prl \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Guid.prl \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Cored.prl
@@ -657,7 +658,7 @@ D:\QT\6.5.0\msvc2019_64\mkspecs\features\qt_functions.prf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\qt_config.prf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.conf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\spec_post.prf:
-..\..\.qmake.stash:
+.qmake.stash:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\exclusive_builds.prf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\common\msvc-version.conf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\toolchain.prf:
@@ -688,6 +689,7 @@ D:\QT\6.5.0\msvc2019_64\lib\Qt6Widgets.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Gui.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Core.prl:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\build_pass.prf:
+res.qrc:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Widgetsd.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Guid.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Cored.prl:
@@ -702,7 +704,7 @@ clean: release-clean debug-clean  FORCE
 	-$(DEL_FILE) plugin_GccBuild.exp
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
-	-$(DEL_FILE) plugin_GccBuild.lib
+	-$(DEL_FILE) .qmake.stash plugin_GccBuild.lib
 
 release-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)

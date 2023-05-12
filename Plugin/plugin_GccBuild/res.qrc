@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/form_img">
+        <file>img/error.png</file>
+        <file>img/ok.png</file>
+    </qresource>
+</RCC>

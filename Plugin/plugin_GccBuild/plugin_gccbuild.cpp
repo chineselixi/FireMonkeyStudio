@@ -1,6 +1,8 @@
 
 #include "plugin_gccbuild.h"
 #include "QFileInfo"
+#include "Form_CheckGCC.h"
+
 
 Plugin_GccBuild::Plugin_GccBuild()
 {
@@ -27,7 +29,14 @@ Plugin_Base::libMsg Plugin_GccBuild::getBaseMsg()
 //工作空间加载完毕
 void Plugin_GccBuild::event_onWorkSpaceFinish()
 {
-
+    QAction* t_menu = new QAction;
+    WorkSpace_AddMenu_ToolBar_Tool(t_menu);
+    t_menu->setText("验证GCC编译器");
+    QAction::connect(t_menu,&QAction::triggered,[this](){
+        Form_CheckGCC* t_form = new Form_CheckGCC;
+        t_form->setAttribute(Qt::WA_ShowModal, true);
+        t_form->show();
+    });
 }
 
 
