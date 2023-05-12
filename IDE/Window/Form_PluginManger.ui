@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_PluginManger</class>
+ <widget class="QWidget" name="Form_PluginManger">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>插件管理器</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*主背景和列表背景*/
+#Form_PluginManger,QListWidget{
+	background-color: rgb(245, 245, 245);
+}
+
+/*按钮样式*/
+QPushButton{
+	border-radius:0px;
+	border:1px solid rgb(133, 145, 162);
+	background-color: rgb(242, 245, 252);
+}
+QPushButton:hover{
+	background-color: rgb(196, 213, 255);
+}
+QPushButton:!enabled{
+	color:rgb(162, 164, 165);
+	background-color: rgb(223, 231, 243);
+	border:1px solid rgb(162, 164, 165);
+}
+
+/*设定列表边框*/
+/*列表样式*/
+QListWidget{
+	border:0px;
+}
+QListWidget::item:selected{
+    background-color: #B5E7FF;
+    color: black;
+}</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="spacing">
+    <number>30</number>
+   </property>
+   <item>
+    <widget class="QListWidget" name="listWidget_plugin">
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectItems</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_tip2">
+       <property name="minimumSize">
+        <size>
+         <width>250</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>插件详情信息</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_signTip">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;插件管理器，用于拓展IDE的基础功能。插件的设置变动需要重启IDE才能正常工作。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,4 @@
+<RCC>
+    <qresource prefix="/Form/About"/>
+    <qresource prefix="/Form/Start"/>
+</RCC>

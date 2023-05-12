@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_WindowTab</class>
+ <widget class="QWidget" name="Form_WindowTab">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>864</width>
+    <height>552</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*选择栏*/
+QTabBar{
+	border:0px;
+	padding:0px;
+}
+
+QTabWidget{
+	border:0px;
+	padding:0px;
+}
+
+
+/*选择夹的子夹*/
+QTabBar::tab{
+    background-color: #0B0E11;
+	 /*font-family:Consolas;   设置tab中的文本的字体*/
+	font-size:8pt;
+	color:rgb(255, 255, 255);    /*设置tab中的文本的颜色*/
+	/*border-top-left-radius: 5px;    设置tab的边框的圆角（左上圆角）*/
+	/*border-top-right-radius: 5px;    设置tab的边框的圆角（右上圆角）*/
+	min-width: 100px;
+	margin-right:2px;
+	padding: 5px;
+	background-color: rgb(59, 79, 129);
+}
+ 
+/*设置TabWidget中QTabBar的tab被选中时的样式*/
+QTabBar::tab:selected{
+    background-color: rgb(245, 204, 132);
+	color:rgb(58, 52, 42);
+}
+ 
+/*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
+QTabBar::tab:hover:!selected {
+    background-color: rgb(187, 198, 241);
+	color:rgb(92, 45, 145);
+}
+
+
+
+
+QTabBar::close-button:selected {
+    image: url(:/DockWidget/icon/Theme/Blue/Image/Pane/menuClose3.png);
+}
+QTabBar::close-button:selected:hover {
+    image: url(:/DockWidget/icon/Theme/Blue/Image/Pane/menuClose2.png);
+}
+QTabBar::close-button:!selected {
+    image: url(:/DockWidget/icon/Theme/Blue/Image/Pane/menuClose1.png);
+}
+QTabBar::close-button:!selected:hover {
+    image: url(:/DockWidget/icon/Theme/Blue/Image/Pane/menuClose0.png);
+}
+
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="focusPolicy">
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="tabPosition">
+      <enum>QTabWidget::North</enum>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="elideMode">
+      <enum>Qt::ElideNone</enum>
+     </property>
+     <property name="tabsClosable">
+      <bool>true</bool>
+     </property>
+     <property name="movable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Tab 1</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Tab 2</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

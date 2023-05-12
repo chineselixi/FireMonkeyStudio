@@ -1,0 +1,2108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_WorkSpace</class>
+ <widget class="QMainWindow" name="Form_WorkSpace">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>FireMoneky Studio 2023</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+/*主窗口样式设置*/
+QMainWindow{
+	background-color: rgb(93, 107, 153);
+}
+
+/*底部状态栏*/
+QStatusBar{
+	background-color:#40568d;
+}
+
+/*菜单栏*/
+QMenuBar{
+	background-color:rgb(204, 213, 240);
+	color:rgb(0,0,0);
+}
+
+/*工具栏*/
+QToolBar{
+	background-color:rgb(204, 213, 240);
+	border:0px;
+}
+
+/*工具栏分隔符*/
+QToolBar::separator { 
+	width: 1px;
+	border:0px;
+	margin:5px 0px;
+    background-image: url(:/Theme/icon/Theme/Blue/Image/ToolBar/Separator.png);
+ }
+
+/*工具栏拖动图片栏*/
+QToolBar::handle {
+	margin:4px 6px;
+	width:5px;
+	background-image: url(:/Theme/icon/Theme/Blue/Image/ToolBar/Row1.png);
+}
+
+/*工具栏子项按钮*/
+QToolButton {
+	padding:0px;
+	padding:0px;
+}
+
+/*模式选择框*/
+#comboBox_compileMode{
+	margin:0px 5px;
+}
+
+
+
+/*选择栏*/
+QTabBar{
+	border:0px;
+	padding:0px;
+}
+
+/*选择夹的子夹*/
+QTabBar::tab{
+    background-color: #0B0E11;
+	 /*font-family:Consolas;   设置tab中的文本的字体*/
+	font-size:8pt;
+	color:rgb(255, 255, 255);    /*设置tab中的文本的颜色*/
+	/*border-top-left-radius: 5px;    设置tab的边框的圆角（左上圆角）*/
+	/*border-top-right-radius: 5px;    设置tab的边框的圆角（右上圆角）*/
+	min-width: 100px;
+	margin-right:2px;
+	padding: 5px;
+	background-color: rgb(59, 79, 129);
+}
+ 
+/*设置TabWidget中QTabBar的tab被选中时的样式*/
+QTabBar::tab:selected{
+    background-color: rgb(245, 204, 132);
+	color:rgb(58, 52, 42);
+}
+ 
+/*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
+QTabBar::tab:hover:!selected {
+    background-color: rgb(187, 198, 241);
+	color:rgb(92, 45, 145);
+}
+
+
+
+/*Dock的文本框*/
+#textEdit_help_tip,#textEdit_print{
+	background-color:rgb(230, 231, 232);
+	color:rgb(42, 42, 42);
+}
+
+
+
+
+
+
+/*设置TabWidget的边框的样式
+/*浮动窗格*/
+QDockWidget{
+	color:rgb(255,255,255);
+	background-color:rgb(93, 107, 153);
+}
+
+/*浮动窗格标题栏*/
+QDockWidget::title {
+    border-style: inset;
+    text-align: left;
+	margin-top: 8px;
+    padding: 3px;
+	color:rgb(255,255,255);
+	background-color:#40568d;
+}
+
+
+/*右键菜单*/
+QMenu{
+	background-color: rgb(233, 238, 255);
+	border:1px solid rgb(148, 166, 202);
+	padding:2px;
+}
+QMenu::item{
+	color: rgb(30, 30, 31);
+}
+QMenu::item:selected{
+	color: rgb(30, 30, 31);
+	background-color: rgb(177, 197, 255);
+}
+QMenu::separator{
+	background:#bbbbbb;
+    height:1px;
+	margin:5px 10px;
+}
+QMenu:icon{
+	width:16px;
+	height:16px
+}
+QMenu::item:disabled {/*菜单被禁用*/
+	color: rgb(181, 194, 202);
+}</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>8</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QComboBox" name="comboBox_compileMode">
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Debug（调试）</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Release（发布）</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="Form_WindowTab" name="widget_WindowTab" native="true"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_file">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="action_file_newCreate"/>
+    <addaction name="action_file_open"/>
+    <addaction name="action_file_close"/>
+    <addaction name="action_file_save"/>
+    <addaction name="action_file_saveAs"/>
+    <addaction name="action_file_confoundSaveAs"/>
+    <addaction name="action_file_print"/>
+    <addaction name="separator"/>
+    <addaction name="action_file_config"/>
+    <addaction name="action_file_connect"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="action_file_exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_check">
+    <property name="title">
+     <string>查看(&amp;V)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_insert">
+    <property name="title">
+     <string>插入(&amp;I)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_db">
+    <property name="title">
+     <string>数据库(&amp;B)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_debug">
+    <property name="title">
+     <string>调试(&amp;R)</string>
+    </property>
+    <addaction name="action_menu_run"/>
+    <addaction name="action_menu_Rerun"/>
+    <addaction name="action_menu_stop"/>
+    <addaction name="separator"/>
+    <addaction name="action_V_2"/>
+    <addaction name="action_O_2"/>
+    <addaction name="action_I"/>
+    <addaction name="action_U_2"/>
+    <addaction name="action_R_2"/>
+    <addaction name="separator"/>
+    <addaction name="action_T_2"/>
+    <addaction name="action_A"/>
+    <addaction name="action_C_2"/>
+    <addaction name="separator"/>
+    <addaction name="action_G_2"/>
+    <addaction name="action_N_2"/>
+   </widget>
+   <widget class="QMenu" name="menu_compile">
+    <property name="title">
+     <string>生成(&amp;C)</string>
+    </property>
+    <addaction name="action_menu_compile"/>
+    <addaction name="action_menu_staticCompile"/>
+    <addaction name="separator"/>
+    <addaction name="action_I_2"/>
+    <addaction name="action_M_2"/>
+    <addaction name="action_T_3"/>
+    <addaction name="separator"/>
+    <addaction name="action_O_3"/>
+   </widget>
+   <widget class="QMenu" name="menu_tool">
+    <property name="title">
+     <string>工具(&amp;T)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_expand">
+    <property name="title">
+     <string>扩展(&amp;X)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_view">
+    <property name="title">
+     <string>视图(&amp;W)</string>
+    </property>
+    <addaction name="action_dock_project"/>
+    <addaction name="action_dock_tool"/>
+    <addaction name="action_dock_compilePrint"/>
+    <addaction name="action_dock_runTip"/>
+    <addaction name="action_dock_debug"/>
+    <addaction name="action_dock_find"/>
+   </widget>
+   <widget class="QMenu" name="menu_help">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="action_Q"/>
+    <addaction name="action_W_2"/>
+    <addaction name="separator"/>
+    <addaction name="action_H_2"/>
+    <addaction name="action_E_3"/>
+    <addaction name="action_T_4"/>
+    <addaction name="action_D_2"/>
+    <addaction name="action_C_4"/>
+    <addaction name="separator"/>
+    <addaction name="action_about"/>
+    <addaction name="action_U_3"/>
+    <addaction name="action_R_3"/>
+    <addaction name="action_V_3"/>
+   </widget>
+   <widget class="QMenu" name="menu_set">
+    <property name="title">
+     <string>设置(&amp;S)</string>
+    </property>
+    <widget class="QMenu" name="menu_T">
+     <property name="title">
+      <string>主题(&amp;T)</string>
+     </property>
+     <addaction name="actionBlue_N"/>
+     <addaction name="actionBlue_W"/>
+     <addaction name="actionBlue_D"/>
+    </widget>
+    <addaction name="action_I_3"/>
+    <addaction name="action_pluginManger"/>
+    <addaction name="separator"/>
+    <addaction name="action_O_4"/>
+    <addaction name="menu_T"/>
+    <addaction name="separator"/>
+    <addaction name="action_C_5"/>
+    <addaction name="action_F_2"/>
+   </widget>
+   <widget class="QMenu" name="menu_editor">
+    <property name="title">
+     <string>编辑(&amp;E)</string>
+    </property>
+    <addaction name="action_U"/>
+    <addaction name="action_R"/>
+    <addaction name="action_C"/>
+    <addaction name="action_T"/>
+    <addaction name="action_P"/>
+    <addaction name="action_D"/>
+    <addaction name="separator"/>
+    <addaction name="action_F"/>
+    <addaction name="action_G"/>
+    <addaction name="action_N"/>
+    <addaction name="action_V"/>
+    <addaction name="action_H"/>
+    <addaction name="action_E"/>
+    <addaction name="action_W"/>
+   </widget>
+   <addaction name="menu_file"/>
+   <addaction name="menu_editor"/>
+   <addaction name="menu_check"/>
+   <addaction name="menu_insert"/>
+   <addaction name="menu_db"/>
+   <addaction name="menu_debug"/>
+   <addaction name="menu_compile"/>
+   <addaction name="menu_tool"/>
+   <addaction name="menu_expand"/>
+   <addaction name="menu_view"/>
+   <addaction name="menu_help"/>
+   <addaction name="menu_set"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_ProjectManger">
+   <property name="minimumSize">
+    <size>
+     <width>180</width>
+     <height>150</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>工程管理</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QGridLayout" name="gridLayout_6">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="Form_ProjectManger" name="widget_ProjectManger" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_toolBox">
+   <property name="minimumSize">
+    <size>
+     <width>180</width>
+     <height>150</height>
+    </size>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>200</width>
+     <height>200</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>工具箱</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_4">
+    <layout class="QGridLayout" name="gridLayout_5">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="Form_WidgetBox" name="widget_toolBox" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_compilePrint">
+   <property name="minimumSize">
+    <size>
+     <width>229</width>
+     <height>141</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>编译输出</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_8">
+    <layout class="QGridLayout" name="gridLayout_3">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="Form_ListPrint" name="textEdit_compilePrint" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_print">
+   <property name="minimumSize">
+    <size>
+     <width>229</width>
+     <height>141</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>运行与提示</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QGridLayout" name="gridLayout_4">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="Form_TextPrint" name="textEdit_print" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_debug">
+   <property name="minimumSize">
+    <size>
+     <width>229</width>
+     <height>82</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>断点堆栈</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_15"/>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_find">
+   <property name="minimumSize">
+    <size>
+     <width>229</width>
+     <height>82</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>搜寻结果</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_13">
+    <layout class="QGridLayout" name="gridLayout_7">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomToolBarArea|Qt::TopToolBarArea</set>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action1"/>
+   <addaction name="action2"/>
+   <addaction name="separator"/>
+   <addaction name="action3"/>
+   <addaction name="action4"/>
+   <addaction name="action5"/>
+   <addaction name="separator"/>
+   <addaction name="action6"/>
+   <addaction name="action7"/>
+   <addaction name="action8"/>
+   <addaction name="action9"/>
+   <addaction name="action10"/>
+   <addaction name="separator"/>
+   <addaction name="action_toolBar_compile"/>
+   <addaction name="action_toolBar_staticCompile"/>
+   <addaction name="action_toolBar_onlineCompile"/>
+   <addaction name="separator"/>
+   <addaction name="action_toolBar_find"/>
+   <addaction name="separator"/>
+   <addaction name="action_toolBar_run"/>
+   <addaction name="action_toolBar_stop"/>
+   <addaction name="action_toolBar_Rerun"/>
+   <addaction name="separator"/>
+   <addaction name="action18"/>
+   <addaction name="action19"/>
+   <addaction name="separator"/>
+   <addaction name="action20"/>
+   <addaction name="action21"/>
+   <addaction name="action22"/>
+   <addaction name="action23"/>
+   <addaction name="action24"/>
+   <addaction name="separator"/>
+   <addaction name="action25"/>
+   <addaction name="separator"/>
+   <addaction name="action26"/>
+   <addaction name="action27"/>
+   <addaction name="action28"/>
+   <addaction name="action29"/>
+   <addaction name="separator"/>
+   <addaction name="action30"/>
+   <addaction name="action31"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomToolBarArea|Qt::TopToolBarArea</set>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="action32"/>
+   <addaction name="separator"/>
+   <addaction name="action33"/>
+   <addaction name="action34"/>
+   <addaction name="action35"/>
+   <addaction name="action36"/>
+   <addaction name="separator"/>
+   <addaction name="action37"/>
+   <addaction name="action38"/>
+   <addaction name="separator"/>
+   <addaction name="action39"/>
+   <addaction name="action40"/>
+   <addaction name="action41"/>
+   <addaction name="action42"/>
+   <addaction name="separator"/>
+   <addaction name="actionaction43"/>
+   <addaction name="actionaction44"/>
+   <addaction name="actionaction45"/>
+  </widget>
+  <action name="action1">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Backward_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Backward_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Backward_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Forward_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action3">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action4">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action5">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SaveStatusBar1_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action6">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Cut_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action7">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Copy_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action8">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Paste_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action9">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Undo_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action10">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Redo_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action_toolBar_compile">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSelection_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action_toolBar_staticCompile">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSolution_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action_toolBar_onlineCompile">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildBlackMoon_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action_toolBar_find">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FindResults_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>查找</string>
+   </property>
+   <property name="toolTip">
+    <string>查找</string>
+   </property>
+  </action>
+  <action name="action_toolBar_run">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Run_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>运行程序</string>
+   </property>
+   <property name="toolTip">
+    <string>运行程序</string>
+   </property>
+  </action>
+  <action name="action_toolBar_stop">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Stop_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>终止运行</string>
+   </property>
+   <property name="toolTip">
+    <string>终止运行</string>
+   </property>
+  </action>
+  <action name="action_toolBar_Rerun">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Restart_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>重新构建</string>
+   </property>
+   <property name="toolTip">
+    <string>重新构建</string>
+   </property>
+  </action>
+  <action name="action18">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToggleAllBreakpoints_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action19">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action20">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action21">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepForward_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action22">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOver_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action23">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepIn_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action24">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOut_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action25">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToolTip_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action26">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Bookmark_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action27">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/PreviousBookmark_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action28">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/NextBookmark_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action29">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BookmarkMainMenuTabItem_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action30">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Property_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action31">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Settings_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action32">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/RunTestDialog_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action33">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignLeft_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action34">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignRight_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action35">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignTop_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action36">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignBottom_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action37">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextCenterInFormHorizontal_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action38">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/CenterInFormVertical_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action39">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeHorizontalCenter_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action40">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeVerticalCenter_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action41">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceAcross_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action42">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceDown_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action_file_newCreate">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建(&amp;N)</string>
+   </property>
+  </action>
+  <action name="action_file_open">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开(&amp;O)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_file_close">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>关闭(&amp;C)</string>
+   </property>
+  </action>
+  <action name="action_file_save">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存(&amp;S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_file_saveAs">
+   <property name="text">
+    <string>另存为(&amp;A)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="action_file_confoundSaveAs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>混淆另存为(&amp;M)</string>
+   </property>
+  </action>
+  <action name="action_file_print">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Print_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Print_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>打印(&amp;P)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="action_file_config">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Property_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Property_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>配置(&amp;U)</string>
+   </property>
+  </action>
+  <action name="action_file_connect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>重新关联文件名(&amp;L)</string>
+   </property>
+  </action>
+  <action name="action_file_exit">
+   <property name="text">
+    <string>退出(&amp;X)</string>
+   </property>
+  </action>
+  <action name="action_U">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Undo_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Undo_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>撤销(&amp;U)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="action_R">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Redo_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Redo_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>重复(&amp;R)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="action_C">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Copy_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Copy_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>复制(&amp;C)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action_T">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Cut_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Cut_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>剪切(&amp;T)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="action_P">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Paste_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Paste_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>粘贴(&amp;P)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="action_D">
+   <property name="text">
+    <string>删除行(&amp;D)</string>
+   </property>
+   <property name="shortcut">
+    <string>F10</string>
+   </property>
+  </action>
+  <action name="action_F">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>开始查找(&amp;F)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="action_G">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>高亮标记待寻找单词(&amp;G)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_N">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>寻找下一个(&amp;N)</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="action_V">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>寻找上一个(&amp;V)</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F3</string>
+   </property>
+  </action>
+  <action name="action_H">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>寻找替换(&amp;H)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="action_E">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>整体搜寻(&amp;E)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+F</string>
+   </property>
+  </action>
+  <action name="action_W">
+   <property name="text">
+    <string>跳转到指定行(&amp;W)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="action_menu_run">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Run_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Run_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>运行(&amp;S)</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="action_menu_Rerun">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>重新运行(&amp;M)</string>
+   </property>
+   <property name="toolTip">
+    <string>重新运行(M)</string>
+   </property>
+  </action>
+  <action name="action_menu_stop">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Stop_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Stop_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>终止(&amp;E)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F5</string>
+   </property>
+  </action>
+  <action name="action_V_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>查看表达式/变量(&amp;V)</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F9</string>
+   </property>
+  </action>
+  <action name="action_O_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>单步跟踪(&amp;O)</string>
+   </property>
+   <property name="shortcut">
+    <string>F8</string>
+   </property>
+  </action>
+  <action name="action_I">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>单步跟踪进入(&amp;I)</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F8</string>
+   </property>
+  </action>
+  <action name="action_U_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>跟踪返回(&amp;U)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F8</string>
+   </property>
+  </action>
+  <action name="action_R_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>执行到光标处(&amp;R)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F8</string>
+   </property>
+  </action>
+  <action name="action_T_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>设置或清除断点(&amp;T)</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
+  </action>
+  <action name="action_A">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>条件断点(&amp;A)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F9</string>
+   </property>
+  </action>
+  <action name="action_C_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>清楚所有断点(&amp;C)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F9</string>
+   </property>
+  </action>
+  <action name="action_G_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>到现行执行位置(&amp;G)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+.</string>
+   </property>
+  </action>
+  <action name="action_N_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>到运行时错误相关位置(&amp;N)</string>
+   </property>
+  </action>
+  <action name="action_menu_compile">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>编译(&amp;C)</string>
+   </property>
+   <property name="shortcut">
+    <string>F7</string>
+   </property>
+  </action>
+  <action name="action_menu_staticCompile">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>静态编译(&amp;S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F7</string>
+   </property>
+  </action>
+  <action name="action_I_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>编译生成安装软件(&amp;I)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F7</string>
+   </property>
+  </action>
+  <action name="action_M_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>编译为指定类型(&amp;M)</string>
+   </property>
+  </action>
+  <action name="action_T_3">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>静态编译为指定类型(&amp;T)</string>
+   </property>
+  </action>
+  <action name="action_O_3">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>其他编译(&amp;O)</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_Q">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>建议反馈(&amp;Q)</string>
+   </property>
+  </action>
+  <action name="action_W_2">
+   <property name="text">
+    <string>使用条款(&amp;W)</string>
+   </property>
+  </action>
+  <action name="action_H_2">
+   <property name="text">
+    <string>智能开发助手(&amp;H)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+H</string>
+   </property>
+  </action>
+  <action name="action_E_3">
+   <property name="text">
+    <string>知识库(&amp;E)</string>
+   </property>
+  </action>
+  <action name="action_T_4">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>多媒体教程(&amp;T)</string>
+   </property>
+  </action>
+  <action name="action_D_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>每日一贴(&amp;D)</string>
+   </property>
+  </action>
+  <action name="action_C_4">
+   <property name="text">
+    <string>支持库手册及例程(&amp;C)</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>关于(&amp;A)</string>
+   </property>
+  </action>
+  <action name="action_U_3">
+   <property name="text">
+    <string>用户反馈表(&amp;U)</string>
+   </property>
+  </action>
+  <action name="action_R_3">
+   <property name="text">
+    <string>购买与商业合作(&amp;R)</string>
+   </property>
+  </action>
+  <action name="action_V_3">
+   <property name="text">
+    <string>平台安全检测报告(&amp;V)</string>
+   </property>
+  </action>
+  <action name="action_I_3">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>安装新的支持库(&amp;I)</string>
+   </property>
+  </action>
+  <action name="action_pluginManger">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>插件管理器(&amp;L)</string>
+   </property>
+   <property name="toolTip">
+    <string>插件管理器(L)</string>
+   </property>
+  </action>
+  <action name="action_O_4">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>系统设置(&amp;O)</string>
+   </property>
+  </action>
+  <action name="action_C_5">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>签名认证(&amp;C)</string>
+   </property>
+  </action>
+  <action name="action_F_2">
+   <property name="text">
+    <string>在模块及支持库中查找(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionBlue_N">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Blue(默认)(&amp;N)</string>
+   </property>
+   <property name="toolTip">
+    <string>Blue(N)</string>
+   </property>
+  </action>
+  <action name="actionBlue_W">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>White(&amp;W)</string>
+   </property>
+  </action>
+  <action name="actionBlue_D">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Black(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionaction43">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeFixedWidth_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>action43</string>
+   </property>
+  </action>
+  <action name="actionaction44">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextLineHeight_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>action44</string>
+   </property>
+  </action>
+  <action name="actionaction45">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png</normaloff>
+     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeOptimize_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png</iconset>
+   </property>
+   <property name="text">
+    <string>action45</string>
+   </property>
+  </action>
+  <action name="action_dock_project">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>工程管理</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>true</bool>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
+   <property name="priority">
+    <enum>QAction::NormalPriority</enum>
+   </property>
+  </action>
+  <action name="action_dock_tool">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>工具箱</string>
+   </property>
+  </action>
+  <action name="action_dock_compilePrint">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>编译输出</string>
+   </property>
+   <property name="toolTip">
+    <string>编译输出</string>
+   </property>
+  </action>
+  <action name="action_dock_runTip">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>运行提示</string>
+   </property>
+   <property name="toolTip">
+    <string>运行与提示</string>
+   </property>
+  </action>
+  <action name="action_dock_debug">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>断点堆栈</string>
+   </property>
+  </action>
+  <action name="action_dock_find">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>搜寻结果</string>
+   </property>
+   <property name="toolTip">
+    <string>搜寻结果</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Form_WidgetBox</class>
+   <extends>QWidget</extends>
+   <header>Window/Form_WidgetBox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Form_ProjectManger</class>
+   <extends>QWidget</extends>
+   <header>Window/Form_ProjectManger.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Form_TextPrint</class>
+   <extends>QWidget</extends>
+   <header>Window/Form_TextPrint.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Form_ListPrint</class>
+   <extends>QWidget</extends>
+   <header>Window/Form_ListPrint.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Form_WindowTab</class>
+   <extends>QWidget</extends>
+   <header>Window/Form_WindowTab.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
