@@ -20,7 +20,6 @@ public:
     bool event_onStopDown(QString proPath,QString proLangs,QString proNoteClass) override; //当停止按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
     bool event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass) override; //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 
-
 public:
 
 

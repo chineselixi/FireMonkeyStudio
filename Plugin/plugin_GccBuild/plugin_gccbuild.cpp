@@ -32,6 +32,7 @@ void Plugin_GccBuild::event_onWorkSpaceFinish()
     QAction* t_menu = new QAction;
     WorkSpace_AddMenu_ToolBar_Tool(t_menu);
     t_menu->setText("验证GCC编译器");
+    t_menu->setIcon(QIcon(":/form_img/img/Module_16x.png"));
     QAction::connect(t_menu,&QAction::triggered,[this](){
         Form_CheckGCC* t_form = new Form_CheckGCC;
         t_form->setAttribute(Qt::WA_ShowModal, true);
@@ -43,6 +44,8 @@ void Plugin_GccBuild::event_onWorkSpaceFinish()
 //当运行按钮被按下
 bool Plugin_GccBuild::event_onRunDown(QString proPath, QString proLangs, QString proNoteClass)
 {
+    qDebug() << "运行按钮被点击";
+
     return false;
 }
 
@@ -57,8 +60,13 @@ bool Plugin_GccBuild::event_onStopDown(QString proPath, QString proLangs, QStrin
 //当工程被加载完毕
 bool Plugin_GccBuild::event_onPorjectLoad(QString proPath, QString proLangs, QString proNoteClass)
 {
-
-
-    return false;
+    proLangs = proLangs.toLower();
+    if(proLangs.indexOf("c++") != -1 || proLangs.indexOf("cpp") != -1){
+        WorkSpace_Action_setEnable(PluginGlobalMsg::ActionType::run,true); //运行按钮状态
+        WorkSpace_Action_setEnable(PluginGlobalMsg::ActionType::stop,false); //停止按钮状态
+        WorkSpace_Action_setEnable(PluginGlobalMsg::ActionType::rerun,false); //重新运行按钮状态
+        return false; //阻断消息传递
+    }
+    return true;
 }
 
