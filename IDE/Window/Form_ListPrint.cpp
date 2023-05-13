@@ -14,24 +14,24 @@ Form_ListPrint::~Form_ListPrint()
     delete ui;
 }
 
-void Form_ListPrint::addMsg(QString code, QString text, QString project, QString file, int row, icoType type, QColor textColor)
+void Form_ListPrint::addMsg(QString code, QString text, QString project, QString file, int row,PluginGlobalMsg::printIcoType type, QColor textColor)
 {
     QTreeWidgetItem* t_item = new QTreeWidgetItem;
     QIcon t_ico;
     switch (type){
-    case icoType::tip:{
+    case PluginGlobalMsg::printIcoType::tip:{
         t_ico = QIcon(":/CompileTip/icon/compileTip/tip.png");
         break;
     }
-    case icoType::ok:{
+    case PluginGlobalMsg::printIcoType::ok:{
         t_ico = QIcon(":/CompileTip/icon/compileTip/ok.png");
         break;
     }
-    case icoType::error:{
+    case PluginGlobalMsg::printIcoType::error:{
         t_ico = QIcon(":/CompileTip/icon/compileTip/error.png");
         break;
     }
-    case icoType::warning:{
+    case PluginGlobalMsg::printIcoType::warning:{
         t_ico = QIcon(":/CompileTip/icon/compileTip/warning.png");
         break;
     }

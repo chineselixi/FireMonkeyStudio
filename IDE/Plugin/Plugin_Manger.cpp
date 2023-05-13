@@ -172,6 +172,24 @@ void Plugin_Manger::workSpace_init_actionEnable(PluginGlobalMsg::workSpace_Actio
 }
 
 
+//初始化提示输出接口
+void Plugin_Manger::workSpace_init_tipPrint(PluginGlobalMsg::printFun_printList fun_printList,
+                                            PluginGlobalMsg::printFun_printTextSpace fun_printText,
+                                            PluginGlobalMsg::printFun_printTextSpace fun_printTextLine,
+                                            PluginGlobalMsg::printFun_clear fun_clearPrintList,
+                                            PluginGlobalMsg::printFun_clear fun_clearTextSpace)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        List_plg[a].plgPth->WorkSpace_PrintOut_List = fun_printList;
+        List_plg[a].plgPth->WorkSpace_PrintOut_TextSpace_Print = fun_printText;
+        List_plg[a].plgPth->WorkSpace_PrintOut_TextSpace_PrintLine = fun_printTextLine;
+        List_plg[a].plgPth->WorkSpace_PrintOut_List_Clear = fun_clearPrintList;
+        List_plg[a].plgPth->WorkSpace_PrintOut_TextSpace_Clear = fun_clearTextSpace;
+    }
+}
+
+
 
 
 //插件接口绑定

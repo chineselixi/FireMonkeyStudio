@@ -16,7 +16,7 @@ public:
     ~Form_CheckGCC();
 
 
-    QString gccExist(); //检查GCC是否存在
+    static QString gccExist(); //检查GCC是否存在
 
 
 

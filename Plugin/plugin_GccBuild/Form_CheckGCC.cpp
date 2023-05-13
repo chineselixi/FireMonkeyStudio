@@ -46,7 +46,7 @@ QString Form_CheckGCC::gccExist()
 
 void Form_CheckGCC::on_But_check_clicked()
 {
-    QString t_str = this->gccExist();
+    QString t_str = Form_CheckGCC::gccExist();
     if(t_str == ""){
         ui->label_img->setPixmap(QPixmap(":/form_img/img/error.png"));
         ui->label_tip->setText(tr("GCC编译器不存在"));

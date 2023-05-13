@@ -28,7 +28,7 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
 
     this->init(); //初始化代码
 
-
+    Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::compileType::debug); //响应编译模式
     Manger::pluginManger->event_onWorkSpaceFinish(); //响应插件workSpace加载完成事件
 
 
@@ -202,6 +202,25 @@ void Form_WorkSpace::init()
         if(t_act == nullptr) return;
         t_act->setEnabled(enable);
     });
+
+
+    //初始化内容输出接口
+    Manger::pluginManger->workSpace_init_tipPrint(
+        [this](QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor){ //从列表输出提示
+            this->ui->textEdit_compilePrint->addMsg(code,text,project,file,row,type,textColor);
+        },
+        [this](QColor color,QString printText){ //输出单个文本信息
+            this->ui->textEdit_print->addText(printText,color);
+        },
+        [this](QColor color,QString printText){ //输出一行文本信息
+            this->ui->textEdit_print->addLineText(printText,color);
+        },
+        [this](){ //清理提示列表
+            this->ui->textEdit_compilePrint->clearMsg();
+        },
+        [this](){ //清理文本空间
+            this->ui->textEdit_print->clearTextEditor();
+        });
 
 
 }
@@ -396,7 +415,9 @@ void Form_WorkSpace::event_ProjectManger_onProjectActiveChanged(QString projectP
 //文件被打开事件
 void Form_WorkSpace::event_ProjectManger_onFileOpen(QString filePath)
 {
-    Manger::pluginManger->event_onFileOpen(filePath);
+    if(!ui->widget_WindowTab->hasTabMsg(filePath,true)){
+        Manger::pluginManger->event_onFileOpen(filePath);
+    }
 }
 
 //文件被删除或者关闭

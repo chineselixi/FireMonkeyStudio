@@ -2,6 +2,8 @@
 #define FORM_LISTPRINT_H
 
 #include <QWidget>
+#include "Plugin/Plugin_Global.h"
+
 
 namespace Ui {
 class Form_ListPrint;
@@ -10,15 +12,6 @@ class Form_ListPrint;
 class Form_ListPrint : public QWidget
 {
     Q_OBJECT
-public:
-    //图标类型
-    enum icoType{
-        tip = 0,
-        ok = 1,
-        error = 2,
-        warning = 3
-    };
-
 
 public:
     explicit Form_ListPrint(QWidget *parent = nullptr);
@@ -29,7 +22,7 @@ private:
 
 public:
     //添加提示内容
-    void addMsg(QString code,QString text,QString project,QString file,int row,icoType type = icoType::tip,QColor textColor = qRgb(0,0,0));
+    void addMsg(QString code,QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type = PluginGlobalMsg::printIcoType::tip,QColor textColor = qRgb(0,0,0));
 
     //删除所有内容
     void clearMsg();

@@ -34,6 +34,14 @@ enum ActionType{
 };
 
 
+//输出的Ico
+enum printIcoType{
+    tip = 0,
+    ok = 1,
+    error = 2,
+    warning = 3
+};
+
 
 
 //函数指针类型
@@ -47,6 +55,14 @@ typedef std::function<QWidget*(std::function<void(QString leftText,QString right
 typedef std::function<void(QWidget* editor,QVector<QString> keys,int index)> editorFun_addKetWord; //创建添加关键字信息
 typedef std::function<QString(QWidget*)> editorFun_getStr; //获取内容
 typedef std::function<void(QWidget* editor,QString str)> editorFun_addStr; //添加内容
+
+
+
+
+//输出容器
+typedef std::function<void(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor)> printFun_printList;
+typedef std::function<void()> printFun_clear;
+typedef std::function<void(QColor color,QString printText)> printFun_printTextSpace;
 
 
 

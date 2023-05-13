@@ -74,6 +74,11 @@ public:
                                    PluginGlobalMsg::editorFun_getStr getStrPth,PluginGlobalMsg::editorFun_addStr addStrPth); //添加workSpace的代码编辑器接口
     void workSpace_init_actionEnable(PluginGlobalMsg::workSpace_Action_setEnableFun enableFun); //初始化设置action的启用接口
 
+    void workSpace_init_tipPrint(PluginGlobalMsg::printFun_printList fun_printList,PluginGlobalMsg::printFun_printTextSpace fun_printText,
+                                 PluginGlobalMsg::printFun_printTextSpace fun_printTextLine,PluginGlobalMsg::printFun_clear fun_clearPrintList,
+                                 PluginGlobalMsg::printFun_clear fun_clearTextSpace); //初始化提示输出接口
+
+
     void pluginManger_init_building(); //插件接口绑定
 
 

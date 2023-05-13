@@ -155,6 +155,7 @@ compiler_rcc_clean:
 release\qrc_res.cpp: res.qrc \
 		D:\QT\6.5.0\msvc2019_64\bin\rcc.exe \
 		img\ok.png \
+		img\Module_16x.png \
 		img\error.png
 	D:\QT\6.5.0\msvc2019_64\bin\rcc.exe -name res --no-zstd res.qrc -o release\qrc_res.cpp
 
@@ -534,6 +535,21 @@ release\Form_CheckGCC.obj: Form_CheckGCC.cpp Form_CheckGCC.h \
 		D:\QT\6.5.0\msvc2019_64\include\QtGui\qinputmethod.h \
 		D:\QT\6.5.0\msvc2019_64\include\QtCore\qlocale.h \
 		D:\QT\6.5.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\qlayout.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\QLabel \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\qlabel.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\qframe.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtGui\qpicture.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtGui\qtextdocument.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\QPushButton \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\QSpacerItem \
+		D:\QT\6.5.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
 		D:\QT\6.5.0\msvc2019_64\include\QtCore\QProcess \
 		D:\QT\6.5.0\msvc2019_64\include\QtCore\qprocess.h
 
