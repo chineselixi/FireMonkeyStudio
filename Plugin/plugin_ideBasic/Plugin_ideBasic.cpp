@@ -55,7 +55,7 @@ bool Plugin_ideBasic::event_onFileOpen(QString filePath)
         t_file.close();
 
 
-        this->WorkSpace_addTabWindow(QFileInfo(filePath).fileName(),t_codeEditor,filePath,QIcon(""),PluginGlobalMsg::TabType::codeEditor);
+        this->WorkSpace_addTabWindow(QFileInfo(filePath).fileName(),t_codeEditor,filePath,QIcon(":/ico/img/Namespace_16x.png"),PluginGlobalMsg::TabType::codeEditor);
 
         return false;//阻止继续的事件激发
     }
