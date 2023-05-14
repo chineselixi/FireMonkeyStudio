@@ -223,7 +223,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <addaction name="action_file_close"/>
     <addaction name="action_file_save"/>
     <addaction name="action_file_saveAs"/>
-    <addaction name="action_file_confoundSaveAs"/>
+    <addaction name="action_file_saveAll"/>
     <addaction name="action_file_print"/>
     <addaction name="separator"/>
     <addaction name="action_file_config"/>
@@ -296,7 +296,6 @@ QMenu::item:disabled {/*菜单被禁用*/
      <string>视图(&amp;W)</string>
     </property>
     <addaction name="action_dock_project"/>
-    <addaction name="action_dock_tool"/>
     <addaction name="action_dock_compilePrint"/>
     <addaction name="action_dock_runTip"/>
     <addaction name="action_dock_debug"/>
@@ -332,7 +331,7 @@ QMenu::item:disabled {/*菜单被禁用*/
      <addaction name="actionBlue_W"/>
      <addaction name="actionBlue_D"/>
     </widget>
-    <addaction name="action_I_3"/>
+    <addaction name="action_addNewPlugin"/>
     <addaction name="action_pluginManger"/>
     <addaction name="separator"/>
     <addaction name="action_O_4"/>
@@ -407,45 +406,6 @@ QMenu::item:disabled {/*菜单被禁用*/
      </property>
      <item row="0" column="0">
       <widget class="Form_ProjectManger" name="widget_ProjectManger" native="true"/>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QDockWidget" name="dockWidget_toolBox">
-   <property name="minimumSize">
-    <size>
-     <width>180</width>
-     <height>150</height>
-    </size>
-   </property>
-   <property name="baseSize">
-    <size>
-     <width>200</width>
-     <height>200</height>
-    </size>
-   </property>
-   <property name="windowTitle">
-    <string>工具箱</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>2</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_4">
-    <layout class="QGridLayout" name="gridLayout_5">
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item row="0" column="0">
-      <widget class="Form_WidgetBox" name="widget_toolBox" native="true"/>
      </item>
     </layout>
    </widget>
@@ -1272,12 +1232,15 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-  <action name="action_file_confoundSaveAs">
+  <action name="action_file_saveAll">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>混淆另存为(&amp;M)</string>
+    <string>保存全部(&amp;M)</string>
+   </property>
+   <property name="toolTip">
+    <string>保存全部(M)</string>
    </property>
   </action>
   <action name="action_file_print">
@@ -1651,7 +1614,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_menu_compile">
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1666,7 +1629,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_menu_staticCompile">
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1799,13 +1762,16 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>平台安全检测报告(&amp;V)</string>
    </property>
   </action>
-  <action name="action_I_3">
+  <action name="action_addNewPlugin">
    <property name="icon">
     <iconset resource="../icons.qrc">
      <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</iconset>
    </property>
    <property name="text">
-    <string>安装新的支持库(&amp;I)</string>
+    <string>安装新的插件支持(&amp;I)</string>
+   </property>
+   <property name="toolTip">
+    <string>安装新的插件支持(I)</string>
    </property>
   </action>
   <action name="action_pluginManger">
@@ -1974,23 +1940,6 @@ QMenu::item:disabled {/*菜单被禁用*/
     <enum>QAction::NormalPriority</enum>
    </property>
   </action>
-  <action name="action_dock_tool">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
-    </iconset>
-   </property>
-   <property name="text">
-    <string>工具箱</string>
-   </property>
-  </action>
   <action name="action_dock_compilePrint">
    <property name="checkable">
     <bool>true</bool>
@@ -2070,12 +2019,6 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>Form_WidgetBox</class>
-   <extends>QWidget</extends>
-   <header>Window/Form_WidgetBox.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>Form_ProjectManger</class>
    <extends>QWidget</extends>

@@ -18,8 +18,6 @@ public:
     libMsg getBaseMsg() override;//获取基础的系统指针
 
     void event_onWorkSpaceFinish() override; //工作空间加载完毕
-
-
     bool event_onFileOpen(QString filePath); //当文件被打开
 };
 

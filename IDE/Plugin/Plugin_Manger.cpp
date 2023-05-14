@@ -62,6 +62,12 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
                     //已经获取了实例
                     t_plgMsg.plgPth = t_getIns(); //保存实例对象
                     t_plgMsg.qLibPth = t_lib; //保存当前的QLibrary对象
+//                    t_plgMsg.plgPth->WorkSpace_Mneu_UnityStyle_SelectAction = [](QAction* act){  //初始化菜单央视更新信息
+//                        QIcon t_ico;
+//                        t_ico.addPixmap(QPixmap(":/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png"), QIcon::Normal, QIcon::Off);
+//                        t_ico.addPixmap(QPixmap(":/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png"), QIcon::Normal, QIcon::On);
+//                        act->setIcon(t_ico);
+//                    };
                     goto ADDMSG;
                 }
             }
@@ -214,6 +220,17 @@ void Plugin_Manger::pluginManger_init_building()
 }
 
 
+//浮动窗格绑定
+void Plugin_Manger::workSpace_init_dockWidget(PluginGlobalMsg::dockWidgetFun_add addFun,PluginGlobalMsg::dockWidgetFun_rm rmFun)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        List_plg[a].plgPth->WorkSpace_DockWidget_Add = addFun;
+        List_plg[a].plgPth->WorkSpace_DockWidget_remove = rmFun;
+    }
+}
+
+
 
 
 //当模块加载完毕，将第一时间激发模块事件
@@ -231,6 +248,7 @@ void Plugin_Manger::event_onModLoadFinish()
 void Plugin_Manger::event_onCompileTypeChanged(PluginGlobalMsg::compileType type)
 {
     for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
         if(List_plg[a].plgPth->event_onCompileTypeChanged(type) == false){ //若插件阻止触发，则跳出
             break;
         }

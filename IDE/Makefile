@@ -353,7 +353,6 @@ Makefile: IDE.pro D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.conf D:\QT\6.
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\qt_config.prf \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.conf \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\spec_post.prf \
-		..\.qmake.stash \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\exclusive_builds.prf \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\common\msvc-version.conf \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\toolchain.prf \
@@ -395,6 +394,7 @@ Makefile: IDE.pro D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.conf D:\QT\6.
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Positioning.prl \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Core.prl \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6EntryPoint.prl \
+		.qmake.stash \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\build_pass.prf \
 		images.qrc \
 		icons.qrc \
@@ -683,7 +683,6 @@ D:\QT\6.5.0\msvc2019_64\mkspecs\features\qt_functions.prf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\qt_config.prf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.conf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\spec_post.prf:
-..\.qmake.stash:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\exclusive_builds.prf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\common\msvc-version.conf:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\toolchain.prf:
@@ -725,6 +724,7 @@ D:\QT\6.5.0\msvc2019_64\lib\Qt6Network.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Positioning.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Core.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6EntryPoint.prl:
+.qmake.stash:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\build_pass.prf:
 images.qrc:
 icons.qrc:
@@ -753,6 +753,7 @@ all: release-all debug-all  FORCE
 clean: release-clean debug-clean  FORCE
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
+	-$(DEL_FILE) .qmake.stash
 
 release-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)

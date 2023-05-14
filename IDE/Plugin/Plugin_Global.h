@@ -3,6 +3,7 @@
 #define PLUGIN_GLOBAL_H
 
 #include "QWidget"
+#include "QDockWidget"
 #include "functional"
 
 namespace PluginGlobalMsg{
@@ -49,33 +50,23 @@ typedef std::function<void(QAction* act)> menuFun;  //添加菜单到menu
 typedef std::function<void(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)> addTabViewPth; //添加TabView函数指针类型
 typedef std::function<void(ActionType actionType,bool enable)> workSpace_Action_setEnableFun; //设置Action启用函数
 
-
 //代码编辑器函数类型
 typedef std::function<QWidget*(std::function<void(QString leftText,QString rightText,QString lineText,QWidget* codeEditor)> onTipEventFun)> editorFun_create; //创建QWidget函数指针,其中参数包含代码编辑器的提示事件
 typedef std::function<void(QWidget* editor,QVector<QString> keys,int index)> editorFun_addKetWord; //创建添加关键字信息
 typedef std::function<QString(QWidget*)> editorFun_getStr; //获取内容
 typedef std::function<void(QWidget* editor,QString str)> editorFun_addStr; //添加内容
 
-
-
-
 //输出容器
 typedef std::function<void(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor)> printFun_printList;
 typedef std::function<void()> printFun_clear;
 typedef std::function<void(QColor color,QString printText)> printFun_printTextSpace;
 
-
-
-
-
 //插件管理器通信
 typedef std::function<QString(QString pluginSign,QString pustMsg)> pluginFun_post; //插件投递函数
 
-
-
-
-//typedef std::function<QWidget(std::function<void(QString inputStr)> event_onStrInput)> codeEditorPtr;  //添加菜单到menu
-
+//Dock操作
+typedef std::function<void(Qt::DockWidgetArea area,QDockWidget* dockWidget)> dockWidgetFun_add;//添加Dock
+typedef std::function<void(QDockWidget* dockWidget)> dockWidgetFun_rm;//添加Dock
 
 }
 

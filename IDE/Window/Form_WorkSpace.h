@@ -26,7 +26,7 @@ private slots:
 
 
     void on_action_dock_project_triggered(bool checked); //Dock栏显示，工程管理
-    void on_action_dock_tool_triggered(bool checked); //Dock栏显示，工具箱
+//    void on_action_dock_tool_triggered(bool checked); //Dock栏显示，工具箱
     void on_action_dock_compilePrint_triggered(bool checked); //Dock栏显示，编译输出
     void on_action_dock_runTip_triggered(bool checked); //Dock栏显示，输出与提示
     void on_action_pluginManger_triggered();
@@ -37,7 +37,7 @@ private slots:
     void on_action_dock_find_triggered(bool checked); //Dock栏显示，搜索结果
 
     void on_dockWidget_ProjectManger_visibilityChanged(bool visible);//Dock栏控制菜单
-    void on_dockWidget_toolBox_visibilityChanged(bool visible);//Dock栏控制菜单
+//    void on_dockWidget_toolBox_visibilityChanged(bool visible);//Dock栏控制菜单
     void on_dockWidget_compilePrint_visibilityChanged(bool visible);//Dock栏控制菜单
     void on_dockWidget_print_visibilityChanged(bool visible);//Dock栏控制菜单
     void on_dockWidget_debug_visibilityChanged(bool visible);//Dock栏控制菜单

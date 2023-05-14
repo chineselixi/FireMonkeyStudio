@@ -2,9 +2,12 @@
 #ifndef PLUGIN_BASE_H
 #define PLUGIN_BASE_H
 
-#include "QAction"
+#include "QMainWindow""
 #include "Plugin_Global.h"
 
+
+
+//class QMainWindow; //声明QMainWindow
 
 
 
@@ -40,10 +43,14 @@ public:
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_Project = nullptr;//添加菜单到工程
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_NewFile = nullptr;//添加菜单到新建文件
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_ProNormal = nullptr;//添加菜单到工程普通文件菜单
+    PluginGlobalMsg::menuFun WorkSpace_Mneu_UnityStyle_SelectAction = nullptr; //设置菜单选择Action的样式，在initPlugin方法里面就完成初始化
 
+
+    //设置ACtion的启用
     PluginGlobalMsg::workSpace_Action_setEnableFun WorkSpace_Action_setEnable = nullptr; //设置Action是否可用
 
 
+    //设置打印接口
     PluginGlobalMsg::printFun_printList WorkSpace_PrintOut_List = nullptr; //在通知列表输出信息
     PluginGlobalMsg::printFun_clear WorkSpace_PrintOut_List_Clear = nullptr;  //清理当前列表
     PluginGlobalMsg::printFun_printTextSpace WorkSpace_PrintOut_TextSpace_Print = nullptr; //输出单个文本不换行
@@ -62,9 +69,13 @@ public:
     PluginGlobalMsg::editorFun_addStr CodeEditorFunPtr_AddStr = nullptr; //编辑器插入文本
 
 
-    //插件同学
+    //插件消息投递
     PluginGlobalMsg::pluginFun_post PluginManger_PostMsg = nullptr; //使用插件管理器投递信息，每一个有效插件都将接收到收到这个信息，但是需要注意发送方的身份
 
+
+    //获取WorkSpace窗口指针
+    PluginGlobalMsg::dockWidgetFun_add WorkSpace_DockWidget_Add = nullptr; //添加DockWidget
+    PluginGlobalMsg::dockWidgetFun_rm WorkSpace_DockWidget_remove = nullptr; //删除DockWidget
 
 public:
     //初始化信息，由IDE侧载，可复写

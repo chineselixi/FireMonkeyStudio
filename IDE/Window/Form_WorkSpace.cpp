@@ -28,28 +28,34 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
 
     this->init(); //初始化代码
 
+    qDebug() << "11111";
+
     Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::compileType::debug); //响应编译模式
+
+    qDebug() << "22222";
+
+
     Manger::pluginManger->event_onWorkSpaceFinish(); //响应插件workSpace加载完成事件
 
 
-
+    qDebug() << "33333";
 
 
 //==============================临时代码==============================
     //添加工具
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Cursor_16x.png"),"指针","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/TextBox_16x.png"),"编辑框","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Image_16x.png"),"图片框","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Panel_16x.png"),"外形框","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Label_16x.png"),"标签","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Button_16x.png"),"按钮","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Checkbox_16x.png"),"选择框","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/RadioButton_16x.png"),"单选框","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/ComboBox_16x.png"),"组合框","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/ListBox_16x.png"),"列表框","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/CheckboxList_16x.png"),"选择列表框","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/VerticalScrollBarControl_16x.png"),"纵向滚动条","Currsor");
-    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/HorizontalScrollBarControl_16x.png"),"横向滚动条","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Cursor_16x.png"),"指针","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/TextBox_16x.png"),"编辑框","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Image_16x.png"),"图片框","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Panel_16x.png"),"外形框","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Label_16x.png"),"标签","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Button_16x.png"),"按钮","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Checkbox_16x.png"),"选择框","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/RadioButton_16x.png"),"单选框","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/ComboBox_16x.png"),"组合框","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/ListBox_16x.png"),"列表框","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/CheckboxList_16x.png"),"选择列表框","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/VerticalScrollBarControl_16x.png"),"纵向滚动条","Currsor");
+//    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/HorizontalScrollBarControl_16x.png"),"横向滚动条","Currsor");
 
 
     //ui->textEdit_print->addLineText("测试红色",qRgb(255,0,0));
@@ -66,6 +72,9 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
 
 //    Form_About* ab = new Form_About;
 //    ui->widget_WindowTab->addTabWidget("关于我们",ab,"",QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Dialog.png"));
+
+
+
 
 }
 
@@ -223,6 +232,15 @@ void Form_WorkSpace::init()
         });
 
 
+    //初始化Dock添加信息
+    Manger::pluginManger->workSpace_init_dockWidget(
+        [this](Qt::DockWidgetArea area,QDockWidget* dockWidget){
+            this->addDockWidget(area,dockWidget);
+        },
+        [this](QDockWidget* dockWidget){
+            this->removeDockWidget(dockWidget);
+        });
+
 }
 
 
@@ -280,16 +298,16 @@ void Form_WorkSpace::on_action_dock_project_triggered(bool checked)
     }
 }
 
-//Dock栏显示，工具箱
-void Form_WorkSpace::on_action_dock_tool_triggered(bool checked)
-{
-    if(checked){
-        ui->dockWidget_toolBox->show();
-    }
-    else{
-        ui->dockWidget_toolBox->close();
-    }
-}
+////Dock栏显示，工具箱
+//void Form_WorkSpace::on_action_dock_tool_triggered(bool checked)
+//{
+//    if(checked){
+//        ui->dockWidget_toolBox->show();
+//    }
+//    else{
+//        ui->dockWidget_toolBox->close();
+//    }
+//}
 
 //Dock栏显示，编译输出
 void Form_WorkSpace::on_action_dock_compilePrint_triggered(bool checked)
@@ -348,16 +366,16 @@ void Form_WorkSpace::on_dockWidget_ProjectManger_visibilityChanged(bool visible)
     }
 }
 
-//Dock栏控制菜单
-void Form_WorkSpace::on_dockWidget_toolBox_visibilityChanged(bool visible)
-{
-    if(ui->dockWidget_toolBox->isHidden()){
-        ui->action_dock_tool->setChecked(false);
-    }
-    else{
-        ui->action_dock_tool->setChecked(true);
-    }
-}
+////Dock栏控制菜单
+//void Form_WorkSpace::on_dockWidget_toolBox_visibilityChanged(bool visible)
+//{
+//    if(ui->dockWidget_toolBox->isHidden()){
+//        ui->action_dock_tool->setChecked(false);
+//    }
+//    else{
+//        ui->action_dock_tool->setChecked(true);
+//    }
+//}
 
 //Dock栏控制菜单
 void Form_WorkSpace::on_dockWidget_compilePrint_visibilityChanged(bool visible)

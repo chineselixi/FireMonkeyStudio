@@ -24,7 +24,6 @@
 #include "Window/Form_ListPrint.h"
 #include "Window/Form_ProjectManger.h"
 #include "Window/Form_TextPrint.h"
-#include "Window/Form_WidgetBox.h"
 #include "Window/Form_WindowTab.h"
 
 QT_BEGIN_NAMESPACE
@@ -79,7 +78,7 @@ public:
     QAction *action_file_close;
     QAction *action_file_save;
     QAction *action_file_saveAs;
-    QAction *action_file_confoundSaveAs;
+    QAction *action_file_saveAll;
     QAction *action_file_print;
     QAction *action_file_config;
     QAction *action_file_connect;
@@ -127,7 +126,7 @@ public:
     QAction *action_U_3;
     QAction *action_R_3;
     QAction *action_V_3;
-    QAction *action_I_3;
+    QAction *action_addNewPlugin;
     QAction *action_pluginManger;
     QAction *action_O_4;
     QAction *action_C_5;
@@ -139,7 +138,6 @@ public:
     QAction *actionaction44;
     QAction *actionaction45;
     QAction *action_dock_project;
-    QAction *action_dock_tool;
     QAction *action_dock_compilePrint;
     QAction *action_dock_runTip;
     QAction *action_dock_debug;
@@ -167,10 +165,6 @@ public:
     QWidget *dockWidgetContents_2;
     QGridLayout *gridLayout_6;
     Form_ProjectManger *widget_ProjectManger;
-    QDockWidget *dockWidget_toolBox;
-    QWidget *dockWidgetContents_4;
-    QGridLayout *gridLayout_5;
-    Form_WidgetBox *widget_toolBox;
     QDockWidget *dockWidget_compilePrint;
     QWidget *dockWidgetContents_8;
     QGridLayout *gridLayout_3;
@@ -653,9 +647,9 @@ public:
         action_file_save->setIcon(icon45);
         action_file_saveAs = new QAction(Form_WorkSpace);
         action_file_saveAs->setObjectName("action_file_saveAs");
-        action_file_confoundSaveAs = new QAction(Form_WorkSpace);
-        action_file_confoundSaveAs->setObjectName("action_file_confoundSaveAs");
-        action_file_confoundSaveAs->setEnabled(false);
+        action_file_saveAll = new QAction(Form_WorkSpace);
+        action_file_saveAll->setObjectName("action_file_saveAll");
+        action_file_saveAll->setEnabled(false);
         action_file_print = new QAction(Form_WorkSpace);
         action_file_print->setObjectName("action_file_print");
         action_file_print->setEnabled(false);
@@ -805,13 +799,13 @@ public:
         action_N_2->setIcon(icon69);
         action_menu_compile = new QAction(Form_WorkSpace);
         action_menu_compile->setObjectName("action_menu_compile");
-        action_menu_compile->setEnabled(true);
+        action_menu_compile->setEnabled(false);
         QIcon icon70;
         icon70.addFile(QString::fromUtf8(":/Theme/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_compile->setIcon(icon70);
         action_menu_staticCompile = new QAction(Form_WorkSpace);
         action_menu_staticCompile->setObjectName("action_menu_staticCompile");
-        action_menu_staticCompile->setEnabled(true);
+        action_menu_staticCompile->setEnabled(false);
         QIcon icon71;
         icon71.addFile(QString::fromUtf8(":/Theme/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_staticCompile->setIcon(icon71);
@@ -863,11 +857,11 @@ public:
         action_R_3->setObjectName("action_R_3");
         action_V_3 = new QAction(Form_WorkSpace);
         action_V_3->setObjectName("action_V_3");
-        action_I_3 = new QAction(Form_WorkSpace);
-        action_I_3->setObjectName("action_I_3");
+        action_addNewPlugin = new QAction(Form_WorkSpace);
+        action_addNewPlugin->setObjectName("action_addNewPlugin");
         QIcon icon75;
         icon75.addFile(QString::fromUtf8(":/Theme/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        action_I_3->setIcon(icon75);
+        action_addNewPlugin->setIcon(icon75);
         action_pluginManger = new QAction(Form_WorkSpace);
         action_pluginManger->setObjectName("action_pluginManger");
         QIcon icon76;
@@ -934,11 +928,6 @@ public:
         action_dock_project->setIconVisibleInMenu(true);
         action_dock_project->setShortcutVisibleInContextMenu(true);
         action_dock_project->setPriority(QAction::NormalPriority);
-        action_dock_tool = new QAction(Form_WorkSpace);
-        action_dock_tool->setObjectName("action_dock_tool");
-        action_dock_tool->setCheckable(true);
-        action_dock_tool->setChecked(true);
-        action_dock_tool->setIcon(icon78);
         action_dock_compilePrint = new QAction(Form_WorkSpace);
         action_dock_compilePrint->setObjectName("action_dock_compilePrint");
         action_dock_compilePrint->setCheckable(true);
@@ -1028,22 +1017,6 @@ public:
 
         dockWidget_ProjectManger->setWidget(dockWidgetContents_2);
         Form_WorkSpace->addDockWidget(Qt::LeftDockWidgetArea, dockWidget_ProjectManger);
-        dockWidget_toolBox = new QDockWidget(Form_WorkSpace);
-        dockWidget_toolBox->setObjectName("dockWidget_toolBox");
-        dockWidget_toolBox->setMinimumSize(QSize(180, 150));
-        dockWidget_toolBox->setBaseSize(QSize(200, 200));
-        dockWidgetContents_4 = new QWidget();
-        dockWidgetContents_4->setObjectName("dockWidgetContents_4");
-        gridLayout_5 = new QGridLayout(dockWidgetContents_4);
-        gridLayout_5->setObjectName("gridLayout_5");
-        gridLayout_5->setContentsMargins(0, 0, 0, 0);
-        widget_toolBox = new Form_WidgetBox(dockWidgetContents_4);
-        widget_toolBox->setObjectName("widget_toolBox");
-
-        gridLayout_5->addWidget(widget_toolBox, 0, 0, 1, 1);
-
-        dockWidget_toolBox->setWidget(dockWidgetContents_4);
-        Form_WorkSpace->addDockWidget(Qt::RightDockWidgetArea, dockWidget_toolBox);
         dockWidget_compilePrint = new QDockWidget(Form_WorkSpace);
         dockWidget_compilePrint->setObjectName("dockWidget_compilePrint");
         dockWidget_compilePrint->setMinimumSize(QSize(229, 141));
@@ -1120,7 +1093,7 @@ public:
         menu_file->addAction(action_file_close);
         menu_file->addAction(action_file_save);
         menu_file->addAction(action_file_saveAs);
-        menu_file->addAction(action_file_confoundSaveAs);
+        menu_file->addAction(action_file_saveAll);
         menu_file->addAction(action_file_print);
         menu_file->addSeparator();
         menu_file->addAction(action_file_config);
@@ -1153,7 +1126,6 @@ public:
         menu_compile->addSeparator();
         menu_compile->addAction(action_O_3);
         menu_view->addAction(action_dock_project);
-        menu_view->addAction(action_dock_tool);
         menu_view->addAction(action_dock_compilePrint);
         menu_view->addAction(action_dock_runTip);
         menu_view->addAction(action_dock_debug);
@@ -1171,7 +1143,7 @@ public:
         menu_help->addAction(action_U_3);
         menu_help->addAction(action_R_3);
         menu_help->addAction(action_V_3);
-        menu_set->addAction(action_I_3);
+        menu_set->addAction(action_addNewPlugin);
         menu_set->addAction(action_pluginManger);
         menu_set->addSeparator();
         menu_set->addAction(action_O_4);
@@ -1332,7 +1304,10 @@ public:
 #if QT_CONFIG(shortcut)
         action_file_saveAs->setShortcut(QCoreApplication::translate("Form_WorkSpace", "Ctrl+Shift+S", nullptr));
 #endif // QT_CONFIG(shortcut)
-        action_file_confoundSaveAs->setText(QCoreApplication::translate("Form_WorkSpace", "\346\267\267\346\267\206\345\217\246\345\255\230\344\270\272(&M)", nullptr));
+        action_file_saveAll->setText(QCoreApplication::translate("Form_WorkSpace", "\344\277\235\345\255\230\345\205\250\351\203\250(&M)", nullptr));
+#if QT_CONFIG(tooltip)
+        action_file_saveAll->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\344\277\235\345\255\230\345\205\250\351\203\250(M)", nullptr));
+#endif // QT_CONFIG(tooltip)
         action_file_print->setText(QCoreApplication::translate("Form_WorkSpace", "\346\211\223\345\215\260(&P)", nullptr));
 #if QT_CONFIG(shortcut)
         action_file_print->setShortcut(QCoreApplication::translate("Form_WorkSpace", "Ctrl+P", nullptr));
@@ -1470,7 +1445,10 @@ public:
         action_U_3->setText(QCoreApplication::translate("Form_WorkSpace", "\347\224\250\346\210\267\345\217\215\351\246\210\350\241\250(&U)", nullptr));
         action_R_3->setText(QCoreApplication::translate("Form_WorkSpace", "\350\264\255\344\271\260\344\270\216\345\225\206\344\270\232\345\220\210\344\275\234(&R)", nullptr));
         action_V_3->setText(QCoreApplication::translate("Form_WorkSpace", "\345\271\263\345\217\260\345\256\211\345\205\250\346\243\200\346\265\213\346\212\245\345\221\212(&V)", nullptr));
-        action_I_3->setText(QCoreApplication::translate("Form_WorkSpace", "\345\256\211\350\243\205\346\226\260\347\232\204\346\224\257\346\214\201\345\272\223(&I)", nullptr));
+        action_addNewPlugin->setText(QCoreApplication::translate("Form_WorkSpace", "\345\256\211\350\243\205\346\226\260\347\232\204\346\217\222\344\273\266\346\224\257\346\214\201(&I)", nullptr));
+#if QT_CONFIG(tooltip)
+        action_addNewPlugin->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\345\256\211\350\243\205\346\226\260\347\232\204\346\217\222\344\273\266\346\224\257\346\214\201(I)", nullptr));
+#endif // QT_CONFIG(tooltip)
         action_pluginManger->setText(QCoreApplication::translate("Form_WorkSpace", "\346\217\222\344\273\266\347\256\241\347\220\206\345\231\250(&L)", nullptr));
 #if QT_CONFIG(tooltip)
         action_pluginManger->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\346\217\222\344\273\266\347\256\241\347\220\206\345\231\250(L)", nullptr));
@@ -1488,7 +1466,6 @@ public:
         actionaction44->setText(QCoreApplication::translate("Form_WorkSpace", "action44", nullptr));
         actionaction45->setText(QCoreApplication::translate("Form_WorkSpace", "action45", nullptr));
         action_dock_project->setText(QCoreApplication::translate("Form_WorkSpace", "\345\267\245\347\250\213\347\256\241\347\220\206", nullptr));
-        action_dock_tool->setText(QCoreApplication::translate("Form_WorkSpace", "\345\267\245\345\205\267\347\256\261", nullptr));
         action_dock_compilePrint->setText(QCoreApplication::translate("Form_WorkSpace", "\347\274\226\350\257\221\350\276\223\345\207\272", nullptr));
 #if QT_CONFIG(tooltip)
         action_dock_compilePrint->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\347\274\226\350\257\221\350\276\223\345\207\272", nullptr));
@@ -1519,7 +1496,6 @@ public:
         menu_T->setTitle(QCoreApplication::translate("Form_WorkSpace", "\344\270\273\351\242\230(&T)", nullptr));
         menu_editor->setTitle(QCoreApplication::translate("Form_WorkSpace", "\347\274\226\350\276\221(&E)", nullptr));
         dockWidget_ProjectManger->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "\345\267\245\347\250\213\347\256\241\347\220\206", nullptr));
-        dockWidget_toolBox->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "\345\267\245\345\205\267\347\256\261", nullptr));
         dockWidget_compilePrint->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "\347\274\226\350\257\221\350\276\223\345\207\272", nullptr));
         dockWidget_print->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "\350\277\220\350\241\214\344\270\216\346\217\220\347\244\272", nullptr));
         dockWidget_debug->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "\346\226\255\347\202\271\345\240\206\346\240\210", nullptr));
