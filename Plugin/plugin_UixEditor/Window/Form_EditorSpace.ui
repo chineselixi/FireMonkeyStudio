@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1036</width>
-    <height>630</height>
+    <width>748</width>
+    <height>511</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>窗口编辑器</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">/*更改默认背景*/
+   <string notr="true">/*更改默认背景
 #Form_EditorSpace,#editorScrollSpace,#scrollAreaWidgetContents{
 	background-color: rgb(160,160,160);
 	border:0px;
 }
-</string>
+*/</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -35,20 +35,22 @@
     <number>0</number>
    </property>
    <item row="0" column="0">
-    <widget class="QScrollArea" name="editorScrollSpace">
-     <property name="widgetResizable">
-      <bool>true</bool>
+    <widget class="QMdiArea" name="mdiArea">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>1036</width>
-        <height>630</height>
-       </rect>
-      </property>
-     </widget>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>160</red>
+        <green>160</green>
+        <blue>160</blue>
+       </color>
+      </brush>
+     </property>
     </widget>
    </item>
   </layout>

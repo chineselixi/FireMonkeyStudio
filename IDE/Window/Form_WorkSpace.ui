@@ -22,7 +22,7 @@
   <property name="styleSheet">
    <string notr="true">
 /*主窗口样式设置*/
-QMainWindow{
+#Form_WorkSpace{
 	background-color: rgb(93, 107, 153);
 }
 

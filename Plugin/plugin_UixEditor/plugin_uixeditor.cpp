@@ -55,12 +55,17 @@ bool Plugin_UixEditor::event_onFileOpen(QString filePath)
 {
     QString t_fileSuffix = QFileInfo(filePath).suffix();
     if(t_fileSuffix == "uix"){
+        qDebug() << "添加1";
         //QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type
         Form_EditorSpace* t_editorSpace = new Form_EditorSpace;
-        t_editorSpace->setAttribute(Qt::WA_StyledBackground); //脱离父窗口样式的覆盖
+        //t_editorSpace->setAttribute(Qt::WA_StyledBackground); //脱离父窗口样式的覆盖
+
+
+
+        qDebug() << "添加2";
 
         this->WorkSpace_addTabWindow(QFileInfo(filePath).fileName(),t_editorSpace,filePath,QIcon(":/WindowIco/icon/WindowIco/WindowsForm_16x.png"),PluginGlobalMsg::TabType::form); //将编辑器容器添加到Tab
-
+        qDebug() << "添加3";
         return false;//阻止继续的事件激发
     }
     return true;

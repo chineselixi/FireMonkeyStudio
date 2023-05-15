@@ -54,10 +54,11 @@ bool Plugin_ideBasic::event_onFileOpen(QString filePath)
         this->CodeEditorFunPtr_AddStr(t_codeEditor,t_file.readAll());
         t_file.close();
 
-
+        //将代码编辑器窗口添加到Tab
         this->WorkSpace_addTabWindow(QFileInfo(filePath).fileName(),t_codeEditor,filePath,QIcon(":/ico/img/Namespace_16x.png"),PluginGlobalMsg::TabType::codeEditor);
 
         return false;//阻止继续的事件激发
     }
+    return true; //不满足条件，则允许插件管理器继续激发其他插件的事件
 }
 

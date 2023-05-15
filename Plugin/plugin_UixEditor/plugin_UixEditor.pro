@@ -10,12 +10,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Widget/Widget_Base.cpp \
     Widget/Widget_Button_WidgetItem.cpp \
     Window/Form_EditorSpace.cpp \
     Window/Form_WidgetBox.cpp \
     plugin_uixeditor.cpp
 
 HEADERS += \
+    Widget/Widget_Base.h \
     Widget/Widget_Button_WidgetItem.h \
     Window/Form_EditorSpace.h \
     Window/Form_WidgetBox.h \
