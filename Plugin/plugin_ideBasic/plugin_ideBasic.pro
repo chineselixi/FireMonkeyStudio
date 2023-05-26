@@ -30,5 +30,4 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    res.qrc \
     icons.qrc
