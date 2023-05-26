@@ -62,11 +62,11 @@ public:
     PluginGlobalMsg::addTabViewPth WorkSpace_addTabWindow = nullptr; //添加窗口到Tab
 
 
-    //代码编辑器
-    PluginGlobalMsg::editorFun_create CodeEditorFunPtr_Create = nullptr; //创建代码编辑器
-    PluginGlobalMsg::editorFun_addKetWord CodeEditorFunPtr_AddkeyWord = nullptr;//添加关键字，0为关键字1，1为关键字2
-    PluginGlobalMsg::editorFun_getStr CodeEditorFunPtr_GetCode = nullptr;//获取代码编辑器文本
-    PluginGlobalMsg::editorFun_addStr CodeEditorFunPtr_AddStr = nullptr; //编辑器插入文本
+//    //代码编辑器
+//    PluginGlobalMsg::editorFun_create CodeEditorFunPtr_Create = nullptr; //创建代码编辑器
+//    PluginGlobalMsg::editorFun_addKetWord CodeEditorFunPtr_AddkeyWord = nullptr;//添加关键字，0为关键字1，1为关键字2
+//    PluginGlobalMsg::editorFun_getStr CodeEditorFunPtr_GetCode = nullptr;//获取代码编辑器文本
+//    PluginGlobalMsg::editorFun_addStr CodeEditorFunPtr_AddStr = nullptr; //编辑器插入文本
 
 
     //插件消息投递

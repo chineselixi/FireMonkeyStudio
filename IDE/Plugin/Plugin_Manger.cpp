@@ -150,20 +150,20 @@ void Plugin_Manger::workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth)
 
 
 
-//添加workSpace的代码编辑器接口
-void Plugin_Manger::workSpace_init_codeEditor(PluginGlobalMsg::editorFun_create createPth,
-                                              PluginGlobalMsg::editorFun_addKetWord addWordPth,
-                                              PluginGlobalMsg::editorFun_getStr getStrPth,
-                                              PluginGlobalMsg::editorFun_addStr addStrPth)
-{
-    for(int a = 0;a < List_plg.length();a++){
-        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-        List_plg[a].plgPth->CodeEditorFunPtr_Create = createPth;
-        List_plg[a].plgPth->CodeEditorFunPtr_AddkeyWord = addWordPth;
-        List_plg[a].plgPth->CodeEditorFunPtr_GetCode = getStrPth;
-        List_plg[a].plgPth->CodeEditorFunPtr_AddStr = addStrPth;
-    }
-}
+////添加workSpace的代码编辑器接口
+//void Plugin_Manger::workSpace_init_codeEditor(PluginGlobalMsg::editorFun_create createPth,
+//                                              PluginGlobalMsg::editorFun_addKetWord addWordPth,
+//                                              PluginGlobalMsg::editorFun_getStr getStrPth,
+//                                              PluginGlobalMsg::editorFun_addStr addStrPth)
+//{
+//    for(int a = 0;a < List_plg.length();a++){
+//        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+//        List_plg[a].plgPth->CodeEditorFunPtr_Create = createPth;
+//        List_plg[a].plgPth->CodeEditorFunPtr_AddkeyWord = addWordPth;
+//        List_plg[a].plgPth->CodeEditorFunPtr_GetCode = getStrPth;
+//        List_plg[a].plgPth->CodeEditorFunPtr_AddStr = addStrPth;
+//    }
+//}
 
 
 

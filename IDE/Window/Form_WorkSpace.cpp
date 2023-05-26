@@ -16,8 +16,6 @@
 
 #include "module/mod_WebPage.h"
 
-#include "CodeEditor/CodeEditor.h"
-
 
 Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
     QMainWindow(parent),
@@ -157,43 +155,43 @@ void Form_WorkSpace::init()
     }
 
     //初始化代码编辑器接口
-    Manger::pluginManger->workSpace_init_codeEditor(
-        [this](std::function<void (QString leftText,QString rightText,QString lineText,QWidget* codeEditor)> tipEvent)->QWidget*{ //当代码编辑器创建(绑定智能提示)
-            CodeEditor* t_editor = new CodeEditor;
+//    Manger::pluginManger->workSpace_init_codeEditor(
+//        [this](std::function<void (QString leftText,QString rightText,QString lineText,QWidget* codeEditor)> tipEvent)->QWidget*{ //当代码编辑器创建(绑定智能提示)
+//            CodeEditor* t_editor = new CodeEditor;
 
-            QTextCharFormat t_format;
-            t_format.setForeground(QColor(0, 0, 255));
-            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::KeyWord1,t_format);
-            t_format.setForeground(QColor(255, 0, 0));
-            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::KeyWord2,t_format);
-            t_format.setForeground(QColor(0, 161, 0));
-            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::String,t_format);
-            t_format.setForeground(QColor(26, 26, 255));
-            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::Sign,t_format);
-            t_format.setForeground(QColor(12, 134, 12));
-            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::Note,t_format);
+//            QTextCharFormat t_format;
+//            t_format.setForeground(QColor(0, 0, 255));
+//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::KeyWord1,t_format);
+//            t_format.setForeground(QColor(255, 0, 0));
+//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::KeyWord2,t_format);
+//            t_format.setForeground(QColor(0, 161, 0));
+//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::String,t_format);
+//            t_format.setForeground(QColor(26, 26, 255));
+//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::Sign,t_format);
+//            t_format.setForeground(QColor(12, 134, 12));
+//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::Note,t_format);
 
-            t_editor->setFont(QFont("Consolas",16));
-            t_editor->SetLineFont(QFont("Consolas",16));
+//            t_editor->setFont(QFont("Consolas",16));
+//            t_editor->SetLineFont(QFont("Consolas",16));
 
-            connect(t_editor,&CodeEditor::event_onTipWillShow,[tipEvent,t_editor](QString leftText,QString rightText,QString lineText){
-                tipEvent(leftText,rightText,lineText,(QWidget*)t_editor);
-            });
-            return (QWidget*)t_editor;
-        },
-        [this](QWidget* editor,QVector<QString> keys,int index){ //绑定添加关键字信息
-            CodeEditor* t_editor = (CodeEditor*)editor;
-            t_editor->GetModel_HeighLight()->addKeyWordMsg(keys,index); //添加高亮模块的关键字
-            t_editor->GetModel_Tips()->AddListMsg(mod_TipList::listType::KeyWordList,keys);
-        },
-        [this](QWidget* editor)->QString{ // 获取代码编辑器文本信息
-            CodeEditor* t_editor = (CodeEditor*)editor;
-            return t_editor->toPlainText();
-        },
-        [this](QWidget* editor,QString str){ // 添加代码文本信息
-            CodeEditor* t_editor = (CodeEditor*)editor;
-            t_editor->appendPlainText(str);
-        });
+//            connect(t_editor,&CodeEditor::event_onTipWillShow,[tipEvent,t_editor](QString leftText,QString rightText,QString lineText){
+//                tipEvent(leftText,rightText,lineText,(QWidget*)t_editor);
+//            });
+//            return (QWidget*)t_editor;
+//        },
+//        [this](QWidget* editor,QVector<QString> keys,int index){ //绑定添加关键字信息
+//            CodeEditor* t_editor = (CodeEditor*)editor;
+//            t_editor->GetModel_HeighLight()->addKeyWordMsg(keys,index); //添加高亮模块的关键字
+//            t_editor->GetModel_Tips()->AddListMsg(mod_TipList::listType::KeyWordList,keys);
+//        },
+//        [this](QWidget* editor)->QString{ // 获取代码编辑器文本信息
+//            CodeEditor* t_editor = (CodeEditor*)editor;
+//            return t_editor->toPlainText();
+//        },
+//        [this](QWidget* editor,QString str){ // 添加代码文本信息
+//            CodeEditor* t_editor = (CodeEditor*)editor;
+//            t_editor->appendPlainText(str);
+//        });
 
 
     //初始化action设置接口

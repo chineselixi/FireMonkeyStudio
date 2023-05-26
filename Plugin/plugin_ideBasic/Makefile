@@ -385,6 +385,7 @@ Makefile: plugin_ideBasic.pro D:\QT\6.5.0\msvc2019_64\mkspecs\win32-msvc\qmake.c
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Core.prl \
 		D:\QT\6.5.0\msvc2019_64\mkspecs\features\build_pass.prf \
 		res.qrc \
+		icons.qrc \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Widgetsd.prl \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Guid.prl \
 		D:\QT\6.5.0\msvc2019_64\lib\Qt6Cored.prl
@@ -690,6 +691,7 @@ D:\QT\6.5.0\msvc2019_64\lib\Qt6Gui.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Core.prl:
 D:\QT\6.5.0\msvc2019_64\mkspecs\features\build_pass.prf:
 res.qrc:
+icons.qrc:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Widgetsd.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Guid.prl:
 D:\QT\6.5.0\msvc2019_64\lib\Qt6Cored.prl:

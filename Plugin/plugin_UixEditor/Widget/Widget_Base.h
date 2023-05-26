@@ -46,10 +46,17 @@ public:
 
 public:
     virtual QWidget* getWidgetInstance() = 0; //获取控件实例
+    virtual QString getCodeStr() = 0; //获取代码字符串
 
-    void setObjectName(QString objName);    //设置对象名
-    QString getObjectName();                //获取对象名
-    QString getBaseName();                  //获取基础名称
+
+
+    virtual void event_onSetChange(){return;}; //当属性被改变
+    virtual void event_onChildJoin(QWidget* itemWidget){return;}; //当子项窗口被加入，此事件将在“container = true”后生效
+
+
+//    void setObjectName(QString objName);    //设置对象名
+//    QString getObjectName();                //获取对象名
+//    QString getBaseName();                  //获取基础名称
 
 };
 

@@ -70,8 +70,8 @@ public:
                             PluginGlobalMsg::menuFun toolBar_extend,PluginGlobalMsg::menuFun toolBar_db,PluginGlobalMsg::menuFun toolBar_comple,PluginGlobalMsg::menuFun toolBar_insert,PluginGlobalMsg::menuFun toolBar_file,
                             PluginGlobalMsg::menuFun ProManger_project,PluginGlobalMsg::menuFun ProManger_newFile,PluginGlobalMsg::menuFun ProManger_proNormal); //workSpace添加插件菜单
     void workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth);//添加workSpace的tabView接口
-    void workSpace_init_codeEditor(PluginGlobalMsg::editorFun_create createPth,PluginGlobalMsg::editorFun_addKetWord addWordPth,
-                                   PluginGlobalMsg::editorFun_getStr getStrPth,PluginGlobalMsg::editorFun_addStr addStrPth); //添加workSpace的代码编辑器接口
+//    void workSpace_init_codeEditor(PluginGlobalMsg::editorFun_create createPth,PluginGlobalMsg::editorFun_addKetWord addWordPth,
+//                                   PluginGlobalMsg::editorFun_getStr getStrPth,PluginGlobalMsg::editorFun_addStr addStrPth); //添加workSpace的代码编辑器接口
     void workSpace_init_actionEnable(PluginGlobalMsg::workSpace_Action_setEnableFun enableFun); //初始化设置action的启用接口
 
     void workSpace_init_tipPrint(PluginGlobalMsg::printFun_printList fun_printList,PluginGlobalMsg::printFun_printTextSpace fun_printText,

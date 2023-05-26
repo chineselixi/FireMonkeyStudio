@@ -1,7 +1,7 @@
 
 #include "Plugin_ideBasic.h"
 #include "QFileInfo"
-
+#include "CodeEditor/CodeEditor.h"
 
 Plugin_ideBasic::Plugin_ideBasic()
 {
@@ -9,7 +9,7 @@ Plugin_ideBasic::Plugin_ideBasic()
 * 注意，此时内部所有指针都是nullptr，不允许调用ide能力，当event_onModLoadFinish加载完毕后相关指针与模块才加载完毕
 * 注意：调用指针的时候也需要判断调用的指针是否为空指针，在某些场景下，ide内部会置空某些模块内的指针
 */
-    this->self_BaseMsg.name = "FMS基础插件（C++）";
+    this->self_BaseMsg.name = "C++代码编辑插件";
     this->self_BaseMsg.version = "0.0.0.1 Dev";
     this->self_BaseMsg.versionNumber = 1;
     this->self_BaseMsg.sign = "FireMonkeyStudio C++";
@@ -43,19 +43,39 @@ bool Plugin_ideBasic::event_onFileOpen(QString filePath)
 {
     QString t_fileSuffix = QFileInfo(filePath).suffix();
     if(t_fileSuffix == "h" || t_fileSuffix == "cpp"){
-        QWidget* t_codeEditor = this->CodeEditorFunPtr_Create([filePath](QString leftText,QString rightText,QString lineText,QWidget* editor){
+        CodeEditor* t_codeEditor = new CodeEditor;
 
-        });
+        //设置关键字
+        mod_HeighLightEditor * t_heighKightMod = t_codeEditor->GetModel_HeighLight();
+        t_heighKightMod->addKeyWordMsg({"int","char","double","flat","string","void","if","else","break","for","while","do","continue","return","namespace","using","include","function"},0);
+        t_heighKightMod->addKeyWordMsg({"main","NULL"},1);
 
-        this->CodeEditorFunPtr_AddkeyWord(t_codeEditor,{"int","char","double","flat","string","void","if","else","break","for","while","do","continue","return","namespace","using","include","function"},0);
 
+        //设置颜色
+        QTextCharFormat t_format;
+        t_format.setForeground(QColor(0, 0, 255));
+        t_heighKightMod->SetKeyWordFormat(mod_HeighLightEditor::KeyWord1,t_format);
+        t_format.setForeground(QColor(255, 0, 0));
+        t_heighKightMod->SetKeyWordFormat(mod_HeighLightEditor::KeyWord2,t_format);
+        t_format.setForeground(QColor(0, 161, 0));
+        t_heighKightMod->SetKeyWordFormat(mod_HeighLightEditor::String,t_format);
+        t_format.setForeground(QColor(26, 26, 255));
+        t_heighKightMod->SetKeyWordFormat(mod_HeighLightEditor::Sign,t_format);
+        t_format.setForeground(QColor(12, 134, 12));
+        t_heighKightMod->SetKeyWordFormat(mod_HeighLightEditor::Note,t_format);
+
+        //设置字体
+        t_codeEditor->setFont(QFont("Consolas",16));
+        t_codeEditor->SetLineFont(QFont("Consolas",16));
+
+        //载入文件
         QFile t_file(filePath); //读取文件并且载入IDE的
         t_file.open(QIODevice::ReadOnly);
-        this->CodeEditorFunPtr_AddStr(t_codeEditor,t_file.readAll());
+        t_codeEditor->appendPlainText(t_file.readAll());
         t_file.close();
 
         //将代码编辑器窗口添加到Tab
-        this->WorkSpace_addTabWindow(QFileInfo(filePath).fileName(),t_codeEditor,filePath,QIcon(":/ico/img/Namespace_16x.png"),PluginGlobalMsg::TabType::codeEditor);
+        this->WorkSpace_addTabWindow(QFileInfo(filePath).fileName(),t_codeEditor,filePath,QIcon(":/fileIcon/icon/fileIcon/Namespace_16x.png"),PluginGlobalMsg::TabType::codeEditor);
 
         return false;//阻止继续的事件激发
     }

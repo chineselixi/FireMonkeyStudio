@@ -90,7 +90,7 @@ QSize Form_ProjectManger::sizeHint() const
     return QSize(200,900);
 }
 
-//打开工程文件夹
+//使用fmp添加工程
 bool Form_ProjectManger::addProjectForFmp(QString projectFile)
 {
     QFileInfo t_fileInfo(projectFile);

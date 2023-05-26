@@ -5,10 +5,6 @@
 
 Widget_Base::Widget_Base()
 {
-
-    QWidget* w;
-    w->setGeometry()
-
     QString classStr;
     classStr = "对象";
     setItemList.append(

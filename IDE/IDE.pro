@@ -9,7 +9,6 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    CodeEditor/CodeEditor.cpp \
     Plugin/Plugin_Base.cpp \
     Plugin/Plugin_Global.cpp \
     Plugin/Plugin_Manger.cpp \
@@ -36,12 +35,9 @@ SOURCES += \
     Window/Form_WorkSpace.cpp \
     main.cpp \
     mainwindow.cpp \
-    module/mod_HeighLightEditor.cpp \
-    module/mod_TipList.cpp \
     module/mod_WebPage.cpp
 
 HEADERS += \
-    CodeEditor/CodeEditor.h \
     Plugin/Plugin_Base.h \
     Plugin/Plugin_Global.h \
     Plugin/Plugin_Manger.h \
@@ -67,8 +63,6 @@ HEADERS += \
     Window/Form_WindowTab.h \
     Window/Form_WorkSpace.h \
     mainwindow.h \
-    module/mod_HeighLightEditor.h \
-    module/mod_TipList.h \
     module/mod_WebPage.h
 
 FORMS += \

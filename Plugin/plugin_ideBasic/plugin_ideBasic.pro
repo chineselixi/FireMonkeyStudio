@@ -10,9 +10,16 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    CodeEditor/CodeEditor.cpp \
+    module/mod_HeighLightEditor.cpp \
+    module/mod_TipList.cpp \
     Plugin_ideBasic.cpp
 
+
 HEADERS += \
+    CodeEditor/CodeEditor.h \
+    module/mod_HeighLightEditor.h \
+    module/mod_TipList.h \
     plugin_ideBasic_global.h \
     Plugin_ideBasic.h
 
@@ -23,4 +30,5 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    res.qrc
+    res.qrc \
+    icons.qrc
