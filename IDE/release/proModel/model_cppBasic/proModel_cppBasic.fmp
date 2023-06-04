@@ -1,0 +1,21 @@
+[FireMonkeyProJect]
+ProjectName=C++空模板
+IconPath=
+Version=1.0
+VersionNumber=0
+Organization=无
+Email=NULL
+Call=000-0000-0000
+Note=这是C++的一个空模板，只提供基本的代码配置
+SrcPath=./src
+Language=C++
+System=Windows Linux Mac
+NoteClass=FMS
+
+
+[Fmp_Filelist]
+main.cpp=<srcPath>/main.cpp
+
+[Fmp_VirtualFolders]
+%U5934%U6587%U4EF6=.h/right
+%U6E90%U6587%U4EF6=.cpp/right

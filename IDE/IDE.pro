@@ -2,11 +2,32 @@ QT       += core gui webview
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webenginecore webenginewidgets
 
-CONFIG += c++17
+CONFIG += c++17 file_copies
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+#输出的文件路径
+DESTDIR = ../release
+#输出的文件名
+TARGET = ide
+
+
+
+#复制文件到构建的目标目录
+config.files = $$PWD/RunConfig/config           # 要复制的文件或目录
+config.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+proModel.files = $$PWD/RunConfig/proModel           # 要复制的文件或目录
+proModel.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+web.files = $$PWD/RunConfig/web           # 要复制的文件或目录
+web.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+widgets.files = $$PWD/RunConfig/widgets           # 要复制的文件或目录
+widgets.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+
+COPIES += config proModel web widgets # 配置COPIES
+
+
 
 SOURCES += \
     Plugin/Plugin_Base.cpp \

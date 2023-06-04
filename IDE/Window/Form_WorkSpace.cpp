@@ -104,8 +104,6 @@ void Form_WorkSpace::init()
 
 
 
-
-
     //=================初始化工程管理事件=================
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectActiveChanged,this,&Form_WorkSpace::event_ProjectManger_onProjectActiveChanged); //工程改变
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onFileOpen,this,&Form_WorkSpace::event_ProjectManger_onFileOpen); //打开文件
@@ -174,9 +172,10 @@ void Form_WorkSpace::init()
 //            t_editor->setFont(QFont("Consolas",16));
 //            t_editor->SetLineFont(QFont("Consolas",16));
 
-            connect(t_editor,&CodeEditor::event_onTipWillShow,[tipEvent,t_editor](QString leftText,QString rightText,QString lineText){
-                tipEvent(leftText,rightText,lineText,(QWidget*)t_editor);
-            });
+//            connect(t_editor,&CodeEditor::event_onTipWillShow,[tipEvent,t_editor](QString leftText,QString rightText,QString lineText){
+//                tipEvent(leftText,rightText,lineText,(QWidget*)t_editor);
+//            });
+
 //            return (QWidget*)t_editor;
 //        },
 //        [this](QWidget* editor,QVector<QString> keys,int index){ //绑定添加关键字信息

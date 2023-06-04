@@ -9,6 +9,12 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+#输出的文件路径
+DESTDIR = ../../release/plg/plugin_GccBuild
+#输出的文件名
+TARGET = plg_gccBuild
+
+
 SOURCES += \
     Form_CheckGCC.cpp \
     plugin_gccbuild.cpp

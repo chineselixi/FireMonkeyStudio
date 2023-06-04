@@ -163,6 +163,7 @@ Form_New::Form_New(QWidget *parent) :
 
 
 
+
     //扫描本地模板
     QVector<QString> t_profileList;
     QString t_path = QCoreApplication::applicationDirPath() + "/proModel";
