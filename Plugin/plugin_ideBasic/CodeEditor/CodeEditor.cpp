@@ -1,333 +1,117 @@
+
 #include "CodeEditor.h"
+#include "Qsci/qscicommand.h"
+#include "Qsci/qscilexercpp.h"
+#include "Qsci/qsciapis.h"
+#include "globalValue.h"
 
-#include <QPainter>
-#include <QTextBlock>
-
-
-
-CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
+CodeEditor::CodeEditor(QWidget *parent):
+    QsciScintilla(parent)
 {
-
-    LeftSpaceWidget = new LineNumberArea(this);
-    Model_HeighLight = new mod_HeighLightEditor(this->document());
-    //this->document()->setDocumentLayout(new QPlainTextDocumentLayout(textDecument));
-
-
-    this->Model_TipList = new mod_TipList(this,QSize(16,16)); //激发当前的事件
-    connect(this->Model_TipList,&mod_TipList::onTipOut,this,&CodeEditor::event_onTipOut); //绑定提示信息
-    //this->Model_TipList->AddListMsg(Model_TipList->KeyWordList,{"char","int","string","char","inteee","in","bbbi","aina"});
-    this->Model_TipList->setHidden(true);
+    this->setMarginType(0,QsciScintilla::NumberMargin);//设置编号为0的页边显示行号
+    this->setMarginLineNumbers(0,true);//对该页边启用行号
+    this->setMarginWidth(0,35);//设置页边宽度
 
 
-    this->Updata_Init(); //初始化
-}
+    this->setIndentationsUseTabs(false); //如果设置为false，则采用空格缩进；如果设置为true，则采用 Tab 缩进。
+    this->setTabWidth(4); //缩进4个字符
+    this->setIndentationGuides(true); //显示缩进级别，在缩进处显示一个虚线
+    this->setFont(Font_Normal); //编辑器设置字体，可能无效。需要此法分析设置才有效
+    this->SendScintilla(QsciScintilla::SCI_SETCODEPAGE,QsciScintilla::SC_CP_UTF8); //设置为UTF-8编码
+    this->setAutoIndent(true);
 
-CodeEditor::~CodeEditor()
-{
-    delete Model_HeighLight; //回收
-}
+    QsciLexerCPP *textLexer = new QsciLexerCPP; //创建词法分析器
 
-
-//初始化
-void CodeEditor::Updata_Init()
-{
-    this->Updata_Color(); //初始化颜色
-    this->setFont(Font_Normal);
-
-
-    connect(this, &CodeEditor::blockCountChanged, this, &CodeEditor::updateLineNumberAreaWidth);  //行数更改，检索行数区域的宽度
-    connect(this, &CodeEditor::updateRequest, this, &CodeEditor::ChangeLeftSpace);                //更新左边的行号区域，若焦点存在则持续刷新
-    connect(this, &CodeEditor::cursorPositionChanged, this, &CodeEditor::HighLightCurrentLine);   //光标位置更改，检索左边区域宽度
-
-    connect(this, &CodeEditor::textChanged, this, &CodeEditor::event_onTextChanged);   //当编辑器输入内容事件
-
-
-    this->updateLineNumberAreaWidth(0);
-    this->HighLightCurrentLine();         //行高亮颜色设置
-}
+    //设置此法分析的颜色
+    textLexer->setPaper(QColor("#909700"), QsciLexerCPP::CommentDoc);      //设置多行备注为浅绿色
+    textLexer->setColor(QColor(Qt::gray),QsciLexerCPP::CommentLine);    //设置自带的注释行为灰色
+    textLexer->setColor(QColor(Qt::blue),QsciLexerCPP::GlobalClass);   //全局类
+    textLexer->setColor(QColor(Qt::blue),QsciLexerCPP::Keyword);    //关键字颜色
+    textLexer->setColor(QColor("#df5c00"),QsciLexerCPP::KeywordSet2);   //设置自定义关键字的颜色为橘红色
+    textLexer->setColor(QColor(Qt::darkBlue), QsciLexerCPP::PreProcessor); //设置预处理命令颜色
+    textLexer->setColor(QColor("#008000"), QsciLexerCPP::SingleQuotedString); //字符颜色
+    textLexer->setColor(QColor("#008000"), QsciLexerCPP::DoubleQuotedString); //字符串颜色
+    textLexer->setColor(QColor(Qt::darkBlue), QsciLexerCPP::Number); //数字颜色
+    textLexer->setColor(QColor("#dd001b"),QsciLexerCPP::Operator); //设置标点为红色
 
 
 
-
-//获取高亮模块
-mod_HeighLightEditor *CodeEditor::GetModel_HeighLight()
-{
-    return Model_HeighLight;
-}
+    //设置字体
+    textLexer->setFont(Font_Normal); //此法分析设置字体
+    this->setLexer(textLexer);
 
 
-
-
-//获取智能提示模块
-mod_TipList *CodeEditor::GetModel_Tips()
-{
-    return this->Model_TipList;
-}
+    this->setAutoCompletionSource(QsciScintilla::AcsAll);//设置自动完成所有项
+    this->setAutoCompletionCaseSensitivity(true);//设置大小写敏感
+    this->setAutoCompletionThreshold(1);//每输入1个字符就出现自动完成的提示
+    this->setFolding(QsciScintilla::BoxedTreeFoldStyle); //设置折叠标记
+    this->setFoldMarginColors(QColor("#f0f0f0"), QColor("#f0f0f0"));
 
 
 
-//获取光标处的文本,如果参数为真，则获取光标左右处的文本
-void CodeEditor::GetCursorString(QString& leftStr,QString& rightStr,QString& lineStr)
-{
-    QTextCursor t_textCursor = this->textCursor(); //获取文本光标位置
-    int lineNumber = t_textCursor.blockNumber();
-    int columnNumber = t_textCursor.positionInBlock();
-
-    lineStr = this->document()->findBlockByLineNumber(lineNumber).text();
-    QString List_Sign = QString("— !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
-
-    leftStr = "";
-    rightStr = "";
-
-    //检索文本左边
-    for(int a=columnNumber;a > 0;a--){
-        for(int b = 0;b < List_Sign.length(); b++){
-            if(lineStr[a - 1] == List_Sign[b]){
-                leftStr = lineStr.mid(a,columnNumber - a);
-                goto LEFT_BREAK;
-            }
-        }
-    }
-    leftStr = lineStr.mid(0,columnNumber);
-    LEFT_BREAK:
-
-    //检索文本右边
-    int a=columnNumber;
-    for(a=columnNumber;a < lineStr.length();a++){
-        for(int b = 0;b < List_Sign.length(); b++){
-            if(lineStr[a] == List_Sign[b]){
-                rightStr = lineStr.mid(columnNumber,a - columnNumber);
-                return;
-            }
-        }
-    }
-    rightStr = lineStr.mid(columnNumber,a - columnNumber);
-    //t_rightStr = t_linStr.mid(columnNumber,t_linStr.length() - columnNumber);
-}
+    this->setAutoIndent(true);//开启自动缩进
+    this->setIndentationGuides(QsciScintilla::SC_IV_LOOKBOTH);//设置缩进的显示方式
+    this->setCaretLineVisible(true);//显示选中的行号
+    this->setCaretLineBackgroundColor(Color_SignBackground);//显示选中行号的背景色
+    this->setMarginsBackgroundColor(Color_LineNumberBackground);//左侧行号显示的背景色
+    this->setBraceMatching(QsciScintilla::SloppyBraceMatch);//设置括号匹配
+    this->setAutoCompletionReplaceWord(true); //此选项选择在选择自动完成时是否覆盖光标右侧的字符（直到到达分隔符）
 
 
+    //智能提示的关键字
+    QsciAPIs *apis = new QsciAPIs(textLexer);
+    apis->load(":/apis/res/apis/keyWords.txt"); //添加关键字到智能提示
+    apis->load(":/apis/res/apis/clFun.txt"); //添加基本的c语言API到提示
+    apis->load(":/apis/res/apis/define.txt"); //添加预处理命令
+    apis->prepare();//在这里可以添加自定义的自动完成函数
 
-//获取光标位置
-QRect CodeEditor::GetCursorPersion()
-{
-    QRect t_persion = this->Persion_CursorRect;
-    t_persion.setLeft(t_persion.left() + GetLeftSpaceWidth());
-
-    //当前行高
-    QFontMetrics t_fontMetrics(this->font());
-    int t_lineHegiht = t_fontMetrics.lineSpacing();
-
-    t_persion.setTop(t_persion.top() + t_fontMetrics.lineSpacing());
-    t_persion.setWidth(200);
-    t_persion.setHeight(300);
-
-    if(t_persion.left() + t_persion.width() > this->rect().width()){
-        t_persion.setLeft(t_persion.left() - t_persion.width());
-        t_persion.setWidth(200);
-    }
-    if(t_persion.top() + t_persion.height() > this->rect().height()){
-        int t_top = t_persion.top() - t_persion.height() - t_lineHegiht;
-        if(t_top > 0){
-            t_persion.setTop(t_persion.top() - t_persion.height() - t_lineHegiht);
-        }
-        t_persion.setHeight(300);
-    }
-    return t_persion;
-}
-
-
-
-//当提示被激发
-void CodeEditor::event_onTipOut(QString tipStr)
-{
-    QString t_left,t_right,t_line;
-    this->GetCursorString(t_left,t_right,t_line);
-
-    QString t_insertStr = tipStr;
-
-    if(tipStr.left(t_left.length()) == t_left){
-        t_insertStr = tipStr.right(tipStr.length() - t_left.length());
-    }
-    this->insertPlainText(t_insertStr);
-}
-
-
-
-//文本被改变
-void CodeEditor::event_onTextChanged()
-{
-    static int t_textSize = 0;
-    int t_newTextSize = this->toPlainText().length();
-    this->Model_TipList->setHidden(true);
-
-    QString t_left,t_right,t_line;
-    if(t_textSize < t_newTextSize){
-        this->GetCursorString(t_left,t_right,t_line);
-        this->event_onTipWillShow(t_left,t_right,t_line); //激活当提示即将提示
-        this->event_showTip(t_left);
-    }
-    t_textSize = t_newTextSize;
-    //this->Model_TipList->
-}
-
-
-
-//展示提示信息
-void CodeEditor::event_showTip(QString src)
-{
-    this->Model_TipList->ShowTips(src,this->GetCursorPersion());
-}
-
-
-//按钮按下信息
-void CodeEditor::keyPressEvent(QKeyEvent *event)
-{
-    if(event->modifiers() == Qt::NoModifier){
-        if(!this->Model_TipList->isHidden()){
-
-            if (event->key() == Qt::Key_Up || event->key() == Qt::Key_Down ||  event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
-                this->Model_TipList->keyPressEvent(event);
-                return;
-            }
-        }
-
-        if(event->key() == Qt::Key_Tab){
-            this->insertPlainText("    ");//Tab等于4个空格
-            return;
-        }
-    }
+    //添加关键字
+    QPixmap t_pix;
+    t_pix.load(":/tipsIcon/res/tipIcon/key.png"); //添加关键字提示图片
+    this->registerImage(1,t_pix);
+    t_pix.load(":/tipsIcon/res/tipIcon/fun.png"); //添加函数提示图片
+    this->registerImage(2,t_pix);
+    t_pix.load(":/tipsIcon/res/tipIcon/foresight.png"); //添加预处理图片
+    this->registerImage(3,t_pix);
 
 
 
 
-    QPlainTextEdit::keyPressEvent(event);
+    this->SetSign();
 }
 
 
 
 
-//获取行宽度
-int CodeEditor::GetLeftSpaceWidth()
+void CodeEditor::SetSign()
 {
-    int digits = 1;
-    int max = qMax(1, blockCount());
-    while (max >= 10) {
-        max /= 10;
-        ++digits;
-    }
+    this->setText("12345678\n21313123131");
 
-    QFontMetricsF t_fm(Font_LineNomber);
-    this->Width_LineNumber = t_fm.size(0,"9").width() * digits + Width_padding_LineNumber * 2;
-    this->Width_Sign = t_fm.height();
-    return this->Width_LineNumber + this->Width_Sign + this->Width_Fold;
+    this->SendScintilla(QsciScintilla::SCI_GOTOLINE, 2);
+
+
+
+    // 获取当前行号
+
+    //int line_num = this->SendScintilla(QsciScintilla::SCI_LINEFROMPOSITION, this->cursor().pos());
+
+
+    //this->SendScintilla()
+
+    // 设置标记背景色为黄色
+    //this->markerDefine(QsciScintilla::SCI_SETWHITESPACEBACK, QColor(255, 255, 0));
+    // 设置标记前景色为透明
+    this->SendScintilla(QsciScintilla::SCI_INDICSETFORE, 0, QColor(236, 188, 29));
+    // 设置标记样式为波浪线
+    this->SendScintilla(QsciScintilla::SCI_INDICSETSTYLE, 0, QsciScintilla::INDIC_SQUIGGLE);
+    // 在第35行的14列到25列之间填充标记
+    //this->SendScintilla(QsciScintilla::SCI_GOTOLINE, 35);
+
+
+
+
+    int start = this->positionFromLineIndex(0,0);
+    int end = this->positionFromLineIndex(0,7);
+    //INDICATORFILLRANGE
+    this->SendScintilla(QsciScintilla::SCI_INDICATORFILLRANGE, start, end - start);
 }
-
-//设置行号字体
-void CodeEditor::SetLineFont(QFont font)
-{
-    Font_LineNomber = font;
-}
-
-
-//更新行宽度
-void CodeEditor::updateLineNumberAreaWidth(int /* newBlockCount */)
-{
-    this->setViewportMargins(GetLeftSpaceWidth(), 0, 0, 0);
-}
-
-
-
-//更新左边的行号区域
-void CodeEditor::ChangeLeftSpace(const QRect &rect, int dy)
-{
-    if (dy)
-        LeftSpaceWidget->scroll(0, dy);
-    else
-        LeftSpaceWidget->update(0, rect.y(), LeftSpaceWidget->width(), rect.height());
-
-    if (rect.contains(viewport()->rect()))
-        updateLineNumberAreaWidth(0);
-}
-
-
-
-//自动铺满尺寸
-void CodeEditor::resizeEvent(QResizeEvent *e)
-{
-    QPlainTextEdit::resizeEvent(e);
-    LeftSpaceWidget->setGeometry(0, 0, GetLeftSpaceWidth(), this->height()); //左边区域的宽度
-}
-
-
-//光标位置已更改，绘制当前行的的黄颜色背景
-void CodeEditor::HighLightCurrentLine()
-{
-    QList<QTextEdit::ExtraSelection> extraSelections;
-    if (!isReadOnly()) {
-        QTextEdit::ExtraSelection selection;
-
-        selection.format.setBackground(Color_NowLineBackground);
-        selection.format.setProperty(QTextFormat::FullWidthSelection, true);
-        selection.cursor = textCursor();
-        selection.cursor.clearSelection();
-        extraSelections.append(selection);
-    }
-    setExtraSelections(extraSelections);
-
-    //更新光标信息
-    Persion_CursorRect = this->cursorRect();
-}
-
-
-
-//绘制行号
-void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
-{
-    QPainter painter(LeftSpaceWidget);
-    QPen pen(Color_NormalText);        //画笔
-    QBrush brush(Color_LineNumberBackground); //刷子
-
-    //填充背景
-    pen.setStyle(Qt::PenStyle::SolidLine);
-    pen.setColor(Color_LineNumber);//默认头文字颜色
-    brush.setStyle(Qt::BrushStyle::SolidPattern);
-    brush.setColor(Color_LineNumberBackground);
-    painter.setPen(pen);
-    painter.setBrush(brush);
-    painter.setFont(Font_LineNomber);
-    painter.drawRect(0, 0, LeftSpaceWidget->width(), LeftSpaceWidget->height());//填充背景
-
-
-    //开始绘制行号
-    QTextBlock block = firstVisibleBlock();
-    int blockNumber = block.blockNumber();
-    int top = qRound(blockBoundingGeometry(block).translated(contentOffset()).top());
-    int bottom = top + qRound(blockBoundingRect(block).height());
-
-    while (block.isValid() && top <= event->rect().bottom()) {
-        if (block.isVisible() && bottom >= event->rect().top()) {
-            QString number = QString::number(blockNumber + 1);
-            //painter.setPen(Qt::black);
-            painter.drawText(0, top, Width_LineNumber, this->fontMetrics().height(),
-                             Qt::AlignRight, number);
-        }
-
-        block = block.next();
-        top = bottom;
-        bottom = top + qRound(blockBoundingRect(block).height());
-        ++blockNumber;
-    }
-}
-
-
-//更新颜色值
-void CodeEditor::Updata_Color()
-{
-    QPalette t_pl = this->palette();     // 获取textEdit的调色板
-    t_pl.setColor(QPalette::Base, Color_LineNumberBackground);    // 设置背景色为黑色
-    t_pl.setColor(QPalette::Text, Color_NormalText);    // 设置文本颜色为绿色
-
-    LeftSpaceWidget->setPalette(t_pl);              // 设置调色板
-}
-
-

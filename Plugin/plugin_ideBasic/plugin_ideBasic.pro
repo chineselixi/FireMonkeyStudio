@@ -17,6 +17,8 @@ TARGET = plg_ideBasic
 
 SOURCES += \
     CodeEditor/CodeEditor.cpp \
+    CodeEditor/GccMsgFormat.cpp \
+    CodeEditor/globalValue.cpp \
     module/mod_HeighLightEditor.cpp \
     module/mod_TipList.cpp \
     Plugin_ideBasic.cpp
@@ -24,6 +26,8 @@ SOURCES += \
 
 HEADERS += \
     CodeEditor/CodeEditor.h \
+    CodeEditor/GccMsgFormat.h \
+    CodeEditor/globalValue.h \
     module/mod_HeighLightEditor.h \
     module/mod_TipList.h \
     plugin_ideBasic_global.h \
@@ -36,4 +40,4 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    icons.qrc
+    res.qrc

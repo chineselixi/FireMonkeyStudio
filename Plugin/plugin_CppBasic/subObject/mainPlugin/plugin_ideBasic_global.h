@@ -1,0 +1,13 @@
+
+#ifndef PLUGIN_IDEBASIC_GLOBAL_H
+#define PLUGIN_IDEBASIC_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(PLUGIN_IDEBASIC_LIBRARY)
+#  define PLUGIN_IDEBASIC_EXPORT Q_DECL_EXPORT
+#else
+#  define PLUGIN_IDEBASIC_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // PLUGIN_IDEBASIC_GLOBAL_H
