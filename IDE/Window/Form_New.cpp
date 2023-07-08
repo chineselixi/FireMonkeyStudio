@@ -23,6 +23,9 @@ Form_New::Form_New(QWidget *parent) :
     ui->setupUi(this);
     //this->setFixedHeight(782);
     //this->setFixedWidth(1113);
+
+
+
     ui->Btn_OpenProject->SetIcon(QPixmap(":/WidgetIcon/icon/WidgetIcon/newCreate/open1.png"));
     ui->Btn_OpenProject->SetTitle("打开项目或解决方案");
     ui->Btn_OpenProject->SetTip("打开本地的FireMonkey项目或.fmp文件");
@@ -38,7 +41,6 @@ Form_New::Form_New(QWidget *parent) :
     ui->Btn_FromGit->SetIcon(QPixmap(":/WidgetIcon/icon/WidgetIcon/newCreate/clone1.png"));
     ui->Btn_FromGit->SetTitle("从存储库构建");
     ui->Btn_FromGit->SetTip("从GitHub或Gitee等联机存储库获取代码");
-
 
 
     //使用信号槽机制绑定按钮
@@ -65,7 +67,6 @@ Form_New::Form_New(QWidget *parent) :
 
 //        //
 //    });
-
 
     //历史工程检索，信息倒装，最后的信息在最前面显示
     if(HistoryList::sys_proHistory == nullptr) return;
@@ -124,12 +125,10 @@ Form_New::Form_New(QWidget *parent) :
 
     //最近模板检索
     auto t_modHisList = HistoryList::sys_modHistory->getHisList();
-
-
     //加入最近模板列表,模板信息倒装，最后的信息在最前面
     for(int a = t_modHisList.length()-1;a>=0;a--){
         if(!QFile(t_modHisList[a].filePath.replace("<modPath>",QCoreApplication::applicationDirPath())).exists()){
-            HistoryList::sys_modHistory->removeProHisList(t_hisList[a].filePath);
+            HistoryList::sys_modHistory->removeProHisList(t_modHisList[a].filePath);
             continue;//如果文件不存在，则直接跳过
         }
 
@@ -146,7 +145,6 @@ Form_New::Form_New(QWidget *parent) :
         t_itemWidget->SetTitle(t_modHisList[a].showName);
         t_itemWidget->SetModStr(t_modHisList[a].other); //这里显示的是编程语言
 
-
         connect(t_itemWidget,&Widget_Button_ModHistoryItem::onDown,this,[t_modFilePath,this,t_listItem](){
             this->modFilePath = t_modFilePath;
 
@@ -160,8 +158,6 @@ Form_New::Form_New(QWidget *parent) :
             ui->listWidget_ModList->clearSelection(); //清空模板所有的选项
         });
     }
-
-
 
 
     //扫描本地模板

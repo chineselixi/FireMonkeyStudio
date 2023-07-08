@@ -48,7 +48,12 @@ QVector<System_History::HistoryMsg> System_History::getHisList()
 //移除工程列表历史记录
 bool System_History::removeProHisList(QString sign)
 {
+    qDebug() << "sss";
+
     for(int a=0;a<this->His_proList.length();a++){
+        qDebug() << a << this->His_proList.length();
+        qDebug() << this->His_proList[a].filePath << sign;
+
         if(this->His_proList[a].filePath == sign){
             this->His_proList.removeAt(a);
             return true;

@@ -25,18 +25,8 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
     Window::workSpace = this;
 
     this->init(); //初始化代码
-
-    qDebug() << "11111";
-
     Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::compileType::debug); //响应编译模式
-
-    qDebug() << "22222";
-
-
     Manger::pluginManger->event_onWorkSpaceFinish(); //响应插件workSpace加载完成事件
-
-
-    qDebug() << "33333";
 
 
 //==============================临时代码==============================
@@ -111,10 +101,6 @@ void Form_WorkSpace::init()
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectBuild,this,&Form_WorkSpace::event_ProjectManger_onProjectBuild); //工程创建完毕
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectClose,this,&Form_WorkSpace::event_ProjectManger_onProjectClose); //工程被关闭
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onFileRename,this,&Form_WorkSpace::event_ProjectManger_onFileRename); //文件被更名
-
-
-
-
 
 
 
@@ -268,7 +254,7 @@ void Form_WorkSpace::loadProject()
 //新建工程或文件
 void Form_WorkSpace::on_action_file_newCreate_triggered()
 {
-    Form_New* t_newForm = new Form_New;
+    Form_New* t_newForm = new Form_New(nullptr);
     t_newForm->setWindowModality(Qt::ApplicationModal);
     t_newForm->show();
 }

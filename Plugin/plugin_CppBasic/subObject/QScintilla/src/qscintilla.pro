@@ -1,27 +1,7 @@
-# The project file for the QScintilla library.
-#
-# Copyright (c) 2023 Riverbank Computing Limited <info@riverbankcomputing.com>
-# 
-# This file is part of QScintilla.
-# 
-# This file may be used under the terms of the GNU General Public License
-# version 3.0 as published by the Free Software Foundation and appearing in
-# the file LICENSE included in the packaging of this file.  Please review the
-# following information to ensure the GNU General Public License version 3.0
-# requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-# 
-# If you do not wish to use this file under the terms of the GPL version 3.0
-# then you may purchase a commercial license.  For more information contact
-# info@riverbankcomputing.com.
-# 
-# This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-# WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-
-
-#输出的文件路径
-DESTDIR = ../../lib
-#输出的文件名
-TARGET = qscintilla2
+#filePath
+DESTDIR = ../../../../../release/lib
+#fileName
+TARGET = qscintilla
 
 
 !win32:VERSION = 15.2.0
@@ -29,19 +9,20 @@ TARGET = qscintilla2
 TEMPLATE = lib
 CONFIG += qt warn_off thread exceptions hide_symbols
 
-CONFIG(debug, debug|release) {
-    mac: {
-        TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}_debug
-    } else {
-        win32: {
-            TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}d
-        } else {
-            TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}
-        }
-    }
-} else {
-    TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}
-}
+#这里是根据平台和调试模式设置文件名
+#CONFIG(debug, debug|release) {
+#    mac: {
+#        TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}_debug
+#    } else {
+#        win32: {
+#            TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}d
+#        } else {
+#            TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}
+#        }
+#    }
+#} else {
+#    TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}
+#}
 
 macx:!CONFIG(staticlib) {
     QMAKE_POST_LINK += install_name_tool -id @rpath/$(TARGET1) $(TARGET)
