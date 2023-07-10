@@ -5,6 +5,7 @@
 #include "QDialog"
 #include "QFileDialog"
 #include "QFileInfo"
+#include <QScreen>
 
 #include "SwSystem/System_GlobalVar.h"
 #include "Plugin/Plugin_Manger.h"
@@ -13,6 +14,7 @@
 #include "Window/Form_ProjectManger.h"
 #include "Window/Form_About.h"
 #include "Window/Form_PluginManger.h"
+#include "Window/Form_SystemSettings.h"
 
 #include "module/mod_WebPage.h"
 
@@ -77,6 +79,10 @@ Form_WorkSpace::~Form_WorkSpace()
 //初始化
 void Form_WorkSpace::init()
 {
+    //窗口剧中
+    const QRect t_screen = QGuiApplication::primaryScreen()->geometry();
+    this->move( t_screen.center() - this->geometry().center());
+
     //=================将编译模式选择插入到工具栏=================
     ui->toolBar->insertAction(ui->action_toolBar_compile,ui->toolBar->addWidget(ui->comboBox_compileMode));
 
@@ -525,6 +531,11 @@ void Form_WorkSpace::on_action_toolBar_Rerun_triggered() //当项目被重新运
     this->on_action_toolBar_run_triggered(); //运行项目
 }
 
-
-
+//打开系统设置
+void Form_WorkSpace::on_action_systemSettings_triggered()
+{
+    Form_SystemSettings* t_settingForm = new Form_SystemSettings(nullptr);
+    t_settingForm->setWindowModality(Qt::ApplicationModal);
+    t_settingForm->show();
+}
 

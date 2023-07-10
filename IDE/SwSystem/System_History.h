@@ -7,6 +7,7 @@
 
 class System_History
 {
+public:
     struct HistoryMsg{
         QString showName; //显示的名字
         QString showIco; //显示的图标
@@ -30,7 +31,8 @@ public:
     QVector<HistoryMsg> getHisList(); //获取工程历史列表
     bool removeProHisList(QString sign); //移除工程列表历史记录
     void clearRepeat(); //清理重复数据
-    void addMsg(QString showName,QString showIco,QString filePath,QString other); //添加字项目
+    void clear(); //清空所有历史信息
+    void addMsg(QString showName,QString showIco,QString filePath,QString other); //添加子项目
     bool has(QString filePath); //根据路径，检索当前是否存在此历史记录
     void saveHisList(); //保存列表
 };

@@ -69,11 +69,12 @@ static constexpr auto qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS = QtMocHelp
     "on_action_menu_Rerun_triggered",
     "on_action_toolBar_run_triggered",
     "on_action_toolBar_Rerun_triggered",
-    "on_action_toolBar_stop_triggered"
+    "on_action_toolBar_stop_triggered",
+    "on_action_systemSettings_triggered"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t {
-    uint offsetsAndSizes[64];
+    uint offsetsAndSizes[66];
     char stringdata0[15];
     char stringdata1[35];
     char stringdata2[1];
@@ -106,6 +107,7 @@ struct qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t {
     char stringdata29[32];
     char stringdata30[34];
     char stringdata31[33];
+    char stringdata32[35];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -142,7 +144,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t qt_met
         QT_MOC_LITERAL(828, 30),  // "on_action_menu_Rerun_triggered"
         QT_MOC_LITERAL(859, 31),  // "on_action_toolBar_run_triggered"
         QT_MOC_LITERAL(891, 33),  // "on_action_toolBar_Rerun_trigg..."
-        QT_MOC_LITERAL(925, 32)   // "on_action_toolBar_stop_triggered"
+        QT_MOC_LITERAL(925, 32),  // "on_action_toolBar_stop_triggered"
+        QT_MOC_LITERAL(958, 34)   // "on_action_systemSettings_trig..."
     },
     "Form_WorkSpace",
     "on_action_file_newCreate_triggered",
@@ -175,7 +178,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t qt_met
     "on_action_menu_Rerun_triggered",
     "on_action_toolBar_run_triggered",
     "on_action_toolBar_Rerun_triggered",
-    "on_action_toolBar_stop_triggered"
+    "on_action_toolBar_stop_triggered",
+    "on_action_systemSettings_triggered"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -187,7 +191,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      26,   14, // methods
+      27,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -195,32 +199,33 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  170,    2, 0x08,    1 /* Private */,
-       3,    0,  171,    2, 0x08,    2 /* Private */,
-       4,    1,  172,    2, 0x08,    3 /* Private */,
-       6,    1,  175,    2, 0x08,    5 /* Private */,
-       7,    1,  178,    2, 0x08,    7 /* Private */,
-       8,    0,  181,    2, 0x08,    9 /* Private */,
-       9,    0,  182,    2, 0x08,   10 /* Private */,
-      10,    1,  183,    2, 0x08,   11 /* Private */,
-      11,    1,  186,    2, 0x08,   13 /* Private */,
-      12,    1,  189,    2, 0x08,   15 /* Private */,
-      14,    1,  192,    2, 0x08,   17 /* Private */,
-      15,    1,  195,    2, 0x08,   19 /* Private */,
-      16,    1,  198,    2, 0x08,   21 /* Private */,
-      17,    1,  201,    2, 0x08,   23 /* Private */,
-      18,    1,  204,    2, 0x08,   25 /* Private */,
-      20,    1,  207,    2, 0x08,   27 /* Private */,
-      22,    1,  210,    2, 0x08,   29 /* Private */,
-      23,    1,  213,    2, 0x08,   31 /* Private */,
-      24,    1,  216,    2, 0x08,   33 /* Private */,
-      25,    1,  219,    2, 0x08,   35 /* Private */,
-      26,    0,  222,    2, 0x08,   37 /* Private */,
-      27,    0,  223,    2, 0x08,   38 /* Private */,
-      28,    0,  224,    2, 0x08,   39 /* Private */,
-      29,    0,  225,    2, 0x08,   40 /* Private */,
-      30,    0,  226,    2, 0x08,   41 /* Private */,
-      31,    0,  227,    2, 0x08,   42 /* Private */,
+       1,    0,  176,    2, 0x08,    1 /* Private */,
+       3,    0,  177,    2, 0x08,    2 /* Private */,
+       4,    1,  178,    2, 0x08,    3 /* Private */,
+       6,    1,  181,    2, 0x08,    5 /* Private */,
+       7,    1,  184,    2, 0x08,    7 /* Private */,
+       8,    0,  187,    2, 0x08,    9 /* Private */,
+       9,    0,  188,    2, 0x08,   10 /* Private */,
+      10,    1,  189,    2, 0x08,   11 /* Private */,
+      11,    1,  192,    2, 0x08,   13 /* Private */,
+      12,    1,  195,    2, 0x08,   15 /* Private */,
+      14,    1,  198,    2, 0x08,   17 /* Private */,
+      15,    1,  201,    2, 0x08,   19 /* Private */,
+      16,    1,  204,    2, 0x08,   21 /* Private */,
+      17,    1,  207,    2, 0x08,   23 /* Private */,
+      18,    1,  210,    2, 0x08,   25 /* Private */,
+      20,    1,  213,    2, 0x08,   27 /* Private */,
+      22,    1,  216,    2, 0x08,   29 /* Private */,
+      23,    1,  219,    2, 0x08,   31 /* Private */,
+      24,    1,  222,    2, 0x08,   33 /* Private */,
+      25,    1,  225,    2, 0x08,   35 /* Private */,
+      26,    0,  228,    2, 0x08,   37 /* Private */,
+      27,    0,  229,    2, 0x08,   38 /* Private */,
+      28,    0,  230,    2, 0x08,   39 /* Private */,
+      29,    0,  231,    2, 0x08,   40 /* Private */,
+      30,    0,  232,    2, 0x08,   41 /* Private */,
+      31,    0,  233,    2, 0x08,   42 /* Private */,
+      32,    0,  234,    2, 0x08,   43 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -243,6 +248,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
     QMetaType::Void, QMetaType::Bool,   21,
     QMetaType::Void, QMetaType::Bool,   21,
     QMetaType::Void, QMetaType::Bool,   21,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -329,6 +335,8 @@ Q_CONSTINIT const QMetaObject Form_WorkSpace::staticMetaObject = { {
         // method 'on_action_toolBar_Rerun_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_action_toolBar_stop_triggered'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_action_systemSettings_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -366,6 +374,7 @@ void Form_WorkSpace::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 23: _t->on_action_toolBar_run_triggered(); break;
         case 24: _t->on_action_toolBar_Rerun_triggered(); break;
         case 25: _t->on_action_toolBar_stop_triggered(); break;
+        case 26: _t->on_action_systemSettings_triggered(); break;
         default: ;
         }
     }
@@ -390,13 +399,13 @@ int Form_WorkSpace::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 26)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 26;
+        _id -= 27;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 26)
+        if (_id < 27)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 26;
+        _id -= 27;
     }
     return _id;
 }

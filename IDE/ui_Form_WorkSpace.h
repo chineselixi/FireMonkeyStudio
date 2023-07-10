@@ -128,7 +128,7 @@ public:
     QAction *action_V_3;
     QAction *action_addNewPlugin;
     QAction *action_pluginManger;
-    QAction *action_O_4;
+    QAction *action_systemSettings;
     QAction *action_C_5;
     QAction *action_F_2;
     QAction *actionBlue_N;
@@ -867,11 +867,11 @@ public:
         QIcon icon76;
         icon76.addFile(QString::fromUtf8(":/Theme/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_pluginManger->setIcon(icon76);
-        action_O_4 = new QAction(Form_WorkSpace);
-        action_O_4->setObjectName("action_O_4");
+        action_systemSettings = new QAction(Form_WorkSpace);
+        action_systemSettings->setObjectName("action_systemSettings");
         QIcon icon77;
         icon77.addFile(QString::fromUtf8(":/Theme/icon/Theme/Blue/Image/MenuBar/Settings_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        action_O_4->setIcon(icon77);
+        action_systemSettings->setIcon(icon77);
         action_C_5 = new QAction(Form_WorkSpace);
         action_C_5->setObjectName("action_C_5");
         action_C_5->setIcon(icon73);
@@ -1146,7 +1146,7 @@ public:
         menu_set->addAction(action_addNewPlugin);
         menu_set->addAction(action_pluginManger);
         menu_set->addSeparator();
-        menu_set->addAction(action_O_4);
+        menu_set->addAction(action_systemSettings);
         menu_set->addAction(menu_T->menuAction());
         menu_set->addSeparator();
         menu_set->addAction(action_C_5);
@@ -1453,7 +1453,7 @@ public:
 #if QT_CONFIG(tooltip)
         action_pluginManger->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\346\217\222\344\273\266\347\256\241\347\220\206\345\231\250(L)", nullptr));
 #endif // QT_CONFIG(tooltip)
-        action_O_4->setText(QCoreApplication::translate("Form_WorkSpace", "\347\263\273\347\273\237\350\256\276\347\275\256(&O)", nullptr));
+        action_systemSettings->setText(QCoreApplication::translate("Form_WorkSpace", "\347\263\273\347\273\237\350\256\276\347\275\256(&O)", nullptr));
         action_C_5->setText(QCoreApplication::translate("Form_WorkSpace", "\347\255\276\345\220\215\350\256\244\350\257\201(&C)", nullptr));
         action_F_2->setText(QCoreApplication::translate("Form_WorkSpace", "\345\234\250\346\250\241\345\235\227\345\217\212\346\224\257\346\214\201\345\272\223\344\270\255\346\237\245\346\211\276(&F)", nullptr));
         actionBlue_N->setText(QCoreApplication::translate("Form_WorkSpace", "Blue(\351\273\230\350\256\244)(&N)", nullptr));

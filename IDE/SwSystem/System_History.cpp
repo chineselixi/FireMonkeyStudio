@@ -76,6 +76,13 @@ void System_History::clearRepeat()
     }
 }
 
+
+//清空所有历史信息
+void System_History::clear()
+{
+    His_proList.clear(); //清空历史信息
+}
+
 //添加子项目
 void System_History::addMsg(QString showName, QString showIco, QString filePath, QString other)
 {

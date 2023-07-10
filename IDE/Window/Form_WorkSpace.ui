@@ -334,7 +334,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <addaction name="action_addNewPlugin"/>
     <addaction name="action_pluginManger"/>
     <addaction name="separator"/>
-    <addaction name="action_O_4"/>
+    <addaction name="action_systemSettings"/>
     <addaction name="menu_T"/>
     <addaction name="separator"/>
     <addaction name="action_C_5"/>
@@ -1786,7 +1786,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>插件管理器(L)</string>
    </property>
   </action>
-  <action name="action_O_4">
+  <action name="action_systemSettings">
    <property name="icon">
     <iconset resource="../icons.qrc">
      <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</iconset>

@@ -15,7 +15,7 @@ TARGET = ide
 
 
 
-#复制文件到构建的目标目录
+#复制文件到构建的目标目录.
 config.files = $$PWD/RunConfig/config           # 要复制的文件或目录
 config.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 proModel.files = $$PWD/RunConfig/proModel           # 要复制的文件或目录
@@ -49,6 +49,7 @@ SOURCES += \
     Window/Form_New.cpp \
     Window/Form_PluginManger.cpp \
     Window/Form_ProjectManger.cpp \
+    Window/Form_SystemSettings.cpp \
     Window/Form_TextPrint.cpp \
     Window/Form_VisualFolder.cpp \
     Window/Form_WidgetBox.cpp \
@@ -78,6 +79,7 @@ HEADERS += \
     Window/Form_New.h \
     Window/Form_PluginManger.h \
     Window/Form_ProjectManger.h \
+    Window/Form_SystemSettings.h \
     Window/Form_TextPrint.h \
     Window/Form_VisualFolder.h \
     Window/Form_WidgetBox.h \
@@ -101,6 +103,7 @@ FORMS += \
     Window/Form_New.ui \
     Window/Form_PluginManger.ui \
     Window/Form_ProjectManger.ui \
+    Window/Form_SystemSettings.ui \
     Window/Form_TextPrint.ui \
     Window/Form_VisualFolder.ui \
     Window/Form_WidgetBox.ui \

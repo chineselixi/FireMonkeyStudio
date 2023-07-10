@@ -11,7 +11,8 @@ body{
 .HeadBar{
 	height: 80px;
 	padding: 40px;
-	background-color: rgb(92, 45, 145);
+	//background-color: rgb(92, 45, 145);
+	background: linear-gradient(180deg, hsl(266.51162790697674,100%,45%) 0%, hsl(266.51162790697674,70%,35%) 100%);
 	color: white;
 	/* background-color: aqua; */
 	/* box-sizing: border-box; */
@@ -56,13 +57,16 @@ body{
 }
 
 .widget{
-	padding: 5px 0;
+	margin: 10px 0;
 	display: block;
 	color: royalblue;
 	text-decoration: none;
 	/* color: cornflowerblue; */
 }
-
+.widget:hover{
+	cursor:pointer;
+	color: rgb(92, 45, 145);
+}
 
 /*信息区域*/
 .MessageArea{
@@ -94,6 +98,10 @@ body{
 	height: 50px;
 	margin-bottom: 2px;
 	overflow:hidden;
+	border-radius: 10px;
+}
+#projectList li:hover{
+	background-color: #d9d9d9;
 }
 #projectList li:hover .projectListCloseIcon{
 	display: block;
@@ -126,11 +134,11 @@ body{
 }
 .projectListTitle{
 	top:10px;
-	font-size: 18px;
+	font-size: 16px;
 }
 .projectListPath{
 	top:28px;
-	font-size: 14px;
+	font-size: 12px;
 	color: gray;
 }
 

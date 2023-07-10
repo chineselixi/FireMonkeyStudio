@@ -10,7 +10,7 @@ class Form_WorkSpace;
 class Form_WorkSpace : public QMainWindow
 {
     Q_OBJECT
-
+    friend class cppObject; //设定WebEngine的cppobj为友元
 public:
     explicit Form_WorkSpace(QWidget *parent = nullptr);
     ~Form_WorkSpace();
@@ -22,7 +22,7 @@ public:
 private slots:
     void on_action_file_newCreate_triggered(); //新建工程或文件
 
-    void on_action_file_open_triggered();
+    void on_action_file_open_triggered(); //打开工程文件
 
 
     void on_action_dock_project_triggered(bool checked); //Dock栏显示，工程管理
@@ -60,6 +60,7 @@ private slots:
     void on_action_toolBar_Rerun_triggered();
     void on_action_toolBar_stop_triggered();
 
+    void on_action_systemSettings_triggered(); //打开系统设置
 
 private:
     Ui::Form_WorkSpace *ui;
