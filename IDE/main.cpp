@@ -28,6 +28,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    //a.setFont(QFont("Consolas"));
+
     QString t_execRunPath = QCoreApplication::applicationDirPath(); //获取程序的运行目录
 
     //加载工程历史配置文件

@@ -49,7 +49,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../icons.qrc">:/WidgetBox/icon/WidgetBox/BlueIcons/Cursor_16x.png</pixmap>
+      <pixmap resource="../icons.qrc">:/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CursorFile_16x.png</pixmap>
      </property>
     </widget>
    </item>

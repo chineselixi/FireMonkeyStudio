@@ -39,7 +39,7 @@ public:
         label_img->setObjectName("label_img");
         label_img->setMinimumSize(QSize(20, 20));
         label_img->setMaximumSize(QSize(20, 20));
-        label_img->setPixmap(QPixmap(QString::fromUtf8(":/WidgetBox/icon/WidgetBox/BlueIcons/Cursor_16x.png")));
+        label_img->setPixmap(QPixmap(QString::fromUtf8(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CursorFile_16x.png")));
 
         horizontalLayout->addWidget(label_img);
 

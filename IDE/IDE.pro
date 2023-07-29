@@ -55,9 +55,11 @@ SOURCES += \
     Window/Form_WidgetBox.cpp \
     Window/Form_WindowTab.cpp \
     Window/Form_WorkSpace.cpp \
+    Window/settingWindow/Form_settings_Basic.cpp \
     main.cpp \
     mainwindow.cpp \
-    module/mod_WebPage.cpp
+    module/mod_WebPage.cpp \
+    module/mod_settingsFormBase.cpp
 
 HEADERS += \
     Plugin/Plugin_Base.h \
@@ -85,8 +87,10 @@ HEADERS += \
     Window/Form_WidgetBox.h \
     Window/Form_WindowTab.h \
     Window/Form_WorkSpace.h \
+    Window/settingWindow/Form_settings_Basic.h \
     mainwindow.h \
-    module/mod_WebPage.h
+    module/mod_WebPage.h \
+    module/mod_settingsFormBase.h
 
 FORMS += \
     Widget/Widget_Button_ListItem.ui \
@@ -109,6 +113,7 @@ FORMS += \
     Window/Form_WidgetBox.ui \
     Window/Form_WindowTab.ui \
     Window/Form_WorkSpace.ui \
+    Window/settingWindow/Form_settings_Basic.ui \
     mainwindow.ui
 
 # Default rules for deployment.
