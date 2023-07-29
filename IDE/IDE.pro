@@ -56,6 +56,9 @@ SOURCES += \
     Window/Form_WindowTab.cpp \
     Window/Form_WorkSpace.cpp \
     Window/settingWindow/Form_settings_Basic.cpp \
+    Window/settingWindow/Form_settings_Color.cpp \
+    Window/settingWindow/Form_settings_DataBase.cpp \
+    Window/settingWindow/Form_settings_Device.cpp \
     main.cpp \
     mainwindow.cpp \
     module/mod_WebPage.cpp \
@@ -88,6 +91,9 @@ HEADERS += \
     Window/Form_WindowTab.h \
     Window/Form_WorkSpace.h \
     Window/settingWindow/Form_settings_Basic.h \
+    Window/settingWindow/Form_settings_Color.h \
+    Window/settingWindow/Form_settings_DataBase.h \
+    Window/settingWindow/Form_settings_Device.h \
     mainwindow.h \
     module/mod_WebPage.h \
     module/mod_settingsFormBase.h
@@ -114,6 +120,9 @@ FORMS += \
     Window/Form_WindowTab.ui \
     Window/Form_WorkSpace.ui \
     Window/settingWindow/Form_settings_Basic.ui \
+    Window/settingWindow/Form_settings_Color.ui \
+    Window/settingWindow/Form_settings_DataBase.ui \
+    Window/settingWindow/Form_settings_Device.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -85,7 +85,7 @@ public:
     {
         if (Form_settings_Basic->objectName().isEmpty())
             Form_settings_Basic->setObjectName("Form_settings_Basic");
-        Form_settings_Basic->resize(802, 835);
+        Form_settings_Basic->resize(800, 835);
         gridLayout = new QGridLayout(Form_settings_Basic);
         gridLayout->setObjectName("gridLayout");
         scrollArea = new QScrollArea(Form_settings_Basic);
@@ -93,9 +93,9 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 778, 811));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 776, 811));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
-        verticalLayout_5->setSpacing(12);
+        verticalLayout_5->setSpacing(20);
         verticalLayout_5->setObjectName("verticalLayout_5");
         groupBox_2 = new QGroupBox(scrollAreaWidgetContents);
         groupBox_2->setObjectName("groupBox_2");

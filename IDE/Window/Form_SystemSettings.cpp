@@ -2,7 +2,9 @@
 #include "ui_Form_SystemSettings.h"
 
 #include "Window/settingWindow/Form_settings_Basic.h"
-
+#include "Window/settingWindow/Form_settings_Color.h"
+#include "Window/settingWindow/Form_settings_Device.h"
+#include "Window/settingWindow/Form_settings_DataBase.h"
 
 Form_SystemSettings::Form_SystemSettings(QWidget *parent) :
     QWidget(parent),
@@ -10,10 +12,9 @@ Form_SystemSettings::Form_SystemSettings(QWidget *parent) :
 {
     ui->setupUi(this);
     this->addSetItem("基本设置",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/Logo_b.png"),new Form_settings_Basic(this));
-
-    this->addSetItem("外观",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/color.png"),ui->widget);
-    this->addSetItem("设备",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/device.png"),ui->widget);
-    this->addSetItem("远程数据库",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/database.png"),ui->widget);
+    this->addSetItem("外观",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/color.png"),new Form_settings_Color(this));
+    this->addSetItem("设备",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/device.png"),new Form_settings_Device(this));
+    this->addSetItem("数据库",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/database.png"),new Form_settings_DataBase(this));
     this->addSetItem("编译器",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/comple.png"),ui->widget);
     this->addSetItem("git版本控制",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/git.png"),ui->widget);
     this->addSetItem("Qt环境支持",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/Qt.png"),ui->widget);
@@ -51,6 +52,7 @@ int Form_SystemSettings::addSetItem(QString title, QPixmap pixmap, QWidget *widg
                 this->ui->label_title->setText(this->setMsgList[i].btn_sign->GetTitle());
                 this->ui->stackedWidget->setCurrentIndex(setMsgList[i].widgetIndex);
                 qDebug() << "测试" << i;
+                break;
             }
         }
     });

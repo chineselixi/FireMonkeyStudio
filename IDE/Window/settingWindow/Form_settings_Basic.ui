@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>802</width>
+    <width>800</width>
     <height>835</height>
    </rect>
   </property>
@@ -24,13 +24,13 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>778</width>
+        <width>776</width>
         <height>811</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="spacing">
-        <number>12</number>
+        <number>20</number>
        </property>
        <item>
         <widget class="QGroupBox" name="groupBox_2">
