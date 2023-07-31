@@ -1,12 +1,12 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'Form_settings_DataBase.h'
+** Meta object code from reading C++ file 'Form_settings_Qt.h'
 **
 ** Created by: The Qt Meta Object Compiler version 68 (Qt 6.5.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../Window/settingWindow/Form_settings_DataBase.h"
+#include "../Window/settingWindow/Form_settings_Qt.h"
 #include <QtCore/qmetatype.h>
 
 #if __has_include(<QtCore/qtmochelpers.h>)
@@ -19,7 +19,7 @@ QT_BEGIN_MOC_NAMESPACE
 #include <memory>
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'Form_settings_DataBase.h' doesn't include <QObject>."
+#error "The header file 'Form_settings_Qt.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
 #error "This file was generated using the moc from 6.5.0. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -36,28 +36,28 @@ QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
-struct qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS_t {};
-static constexpr auto qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS = QtMocHelpers::stringData(
-    "Form_settings_DataBase"
+struct qt_meta_stringdata_CLASSForm_settings_QtENDCLASS_t {};
+static constexpr auto qt_meta_stringdata_CLASSForm_settings_QtENDCLASS = QtMocHelpers::stringData(
+    "Form_settings_Qt"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
-struct qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS_t {
+struct qt_meta_stringdata_CLASSForm_settings_QtENDCLASS_t {
     uint offsetsAndSizes[2];
-    char stringdata0[23];
+    char stringdata0[17];
 };
 #define QT_MOC_LITERAL(ofs, len) \
-    uint(sizeof(qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS_t::offsetsAndSizes) + ofs), len 
-Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS_t qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS = {
+    uint(sizeof(qt_meta_stringdata_CLASSForm_settings_QtENDCLASS_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_settings_QtENDCLASS_t qt_meta_stringdata_CLASSForm_settings_QtENDCLASS = {
     {
-        QT_MOC_LITERAL(0, 22)   // "Form_settings_DataBase"
+        QT_MOC_LITERAL(0, 16)   // "Form_settings_Qt"
     },
-    "Form_settings_DataBase"
+    "Form_settings_Qt"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
 } // unnamed namespace
 
-Q_CONSTINIT static const uint qt_meta_data_CLASSForm_settings_DataBaseENDCLASS[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSForm_settings_QtENDCLASS[] = {
 
  // content:
       11,       // revision
@@ -73,20 +73,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_settings_DataBaseENDCLASS[]
        0        // eod
 };
 
-Q_CONSTINIT const QMetaObject Form_settings_DataBase::staticMetaObject = { {
+Q_CONSTINIT const QMetaObject Form_settings_Qt::staticMetaObject = { {
     QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS.offsetsAndSizes,
-    qt_meta_data_CLASSForm_settings_DataBaseENDCLASS,
+    qt_meta_stringdata_CLASSForm_settings_QtENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSForm_settings_QtENDCLASS,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS_t,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSForm_settings_QtENDCLASS_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<Form_settings_DataBase, std::true_type>
+        QtPrivate::TypeAndForceComplete<Form_settings_Qt, std::true_type>
     >,
     nullptr
 } };
 
-void Form_settings_DataBase::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void Form_settings_Qt::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     (void)_o;
     (void)_id;
@@ -94,22 +94,22 @@ void Form_settings_DataBase::qt_static_metacall(QObject *_o, QMetaObject::Call _
     (void)_a;
 }
 
-const QMetaObject *Form_settings_DataBase::metaObject() const
+const QMetaObject *Form_settings_Qt::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *Form_settings_DataBase::qt_metacast(const char *_clname)
+void *Form_settings_Qt::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_CLASSForm_settings_DataBaseENDCLASS.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSForm_settings_QtENDCLASS.stringdata0))
         return static_cast<void*>(this);
     if (!strcmp(_clname, "mod_settingsFormBase"))
         return static_cast< mod_settingsFormBase*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int Form_settings_DataBase::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int Form_settings_Qt::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     return _id;

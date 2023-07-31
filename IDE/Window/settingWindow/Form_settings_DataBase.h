@@ -2,12 +2,13 @@
 #define FORM_SETTINGS_DATABASE_H
 
 #include <QWidget>
+#include "module/mod_settingsFormBase.h"
 
 namespace Ui {
 class Form_settings_DataBase;
 }
 
-class Form_settings_DataBase : public QWidget
+class Form_settings_DataBase : public QWidget,public mod_settingsFormBase
 {
     Q_OBJECT
 
