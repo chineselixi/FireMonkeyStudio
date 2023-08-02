@@ -45,10 +45,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="lineEdit_gitPath"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="btn_select">
           <property name="minimumSize">
            <size>
             <width>60</width>
@@ -67,7 +67,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="btn_test">
           <property name="minimumSize">
            <size>
             <width>60</width>
@@ -88,7 +88,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label_tips">
         <property name="text">
          <string>Git版本：未知的版本</string>
         </property>
@@ -125,7 +125,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_3">
+         <widget class="QLineEdit" name="lineEdit_userName">
           <property name="maximumSize">
            <size>
             <width>360</width>
@@ -171,7 +171,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_4">
+         <widget class="QLineEdit" name="lineEdit_email">
           <property name="maximumSize">
            <size>
             <width>360</width>
@@ -217,7 +217,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_5">
+         <widget class="QLineEdit" name="lineEdit_psw">
           <property name="maximumSize">
            <size>
             <width>360</width>
@@ -233,7 +233,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_4">
+         <widget class="QCheckBox" name="checkBox_showPsw">
           <property name="text">
            <string>显示密码</string>
           </property>
@@ -257,7 +257,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_7">
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="pushButton_checkMsg">
           <property name="minimumSize">
            <size>
             <width>140</width>
@@ -305,9 +305,12 @@
          <number>16</number>
         </property>
         <item>
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="checkBox_track">
           <property name="text">
            <string>自动跟踪所有的文件</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -315,14 +318,14 @@
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_2">
+         <widget class="QCheckBox" name="checkBox_pushAddDate">
           <property name="text">
            <string>提交时添加提交日期</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_3">
+         <widget class="QCheckBox" name="checkBox_outMsg">
           <property name="text">
            <string>输出提交信息</string>
           </property>
@@ -368,7 +371,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_2">
+         <widget class="QLineEdit" name="lineEdit_master">
           <property name="text">
            <string>master</string>
           </property>

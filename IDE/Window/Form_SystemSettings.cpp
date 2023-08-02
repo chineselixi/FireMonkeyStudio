@@ -22,7 +22,6 @@ Form_SystemSettings::Form_SystemSettings(QWidget *parent) :
     this->addSetItem("git版本控制",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/git.png"),new Form_settings_Git(this));
     this->addSetItem("Qt代码库支持",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/Qt.png"),new Form_settings_Qt(this));
 
-
     //选择第一个设置
     this->ui->label_title->setText(this->setMsgList[0].btn_sign->GetTitle());
     this->ui->stackedWidget->setCurrentIndex(setMsgList[0].widgetIndex);
@@ -54,12 +53,10 @@ int Form_SystemSettings::addSetItem(QString title, QPixmap pixmap, QWidget *widg
             if(setMsgList[i].listWidget == item){
                 this->ui->label_title->setText(this->setMsgList[i].btn_sign->GetTitle());
                 this->ui->stackedWidget->setCurrentIndex(setMsgList[i].widgetIndex);
-                qDebug() << "测试" << i;
                 break;
             }
         }
     });
-
     return t_sign.widgetIndex; //返回widget标记
 }
 
@@ -71,6 +68,8 @@ void Form_SystemSettings::on_pushButton_ok_clicked()
         Form_settings_Basic* t_fb = (Form_settings_Basic*)this->setMsgList[i].form;
         t_fb->Event_Ok(); //执行OK事件
     }
+    this->on_pushButton_use_clicked();
+    this->on_pushButton_cancel_clicked();
 }
 
 

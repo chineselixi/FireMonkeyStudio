@@ -37,6 +37,19 @@ extern System_History* sys_pluginHistory; //插件开启的列表
 }
 
 
+//设置记录器
+class System_systemSetting;
+namespace Setting{
+extern System_systemSetting* sys_setting;
+
+extern QString git_path; //Git路径
+extern QString git_branch; //Git默认分支
+extern bool git_track; //git自动跟踪
+extern bool git_pushAddDate; //git添加日期
+extern bool git_outMsg; //git输出日志
+
+}
+
 
 
 

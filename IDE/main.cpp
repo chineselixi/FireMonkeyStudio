@@ -22,6 +22,7 @@
 
 
 #include "SwSystem/System_History.h"
+#include "SwSystem/system_systemsetting.h"
 
 #include <QApplication>
 
@@ -43,6 +44,9 @@ int main(int argc, char *argv[])
     //加载插件记录信息
     HistoryList::sys_pluginHistory = new System_History;
     HistoryList::sys_pluginHistory->Init(t_execRunPath + "/config/plugin.ini");
+
+    //初始化设置加载器
+    Setting::sys_setting = new System_systemSetting(t_execRunPath + "/config/systemSetting.ini");
 
     //管理器
     Manger::pluginManger = new Plugin_Manger; //加载插件管理器
