@@ -23,6 +23,7 @@
 
 #include "SwSystem/System_History.h"
 #include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_EnvVar.h"
 
 #include <QApplication>
 
@@ -52,6 +53,8 @@ int main(int argc, char *argv[])
     Manger::pluginManger = new Plugin_Manger; //加载插件管理器
     Manger::pluginManger->initPlugin(t_execRunPath + "/plg","dll");
 
+    //环境变量
+    Manger::EnvVar = new System_EnvVar;//创建环境变量管理器
 
 
 //    //打开插件管理器

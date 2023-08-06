@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_settings_Git.ui'
 **
-** Created by: Qt User Interface Compiler version 6.5.0
+** Created by: Qt User Interface Compiler version 6.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -177,7 +177,7 @@ public:
         lineEdit_psw = new QLineEdit(groupBox_3);
         lineEdit_psw->setObjectName("lineEdit_psw");
         lineEdit_psw->setMaximumSize(QSize(360, 16777215));
-        lineEdit_psw->setEchoMode(QLineEdit::Password);
+        lineEdit_psw->setEchoMode(QLineEdit::PasswordEchoOnEdit);
 
         horizontalLayout_6->addWidget(lineEdit_psw);
 
@@ -290,7 +290,7 @@ public:
         label_4->setText(QCoreApplication::translate("Form_settings_Git", "\347\224\250\346\210\267\345\220\215\357\274\232", nullptr));
         label_5->setText(QCoreApplication::translate("Form_settings_Git", "\351\202\256\347\256\261\357\274\232", nullptr));
         label_6->setText(QCoreApplication::translate("Form_settings_Git", "\345\257\206\347\240\201\357\274\232", nullptr));
-        lineEdit_psw->setText(QString());
+        lineEdit_psw->setText(QCoreApplication::translate("Form_settings_Git", "123", nullptr));
         checkBox_showPsw->setText(QCoreApplication::translate("Form_settings_Git", "\346\230\276\347\244\272\345\257\206\347\240\201", nullptr));
         pushButton_checkMsg->setText(QCoreApplication::translate("Form_settings_Git", "\346\237\245\347\234\213Git\351\205\215\347\275\256\344\277\241\346\201\257", nullptr));
         groupBox_2->setTitle(QCoreApplication::translate("Form_settings_Git", "\346\217\220\344\272\244", nullptr));

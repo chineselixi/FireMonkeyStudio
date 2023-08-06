@@ -21,6 +21,13 @@ public:
     void Event_cancel() override; //取消键被按下
     void Event_use() override; //应用键被按下
 
+private slots:
+    void on_btn_select_clicked(); //选择路径
+
+    void on_btn_test_clicked();
+
+    void on_checkBox_showPsw_stateChanged(int arg1);
+
 private:
     void Init();
     static void loadSettings(); //静态加载设置

@@ -23,8 +23,10 @@ extern Form_WorkSpace* workSpace; //工作窗口
 
 //管理器
 class Plugin_Manger;
+class System_EnvVar;
 namespace Manger{
 extern Plugin_Manger* pluginManger; //插件管理器
+extern System_EnvVar* EnvVar; //环境变量管理器
 }
 
 
@@ -53,6 +55,10 @@ extern bool git_outMsg; //git输出日志
 
 
 
+//字符串处理
+namespace Str{
+QString getSubStr(QString srcStr, QString start, QString endStr);
+}
 
 
 
