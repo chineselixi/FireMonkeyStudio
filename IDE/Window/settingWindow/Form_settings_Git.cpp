@@ -90,6 +90,8 @@ void Form_settings_Git::Event_use()
     t_process.waitForFinished();
     t_process.start(Setting::git_path,{"config","--global","user.password",ui->lineEdit_psw->text()}); //保存密码
     t_process.waitForFinished();
+    t_process.start(Setting::git_path,{"config","--global","init.defaultbranch",ui->lineEdit_master->text()}); //保存分支信息
+    t_process.waitForFinished();
 }
 
 void Form_settings_Git::Event_Ok()

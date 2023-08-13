@@ -32,6 +32,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     //a.setFont(QFont("Consolas"));
 
+    //保存本程序对象
+    Setting::sys_app = &a;
+
     QString t_execRunPath = QCoreApplication::applicationDirPath(); //获取程序的运行目录
 
     //加载工程历史配置文件
@@ -79,6 +82,9 @@ int main(int argc, char *argv[])
 
     //Widget_Button_PluginItem wp;
     //wp.show();
+
+
+
 
     return a.exec();
 }

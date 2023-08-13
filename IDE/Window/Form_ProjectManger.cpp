@@ -17,6 +17,7 @@ Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
     ui(new Ui::Form_ProjectManger)
 {
     ui->setupUi(this);
+    //this->setStyleSheet("");
     ui->treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);//设定树框自定义上下文菜单模式(右键菜单)，响应customContextMenuRequested事件
 
     connect(ui->action_AddFolder, &QAction::triggered,this,&Form_ProjectManger::event_menu_createNewFolder);

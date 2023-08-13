@@ -41,8 +41,10 @@ extern System_History* sys_pluginHistory; //插件开启的列表
 
 //设置记录器
 class System_systemSetting;
+class QApplication;
 namespace Setting{
 extern System_systemSetting* sys_setting;
+extern QApplication* sys_app; //本程序对象
 
 extern QString git_path; //Git路径
 extern QString git_branch; //Git默认分支
@@ -57,7 +59,7 @@ extern bool git_outMsg; //git输出日志
 
 //字符串处理
 namespace Str{
-QString getSubStr(QString srcStr, QString start, QString endStr);
+QString getSubStr(QString srcStr, QString start, QString endStr); //获取两个字符之间的字符,如果左边或右边不存在，则直接返回空。
 }
 
 

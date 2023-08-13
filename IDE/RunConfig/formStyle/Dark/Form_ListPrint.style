@@ -1,0 +1,15 @@
+QTreeWidget{
+	
+	background-color: #252526;
+}
+
+QTreeWidget::item{
+	color:#f1efeb;
+}
+
+QHeaderView::section{  
+	border:1px solid #414145;
+	color:#f1efeb;
+	background-color:#3c3c40;
+	padding-left:10px;
+}

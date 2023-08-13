@@ -9,6 +9,11 @@
 #include "Window/settingWindow/Form_settings_Git.h"
 #include "Window/settingWindow/Form_settings_Qt.h"
 
+#include "SwSystem/System_GlobalVar.h"
+#include "SwSystem/system_systemsetting.h"
+#include "Window/Form_WorkSpace.h"
+
+
 Form_SystemSettings::Form_SystemSettings(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form_SystemSettings)
@@ -91,3 +96,20 @@ void Form_SystemSettings::on_pushButton_use_clicked()
     }
 }
 
+
+
+
+
+//改变主题
+void Form_SystemSettings::changeThream(QString styleName)
+{
+    if(Window::workSpace != nullptr){
+
+        Window::workSpace->setStyleSheet(Setting::sys_setting->readThemeStyle(styleName,"Form_WorkSpace")); //加载工作空间样式表
+        Window::workSpace->setPorMangerStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ProjectManger")); //加载工程管理样式表
+        Window::workSpace->setCompilePrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ListPrint")); //加载编译样式表
+        Window::workSpace->setPrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_TextPrint")); //加载文本打印样式表
+
+
+    }
+}

@@ -36,6 +36,10 @@ void cppObject::event_onLoad()
         Page->runJavaScript(t_str);
     }
     Page->runJavaScript("showProjectList()");
+
+
+    //加载主题
+    Page->runJavaScript("changeTheme('Blue')");
 }
 
 //删除单个记录

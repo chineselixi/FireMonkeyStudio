@@ -48,14 +48,14 @@ QToolBar::separator {
 	width: 1px;
 	border:0px;
 	margin:5px 0px;
-    background-image: url(:/Theme/icon/Theme/Blue/Image/ToolBar/Separator.png);
+    background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Separator.png);
  }
 
 /*工具栏拖动图片栏*/
 QToolBar::handle {
 	margin:4px 6px;
 	width:5px;
-	background-image: url(:/Theme/icon/Theme/Blue/Image/ToolBar/Row1.png);
+	background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Row1.png);
 }
 
 /*工具栏子项按钮*/
@@ -211,7 +211,7 @@ QMenu::item:disabled {/*菜单被禁用*/
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">
@@ -625,9 +625,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Backward_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Backward_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Backward_16x.png</iconset>
+    <iconset>
+     <normalon>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Backward_16x.png</normalon>
+     <disabledon>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Backward_16x.png</disabledon>
+    </iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -639,8 +640,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Forward_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png</iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Forward_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -651,8 +652,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -663,8 +664,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -675,9 +676,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SaveStatusBar1_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SaveStatusBar1_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -688,9 +689,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Cut_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Cut_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -701,9 +702,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Copy_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Copy_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -714,9 +715,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Paste_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Paste_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -727,9 +728,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Undo_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Undo_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -740,9 +741,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Redo_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Redo_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -753,9 +754,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSelection_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSelection_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -766,9 +767,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSolution_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSolution_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -779,9 +780,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildBlackMoon_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildBlackMoon_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -792,9 +793,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FindResults_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FindResults_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png</iconset>
    </property>
    <property name="text">
     <string>查找</string>
@@ -808,9 +809,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Run_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Run_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png</iconset>
    </property>
    <property name="text">
     <string>运行程序</string>
@@ -824,9 +825,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Stop_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Stop_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png</iconset>
    </property>
    <property name="text">
     <string>终止运行</string>
@@ -840,9 +841,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Restart_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Restart_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png</iconset>
    </property>
    <property name="text">
     <string>重新构建</string>
@@ -856,9 +857,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToggleAllBreakpoints_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToggleAllBreakpoints_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -869,9 +870,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -882,9 +883,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -895,9 +896,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepForward_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepForward_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -908,9 +909,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOver_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOver_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -921,9 +922,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepIn_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepIn_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -934,9 +935,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOut_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOut_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -947,9 +948,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToolTip_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToolTip_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -960,9 +961,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Bookmark_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Bookmark_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -973,9 +974,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/PreviousBookmark_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/PreviousBookmark_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -986,9 +987,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/NextBookmark_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/NextBookmark_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -999,9 +1000,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BookmarkMainMenuTabItem_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BookmarkMainMenuTabItem_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1012,9 +1013,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Property_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Property_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1025,9 +1026,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Settings_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Settings_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1038,9 +1039,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/RunTestDialog_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/RunTestDialog_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1051,9 +1052,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignLeft_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignLeft_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1064,9 +1065,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignRight_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignRight_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1077,9 +1078,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignTop_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignTop_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1090,9 +1091,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignBottom_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignBottom_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1103,9 +1104,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextCenterInFormHorizontal_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextCenterInFormHorizontal_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1116,9 +1117,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/CenterInFormVertical_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/CenterInFormVertical_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1129,9 +1130,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeHorizontalCenter_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeHorizontalCenter_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1142,9 +1143,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeVerticalCenter_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeVerticalCenter_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1155,9 +1156,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceAcross_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceAcross_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1168,9 +1169,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceDown_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceDown_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png</iconset>
    </property>
    <property name="text">
     <string>5</string>
@@ -1184,8 +1185,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png</iconset>
    </property>
    <property name="text">
     <string>新建(&amp;N)</string>
@@ -1193,8 +1194,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_file_open">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png</iconset>
    </property>
    <property name="text">
     <string>打开(&amp;O)</string>
@@ -1205,8 +1206,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_file_close">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png</iconset>
    </property>
    <property name="text">
     <string>关闭(&amp;C)</string>
@@ -1214,8 +1215,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_file_save">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png</iconset>
    </property>
    <property name="text">
     <string>保存(&amp;S)</string>
@@ -1248,8 +1249,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Print_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Print_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Print_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Print_16x.png</iconset>
    </property>
    <property name="text">
     <string>打印(&amp;P)</string>
@@ -1260,8 +1261,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_file_config">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Property_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Property_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Property_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Property_16x.png</iconset>
    </property>
    <property name="text">
     <string>配置(&amp;U)</string>
@@ -1282,8 +1283,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_U">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Undo_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Undo_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Undo_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Undo_16x.png</iconset>
    </property>
    <property name="text">
     <string>撤销(&amp;U)</string>
@@ -1294,8 +1295,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_R">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Redo_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Redo_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Redo_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Redo_16x.png</iconset>
    </property>
    <property name="text">
     <string>重复(&amp;R)</string>
@@ -1306,8 +1307,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_C">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Copy_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Copy_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Copy_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Copy_16x.png</iconset>
    </property>
    <property name="text">
     <string>复制(&amp;C)</string>
@@ -1318,8 +1319,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_T">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Cut_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Cut_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Cut_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Cut_16x.png</iconset>
    </property>
    <property name="text">
     <string>剪切(&amp;T)</string>
@@ -1330,8 +1331,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_P">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Paste_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Paste_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Paste_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Paste_16x.png</iconset>
    </property>
    <property name="text">
     <string>粘贴(&amp;P)</string>
@@ -1350,8 +1351,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_F">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</iconset>
    </property>
    <property name="text">
     <string>开始查找(&amp;F)</string>
@@ -1362,8 +1363,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_G">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png</iconset>
    </property>
    <property name="text">
     <string>高亮标记待寻找单词(&amp;G)</string>
@@ -1374,8 +1375,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_N">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png</iconset>
    </property>
    <property name="text">
     <string>寻找下一个(&amp;N)</string>
@@ -1386,8 +1387,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_V">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png</iconset>
    </property>
    <property name="text">
     <string>寻找上一个(&amp;V)</string>
@@ -1398,8 +1399,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_H">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png</iconset>
    </property>
    <property name="text">
     <string>寻找替换(&amp;H)</string>
@@ -1410,8 +1411,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_E">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png</iconset>
    </property>
    <property name="text">
     <string>整体搜寻(&amp;E)</string>
@@ -1433,8 +1434,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Run_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Run_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Run_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Run_16x.png</iconset>
    </property>
    <property name="text">
     <string>运行(&amp;S)</string>
@@ -1459,8 +1460,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Stop_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Stop_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Stop_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Stop_16x.png</iconset>
    </property>
    <property name="text">
     <string>终止(&amp;E)</string>
@@ -1474,8 +1475,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png</iconset>
    </property>
    <property name="text">
     <string>查看表达式/变量(&amp;V)</string>
@@ -1489,8 +1490,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png</iconset>
    </property>
    <property name="text">
     <string>单步跟踪(&amp;O)</string>
@@ -1504,8 +1505,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png</iconset>
    </property>
    <property name="text">
     <string>单步跟踪进入(&amp;I)</string>
@@ -1519,8 +1520,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png</iconset>
    </property>
    <property name="text">
     <string>跟踪返回(&amp;U)</string>
@@ -1534,8 +1535,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png</iconset>
    </property>
    <property name="text">
     <string>执行到光标处(&amp;R)</string>
@@ -1549,8 +1550,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png</iconset>
    </property>
    <property name="text">
     <string>设置或清除断点(&amp;T)</string>
@@ -1575,8 +1576,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png</iconset>
    </property>
    <property name="text">
     <string>清楚所有断点(&amp;C)</string>
@@ -1590,8 +1591,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png</iconset>
    </property>
    <property name="text">
     <string>到现行执行位置(&amp;G)</string>
@@ -1605,8 +1606,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png</iconset>
    </property>
    <property name="text">
     <string>到运行时错误相关位置(&amp;N)</string>
@@ -1617,8 +1618,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png</iconset>
    </property>
    <property name="text">
     <string>编译(&amp;C)</string>
@@ -1632,8 +1633,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png</iconset>
    </property>
    <property name="text">
     <string>静态编译(&amp;S)</string>
@@ -1688,8 +1689,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_Q">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png</iconset>
    </property>
    <property name="text">
     <string>建议反馈(&amp;Q)</string>
@@ -1726,8 +1727,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</iconset>
    </property>
    <property name="text">
     <string>每日一贴(&amp;D)</string>
@@ -1740,8 +1741,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_about">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png</iconset>
    </property>
    <property name="text">
     <string>关于(&amp;A)</string>
@@ -1764,8 +1765,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_addNewPlugin">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</iconset>
    </property>
    <property name="text">
     <string>安装新的插件支持(&amp;I)</string>
@@ -1776,8 +1777,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_pluginManger">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png</iconset>
    </property>
    <property name="text">
     <string>插件管理器(&amp;L)</string>
@@ -1788,8 +1789,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_systemSettings">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</iconset>
    </property>
    <property name="text">
     <string>系统设置(&amp;O)</string>
@@ -1797,8 +1798,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_C_5">
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</iconset>
    </property>
    <property name="text">
     <string>签名认证(&amp;C)</string>
@@ -1821,8 +1822,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1841,8 +1842,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1858,8 +1859,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1871,9 +1872,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeFixedWidth_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeFixedWidth_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</iconset>
    </property>
    <property name="text">
     <string>action43</string>
@@ -1884,9 +1885,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextLineHeight_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextLineHeight_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png</iconset>
    </property>
    <property name="text">
     <string>action44</string>
@@ -1897,9 +1898,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png</normaloff>
-     <disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeOptimize_16x.png</disabledoff>:/Theme/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png</iconset>
+    <iconset>
+     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png</normaloff>
+     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeOptimize_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png</iconset>
    </property>
    <property name="text">
     <string>action45</string>
@@ -1917,8 +1918,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1949,8 +1950,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1969,8 +1970,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1989,8 +1990,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -2006,8 +2007,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">

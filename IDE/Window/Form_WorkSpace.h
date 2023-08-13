@@ -18,6 +18,10 @@ public:
 public:
     void loadProject(); //加载工程
     void init(); //初始化
+    void setPorMangerStyle(QString style); //设置工程管理器样式表
+    void setCompilePrintStyle(QString style); //设置编译输出样式表
+    void setPrintStyle(QString style); //设置打印样式表
+
 
 private slots:
     void on_action_file_newCreate_triggered(); //新建工程或文件

@@ -1,0 +1,139 @@
+
+/*主窗口样式设置*/
+#Form_WorkSpace{
+	background-color: rgb(93, 107, 153);
+}
+
+/*底部状态栏*/
+QStatusBar{
+	background-color:#40568d;
+}
+
+/*菜单栏*/
+QMenuBar{
+	background-color:rgb(204, 213, 240);
+	color:rgb(0,0,0);
+}
+
+/*工具栏*/
+QToolBar{
+	background-color:rgb(204, 213, 240);
+	border:0px;
+}
+
+/*工具栏分隔符*/
+QToolBar::separator { 
+	width: 1px;
+	border:0px;
+	margin:5px 0px;
+    background-image: url(:/Theme/White/icon/Theme/White/Image/ToolBar/Separator.png);
+ }
+
+/*工具栏拖动图片栏*/
+QToolBar::handle {
+	margin:4px 6px;
+	width:5px;
+	background-image: url(:/Theme/White/icon/Theme/White/Image/ToolBar/Row1.png);
+}
+
+/*工具栏子项按钮*/
+QToolButton {
+	padding:0px;
+	padding:0px;
+}
+
+/*模式选择框*/
+#comboBox_compileMode{
+	margin:0px 5px;
+}
+
+
+
+/*选择栏*/
+QTabBar{
+	border:0px;
+	padding:0px;
+}
+
+/*选择夹的子夹*/
+QTabBar::tab{
+    background-color: #0B0E11;
+	 /*font-family:Consolas;   设置tab中的文本的字体*/
+	font-size:8pt;
+	color:rgb(255, 255, 255);    /*设置tab中的文本的颜色*/
+	/*border-top-left-radius: 5px;    设置tab的边框的圆角（左上圆角）*/
+	/*border-top-right-radius: 5px;    设置tab的边框的圆角（右上圆角）*/
+	min-width: 100px;
+	margin-right:2px;
+	padding: 5px;
+	background-color: rgb(59, 79, 129);
+}
+ 
+/*设置TabWidget中QTabBar的tab被选中时的样式*/
+QTabBar::tab:selected{
+    background-color: rgb(245, 204, 132);
+	color:rgb(58, 52, 42);
+}
+ 
+/*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
+QTabBar::tab:hover:!selected {
+    background-color: rgb(187, 198, 241);
+	color:rgb(92, 45, 145);
+}
+
+
+
+/*Dock的文本框*/
+#textEdit_help_tip,#textEdit_print{
+	background-color:rgb(230, 231, 232);
+	color:rgb(42, 42, 42);
+}
+
+
+
+
+
+
+/*设置TabWidget的边框的样式
+/*浮动窗格*/
+QDockWidget{
+	color:rgb(255,255,255);
+	background-color:rgb(93, 107, 153);
+}
+
+/*浮动窗格标题栏*/
+QDockWidget::title {
+    border-style: inset;
+    text-align: left;
+	margin-top: 8px;
+    padding: 3px;
+	color:rgb(255,255,255);
+	background-color:#40568d;
+}
+
+
+/*右键菜单*/
+QMenu{
+	background-color: rgb(233, 238, 255);
+	border:1px solid rgb(148, 166, 202);
+	padding:2px;
+}
+QMenu::item{
+	color: rgb(30, 30, 31);
+}
+QMenu::item:selected{
+	color: rgb(30, 30, 31);
+	background-color: rgb(177, 197, 255);
+}
+QMenu::separator{
+	background:#bbbbbb;
+    height:1px;
+	margin:5px 10px;
+}
+QMenu:icon{
+	width:16px;
+	height:16px
+}
+QMenu::item:disabled {/*菜单被禁用*/
+	color: rgb(181, 194, 202);
+}

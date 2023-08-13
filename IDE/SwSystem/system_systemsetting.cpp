@@ -1,5 +1,7 @@
 
 #include "system_systemsetting.h"
+#include "QApplication"
+
 
 System_systemSetting::System_systemSetting(QString settingFile):objFile(settingFile)
 {
@@ -30,6 +32,7 @@ void System_systemSetting::removeValue(QString className, QString idName)
     objSetting->remove("/" + className + "/" +idName);
 }
 
+
 //移除ID
 void System_systemSetting::removeClass(QString className)
 {
@@ -37,3 +40,13 @@ void System_systemSetting::removeClass(QString className)
     objSetting->remove("/" + className);
 }
 
+//加载主题
+QString System_systemSetting::readThemeStyle(QString styleName, QString formName)
+{
+    if(formName.isEmpty()) formName = "Form_WorkSpace"; //默认加载工作空间类似的主题
+    QFile t_qss(QApplication::applicationDirPath() + "/formStyle/" + styleName + "/" + formName + ".style");
+    t_qss.open(QFile::ReadOnly);
+    QString t_retStyle = t_qss.readAll();
+    t_qss.close();
+    return t_retStyle;
+}

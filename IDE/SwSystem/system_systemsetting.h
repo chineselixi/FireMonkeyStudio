@@ -20,6 +20,9 @@ public:
     void removeClass(QString className); //移除ID
     void removeValue(QString className,QString idName); //删除值
 
+
+    QString readThemeStyle(QString styleName = "Blue",QString formName = ""); //加载主题
+
 };
 
 #endif // SYSTEM_SYSTEMSETTING_H

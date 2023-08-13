@@ -83,13 +83,23 @@ void Form_WorkSpace::init()
     const QRect t_screen = QGuiApplication::primaryScreen()->geometry();
     this->move( t_screen.center() - this->geometry().center());
 
+
+    //=================加载主题样式表=================
+    this->setStyleSheet("");
+//    QFile t_qss(QApplication::applicationDirPath() + "/formStyle/Dark.style");
+//    t_qss.open(QFile::ReadOnly);
+//    this->setStyleSheet(t_qss.readAll());
+//    t_qss.close();
+
+
+
     //=================将编译模式选择插入到工具栏=================
     ui->toolBar->insertAction(ui->action_toolBar_compile,ui->toolBar->addWidget(ui->comboBox_compileMode));
 
     //=================设置主页显示模式=================
     mod_WebPage* t_webPage = new mod_WebPage(this);
     ui->widget_WindowTab->addTabWidget("主页",t_webPage,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web);  //添加到TAB
-    t_webPage->setUrl(QUrl(QApplication::applicationDirPath() + "/web/Start/index.html"));
+    t_webPage->setUrl(QUrl("file:" + QApplication::applicationDirPath() + "/web/Start/index.html"));
     t_webPage->show();
 
 
@@ -534,8 +544,40 @@ void Form_WorkSpace::on_action_toolBar_Rerun_triggered() //当项目被重新运
 //打开系统设置
 void Form_WorkSpace::on_action_systemSettings_triggered()
 {
+    //=================加载主题样式表=================
+    Form_SystemSettings::changeThream("Blue");
+
+
+
+    return;
+
+
+
+
+
     Form_SystemSettings* t_settingForm = new Form_SystemSettings(nullptr);
     t_settingForm->setWindowModality(Qt::ApplicationModal);
     t_settingForm->show();
 }
 
+
+
+
+
+//设置工程管理器样式表
+void Form_WorkSpace::setPorMangerStyle(QString style)
+{
+    ui->widget_ProjectManger->setStyleSheet(style);
+}
+
+//设置编译输出样式表
+void Form_WorkSpace::setCompilePrintStyle(QString style)
+{
+    ui->textEdit_compilePrint->setStyleSheet(style);
+}
+
+//设置打印样式表
+void Form_WorkSpace::setPrintStyle(QString style)
+{
+    ui->textEdit_print->setStyleSheet(style);
+}
