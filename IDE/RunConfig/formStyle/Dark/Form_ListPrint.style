@@ -1,6 +1,7 @@
 QTreeWidget{
-	
+	border:1px solid #414145;
 	background-color: #252526;
+	border-bottom:0px;
 }
 
 QTreeWidget::item{

@@ -545,7 +545,39 @@ void Form_WorkSpace::on_action_toolBar_Rerun_triggered() //当项目被重新运
 void Form_WorkSpace::on_action_systemSettings_triggered()
 {
     //=================加载主题样式表=================
-    Form_SystemSettings::changeThream("Blue");
+    Form_SystemSettings::changeThream("Dark");
+
+    //QIcon t_ico = ui->action1->icon();
+    //QIcon::DataPtr t_dat = t_ico.data_ptr();
+
+
+
+    QFile t_themeFile(":/resFile/res/ThemeTemplate.txt");
+    t_themeFile.open(QIODevice::ReadOnly);
+    QString t_themeTemplateStr = t_themeFile.readAll();
+
+    t_themeTemplateStr.replace("${theme}","Dark");
+
+    t_themeFile.close();
+
+
+    QList<QAction*> t_al = this->findChildren<QAction*>();
+
+    for(QList<QAction*>::Iterator t_i = t_al.begin();t_i < t_al.end();t_i++){
+        if(t_themeTemplateStr,(*t_i)->objectName().isEmpty()) continue;
+
+        QString t_nor = Str::getSubStr(t_themeTemplateStr,(*t_i)->objectName() + "::Normal=","\r");
+        QString t_dis = Str::getSubStr(t_themeTemplateStr,(*t_i)->objectName() + "::Disabled=","\r");
+
+
+        qDebug() << (*t_i)->objectName();
+
+
+        QIcon t_ico = (*t_i)->icon();
+        t_ico.addFile(t_nor, QSize(), QIcon::Normal, QIcon::Off);
+        t_ico.addFile(t_dis, QSize(), QIcon::Disabled, QIcon::Off);
+        (*t_i)->setIcon(t_ico);
+    }
 
 
 

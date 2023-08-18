@@ -16,7 +16,7 @@ QMenuBar{
 }
 /*菜单栏被选中*/
 QMenuBar::item:selected{
-	background-color:#4a4a4d;
+	background-color:#1b1b1c;
 	color:#f1efeb;
 }
 
@@ -70,13 +70,15 @@ QTabBar::tab{
 	padding: 5px;
 	background-color: #2d2d30;
 	color:#f1efeb;    /*设置tab中的文本的颜色*/
+	padding:6px 0px;
 }
  
 /*设置TabWidget中QTabBar的tab被选中时的样式*/
 QTabBar::tab:selected{
-    background-color: #242526;
+	background-color: #242526;
 	color:#0394f4;
 }
+
  
 /*设置TabWidget中鼠标悬浮在QTabBar的tab上，但未选中该Tab的样式*/
 QTabBar::tab:hover:!selected {
@@ -96,25 +98,25 @@ QTabBar::tab:hover:!selected {
 /*设置TabWidget的边框的样式*/
 /*浮动窗格*/
 QDockWidget{
-	border-width: 10px rgb(255,255,255);
 	color:rgb(255,255,255);
 	background-color:rgb(93, 107, 153);
 }
 
 /*浮动窗格标题栏*/
 QDockWidget::title {
-    border-style: inset;
-    text-align: left;
+	text-align: left;
 	margin-top: 8px;
-    padding: 3px;
+	padding: 3px;
 	color:rgb(255,255,255);
 	background-color:#2d2d30;
+	border:1px solid #414145;
+	border-bottom:0px;
 }
 
 /*右键菜单*/
 QMenu{
 	background-color: #1b1b1c;
-	border:1px solid rgb(148, 166, 202);
+	border:0px solid rgb(148, 166, 202);
 	padding:2px;
 }
 QMenu::item{

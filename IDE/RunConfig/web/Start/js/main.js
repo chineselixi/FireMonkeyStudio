@@ -136,8 +136,8 @@ function changeTheme(themeName = "Blue"){
 		}
 		case "White":{
 			t_color_head_title = "#000000";     //主标题颜色
-			t_color_head_background = "#ffffff";//头部背景颜色
-			t_color_body_background = "#f7f7f7";//内容区背景颜色
+			t_color_head_background = "#dddde0";//头部背景颜色
+			t_color_body_background = "#f5f5f5";//内容区背景颜色
 			t_color_body_title = "#000000";		//内容区标题
 			t_color_body_msgText = "#1f1f1f";   //公告文本
 			t_color_list_msgText = "#ababab";   //列表内容

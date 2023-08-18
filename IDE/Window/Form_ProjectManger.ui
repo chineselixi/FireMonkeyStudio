@@ -25,7 +25,7 @@ QToolBar::separator {
 	width: 1px;
 	border:0px;
 	margin:5px 0px;
-    background-image: url(:/Theme/icon/Theme/Blue/Image/ToolBar/Separator.png);
+    background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Separator.png);
  }
 
 /*树框*/

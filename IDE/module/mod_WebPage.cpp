@@ -39,7 +39,7 @@ void cppObject::event_onLoad()
 
 
     //加载主题
-    Page->runJavaScript("changeTheme('Blue')");
+    Page->runJavaScript("changeTheme('Dark')");
 }
 
 //删除单个记录

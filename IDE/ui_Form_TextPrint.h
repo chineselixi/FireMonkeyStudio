@@ -32,6 +32,7 @@ public:
 "	background-color: rgb(230, 231, 232);\n"
 "}"));
         gridLayout = new QGridLayout(Form_TextPrint);
+        gridLayout->setSpacing(0);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
         textEdit = new QTextEdit(Form_TextPrint);

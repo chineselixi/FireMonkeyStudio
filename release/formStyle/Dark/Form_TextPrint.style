@@ -1,4 +1,10 @@
+#Form_TextPrint{
+	background-color: #252526;
+}
 #textEdit{
 	color:#f1efeb;
 	background-color: #252526;
+	border:1px solid #414145;
+	border-top:0px;
+	border-bottom:0px;
 }

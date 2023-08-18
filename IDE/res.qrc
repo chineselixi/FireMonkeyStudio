@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/resFile">
+        <file>res/ThemeTemplate.txt</file>
+    </qresource>
+</RCC>

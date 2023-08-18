@@ -48,14 +48,14 @@ QToolBar::separator {
 	width: 1px;
 	border:0px;
 	margin:5px 0px;
-    background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Separator.png);
+    background-image: url(:/Theme/White/icon/Theme/White/Image/ToolBar/Separator.png);
  }
 
 /*工具栏拖动图片栏*/
 QToolBar::handle {
 	margin:4px 6px;
 	width:5px;
-	background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Row1.png);
+	background-image: url(:/Theme/White/icon/Theme/White/Image/ToolBar/Row1.png);
 }
 
 /*工具栏子项按钮*/
@@ -255,18 +255,18 @@ QMenu::item:disabled {/*菜单被禁用*/
     <addaction name="action_menu_Rerun"/>
     <addaction name="action_menu_stop"/>
     <addaction name="separator"/>
-    <addaction name="action_V_2"/>
-    <addaction name="action_O_2"/>
-    <addaction name="action_I"/>
-    <addaction name="action_U_2"/>
-    <addaction name="action_R_2"/>
+    <addaction name="action_menu_fileSystemWatcher"/>
+    <addaction name="action_menu_stepOver"/>
+    <addaction name="action_menu_stepIn"/>
+    <addaction name="action_menu_stepOut"/>
+    <addaction name="action_menu_stepForward"/>
     <addaction name="separator"/>
-    <addaction name="action_T_2"/>
-    <addaction name="action_A"/>
-    <addaction name="action_C_2"/>
+    <addaction name="action_menu_toggleAllBreakpoints"/>
+    <addaction name="action_menu_termBreakpoint"/>
+    <addaction name="action_menu_clearBreakpointGroup"/>
     <addaction name="separator"/>
-    <addaction name="action_G_2"/>
-    <addaction name="action_N_2"/>
+    <addaction name="action_menu_lineArrow"/>
+    <addaction name="action_menu_rigidRelationshipError"/>
    </widget>
    <widget class="QMenu" name="menu_compile">
     <property name="title">
@@ -275,11 +275,11 @@ QMenu::item:disabled {/*菜单被禁用*/
     <addaction name="action_menu_compile"/>
     <addaction name="action_menu_staticCompile"/>
     <addaction name="separator"/>
-    <addaction name="action_I_2"/>
-    <addaction name="action_M_2"/>
-    <addaction name="action_T_3"/>
+    <addaction name="action_menu_compleInstall"/>
+    <addaction name="action_menu_compleSpecifyType"/>
+    <addaction name="action_menu_staticCompleSpecifyType"/>
     <addaction name="separator"/>
-    <addaction name="action_O_3"/>
+    <addaction name="action_menu_compleOther"/>
    </widget>
    <widget class="QMenu" name="menu_tool">
     <property name="title">
@@ -305,19 +305,19 @@ QMenu::item:disabled {/*菜单被禁用*/
     <property name="title">
      <string>帮助(&amp;H)</string>
     </property>
-    <addaction name="action_Q"/>
-    <addaction name="action_W_2"/>
+    <addaction name="action_menu_feedback"/>
+    <addaction name="action_menu_TOU"/>
     <addaction name="separator"/>
-    <addaction name="action_H_2"/>
-    <addaction name="action_E_3"/>
-    <addaction name="action_T_4"/>
-    <addaction name="action_D_2"/>
-    <addaction name="action_C_4"/>
+    <addaction name="action_menu_devHelper"/>
+    <addaction name="action_menu_knowledgeBase"/>
+    <addaction name="action_menu_course"/>
+    <addaction name="action_menu_certificate"/>
+    <addaction name="action_menu_devGuide"/>
     <addaction name="separator"/>
-    <addaction name="action_about"/>
-    <addaction name="action_U_3"/>
-    <addaction name="action_R_3"/>
-    <addaction name="action_V_3"/>
+    <addaction name="action_menu_about"/>
+    <addaction name="action_menu_feedBack"/>
+    <addaction name="action_menu_cooperation"/>
+    <addaction name="action_menu_MSDS"/>
    </widget>
    <widget class="QMenu" name="menu_set">
     <property name="title">
@@ -327,9 +327,9 @@ QMenu::item:disabled {/*菜单被禁用*/
      <property name="title">
       <string>主题(&amp;T)</string>
      </property>
-     <addaction name="actionBlue_N"/>
-     <addaction name="actionBlue_W"/>
-     <addaction name="actionBlue_D"/>
+     <addaction name="action_toolBar_blue"/>
+     <addaction name="action_toolBar_white"/>
+     <addaction name="action_toolBar_Dark"/>
     </widget>
     <addaction name="action_addNewPlugin"/>
     <addaction name="action_pluginManger"/>
@@ -337,27 +337,27 @@ QMenu::item:disabled {/*菜单被禁用*/
     <addaction name="action_systemSettings"/>
     <addaction name="menu_T"/>
     <addaction name="separator"/>
-    <addaction name="action_C_5"/>
-    <addaction name="action_F_2"/>
+    <addaction name="action_toolBar_attestation"/>
+    <addaction name="action_toolBar_findInMod"/>
    </widget>
    <widget class="QMenu" name="menu_editor">
     <property name="title">
      <string>编辑(&amp;E)</string>
     </property>
-    <addaction name="action_U"/>
-    <addaction name="action_R"/>
-    <addaction name="action_C"/>
-    <addaction name="action_T"/>
-    <addaction name="action_P"/>
-    <addaction name="action_D"/>
+    <addaction name="action_editor_undo"/>
+    <addaction name="action_editor_redo"/>
+    <addaction name="action_editor_copy"/>
+    <addaction name="action_editor_cut"/>
+    <addaction name="action_editor_paste"/>
+    <addaction name="action_editor_deleteRow"/>
     <addaction name="separator"/>
-    <addaction name="action_F"/>
-    <addaction name="action_G"/>
-    <addaction name="action_N"/>
-    <addaction name="action_V"/>
-    <addaction name="action_H"/>
-    <addaction name="action_E"/>
-    <addaction name="action_W"/>
+    <addaction name="action_editor_quickFind"/>
+    <addaction name="action_editor_highlightText"/>
+    <addaction name="action_editor_findNext"/>
+    <addaction name="action_editor_findPrevious"/>
+    <addaction name="action_editor_quickReplace"/>
+    <addaction name="action_editor_findResults"/>
+    <addaction name="action_editor_jumpLine"/>
    </widget>
    <addaction name="menu_file"/>
    <addaction name="menu_editor"/>
@@ -470,6 +470,9 @@ QMenu::item:disabled {/*菜单被禁用*/
      <property name="bottomMargin">
       <number>0</number>
      </property>
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <item row="0" column="0">
       <widget class="Form_TextPrint" name="textEdit_print" native="true"/>
      </item>
@@ -540,18 +543,18 @@ QMenu::item:disabled {/*菜单被禁用*/
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action1"/>
-   <addaction name="action2"/>
+   <addaction name="action_toolBar_backward"/>
+   <addaction name="action_toolBar_forward"/>
    <addaction name="separator"/>
-   <addaction name="action3"/>
-   <addaction name="action4"/>
-   <addaction name="action5"/>
+   <addaction name="action_toolBar_newFileCollection"/>
+   <addaction name="action_toolBar_open"/>
+   <addaction name="action_toolBar_save"/>
    <addaction name="separator"/>
-   <addaction name="action6"/>
-   <addaction name="action7"/>
-   <addaction name="action8"/>
-   <addaction name="action9"/>
-   <addaction name="action10"/>
+   <addaction name="action_toolBar_cut"/>
+   <addaction name="action_toolBar_copy"/>
+   <addaction name="action_toolBar_paste"/>
+   <addaction name="action_toolBar_undo"/>
+   <addaction name="action_toolBar_redo"/>
    <addaction name="separator"/>
    <addaction name="action_toolBar_compile"/>
    <addaction name="action_toolBar_staticCompile"/>
@@ -563,24 +566,24 @@ QMenu::item:disabled {/*菜单被禁用*/
    <addaction name="action_toolBar_stop"/>
    <addaction name="action_toolBar_Rerun"/>
    <addaction name="separator"/>
-   <addaction name="action18"/>
-   <addaction name="action19"/>
+   <addaction name="action_toolBar_toggleAllBreakpoints"/>
+   <addaction name="action_toolBar_clearBreakpointGroup"/>
    <addaction name="separator"/>
-   <addaction name="action20"/>
-   <addaction name="action21"/>
-   <addaction name="action22"/>
-   <addaction name="action23"/>
-   <addaction name="action24"/>
+   <addaction name="action_toolBar_find_2"/>
+   <addaction name="action_toolBar_stepForward"/>
+   <addaction name="action_toolBar_stepOver"/>
+   <addaction name="action_toolBar_stepIn"/>
+   <addaction name="action_toolBar_stepOut"/>
    <addaction name="separator"/>
-   <addaction name="action25"/>
+   <addaction name="action_toolBar_toolTip"/>
    <addaction name="separator"/>
-   <addaction name="action26"/>
-   <addaction name="action27"/>
-   <addaction name="action28"/>
-   <addaction name="action29"/>
+   <addaction name="action_toolBar_bookmark"/>
+   <addaction name="action_toolBar_previousBookmark"/>
+   <addaction name="action_toolBar_nextBookmark"/>
+   <addaction name="action_toolBar_bookmarkMainMenuTabitem"/>
    <addaction name="separator"/>
-   <addaction name="action30"/>
-   <addaction name="action31"/>
+   <addaction name="action_toolBar_property"/>
+   <addaction name="action_toolBar_settings"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
    <property name="windowTitle">
@@ -601,152 +604,182 @@ QMenu::item:disabled {/*菜单被禁用*/
    <attribute name="toolBarBreak">
     <bool>true</bool>
    </attribute>
-   <addaction name="action32"/>
+   <addaction name="action_toolBar_winLook"/>
    <addaction name="separator"/>
-   <addaction name="action33"/>
-   <addaction name="action34"/>
-   <addaction name="action35"/>
-   <addaction name="action36"/>
+   <addaction name="action_toolBar_lefr"/>
+   <addaction name="action_toolBar_right"/>
+   <addaction name="action_toolBar_top"/>
+   <addaction name="action_toolBar_bottom"/>
    <addaction name="separator"/>
-   <addaction name="action37"/>
-   <addaction name="action38"/>
+   <addaction name="action_toolBar_horizontally_window"/>
+   <addaction name="action_toolBar_verticalCenter_window"/>
    <addaction name="separator"/>
-   <addaction name="action39"/>
-   <addaction name="action40"/>
-   <addaction name="action41"/>
-   <addaction name="action42"/>
+   <addaction name="action_toolBar_horizontally_widget"/>
+   <addaction name="action_toolBar_verticalCenter_widget"/>
+   <addaction name="action_toolBar_horizontally_avg"/>
+   <addaction name="action_toolBar_horizontally_avg_2"/>
    <addaction name="separator"/>
-   <addaction name="actionaction43"/>
-   <addaction name="actionaction44"/>
-   <addaction name="actionaction45"/>
+   <addaction name="action_toolBar_widthSame"/>
+   <addaction name="action_toolBar_highSame"/>
+   <addaction name="action_toolBar_widthHighSame"/>
   </widget>
-  <action name="action1">
+  <action name="action_toolBar_backward">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
     <iconset>
-     <normalon>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Backward_16x.png</normalon>
-     <disabledon>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Backward_16x.png</disabledon>
+     <normalon>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Backward_16x.png</normalon>
+     <disabledon>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Backward_16x.png</disabledon>
     </iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>跳到前跳转处</string>
+   </property>
+   <property name="toolTip">
+    <string>跳到前跳转处</string>
    </property>
   </action>
-  <action name="action2">
+  <action name="action_toolBar_forward">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Forward_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png</iconset>
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Forward_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Forward_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Forward_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>跳到命令调用处</string>
+   </property>
+   <property name="toolTip">
+    <string>跳到命令调用处</string>
    </property>
   </action>
-  <action name="action3">
+  <action name="action_toolBar_newFileCollection">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/NewFileCollection_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/NewFileCollection_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>新建</string>
+   </property>
+   <property name="toolTip">
+    <string>新建</string>
    </property>
   </action>
-  <action name="action4">
+  <action name="action_toolBar_open">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/OpenFolder_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/OpenFolder_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>打开</string>
+   </property>
+   <property name="toolTip">
+    <string>打开</string>
    </property>
   </action>
-  <action name="action5">
+  <action name="action_toolBar_save">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SaveStatusBar1_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SaveStatusBar1_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/SaveStatusBar1_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SaveStatusBar1_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>保存</string>
+   </property>
+   <property name="toolTip">
+    <string>保存</string>
    </property>
   </action>
-  <action name="action6">
+  <action name="action_toolBar_cut">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Cut_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Cut_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Cut_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Cut_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>剪切</string>
+   </property>
+   <property name="toolTip">
+    <string>剪切</string>
    </property>
   </action>
-  <action name="action7">
+  <action name="action_toolBar_copy">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Copy_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Copy_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Copy_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Copy_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>复制</string>
+   </property>
+   <property name="toolTip">
+    <string>复制</string>
    </property>
   </action>
-  <action name="action8">
+  <action name="action_toolBar_paste">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Paste_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Paste_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Paste_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Paste_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>粘贴</string>
+   </property>
+   <property name="toolTip">
+    <string>粘贴</string>
    </property>
   </action>
-  <action name="action9">
+  <action name="action_toolBar_undo">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Undo_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Undo_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Undo_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Undo_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>撤销</string>
+   </property>
+   <property name="toolTip">
+    <string>撤销</string>
    </property>
   </action>
-  <action name="action10">
+  <action name="action_toolBar_redo">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Redo_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Redo_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Redo_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Redo_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>重做</string>
+   </property>
+   <property name="toolTip">
+    <string>重做</string>
    </property>
   </action>
   <action name="action_toolBar_compile">
@@ -754,12 +787,15 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSelection_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildSelection_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/BuildSelection_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildSelection_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>编译</string>
+   </property>
+   <property name="toolTip">
+    <string>编译</string>
    </property>
   </action>
   <action name="action_toolBar_staticCompile">
@@ -767,12 +803,15 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSolution_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildSolution_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/BuildSolution_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildSolution_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>静态编译</string>
+   </property>
+   <property name="toolTip">
+    <string>静态编译</string>
    </property>
   </action>
   <action name="action_toolBar_onlineCompile">
@@ -780,12 +819,15 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildBlackMoon_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildBlackMoon_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/BuildBlackMoon_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildBlackMoon_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>在线编译</string>
+   </property>
+   <property name="toolTip">
+    <string>在线编译</string>
    </property>
   </action>
   <action name="action_toolBar_find">
@@ -793,9 +835,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FindResults_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SearchInFile_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/FindResults_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SearchInFile_16x.png</iconset>
    </property>
    <property name="text">
     <string>查找</string>
@@ -809,9 +851,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Run_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Run_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Run_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Run_16x.png</iconset>
    </property>
    <property name="text">
     <string>运行程序</string>
@@ -825,9 +867,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Stop_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Stop_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Stop_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Stop_16x.png</iconset>
    </property>
    <property name="text">
     <string>终止运行</string>
@@ -841,9 +883,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Restart_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Restart_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Restart_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Restart_16x.png</iconset>
    </property>
    <property name="text">
     <string>重新构建</string>
@@ -852,329 +894,404 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>重新构建</string>
    </property>
   </action>
-  <action name="action18">
+  <action name="action_toolBar_toggleAllBreakpoints">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToggleAllBreakpoints_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/ToggleAllBreakpoints_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>切换所有断点</string>
+   </property>
+   <property name="toolTip">
+    <string>切换所有断点</string>
    </property>
   </action>
-  <action name="action19">
+  <action name="action_toolBar_clearBreakpointGroup">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>清除断点</string>
+   </property>
+   <property name="toolTip">
+    <string>清除断点</string>
    </property>
   </action>
-  <action name="action20">
+  <action name="action_toolBar_find_2">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/FileSystemWatcher_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/FileSystemWatcher_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>查找</string>
+   </property>
+   <property name="toolTip">
+    <string>调试查找</string>
    </property>
   </action>
-  <action name="action21">
+  <action name="action_toolBar_stepForward">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepForward_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepForward_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/StepForward_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepForward_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>调试前进</string>
+   </property>
+   <property name="toolTip">
+    <string>调试前进</string>
    </property>
   </action>
-  <action name="action22">
+  <action name="action_toolBar_stepOver">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOver_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepOver_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/StepOver_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepOver_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>调试跳过</string>
+   </property>
+   <property name="toolTip">
+    <string>调试跳过</string>
    </property>
   </action>
-  <action name="action23">
+  <action name="action_toolBar_stepIn">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepIn_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepIn_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/StepIn_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepIn_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>调试进入</string>
+   </property>
+   <property name="toolTip">
+    <string>调试进入</string>
    </property>
   </action>
-  <action name="action24">
+  <action name="action_toolBar_stepOut">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOut_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepOut_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/StepOut_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepOut_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>调试跳出</string>
+   </property>
+   <property name="toolTip">
+    <string>调试跳出</string>
    </property>
   </action>
-  <action name="action25">
+  <action name="action_toolBar_toolTip">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToolTip_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ToolTip_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/ToolTip_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ToolTip_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>工具提示</string>
+   </property>
+   <property name="toolTip">
+    <string>工具提示</string>
    </property>
   </action>
-  <action name="action26">
+  <action name="action_toolBar_bookmark">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Bookmark_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Bookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Bookmark_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Bookmark_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>书签</string>
+   </property>
+   <property name="toolTip">
+    <string>书签</string>
    </property>
   </action>
-  <action name="action27">
+  <action name="action_toolBar_previousBookmark">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/PreviousBookmark_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/PreviousBookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/PreviousBookmark_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/PreviousBookmark_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>上一个书签</string>
+   </property>
+   <property name="toolTip">
+    <string>上一个书签</string>
    </property>
   </action>
-  <action name="action28">
+  <action name="action_toolBar_nextBookmark">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/NextBookmark_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/NextBookmark_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/NextBookmark_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/NextBookmark_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>下一个书签</string>
+   </property>
+   <property name="toolTip">
+    <string>下一个书签</string>
    </property>
   </action>
-  <action name="action29">
+  <action name="action_toolBar_bookmarkMainMenuTabitem">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BookmarkMainMenuTabItem_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/BookmarkMainMenuTabItem_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>书签主菜单</string>
+   </property>
+   <property name="toolTip">
+    <string>书签主菜单</string>
    </property>
   </action>
-  <action name="action30">
+  <action name="action_toolBar_property">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Property_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Property_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Property_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Property_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>资产</string>
+   </property>
+   <property name="toolTip">
+    <string>资产</string>
    </property>
   </action>
-  <action name="action31">
+  <action name="action_toolBar_settings">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Settings_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Settings_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Settings_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Settings_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>系统设置</string>
+   </property>
+   <property name="toolTip">
+    <string>系统设置</string>
    </property>
   </action>
-  <action name="action32">
+  <action name="action_toolBar_winLook">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/RunTestDialog_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/RunTestDialog_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/RunTestDialog_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/RunTestDialog_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>预览窗口设计</string>
+   </property>
+   <property name="toolTip">
+    <string>预览窗口设计</string>
    </property>
   </action>
-  <action name="action33">
+  <action name="action_toolBar_lefr">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignLeft_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignLeft_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AlignLeft_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignLeft_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>左对齐</string>
+   </property>
+   <property name="toolTip">
+    <string>左对齐</string>
    </property>
   </action>
-  <action name="action34">
+  <action name="action_toolBar_right">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignRight_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignRight_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AlignRight_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignRight_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>右对其</string>
+   </property>
+   <property name="toolTip">
+    <string>右对其</string>
    </property>
   </action>
-  <action name="action35">
+  <action name="action_toolBar_top">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignTop_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignTop_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AlignTop_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignTop_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>上对其</string>
+   </property>
+   <property name="toolTip">
+    <string>上对齐</string>
    </property>
   </action>
-  <action name="action36">
+  <action name="action_toolBar_bottom">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignBottom_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignBottom_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AlignBottom_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignBottom_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>下对其</string>
+   </property>
+   <property name="toolTip">
+    <string>下对其</string>
    </property>
   </action>
-  <action name="action37">
+  <action name="action_toolBar_horizontally_window">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextCenterInFormHorizontal_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/TextCenterInFormHorizontal_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>窗口水平剧中</string>
+   </property>
+   <property name="toolTip">
+    <string>窗口水平剧中</string>
    </property>
   </action>
-  <action name="action38">
+  <action name="action_toolBar_verticalCenter_window">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/CenterInFormVertical_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/CenterInFormVertical_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/CenterInFormVertical_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/CenterInFormVertical_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>窗口垂直居中</string>
+   </property>
+   <property name="toolTip">
+    <string>窗口垂直居中</string>
    </property>
   </action>
-  <action name="action39">
+  <action name="action_toolBar_verticalCenter_widget">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeHorizontalCenter_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/DistributeHorizontalCenter_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>组件垂直居中</string>
+   </property>
+   <property name="toolTip">
+    <string>组件垂直居中</string>
    </property>
   </action>
-  <action name="action40">
+  <action name="action_toolBar_horizontally_widget">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeVerticalCenter_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/DistributeVerticalCenter_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>组件水平居中</string>
+   </property>
+   <property name="toolTip">
+    <string>组件水平居中</string>
    </property>
   </action>
-  <action name="action41">
+  <action name="action_toolBar_horizontally_avg">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceAcross_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SpaceAcross_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/SpaceAcross_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SpaceAcross_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>水平平均分布</string>
+   </property>
+   <property name="toolTip">
+    <string>水平平均分布</string>
    </property>
   </action>
-  <action name="action42">
+  <action name="action_toolBar_horizontally_avg_2">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceDown_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SpaceDown_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/SpaceDown_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SpaceDown_16x.png</iconset>
    </property>
    <property name="text">
-    <string>5</string>
+    <string>垂直平均分布</string>
+   </property>
+   <property name="toolTip">
+    <string>垂直平均分布</string>
    </property>
   </action>
   <action name="action_file_newCreate">
@@ -1185,8 +1302,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/NewFileCollection_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/NewFileCollection_16x.png</iconset>
    </property>
    <property name="text">
     <string>新建(&amp;N)</string>
@@ -1194,8 +1311,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_file_open">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/OpenFileFromProject_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/OpenFileFromProject_16x.png</iconset>
    </property>
    <property name="text">
     <string>打开(&amp;O)</string>
@@ -1206,8 +1323,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_file_close">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/CloseProject_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/CloseProject_16x.png</iconset>
    </property>
    <property name="text">
     <string>关闭(&amp;C)</string>
@@ -1215,8 +1332,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_file_save">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/SaveStatusBar1_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/SaveStatusBar1_16x.png</iconset>
    </property>
    <property name="text">
     <string>保存(&amp;S)</string>
@@ -1249,8 +1366,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Print_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Print_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Print_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Print_16x.png</iconset>
    </property>
    <property name="text">
     <string>打印(&amp;P)</string>
@@ -1261,8 +1378,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_file_config">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Property_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Property_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Property_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Property_16x.png</iconset>
    </property>
    <property name="text">
     <string>配置(&amp;U)</string>
@@ -1281,10 +1398,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>退出(&amp;X)</string>
    </property>
   </action>
-  <action name="action_U">
+  <action name="action_editor_undo">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Undo_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Undo_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Undo_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Undo_16x.png</iconset>
    </property>
    <property name="text">
     <string>撤销(&amp;U)</string>
@@ -1293,22 +1410,25 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+Z</string>
    </property>
   </action>
-  <action name="action_R">
+  <action name="action_editor_redo">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Redo_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Redo_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Redo_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Redo_16x.png</iconset>
    </property>
    <property name="text">
-    <string>重复(&amp;R)</string>
+    <string>重做(&amp;R)</string>
+   </property>
+   <property name="toolTip">
+    <string>重做(R)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Y</string>
    </property>
   </action>
-  <action name="action_C">
+  <action name="action_editor_copy">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Copy_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Copy_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Copy_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Copy_16x.png</iconset>
    </property>
    <property name="text">
     <string>复制(&amp;C)</string>
@@ -1317,10 +1437,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+C</string>
    </property>
   </action>
-  <action name="action_T">
+  <action name="action_editor_cut">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Cut_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Cut_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Cut_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Cut_16x.png</iconset>
    </property>
    <property name="text">
     <string>剪切(&amp;T)</string>
@@ -1329,10 +1449,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+X</string>
    </property>
   </action>
-  <action name="action_P">
+  <action name="action_editor_paste">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Paste_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Paste_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Paste_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Paste_16x.png</iconset>
    </property>
    <property name="text">
     <string>粘贴(&amp;P)</string>
@@ -1341,7 +1461,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+V</string>
    </property>
   </action>
-  <action name="action_D">
+  <action name="action_editor_deleteRow">
    <property name="text">
     <string>删除行(&amp;D)</string>
    </property>
@@ -1349,10 +1469,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>F10</string>
    </property>
   </action>
-  <action name="action_F">
+  <action name="action_editor_quickFind">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/QuickFind_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/QuickFind_16x.png</iconset>
    </property>
    <property name="text">
     <string>开始查找(&amp;F)</string>
@@ -1361,10 +1481,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+F</string>
    </property>
   </action>
-  <action name="action_G">
+  <action name="action_editor_highlightText">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/HighlightText_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/HighlightText_16x.png</iconset>
    </property>
    <property name="text">
     <string>高亮标记待寻找单词(&amp;G)</string>
@@ -1373,10 +1493,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="action_N">
+  <action name="action_editor_findNext">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FindNext_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FindNext_16x.png</iconset>
    </property>
    <property name="text">
     <string>寻找下一个(&amp;N)</string>
@@ -1385,10 +1505,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>F3</string>
    </property>
   </action>
-  <action name="action_V">
+  <action name="action_editor_findPrevious">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FindPrevious_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FindPrevious_16x.png</iconset>
    </property>
    <property name="text">
     <string>寻找上一个(&amp;V)</string>
@@ -1397,10 +1517,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Shift+F3</string>
    </property>
   </action>
-  <action name="action_H">
+  <action name="action_editor_quickReplace">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/QuickReplace_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/QuickReplace_16x.png</iconset>
    </property>
    <property name="text">
     <string>寻找替换(&amp;H)</string>
@@ -1409,10 +1529,10 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+H</string>
    </property>
   </action>
-  <action name="action_E">
+  <action name="action_editor_findResults">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FindResults_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FindResults_16x.png</iconset>
    </property>
    <property name="text">
     <string>整体搜寻(&amp;E)</string>
@@ -1421,7 +1541,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+Alt+F</string>
    </property>
   </action>
-  <action name="action_W">
+  <action name="action_editor_jumpLine">
    <property name="text">
     <string>跳转到指定行(&amp;W)</string>
    </property>
@@ -1434,8 +1554,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Run_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Run_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Run_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Run_16x.png</iconset>
    </property>
    <property name="text">
     <string>运行(&amp;S)</string>
@@ -1460,8 +1580,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Stop_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Stop_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Stop_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Stop_16x.png</iconset>
    </property>
    <property name="text">
     <string>终止(&amp;E)</string>
@@ -1470,13 +1590,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+F5</string>
    </property>
   </action>
-  <action name="action_V_2">
+  <action name="action_menu_fileSystemWatcher">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FileSystemWatcher_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FileSystemWatcher_16x.png</iconset>
    </property>
    <property name="text">
     <string>查看表达式/变量(&amp;V)</string>
@@ -1485,13 +1605,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Shift+F9</string>
    </property>
   </action>
-  <action name="action_O_2">
+  <action name="action_menu_stepOver">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StepOver_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StepOver_16x.png</iconset>
    </property>
    <property name="text">
     <string>单步跟踪(&amp;O)</string>
@@ -1500,13 +1620,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>F8</string>
    </property>
   </action>
-  <action name="action_I">
+  <action name="action_menu_stepIn">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StepIn_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StepIn_16x.png</iconset>
    </property>
    <property name="text">
     <string>单步跟踪进入(&amp;I)</string>
@@ -1515,13 +1635,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Shift+F8</string>
    </property>
   </action>
-  <action name="action_U_2">
+  <action name="action_menu_stepOut">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StepOut_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StepOut_16x.png</iconset>
    </property>
    <property name="text">
     <string>跟踪返回(&amp;U)</string>
@@ -1530,13 +1650,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+Shift+F8</string>
    </property>
   </action>
-  <action name="action_R_2">
+  <action name="action_menu_stepForward">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StepForward_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StepForward_16x.png</iconset>
    </property>
    <property name="text">
     <string>执行到光标处(&amp;R)</string>
@@ -1545,13 +1665,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+F8</string>
    </property>
   </action>
-  <action name="action_T_2">
+  <action name="action_menu_toggleAllBreakpoints">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/ToggleAllBreakpoints_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/ToggleAllBreakpoints_16x.png</iconset>
    </property>
    <property name="text">
     <string>设置或清除断点(&amp;T)</string>
@@ -1560,7 +1680,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>F9</string>
    </property>
   </action>
-  <action name="action_A">
+  <action name="action_menu_termBreakpoint">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -1571,13 +1691,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+F9</string>
    </property>
   </action>
-  <action name="action_C_2">
+  <action name="action_menu_clearBreakpointGroup">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/ClearBreakpointGroup_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/ClearBreakpointGroup_16x.png</iconset>
    </property>
    <property name="text">
     <string>清楚所有断点(&amp;C)</string>
@@ -1586,13 +1706,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+Shift+F9</string>
    </property>
   </action>
-  <action name="action_G_2">
+  <action name="action_menu_lineArrow">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/LineArrow_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/LineArrow_16x.png</iconset>
    </property>
    <property name="text">
     <string>到现行执行位置(&amp;G)</string>
@@ -1601,13 +1721,13 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+.</string>
    </property>
   </action>
-  <action name="action_N_2">
+  <action name="action_menu_rigidRelationshipError">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/RigidRelationshipError_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/RigidRelationshipError_16x.png</iconset>
    </property>
    <property name="text">
     <string>到运行时错误相关位置(&amp;N)</string>
@@ -1618,8 +1738,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/BuildSelection_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/BuildSelection_16x.png</iconset>
    </property>
    <property name="text">
     <string>编译(&amp;C)</string>
@@ -1633,8 +1753,8 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/BuildSolution_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/BuildSolution_16x.png</iconset>
    </property>
    <property name="text">
     <string>静态编译(&amp;S)</string>
@@ -1643,7 +1763,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Shift+F7</string>
    </property>
   </action>
-  <action name="action_I_2">
+  <action name="action_menu_compleInstall">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -1654,7 +1774,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+Shift+F7</string>
    </property>
   </action>
-  <action name="action_M_2">
+  <action name="action_menu_compleSpecifyType">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -1662,7 +1782,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>编译为指定类型(&amp;M)</string>
    </property>
   </action>
-  <action name="action_T_3">
+  <action name="action_menu_staticCompleSpecifyType">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -1670,7 +1790,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>静态编译为指定类型(&amp;T)</string>
    </property>
   </action>
-  <action name="action_O_3">
+  <action name="action_menu_compleOther">
    <property name="checkable">
     <bool>false</bool>
    </property>
@@ -1687,21 +1807,21 @@ QMenu::item:disabled {/*菜单被禁用*/
     <bool>true</bool>
    </property>
   </action>
-  <action name="action_Q">
+  <action name="action_menu_feedback">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FeedbackSmile_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/FeedbackSmile_16x.png</iconset>
    </property>
    <property name="text">
     <string>建议反馈(&amp;Q)</string>
    </property>
   </action>
-  <action name="action_W_2">
+  <action name="action_menu_TOU">
    <property name="text">
     <string>使用条款(&amp;W)</string>
    </property>
   </action>
-  <action name="action_H_2">
+  <action name="action_menu_devHelper">
    <property name="text">
     <string>智能开发助手(&amp;H)</string>
    </property>
@@ -1709,12 +1829,12 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+Alt+H</string>
    </property>
   </action>
-  <action name="action_E_3">
+  <action name="action_menu_knowledgeBase">
    <property name="text">
     <string>知识库(&amp;E)</string>
    </property>
   </action>
-  <action name="action_T_4">
+  <action name="action_menu_course">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -1722,51 +1842,51 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>多媒体教程(&amp;T)</string>
    </property>
   </action>
-  <action name="action_D_2">
+  <action name="action_menu_certificate">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Certificate_16x.png</iconset>
    </property>
    <property name="text">
     <string>每日一贴(&amp;D)</string>
    </property>
   </action>
-  <action name="action_C_4">
+  <action name="action_menu_devGuide">
    <property name="text">
     <string>支持库手册及例程(&amp;C)</string>
    </property>
   </action>
-  <action name="action_about">
+  <action name="action_menu_about">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StatusHelp_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/StatusHelp_16x.png</iconset>
    </property>
    <property name="text">
     <string>关于(&amp;A)</string>
    </property>
   </action>
-  <action name="action_U_3">
+  <action name="action_menu_feedBack">
    <property name="text">
     <string>用户反馈表(&amp;U)</string>
    </property>
   </action>
-  <action name="action_R_3">
+  <action name="action_menu_cooperation">
    <property name="text">
     <string>购买与商业合作(&amp;R)</string>
    </property>
   </action>
-  <action name="action_V_3">
+  <action name="action_menu_MSDS">
    <property name="text">
     <string>平台安全检测报告(&amp;V)</string>
    </property>
   </action>
   <action name="action_addNewPlugin">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/CreateLibraryEnvironment_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/CreateLibraryEnvironment_16x.png</iconset>
    </property>
    <property name="text">
     <string>安装新的插件支持(&amp;I)</string>
@@ -1777,8 +1897,8 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_pluginManger">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/LibrarySetting_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/LibrarySetting_16x.png</iconset>
    </property>
    <property name="text">
     <string>插件管理器(&amp;L)</string>
@@ -1789,28 +1909,28 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_systemSettings">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Settings_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Settings_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Settings_16x.png</iconset>
    </property>
    <property name="text">
     <string>系统设置(&amp;O)</string>
    </property>
   </action>
-  <action name="action_C_5">
+  <action name="action_toolBar_attestation">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Certificate_16x.png</normaloff>:/Theme/White/icon/Theme/White/Image/MenuBar/Certificate_16x.png</iconset>
    </property>
    <property name="text">
     <string>签名认证(&amp;C)</string>
    </property>
   </action>
-  <action name="action_F_2">
+  <action name="action_toolBar_findInMod">
    <property name="text">
     <string>在模块及支持库中查找(&amp;F)</string>
    </property>
   </action>
-  <action name="actionBlue_N">
+  <action name="action_toolBar_blue">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1822,8 +1942,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1833,7 +1953,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Blue(N)</string>
    </property>
   </action>
-  <action name="actionBlue_W">
+  <action name="action_toolBar_white">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1842,15 +1962,15 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
     <string>White(&amp;W)</string>
    </property>
   </action>
-  <action name="actionBlue_D">
+  <action name="action_toolBar_Dark">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1859,51 +1979,63 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
-    <string>Black(&amp;D)</string>
+    <string>Dark(&amp;D)</string>
+   </property>
+   <property name="toolTip">
+    <string>Dark(D)</string>
    </property>
   </action>
-  <action name="actionaction43">
+  <action name="action_toolBar_widthSame">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeFixedWidth_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AutosizeFixedWidth_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png</iconset>
    </property>
    <property name="text">
-    <string>action43</string>
+    <string>使宽度相同</string>
+   </property>
+   <property name="toolTip">
+    <string>使宽度相同</string>
    </property>
   </action>
-  <action name="actionaction44">
+  <action name="action_toolBar_highSame">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextLineHeight_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/TextLineHeight_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/TextLineHeight_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/TextLineHeight_16x.png</iconset>
    </property>
    <property name="text">
-    <string>action44</string>
+    <string>使高度相同</string>
+   </property>
+   <property name="toolTip">
+    <string>使高度相同</string>
    </property>
   </action>
-  <action name="actionaction45">
+  <action name="action_toolBar_widthHighSame">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png</normaloff>
-     <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeOptimize_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AutosizeOptimize_16x.png</normaloff>
+     <disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AutosizeOptimize_16x.png</disabledoff>:/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AutosizeOptimize_16x.png</iconset>
    </property>
    <property name="text">
-    <string>action45</string>
+    <string>使宽高相同</string>
+   </property>
+   <property name="toolTip">
+    <string>使宽高相同</string>
    </property>
   </action>
   <action name="action_dock_project">
@@ -1918,8 +2050,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1950,8 +2082,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1970,8 +2102,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -1990,8 +2122,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">
@@ -2007,8 +2139,8 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
    <property name="icon">
     <iconset>
-     <selectedoff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png</selectedoff>
-     <selectedon>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png</selectedon>
+     <selectedoff>:/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png</selectedoff>
+     <selectedon>:/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png</selectedon>
     </iconset>
    </property>
    <property name="text">

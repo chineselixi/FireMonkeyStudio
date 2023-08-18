@@ -395,6 +395,7 @@ Makefile: IDE.pro D:\QT\6.5.2\msvc2019_64\mkspecs\win32-msvc\qmake.conf D:\QT\6.
 		D:\QT\6.5.2\msvc2019_64\mkspecs\features\build_pass.prf \
 		images.qrc \
 		icons.qrc \
+		res.qrc \
 		D:\QT\6.5.2\msvc2019_64\lib\Qt6WebViewd.prl \
 		D:\QT\6.5.2\msvc2019_64\lib\Qt6WebEngineWidgetsd.prl \
 		D:\QT\6.5.2\msvc2019_64\lib\Qt6PrintSupportd.prl \
@@ -722,6 +723,7 @@ D:\QT\6.5.2\msvc2019_64\lib\Qt6EntryPoint.prl:
 D:\QT\6.5.2\msvc2019_64\mkspecs\features\build_pass.prf:
 images.qrc:
 icons.qrc:
+res.qrc:
 D:\QT\6.5.2\msvc2019_64\lib\Qt6WebViewd.prl:
 D:\QT\6.5.2\msvc2019_64\lib\Qt6WebEngineWidgetsd.prl:
 D:\QT\6.5.2\msvc2019_64\lib\Qt6PrintSupportd.prl:

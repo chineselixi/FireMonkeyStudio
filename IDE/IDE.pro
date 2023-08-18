@@ -147,4 +147,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
 images.qrc \
-icons.qrc
+icons.qrc \
+    res.qrc
