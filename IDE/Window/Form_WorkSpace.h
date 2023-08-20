@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+
+class mod_WebPage; //模块声明
+
 namespace Ui {
 class Form_WorkSpace;
 }
@@ -21,7 +24,7 @@ public:
     void setPorMangerStyle(QString style); //设置工程管理器样式表
     void setCompilePrintStyle(QString style); //设置编译输出样式表
     void setPrintStyle(QString style); //设置打印样式表
-
+    void setTheme(QString themeName); //设定主题
 
 private slots:
     void on_action_file_newCreate_triggered(); //新建工程或文件
@@ -35,7 +38,7 @@ private slots:
     void on_action_dock_runTip_triggered(bool checked); //Dock栏显示，输出与提示
     void on_action_pluginManger_triggered();
 
-    void on_action_about_triggered(); //关于菜单被按下
+    void on_action_menu_about_triggered(); //关于菜单被按下
 
     void on_action_dock_debug_triggered(bool checked); //Dock栏显示，调试
     void on_action_dock_find_triggered(bool checked); //Dock栏显示，搜索结果
@@ -66,8 +69,15 @@ private slots:
 
     void on_action_systemSettings_triggered(); //打开系统设置
 
+
+    void on_action_toolBar_blue_triggered(); //更改蓝色主题
+    void on_action_toolBar_white_triggered(); //更改白色主题
+    void on_action_toolBar_Dark_triggered(); //更改黑色主题
+
 private:
     Ui::Form_WorkSpace *ui;
+    mod_WebPage* mod_webs; //Web页面模块
+
 
     //工程信息
     QString project_path;

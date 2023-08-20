@@ -24,8 +24,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>829</width>
-        <height>613</height>
+        <width>846</width>
+        <height>604</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -72,7 +72,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboBox">
+             <widget class="QComboBox" name="comboBox_theme">
               <property name="minimumSize">
                <size>
                 <width>160</width>
@@ -87,13 +87,23 @@
               </property>
               <item>
                <property name="text">
-                <string>默认(Blue)</string>
+                <string>Blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>White</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark</string>
                </property>
               </item>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox">
+             <widget class="QCheckBox" name="checkBox_autoTheme">
               <property name="minimumSize">
                <size>
                 <width>160</width>
@@ -107,7 +117,7 @@
                </size>
               </property>
               <property name="text">
-               <string>与操作系统同步</string>
+               <string>自动调整</string>
               </property>
              </widget>
             </item>
@@ -129,28 +139,28 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <widget class="QCheckBox" name="checkBox_2">
+             <widget class="QLabel" name="label_7">
               <property name="minimumSize">
                <size>
-                <width>140</width>
+                <width>40</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>140</width>
+                <width>40</width>
                 <height>16777215</height>
                </size>
               </property>
               <property name="text">
-               <string>使用自定义字体</string>
+               <string>字体：</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboBox_2">
+             <widget class="QComboBox" name="comboBox_fonts">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="minimumSize">
                <size>
@@ -173,25 +183,25 @@
               </property>
               <property name="minimumSize">
                <size>
-                <width>60</width>
+                <width>0</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>60</width>
+                <width>16777215</width>
                 <height>16777215</height>
                </size>
               </property>
               <property name="text">
-               <string>    大小：</string>
+               <string>大小：</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="lineEdit_fontSize">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="minimumSize">
                <size>
@@ -214,6 +224,32 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkBox_bold">
+              <property name="minimumSize">
+               <size>
+                <width>65</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>加粗</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_italic">
+              <property name="minimumSize">
+               <size>
+                <width>65</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>斜体</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="horizontalSpacer_2">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -229,116 +265,18 @@
            </layout>
           </item>
           <item>
-           <widget class="QCheckBox" name="checkBox_10">
+           <widget class="QCheckBox" name="checkBox_dailyTips">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="text">
              <string>每日小技巧(推送IDE的使用与开发技巧)</string>
             </property>
-            <property name="checked">
+            <property name="checkable">
              <bool>true</bool>
             </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_4">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>97</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>起始页</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QLabel" name="label_7">
-              <property name="minimumSize">
-               <size>
-                <width>40</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>主题：</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBox_5">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <item>
-               <property name="text">
-                <string>默认(梦蓝)</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox_9">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>自定义起始页</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>起始页文件：[系统内置]</string>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>

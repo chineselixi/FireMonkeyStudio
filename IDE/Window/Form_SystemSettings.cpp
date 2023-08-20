@@ -104,11 +104,33 @@ void Form_SystemSettings::on_pushButton_use_clicked()
 void Form_SystemSettings::changeThream(QString styleName)
 {
     if(Window::workSpace != nullptr){
-
+        //加载其他部件的QSS样式表
         Window::workSpace->setStyleSheet(Setting::sys_setting->readThemeStyle(styleName,"Form_WorkSpace")); //加载工作空间样式表
         Window::workSpace->setPorMangerStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ProjectManger")); //加载工程管理样式表
         Window::workSpace->setCompilePrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ListPrint")); //加载编译样式表
         Window::workSpace->setPrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_TextPrint")); //加载文本打印样式表
+
+        //设定选项样式
+        Window::workSpace->setTheme(styleName);
+
+        //加载主题不同的图片
+        QFile t_themeFile(":/resFile/res/ThemeTemplate.txt"); //加载本地图标信息模板，并且替换模板信息
+        t_themeFile.open(QIODevice::ReadOnly);
+        QString t_themeTemplateStr = t_themeFile.readAll();
+        t_themeTemplateStr.replace("${theme}",styleName);
+        t_themeFile.close();
+
+        //检索工作空间窗体的所有子Action，并且加载样式表
+        QList<QAction*> t_al = Window::workSpace->findChildren<QAction*>();
+        for(QList<QAction*>::Iterator t_i = t_al.begin();t_i < t_al.end();t_i++){
+            if((*t_i)->objectName().isEmpty()) continue; //未命名的Action则跳过
+            QString t_nor = Str::getSubStr(t_themeTemplateStr,(*t_i)->objectName() + "::Normal=","\r");
+            QString t_dis = Str::getSubStr(t_themeTemplateStr,(*t_i)->objectName() + "::Disabled=","\r");
+            QIcon t_ico = (*t_i)->icon();
+            t_ico.addFile(t_nor, QSize(), QIcon::Normal, QIcon::Off);
+            t_ico.addFile(t_dis, QSize(), QIcon::Disabled, QIcon::Off);
+            (*t_i)->setIcon(t_ico); //设置新图标
+        }
 
 
     }

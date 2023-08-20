@@ -12,6 +12,7 @@ public:
     QWebChannel* Channel;
     QWebEnginePage* Page;
     cppObject(QWebChannel* t_channel,QWebEnginePage* t_page);
+
 public slots:
     void event_onLoad(); //初始化，加载完成
     void event_onCloseSign(QString sign); //删除单个记录

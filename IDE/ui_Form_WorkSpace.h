@@ -187,7 +187,7 @@ public:
             Form_WorkSpace->setObjectName("Form_WorkSpace");
         Form_WorkSpace->resize(1200, 750);
         Form_WorkSpace->setMinimumSize(QSize(0, 0));
-        Form_WorkSpace->setStyleSheet(QString::fromUtf8("\n"
+        Form_WorkSpace->setStyleSheet(QString::fromUtf8("/*=============================Form_WorkSpace\347\252\227\345\217\243\344\270\213\351\235\242\347\232\204\346\240\267\345\274\217\350\241\250=============================*/\n"
 "/*\344\270\273\347\252\227\345\217\243\346\240\267\345\274\217\350\256\276\347\275\256*/\n"
 "#Form_WorkSpace{\n"
 "	background-color: rgb(93, 107, 153);\n"
@@ -215,15 +215,15 @@ public:
 "	width: 1px;\n"
 "	border:0px;\n"
 "	margin:5px 0px;\n"
-"    background-image: url(:/Theme/White/icon/Theme/White/Image/ToolBar/Separator.png);\n"
+"    background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Separator.png);\n"
 " }\n"
 "\n"
-"/*\345\267\245\345\205\267\346\240\217\346\213\226\345\212\250\345\233\276\347\211\207\346\240\217*/\n"
+"/*\345\267\245\345\205\267"
+                        "\346\240\217\346\213\226\345\212\250\345\233\276\347\211\207\346\240\217*/\n"
 "QToolBar::handle {\n"
 "	margin:4px 6px;\n"
 "	width:5px;\n"
-"	background-image: url(:/Theme/"
-                        "White/icon/Theme/White/Image/ToolBar/Row1.png);\n"
+"	background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Row1.png);\n"
 "}\n"
 "\n"
 "/*\345\267\245\345\205\267\346\240\217\345\255\220\351\241\271\346\214\211\351\222\256*/\n"
@@ -250,9 +250,9 @@ public:
 "    background-color: #0B0E11;\n"
 "	 /*font-family:Consolas;   \350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:8pt;\n"
-"	color:rgb(255, 255, 255);    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
-"	/*border-top-left-radius: 5px;    \350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345"
-                        "\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	color:rgb(255, 255, 255);    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207"
+                        "\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
+"	/*border-top-left-radius: 5px;    \350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	/*border-top-right-radius: 5px;    \350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
 "	min-width: 100px;\n"
 "	margin-right:2px;\n"
@@ -266,24 +266,18 @@ public:
 "	color:rgb(58, 52, 42);\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214"
+                        "\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
-"    background-color: rgb(1"
-                        "87, 198, 241);\n"
+"    background-color: rgb(187, 198, 241);\n"
 "	color:rgb(92, 45, 145);\n"
 "}\n"
-"\n"
-"\n"
 "\n"
 "/*Dock\347\232\204\346\226\207\346\234\254\346\241\206*/\n"
 "#textEdit_help_tip,#textEdit_print{\n"
 "	background-color:rgb(230, 231, 232);\n"
 "	color:rgb(42, 42, 42);\n"
 "}\n"
-"\n"
-"\n"
-"\n"
-"\n"
 "\n"
 "\n"
 "/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217\n"
@@ -304,14 +298,14 @@ public:
 "}\n"
 "\n"
 "\n"
-"/*\345\217\263\351\224\256\350\217\234\345\215\225*/\n"
+"/*\345\217\263\351\224\256\350\217\234\345\215\225*"
+                        "/\n"
 "QMenu{\n"
 "	background-color: rgb(233, 238, 255);\n"
 "	border:1px solid rgb(148, 166, 202);\n"
 "	padding:2px;\n"
 "}\n"
-"QMenu::item{"
-                        "\n"
+"QMenu::item{\n"
 "	color: rgb(30, 30, 31);\n"
 "}\n"
 "QMenu::item:selected{\n"
@@ -335,315 +329,315 @@ public:
         action_toolBar_backward->setObjectName("action_toolBar_backward");
         action_toolBar_backward->setEnabled(false);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Backward_16x.png"), QSize(), QIcon::Normal, QIcon::On);
-        icon.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Backward_16x.png"), QSize(), QIcon::Disabled, QIcon::On);
+        icon.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Backward_16x.png"), QSize(), QIcon::Normal, QIcon::On);
+        icon.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Backward_16x.png"), QSize(), QIcon::Disabled, QIcon::On);
         action_toolBar_backward->setIcon(icon);
         action_toolBar_forward = new QAction(Form_WorkSpace);
         action_toolBar_forward->setObjectName("action_toolBar_forward");
         action_toolBar_forward->setEnabled(false);
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Forward_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon1.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Forward_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon1.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Forward_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Forward_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_forward->setIcon(icon1);
         action_toolBar_newFileCollection = new QAction(Form_WorkSpace);
         action_toolBar_newFileCollection->setObjectName("action_toolBar_newFileCollection");
         action_toolBar_newFileCollection->setEnabled(true);
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/NewFileCollection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NewFileCollection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_toolBar_newFileCollection->setIcon(icon2);
         action_toolBar_open = new QAction(Form_WorkSpace);
         action_toolBar_open->setObjectName("action_toolBar_open");
         action_toolBar_open->setEnabled(true);
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/OpenFolder_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/OpenFolder_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_toolBar_open->setIcon(icon3);
         action_toolBar_save = new QAction(Form_WorkSpace);
         action_toolBar_save->setObjectName("action_toolBar_save");
         action_toolBar_save->setEnabled(false);
         QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SaveStatusBar1_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon4.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/SaveStatusBar1_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon4.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SaveStatusBar1_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon4.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SaveStatusBar1_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_save->setIcon(icon4);
         action_toolBar_cut = new QAction(Form_WorkSpace);
         action_toolBar_cut->setObjectName("action_toolBar_cut");
         action_toolBar_cut->setEnabled(false);
         QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Cut_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon5.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Cut_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon5.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Cut_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon5.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Cut_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_cut->setIcon(icon5);
         action_toolBar_copy = new QAction(Form_WorkSpace);
         action_toolBar_copy->setObjectName("action_toolBar_copy");
         action_toolBar_copy->setEnabled(false);
         QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Copy_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon6.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Copy_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon6.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Copy_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon6.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Copy_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_copy->setIcon(icon6);
         action_toolBar_paste = new QAction(Form_WorkSpace);
         action_toolBar_paste->setObjectName("action_toolBar_paste");
         action_toolBar_paste->setEnabled(false);
         QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Paste_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon7.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Paste_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon7.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Paste_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon7.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Paste_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_paste->setIcon(icon7);
         action_toolBar_undo = new QAction(Form_WorkSpace);
         action_toolBar_undo->setObjectName("action_toolBar_undo");
         action_toolBar_undo->setEnabled(false);
         QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Undo_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon8.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Undo_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon8.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Undo_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon8.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Undo_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_undo->setIcon(icon8);
         action_toolBar_redo = new QAction(Form_WorkSpace);
         action_toolBar_redo->setObjectName("action_toolBar_redo");
         action_toolBar_redo->setEnabled(false);
         QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Redo_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon9.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Redo_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon9.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Redo_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon9.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Redo_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_redo->setIcon(icon9);
         action_toolBar_compile = new QAction(Form_WorkSpace);
         action_toolBar_compile->setObjectName("action_toolBar_compile");
         action_toolBar_compile->setEnabled(false);
         QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildSelection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon10.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/BuildSelection_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon10.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSelection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon10.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSelection_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_compile->setIcon(icon10);
         action_toolBar_staticCompile = new QAction(Form_WorkSpace);
         action_toolBar_staticCompile->setObjectName("action_toolBar_staticCompile");
         action_toolBar_staticCompile->setEnabled(false);
         QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildSolution_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon11.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/BuildSolution_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon11.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildSolution_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon11.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildSolution_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_staticCompile->setIcon(icon11);
         action_toolBar_onlineCompile = new QAction(Form_WorkSpace);
         action_toolBar_onlineCompile->setObjectName("action_toolBar_onlineCompile");
         action_toolBar_onlineCompile->setEnabled(false);
         QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BuildBlackMoon_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon12.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/BuildBlackMoon_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon12.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BuildBlackMoon_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon12.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BuildBlackMoon_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_onlineCompile->setIcon(icon12);
         action_toolBar_find = new QAction(Form_WorkSpace);
         action_toolBar_find->setObjectName("action_toolBar_find");
         action_toolBar_find->setEnabled(false);
         QIcon icon13;
-        icon13.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SearchInFile_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon13.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/FindResults_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon13.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon13.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FindResults_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_find->setIcon(icon13);
         action_toolBar_run = new QAction(Form_WorkSpace);
         action_toolBar_run->setObjectName("action_toolBar_run");
         action_toolBar_run->setEnabled(false);
         QIcon icon14;
-        icon14.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Run_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon14.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Run_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon14.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Run_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon14.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Run_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_run->setIcon(icon14);
         action_toolBar_stop = new QAction(Form_WorkSpace);
         action_toolBar_stop->setObjectName("action_toolBar_stop");
         action_toolBar_stop->setEnabled(false);
         QIcon icon15;
-        icon15.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Stop_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon15.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Stop_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon15.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Stop_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon15.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Stop_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_stop->setIcon(icon15);
         action_toolBar_Rerun = new QAction(Form_WorkSpace);
         action_toolBar_Rerun->setObjectName("action_toolBar_Rerun");
         action_toolBar_Rerun->setEnabled(false);
         QIcon icon16;
-        icon16.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Restart_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon16.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Restart_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon16.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Restart_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon16.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Restart_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_Rerun->setIcon(icon16);
         action_toolBar_toggleAllBreakpoints = new QAction(Form_WorkSpace);
         action_toolBar_toggleAllBreakpoints->setObjectName("action_toolBar_toggleAllBreakpoints");
         action_toolBar_toggleAllBreakpoints->setEnabled(false);
         QIcon icon17;
-        icon17.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon17.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/ToggleAllBreakpoints_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon17.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToggleAllBreakpoints_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon17.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToggleAllBreakpoints_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_toggleAllBreakpoints->setIcon(icon17);
         action_toolBar_clearBreakpointGroup = new QAction(Form_WorkSpace);
         action_toolBar_clearBreakpointGroup->setObjectName("action_toolBar_clearBreakpointGroup");
         action_toolBar_clearBreakpointGroup->setEnabled(false);
         QIcon icon18;
-        icon18.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon18.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon18.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon18.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_clearBreakpointGroup->setIcon(icon18);
         action_toolBar_find_2 = new QAction(Form_WorkSpace);
         action_toolBar_find_2->setObjectName("action_toolBar_find_2");
         action_toolBar_find_2->setEnabled(false);
         QIcon icon19;
-        icon19.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/FileSystemWatcher_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon19.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon19.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon19.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_find_2->setIcon(icon19);
         action_toolBar_stepForward = new QAction(Form_WorkSpace);
         action_toolBar_stepForward->setObjectName("action_toolBar_stepForward");
         action_toolBar_stepForward->setEnabled(false);
         QIcon icon20;
-        icon20.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepForward_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon20.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/StepForward_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon20.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepForward_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon20.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepForward_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_stepForward->setIcon(icon20);
         action_toolBar_stepOver = new QAction(Form_WorkSpace);
         action_toolBar_stepOver->setObjectName("action_toolBar_stepOver");
         action_toolBar_stepOver->setEnabled(false);
         QIcon icon21;
-        icon21.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepOver_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon21.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/StepOver_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon21.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOver_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon21.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOver_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_stepOver->setIcon(icon21);
         action_toolBar_stepIn = new QAction(Form_WorkSpace);
         action_toolBar_stepIn->setObjectName("action_toolBar_stepIn");
         action_toolBar_stepIn->setEnabled(false);
         QIcon icon22;
-        icon22.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepIn_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon22.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/StepIn_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon22.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepIn_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon22.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepIn_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_stepIn->setIcon(icon22);
         action_toolBar_stepOut = new QAction(Form_WorkSpace);
         action_toolBar_stepOut->setObjectName("action_toolBar_stepOut");
         action_toolBar_stepOut->setEnabled(false);
         QIcon icon23;
-        icon23.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/StepOut_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon23.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/StepOut_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon23.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/StepOut_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon23.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/StepOut_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_stepOut->setIcon(icon23);
         action_toolBar_toolTip = new QAction(Form_WorkSpace);
         action_toolBar_toolTip->setObjectName("action_toolBar_toolTip");
         action_toolBar_toolTip->setEnabled(false);
         QIcon icon24;
-        icon24.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/ToolTip_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon24.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/ToolTip_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon24.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ToolTip_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon24.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ToolTip_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_toolTip->setIcon(icon24);
         action_toolBar_bookmark = new QAction(Form_WorkSpace);
         action_toolBar_bookmark->setObjectName("action_toolBar_bookmark");
         action_toolBar_bookmark->setEnabled(false);
         QIcon icon25;
-        icon25.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Bookmark_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon25.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Bookmark_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon25.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Bookmark_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon25.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Bookmark_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_bookmark->setIcon(icon25);
         action_toolBar_previousBookmark = new QAction(Form_WorkSpace);
         action_toolBar_previousBookmark->setObjectName("action_toolBar_previousBookmark");
         action_toolBar_previousBookmark->setEnabled(false);
         QIcon icon26;
-        icon26.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/PreviousBookmark_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon26.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/PreviousBookmark_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon26.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/PreviousBookmark_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon26.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/PreviousBookmark_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_previousBookmark->setIcon(icon26);
         action_toolBar_nextBookmark = new QAction(Form_WorkSpace);
         action_toolBar_nextBookmark->setObjectName("action_toolBar_nextBookmark");
         action_toolBar_nextBookmark->setEnabled(false);
         QIcon icon27;
-        icon27.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/NextBookmark_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon27.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/NextBookmark_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon27.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/NextBookmark_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon27.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/NextBookmark_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_nextBookmark->setIcon(icon27);
         action_toolBar_bookmarkMainMenuTabitem = new QAction(Form_WorkSpace);
         action_toolBar_bookmarkMainMenuTabitem->setObjectName("action_toolBar_bookmarkMainMenuTabitem");
         action_toolBar_bookmarkMainMenuTabitem->setEnabled(false);
         QIcon icon28;
-        icon28.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon28.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/BookmarkMainMenuTabItem_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon28.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/BookmarkMainMenuTabItem_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon28.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/BookmarkMainMenuTabItem_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_bookmarkMainMenuTabitem->setIcon(icon28);
         action_toolBar_property = new QAction(Form_WorkSpace);
         action_toolBar_property->setObjectName("action_toolBar_property");
         action_toolBar_property->setEnabled(false);
         QIcon icon29;
-        icon29.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Property_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon29.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Property_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon29.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon29.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Property_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_property->setIcon(icon29);
         action_toolBar_settings = new QAction(Form_WorkSpace);
         action_toolBar_settings->setObjectName("action_toolBar_settings");
         action_toolBar_settings->setEnabled(false);
         QIcon icon30;
-        icon30.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/Settings_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon30.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/Settings_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon30.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Settings_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon30.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Settings_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_settings->setIcon(icon30);
         action_toolBar_winLook = new QAction(Form_WorkSpace);
         action_toolBar_winLook->setObjectName("action_toolBar_winLook");
         action_toolBar_winLook->setEnabled(false);
         QIcon icon31;
-        icon31.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/RunTestDialog_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon31.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/RunTestDialog_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon31.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/RunTestDialog_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon31.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/RunTestDialog_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_winLook->setIcon(icon31);
         action_toolBar_lefr = new QAction(Form_WorkSpace);
         action_toolBar_lefr->setObjectName("action_toolBar_lefr");
         action_toolBar_lefr->setEnabled(false);
         QIcon icon32;
-        icon32.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignLeft_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon32.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AlignLeft_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon32.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignLeft_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon32.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignLeft_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_lefr->setIcon(icon32);
         action_toolBar_right = new QAction(Form_WorkSpace);
         action_toolBar_right->setObjectName("action_toolBar_right");
         action_toolBar_right->setEnabled(false);
         QIcon icon33;
-        icon33.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignRight_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon33.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AlignRight_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon33.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignRight_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon33.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignRight_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_right->setIcon(icon33);
         action_toolBar_top = new QAction(Form_WorkSpace);
         action_toolBar_top->setObjectName("action_toolBar_top");
         action_toolBar_top->setEnabled(false);
         QIcon icon34;
-        icon34.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignTop_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon34.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AlignTop_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon34.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignTop_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon34.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignTop_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_top->setIcon(icon34);
         action_toolBar_bottom = new QAction(Form_WorkSpace);
         action_toolBar_bottom->setObjectName("action_toolBar_bottom");
         action_toolBar_bottom->setEnabled(false);
         QIcon icon35;
-        icon35.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AlignBottom_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon35.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AlignBottom_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon35.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AlignBottom_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon35.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AlignBottom_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_bottom->setIcon(icon35);
         action_toolBar_horizontally_window = new QAction(Form_WorkSpace);
         action_toolBar_horizontally_window->setObjectName("action_toolBar_horizontally_window");
         action_toolBar_horizontally_window->setEnabled(false);
         QIcon icon36;
-        icon36.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon36.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/TextCenterInFormHorizontal_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon36.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextCenterInFormHorizontal_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon36.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextCenterInFormHorizontal_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_horizontally_window->setIcon(icon36);
         action_toolBar_verticalCenter_window = new QAction(Form_WorkSpace);
         action_toolBar_verticalCenter_window->setObjectName("action_toolBar_verticalCenter_window");
         action_toolBar_verticalCenter_window->setEnabled(false);
         QIcon icon37;
-        icon37.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/CenterInFormVertical_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon37.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/CenterInFormVertical_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon37.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/CenterInFormVertical_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon37.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/CenterInFormVertical_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_verticalCenter_window->setIcon(icon37);
         action_toolBar_verticalCenter_widget = new QAction(Form_WorkSpace);
         action_toolBar_verticalCenter_widget->setObjectName("action_toolBar_verticalCenter_widget");
         action_toolBar_verticalCenter_widget->setEnabled(false);
         QIcon icon38;
-        icon38.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon38.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/DistributeHorizontalCenter_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon38.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeHorizontalCenter_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon38.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeHorizontalCenter_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_verticalCenter_widget->setIcon(icon38);
         action_toolBar_horizontally_widget = new QAction(Form_WorkSpace);
         action_toolBar_horizontally_widget->setObjectName("action_toolBar_horizontally_widget");
         action_toolBar_horizontally_widget->setEnabled(false);
         QIcon icon39;
-        icon39.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon39.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/DistributeVerticalCenter_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon39.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/DistributeVerticalCenter_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon39.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/DistributeVerticalCenter_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_horizontally_widget->setIcon(icon39);
         action_toolBar_horizontally_avg = new QAction(Form_WorkSpace);
         action_toolBar_horizontally_avg->setObjectName("action_toolBar_horizontally_avg");
         action_toolBar_horizontally_avg->setEnabled(false);
         QIcon icon40;
-        icon40.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SpaceAcross_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon40.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/SpaceAcross_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon40.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceAcross_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon40.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceAcross_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_horizontally_avg->setIcon(icon40);
         action_toolBar_horizontally_avg_2 = new QAction(Form_WorkSpace);
         action_toolBar_horizontally_avg_2->setObjectName("action_toolBar_horizontally_avg_2");
         action_toolBar_horizontally_avg_2->setEnabled(false);
         QIcon icon41;
-        icon41.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/SpaceDown_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon41.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/SpaceDown_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon41.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SpaceDown_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon41.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/SpaceDown_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_horizontally_avg_2->setIcon(icon41);
         action_file_newCreate = new QAction(Form_WorkSpace);
         action_file_newCreate->setObjectName("action_file_newCreate");
         action_file_newCreate->setCheckable(false);
         action_file_newCreate->setChecked(false);
         QIcon icon42;
-        icon42.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/NewFileCollection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon42.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/NewFileCollection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_file_newCreate->setIcon(icon42);
         action_file_open = new QAction(Form_WorkSpace);
         action_file_open->setObjectName("action_file_open");
         QIcon icon43;
-        icon43.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/OpenFileFromProject_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon43.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/OpenFileFromProject_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_file_open->setIcon(icon43);
         action_file_close = new QAction(Form_WorkSpace);
         action_file_close->setObjectName("action_file_close");
         QIcon icon44;
-        icon44.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/CloseProject_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon44.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CloseProject_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_file_close->setIcon(icon44);
         action_file_save = new QAction(Form_WorkSpace);
         action_file_save->setObjectName("action_file_save");
         QIcon icon45;
-        icon45.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/SaveStatusBar1_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon45.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/SaveStatusBar1_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_file_save->setIcon(icon45);
         action_file_saveAs = new QAction(Form_WorkSpace);
         action_file_saveAs->setObjectName("action_file_saveAs");
@@ -654,12 +648,12 @@ public:
         action_file_print->setObjectName("action_file_print");
         action_file_print->setEnabled(false);
         QIcon icon46;
-        icon46.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Print_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon46.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Print_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_file_print->setIcon(icon46);
         action_file_config = new QAction(Form_WorkSpace);
         action_file_config->setObjectName("action_file_config");
         QIcon icon47;
-        icon47.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Property_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon47.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Property_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_file_config->setIcon(icon47);
         action_file_connect = new QAction(Form_WorkSpace);
         action_file_connect->setObjectName("action_file_connect");
@@ -669,59 +663,59 @@ public:
         action_editor_undo = new QAction(Form_WorkSpace);
         action_editor_undo->setObjectName("action_editor_undo");
         QIcon icon48;
-        icon48.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Undo_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon48.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Undo_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_undo->setIcon(icon48);
         action_editor_redo = new QAction(Form_WorkSpace);
         action_editor_redo->setObjectName("action_editor_redo");
         QIcon icon49;
-        icon49.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Redo_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon49.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Redo_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_redo->setIcon(icon49);
         action_editor_copy = new QAction(Form_WorkSpace);
         action_editor_copy->setObjectName("action_editor_copy");
         QIcon icon50;
-        icon50.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Copy_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon50.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Copy_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_copy->setIcon(icon50);
         action_editor_cut = new QAction(Form_WorkSpace);
         action_editor_cut->setObjectName("action_editor_cut");
         QIcon icon51;
-        icon51.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Cut_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon51.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Cut_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_cut->setIcon(icon51);
         action_editor_paste = new QAction(Form_WorkSpace);
         action_editor_paste->setObjectName("action_editor_paste");
         QIcon icon52;
-        icon52.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Paste_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon52.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Paste_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_paste->setIcon(icon52);
         action_editor_deleteRow = new QAction(Form_WorkSpace);
         action_editor_deleteRow->setObjectName("action_editor_deleteRow");
         action_editor_quickFind = new QAction(Form_WorkSpace);
         action_editor_quickFind->setObjectName("action_editor_quickFind");
         QIcon icon53;
-        icon53.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/QuickFind_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon53.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_quickFind->setIcon(icon53);
         action_editor_highlightText = new QAction(Form_WorkSpace);
         action_editor_highlightText->setObjectName("action_editor_highlightText");
         QIcon icon54;
-        icon54.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/HighlightText_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon54.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/HighlightText_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_highlightText->setIcon(icon54);
         action_editor_findNext = new QAction(Form_WorkSpace);
         action_editor_findNext->setObjectName("action_editor_findNext");
         QIcon icon55;
-        icon55.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/FindNext_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon55.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindNext_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_findNext->setIcon(icon55);
         action_editor_findPrevious = new QAction(Form_WorkSpace);
         action_editor_findPrevious->setObjectName("action_editor_findPrevious");
         QIcon icon56;
-        icon56.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/FindPrevious_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon56.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindPrevious_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_findPrevious->setIcon(icon56);
         action_editor_quickReplace = new QAction(Form_WorkSpace);
         action_editor_quickReplace->setObjectName("action_editor_quickReplace");
         QIcon icon57;
-        icon57.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/QuickReplace_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon57.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickReplace_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_quickReplace->setIcon(icon57);
         action_editor_findResults = new QAction(Form_WorkSpace);
         action_editor_findResults->setObjectName("action_editor_findResults");
         QIcon icon58;
-        icon58.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/FindResults_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon58.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FindResults_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_findResults->setIcon(icon58);
         action_editor_jumpLine = new QAction(Form_WorkSpace);
         action_editor_jumpLine->setObjectName("action_editor_jumpLine");
@@ -729,7 +723,7 @@ public:
         action_menu_run->setObjectName("action_menu_run");
         action_menu_run->setEnabled(false);
         QIcon icon59;
-        icon59.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Run_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon59.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Run_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_run->setIcon(icon59);
         action_menu_Rerun = new QAction(Form_WorkSpace);
         action_menu_Rerun->setObjectName("action_menu_Rerun");
@@ -738,43 +732,43 @@ public:
         action_menu_stop->setObjectName("action_menu_stop");
         action_menu_stop->setEnabled(false);
         QIcon icon60;
-        icon60.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Stop_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon60.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Stop_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_stop->setIcon(icon60);
         action_menu_fileSystemWatcher = new QAction(Form_WorkSpace);
         action_menu_fileSystemWatcher->setObjectName("action_menu_fileSystemWatcher");
         action_menu_fileSystemWatcher->setEnabled(false);
         QIcon icon61;
-        icon61.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/FileSystemWatcher_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon61.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FileSystemWatcher_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_fileSystemWatcher->setIcon(icon61);
         action_menu_stepOver = new QAction(Form_WorkSpace);
         action_menu_stepOver->setObjectName("action_menu_stepOver");
         action_menu_stepOver->setEnabled(false);
         QIcon icon62;
-        icon62.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/StepOver_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon62.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOver_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_stepOver->setIcon(icon62);
         action_menu_stepIn = new QAction(Form_WorkSpace);
         action_menu_stepIn->setObjectName("action_menu_stepIn");
         action_menu_stepIn->setEnabled(false);
         QIcon icon63;
-        icon63.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/StepIn_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon63.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepIn_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_stepIn->setIcon(icon63);
         action_menu_stepOut = new QAction(Form_WorkSpace);
         action_menu_stepOut->setObjectName("action_menu_stepOut");
         action_menu_stepOut->setEnabled(false);
         QIcon icon64;
-        icon64.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/StepOut_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon64.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepOut_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_stepOut->setIcon(icon64);
         action_menu_stepForward = new QAction(Form_WorkSpace);
         action_menu_stepForward->setObjectName("action_menu_stepForward");
         action_menu_stepForward->setEnabled(false);
         QIcon icon65;
-        icon65.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/StepForward_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon65.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StepForward_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_stepForward->setIcon(icon65);
         action_menu_toggleAllBreakpoints = new QAction(Form_WorkSpace);
         action_menu_toggleAllBreakpoints->setObjectName("action_menu_toggleAllBreakpoints");
         action_menu_toggleAllBreakpoints->setEnabled(false);
         QIcon icon66;
-        icon66.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/ToggleAllBreakpoints_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon66.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ToggleAllBreakpoints_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_toggleAllBreakpoints->setIcon(icon66);
         action_menu_termBreakpoint = new QAction(Form_WorkSpace);
         action_menu_termBreakpoint->setObjectName("action_menu_termBreakpoint");
@@ -783,31 +777,31 @@ public:
         action_menu_clearBreakpointGroup->setObjectName("action_menu_clearBreakpointGroup");
         action_menu_clearBreakpointGroup->setEnabled(false);
         QIcon icon67;
-        icon67.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/ClearBreakpointGroup_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon67.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/ClearBreakpointGroup_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_clearBreakpointGroup->setIcon(icon67);
         action_menu_lineArrow = new QAction(Form_WorkSpace);
         action_menu_lineArrow->setObjectName("action_menu_lineArrow");
         action_menu_lineArrow->setEnabled(false);
         QIcon icon68;
-        icon68.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/LineArrow_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon68.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LineArrow_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_lineArrow->setIcon(icon68);
         action_menu_rigidRelationshipError = new QAction(Form_WorkSpace);
         action_menu_rigidRelationshipError->setObjectName("action_menu_rigidRelationshipError");
         action_menu_rigidRelationshipError->setEnabled(false);
         QIcon icon69;
-        icon69.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/RigidRelationshipError_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon69.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/RigidRelationshipError_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_rigidRelationshipError->setIcon(icon69);
         action_menu_compile = new QAction(Form_WorkSpace);
         action_menu_compile->setObjectName("action_menu_compile");
         action_menu_compile->setEnabled(false);
         QIcon icon70;
-        icon70.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/BuildSelection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon70.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSelection_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_compile->setIcon(icon70);
         action_menu_staticCompile = new QAction(Form_WorkSpace);
         action_menu_staticCompile->setObjectName("action_menu_staticCompile");
         action_menu_staticCompile->setEnabled(false);
         QIcon icon71;
-        icon71.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/BuildSolution_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon71.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/BuildSolution_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_staticCompile->setIcon(icon71);
         action_menu_compleInstall = new QAction(Form_WorkSpace);
         action_menu_compleInstall->setObjectName("action_menu_compleInstall");
@@ -827,7 +821,7 @@ public:
         action_menu_feedback = new QAction(Form_WorkSpace);
         action_menu_feedback->setObjectName("action_menu_feedback");
         QIcon icon72;
-        icon72.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/FeedbackSmile_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon72.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/FeedbackSmile_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_feedback->setIcon(icon72);
         action_menu_TOU = new QAction(Form_WorkSpace);
         action_menu_TOU->setObjectName("action_menu_TOU");
@@ -842,14 +836,14 @@ public:
         action_menu_certificate->setObjectName("action_menu_certificate");
         action_menu_certificate->setEnabled(false);
         QIcon icon73;
-        icon73.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Certificate_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon73.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Certificate_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_certificate->setIcon(icon73);
         action_menu_devGuide = new QAction(Form_WorkSpace);
         action_menu_devGuide->setObjectName("action_menu_devGuide");
         action_menu_about = new QAction(Form_WorkSpace);
         action_menu_about->setObjectName("action_menu_about");
         QIcon icon74;
-        icon74.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/StatusHelp_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon74.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/StatusHelp_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_menu_about->setIcon(icon74);
         action_menu_feedBack = new QAction(Form_WorkSpace);
         action_menu_feedBack->setObjectName("action_menu_feedBack");
@@ -860,17 +854,17 @@ public:
         action_addNewPlugin = new QAction(Form_WorkSpace);
         action_addNewPlugin->setObjectName("action_addNewPlugin");
         QIcon icon75;
-        icon75.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/CreateLibraryEnvironment_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon75.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CreateLibraryEnvironment_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_addNewPlugin->setIcon(icon75);
         action_pluginManger = new QAction(Form_WorkSpace);
         action_pluginManger->setObjectName("action_pluginManger");
         QIcon icon76;
-        icon76.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/LibrarySetting_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon76.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/LibrarySetting_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_pluginManger->setIcon(icon76);
         action_systemSettings = new QAction(Form_WorkSpace);
         action_systemSettings->setObjectName("action_systemSettings");
         QIcon icon77;
-        icon77.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Settings_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon77.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Settings_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_systemSettings->setIcon(icon77);
         action_toolBar_attestation = new QAction(Form_WorkSpace);
         action_toolBar_attestation->setObjectName("action_toolBar_attestation");
@@ -883,8 +877,8 @@ public:
         action_toolBar_blue->setChecked(true);
         action_toolBar_blue->setEnabled(true);
         QIcon icon78;
-        icon78.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/CheckboxN_16x.png"), QSize(), QIcon::Selected, QIcon::Off);
-        icon78.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/MenuBar/Checkbox_16x.png"), QSize(), QIcon::Selected, QIcon::On);
+        icon78.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png"), QSize(), QIcon::Selected, QIcon::Off);
+        icon78.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png"), QSize(), QIcon::Selected, QIcon::On);
         action_toolBar_blue->setIcon(icon78);
         action_toolBar_white = new QAction(Form_WorkSpace);
         action_toolBar_white->setObjectName("action_toolBar_white");
@@ -900,22 +894,22 @@ public:
         action_toolBar_widthSame->setObjectName("action_toolBar_widthSame");
         action_toolBar_widthSame->setEnabled(false);
         QIcon icon79;
-        icon79.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon79.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AutosizeFixedWidth_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon79.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeFixedWidth_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon79.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeFixedWidth_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_widthSame->setIcon(icon79);
         action_toolBar_highSame = new QAction(Form_WorkSpace);
         action_toolBar_highSame->setObjectName("action_toolBar_highSame");
         action_toolBar_highSame->setEnabled(false);
         QIcon icon80;
-        icon80.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/TextLineHeight_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon80.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/TextLineHeight_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon80.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/TextLineHeight_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon80.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/TextLineHeight_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_highSame->setIcon(icon80);
         action_toolBar_widthHighSame = new QAction(Form_WorkSpace);
         action_toolBar_widthHighSame->setObjectName("action_toolBar_widthHighSame");
         action_toolBar_widthHighSame->setEnabled(false);
         QIcon icon81;
-        icon81.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/AutosizeOptimize_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        icon81.addFile(QString::fromUtf8(":/Theme/White/icon/Theme/White/Image/ToolBar/Btn/displayIcon/AutosizeOptimize_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon81.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/AutosizeOptimize_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon81.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/AutosizeOptimize_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_widthHighSame->setIcon(icon81);
         action_dock_project = new QAction(Form_WorkSpace);
         action_dock_project->setObjectName("action_dock_project");
@@ -970,7 +964,7 @@ public:
         Form_WorkSpace->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Form_WorkSpace);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1200, 25));
+        menubar->setGeometry(QRect(0, 0, 1200, 24));
         menu_file = new QMenu(menubar);
         menu_file->setObjectName("menu_file");
         menu_check = new QMenu(menubar);

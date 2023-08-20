@@ -36,24 +36,18 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
-    QComboBox *comboBox;
-    QCheckBox *checkBox;
+    QComboBox *comboBox_theme;
+    QCheckBox *checkBox_autoTheme;
     QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout_2;
-    QCheckBox *checkBox_2;
-    QComboBox *comboBox_2;
-    QLabel *label_2;
-    QLineEdit *lineEdit;
-    QSpacerItem *horizontalSpacer_2;
-    QCheckBox *checkBox_10;
-    QGroupBox *groupBox_4;
-    QVBoxLayout *verticalLayout_4;
-    QHBoxLayout *horizontalLayout_4;
     QLabel *label_7;
-    QComboBox *comboBox_5;
-    QCheckBox *checkBox_9;
-    QSpacerItem *horizontalSpacer_4;
-    QLabel *label_8;
+    QComboBox *comboBox_fonts;
+    QLabel *label_2;
+    QLineEdit *lineEdit_fontSize;
+    QCheckBox *checkBox_bold;
+    QCheckBox *checkBox_italic;
+    QSpacerItem *horizontalSpacer_2;
+    QCheckBox *checkBox_dailyTips;
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_3;
@@ -87,7 +81,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 829, 613));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 846, 604));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setSpacing(20);
         verticalLayout_5->setObjectName("verticalLayout_5");
@@ -106,20 +100,22 @@ public:
 
         horizontalLayout->addWidget(label);
 
-        comboBox = new QComboBox(groupBox);
-        comboBox->addItem(QString());
-        comboBox->setObjectName("comboBox");
-        comboBox->setMinimumSize(QSize(160, 0));
-        comboBox->setMaximumSize(QSize(160, 16777215));
+        comboBox_theme = new QComboBox(groupBox);
+        comboBox_theme->addItem(QString());
+        comboBox_theme->addItem(QString());
+        comboBox_theme->addItem(QString());
+        comboBox_theme->setObjectName("comboBox_theme");
+        comboBox_theme->setMinimumSize(QSize(160, 0));
+        comboBox_theme->setMaximumSize(QSize(160, 16777215));
 
-        horizontalLayout->addWidget(comboBox);
+        horizontalLayout->addWidget(comboBox_theme);
 
-        checkBox = new QCheckBox(groupBox);
-        checkBox->setObjectName("checkBox");
-        checkBox->setMinimumSize(QSize(160, 0));
-        checkBox->setMaximumSize(QSize(160, 16777215));
+        checkBox_autoTheme = new QCheckBox(groupBox);
+        checkBox_autoTheme->setObjectName("checkBox_autoTheme");
+        checkBox_autoTheme->setMinimumSize(QSize(160, 0));
+        checkBox_autoTheme->setMaximumSize(QSize(160, 16777215));
 
-        horizontalLayout->addWidget(checkBox);
+        horizontalLayout->addWidget(checkBox_autoTheme);
 
         horizontalSpacer = new QSpacerItem(108, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -130,37 +126,49 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        checkBox_2 = new QCheckBox(groupBox);
-        checkBox_2->setObjectName("checkBox_2");
-        checkBox_2->setMinimumSize(QSize(140, 0));
-        checkBox_2->setMaximumSize(QSize(140, 16777215));
+        label_7 = new QLabel(groupBox);
+        label_7->setObjectName("label_7");
+        label_7->setMinimumSize(QSize(40, 0));
+        label_7->setMaximumSize(QSize(40, 16777215));
 
-        horizontalLayout_2->addWidget(checkBox_2);
+        horizontalLayout_2->addWidget(label_7);
 
-        comboBox_2 = new QComboBox(groupBox);
-        comboBox_2->setObjectName("comboBox_2");
-        comboBox_2->setEnabled(false);
-        comboBox_2->setMinimumSize(QSize(190, 0));
-        comboBox_2->setMaximumSize(QSize(190, 16777215));
+        comboBox_fonts = new QComboBox(groupBox);
+        comboBox_fonts->setObjectName("comboBox_fonts");
+        comboBox_fonts->setEnabled(true);
+        comboBox_fonts->setMinimumSize(QSize(190, 0));
+        comboBox_fonts->setMaximumSize(QSize(190, 16777215));
 
-        horizontalLayout_2->addWidget(comboBox_2);
+        horizontalLayout_2->addWidget(comboBox_fonts);
 
         label_2 = new QLabel(groupBox);
         label_2->setObjectName("label_2");
         label_2->setEnabled(false);
-        label_2->setMinimumSize(QSize(60, 0));
-        label_2->setMaximumSize(QSize(60, 16777215));
+        label_2->setMinimumSize(QSize(0, 0));
+        label_2->setMaximumSize(QSize(16777215, 16777215));
 
         horizontalLayout_2->addWidget(label_2);
 
-        lineEdit = new QLineEdit(groupBox);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setEnabled(false);
-        lineEdit->setMinimumSize(QSize(70, 0));
-        lineEdit->setMaximumSize(QSize(70, 16777215));
-        lineEdit->setAlignment(Qt::AlignCenter);
+        lineEdit_fontSize = new QLineEdit(groupBox);
+        lineEdit_fontSize->setObjectName("lineEdit_fontSize");
+        lineEdit_fontSize->setEnabled(true);
+        lineEdit_fontSize->setMinimumSize(QSize(70, 0));
+        lineEdit_fontSize->setMaximumSize(QSize(70, 16777215));
+        lineEdit_fontSize->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_2->addWidget(lineEdit);
+        horizontalLayout_2->addWidget(lineEdit_fontSize);
+
+        checkBox_bold = new QCheckBox(groupBox);
+        checkBox_bold->setObjectName("checkBox_bold");
+        checkBox_bold->setMinimumSize(QSize(65, 0));
+
+        horizontalLayout_2->addWidget(checkBox_bold);
+
+        checkBox_italic = new QCheckBox(groupBox);
+        checkBox_italic->setObjectName("checkBox_italic");
+        checkBox_italic->setMinimumSize(QSize(65, 0));
+
+        horizontalLayout_2->addWidget(checkBox_italic);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -169,59 +177,16 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_2);
 
-        checkBox_10 = new QCheckBox(groupBox);
-        checkBox_10->setObjectName("checkBox_10");
-        checkBox_10->setChecked(true);
+        checkBox_dailyTips = new QCheckBox(groupBox);
+        checkBox_dailyTips->setObjectName("checkBox_dailyTips");
+        checkBox_dailyTips->setEnabled(true);
+        checkBox_dailyTips->setCheckable(true);
+        checkBox_dailyTips->setChecked(true);
 
-        verticalLayout->addWidget(checkBox_10);
+        verticalLayout->addWidget(checkBox_dailyTips);
 
 
         verticalLayout_5->addWidget(groupBox);
-
-        groupBox_4 = new QGroupBox(scrollAreaWidgetContents);
-        groupBox_4->setObjectName("groupBox_4");
-        groupBox_4->setMinimumSize(QSize(0, 97));
-        groupBox_4->setMaximumSize(QSize(16777215, 16777215));
-        verticalLayout_4 = new QVBoxLayout(groupBox_4);
-        verticalLayout_4->setObjectName("verticalLayout_4");
-        horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setObjectName("horizontalLayout_4");
-        label_7 = new QLabel(groupBox_4);
-        label_7->setObjectName("label_7");
-        label_7->setMinimumSize(QSize(40, 0));
-        label_7->setMaximumSize(QSize(16777215, 16777215));
-
-        horizontalLayout_4->addWidget(label_7);
-
-        comboBox_5 = new QComboBox(groupBox_4);
-        comboBox_5->addItem(QString());
-        comboBox_5->setObjectName("comboBox_5");
-        comboBox_5->setMinimumSize(QSize(0, 0));
-        comboBox_5->setMaximumSize(QSize(16777215, 16777215));
-
-        horizontalLayout_4->addWidget(comboBox_5);
-
-        checkBox_9 = new QCheckBox(groupBox_4);
-        checkBox_9->setObjectName("checkBox_9");
-        checkBox_9->setMinimumSize(QSize(0, 0));
-        checkBox_9->setMaximumSize(QSize(16777215, 16777215));
-
-        horizontalLayout_4->addWidget(checkBox_9);
-
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_4->addItem(horizontalSpacer_4);
-
-
-        verticalLayout_4->addLayout(horizontalLayout_4);
-
-        label_8 = new QLabel(groupBox_4);
-        label_8->setObjectName("label_8");
-
-        verticalLayout_4->addWidget(label_8);
-
-
-        verticalLayout_5->addWidget(groupBox_4);
 
         groupBox_2 = new QGroupBox(scrollAreaWidgetContents);
         groupBox_2->setObjectName("groupBox_2");
@@ -369,19 +334,17 @@ public:
         Form_settings_Color->setWindowTitle(QCoreApplication::translate("Form_settings_Color", "Form", nullptr));
         groupBox->setTitle(QCoreApplication::translate("Form_settings_Color", "\346\240\267\345\274\217", nullptr));
         label->setText(QCoreApplication::translate("Form_settings_Color", "\344\270\273\351\242\230\357\274\232", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("Form_settings_Color", "\351\273\230\350\256\244(Blue)", nullptr));
+        comboBox_theme->setItemText(0, QCoreApplication::translate("Form_settings_Color", "Blue", nullptr));
+        comboBox_theme->setItemText(1, QCoreApplication::translate("Form_settings_Color", "White", nullptr));
+        comboBox_theme->setItemText(2, QCoreApplication::translate("Form_settings_Color", "Dark", nullptr));
 
-        checkBox->setText(QCoreApplication::translate("Form_settings_Color", "\344\270\216\346\223\215\344\275\234\347\263\273\347\273\237\345\220\214\346\255\245", nullptr));
-        checkBox_2->setText(QCoreApplication::translate("Form_settings_Color", "\344\275\277\347\224\250\350\207\252\345\256\232\344\271\211\345\255\227\344\275\223", nullptr));
-        label_2->setText(QCoreApplication::translate("Form_settings_Color", "    \345\244\247\345\260\217\357\274\232", nullptr));
-        lineEdit->setText(QCoreApplication::translate("Form_settings_Color", "12", nullptr));
-        checkBox_10->setText(QCoreApplication::translate("Form_settings_Color", "\346\257\217\346\227\245\345\260\217\346\212\200\345\267\247(\346\216\250\351\200\201IDE\347\232\204\344\275\277\347\224\250\344\270\216\345\274\200\345\217\221\346\212\200\345\267\247)", nullptr));
-        groupBox_4->setTitle(QCoreApplication::translate("Form_settings_Color", "\350\265\267\345\247\213\351\241\265", nullptr));
-        label_7->setText(QCoreApplication::translate("Form_settings_Color", "\344\270\273\351\242\230\357\274\232", nullptr));
-        comboBox_5->setItemText(0, QCoreApplication::translate("Form_settings_Color", "\351\273\230\350\256\244(\346\242\246\350\223\235)", nullptr));
-
-        checkBox_9->setText(QCoreApplication::translate("Form_settings_Color", "\350\207\252\345\256\232\344\271\211\350\265\267\345\247\213\351\241\265", nullptr));
-        label_8->setText(QCoreApplication::translate("Form_settings_Color", "\350\265\267\345\247\213\351\241\265\346\226\207\344\273\266\357\274\232[\347\263\273\347\273\237\345\206\205\347\275\256]", nullptr));
+        checkBox_autoTheme->setText(QCoreApplication::translate("Form_settings_Color", "\350\207\252\345\212\250\350\260\203\346\225\264", nullptr));
+        label_7->setText(QCoreApplication::translate("Form_settings_Color", "\345\255\227\344\275\223\357\274\232", nullptr));
+        label_2->setText(QCoreApplication::translate("Form_settings_Color", "\345\244\247\345\260\217\357\274\232", nullptr));
+        lineEdit_fontSize->setText(QCoreApplication::translate("Form_settings_Color", "12", nullptr));
+        checkBox_bold->setText(QCoreApplication::translate("Form_settings_Color", "\345\212\240\347\262\227", nullptr));
+        checkBox_italic->setText(QCoreApplication::translate("Form_settings_Color", "\346\226\234\344\275\223", nullptr));
+        checkBox_dailyTips->setText(QCoreApplication::translate("Form_settings_Color", "\346\257\217\346\227\245\345\260\217\346\212\200\345\267\247(\346\216\250\351\200\201IDE\347\232\204\344\275\277\347\224\250\344\270\216\345\274\200\345\217\221\346\212\200\345\267\247)", nullptr));
         groupBox_2->setTitle(QCoreApplication::translate("Form_settings_Color", "\346\212\227\351\224\257\351\275\277", nullptr));
         label_3->setText(QCoreApplication::translate("Form_settings_Color", "IDE\357\274\232", nullptr));
         comboBox_3->setItemText(0, QCoreApplication::translate("Form_settings_Color", "PreferAntialias", nullptr));

@@ -16,6 +16,7 @@ class Form_settings_Git : public QWidget,public mod_settingsFormBase
 public:
     explicit Form_settings_Git(QWidget *parent = nullptr);
     ~Form_settings_Git();
+    static void loadSettings(); //静态加载设置
 
     void Event_Ok() override; //确认键被按下
     void Event_cancel() override; //取消键被按下
@@ -30,7 +31,6 @@ private slots:
 
 private:
     void Init();
-    static void loadSettings(); //静态加载设置
 
 private:
     Ui::Form_settings_Git *ui;

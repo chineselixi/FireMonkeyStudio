@@ -52,6 +52,14 @@ extern bool git_track; //git自动跟踪
 extern bool git_pushAddDate; //git添加日期
 extern bool git_outMsg; //git输出日志
 
+extern QString style_themeName; //主题名
+extern bool style_themeIsAuto; //自动更改主题
+extern QString style_font; //字体名称
+extern QString style_fontStyle; //字体样式
+extern uint32_t style_fontSize; //字体大小
+extern bool style_fontBold; //字体加粗
+extern bool style_fontItalic; //字体倾斜
+extern bool style_dailyTips; //每日一贴
 }
 
 

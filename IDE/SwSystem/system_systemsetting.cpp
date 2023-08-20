@@ -21,10 +21,12 @@ void System_systemSetting::changeSetting(QString className, QString idName, QVar
 }
 
 //获取节点值
-QVariant System_systemSetting::getSettingValue(QString className, QString idName)
+QVariant System_systemSetting::getSettingValue(QString className, QString idName,QVariant normalReturn)
 {
     //objSetting->beginGroup(className);
-    return objSetting->value("/" + className + "/" +idName);
+    QVariant t_val = objSetting->value("/" + className + "/" +idName);
+    if(t_val.isNull()) return normalReturn;
+    return t_val;
 }
 
 void System_systemSetting::removeValue(QString className, QString idName)

@@ -33,7 +33,7 @@ public:
 
     int addSetItem(QString title,QPixmap pixmap,QWidget* widget); //将Widget添加到设置项
 
-    static void changeThream(QString styleName); //改变主题
+    static void changeThream(QString styleName = "Blue"); //改变主题
 
 private slots:
     void on_pushButton_ok_clicked(); //确认按钮

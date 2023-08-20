@@ -15,6 +15,18 @@ class Form_settings_Color : public QWidget,public mod_settingsFormBase
 public:
     explicit Form_settings_Color(QWidget *parent = nullptr);
     ~Form_settings_Color();
+    static void loadSettings(); //静态加载设置
+
+    void Event_Ok() override; //确认键被按下
+    void Event_cancel() override; //取消键被按下
+    void Event_use() override; //应用键被按下
+
+
+private slots:
+
+
+private:
+    void Init(); //初始化
 
 private:
     Ui::Form_settings_Color *ui;

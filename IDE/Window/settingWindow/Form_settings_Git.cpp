@@ -55,7 +55,6 @@ void Form_settings_Git::loadSettings()
     //初始化Path
     Setting::git_path = Setting::sys_setting->getSettingValue("Git","path").toString(); //读取GitPath路径信息
     Setting::git_branch = Setting::sys_setting->getSettingValue("Git","branch").toString(); //读取branch信息
-
     Setting::git_track = Setting::sys_setting->getSettingValue("Git","track").toBool(); //自动跟踪
     Setting::git_outMsg = Setting::sys_setting->getSettingValue("Git","outMsg").toBool(); //输出信息
     Setting::git_pushAddDate = Setting::sys_setting->getSettingValue("Git","pushAddDate").toBool(); //添加日期

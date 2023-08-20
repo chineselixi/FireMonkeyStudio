@@ -15,26 +15,34 @@
 
 #include "Window/Form_ProjectManger.h"
 #include "Window/Form_WindowTab.h"
-
 #include "Window/Form_PluginManger.h""
 
 #include "Plugin/Plugin_Manger.h"
-
 
 #include "SwSystem/System_History.h"
 #include "SwSystem/system_systemsetting.h"
 #include "SwSystem/System_EnvVar.h"
 
+#include "Window/settingWindow/Form_settings_Git.h"
+#include "Window/settingWindow/Form_settings_Color.h"
+
+
 #include <QApplication>
+
+void loadSettings(); //加载设置信息
+
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //a.setFont(QFont("Consolas"));
 
+    //加载设置信息
+    loadSettings();
+
     //保存本程序对象
     Setting::sys_app = &a;
-
     QString t_execRunPath = QCoreApplication::applicationDirPath(); //获取程序的运行目录
 
     //加载工程历史配置文件
@@ -48,9 +56,6 @@ int main(int argc, char *argv[])
     //加载插件记录信息
     HistoryList::sys_pluginHistory = new System_History;
     HistoryList::sys_pluginHistory->Init(t_execRunPath + "/config/plugin.ini");
-
-    //初始化设置加载器
-    Setting::sys_setting = new System_systemSetting(t_execRunPath + "/config/systemSetting.ini");
 
     //管理器
     Manger::pluginManger = new Plugin_Manger; //加载插件管理器
@@ -84,7 +89,22 @@ int main(int argc, char *argv[])
     //wp.show();
 
 
+//    QVariant v;
+//    qDebug() << v.isNull();
+
+
 
 
     return a.exec();
 }
+
+
+//加载设置信息
+void loadSettings(){
+    //初始化设置加载器
+    Setting::sys_setting = new System_systemSetting(QCoreApplication::applicationDirPath() + "/config/systemSetting.ini");
+    Form_settings_Git::loadSettings(); //加载git设置
+    Form_settings_Color::loadSettings(); //加载颜色
+}
+
+

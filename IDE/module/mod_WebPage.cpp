@@ -22,6 +22,8 @@ mod_WebPage::mod_WebPage(QWidget *parent):QWebEngineView(parent)
 cppObject::cppObject(QWebChannel *t_channel,QWebEnginePage* t_page)
     :Channel(t_channel),Page(t_page)
 {
+    //加载主题
+    Page->runJavaScript("changeTheme('" + Setting::style_themeName + "')");
 }
 
 
@@ -39,7 +41,7 @@ void cppObject::event_onLoad()
 
 
     //加载主题
-    Page->runJavaScript("changeTheme('Dark')");
+    Page->runJavaScript("changeTheme('" + Setting::style_themeName + "')");
 }
 
 //删除单个记录

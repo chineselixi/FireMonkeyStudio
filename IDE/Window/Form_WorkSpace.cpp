@@ -8,6 +8,7 @@
 #include <QScreen>
 
 #include "SwSystem/System_GlobalVar.h"
+#include "SwSystem/system_systemsetting.h"
 #include "Plugin/Plugin_Manger.h"
 
 #include "Window/Form_New.h"
@@ -84,30 +85,20 @@ void Form_WorkSpace::init()
     this->move( t_screen.center() - this->geometry().center());
 
 
-    //=================加载主题样式表=================
-    this->setStyleSheet("");
-//    QFile t_qss(QApplication::applicationDirPath() + "/formStyle/Dark.style");
-//    t_qss.open(QFile::ReadOnly);
-//    this->setStyleSheet(t_qss.readAll());
-//    t_qss.close();
-
-
-
     //=================将编译模式选择插入到工具栏=================
     ui->toolBar->insertAction(ui->action_toolBar_compile,ui->toolBar->addWidget(ui->comboBox_compileMode));
 
     //=================设置主页显示模式=================
-    mod_WebPage* t_webPage = new mod_WebPage(this);
-    ui->widget_WindowTab->addTabWidget("主页",t_webPage,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web);  //添加到TAB
-    t_webPage->setUrl(QUrl("file:" + QApplication::applicationDirPath() + "/web/Start/index.html"));
-    t_webPage->show();
+    mod_webs = new mod_WebPage(this);
+    ui->widget_WindowTab->addTabWidget("主页",mod_webs,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web);  //添加到TAB
+    mod_webs->setUrl(QUrl("file:" + QApplication::applicationDirPath() + "/web/Start/index.html"));
+    mod_webs->show();
 
 
     //=================融合部分Dockwidget=================
     this->tabifyDockWidget(ui->dockWidget_compilePrint,ui->dockWidget_find);
     this->tabifyDockWidget(ui->dockWidget_compilePrint,ui->dockWidget_debug);
     ui->dockWidget_compilePrint->raise();
-
 
 
     //=================初始化工程管理事件=================
@@ -118,6 +109,9 @@ void Form_WorkSpace::init()
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectClose,this,&Form_WorkSpace::event_ProjectManger_onProjectClose); //工程被关闭
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onFileRename,this,&Form_WorkSpace::event_ProjectManger_onFileRename); //文件被更名
 
+
+    //=================加载主题样式表=================
+    Form_SystemSettings::changeThream(Setting::style_themeName); //加载主题
 
 
     //=================插件，函数绑定=================
@@ -473,7 +467,7 @@ void Form_WorkSpace::on_action_pluginManger_triggered()
 
 
 //关于菜单被按下
-void Form_WorkSpace::on_action_about_triggered()
+void Form_WorkSpace::on_action_menu_about_triggered()
 {
     Form_About* t_about = new Form_About;
     t_about->setAttribute(Qt::WA_ShowModal, true);
@@ -541,52 +535,11 @@ void Form_WorkSpace::on_action_toolBar_Rerun_triggered() //当项目被重新运
     this->on_action_toolBar_run_triggered(); //运行项目
 }
 
+
+
 //打开系统设置
 void Form_WorkSpace::on_action_systemSettings_triggered()
 {
-    //=================加载主题样式表=================
-    Form_SystemSettings::changeThream("Dark");
-
-    //QIcon t_ico = ui->action1->icon();
-    //QIcon::DataPtr t_dat = t_ico.data_ptr();
-
-
-
-    QFile t_themeFile(":/resFile/res/ThemeTemplate.txt");
-    t_themeFile.open(QIODevice::ReadOnly);
-    QString t_themeTemplateStr = t_themeFile.readAll();
-
-    t_themeTemplateStr.replace("${theme}","Dark");
-
-    t_themeFile.close();
-
-
-    QList<QAction*> t_al = this->findChildren<QAction*>();
-
-    for(QList<QAction*>::Iterator t_i = t_al.begin();t_i < t_al.end();t_i++){
-        if(t_themeTemplateStr,(*t_i)->objectName().isEmpty()) continue;
-
-        QString t_nor = Str::getSubStr(t_themeTemplateStr,(*t_i)->objectName() + "::Normal=","\r");
-        QString t_dis = Str::getSubStr(t_themeTemplateStr,(*t_i)->objectName() + "::Disabled=","\r");
-
-
-        qDebug() << (*t_i)->objectName();
-
-
-        QIcon t_ico = (*t_i)->icon();
-        t_ico.addFile(t_nor, QSize(), QIcon::Normal, QIcon::Off);
-        t_ico.addFile(t_dis, QSize(), QIcon::Disabled, QIcon::Off);
-        (*t_i)->setIcon(t_ico);
-    }
-
-
-
-    return;
-
-
-
-
-
     Form_SystemSettings* t_settingForm = new Form_SystemSettings(nullptr);
     t_settingForm->setWindowModality(Qt::ApplicationModal);
     t_settingForm->show();
@@ -613,3 +566,46 @@ void Form_WorkSpace::setPrintStyle(QString style)
 {
     ui->textEdit_print->setStyleSheet(style);
 }
+
+
+//设定主题
+void Form_WorkSpace::setTheme(QString themeName)
+{
+    ui->action_toolBar_blue->setChecked(false);
+    ui->action_toolBar_white->setChecked(false);
+    ui->action_toolBar_Dark->setChecked(false);
+
+    if(themeName == "White"){
+        ui->action_toolBar_white->setChecked(true);
+    }
+    else if(themeName == "Dark"){
+        ui->action_toolBar_Dark->setChecked(true);
+    }
+    else{
+        ui->action_toolBar_blue->setChecked(true);
+    }
+
+    Setting::style_themeName = themeName;
+    mod_webs->page()->runJavaScript("changeTheme('" + Setting::style_themeName + "')"); //更换web样式
+    Setting::sys_setting->changeSetting("Style","theme",Setting::style_themeName); //保存主题样式
+}
+
+
+//切换保存蓝色主题
+void Form_WorkSpace::on_action_toolBar_blue_triggered()
+{
+    Form_SystemSettings::changeThream("Blue"); //加载主题
+}
+
+//切换保存白色主题
+void Form_WorkSpace::on_action_toolBar_white_triggered()
+{
+    Form_SystemSettings::changeThream("White"); //加载主题
+}
+
+//切换保存黑色主题
+void Form_WorkSpace::on_action_toolBar_Dark_triggered()
+{
+    Form_SystemSettings::changeThream("Dark"); //加载主题
+}
+

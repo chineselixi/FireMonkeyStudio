@@ -16,7 +16,7 @@ public:
     ~System_systemSetting();
 
     void changeSetting(QString className,QString idName,QVariant value); //添加或者给改变ID
-    QVariant getSettingValue(QString className,QString idName); //获取节点值
+    QVariant getSettingValue(QString className,QString idName,QVariant normalReturn = QVariant()); //获取节点值
     void removeClass(QString className); //移除ID
     void removeValue(QString className,QString idName); //删除值
 
