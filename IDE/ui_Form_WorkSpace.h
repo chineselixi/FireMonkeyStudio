@@ -50,7 +50,7 @@ public:
     QAction *action_toolBar_Rerun;
     QAction *action_toolBar_toggleAllBreakpoints;
     QAction *action_toolBar_clearBreakpointGroup;
-    QAction *action_toolBar_find_2;
+    QAction *action_toolBar_debugFind;
     QAction *action_toolBar_stepForward;
     QAction *action_toolBar_stepOver;
     QAction *action_toolBar_stepIn;
@@ -456,13 +456,13 @@ public:
         icon18.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         icon18.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
         action_toolBar_clearBreakpointGroup->setIcon(icon18);
-        action_toolBar_find_2 = new QAction(Form_WorkSpace);
-        action_toolBar_find_2->setObjectName("action_toolBar_find_2");
-        action_toolBar_find_2->setEnabled(false);
+        action_toolBar_debugFind = new QAction(Form_WorkSpace);
+        action_toolBar_debugFind->setObjectName("action_toolBar_debugFind");
+        action_toolBar_debugFind->setEnabled(false);
         QIcon icon19;
         icon19.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/FileSystemWatcher_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         icon19.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png"), QSize(), QIcon::Disabled, QIcon::Off);
-        action_toolBar_find_2->setIcon(icon19);
+        action_toolBar_debugFind->setIcon(icon19);
         action_toolBar_stepForward = new QAction(Form_WorkSpace);
         action_toolBar_stepForward->setObjectName("action_toolBar_stepForward");
         action_toolBar_stepForward->setEnabled(false);
@@ -1189,7 +1189,7 @@ public:
         toolBar->addAction(action_toolBar_toggleAllBreakpoints);
         toolBar->addAction(action_toolBar_clearBreakpointGroup);
         toolBar->addSeparator();
-        toolBar->addAction(action_toolBar_find_2);
+        toolBar->addAction(action_toolBar_debugFind);
         toolBar->addAction(action_toolBar_stepForward);
         toolBar->addAction(action_toolBar_stepOver);
         toolBar->addAction(action_toolBar_stepIn);
@@ -1307,9 +1307,9 @@ public:
 #if QT_CONFIG(tooltip)
         action_toolBar_clearBreakpointGroup->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\346\270\205\351\231\244\346\226\255\347\202\271", nullptr));
 #endif // QT_CONFIG(tooltip)
-        action_toolBar_find_2->setText(QCoreApplication::translate("Form_WorkSpace", "\346\237\245\346\211\276", nullptr));
+        action_toolBar_debugFind->setText(QCoreApplication::translate("Form_WorkSpace", "\346\237\245\346\211\276", nullptr));
 #if QT_CONFIG(tooltip)
-        action_toolBar_find_2->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\350\260\203\350\257\225\346\237\245\346\211\276", nullptr));
+        action_toolBar_debugFind->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\350\260\203\350\257\225\346\237\245\346\211\276", nullptr));
 #endif // QT_CONFIG(tooltip)
         action_toolBar_stepForward->setText(QCoreApplication::translate("Form_WorkSpace", "\350\260\203\350\257\225\345\211\215\350\277\233", nullptr));
 #if QT_CONFIG(tooltip)

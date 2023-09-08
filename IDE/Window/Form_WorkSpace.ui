@@ -563,7 +563,7 @@ QMenu::item:disabled {/*菜单被禁用*/
    <addaction name="action_toolBar_toggleAllBreakpoints"/>
    <addaction name="action_toolBar_clearBreakpointGroup"/>
    <addaction name="separator"/>
-   <addaction name="action_toolBar_find_2"/>
+   <addaction name="action_toolBar_debugFind"/>
    <addaction name="action_toolBar_stepForward"/>
    <addaction name="action_toolBar_stepOver"/>
    <addaction name="action_toolBar_stepIn"/>
@@ -920,7 +920,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>清除断点</string>
    </property>
   </action>
-  <action name="action_toolBar_find_2">
+  <action name="action_toolBar_debugFind">
    <property name="enabled">
     <bool>false</bool>
    </property>

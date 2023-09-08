@@ -1,4 +1,4 @@
-
+﻿
 #include "plugin_gccbuild.h"
 #include "QFileInfo"
 #include "QDir"
@@ -43,8 +43,57 @@ void Plugin_GccBuild::event_onWorkSpaceFinish()
 }
 
 
+//当工具栏action被触发
+bool Plugin_GccBuild::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath, QString proLangs, QString proNoteClass)
+{
+    switch(actionType){
+    default:{return true;break;}
+    case PluginGlobalMsg::toolBarAction::run:{
+        return this->onRunDown(proPath,proLangs,proNoteClass);
+        break;
+    }
+    case PluginGlobalMsg::toolBarAction::stop:{
+        return this->onStopDown(proPath,proLangs,proNoteClass);
+        break;
+    }
+    }
+
+    return true;
+}
+
+
+
+
+
+
+//当工程被加载完毕
+bool Plugin_GccBuild::event_onPorjectLoad(QString proPath, QString proLangs, QString proNoteClass)
+{
+    proLangs = proLangs.toLower();
+    if(proLangs.indexOf("c++") != -1 || proLangs.indexOf("cpp") != -1){
+        WorkSpace_ToolBar_setActionEnable(PluginGlobalMsg::toolBarAction::run,true); //运行按钮状态
+        WorkSpace_ToolBar_setActionEnable(PluginGlobalMsg::toolBarAction::stop,false); //停止按钮状态
+        WorkSpace_ToolBar_setActionEnable(PluginGlobalMsg::toolBarAction::Rerun,false); //重新运行按钮状态
+        return false; //阻断消息传递
+    }
+    return true;
+}
+
+
+
+//当编译模式被改变
+bool Plugin_GccBuild::event_onCompileTypeChanged(PluginGlobalMsg::compileType type)
+{
+    thisCompileType = type; //记录编译模式的改变
+    return true;
+}
+
+
+
+
+
 //当运行按钮被按下
-bool Plugin_GccBuild::event_onRunDown(QString proPath, QString proLangs, QString proNoteClass)
+bool Plugin_GccBuild::onRunDown(QString proPath, QString proLangs, QString proNoteClass)
 {
     proLangs = proLangs.toLower();
     if(proLangs.indexOf("c++") != -1 || proLangs.indexOf("cpp") != -1){
@@ -90,31 +139,11 @@ bool Plugin_GccBuild::event_onRunDown(QString proPath, QString proLangs, QString
 
 
 //当停止按钮被按下
-bool Plugin_GccBuild::event_onStopDown(QString proPath, QString proLangs, QString proNoteClass)
+bool Plugin_GccBuild::onStopDown(QString proPath, QString proLangs, QString proNoteClass)
 {
     return false;
 }
 
 
-//当工程被加载完毕
-bool Plugin_GccBuild::event_onPorjectLoad(QString proPath, QString proLangs, QString proNoteClass)
-{
-    proLangs = proLangs.toLower();
-    if(proLangs.indexOf("c++") != -1 || proLangs.indexOf("cpp") != -1){
-        WorkSpace_Action_setEnable(PluginGlobalMsg::ActionType::run,true); //运行按钮状态
-        WorkSpace_Action_setEnable(PluginGlobalMsg::ActionType::stop,false); //停止按钮状态
-        WorkSpace_Action_setEnable(PluginGlobalMsg::ActionType::rerun,false); //重新运行按钮状态
-        return false; //阻断消息传递
-    }
-    return true;
-}
 
-
-
-//当编译模式被改变
-bool Plugin_GccBuild::event_onCompileTypeChanged(PluginGlobalMsg::compileType type)
-{
-    thisCompileType = type; //记录编译模式的改变
-    return true;
-}
 

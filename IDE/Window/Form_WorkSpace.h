@@ -1,4 +1,4 @@
-#ifndef FORM_WORKSPACE_H
+﻿#ifndef FORM_WORKSPACE_H
 #define FORM_WORKSPACE_H
 
 #include <QMainWindow>
@@ -63,16 +63,16 @@ private slots:
     void on_action_menu_stop_triggered();
     void on_action_menu_Rerun_triggered();
 
-    void on_action_toolBar_run_triggered();//工具栏事件
-    void on_action_toolBar_Rerun_triggered();
-    void on_action_toolBar_stop_triggered();
+//    void on_action_toolBar_run_triggered();//工具栏事件
+//    void on_action_toolBar_Rerun_triggered();
+//    void on_action_toolBar_stop_triggered();
 
     void on_action_systemSettings_triggered(); //打开系统设置
-
 
     void on_action_toolBar_blue_triggered(); //更改蓝色主题
     void on_action_toolBar_white_triggered(); //更改白色主题
     void on_action_toolBar_Dark_triggered(); //更改黑色主题
+
 
 private:
     Ui::Form_WorkSpace *ui;

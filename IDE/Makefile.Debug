@@ -11542,6 +11542,10 @@ debug\Form_WorkSpace.obj: Window\Form_WorkSpace.cpp Window\Form_WorkSpace.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QString \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QVector \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qvector.h \
+		SwSystem\system_systemsetting.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\QSettings \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\qsettings.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\QFile \
 		Plugin\Plugin_Manger.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QLibrary \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qlibrary.h \
@@ -11929,7 +11933,29 @@ debug\Form_settings_Color.obj: Window\settingWindow\Form_settings_Color.cpp Wind
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qsettings.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QFile \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qfile.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtCore\qfiledevice.h
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\qfiledevice.h \
+		Window\Form_SystemSettings.h \
+		Widget\Widget_Button_WidgetItem.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QListWidgetItem \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qlistwidget.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qlistview.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractitemview.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qframe.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qstyleoption.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\qlocale.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtGui\qvalidator.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\qregularexpression.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qslider.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractslider.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qstyle.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtabbar.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qrubberband.h
 
 debug\Form_settings_Compile.obj: Window\settingWindow\Form_settings_Compile.cpp Window\settingWindow\Form_settings_Compile.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QWidget \

@@ -1,4 +1,4 @@
-#include "Form_WorkSpace.h"
+﻿#include "Form_WorkSpace.h"
 #include "ui_Form_WorkSpace.h"
 
 
@@ -189,21 +189,48 @@ void Form_WorkSpace::init()
 //        });
 
 
-    //初始化action设置接口
-    Manger::pluginManger->workSpace_init_actionEnable([this](PluginGlobalMsg::ActionType actionType,bool enable){
-        QAction* t_act = nullptr;
-        switch(actionType){
-        default:break;
-        case PluginGlobalMsg::ActionType::run:{t_act = this->ui->action_menu_run;break;}
-        case PluginGlobalMsg::ActionType::stop:{t_act = this->ui->action_menu_stop;break;}
-        case PluginGlobalMsg::ActionType::rerun:{t_act = this->ui->action_menu_Rerun;break;}
-        case PluginGlobalMsg::ActionType::compile_normal:{t_act = this->ui->action_menu_compile;break;}
-        case PluginGlobalMsg::ActionType::compile_static:{t_act = this->ui->action_menu_staticCompile;break;}
-        case PluginGlobalMsg::ActionType::compile_online:{t_act = this->ui->action_toolBar_onlineCompile;break;}
-        }
-        if(t_act == nullptr) return;
-        t_act->setEnabled(enable);
-    });
+
+
+    //同步菜单与工具栏的enable
+    Manger::pluginManger->workSpace_init_toolBarActionEnable(
+        [this](PluginGlobalMsg::toolBarAction actionType,bool isEnable){ //设定工具栏的Action启用与关闭
+            QAction* t_toolBarAction = nullptr;
+            switch(actionType){
+            case  PluginGlobalMsg::toolBarAction::cut:{t_toolBarAction = this->ui->action_toolBar_cut;break;}//剪切
+            case  PluginGlobalMsg::toolBarAction::copy:{t_toolBarAction = this->ui->action_toolBar_copy;break;}//复制
+            case  PluginGlobalMsg::toolBarAction::paste:{t_toolBarAction = this->ui->action_toolBar_paste;break;}//粘贴
+            case  PluginGlobalMsg::toolBarAction::undo:{t_toolBarAction = this->ui->action_toolBar_undo;break;}//撤销
+            case  PluginGlobalMsg::toolBarAction::redo:{t_toolBarAction = this->ui->action_toolBar_redo;break;}//重做
+            case  PluginGlobalMsg::toolBarAction::compile:{t_toolBarAction = this->ui->action_toolBar_compile;break;}//编译
+            case  PluginGlobalMsg::toolBarAction::staticCompile:{t_toolBarAction = this->ui->action_toolBar_staticCompile;break;}//静态编译
+            case  PluginGlobalMsg::toolBarAction::onlineCompile:{t_toolBarAction = this->ui->action_toolBar_onlineCompile;break;}//在线编译
+            case  PluginGlobalMsg::toolBarAction::find:{t_toolBarAction = this->ui->action_toolBar_find;break;}//查找
+            case  PluginGlobalMsg::toolBarAction::run:{t_toolBarAction = this->ui->action_toolBar_run;break;}//运行
+            case  PluginGlobalMsg::toolBarAction::stop:{t_toolBarAction = this->ui->action_toolBar_stop;break;}//停止运行
+            case  PluginGlobalMsg::toolBarAction::Rerun:{t_toolBarAction = this->ui->action_toolBar_Rerun;break;}//重新运行
+            case  PluginGlobalMsg::toolBarAction::toggleAllBreakpoints:{t_toolBarAction = this->ui->action_toolBar_toggleAllBreakpoints;break;}//切换所有断点
+            case  PluginGlobalMsg::toolBarAction::clearBreakpointGroup:{t_toolBarAction = this->ui->action_toolBar_clearBreakpointGroup;break;}//清除断点
+            case  PluginGlobalMsg::toolBarAction::debugFind:{t_toolBarAction = this->ui->action_toolBar_debugFind;break;}//调试查找
+            case  PluginGlobalMsg::toolBarAction::stepForward:{t_toolBarAction = this->ui->action_toolBar_stepForward;break;}//调试前进
+            case  PluginGlobalMsg::toolBarAction::stepOver:{t_toolBarAction = this->ui->action_toolBar_stepOver;break;}//调试跳过
+            case  PluginGlobalMsg::toolBarAction::stepIn:{t_toolBarAction = this->ui->action_toolBar_stepIn;break;}//调试进入
+            case  PluginGlobalMsg::toolBarAction::stepOut:{t_toolBarAction = this->ui->action_toolBar_stepOut;break;}//调试跳出
+            case  PluginGlobalMsg::toolBarAction::toolTip:{t_toolBarAction = this->ui->action_toolBar_toolTip;break;}//工具提示
+            case  PluginGlobalMsg::toolBarAction::bookmark:{t_toolBarAction = this->ui->action_toolBar_bookmark;break;}//书签
+            case  PluginGlobalMsg::toolBarAction::previousBookmark:{t_toolBarAction = this->ui->action_toolBar_previousBookmark;break;}//上一个书签
+            case  PluginGlobalMsg::toolBarAction::nextBookmark:{t_toolBarAction = this->ui->action_toolBar_nextBookmark;break;}//下一个书签
+            case  PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem:{t_toolBarAction = this->ui->action_toolBar_bookmarkMainMenuTabitem;break;}//书签主菜单
+            case  PluginGlobalMsg::toolBarAction::property:{t_toolBarAction = this->ui->action_toolBar_property;break;}//资产
+            default:{t_toolBarAction = nullptr;break;}
+            }
+            if(t_toolBarAction != nullptr) t_toolBarAction->setEnabled(isEnable);
+        },
+        [this](){ //关闭ToolBar的所有子Action
+            QObjectList t_actionList = ui->toolBar->children();
+            for(QObjectList::iterator i = t_actionList.begin(); i < t_actionList.end(); i++){
+                ((QAction*)(*i))->setEnabled(false);
+            }
+        });
 
 
     //初始化内容输出接口
@@ -233,6 +260,122 @@ void Form_WorkSpace::init()
         [this](QDockWidget* dockWidget){
             this->removeDockWidget(dockWidget);
         });
+
+
+
+    //绑定工具栏与菜单栏按钮的触发事件和启用事件
+    std::function<void(bool)> t_fun = nullptr;
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::cut,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_cut,&QAction::triggered,t_fun);
+    connect(this->ui->action_editor_cut,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_cut,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_editor_cut->setEnabled(isEnable);});
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::copy,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_copy,&QAction::triggered,t_fun);
+    connect(this->ui->action_editor_copy,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_copy,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_editor_copy->setEnabled(isEnable);});//复制
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::paste,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_paste,&QAction::triggered,t_fun);
+    connect(this->ui->action_editor_paste,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_paste,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_editor_paste->setEnabled(isEnable);});//粘贴
+
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::undo,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_undo,&QAction::triggered,t_fun);
+    connect(this->ui->action_editor_undo,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_undo,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_editor_undo->setEnabled(isEnable);});//撤销
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::redo,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_redo,&QAction::triggered,t_fun);
+    connect(this->ui->action_editor_redo,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_redo,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_editor_redo->setEnabled(isEnable);});//重做
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::compile,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_compile,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_compile,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_compile,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_compile->setEnabled(isEnable);});//编译
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::staticCompile,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_staticCompile,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_staticCompile,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_staticCompile,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_staticCompile->setEnabled(isEnable);});//静态编译
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::onlineCompile,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_onlineCompile,&QAction::triggered,t_fun);
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::find,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_find,&QAction::triggered,t_fun);
+    connect(this->ui->action_editor_quickFind,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_find,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_editor_quickFind->setEnabled(isEnable);});//查找
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::run,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_run,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_run,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_run,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_run->setEnabled(isEnable);});//运行
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::stop,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_stop,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_stop,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_stop,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_stop->setEnabled(isEnable);});//停止运行
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::Rerun,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_Rerun,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_Rerun,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_Rerun,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_Rerun->setEnabled(isEnable);});//重新运行
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::toggleAllBreakpoints,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_toggleAllBreakpoints,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_toggleAllBreakpoints,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_toggleAllBreakpoints,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_toggleAllBreakpoints->setEnabled(isEnable);});//切换所有断点
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::clearBreakpointGroup,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_clearBreakpointGroup,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_clearBreakpointGroup,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_clearBreakpointGroup,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_clearBreakpointGroup->setEnabled(isEnable);});//清除断点
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::debugFind,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_debugFind,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_fileSystemWatcher,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_debugFind,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_fileSystemWatcher->setEnabled(isEnable);});//调试查找
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::stepForward,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_stepForward,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_stepForward,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_stepForward,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_stepForward->setEnabled(isEnable);});//调试前进
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::stepOver,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_stepOver,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_stepOver,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_stepOver,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_stepOver->setEnabled(isEnable);});//调试跳过
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::stepIn,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_stepIn,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_stepIn,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_stepIn,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_stepIn->setEnabled(isEnable);});//调试进入
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::stepOut,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_stepOut,&QAction::triggered,t_fun);
+    connect(this->ui->action_menu_stepOut,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_stepOut,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_stepOut->setEnabled(isEnable);});//调试跳出
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::toolTip,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_toolTip,&QAction::triggered,t_fun);
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::bookmark,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_bookmark,&QAction::triggered,t_fun);
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::previousBookmark,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_previousBookmark,&QAction::triggered,t_fun);
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::nextBookmark,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_nextBookmark,&QAction::triggered,t_fun);
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_bookmarkMainMenuTabitem,&QAction::triggered,t_fun);
+
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::property,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_property,&QAction::triggered,t_fun);
 
 }
 
@@ -499,41 +642,53 @@ void Form_WorkSpace::on_action_menu_staticCompile_enabledChanged(bool enabled){u
 //菜单栏任务绑定
 void Form_WorkSpace::on_action_menu_run_triggered()
 {
-    this->on_action_toolBar_run_triggered();
+    Manger::pluginManger->event_onToolBarActionTriggered(
+        PluginGlobalMsg::toolBarAction::run,
+        this->project_path,
+        this->project_lang,
+        this->project_noteClass);
 }
 
 void Form_WorkSpace::on_action_menu_stop_triggered()
 {
-    this->on_action_toolBar_stop_triggered();
+    Manger::pluginManger->event_onToolBarActionTriggered(
+        PluginGlobalMsg::toolBarAction::stop,
+        this->project_path,
+        this->project_lang,
+        this->project_noteClass);
 }
 
 void Form_WorkSpace::on_action_menu_Rerun_triggered()
 {
-    this->on_action_toolBar_Rerun_triggered();
+    Manger::pluginManger->event_onToolBarActionTriggered(
+        PluginGlobalMsg::toolBarAction::Rerun,
+        this->project_path,
+        this->project_lang,
+        this->project_noteClass);
 }
 
 
-//工具栏任务绑定
-void Form_WorkSpace::on_action_toolBar_run_triggered() //当项目被运行
-{
-    if(!this->project_path.isEmpty()){
-        Manger::pluginManger->event_onRunDown(this->project_path,this->project_lang,this->project_noteClass);
-    }
-}
+////工具栏任务绑定
+//void Form_WorkSpace::on_action_toolBar_run_triggered() //当项目被运行
+//{
+//    if(!this->project_path.isEmpty()){
+//        Manger::pluginManger->event_onRunDown(this->project_path,this->project_lang,this->project_noteClass);
+//    }
+//}
 
 
-void Form_WorkSpace::on_action_toolBar_stop_triggered() //当项目被停止
-{
-    if(!this->project_path.isEmpty()){
-        Manger::pluginManger->event_onRunDown(this->project_path,this->project_lang,this->project_noteClass);
-    }
-}
+//void Form_WorkSpace::on_action_toolBar_stop_triggered() //当项目被停止
+//{
+//    if(!this->project_path.isEmpty()){
+//        Manger::pluginManger->event_onRunDown(this->project_path,this->project_lang,this->project_noteClass);
+//    }
+//}
 
-void Form_WorkSpace::on_action_toolBar_Rerun_triggered() //当项目被重新运行
-{
-    this->on_action_toolBar_stop_triggered(); //关闭项目
-    this->on_action_toolBar_run_triggered(); //运行项目
-}
+//void Form_WorkSpace::on_action_toolBar_Rerun_triggered() //当项目被重新运行
+//{
+//    this->on_action_toolBar_stop_triggered(); //关闭项目
+//    this->on_action_toolBar_run_triggered(); //运行项目
+//}
 
 
 
@@ -608,4 +763,5 @@ void Form_WorkSpace::on_action_toolBar_Dark_triggered()
 {
     Form_SystemSettings::changeThream("Dark"); //加载主题
 }
+
 

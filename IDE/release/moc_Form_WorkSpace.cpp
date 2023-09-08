@@ -67,9 +67,6 @@ static constexpr auto qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS = QtMocHelp
     "on_action_menu_run_triggered",
     "on_action_menu_stop_triggered",
     "on_action_menu_Rerun_triggered",
-    "on_action_toolBar_run_triggered",
-    "on_action_toolBar_Rerun_triggered",
-    "on_action_toolBar_stop_triggered",
     "on_action_systemSettings_triggered",
     "on_action_toolBar_blue_triggered",
     "on_action_toolBar_white_triggered",
@@ -77,7 +74,7 @@ static constexpr auto qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS = QtMocHelp
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t {
-    uint offsetsAndSizes[72];
+    uint offsetsAndSizes[66];
     char stringdata0[15];
     char stringdata1[35];
     char stringdata2[1];
@@ -107,13 +104,10 @@ struct qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t {
     char stringdata26[29];
     char stringdata27[30];
     char stringdata28[31];
-    char stringdata29[32];
-    char stringdata30[34];
-    char stringdata31[33];
-    char stringdata32[35];
-    char stringdata33[33];
-    char stringdata34[34];
-    char stringdata35[33];
+    char stringdata29[35];
+    char stringdata30[33];
+    char stringdata31[34];
+    char stringdata32[33];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -148,13 +142,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t qt_met
         QT_MOC_LITERAL(774, 28),  // "on_action_menu_run_triggered"
         QT_MOC_LITERAL(803, 29),  // "on_action_menu_stop_triggered"
         QT_MOC_LITERAL(833, 30),  // "on_action_menu_Rerun_triggered"
-        QT_MOC_LITERAL(864, 31),  // "on_action_toolBar_run_triggered"
-        QT_MOC_LITERAL(896, 33),  // "on_action_toolBar_Rerun_trigg..."
-        QT_MOC_LITERAL(930, 32),  // "on_action_toolBar_stop_triggered"
-        QT_MOC_LITERAL(963, 34),  // "on_action_systemSettings_trig..."
-        QT_MOC_LITERAL(998, 32),  // "on_action_toolBar_blue_triggered"
-        QT_MOC_LITERAL(1031, 33),  // "on_action_toolBar_white_trigg..."
-        QT_MOC_LITERAL(1065, 32)   // "on_action_toolBar_Dark_triggered"
+        QT_MOC_LITERAL(864, 34),  // "on_action_systemSettings_trig..."
+        QT_MOC_LITERAL(899, 32),  // "on_action_toolBar_blue_triggered"
+        QT_MOC_LITERAL(932, 33),  // "on_action_toolBar_white_trigg..."
+        QT_MOC_LITERAL(966, 32)   // "on_action_toolBar_Dark_triggered"
     },
     "Form_WorkSpace",
     "on_action_file_newCreate_triggered",
@@ -185,9 +176,6 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t qt_met
     "on_action_menu_run_triggered",
     "on_action_menu_stop_triggered",
     "on_action_menu_Rerun_triggered",
-    "on_action_toolBar_run_triggered",
-    "on_action_toolBar_Rerun_triggered",
-    "on_action_toolBar_stop_triggered",
     "on_action_systemSettings_triggered",
     "on_action_toolBar_blue_triggered",
     "on_action_toolBar_white_triggered",
@@ -203,7 +191,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      30,   14, // methods
+      27,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -211,36 +199,33 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  194,    2, 0x08,    1 /* Private */,
-       3,    0,  195,    2, 0x08,    2 /* Private */,
-       4,    1,  196,    2, 0x08,    3 /* Private */,
-       6,    1,  199,    2, 0x08,    5 /* Private */,
-       7,    1,  202,    2, 0x08,    7 /* Private */,
-       8,    0,  205,    2, 0x08,    9 /* Private */,
-       9,    0,  206,    2, 0x08,   10 /* Private */,
-      10,    1,  207,    2, 0x08,   11 /* Private */,
-      11,    1,  210,    2, 0x08,   13 /* Private */,
-      12,    1,  213,    2, 0x08,   15 /* Private */,
-      14,    1,  216,    2, 0x08,   17 /* Private */,
-      15,    1,  219,    2, 0x08,   19 /* Private */,
-      16,    1,  222,    2, 0x08,   21 /* Private */,
-      17,    1,  225,    2, 0x08,   23 /* Private */,
-      18,    1,  228,    2, 0x08,   25 /* Private */,
-      20,    1,  231,    2, 0x08,   27 /* Private */,
-      22,    1,  234,    2, 0x08,   29 /* Private */,
-      23,    1,  237,    2, 0x08,   31 /* Private */,
-      24,    1,  240,    2, 0x08,   33 /* Private */,
-      25,    1,  243,    2, 0x08,   35 /* Private */,
-      26,    0,  246,    2, 0x08,   37 /* Private */,
-      27,    0,  247,    2, 0x08,   38 /* Private */,
-      28,    0,  248,    2, 0x08,   39 /* Private */,
-      29,    0,  249,    2, 0x08,   40 /* Private */,
-      30,    0,  250,    2, 0x08,   41 /* Private */,
-      31,    0,  251,    2, 0x08,   42 /* Private */,
-      32,    0,  252,    2, 0x08,   43 /* Private */,
-      33,    0,  253,    2, 0x08,   44 /* Private */,
-      34,    0,  254,    2, 0x08,   45 /* Private */,
-      35,    0,  255,    2, 0x08,   46 /* Private */,
+       1,    0,  176,    2, 0x08,    1 /* Private */,
+       3,    0,  177,    2, 0x08,    2 /* Private */,
+       4,    1,  178,    2, 0x08,    3 /* Private */,
+       6,    1,  181,    2, 0x08,    5 /* Private */,
+       7,    1,  184,    2, 0x08,    7 /* Private */,
+       8,    0,  187,    2, 0x08,    9 /* Private */,
+       9,    0,  188,    2, 0x08,   10 /* Private */,
+      10,    1,  189,    2, 0x08,   11 /* Private */,
+      11,    1,  192,    2, 0x08,   13 /* Private */,
+      12,    1,  195,    2, 0x08,   15 /* Private */,
+      14,    1,  198,    2, 0x08,   17 /* Private */,
+      15,    1,  201,    2, 0x08,   19 /* Private */,
+      16,    1,  204,    2, 0x08,   21 /* Private */,
+      17,    1,  207,    2, 0x08,   23 /* Private */,
+      18,    1,  210,    2, 0x08,   25 /* Private */,
+      20,    1,  213,    2, 0x08,   27 /* Private */,
+      22,    1,  216,    2, 0x08,   29 /* Private */,
+      23,    1,  219,    2, 0x08,   31 /* Private */,
+      24,    1,  222,    2, 0x08,   33 /* Private */,
+      25,    1,  225,    2, 0x08,   35 /* Private */,
+      26,    0,  228,    2, 0x08,   37 /* Private */,
+      27,    0,  229,    2, 0x08,   38 /* Private */,
+      28,    0,  230,    2, 0x08,   39 /* Private */,
+      29,    0,  231,    2, 0x08,   40 /* Private */,
+      30,    0,  232,    2, 0x08,   41 /* Private */,
+      31,    0,  233,    2, 0x08,   42 /* Private */,
+      32,    0,  234,    2, 0x08,   43 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -263,9 +248,6 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
     QMetaType::Void, QMetaType::Bool,   21,
     QMetaType::Void, QMetaType::Bool,   21,
     QMetaType::Void, QMetaType::Bool,   21,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -348,12 +330,6 @@ Q_CONSTINIT const QMetaObject Form_WorkSpace::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_action_menu_Rerun_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_action_toolBar_run_triggered'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_action_toolBar_Rerun_triggered'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_action_toolBar_stop_triggered'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_action_systemSettings_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_action_toolBar_blue_triggered'
@@ -395,13 +371,10 @@ void Form_WorkSpace::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 20: _t->on_action_menu_run_triggered(); break;
         case 21: _t->on_action_menu_stop_triggered(); break;
         case 22: _t->on_action_menu_Rerun_triggered(); break;
-        case 23: _t->on_action_toolBar_run_triggered(); break;
-        case 24: _t->on_action_toolBar_Rerun_triggered(); break;
-        case 25: _t->on_action_toolBar_stop_triggered(); break;
-        case 26: _t->on_action_systemSettings_triggered(); break;
-        case 27: _t->on_action_toolBar_blue_triggered(); break;
-        case 28: _t->on_action_toolBar_white_triggered(); break;
-        case 29: _t->on_action_toolBar_Dark_triggered(); break;
+        case 23: _t->on_action_systemSettings_triggered(); break;
+        case 24: _t->on_action_toolBar_blue_triggered(); break;
+        case 25: _t->on_action_toolBar_white_triggered(); break;
+        case 26: _t->on_action_toolBar_Dark_triggered(); break;
         default: ;
         }
     }
@@ -426,13 +399,13 @@ int Form_WorkSpace::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 30)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 30;
+        _id -= 27;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 30)
+        if (_id < 27)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 30;
+        _id -= 27;
     }
     return _id;
 }

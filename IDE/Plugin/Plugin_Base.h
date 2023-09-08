@@ -1,4 +1,4 @@
-
+﻿
 #ifndef PLUGIN_BASE_H
 #define PLUGIN_BASE_H
 
@@ -43,11 +43,12 @@ public:
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_Project = nullptr;//添加菜单到工程
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_NewFile = nullptr;//添加菜单到新建文件
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_ProNormal = nullptr;//添加菜单到工程普通文件菜单
-    PluginGlobalMsg::menuFun WorkSpace_Mneu_UnityStyle_SelectAction = nullptr; //设置菜单选择Action的样式，在initPlugin方法里面就完成初始化
+    //PluginGlobalMsg::menuFun WorkSpace_Mneu_UnityStyle_SelectAction = nullptr; //设置菜单选择Action的样式，在initPlugin方法里面就完成初始化
 
 
     //设置ACtion的启用
-    PluginGlobalMsg::workSpace_Action_setEnableFun WorkSpace_Action_setEnable = nullptr; //设置Action是否可用
+    PluginGlobalMsg::toolBar_action_setEnable WorkSpace_ToolBar_setActionEnable = nullptr; //设置ToolBar的Action启动禁止
+    PluginGlobalMsg::fun_void WorkSpace_ToolBar_closeAllAction = nullptr; //关闭所有的toolbar的Action
 
 
     //设置打印接口
@@ -60,6 +61,10 @@ public:
 
     //选项卡添加窗口接口
     PluginGlobalMsg::addTabViewPth WorkSpace_addTabWindow = nullptr; //添加窗口到Tab
+
+
+    //设置
+
 
 
 //    //代码编辑器
@@ -94,8 +99,14 @@ public: //(可阻拦事件)事件触发，返回true则继续触发其他插件�
     virtual bool event_onFileOpen(QString filePath){return true;}; //当文件被打开，注意：仅限于IDE无法打开之外的文件才激发此事件
     virtual bool event_onFileOpenFinish(QString filePath){return true;}; //当前文件已经被打开，所有的文件被打开都会激发此事件
     virtual bool event_onFileClose(QString filePath){return true;}; //当前文件被删除或者关闭之前就发送的信息
-    virtual bool event_onRunDown(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当运行按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
-    virtual bool event_onStopDown(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当停止按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
+
+
+
+    virtual bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass){return true;};//当工具栏内部按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
+
+
+//    virtual bool event_onRunDown(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当运行按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
+//    virtual bool event_onStopDown(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当停止按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
     virtual bool event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 
 

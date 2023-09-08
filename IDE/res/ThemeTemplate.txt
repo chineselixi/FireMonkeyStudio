@@ -1,4 +1,4 @@
-action_toolBar_backward::Normal=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/Backward_16x.png
+﻿action_toolBar_backward::Normal=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/Backward_16x.png
 action_toolBar_backward::Disabled=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/displayIcon/Backward_16x.png
 action_toolBar_forward::Normal=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/Forward_16x.png
 action_toolBar_forward::Disabled=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/displayIcon/Forward_16x.png
@@ -36,8 +36,8 @@ action_toolBar_toggleAllBreakpoints::Normal=:/Theme/${theme}/icon/Theme/${theme}
 action_toolBar_toggleAllBreakpoints::Disabled=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/displayIcon/ToggleAllBreakpoints_16x.png
 action_toolBar_clearBreakpointGroup::Normal=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/ClearBreakpointGroup_16x.png
 action_toolBar_clearBreakpointGroup::Disabled=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/displayIcon/ClearBreakpointGroup_16x.png
-action_toolBar_find_2::Normal=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/FileSystemWatcher_16x.png
-action_toolBar_find_2::Disabled=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png
+action_toolBar_debugFind::Normal=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/FileSystemWatcher_16x.png
+action_toolBar_debugFind::Disabled=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/displayIcon/FileSystemWatcher_16x.png
 action_toolBar_stepForward::Normal=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/StepForward_16x.png
 action_toolBar_stepForward::Disabled=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/displayIcon/StepForward_16x.png
 action_toolBar_stepOver::Normal=:/Theme/${theme}/icon/Theme/${theme}/Image/ToolBar/Btn/StepOver_16x.png

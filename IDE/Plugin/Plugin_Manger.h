@@ -1,4 +1,4 @@
-
+﻿
 #ifndef PLUGIN_MANGER_H
 #define PLUGIN_MANGER_H
 
@@ -72,7 +72,10 @@ public:
     void workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth);//添加workSpace的tabView接口
 //    void workSpace_init_codeEditor(PluginGlobalMsg::editorFun_create createPth,PluginGlobalMsg::editorFun_addKetWord addWordPth,
 //                                   PluginGlobalMsg::editorFun_getStr getStrPth,PluginGlobalMsg::editorFun_addStr addStrPth); //添加workSpace的代码编辑器接口
-    void workSpace_init_actionEnable(PluginGlobalMsg::workSpace_Action_setEnableFun enableFun); //初始化设置action的启用接口
+    void workSpace_init_toolBarActionEnable(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr); //设置工具栏内控件的启用与关闭
+
+    //void workSpace_init_toolBarBind();//将工具栏按钮与菜单绑定，按下与禁用时间绑定
+
 
     void workSpace_init_tipPrint(PluginGlobalMsg::printFun_printList fun_printList,PluginGlobalMsg::printFun_printTextSpace fun_printText,
                                  PluginGlobalMsg::printFun_printTextSpace fun_printTextLine,PluginGlobalMsg::printFun_clear fun_clearPrintList,
@@ -95,8 +98,7 @@ public:
     void event_onWorkSpaceFinish(); //工作空间创建完毕事件，此事件不可阻止，，但是可以阻塞，将为每一个插件提供事件响应
     void event_onWorkSpaceClose();  //工作空间正在被关闭，不可被阻止，但是可以阻塞，将为每一个插件提供事件响应
 
-    void event_onRunDown(QString proPath,QString proLangs,QString proNoteClass); //当运行按钮被按下
-    void event_onStopDown(QString proPath,QString proLangs,QString proNoteClass); //当通知按钮被按下
+    void event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass); //当工具栏的Action被触发
 };
 
 

@@ -1,4 +1,4 @@
-
+﻿
 #ifndef PLUGIN_GLOBAL_H
 #define PLUGIN_GLOBAL_H
 
@@ -24,16 +24,6 @@ enum compileType{
 };
 
 
-//Action类型
-enum ActionType{
-    run = 0, //运行
-    stop = 1, //停止
-    rerun = 2, //重新运行
-    compile_normal = 3,//默认编译
-    compile_static = 4,//静态编译
-    compile_online = 5,//在线编译
-};
-
 
 //输出的Ico
 enum printIcoType{
@@ -43,12 +33,44 @@ enum printIcoType{
     warning = 3
 };
 
+//工具栏Action对象类型
+enum toolBarAction{
+    cut, //剪切
+    copy, //复制
+    paste, //粘贴
+    undo, //撤销
+    redo, //重做
+    compile, //编译
+    staticCompile, //静态编译
+    onlineCompile, //在线编译
+    find, //查找
+    run, //运行
+    stop, //停止运行
+    Rerun, //重新运行
+    toggleAllBreakpoints, //切换所有断点
+    clearBreakpointGroup, //清除断点
+    debugFind, //调试查找
+    stepForward, //调试前进
+    stepOver, //调试跳过
+    stepIn, //调试进入
+    stepOut, //调试跳出
+    toolTip, //工具提示
+    bookmark, //书签
+    previousBookmark, //上一个书签
+    nextBookmark, //下一个书签
+    bookmarkMainMenuTabitem, //书签主菜单
+    property, //资产
+};
+
+
+//默认基础函数类型
+typedef std::function<void()> fun_void; //基础函数类型，空返回
 
 
 //函数指针类型
 typedef std::function<void(QAction* act)> menuFun;  //添加菜单到menu
 typedef std::function<void(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)> addTabViewPth; //添加TabView函数指针类型
-typedef std::function<void(ActionType actionType,bool enable)> workSpace_Action_setEnableFun; //设置Action启用函数
+//typedef std::function<void(ActionType actionType,bool enable)> workSpace_Action_setEnableFun; //设置Action启用函数
 
 //代码编辑器函数类型
 typedef std::function<QWidget*(std::function<void(QString leftText,QString rightText,QString lineText,QWidget* codeEditor)> onTipEventFun)> editorFun_create; //创建QWidget函数指针,其中参数包含代码编辑器的提示事件
@@ -67,6 +89,10 @@ typedef std::function<QString(QString pluginSign,QString pustMsg)> pluginFun_pos
 //Dock操作
 typedef std::function<void(Qt::DockWidgetArea area,QDockWidget* dockWidget)> dockWidgetFun_add;//添加Dock
 typedef std::function<void(QDockWidget* dockWidget)> dockWidgetFun_rm;//添加Dock
+
+//ToolBar操作
+typedef std::function<void(toolBarAction actionType,bool isEnable)> toolBar_action_setEnable; //设置工具栏的action是否启用
+
 
 }
 

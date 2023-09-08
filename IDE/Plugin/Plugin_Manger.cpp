@@ -1,4 +1,4 @@
-
+﻿
 #include "Plugin_Manger.h"
 
 #include "QDir"
@@ -168,14 +168,18 @@ void Plugin_Manger::workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth)
 
 
 
-//初始化设置action的启用接口
-void Plugin_Manger::workSpace_init_actionEnable(PluginGlobalMsg::workSpace_Action_setEnableFun enableFun)
+//设置工具栏内控件的启用与关闭
+void Plugin_Manger::workSpace_init_toolBarActionEnable(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-        List_plg[a].plgPth->WorkSpace_Action_setEnable = enableFun;
+        List_plg[a].plgPth->WorkSpace_ToolBar_setActionEnable = toolBar_setActionEnableFunPtr;
+        List_plg[a].plgPth->WorkSpace_ToolBar_closeAllAction = toolBar_clearAllActionFunPtr;
     }
 }
+
+
+
 
 
 //初始化提示输出接口
@@ -322,26 +326,19 @@ void Plugin_Manger::event_onWorkSpaceClose()
     }
 }
 
-//当运行按钮被按下
-void Plugin_Manger::event_onRunDown(QString proPath, QString proLangs,QString proNoteClass)
+
+
+ //当工具栏的Action被触发
+void Plugin_Manger::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath, QString proLangs, QString proNoteClass)
 {
     for(int a = 0;a < List_plg.length();a++){
-        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-        if(List_plg[a].plgPth->event_onRunDown(proPath,proLangs,proNoteClass) == false){
-            break;
+        if(List_plg[a].plgPth != nullptr){ //只对加载的插件进行绑定
+            if(List_plg[a].plgPth->event_onToolBarActionTriggered(actionType,proPath,proLangs,proNoteClass) == false){
+                break;
+            }
         }
     }
 }
 
-//当停止按钮被按下
-void Plugin_Manger::event_onStopDown(QString proPath, QString proLangs,QString proNoteClass)
-{
-    for(int a = 0;a < List_plg.length();a++){
-        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-        if(List_plg[a].plgPth->event_onStopDown(proPath,proLangs,proNoteClass) == false){
-            break;
-        }
-    }
-}
 
 
