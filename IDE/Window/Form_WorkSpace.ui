@@ -173,6 +173,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     </property>
     <item row="0" column="0">
      <widget class="QComboBox" name="comboBox_compileMode">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="minimumSize">
        <size>
         <width>150</width>
@@ -216,7 +219,6 @@ QMenu::item:disabled {/*菜单被禁用*/
     <addaction name="action_file_open"/>
     <addaction name="action_file_close"/>
     <addaction name="action_file_save"/>
-    <addaction name="action_file_saveAs"/>
     <addaction name="action_file_saveAll"/>
     <addaction name="action_file_print"/>
     <addaction name="separator"/>
@@ -576,7 +578,7 @@ QMenu::item:disabled {/*菜单被禁用*/
    <addaction name="action_toolBar_nextBookmark"/>
    <addaction name="action_toolBar_bookmarkMainMenuTabitem"/>
    <addaction name="separator"/>
-   <addaction name="action_toolBar_property"/>
+   <addaction name="action_toolBar_config"/>
    <addaction name="action_toolBar_settings"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
@@ -682,7 +684,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_save">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -698,7 +700,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_cut">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -714,7 +716,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_copy">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -730,7 +732,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_paste">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -746,7 +748,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_undo">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -762,7 +764,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_redo">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -778,7 +780,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_compile">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -794,7 +796,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_staticCompile">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -810,7 +812,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_onlineCompile">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -826,7 +828,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_find">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -842,7 +844,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_run">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -858,7 +860,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_stop">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -874,7 +876,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_Rerun">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -890,7 +892,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_toggleAllBreakpoints">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -906,7 +908,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_clearBreakpointGroup">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -922,7 +924,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_debugFind">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -938,7 +940,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_stepForward">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -954,7 +956,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_stepOver">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -970,7 +972,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_stepIn">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -986,7 +988,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_stepOut">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1002,7 +1004,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_toolTip">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1018,7 +1020,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_bookmark">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1034,7 +1036,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_previousBookmark">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1050,7 +1052,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_nextBookmark">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1066,7 +1068,7 @@ QMenu::item:disabled {/*菜单被禁用*/
   </action>
   <action name="action_toolBar_bookmarkMainMenuTabitem">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1080,9 +1082,9 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>书签主菜单</string>
    </property>
   </action>
-  <action name="action_toolBar_property">
+  <action name="action_toolBar_config">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1090,15 +1092,15 @@ QMenu::item:disabled {/*菜单被禁用*/
      <disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/displayIcon/Property_16x.png</disabledoff>:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/Property_16x.png</iconset>
    </property>
    <property name="text">
-    <string>资产</string>
+    <string>配置</string>
    </property>
    <property name="toolTip">
-    <string>资产</string>
+    <string>配置</string>
    </property>
   </action>
   <action name="action_toolBar_settings">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
@@ -1302,6 +1304,9 @@ QMenu::item:disabled {/*菜单被禁用*/
    <property name="text">
     <string>新建(&amp;N)</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="action_file_open">
    <property name="icon">
@@ -1336,23 +1341,15 @@ QMenu::item:disabled {/*菜单被禁用*/
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="action_file_saveAs">
+  <action name="action_file_saveAll">
    <property name="text">
-    <string>另存为(&amp;A)</string>
+    <string>保存全部(&amp;A)</string>
+   </property>
+   <property name="toolTip">
+    <string>保存全部(A)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
-   </property>
-  </action>
-  <action name="action_file_saveAll">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>保存全部(&amp;M)</string>
-   </property>
-   <property name="toolTip">
-    <string>保存全部(M)</string>
    </property>
   </action>
   <action name="action_file_print">

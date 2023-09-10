@@ -59,9 +59,7 @@ public:
     void initPlugin(QString dirPath,QString plgSuffix = "plg");//根据目录扫描并且添加插件对象
     QVector<PluginMsg> getPluginList(); //获取插件列表信息
     Plugin_Base::libMsg getPluginMsg(QString filePath); //根据文件名获取插件信息
-
-//    bool enablePlugin(QString filePath); //启用插件
-//    bool disablePlugin(QString filePath); //禁用插件
+    Plugin_Base::settingMsgList getSettingWidgets(); //获取设置组件列表
 
 
     //初始化菜单
@@ -72,7 +70,7 @@ public:
     void workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth);//添加workSpace的tabView接口
 //    void workSpace_init_codeEditor(PluginGlobalMsg::editorFun_create createPth,PluginGlobalMsg::editorFun_addKetWord addWordPth,
 //                                   PluginGlobalMsg::editorFun_getStr getStrPth,PluginGlobalMsg::editorFun_addStr addStrPth); //添加workSpace的代码编辑器接口
-    void workSpace_init_toolBarActionEnable(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr); //设置工具栏内控件的启用与关闭
+    void workSpace_init_toolBarFuns(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr,PluginGlobalMsg::toolBarFun toolBar_addToolBarFunPtr); //设置工具栏内控件的启用与关闭,添加工具栏
 
     //void workSpace_init_toolBarBind();//将工具栏按钮与菜单绑定，按下与禁用时间绑定
 
@@ -93,7 +91,10 @@ public:
     void event_onFileOpen(QString filePath); //当文件被打开，激发模块事件
     void event_onFileOpenFinish(QString filePath); //当前文件已经被打开，所有的文件被打开都会激发模块事件
     void event_onFileClose(QString filePath); //当文件被删除或者关闭
+    void event_onFileSave(QString filePath); //当文件被保存
+    void event_onFileSaveAll(); //当文件全部保存
     void event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass); //当工程被加载完毕，或者切换的工程已经被改变
+
 
     void event_onWorkSpaceFinish(); //工作空间创建完毕事件，此事件不可阻止，，但是可以阻塞，将为每一个插件提供事件响应
     void event_onWorkSpaceClose();  //工作空间正在被关闭，不可被阻止，但是可以阻塞，将为每一个插件提供事件响应

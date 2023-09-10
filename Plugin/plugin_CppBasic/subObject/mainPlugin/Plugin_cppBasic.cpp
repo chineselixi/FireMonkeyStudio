@@ -1,4 +1,4 @@
-
+﻿
 
 
 #include "Plugin_cppBasic.h"
@@ -38,21 +38,76 @@ Plugin_Base::libMsg Plugin_cppBasic::getBaseMsg()
 //工作空间加载完毕
 void Plugin_cppBasic::event_onWorkSpaceFinish()
 {
-//    QAction* t_act = new QAction;
-//    t_act->setText("基础插件测试");
-
-//    QWidget::connect(t_act, &QAction::triggered,[](){
-//        qDebug() << "插件菜单测试，插件事件输出完成";
-//    });
-
-//    this->WorkSpace_AddMenu_ToolBar_Extend(t_act); //添加到工具栏
+    //工作空间加载完毕，关闭所有按钮
+    WorkSpace_ToolBar_closeAllAction(); //关闭工具栏所有的可用Action
+    qDebug() << "关闭全部的Action";
+    //这里应该加载一个菜单
 }
 
 
-//当文件被打开
-bool Plugin_cppBasic::event_onFileOpen(QString filePath)
+//工程加载完毕
+bool Plugin_cppBasic::event_onPorjectLoad(QString proPath, QString proLangs, QString proNoteClass)
 {
-    QString t_fileSuffix = QFileInfo(filePath).suffix();
+    proLangs = proLangs.toLower();
+    WorkSpace_ToolBar_closeAllAction(); //关闭工具栏所有的可用Action
+
+    if(proLangs.indexOf("c++") != -1 || proLangs.indexOf("cpp") != -1){
+        WorkSpace_ToolBar_setActionEnable(PluginGlobalMsg::toolBarAction::compleMode,true); //模式选择器
+        WorkSpace_ToolBar_setActionEnable(PluginGlobalMsg::toolBarAction::run,true); //运行开
+        WorkSpace_ToolBar_setActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //运行按钮状态
+        WorkSpace_ToolBar_setActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //停止按钮状态
+        this->isCppProject = true; //是C++工程，记录
+        return false; //阻断消息传递
+    }
+    return true;
+}
+
+
+//编译模式被改变
+bool Plugin_cppBasic::event_onCompileTypeChanged(PluginGlobalMsg::compileType type)
+{
+    if(this->isCppProject){
+        this->thisCompileType = type;
+        return false; //返回假，阻止消息继续投递
+    }
+    else{
+        return true;
+    }
+}
+
+
+//当工具栏按钮被按下
+bool Plugin_cppBasic::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath, QString proLangs, QString proNoteClass)
+{
+    if(actionType == PluginGlobalMsg::toolBarAction::run){
+        qDebug() << "运行被按下";
+    }
+    if(actionType == PluginGlobalMsg::toolBarAction::stop){
+        qDebug() << "停止被按下";
+    }
+
+    return false;
+}
+
+
+//运行按钮被按下，注意：此函数不是重写事件
+void Plugin_cppBasic::onRunDown(QString proPath, QString proLangs, QString proNoteClass)
+{
+
+}
+
+
+//停止按钮被按下，注意：此函数不是重写函数
+void Plugin_cppBasic::onStopDown(QString proPath, QString proLangs, QString proNoteClass)
+{
+
+}
+
+
+////当文件被打开
+//bool Plugin_cppBasic::event_onFileOpen(QString filePath)
+//{
+//    QString t_fileSuffix = QFileInfo(filePath).suffix();
 //    if(t_fileSuffix == "h" || t_fileSuffix == "cpp"){
 //        CodeEditor* t_codeEditor = new CodeEditor;
 
@@ -90,6 +145,6 @@ bool Plugin_cppBasic::event_onFileOpen(QString filePath)
 
 //        return false;//阻止继续的事件激发
 //    }
-    return true; //不满足条件，则允许插件管理器继续激发其他插件的事件
-}
+//    return true; //不满足条件，则允许插件管理器继续激发其他插件的事件
+//}
 

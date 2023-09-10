@@ -32,6 +32,11 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
     Manger::pluginManger->event_onWorkSpaceFinish(); //响应插件workSpace加载完成事件
 
 
+    //将工具栏新建与打开图标启用
+    this->ui->action_toolBar_newFileCollection->setEnabled(true);
+    this->ui->action_toolBar_open->setEnabled(true);
+    this->ui->action_toolBar_save->setEnabled(false);
+
 //==============================临时代码==============================
     //添加工具
 //    ui->widget_toolBox->addItem(QPixmap(":/WidgetBox/icon/WidgetBox/BlueIcons/Cursor_16x.png"),"指针","Currsor");
@@ -191,8 +196,8 @@ void Form_WorkSpace::init()
 
 
 
-    //同步菜单与工具栏的enable
-    Manger::pluginManger->workSpace_init_toolBarActionEnable(
+    //同步菜单与工具栏的enable,添加工具栏
+    Manger::pluginManger->workSpace_init_toolBarFuns(
         [this](PluginGlobalMsg::toolBarAction actionType,bool isEnable){ //设定工具栏的Action启用与关闭
             QAction* t_toolBarAction = nullptr;
             switch(actionType){
@@ -220,17 +225,36 @@ void Form_WorkSpace::init()
             case  PluginGlobalMsg::toolBarAction::previousBookmark:{t_toolBarAction = this->ui->action_toolBar_previousBookmark;break;}//上一个书签
             case  PluginGlobalMsg::toolBarAction::nextBookmark:{t_toolBarAction = this->ui->action_toolBar_nextBookmark;break;}//下一个书签
             case  PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem:{t_toolBarAction = this->ui->action_toolBar_bookmarkMainMenuTabitem;break;}//书签主菜单
-            case  PluginGlobalMsg::toolBarAction::property:{t_toolBarAction = this->ui->action_toolBar_property;break;}//资产
+            case  PluginGlobalMsg::toolBarAction::config:{t_toolBarAction = this->ui->action_toolBar_config;break;}//资产
+            case  PluginGlobalMsg::toolBarAction::compleMode:{this->ui->comboBox_compileMode->setEnabled(isEnable);break;}//模式选择器
             default:{t_toolBarAction = nullptr;break;}
             }
             if(t_toolBarAction != nullptr) t_toolBarAction->setEnabled(isEnable);
         },
         [this](){ //关闭ToolBar的所有子Action
-            QObjectList t_actionList = ui->toolBar->children();
-            for(QObjectList::iterator i = t_actionList.begin(); i < t_actionList.end(); i++){
-                ((QAction*)(*i))->setEnabled(false);
+            QList<QAction*> t_actionList = ui->toolBar->actions();
+            for(QList<QAction*>::iterator i = t_actionList.begin(); i < t_actionList.end(); i++){
+                QAction* t_act = (*i);
+
+                //遇到这些则跳过
+                if(t_act == this->ui->action_toolBar_newFileCollection ||
+                    t_act == this->ui->action_toolBar_open ||
+                    t_act == this->ui->action_toolBar_save ||
+                    t_act == this->ui->action_toolBar_settings
+                    ){continue;}
+
+                if(t_act->objectName().indexOf("action") != -1){
+                    t_act->setEnabled(false);
+                }
             }
+            this->ui->comboBox_compileMode->setEnabled(false); //关闭模式选择器
+        },
+        [this](QToolBar* toolBar){ //添加工具栏到workSpace
+            this->addToolBar(toolBar);
         });
+
+
+
 
 
     //初始化内容输出接口
@@ -279,7 +303,6 @@ void Form_WorkSpace::init()
     connect(this->ui->action_toolBar_paste,&QAction::triggered,t_fun);
     connect(this->ui->action_editor_paste,&QAction::triggered,t_fun);
     connect(this->ui->action_toolBar_paste,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_editor_paste->setEnabled(isEnable);});//粘贴
-
 
     t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::undo,this->project_path,this->project_lang,this->project_noteClass);};
     connect(this->ui->action_toolBar_undo,&QAction::triggered,t_fun);
@@ -374,9 +397,26 @@ void Form_WorkSpace::init()
     t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem,this->project_path,this->project_lang,this->project_noteClass);};
     connect(this->ui->action_toolBar_bookmarkMainMenuTabitem,&QAction::triggered,t_fun);
 
-    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::property,this->project_path,this->project_lang,this->project_noteClass);};
-    connect(this->ui->action_toolBar_property,&QAction::triggered,t_fun);
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::config,this->project_path,this->project_lang,this->project_noteClass);};
+    connect(this->ui->action_toolBar_config,&QAction::triggered,t_fun);
+    connect(this->ui->action_file_config,&QAction::triggered,t_fun);
+    connect(this->ui->action_toolBar_config,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_file_config->setEnabled(isEnable);});//调试跳出
 
+
+
+    //其他内置功能非通知Action绑定
+    //新建绑定
+    connect(this->ui->action_toolBar_newFileCollection,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_file_newCreate->setEnabled(isEnable);});
+    connect(this->ui->action_toolBar_newFileCollection,&QAction::triggered,[this](bool checked){this->ui->action_file_newCreate->trigger();});
+    //打开绑定
+    connect(this->ui->action_toolBar_open,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_file_open->setEnabled(isEnable);});
+    connect(this->ui->action_toolBar_open,&QAction::triggered,[this](bool checked){this->ui->action_file_open->trigger();});
+    //保存绑定
+    connect(this->ui->action_toolBar_save,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_file_save->setEnabled(isEnable);this->ui->action_file_saveAll->setEnabled(isEnable);}); //将保存和全部保存进行绑定
+    connect(this->ui->action_toolBar_save,&QAction::triggered,[this](bool checked){this->ui->action_file_save->trigger();});
+    //设置绑定
+    connect(this->ui->action_toolBar_settings,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_systemSettings->setEnabled(isEnable);}); //将保存和全部保存进行绑定
+    connect(this->ui->action_toolBar_settings,&QAction::triggered,[this](bool checked){this->ui->action_systemSettings->trigger();});
 }
 
 
@@ -557,13 +597,17 @@ void Form_WorkSpace::on_dockWidget_find_visibilityChanged(bool visible)
     }
 }
 
-//当活动工程被改变
+//当活动工程被改变，若工程全部被关闭，则三个参数全为空
 void Form_WorkSpace::event_ProjectManger_onProjectActiveChanged(QString projectPath, QString projectLang,QString projectNoteClass)
 {
     this->project_path = projectPath;
     this->project_lang = projectLang;
     this->project_noteClass = projectNoteClass;
     Manger::pluginManger->event_onPorjectLoad(projectPath,projectLang,projectNoteClass); //激发当前工程已经被改变
+
+    if(this->project_path.isEmpty()){
+        this->ui->action_toolBar_save->setEnabled(false); //工程已经全部关闭，保存按钮禁用
+    }
 }
 
 //文件被打开事件
@@ -571,6 +615,7 @@ void Form_WorkSpace::event_ProjectManger_onFileOpen(QString filePath)
 {
     if(!ui->widget_WindowTab->hasTabMsg(filePath,true)){
         Manger::pluginManger->event_onFileOpen(filePath);
+        this->ui->action_toolBar_save->setEnabled(true); //保存按钮将可用
     }
 }
 
@@ -638,34 +683,6 @@ void Form_WorkSpace::on_action_menu_compile_enabledChanged(bool enabled){ui->act
 void Form_WorkSpace::on_action_menu_staticCompile_enabledChanged(bool enabled){ui->action_toolBar_staticCompile->setEnabled(enabled);}
 
 
-
-//菜单栏任务绑定
-void Form_WorkSpace::on_action_menu_run_triggered()
-{
-    Manger::pluginManger->event_onToolBarActionTriggered(
-        PluginGlobalMsg::toolBarAction::run,
-        this->project_path,
-        this->project_lang,
-        this->project_noteClass);
-}
-
-void Form_WorkSpace::on_action_menu_stop_triggered()
-{
-    Manger::pluginManger->event_onToolBarActionTriggered(
-        PluginGlobalMsg::toolBarAction::stop,
-        this->project_path,
-        this->project_lang,
-        this->project_noteClass);
-}
-
-void Form_WorkSpace::on_action_menu_Rerun_triggered()
-{
-    Manger::pluginManger->event_onToolBarActionTriggered(
-        PluginGlobalMsg::toolBarAction::Rerun,
-        this->project_path,
-        this->project_lang,
-        this->project_noteClass);
-}
 
 
 ////工具栏任务绑定
@@ -764,4 +781,15 @@ void Form_WorkSpace::on_action_toolBar_Dark_triggered()
     Form_SystemSettings::changeThream("Dark"); //加载主题
 }
 
+//保存按钮被按下
+void Form_WorkSpace::on_action_file_save_triggered()
+{
+    Manger::pluginManger->event_onFileSave(ui->widget_WindowTab->getTopTabSign()); //传入顶层标记信息
+}
+
+//全部保存按钮被按下
+void Form_WorkSpace::on_action_file_saveAll_triggered()
+{
+    Manger::pluginManger->event_onFileSaveAll();
+}
 

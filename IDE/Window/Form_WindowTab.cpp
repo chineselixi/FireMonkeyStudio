@@ -1,4 +1,4 @@
-#include "Form_WindowTab.h"
+﻿#include "Form_WindowTab.h"
 #include "ui_Form_WindowTab.h"
 #include "QGridLayout"
 
@@ -142,6 +142,19 @@ Form_WindowTab::tabMsg Form_WindowTab::getMsg(QWidget *widget)
         }
     }
     return t_msg;
+}
+
+
+//获取当前顶部选项卡的标记
+QString Form_WindowTab::getTopTabSign()
+{
+    QWidget* t_widget = ui->tabWidget->currentWidget();
+    for(int a = 0;a<this->tabMsgList.length();a++){
+        if(this->tabMsgList[a].tabWidgetPth == t_widget){
+            return this->tabMsgList[a].signText;
+        }
+    }
+    return "";
 }
 
 

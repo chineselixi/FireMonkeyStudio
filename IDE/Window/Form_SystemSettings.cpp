@@ -1,4 +1,4 @@
-#include "Form_SystemSettings.h"
+﻿#include "Form_SystemSettings.h"
 #include "ui_Form_SystemSettings.h"
 
 #include "Window/settingWindow/Form_settings_Basic.h"
@@ -12,7 +12,7 @@
 #include "SwSystem/System_GlobalVar.h"
 #include "SwSystem/system_systemsetting.h"
 #include "Window/Form_WorkSpace.h"
-
+#include "Plugin/Plugin_Manger.h"
 
 Form_SystemSettings::Form_SystemSettings(QWidget *parent) :
     QWidget(parent),
@@ -27,10 +27,16 @@ Form_SystemSettings::Form_SystemSettings(QWidget *parent) :
     this->addSetItem("git版本控制",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/git.png"),new Form_settings_Git(this));
     this->addSetItem("Qt代码库支持",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/Qt.png"),new Form_settings_Qt(this));
 
+
+    //加载第三方设置控件
+    Plugin_Base::settingMsgList t_widgetList = Manger::pluginManger->getSettingWidgets();
+    for(Plugin_Base::settingMsgList::iterator i = t_widgetList.begin(); i < t_widgetList.end(); i++){
+        this->addSetItem(i->title,i->ico_32px,i->settingWidget);
+    }
+
     //选择第一个设置
     this->ui->label_title->setText(this->setMsgList[0].btn_sign->GetTitle());
     this->ui->stackedWidget->setCurrentIndex(setMsgList[0].widgetIndex);
-
 }
 
 Form_SystemSettings::~Form_SystemSettings()

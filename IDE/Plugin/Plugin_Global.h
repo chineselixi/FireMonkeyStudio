@@ -4,6 +4,7 @@
 
 #include "QWidget"
 #include "QDockWidget"
+#include "QToolBar"
 #include "functional"
 
 namespace PluginGlobalMsg{
@@ -59,7 +60,8 @@ enum toolBarAction{
     previousBookmark, //上一个书签
     nextBookmark, //下一个书签
     bookmarkMainMenuTabitem, //书签主菜单
-    property, //资产
+    config, //配置
+    compleMode, //编译模式选择器
 };
 
 
@@ -69,6 +71,7 @@ typedef std::function<void()> fun_void; //基础函数类型，空返回
 
 //函数指针类型
 typedef std::function<void(QAction* act)> menuFun;  //添加菜单到menu
+typedef std::function<void(QToolBar* toolBar)> toolBarFun;
 typedef std::function<void(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)> addTabViewPth; //添加TabView函数指针类型
 //typedef std::function<void(ActionType actionType,bool enable)> workSpace_Action_setEnableFun; //设置Action启用函数
 

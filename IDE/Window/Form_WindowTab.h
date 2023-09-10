@@ -1,4 +1,4 @@
-#ifndef FORM_WINDOWTAB_H
+﻿#ifndef FORM_WINDOWTAB_H
 #define FORM_WINDOWTAB_H
 
 #include <QWidget>
@@ -47,6 +47,8 @@ public:
 
     tabMsg getMsg(QString sign); //根据标记获取信息
     tabMsg getMsg(QWidget* widget); //根据窗体指针获取信息
+
+    QString getTopTabSign(); //获取当前顶部选项卡的标记
 };
 
 #endif // FORM_WINDOWTAB_H

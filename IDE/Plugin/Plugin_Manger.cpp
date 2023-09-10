@@ -52,7 +52,6 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
     for(int a=0;a<t_pathList.length();a++){
         PluginMsg t_plgMsg; //插件信息
         t_plgMsg.filePath = t_pathList[a];
-
         if(HistoryList::sys_pluginHistory->has(t_pathList[a].replace(QCoreApplication::applicationDirPath(),"<pluginPath>"))){ //检查插件是否已经启用
             QLibrary* t_lib = new QLibrary(t_plgMsg.filePath); //加载插件（以动态库的形式加载插件，插件本身就是一个动态库）
             if(t_lib->load()){
@@ -62,12 +61,7 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
                     //已经获取了实例
                     t_plgMsg.plgPth = t_getIns(); //保存实例对象
                     t_plgMsg.qLibPth = t_lib; //保存当前的QLibrary对象
-//                    t_plgMsg.plgPth->WorkSpace_Mneu_UnityStyle_SelectAction = [](QAction* act){  //初始化菜单央视更新信息
-//                        QIcon t_ico;
-//                        t_ico.addPixmap(QPixmap(":/Theme/icon/Theme/Blue/Image/MenuBar/CheckboxN_16x.png"), QIcon::Normal, QIcon::Off);
-//                        t_ico.addPixmap(QPixmap(":/Theme/icon/Theme/Blue/Image/MenuBar/Checkbox_16x.png"), QIcon::Normal, QIcon::On);
-//                        act->setIcon(t_ico);
-//                    };
+                    t_plgMsg.plgPth->event_onLoading(); //模块加载完成，通知当前加载模块信息
                     goto ADDMSG;
                 }
             }
@@ -110,6 +104,22 @@ Plugin_Base::libMsg Plugin_Manger::getPluginMsg(QString filePath)
         }
     }
     return t_msg;
+}
+
+
+
+//获取设置组件列表
+Plugin_Base::settingMsgList Plugin_Manger::getSettingWidgets()
+{
+    Plugin_Base::settingMsgList t_retList;
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            Plugin_Base::settingMsgList t_l;
+            this->List_plg[a].plgPth->event_onLoadSettingsWidget(t_l);
+            t_retList.append(t_l);
+        }
+    }
+    return t_retList;
 }
 
 
@@ -168,13 +178,14 @@ void Plugin_Manger::workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth)
 
 
 
-//设置工具栏内控件的启用与关闭
-void Plugin_Manger::workSpace_init_toolBarActionEnable(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr)
+//设置工具栏内控件的启用与关闭,添加工具栏
+void Plugin_Manger::workSpace_init_toolBarFuns(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr,PluginGlobalMsg::toolBarFun toolBar_addToolBarFunPtr)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
         List_plg[a].plgPth->WorkSpace_ToolBar_setActionEnable = toolBar_setActionEnableFunPtr;
         List_plg[a].plgPth->WorkSpace_ToolBar_closeAllAction = toolBar_clearAllActionFunPtr;
+        List_plg[a].plgPth->WorkSpace_ToolBar_addToolBar = toolBar_addToolBarFunPtr;
     }
 }
 
@@ -288,6 +299,31 @@ void Plugin_Manger::event_onFileClose(QString filePath)
     for(int a = 0;a < List_plg.length();a++){
         if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
         if(List_plg[a].plgPth->event_onFileClose(filePath) == false){ //若插件阻止触发，则跳出
+            break;
+        }
+    }
+}
+
+
+
+//当文件被保存
+void Plugin_Manger::event_onFileSave(QString filePath)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        if(List_plg[a].plgPth->event_onFileSave(filePath) == false){ //若插件阻止触发，则跳出
+            break;
+        }
+    }
+}
+
+
+//当文件全部保存
+void Plugin_Manger::event_onFileSaveAll()
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        if(List_plg[a].plgPth->event_onFileSaveAll() == false){ //若插件阻止触发，则跳出
             break;
         }
     }

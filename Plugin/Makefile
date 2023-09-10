@@ -36,6 +36,7 @@ SED           = $(QMAKE) -install sed
 MOVE          = move
 SUBTARGETS    =  \
 		sub-plugin_GccBuild \
+		sub-plugin_CppBasic \
 		sub-plugin_UixEditor
 
 
@@ -96,7 +97,64 @@ sub-plugin_GccBuild-uninstall_subtargets: FORCE
 	@if not exist plugin_GccBuild\ mkdir plugin_GccBuild\ & if not exist plugin_GccBuild\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_GccBuild\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_GccBuild\plugin_GccBuild.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
-sub-plugin_UixEditor-qmake_all: sub-plugin_GccBuild-qmake_all FORCE
+sub-plugin_CppBasic-qmake_all: sub-plugin_GccBuild-qmake_all FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	cd plugin_CppBasic\ && $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && $(MAKE) -f Makefile qmake_all
+sub-plugin_CppBasic: $(MAKEFILE) FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile
+sub-plugin_CppBasic-make_first-ordered: sub-plugin_GccBuild-make_first-ordered  FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
+sub-plugin_CppBasic-make_first: FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
+sub-plugin_CppBasic-all-ordered: sub-plugin_GccBuild-all-ordered  FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
+sub-plugin_CppBasic-all: FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
+sub-plugin_CppBasic-clean-ordered: sub-plugin_GccBuild-clean-ordered  FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
+sub-plugin_CppBasic-clean: FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
+sub-plugin_CppBasic-distclean-ordered: sub-plugin_GccBuild-distclean-ordered  FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
+sub-plugin_CppBasic-distclean: FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
+sub-plugin_CppBasic-install_subtargets-ordered: sub-plugin_GccBuild-install_subtargets-ordered  FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
+sub-plugin_CppBasic-install_subtargets: FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
+sub-plugin_CppBasic-uninstall_subtargets-ordered: sub-plugin_GccBuild-uninstall_subtargets-ordered  FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
+sub-plugin_CppBasic-uninstall_subtargets: FORCE
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
+sub-plugin_UixEditor-qmake_all: sub-plugin_CppBasic-qmake_all FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	cd plugin_UixEditor\ && $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
 	@set MAKEFLAGS=$(MAKEFLAGS)
@@ -105,7 +163,7 @@ sub-plugin_UixEditor: $(MAKEFILE) FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile
-sub-plugin_UixEditor-make_first-ordered: sub-plugin_GccBuild-make_first-ordered  FORCE
+sub-plugin_UixEditor-make_first-ordered: sub-plugin_CppBasic-make_first-ordered  FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
@@ -113,7 +171,7 @@ sub-plugin_UixEditor-make_first: FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
-sub-plugin_UixEditor-all-ordered: sub-plugin_GccBuild-all-ordered  FORCE
+sub-plugin_UixEditor-all-ordered: sub-plugin_CppBasic-all-ordered  FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
@@ -121,7 +179,7 @@ sub-plugin_UixEditor-all: FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
-sub-plugin_UixEditor-clean-ordered: sub-plugin_GccBuild-clean-ordered  FORCE
+sub-plugin_UixEditor-clean-ordered: sub-plugin_CppBasic-clean-ordered  FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
@@ -129,7 +187,7 @@ sub-plugin_UixEditor-clean: FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
-sub-plugin_UixEditor-distclean-ordered: sub-plugin_GccBuild-distclean-ordered  FORCE
+sub-plugin_UixEditor-distclean-ordered: sub-plugin_CppBasic-distclean-ordered  FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
@@ -137,7 +195,7 @@ sub-plugin_UixEditor-distclean: FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
-sub-plugin_UixEditor-install_subtargets-ordered: sub-plugin_GccBuild-install_subtargets-ordered  FORCE
+sub-plugin_UixEditor-install_subtargets-ordered: sub-plugin_CppBasic-install_subtargets-ordered  FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
@@ -145,7 +203,7 @@ sub-plugin_UixEditor-install_subtargets: FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
-sub-plugin_UixEditor-uninstall_subtargets-ordered: sub-plugin_GccBuild-uninstall_subtargets-ordered  FORCE
+sub-plugin_UixEditor-uninstall_subtargets-ordered: sub-plugin_CppBasic-uninstall_subtargets-ordered  FORCE
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
@@ -732,55 +790,71 @@ Plugin.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile Plugin.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
 
-qmake_all: sub-plugin_GccBuild-qmake_all sub-plugin_UixEditor-qmake_all FORCE
+qmake_all: sub-plugin_GccBuild-qmake_all sub-plugin_CppBasic-qmake_all sub-plugin_UixEditor-qmake_all FORCE
 
-make_first: sub-plugin_GccBuild-make_first-ordered sub-plugin_UixEditor-make_first-ordered  FORCE
-all: sub-plugin_GccBuild-all-ordered sub-plugin_UixEditor-all-ordered  FORCE
-clean: sub-plugin_GccBuild-clean-ordered sub-plugin_UixEditor-clean-ordered  FORCE
-distclean: sub-plugin_GccBuild-distclean-ordered sub-plugin_UixEditor-distclean-ordered  FORCE
+make_first: sub-plugin_GccBuild-make_first-ordered sub-plugin_CppBasic-make_first-ordered sub-plugin_UixEditor-make_first-ordered  FORCE
+all: sub-plugin_GccBuild-all-ordered sub-plugin_CppBasic-all-ordered sub-plugin_UixEditor-all-ordered  FORCE
+clean: sub-plugin_GccBuild-clean-ordered sub-plugin_CppBasic-clean-ordered sub-plugin_UixEditor-clean-ordered  FORCE
+distclean: sub-plugin_GccBuild-distclean-ordered sub-plugin_CppBasic-distclean-ordered sub-plugin_UixEditor-distclean-ordered  FORCE
 	-$(DEL_FILE) Makefile
-install_subtargets: sub-plugin_GccBuild-install_subtargets-ordered sub-plugin_UixEditor-install_subtargets-ordered FORCE
-uninstall_subtargets: sub-plugin_GccBuild-uninstall_subtargets-ordered sub-plugin_UixEditor-uninstall_subtargets-ordered FORCE
+install_subtargets: sub-plugin_GccBuild-install_subtargets-ordered sub-plugin_CppBasic-install_subtargets-ordered sub-plugin_UixEditor-install_subtargets-ordered FORCE
+uninstall_subtargets: sub-plugin_GccBuild-uninstall_subtargets-ordered sub-plugin_CppBasic-uninstall_subtargets-ordered sub-plugin_UixEditor-uninstall_subtargets-ordered FORCE
 
 sub-plugin_GccBuild-debug_ordered:
 	@if not exist plugin_GccBuild\ mkdir plugin_GccBuild\ & if not exist plugin_GccBuild\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_GccBuild\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_GccBuild\plugin_GccBuild.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
-sub-plugin_UixEditor-debug_ordered: sub-plugin_GccBuild-debug_ordered 
+sub-plugin_CppBasic-debug_ordered: sub-plugin_GccBuild-debug_ordered 
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
+sub-plugin_UixEditor-debug_ordered: sub-plugin_CppBasic-debug_ordered 
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
-debug: sub-plugin_GccBuild-debug_ordered sub-plugin_UixEditor-debug_ordered
+debug: sub-plugin_GccBuild-debug_ordered sub-plugin_CppBasic-debug_ordered sub-plugin_UixEditor-debug_ordered
 
 sub-plugin_GccBuild-release_ordered:
 	@if not exist plugin_GccBuild\ mkdir plugin_GccBuild\ & if not exist plugin_GccBuild\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_GccBuild\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_GccBuild\plugin_GccBuild.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
-sub-plugin_UixEditor-release_ordered: sub-plugin_GccBuild-release_ordered 
+sub-plugin_CppBasic-release_ordered: sub-plugin_GccBuild-release_ordered 
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
+sub-plugin_UixEditor-release_ordered: sub-plugin_CppBasic-release_ordered 
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
-release: sub-plugin_GccBuild-release_ordered sub-plugin_UixEditor-release_ordered
+release: sub-plugin_GccBuild-release_ordered sub-plugin_CppBasic-release_ordered sub-plugin_UixEditor-release_ordered
 
 sub-plugin_GccBuild-check_ordered:
 	@if not exist plugin_GccBuild\ mkdir plugin_GccBuild\ & if not exist plugin_GccBuild\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_GccBuild\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_GccBuild\plugin_GccBuild.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
-sub-plugin_UixEditor-check_ordered: sub-plugin_GccBuild-check_ordered 
+sub-plugin_CppBasic-check_ordered: sub-plugin_GccBuild-check_ordered 
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
+sub-plugin_UixEditor-check_ordered: sub-plugin_CppBasic-check_ordered 
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
-check: sub-plugin_GccBuild-check_ordered sub-plugin_UixEditor-check_ordered
+check: sub-plugin_GccBuild-check_ordered sub-plugin_CppBasic-check_ordered sub-plugin_UixEditor-check_ordered
 
 sub-plugin_GccBuild-benchmark_ordered:
 	@if not exist plugin_GccBuild\ mkdir plugin_GccBuild\ & if not exist plugin_GccBuild\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_GccBuild\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_GccBuild\plugin_GccBuild.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
-sub-plugin_UixEditor-benchmark_ordered: sub-plugin_GccBuild-benchmark_ordered 
+sub-plugin_CppBasic-benchmark_ordered: sub-plugin_GccBuild-benchmark_ordered 
+	@if not exist plugin_CppBasic\ mkdir plugin_CppBasic\ & if not exist plugin_CppBasic\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd plugin_CppBasic\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_CppBasic\plugin_CppBasic.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
+sub-plugin_UixEditor-benchmark_ordered: sub-plugin_CppBasic-benchmark_ordered 
 	@if not exist plugin_UixEditor\ mkdir plugin_UixEditor\ & if not exist plugin_UixEditor\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd plugin_UixEditor\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\plugin_UixEditor\plugin_UixEditor.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-plugin_GccBuild-benchmark_ordered sub-plugin_UixEditor-benchmark_ordered
+benchmark: sub-plugin_GccBuild-benchmark_ordered sub-plugin_CppBasic-benchmark_ordered sub-plugin_UixEditor-benchmark_ordered
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE

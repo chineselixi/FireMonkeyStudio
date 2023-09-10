@@ -28,7 +28,6 @@ public:
 
 private slots:
     void on_action_file_newCreate_triggered(); //新建工程或文件
-
     void on_action_file_open_triggered(); //打开工程文件
 
 
@@ -59,20 +58,16 @@ private slots:
     void on_action_menu_staticCompile_enabledChanged(bool enabled);
 
 
-    void on_action_menu_run_triggered(); //菜单栏事件
-    void on_action_menu_stop_triggered();
-    void on_action_menu_Rerun_triggered();
-
 //    void on_action_toolBar_run_triggered();//工具栏事件
 //    void on_action_toolBar_Rerun_triggered();
 //    void on_action_toolBar_stop_triggered();
 
     void on_action_systemSettings_triggered(); //打开系统设置
-
     void on_action_toolBar_blue_triggered(); //更改蓝色主题
     void on_action_toolBar_white_triggered(); //更改白色主题
     void on_action_toolBar_Dark_triggered(); //更改黑色主题
-
+    void on_action_file_save_triggered(); //保存按钮被按下
+    void on_action_file_saveAll_triggered(); //全部保存按钮被按下
 
 private:
     Ui::Form_WorkSpace *ui;

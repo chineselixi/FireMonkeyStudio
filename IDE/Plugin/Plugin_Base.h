@@ -2,13 +2,13 @@
 #ifndef PLUGIN_BASE_H
 #define PLUGIN_BASE_H
 
-#include "QMainWindow""
+//#include "QMainWindow"
 #include "Plugin_Global.h"
 
 
 
 //class QMainWindow; //声明QMainWindow
-
+class Form_settings_Basic;
 
 
 class Plugin_Base
@@ -24,6 +24,16 @@ public:
         QString loadTip = "";//加载时输出的文字信息，可以作为加载成功的提示
     };
 
+    //设置组件信息
+    struct settingWidgetMsg{
+        QString title = QAction::tr("new setting");
+        QPixmap ico_32px;
+        Form_settings_Basic* settingWidget = nullptr;
+    };
+
+
+public:
+    typedef QList<settingWidgetMsg> settingMsgList;
 
 protected:
     libMsg self_BaseMsg;
@@ -49,6 +59,7 @@ public:
     //设置ACtion的启用
     PluginGlobalMsg::toolBar_action_setEnable WorkSpace_ToolBar_setActionEnable = nullptr; //设置ToolBar的Action启动禁止
     PluginGlobalMsg::fun_void WorkSpace_ToolBar_closeAllAction = nullptr; //关闭所有的toolbar的Action
+    PluginGlobalMsg::toolBarFun WorkSpace_ToolBar_addToolBar = nullptr; //添加ToolBar到WorkSpace
 
 
     //设置打印接口
@@ -99,20 +110,21 @@ public: //(可阻拦事件)事件触发，返回true则继续触发其他插件�
     virtual bool event_onFileOpen(QString filePath){return true;}; //当文件被打开，注意：仅限于IDE无法打开之外的文件才激发此事件
     virtual bool event_onFileOpenFinish(QString filePath){return true;}; //当前文件已经被打开，所有的文件被打开都会激发此事件
     virtual bool event_onFileClose(QString filePath){return true;}; //当前文件被删除或者关闭之前就发送的信息
-
-
+    virtual bool event_onFileSave(QString filePath){return true;}; //当文件被保存激发事件
+    virtual bool event_onFileSaveAll(){return true;}; //当全部保存被激发
 
     virtual bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass){return true;};//当工具栏内部按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 
-
-//    virtual bool event_onRunDown(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当运行按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
-//    virtual bool event_onStopDown(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当停止按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
     virtual bool event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 
 
 public: //(不可阻拦事件)事件触发，将激发每一个插件的事件
     virtual void event_onWorkSpaceFinish(){return;}; //工作空间创建完毕事件，此事件不可阻止，，但是可以阻塞，将为每一个插件提供事件响应
     virtual void event_onWorkSpaceClose(){return;};  //工作空间正在被关闭，不可被阻止，但是可以阻塞，将为每一个插件提供事件响应
+
+
+    virtual void event_onLoading(){return;}; //初次加载事件，插件被成功加载完成以后第一次通知的事件，注意：此时其他插件可能并没有加载完成
+    virtual void event_onLoadSettingsWidget(settingMsgList& msgList){return;}; //当加载设置组件的时候
 
 
 public:
