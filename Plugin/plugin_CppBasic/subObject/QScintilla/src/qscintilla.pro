@@ -1,5 +1,8 @@
 #filePath
-DESTDIR = ../../../../../release/lib
+DESTDIR = $$OUT_PWD/../../../../../release/lib
+
+message($$OUT_PWD)
+
 #fileName
 TARGET = qscintilla
 

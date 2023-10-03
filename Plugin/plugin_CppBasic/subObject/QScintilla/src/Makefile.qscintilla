@@ -697,10 +697,10 @@ qmake_all: FORCE
 make_first: release-make_first debug-make_first  FORCE
 all: release-all debug-all  FORCE
 clean: release-clean debug-clean  FORCE
-	-$(DEL_FILE) ..\..\..\..\..\release\lib\qscintilla.exp
+	-$(DEL_FILE) E:\QtProject\FireMonkeyStudio\release\lib\qscintilla.exp
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile.qscintilla
-	-$(DEL_FILE) .qmake.stash ..\..\..\..\..\release\lib\qscintilla.lib
+	-$(DEL_FILE) .qmake.stash E:\QtProject\FireMonkeyStudio\release\lib\qscintilla.lib
 
 release-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)

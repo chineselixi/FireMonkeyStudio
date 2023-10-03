@@ -9,9 +9,11 @@ CONFIG += c++17 file_copies
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 #输出的文件路径
-DESTDIR = ../release
+DESTDIR = $$OUT_PWD/../release
 #输出的文件名
-TARGET = ide
+TARGET = FMS
+
+#子项目
 
 
 
@@ -146,6 +148,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-images.qrc \
 icons.qrc \
     res.qrc
+
+
+#加载qsciscintilla库
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintillad
+else:unix: LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
+
+INCLUDEPATH += $$OUT_PWD/../release
+DEPENDPATH += $$OUT_PWD/../release

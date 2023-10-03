@@ -34,10 +34,12 @@
 	background-color:rgb(247, 249, 254);
 }
 #listWidget::item:hover{
+	border: 1px solid rgb(93, 107, 153);
+}
+#listWidget::item:selected {
 	background-color:rgb(196, 213, 255)
 }
-#listWidget::item:focus {
-	border: 1px solid rgb(93, 107, 153);
+#listWidget::item:selected:!active{
 	background-color: rgb(196, 213, 255);
 }</string>
   </property>

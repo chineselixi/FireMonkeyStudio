@@ -69,13 +69,15 @@ public:
 "	background-color:rgb(247, 249, 254);\n"
 "}\n"
 "#listWidget::item:hover{\n"
+"	border: 1px solid rgb(93, 107, 153);\n"
+"}\n"
+"#listWidget::item:selected {\n"
 "	background-color:rgb(196, 213, 255)\n"
 "}\n"
-"#listWidget::item:focus {\n"
-"	border: 1px solid rgb(93, 107, 153);\n"
+"#listWidget::item:selected:!active"
+                        "{\n"
 "	background-color: rgb(196, 213, 255);\n"
-""
-                        "}"));
+"}"));
         verticalLayout_3 = new QVBoxLayout(Form_SystemSettings);
         verticalLayout_3->setObjectName("verticalLayout_3");
         horizontalLayout = new QHBoxLayout();

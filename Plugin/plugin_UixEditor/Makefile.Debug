@@ -1489,15 +1489,15 @@ debug\plugin_uixeditor.obj: plugin_uixeditor.cpp plugin_uixeditor.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qttranslation.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qversiontagging.h \
 		..\..\IDE\Plugin\Plugin_Base.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QMainWindow \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
+		..\..\IDE\Plugin\Plugin_Global.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QWidget \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qwidget.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtGui\qtguiglobal.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtGui\qtgui-config.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtGui\qtguiexports.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtwidgetsexports.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qwidget.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtGui\qwindowdefs.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qobjectdefs.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qnamespace.h \
@@ -1605,10 +1605,15 @@ debug\plugin_uixeditor.obj: plugin_uixeditor.cpp plugin_uixeditor.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.5.2\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qnativeinterface.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QDockWidget \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qdockwidget.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QToolBar \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtoolbar.h \
 		Window\Form_WidgetBox.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QWidget \
 		Window\Form_EditorSpace.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QMainWindow \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QFileInfo \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qfile.h \

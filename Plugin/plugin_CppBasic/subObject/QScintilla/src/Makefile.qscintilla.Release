@@ -926,9 +926,9 @@ DIST          =  Qsci\qsciglobal.h \
 		..\scintilla\src\XPM.cpp \
 		qsciprinter.cpp
 QMAKE_TARGET  = qscintilla
-DESTDIR        = ..\..\..\..\..\release\lib\ #avoid trailing-slash linebreak
+DESTDIR        = E:\QtProject\FireMonkeyStudio\release\lib\ #avoid trailing-slash linebreak
 TARGET         = qscintilla.dll
-DESTDIR_TARGET = ..\..\..\..\..\release\lib\qscintilla.dll
+DESTDIR_TARGET = E:\QtProject\FireMonkeyStudio\release\lib\qscintilla.dll
 
 ####### Implicit rules
 
@@ -1037,9 +1037,9 @@ DESTDIR_TARGET = ..\..\..\..\..\release\lib\qscintilla.dll
 ####### Build rules
 
 first: all
-all: Makefile.qscintilla.Release  ..\..\..\..\..\release\lib\qscintilla.dll
+all: Makefile.qscintilla.Release  E:\QtProject\FireMonkeyStudio\release\lib\qscintilla.dll
 
-..\..\..\..\..\release\lib\qscintilla.dll: D:\QT\6.5.2\msvc2019_64\lib\Qt6PrintSupport.lib D:\QT\6.5.2\msvc2019_64\lib\Qt6Widgets.lib D:\QT\6.5.2\msvc2019_64\lib\Qt6Gui.lib D:\QT\6.5.2\msvc2019_64\lib\Qt6Core.lib $(OBJECTS) 
+E:\QtProject\FireMonkeyStudio\release\lib\qscintilla.dll: D:\QT\6.5.2\msvc2019_64\lib\Qt6PrintSupport.lib D:\QT\6.5.2\msvc2019_64\lib\Qt6Widgets.lib D:\QT\6.5.2\msvc2019_64\lib\Qt6Gui.lib D:\QT\6.5.2\msvc2019_64\lib\Qt6Core.lib $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
 release\qsciscintilla.obj release\qsciscintillabase.obj release\qsciabstractapis.obj release\qsciapis.obj release\qscicommand.obj release\qscicommandset.obj release\qscidocument.obj release\qscilexer.obj release\qscilexerasm.obj release\qscilexeravs.obj release\qscilexerbash.obj release\qscilexerbatch.obj release\qscilexercmake.obj release\qscilexercoffeescript.obj release\qscilexercpp.obj release\qscilexercsharp.obj release\qscilexercss.obj release\qscilexercustom.obj release\qscilexerd.obj release\qscilexerdiff.obj release\qscilexeredifact.obj release\qscilexerfortran.obj release\qscilexerfortran77.obj release\qscilexerhex.obj release\qscilexerhtml.obj release\qscilexeridl.obj release\qscilexerintelhex.obj release\qscilexerjava.obj release\qscilexerjavascript.obj release\qscilexerjson.obj release\qscilexerlua.obj release\qscilexermakefile.obj release\qscilexermarkdown.obj release\qscilexermasm.obj release\qscilexermatlab.obj release\qscilexernasm.obj release\qscilexeroctave.obj
 release\qscilexerpascal.obj release\qscilexerperl.obj release\qscilexerpostscript.obj release\qscilexerpo.obj release\qscilexerpov.obj release\qscilexerproperties.obj release\qscilexerpython.obj release\qscilexerruby.obj release\qscilexerspice.obj release\qscilexersql.obj release\qscilexersrec.obj release\qscilexertcl.obj release\qscilexertekhex.obj release\qscilexertex.obj release\qscilexerverilog.obj release\qscilexervhdl.obj release\qscilexerxml.obj release\qscilexeryaml.obj release\qscimacro.obj release\qscistyle.obj release\qscistyledtext.obj release\InputMethod.obj release\ListBoxQt.obj release\MacPasteboardMime.obj release\PlatQt.obj release\SciAccessibility.obj release\SciClasses.obj release\ScintillaQt.obj release\LexA68k.obj release\LexAPDL.obj release\LexASY.obj release\LexAU3.obj release\LexAVE.obj release\LexAVS.obj release\LexAbaqus.obj release\LexAda.obj release\LexAsm.obj release\LexAsn1.obj release\LexBaan.obj release\LexBash.obj release\LexBasic.obj
@@ -1064,10 +1064,10 @@ clean: compiler_clean
 	-$(DEL_FILE) release\LexBullant.obj release\LexCLW.obj release\LexCOBOL.obj release\LexCPP.obj release\LexCSS.obj release\LexCaml.obj release\LexCmake.obj release\LexCoffeeScript.obj release\LexConf.obj release\LexCrontab.obj release\LexCsound.obj release\LexD.obj release\LexDMAP.obj release\LexDMIS.obj release\LexDiff.obj release\LexECL.obj release\LexEDIFACT.obj release\LexEScript.obj release\LexEiffel.obj release\LexErlang.obj release\LexErrorList.obj release\LexFlagship.obj release\LexForth.obj release\LexFortran.obj release\LexGAP.obj release\LexGui4Cli.obj release\LexHTML.obj release\LexHaskell.obj release\LexHex.obj release\LexIndent.obj release\LexInno.obj release\LexJSON.obj release\LexKVIrc.obj release\LexKix.obj release\LexLaTeX.obj release\LexLisp.obj release\LexLout.obj release\LexLua.obj release\LexMMIXAL.obj release\LexMPT.obj release\LexMSSQL.obj release\LexMagik.obj release\LexMake.obj release\LexMarkdown.obj release\LexMatlab.obj release\LexMaxima.obj release\LexMetapost.obj release\LexModula.obj release\LexMySQL.obj release\LexNimrod.obj release\LexNsis.obj release\LexNull.obj release\LexOScript.obj release\LexOpal.obj release\LexPB.obj release\LexPLM.obj release\LexPO.obj release\LexPOV.obj release\LexPS.obj release\LexPascal.obj release\LexPerl.obj release\LexPowerPro.obj release\LexPowerShell.obj release\LexProgress.obj release\LexProps.obj release\LexPython.obj release\LexR.obj release\LexRebol.obj release\LexRegistry.obj release\LexRuby.obj release\LexRust.obj release\LexSAS.obj release\LexSML.obj release\LexSQL.obj release\LexSTTXT.obj release\LexScriptol.obj release\LexSmalltalk.obj release\LexSorcus.obj release\LexSpecman.obj release\LexSpice.obj release\LexStata.obj release\LexTACL.obj release\LexTADS3.obj release\LexTAL.obj release\LexTCL.obj release\LexTCMD.obj release\LexTeX.obj release\LexTxt2tags.obj release\LexVB.obj release\LexVHDL.obj release\LexVerilog.obj release\LexVisualProlog.obj release\LexYAML.obj release\Accessor.obj release\CharacterCategory.obj
 	-$(DEL_FILE) release\CharacterSet.obj release\DefaultLexer.obj release\LexerBase.obj release\LexerModule.obj release\LexerNoExceptions.obj release\LexerSimple.obj release\PropSetSimple.obj release\StyleContext.obj release\WordList.obj release\AutoComplete.obj release\CallTip.obj release\CaseConvert.obj release\CaseFolder.obj release\Catalogue.obj release\CellBuffer.obj release\CharClassify.obj release\ContractionState.obj release\DBCS.obj release\Decoration.obj release\Document.obj release\EditModel.obj release\Editor.obj release\EditView.obj release\ExternalLexer.obj release\Indicator.obj release\KeyMap.obj release\LineMarker.obj release\MarginView.obj release\PerLine.obj release\PositionCache.obj release\RESearch.obj release\RunStyles.obj release\ScintillaBase.obj release\Selection.obj release\Style.obj release\UniConversion.obj release\ViewStyle.obj release\XPM.obj release\qsciprinter.obj release\moc_qsciscintilla.obj release\moc_qsciscintillabase.obj release\moc_qsciabstractapis.obj release\moc_qsciapis.obj release\moc_qscilexer.obj release\moc_qscilexerasm.obj release\moc_qscilexeravs.obj release\moc_qscilexerbash.obj release\moc_qscilexerbatch.obj release\moc_qscilexercmake.obj release\moc_qscilexercoffeescript.obj release\moc_qscilexercpp.obj release\moc_qscilexercsharp.obj release\moc_qscilexercss.obj release\moc_qscilexercustom.obj release\moc_qscilexerd.obj release\moc_qscilexerdiff.obj release\moc_qscilexeredifact.obj release\moc_qscilexerfortran.obj release\moc_qscilexerfortran77.obj release\moc_qscilexerhex.obj release\moc_qscilexerhtml.obj release\moc_qscilexeridl.obj release\moc_qscilexerintelhex.obj release\moc_qscilexerjava.obj release\moc_qscilexerjavascript.obj release\moc_qscilexerjson.obj release\moc_qscilexerlua.obj release\moc_qscilexermakefile.obj release\moc_qscilexermarkdown.obj release\moc_qscilexermasm.obj release\moc_qscilexermatlab.obj release\moc_qscilexernasm.obj release\moc_qscilexeroctave.obj release\moc_qscilexerpascal.obj release\moc_qscilexerperl.obj
 	-$(DEL_FILE) release\moc_qscilexerpostscript.obj release\moc_qscilexerpo.obj release\moc_qscilexerpov.obj release\moc_qscilexerproperties.obj release\moc_qscilexerpython.obj release\moc_qscilexerruby.obj release\moc_qscilexerspice.obj release\moc_qscilexersql.obj release\moc_qscilexersrec.obj release\moc_qscilexertcl.obj release\moc_qscilexertekhex.obj release\moc_qscilexertex.obj release\moc_qscilexerverilog.obj release\moc_qscilexervhdl.obj release\moc_qscilexerxml.obj release\moc_qscilexeryaml.obj release\moc_qscimacro.obj release\moc_SciClasses.obj release\moc_ScintillaQt.obj
-	-$(DEL_FILE) ..\..\..\..\..\release\lib\qscintilla.exp
+	-$(DEL_FILE) E:\QtProject\FireMonkeyStudio\release\lib\qscintilla.exp
 
 distclean: clean 
-	-$(DEL_FILE) .qmake.stash ..\..\..\..\..\release\lib\qscintilla.lib
+	-$(DEL_FILE) .qmake.stash E:\QtProject\FireMonkeyStudio\release\lib\qscintilla.lib
 	-$(DEL_FILE) $(DESTDIR_TARGET)
 	-$(DEL_FILE) Makefile.qscintilla.Release
 
@@ -20541,7 +20541,7 @@ release\moc_ScintillaQt.obj: release\moc_ScintillaQt.cpp
 
 install_target: first FORCE
 	@if not exist D:$(INSTALL_ROOT)\QT\6.5.2\msvc2019_64\lib mkdir D:$(INSTALL_ROOT)\QT\6.5.2\msvc2019_64\lib & if not exist D:$(INSTALL_ROOT)\QT\6.5.2\msvc2019_64\lib exit 1
-	-$(INSTALL_FILE) ..\..\..\..\..\release\lib\qscintilla.lib D:$(INSTALL_ROOT)\QT\6.5.2\msvc2019_64\lib\qscintilla.lib
+	-$(INSTALL_FILE) E:\QtProject\FireMonkeyStudio\release\lib\qscintilla.lib D:$(INSTALL_ROOT)\QT\6.5.2\msvc2019_64\lib\qscintilla.lib
 	-$(INSTALL_FILE) $(DESTDIR_TARGET) D:$(INSTALL_ROOT)\QT\6.5.2\msvc2019_64\lib\$(TARGET)
 
 uninstall_target: FORCE

@@ -11,7 +11,7 @@ CONFIG += c++17
 
 
 #输出的文件路径
-DESTDIR = ../../release/plg/plugin_uieditor
+DESTDIR = $$OUT_PWD/../../release/plg/plugin_uieditor
 #输出的文件名
 TARGET = plg_uixEditor
 

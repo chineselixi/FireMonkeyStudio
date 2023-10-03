@@ -1,6 +1,7 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 //#include "CodeEditor/CodeEditor.h"
 
+#include "../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "SwSystem/System_GlobalVar.h"
 
 

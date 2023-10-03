@@ -35,11 +35,69 @@ RES_FILE      =
 SED           = $(QMAKE) -install sed
 MOVE          = move
 SUBTARGETS    =  \
+		sub-QScintilla-src-QScintilla-pro \
 		sub-IDE \
 		sub-Plugin
 
 
-sub-IDE-qmake_all:  FORCE
+sub-QScintilla-src-QScintilla-pro-qmake_all:  FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	cd QScintilla\src\ && $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && $(MAKE) -f Makefile.QScintilla qmake_all
+sub-QScintilla-src-QScintilla-pro: $(MAKEFILE) FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla
+sub-QScintilla-src-QScintilla-pro-make_first-ordered: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla 
+sub-QScintilla-src-QScintilla-pro-make_first: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla 
+sub-QScintilla-src-QScintilla-pro-all-ordered: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla all
+sub-QScintilla-src-QScintilla-pro-all: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla all
+sub-QScintilla-src-QScintilla-pro-clean-ordered: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla clean
+sub-QScintilla-src-QScintilla-pro-clean: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla clean
+sub-QScintilla-src-QScintilla-pro-distclean-ordered: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla distclean
+sub-QScintilla-src-QScintilla-pro-distclean: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla distclean
+sub-QScintilla-src-QScintilla-pro-install_subtargets-ordered: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla install
+sub-QScintilla-src-QScintilla-pro-install_subtargets: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla install
+sub-QScintilla-src-QScintilla-pro-uninstall_subtargets-ordered: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla uninstall
+sub-QScintilla-src-QScintilla-pro-uninstall_subtargets: FORCE
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla uninstall
+sub-IDE-qmake_all: sub-QScintilla-src-QScintilla-pro-qmake_all FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	cd IDE\ && $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
 	@set MAKEFLAGS=$(MAKEFLAGS)
@@ -48,7 +106,7 @@ sub-IDE: $(MAKEFILE) FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile
-sub-IDE-make_first-ordered: FORCE
+sub-IDE-make_first-ordered: sub-QScintilla-src-QScintilla-pro-make_first-ordered  FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
@@ -56,7 +114,7 @@ sub-IDE-make_first: FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
-sub-IDE-all-ordered: FORCE
+sub-IDE-all-ordered: sub-QScintilla-src-QScintilla-pro-all-ordered  FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
@@ -64,7 +122,7 @@ sub-IDE-all: FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
-sub-IDE-clean-ordered: FORCE
+sub-IDE-clean-ordered: sub-QScintilla-src-QScintilla-pro-clean-ordered  FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
@@ -72,7 +130,7 @@ sub-IDE-clean: FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
-sub-IDE-distclean-ordered: FORCE
+sub-IDE-distclean-ordered: sub-QScintilla-src-QScintilla-pro-distclean-ordered  FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
@@ -80,7 +138,7 @@ sub-IDE-distclean: FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
-sub-IDE-install_subtargets-ordered: FORCE
+sub-IDE-install_subtargets-ordered: sub-QScintilla-src-QScintilla-pro-install_subtargets-ordered  FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
@@ -88,7 +146,7 @@ sub-IDE-install_subtargets: FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
-sub-IDE-uninstall_subtargets-ordered: FORCE
+sub-IDE-uninstall_subtargets-ordered: sub-QScintilla-src-QScintilla-pro-uninstall_subtargets-ordered  FORCE
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
@@ -732,18 +790,22 @@ FMS.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile FMS.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
 
-qmake_all: sub-IDE-qmake_all sub-Plugin-qmake_all FORCE
+qmake_all: sub-QScintilla-src-QScintilla-pro-qmake_all sub-IDE-qmake_all sub-Plugin-qmake_all FORCE
 
-make_first: sub-IDE-make_first-ordered sub-Plugin-make_first-ordered  FORCE
-all: sub-IDE-all-ordered sub-Plugin-all-ordered  FORCE
-clean: sub-IDE-clean-ordered sub-Plugin-clean-ordered  FORCE
-distclean: sub-IDE-distclean-ordered sub-Plugin-distclean-ordered  FORCE
+make_first: sub-QScintilla-src-QScintilla-pro-make_first-ordered sub-IDE-make_first-ordered sub-Plugin-make_first-ordered  FORCE
+all: sub-QScintilla-src-QScintilla-pro-all-ordered sub-IDE-all-ordered sub-Plugin-all-ordered  FORCE
+clean: sub-QScintilla-src-QScintilla-pro-clean-ordered sub-IDE-clean-ordered sub-Plugin-clean-ordered  FORCE
+distclean: sub-QScintilla-src-QScintilla-pro-distclean-ordered sub-IDE-distclean-ordered sub-Plugin-distclean-ordered  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash
-install_subtargets: sub-IDE-install_subtargets-ordered sub-Plugin-install_subtargets-ordered FORCE
-uninstall_subtargets: sub-IDE-uninstall_subtargets-ordered sub-Plugin-uninstall_subtargets-ordered FORCE
+install_subtargets: sub-QScintilla-src-QScintilla-pro-install_subtargets-ordered sub-IDE-install_subtargets-ordered sub-Plugin-install_subtargets-ordered FORCE
+uninstall_subtargets: sub-QScintilla-src-QScintilla-pro-uninstall_subtargets-ordered sub-IDE-uninstall_subtargets-ordered sub-Plugin-uninstall_subtargets-ordered FORCE
 
-sub-IDE-debug_ordered:
+sub-QScintilla-src-QScintilla-pro-debug_ordered:
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla debug
+sub-IDE-debug_ordered: sub-QScintilla-src-QScintilla-pro-debug_ordered 
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
@@ -751,9 +813,13 @@ sub-Plugin-debug_ordered: sub-IDE-debug_ordered
 	@if not exist Plugin\ mkdir Plugin\ & if not exist Plugin\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd Plugin\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\Plugin.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
-debug: sub-IDE-debug_ordered sub-Plugin-debug_ordered
+debug: sub-QScintilla-src-QScintilla-pro-debug_ordered sub-IDE-debug_ordered sub-Plugin-debug_ordered
 
-sub-IDE-release_ordered:
+sub-QScintilla-src-QScintilla-pro-release_ordered:
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla release
+sub-IDE-release_ordered: sub-QScintilla-src-QScintilla-pro-release_ordered 
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
@@ -761,9 +827,13 @@ sub-Plugin-release_ordered: sub-IDE-release_ordered
 	@if not exist Plugin\ mkdir Plugin\ & if not exist Plugin\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd Plugin\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\Plugin.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
-release: sub-IDE-release_ordered sub-Plugin-release_ordered
+release: sub-QScintilla-src-QScintilla-pro-release_ordered sub-IDE-release_ordered sub-Plugin-release_ordered
 
-sub-IDE-check_ordered:
+sub-QScintilla-src-QScintilla-pro-check_ordered:
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla check
+sub-IDE-check_ordered: sub-QScintilla-src-QScintilla-pro-check_ordered 
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
@@ -771,9 +841,13 @@ sub-Plugin-check_ordered: sub-IDE-check_ordered
 	@if not exist Plugin\ mkdir Plugin\ & if not exist Plugin\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd Plugin\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\Plugin.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
-check: sub-IDE-check_ordered sub-Plugin-check_ordered
+check: sub-QScintilla-src-QScintilla-pro-check_ordered sub-IDE-check_ordered sub-Plugin-check_ordered
 
-sub-IDE-benchmark_ordered:
+sub-QScintilla-src-QScintilla-pro-benchmark_ordered:
+	@if not exist QScintilla\src\ mkdir QScintilla\src\ & if not exist QScintilla\src\ exit 1
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	cd QScintilla\src\ && ( if not exist Makefile.QScintilla $(QMAKE) -o Makefile.QScintilla E:\QtProject\FireMonkeyStudio\QScintilla\src\QScintilla.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile.QScintilla benchmark
+sub-IDE-benchmark_ordered: sub-QScintilla-src-QScintilla-pro-benchmark_ordered 
 	@if not exist IDE\ mkdir IDE\ & if not exist IDE\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd IDE\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\IDE\IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
@@ -781,7 +855,7 @@ sub-Plugin-benchmark_ordered: sub-IDE-benchmark_ordered
 	@if not exist Plugin\ mkdir Plugin\ & if not exist Plugin\ exit 1
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	cd Plugin\ && ( if not exist Makefile $(QMAKE) -o Makefile E:\QtProject\FireMonkeyStudio\Plugin\Plugin.pro -spec win32-msvc "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-IDE-benchmark_ordered sub-Plugin-benchmark_ordered
+benchmark: sub-QScintilla-src-QScintilla-pro-benchmark_ordered sub-IDE-benchmark_ordered sub-Plugin-benchmark_ordered
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE
