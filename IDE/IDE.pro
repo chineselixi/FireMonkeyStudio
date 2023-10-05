@@ -35,6 +35,7 @@ COPIES += config proModel web widgets formStyle # 配置COPIES
 
 SOURCES += \
     Plugin/Plugin_Base.cpp \
+    Plugin/Plugin_Funs.cpp \
     Plugin/Plugin_Global.cpp \
     Plugin/Plugin_Manger.cpp \
     SwSystem/System_GlobalVar.cpp \
@@ -51,6 +52,7 @@ SOURCES += \
     Window/Form_Begin.cpp \
     Window/Form_Content.cpp \
     Window/Form_Editor.cpp \
+    Window/Form_Index.cpp \
     Window/Form_ListPrint.cpp \
     Window/Form_New.cpp \
     Window/Form_PluginManger.cpp \
@@ -75,6 +77,7 @@ SOURCES += \
 
 HEADERS += \
     Plugin/Plugin_Base.h \
+    Plugin/Plugin_Funs.h \
     Plugin/Plugin_Global.h \
     Plugin/Plugin_Manger.h \
     SwSystem/System_GlobalVar.h \
@@ -91,6 +94,7 @@ HEADERS += \
     Window/Form_Begin.h \
     Window/Form_Content.h \
     Window/Form_Editor.h \
+    Window/Form_Index.h \
     Window/Form_ListPrint.h \
     Window/Form_New.h \
     Window/Form_PluginManger.h \
@@ -123,6 +127,7 @@ FORMS += \
     Window/Form_Beginui.ui \
     Window/Form_Content.ui \
     Window/Form_Editor.ui \
+    Window/Form_Index.ui \
     Window/Form_ListPrint.ui \
     Window/Form_New.ui \
     Window/Form_PluginManger.ui \

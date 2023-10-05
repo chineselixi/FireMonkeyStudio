@@ -887,4 +887,14 @@
         <file>icon/compileTip/tip.png</file>
         <file>icon/compileTip/warning.png</file>
     </qresource>
+    <qresource prefix="/Image/Index">
+        <file>icon/index/index.png</file>
+    </qresource>
+    <qresource prefix="/WidgetIcon/logo">
+        <file>icon/WidgetIcon/logo/Logo_32.png</file>
+        <file>icon/WidgetIcon/logo/Logo_48.png</file>
+        <file>icon/WidgetIcon/logo/Logo_64.png</file>
+        <file>icon/WidgetIcon/logo/Logo_128.png</file>
+        <file>icon/WidgetIcon/logo/Logo_256.png</file>
+    </qresource>
 </RCC>

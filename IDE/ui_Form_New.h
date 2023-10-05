@@ -243,6 +243,7 @@ public:
         frame->setMaximumSize(QSize(410, 16777215));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
+        frame->setLineWidth(1);
         label_tip2 = new QLabel(frame);
         label_tip2->setObjectName("label_tip2");
         label_tip2->setGeometry(QRect(20, 1, 359, 70));
@@ -616,7 +617,7 @@ public:
 
         retranslateUi(Form_New);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         pushButton_clone->setDefault(false);
         pushButton_next_toCreate->setDefault(false);
         pushButton_createProject->setDefault(false);

@@ -5,18 +5,13 @@
 #include "SwSystem/System_GlobalVar.h"
 
 
-
-#include "Window/Form_WorkSpace.h"
-
-//#include <QtWebView/QtWebView>
-
-
+#include "Window/Form_Index.h"
 #include "Window/Form_New.h"
-
-
 #include "Window/Form_ProjectManger.h"
 #include "Window/Form_WindowTab.h"
 #include "Window/Form_PluginManger.h""
+#include "Window/Form_WorkSpace.h"
+
 
 #include "Plugin/Plugin_Manger.h"
 
@@ -38,6 +33,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //a.setFont(QFont("Consolas"));
+
+
+
 
     //加载设置信息
     loadSettings();
@@ -73,8 +71,12 @@ int main(int argc, char *argv[])
     //MainWindow w;
     //w.show();
 
-    Form_WorkSpace ws;
-    ws.show();
+    Form_Index* wi = new Form_Index(); //index窗口将加载工作空间
+    wi->show();
+
+
+    //Form_WorkSpace ws;
+    //ws.show();
 
     //Form_New n;
     //n.show();

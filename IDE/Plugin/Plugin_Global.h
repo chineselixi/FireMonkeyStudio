@@ -19,7 +19,7 @@ enum TabType{
 
 
 //编译模式
-enum compileType{
+enum generateType{
     debug = 0,
     release = 1,
 };
@@ -65,6 +65,32 @@ enum toolBarAction{
 };
 
 
+//工具栏分类
+enum toolBarMenuType{
+    toolType, //添加菜单到工具栏
+    settingType, //添加菜单到设置
+    helpsType, //添加菜单到帮助
+    viewType, //添加菜单到试图
+    extendType, //添加菜单到拓展
+    compileType, //添加菜单到生成
+    dataBaseType, //添加菜单到数据库
+    insertType, //添加菜单到插入
+    fileType, //添加菜单到打开文件
+};
+
+
+
+//工程管理
+enum proMangerMenuType{
+    Project,NewFile,ProNormal
+};
+
+
+
+
+
+
+
 //默认基础函数类型
 typedef std::function<void()> fun_void; //基础函数类型，空返回
 
@@ -87,11 +113,11 @@ typedef std::function<void()> printFun_clear;
 typedef std::function<void(QColor color,QString printText)> printFun_printTextSpace;
 
 //插件管理器通信
-typedef std::function<QString(QString pluginSign,QString pustMsg)> pluginFun_post; //插件投递函数
+typedef std::function<QString(QString selfSign,QString pluginSign,QString pustMsg)> pluginFun_post; //插件投递函数
 
 //Dock操作
 typedef std::function<void(Qt::DockWidgetArea area,QDockWidget* dockWidget)> dockWidgetFun_add;//添加Dock
-typedef std::function<void(QDockWidget* dockWidget)> dockWidgetFun_rm;//添加Dock
+typedef std::function<void(QDockWidget* dockWidget)> dockWidgetFun_rm;//移除Dock
 
 //ToolBar操作
 typedef std::function<void(toolBarAction actionType,bool isEnable)> toolBar_action_setEnable; //设置工具栏的action是否启用

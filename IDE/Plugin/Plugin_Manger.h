@@ -3,7 +3,7 @@
 #define PLUGIN_MANGER_H
 
 #include "QLibrary"
-#include "Plugin/Plugin_Base.h"
+#include "Plugin_Base.h"
 
 class Plugin_Manger
 {
@@ -87,7 +87,7 @@ public:
 public:
 
     void event_onModLoadFinish();//当模块加载完毕，将第一时间激发模块事件
-    void event_onCompileTypeChanged(PluginGlobalMsg::compileType type); //当编译模式被改变激发模块事件
+    void event_onCompileTypeChanged(PluginGlobalMsg::generateType type); //当编译模式被改变激发模块事件
     void event_onFileOpen(QString filePath); //当文件被打开，激发模块事件
     void event_onFileOpenFinish(QString filePath); //当前文件已经被打开，所有的文件被打开都会激发模块事件
     void event_onFileClose(QString filePath); //当文件被删除或者关闭

@@ -6,35 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>948</width>
-    <height>601</height>
+    <width>890</width>
+    <height>500</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>890</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>890</width>
+    <height>500</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>火猴跨平台编辑器Demo</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>840</x>
-      <y>10</y>
-      <width>100</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>948</width>
-     <height>24</height>
+     <width>890</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>

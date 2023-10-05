@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -17,8 +17,6 @@ public:
 
 private slots:
 
-
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

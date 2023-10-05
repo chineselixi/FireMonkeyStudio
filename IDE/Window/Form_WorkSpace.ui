@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>FireMoneky Studio 2023</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
+    <normaloff>:/WidgetIcon/icon/WidgetIcon/logo/Logo_128.png</normaloff>:/WidgetIcon/icon/WidgetIcon/logo/Logo_128.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">/*=============================Form_WorkSpace窗口下面的样式表=============================*/
 /*主窗口样式设置*/
@@ -208,7 +212,7 @@ QMenu::item:disabled {/*菜单被禁用*/
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>24</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">

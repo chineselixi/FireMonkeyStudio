@@ -28,7 +28,7 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
     Window::workSpace = this;
 
     this->init(); //初始化代码
-    Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::compileType::debug); //响应编译模式
+    Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::generateType::debug); //响应编译模式
     Manger::pluginManger->event_onWorkSpaceFinish(); //响应插件workSpace加载完成事件
 
 
@@ -666,10 +666,10 @@ void Form_WorkSpace::on_action_menu_about_triggered()
 void Form_WorkSpace::on_comboBox_compileMode_currentIndexChanged(int index)
 {
     if(index == 0){  //如果是0则为debug模式，如果是
-        Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::compileType::debug);
+        Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::generateType::debug);
     }
     else{
-        Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::compileType::release);
+        Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::generateType::release);
     }
 }
 
