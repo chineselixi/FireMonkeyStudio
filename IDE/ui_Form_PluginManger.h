@@ -61,7 +61,8 @@ public:
 "QListWidget::item:selected{\n"
 "    background-color: #B5E7FF;\n"
 "    color: black;\n"
-"}"));
+"}\n"
+""));
         horizontalLayout = new QHBoxLayout(Form_PluginManger);
         horizontalLayout->setSpacing(30);
         horizontalLayout->setObjectName("horizontalLayout");

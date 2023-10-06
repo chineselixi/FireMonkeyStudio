@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icon/logo">
+        <file>res/Logo_128.png</file>
+    </qresource>
+    <qresource prefix="/QRCode">
+        <file>res/QRCode.png</file>
+    </qresource>
+</RCC>

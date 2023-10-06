@@ -1,6 +1,5 @@
 ﻿
 #include "Plugin_Manger.h"
-#include "Plugin_Funs.h"
 
 #include "QDir"
 #include "QFileInfo"
@@ -68,8 +67,20 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
             }
             delete t_lib;
         }
-        ADDMSG:
+    ADDMSG:
         this->List_plg.append(t_plgMsg); //添加实例插件
+    }
+
+
+    //插件优先级排序,优先级从大到小排序
+    for(int a=0;a<this->List_plg.length() - 1;a++){
+        for(int b=0;b<this->List_plg.length() - 1 - a;b++){
+            if(this->List_plg[b].plgPth->self_BaseMsg.level < this->List_plg[b + 1].plgPth->self_BaseMsg.level){
+                PluginMsg t_plgMsg = this->List_plg[b];
+                this->List_plg[b] = this->List_plg[b+1];
+                this->List_plg[b+1] = t_plgMsg;
+            }
+        }
     }
 
 
@@ -83,12 +94,12 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
 //获取插件列表信息
 QVector<Plugin_Manger::PluginMsg> Plugin_Manger::getPluginList()
 {
-//    QVector<PluginMsg> t_list;
-//    for(auto value : List_plg){
-//        if(value.plgPth != nullptr){
-//            t_list.append(value);
-//        }
-//    }
+    //    QVector<PluginMsg> t_list;
+    //    for(auto value : List_plg){
+    //        if(value.plgPth != nullptr){
+    //            t_list.append(value);
+    //        }
+    //    }
     return List_plg;
 }
 
@@ -131,18 +142,22 @@ void Plugin_Manger::workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool, P
                                         PluginGlobalMsg::menuFun toolBar_extend, PluginGlobalMsg::menuFun toolBar_db, PluginGlobalMsg::menuFun toolBar_comple, PluginGlobalMsg::menuFun toolBar_insert, PluginGlobalMsg::menuFun toolBar_file,
                                         PluginGlobalMsg::menuFun ProManger_project, PluginGlobalMsg::menuFun ProManger_newFile, PluginGlobalMsg::menuFun ProManger_proNormal)
 {
-    PluginFuns::WorkSpace_AddMenu_ToolBar_Tool = toolBar_tool;
-    PluginFuns::WorkSpace_AddMenu_ToolBar_Setting = toolBar_set;
-    PluginFuns::WorkSpace_AddMenu_ToolBar_Helps = toolBar_help;
-    PluginFuns::WorkSpace_AddMenu_ToolBar_View = toolBar_view;
-    PluginFuns::WorkSpace_AddMenu_ToolBar_Extend = toolBar_extend;
-    PluginFuns::WorkSpace_AddMenu_ToolBar_DataBase = toolBar_db;
-    PluginFuns::WorkSpace_AddMenu_ToolBar_Compile = toolBar_comple;
-    PluginFuns::WorkSpace_AddMenu_ToolBar_Insert = toolBar_insert;
-    PluginFuns::WorkSpace_AddMenu_ToolBar_File = toolBar_file;
-    PluginFuns::WorkSpace_AddMenu_ProManger_Project = ProManger_project;
-    PluginFuns::WorkSpace_AddMenu_ProManger_NewFile = ProManger_newFile;
-    PluginFuns::WorkSpace_AddMenu_ProManger_ProNormal = ProManger_proNormal;
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_Tool = toolBar_tool;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_Setting = toolBar_set;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_Helps = toolBar_help;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_View = toolBar_view;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_Extend = toolBar_extend;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_DataBase = toolBar_db;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_Compile = toolBar_comple;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_Insert = toolBar_insert;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_File = toolBar_file;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ProManger_Project = ProManger_project;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ProManger_NewFile = ProManger_newFile;
+            this->List_plg[a].plgPth->WorkSpace_AddMenu_ProManger_ProNormal = ProManger_proNormal;
+        }
+    }
 }
 
 
@@ -150,7 +165,11 @@ void Plugin_Manger::workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool, P
 //添加workSpace的Tab窗口
 void Plugin_Manger::workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth)
 {
-    PluginFuns::WorkSpace_addTabWindow = pth;
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->WorkSpace_addTabWindow = pth;
+        }
+    }
 }
 
 
@@ -163,10 +182,10 @@ void Plugin_Manger::workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth)
 //{
 //    for(int a = 0;a < List_plg.length();a++){
 //        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-//        PluginFuns::CodeEditorFunPtr_Create = createPth;
-//        PluginFuns::CodeEditorFunPtr_AddkeyWord = addWordPth;
-//        PluginFuns::CodeEditorFunPtr_GetCode = getStrPth;
-//        PluginFuns::CodeEditorFunPtr_AddStr = addStrPth;
+//        this->List_plg[a].plgPth->CodeEditorFunPtr_Create = createPth;
+//        this->List_plg[a].plgPth->CodeEditorFunPtr_AddkeyWord = addWordPth;
+//        this->List_plg[a].plgPth->CodeEditorFunPtr_GetCode = getStrPth;
+//        this->List_plg[a].plgPth->CodeEditorFunPtr_AddStr = addStrPth;
 //    }
 //}
 
@@ -176,9 +195,13 @@ void Plugin_Manger::workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth)
 //设置工具栏内控件的启用与关闭,添加工具栏
 void Plugin_Manger::workSpace_init_toolBarFuns(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr,PluginGlobalMsg::toolBarFun toolBar_addToolBarFunPtr)
 {
-    PluginFuns::WorkSpace_ToolBar_setActionEnable = toolBar_setActionEnableFunPtr;
-    PluginFuns::WorkSpace_ToolBar_closeAllAction = toolBar_clearAllActionFunPtr;
-    PluginFuns::WorkSpace_ToolBar_addToolBar = toolBar_addToolBarFunPtr;
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->WorkSpace_ToolBar_setActionEnable = toolBar_setActionEnableFunPtr;
+            this->List_plg[a].plgPth->WorkSpace_ToolBar_closeAllAction = toolBar_clearAllActionFunPtr;
+            this->List_plg[a].plgPth->WorkSpace_ToolBar_addToolBar = toolBar_addToolBarFunPtr;
+        }
+    }
 }
 
 
@@ -192,11 +215,15 @@ void Plugin_Manger::workSpace_init_tipPrint(PluginGlobalMsg::printFun_printList 
                                             PluginGlobalMsg::printFun_clear fun_clearPrintList,
                                             PluginGlobalMsg::printFun_clear fun_clearTextSpace)
 {
-    PluginFuns::WorkSpace_PrintOut_List = fun_printList;
-    PluginFuns::WorkSpace_PrintOut_TextSpace_Print = fun_printText;
-    PluginFuns::WorkSpace_PrintOut_TextSpace_PrintLine = fun_printTextLine;
-    PluginFuns::WorkSpace_PrintOut_List_Clear = fun_clearPrintList;
-    PluginFuns::WorkSpace_PrintOut_TextSpace_Clear = fun_clearTextSpace;
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->WorkSpace_PrintOut_List = fun_printList;
+            this->List_plg[a].plgPth->WorkSpace_PrintOut_TextSpace_Print = fun_printText;
+            this->List_plg[a].plgPth->WorkSpace_PrintOut_TextSpace_PrintLine = fun_printTextLine;
+            this->List_plg[a].plgPth->WorkSpace_PrintOut_List_Clear = fun_clearPrintList;
+            this->List_plg[a].plgPth->WorkSpace_PrintOut_TextSpace_Clear = fun_clearTextSpace;
+        }
+    }
 }
 
 
@@ -205,27 +232,35 @@ void Plugin_Manger::workSpace_init_tipPrint(PluginGlobalMsg::printFun_printList 
 //插件接口绑定
 void Plugin_Manger::pluginManger_init_building()
 {
-    PluginFuns::PluginManger_PostMsg = [this](QString selfSign,QString pluginSign,QString pustMsg)->QString{
-        QString t_plgMsg = "";
-        for(int b = 0;b < List_plg.length();b++){
-            if(pluginSign == List_plg[b].plgPth->getBaseMsg().sign){ //如果查找到当前的插件标记则开始信息投递
-                QString t_retMsg = List_plg[b].plgPth->event_onPluginReceive(selfSign,pustMsg); //投递信息
-                if(!t_retMsg.isEmpty()){
-                    t_plgMsg = t_retMsg;
-                    break;
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->PluginManger_PostMsg = [this](QString selfSign,QString pluginSign,QString pustMsg)->QString{
+                QString t_plgMsg = "";
+                for(int b = 0;b < List_plg.length();b++){
+                    if(pluginSign == List_plg[b].plgPth->getBaseMsg().sign){ //如果查找到当前的插件标记则开始信息投递
+                        QString t_retMsg = List_plg[b].plgPth->event_onPluginReceive(selfSign,pustMsg); //投递信息
+                        if(!t_retMsg.isEmpty()){
+                            t_plgMsg = t_retMsg;
+                            break;
+                        }
+                    }
                 }
-            }
+                return t_plgMsg; //返回最后一个信息投递的有效返回信息
+            };
         }
-        return t_plgMsg; //返回最后一个信息投递的有效返回信息
-    };
+    }
 }
 
 
 //浮动窗格绑定
 void Plugin_Manger::workSpace_init_dockWidget(PluginGlobalMsg::dockWidgetFun_add addFun,PluginGlobalMsg::dockWidgetFun_rm rmFun)
 {
-    PluginFuns::WorkSpace_DockWidget_Add = addFun;
-    PluginFuns::WorkSpace_DockWidget_remove = rmFun;
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->WorkSpace_DockWidget_Add = addFun;
+            this->List_plg[a].plgPth->WorkSpace_DockWidget_remove = rmFun;
+        }
+    }
 }
 
 
@@ -347,7 +382,7 @@ void Plugin_Manger::event_onWorkSpaceClose()
 
 
 
- //当工具栏的Action被触发
+//当工具栏的Action被触发
 void Plugin_Manger::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath, QString proLangs, QString proNoteClass)
 {
     for(int a = 0;a < List_plg.length();a++){

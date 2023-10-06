@@ -1,6 +1,5 @@
 ﻿
 #include "Plugin_Base.h"
-#include "Plugin_Funs.h"
 
 
 //添加菜单到工具栏菜单
@@ -10,31 +9,31 @@ void Plugin_Base::addToolBarMenu(PluginGlobalMsg::toolBarMenuType menuType, QAct
     switch (menuType) {
     default:{}
     case PluginGlobalMsg::toolBarMenuType::extendType:{ //拓展菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_Extend;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_Extend;break;
     }
     case PluginGlobalMsg::toolBarMenuType::toolType:{ //工具菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_Tool;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_Tool;break;
     }
     case PluginGlobalMsg::toolBarMenuType::settingType:{ //设置菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_Setting;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_Setting;break;
     }
     case PluginGlobalMsg::toolBarMenuType::helpsType:{ //帮助菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_Helps;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_Helps;break;
     }
     case PluginGlobalMsg::toolBarMenuType::viewType:{ //视图菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_View;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_View;break;
     }
     case PluginGlobalMsg::toolBarMenuType::compileType:{ //编译菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_Compile;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_Compile;break;
     }
     case PluginGlobalMsg::toolBarMenuType::dataBaseType:{ //数据库菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_DataBase;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_DataBase;break;
     }
     case PluginGlobalMsg::toolBarMenuType::insertType:{ //插入菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_Insert;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_Insert;break;
     }
     case PluginGlobalMsg::toolBarMenuType::fileType:{ //文件菜单
-        t_fun = PluginFuns::WorkSpace_AddMenu_ToolBar_File;break;
+        t_fun = this->WorkSpace_AddMenu_ToolBar_File;break;
     }
     }
 
@@ -50,13 +49,13 @@ void Plugin_Base::addProMangerMenu(PluginGlobalMsg::proMangerMenuType menuType, 
     switch (menuType) {
     default:{}
     case PluginGlobalMsg::proMangerMenuType::NewFile:{ //新文件
-        t_fun = PluginFuns::WorkSpace_AddMenu_ProManger_NewFile;break;
+        t_fun = this->WorkSpace_AddMenu_ProManger_NewFile;break;
     }
     case PluginGlobalMsg::proMangerMenuType::ProNormal:{ //默认
-        t_fun = PluginFuns::WorkSpace_AddMenu_ProManger_ProNormal;break;
+        t_fun = this->WorkSpace_AddMenu_ProManger_ProNormal;break;
     }
     case PluginGlobalMsg::proMangerMenuType::Project:{ //工程列表
-        t_fun = PluginFuns::WorkSpace_AddMenu_ProManger_Project;break;
+        t_fun = this->WorkSpace_AddMenu_ProManger_Project;break;
     }
     }
     if(t_fun != nullptr){ //指针有效
@@ -67,8 +66,8 @@ void Plugin_Base::addProMangerMenu(PluginGlobalMsg::proMangerMenuType menuType, 
 //设置工作空间Action启用
 void Plugin_Base::setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction actionType, bool isEnable)
 {
-    if(PluginFuns::WorkSpace_ToolBar_setActionEnable){
-        PluginFuns::WorkSpace_ToolBar_setActionEnable(actionType,isEnable);
+    if(this->WorkSpace_ToolBar_setActionEnable){
+        this->WorkSpace_ToolBar_setActionEnable(actionType,isEnable);
     }
 
 }
@@ -76,72 +75,72 @@ void Plugin_Base::setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction action
 //关闭所有的工作控件子菜单
 void Plugin_Base::closeWorkSpaceAllAction()
 {
-    if(PluginFuns::WorkSpace_ToolBar_closeAllAction){
-        PluginFuns::WorkSpace_ToolBar_closeAllAction();
+    if(this->WorkSpace_ToolBar_closeAllAction){
+        this->WorkSpace_ToolBar_closeAllAction();
     }
 }
 
 //添加工具栏到工作空间
 void Plugin_Base::addToolBarToWs(QToolBar *toolBar)
 {
-    if(PluginFuns::WorkSpace_ToolBar_addToolBar){
-        PluginFuns::WorkSpace_ToolBar_addToolBar(toolBar);
+    if(this->WorkSpace_ToolBar_addToolBar){
+        this->WorkSpace_ToolBar_addToolBar(toolBar);
     }
 }
 
 //在列表输出中输出一行文本
 void Plugin_Base::printList(QString code, QString text, QString project, QString file, int row, PluginGlobalMsg::printIcoType type, QColor textColor)
 {
-    if(PluginFuns::WorkSpace_PrintOut_List){
-        PluginFuns::WorkSpace_PrintOut_List(code,text,project,file,row,type,textColor);
+    if(this->WorkSpace_PrintOut_List){
+        this->WorkSpace_PrintOut_List(code,text,project,file,row,type,textColor);
     }
 }
 
 //清理行的所有行文本
 void Plugin_Base::clearList()
 {
-    if(PluginFuns::WorkSpace_PrintOut_List_Clear){
-        PluginFuns::WorkSpace_PrintOut_List_Clear();
+    if(this->WorkSpace_PrintOut_List_Clear){
+        this->WorkSpace_PrintOut_List_Clear();
     }
 }
 
 //在文本窗口输出文本
 void Plugin_Base::printTextSpace(QColor color, QString printText)
 {
-    if(PluginFuns::WorkSpace_PrintOut_TextSpace_Print){
-        PluginFuns::WorkSpace_PrintOut_TextSpace_Print(color,printText);
+    if(this->WorkSpace_PrintOut_TextSpace_Print){
+        this->WorkSpace_PrintOut_TextSpace_Print(color,printText);
     }
 }
 
 //在文本窗口输出文本
 void Plugin_Base::printTextSpaceLine(QColor color, QString printText)
 {
-    if(PluginFuns::WorkSpace_PrintOut_TextSpace_PrintLine){
-        PluginFuns::WorkSpace_PrintOut_TextSpace_PrintLine(color,printText);
+    if(this->WorkSpace_PrintOut_TextSpace_PrintLine){
+        this->WorkSpace_PrintOut_TextSpace_PrintLine(color,printText);
     }
 }
 
 //清理文本窗口所有的文本
 void Plugin_Base::clearTextSpace()
 {
-    if(PluginFuns::WorkSpace_PrintOut_TextSpace_Clear){
-        PluginFuns::WorkSpace_PrintOut_TextSpace_Clear();
+    if(this->WorkSpace_PrintOut_TextSpace_Clear){
+        this->WorkSpace_PrintOut_TextSpace_Clear();
     }
 }
 
 //在Tab添加窗口
 void Plugin_Base::addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco, PluginGlobalMsg::TabType type)
 {
-    if(PluginFuns::WorkSpace_addTabWindow){
-        PluginFuns::WorkSpace_addTabWindow(title,form,sign,titeIco,type);
+    if(this->WorkSpace_addTabWindow){
+        this->WorkSpace_addTabWindow(title,form,sign,titeIco,type);
     }
 }
 
 //插件内投递消息
 QString Plugin_Base::postPluginMessage(QString pluginSign, QString pustMsg)
 {
-    if(PluginFuns::PluginManger_PostMsg){
-        return PluginFuns::PluginManger_PostMsg(this->self_BaseMsg.sign,pluginSign,pustMsg);
+    if(this->PluginManger_PostMsg){
+        return this->PluginManger_PostMsg(this->self_BaseMsg.sign,pluginSign,pustMsg);
     }
     return QString();
 }
@@ -149,15 +148,15 @@ QString Plugin_Base::postPluginMessage(QString pluginSign, QString pustMsg)
 //添加DockWidget
 void Plugin_Base::addDockWidget(Qt::DockWidgetArea area, QDockWidget *dockWidget)
 {
-    if(PluginFuns::WorkSpace_DockWidget_Add){
-        PluginFuns::WorkSpace_DockWidget_Add(area,dockWidget);
+    if(this->WorkSpace_DockWidget_Add){
+        this->WorkSpace_DockWidget_Add(area,dockWidget);
     }
 }
 
 //移除DockWidget
 void Plugin_Base::removeDockWidget(QDockWidget *dockWidget)
 {
-    if(PluginFuns::WorkSpace_DockWidget_remove){
-        PluginFuns::WorkSpace_DockWidget_remove(dockWidget);
+    if(this->WorkSpace_DockWidget_remove){
+        this->WorkSpace_DockWidget_remove(dockWidget);
     }
 }

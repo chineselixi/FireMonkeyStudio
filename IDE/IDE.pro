@@ -35,7 +35,6 @@ COPIES += config proModel web widgets formStyle # 配置COPIES
 
 SOURCES += \
     Plugin/Plugin_Base.cpp \
-    Plugin/Plugin_Funs.cpp \
     Plugin/Plugin_Global.cpp \
     Plugin/Plugin_Manger.cpp \
     SwSystem/System_GlobalVar.cpp \
@@ -77,7 +76,6 @@ SOURCES += \
 
 HEADERS += \
     Plugin/Plugin_Base.h \
-    Plugin/Plugin_Funs.h \
     Plugin/Plugin_Global.h \
     Plugin/Plugin_Manger.h \
     SwSystem/System_GlobalVar.h \

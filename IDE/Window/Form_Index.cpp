@@ -12,7 +12,6 @@ Form_Index::Form_Index(QWidget *parent) :
 
     timer = new QTimer;
     connect(timer,&QTimer::timeout,[this](){
-        //this->close(); //关闭本窗口
         Form_WorkSpace* ws = new Form_WorkSpace;
         ws->show();
         delete this;

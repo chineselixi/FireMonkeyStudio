@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog_Index</class>
+ <widget class="QWidget" name="Dialog_Index">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>322</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>加入火猴</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	background-color: rgb(26, 42, 46);
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_logo">
+       <property name="minimumSize">
+        <size>
+         <width>256</width>
+         <height>256</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>256</width>
+         <height>256</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../res.qrc">:/QRCode/res/QRCode.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_tip">
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_tip{
+	color: rgb(255, 255, 255);
+}</string>
+     </property>
+     <property name="text">
+      <string>欢迎加入火猴编程开发群：774142382</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

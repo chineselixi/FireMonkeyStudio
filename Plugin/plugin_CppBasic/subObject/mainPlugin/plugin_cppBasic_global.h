@@ -1,9 +1,0 @@
-﻿
-#ifndef PLUGIN_CPPBASIC_GLOBAL_H
-#define PLUGIN_CPPBASIC_GLOBAL_H
-
-#include <QtCore/qglobal.h>
-
-#  define PLUGIN_CPPBASIC_EXPORT Q_DECL_EXPORT
-
-#endif // PLUGIN_CPPBASIC_GLOBAL_H

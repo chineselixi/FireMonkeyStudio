@@ -2,9 +2,8 @@ TEMPLATE = subdirs
 
 
 SUBDIRS += \
-    plugin_GccBuild \
-    plugin_CppBasic \
-    plugin_UixEditor
+    Plugin_IdeBase \
+    Plugin_CppBase
 
 # 加上ordered配置就可以按顺序编译SUBDIRS
 CONFIG += ordered

@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/form_img">
-        <file>img/error.png</file>
-        <file>img/ok.png</file>
-        <file>img/Module_16x.png</file>
-    </qresource>
-</RCC>
