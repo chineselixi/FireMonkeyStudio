@@ -25,6 +25,8 @@ public:
     void setCompilePrintStyle(QString style); //设置编译输出样式表
     void setPrintStyle(QString style); //设置打印样式表
     void setTheme(QString themeName); //设定主题
+    QMenu* getEditorMenu(); //获取UI对象
+
 
 private slots:
     void on_action_file_newCreate_triggered(); //新建工程或文件

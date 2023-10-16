@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Plugin/Plugin_Global.h"
+#include "Plugin/Plugin_Base.h"
 
 namespace Ui {
 class Form_WindowTab;
@@ -19,6 +20,7 @@ public:
         QString signText; //标记文本
         QWidget* formPth = nullptr; //窗口指针
         QWidget* tabWidgetPth = nullptr; //Tab窗体指针，此包含布局
+        Plugin_Base* plg = nullptr; //插入窗体的插件指针信息
         PluginGlobalMsg::TabType type = PluginGlobalMsg::TabType::form;
     };
 
@@ -32,12 +34,14 @@ public:
 private slots:
     void on_tabWidget_tabCloseRequested(int index);
 
+    void on_tabWidget_currentChanged(int index);
+
 private:
     Ui::Form_WindowTab *ui;
     QVector<tabMsg> tabMsgList; //选项卡信息列表
 
 public:
-    void addTabWidget(QString title,QWidget* form,QString sign,QIcon titeIco,bool select = true,PluginGlobalMsg::TabType type = PluginGlobalMsg::TabType::form); //添加窗体到Tab
+    void addTabWidget(Plugin_Base* plg,QString title,QWidget* form,QString sign,QIcon titeIco,bool select = true,PluginGlobalMsg::TabType type = PluginGlobalMsg::TabType::form); //添加窗体到Tab
     bool removeTabMsg(QWidget* form); //根据widget指针标记删除列表信息
     bool removeTabMsg(QString sign); //根据sign标记删除列表信息
     bool resetTabMsg(QString oldSign,tabMsg newMsg); //根据标记更改信息

@@ -95,7 +95,7 @@ void Form_WorkSpace::init()
 
     //=================设置主页显示模式=================
     mod_webs = new mod_WebPage(this);
-    ui->widget_WindowTab->addTabWidget("主页",mod_webs,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web);  //添加到TAB
+    ui->widget_WindowTab->addTabWidget(nullptr,"主页",mod_webs,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web);  //添加到TAB
     mod_webs->setUrl(QUrl("file:" + QApplication::applicationDirPath() + "/web/Start/index.html"));
     mod_webs->show();
 
@@ -121,10 +121,10 @@ void Form_WorkSpace::init()
 
     //=================插件，函数绑定=================
     //绑定tabView
-    PluginGlobalMsg::addTabViewPth t_tabPth
-        = [this](QString title,QWidget *form,QString sign,QIcon titeIco,PluginGlobalMsg::TabType type)
+    PluginGlobalMsg::addTabViewPth t_tabPth =
+        [this](void* plg, QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)
     {
-        this->ui->widget_WindowTab->addTabWidget(title,form,sign,titeIco,true,type);
+            this->ui->widget_WindowTab->addTabWidget((Plugin_Base*)plg,title,form,sign,titeIco,true,type);
     };
     Manger::pluginManger->workSpace_init_tabView(t_tabPth);
 
@@ -761,6 +761,14 @@ void Form_WorkSpace::setTheme(QString themeName)
     mod_webs->page()->runJavaScript("changeTheme('" + Setting::style_themeName + "')"); //更换web样式
     Setting::sys_setting->changeSetting("Style","theme",Setting::style_themeName); //保存主题样式
 }
+
+
+//获取编辑器Actor对象
+QMenu *Form_WorkSpace::getEditorMenu()
+{
+    return ui->menu_editor;
+}
+
 
 
 //切换保存蓝色主题

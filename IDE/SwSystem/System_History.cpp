@@ -49,9 +49,6 @@ QVector<System_History::HistoryMsg> System_History::getHisList()
 bool System_History::removeProHisList(QString sign)
 {
     for(int a=0;a<this->His_proList.length();a++){
-        qDebug() << a << this->His_proList.length();
-        qDebug() << this->His_proList[a].filePath << sign;
-
         if(this->His_proList[a].filePath == sign){
             this->His_proList.removeAt(a);
             return true;

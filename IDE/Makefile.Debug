@@ -4711,6 +4711,7 @@ debug\moc_Form_WindowTab.cpp: Window\Form_WindowTab.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qdockwidget.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QToolBar \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtoolbar.h \
+		Plugin\Plugin_Base.h \
 		debug\moc_predefs.h \
 		D:\QT\6.5.2\msvc2019_64\bin\moc.exe
 	D:\QT\6.5.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include E:/QtProject/FireMonkeyStudio/IDE/debug/moc_predefs.h -ID:/QT/6.5.2/msvc2019_64/mkspecs/win32-msvc -IE:/QtProject/FireMonkeyStudio/IDE -IE:/QtProject/FireMonkeyStudio/release -ID:/QT/6.5.2/msvc2019_64/include -ID:/QT/6.5.2/msvc2019_64/include/QtWebView -ID:/QT/6.5.2/msvc2019_64/include/QtWebEngineWidgets -ID:/QT/6.5.2/msvc2019_64/include/QtPrintSupport -ID:/QT/6.5.2/msvc2019_64/include/QtWidgets -ID:/QT/6.5.2/msvc2019_64/include/QtWebEngineCore -ID:/QT/6.5.2/msvc2019_64/include/QtQuick -ID:/QT/6.5.2/msvc2019_64/include/QtOpenGL -ID:/QT/6.5.2/msvc2019_64/include/QtGui -ID:/QT/6.5.2/msvc2019_64/include/QtQmlModels -ID:/QT/6.5.2/msvc2019_64/include/QtWebChannel -ID:/QT/6.5.2/msvc2019_64/include/QtQml -ID:/QT/6.5.2/msvc2019_64/include/QtNetwork -ID:/QT/6.5.2/msvc2019_64/include/QtQmlIntegration -ID:/QT/6.5.2/msvc2019_64/include/QtPositioning -ID:/QT/6.5.2/msvc2019_64/include/QtCore -ID:\VisualStudio\VC\Tools\MSVC\14.35.32215\include -ID:\VisualStudio\VC\Tools\MSVC\14.35.32215\ATLMFC\include -ID:\VisualStudio\VC\Auxiliary\VS\include -I"D:\Windows Kits\10\include\10.0.22000.0\ucrt" -I"D:\Windows Kits\10\\include\10.0.22000.0\\um" -I"D:\Windows Kits\10\\include\10.0.22000.0\\shared" -I"D:\Windows Kits\10\\include\10.0.22000.0\\winrt" -I"D:\Windows Kits\10\\include\10.0.22000.0\\cppwinrt" Window\Form_WindowTab.h -o debug\moc_Form_WindowTab.cpp
@@ -7281,7 +7282,8 @@ ui_Form_WorkSpace.h: Window\Form_WorkSpace.ui \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QDockWidget \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qdockwidget.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QToolBar \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtoolbar.h
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtoolbar.h \
+		Plugin\Plugin_Base.h
 	D:\QT\6.5.2\msvc2019_64\bin\uic.exe Window\Form_WorkSpace.ui -o ui_Form_WorkSpace.h
 
 ui_Form_settings_Basic.h: Window\settingWindow\Form_settings_Basic.ui \
@@ -11718,12 +11720,23 @@ debug\Form_WindowTab.obj: Window\Form_WindowTab.cpp Window\Form_WindowTab.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qdockwidget.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QToolBar \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtoolbar.h \
+		Plugin\Plugin_Base.h \
 		ui_Form_WindowTab.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QGridLayout \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qlayout.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qboxlayout.h
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QMenu \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qmenu.h \
+		SwSystem\System_GlobalVar.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\QString \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\QVector \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\qvector.h \
+		Window\Form_WorkSpace.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QMainWindow \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtabwidget.h
 
 debug\Form_WorkSpace.obj: Window\Form_WorkSpace.cpp Window\Form_WorkSpace.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QMainWindow \
@@ -13310,21 +13323,6 @@ debug\main.obj: main.cpp mainwindow.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qnativeinterface.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		..\QScintilla\src\Qsci\qsciscintilla.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtCore\QByteArray \
-		D:\QT\6.5.2\msvc2019_64\include\QtCore\QPointer \
-		D:\QT\6.5.2\msvc2019_64\include\QtCore\QStringList \
-		..\QScintilla\src\Qsci\qsciglobal.h \
-		..\QScintilla\src\Qsci\qscicommand.h \
-		..\QScintilla\src\Qsci\qsciscintillabase.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QAbstractScrollArea \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtCore\QPoint \
-		D:\QT\6.5.2\msvc2019_64\include\QtCore\QTimer \
-		D:\QT\6.5.2\msvc2019_64\include\QtCore\qtimer.h \
-		D:\QT\6.5.2\msvc2019_64\include\QtCore\qbasictimer.h \
-		..\QScintilla\src\Qsci\qscidocument.h \
 		SwSystem\System_GlobalVar.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QString \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QVector \
@@ -13336,6 +13334,8 @@ debug\main.obj: main.cpp mainwindow.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qlistwidget.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qlistview.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractitemview.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qframe.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
@@ -13360,6 +13360,7 @@ debug\main.obj: main.cpp mainwindow.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qdockwidget.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QToolBar \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qtoolbar.h \
+		Plugin\Plugin_Base.h \
 		Window\Form_PluginManger.h
 
 debug\mainwindow.obj: mainwindow.cpp mainwindow.h \

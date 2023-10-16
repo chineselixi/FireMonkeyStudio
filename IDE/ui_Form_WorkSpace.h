@@ -965,7 +965,7 @@ public:
         Form_WorkSpace->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Form_WorkSpace);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1200, 25));
+        menubar->setGeometry(QRect(0, 0, 1200, 24));
         menu_file = new QMenu(menubar);
         menu_file->setObjectName("menu_file");
         menu_check = new QMenu(menubar);
@@ -992,6 +992,9 @@ public:
         menu_T->setObjectName("menu_T");
         menu_editor = new QMenu(menubar);
         menu_editor->setObjectName("menu_editor");
+        menu_editor->setEnabled(true);
+        menu_editor->setTabletTracking(false);
+        menu_editor->setTearOffEnabled(false);
         Form_WorkSpace->setMenuBar(menubar);
         statusbar = new QStatusBar(Form_WorkSpace);
         statusbar->setObjectName("statusbar");

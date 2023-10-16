@@ -3,7 +3,7 @@
 #define PLUGIN_BASE_H
 
 #include "Plugin_Global.h"
-
+//#include "../../QScintilla/src/Qsci/qsciscintilla.h"
 
 //class QMainWindow; //声明QMainWindow
 class Form_settings_Basic;
@@ -115,13 +115,16 @@ public: //(可阻拦事件)事件触发，返回true则继续触发其他插件�
     virtual bool event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 
 
-
-
 public: //(不可阻拦事件)事件触发，将激发每一个插件的事件
     virtual void event_onWorkSpaceFinish(){return;}; //工作空间创建完毕事件，此事件不可阻止，，但是可以阻塞，将为每一个插件提供事件响应
     virtual void event_onWorkSpaceClose(){return;};  //工作空间正在被关闭，不可被阻止，但是可以阻塞，将为每一个插件提供事件响应
-    virtual void event_onLoading(){return;}; //初次加载事件，插件被成功加载完成以后第一次通知的事件，注意：此时其他插件可能并没有加载完成
     virtual void event_onLoadSettingsWidget(settingMsgList& msgList){return;}; //当加载设置组件的时候
+
+
+public: //专有事件，仅仅通知注册需要的插件
+    virtual void event_onLoading(){return;}; //初次加载事件，插件被成功加载完成以后第一次通知的事件，注意：此时其他插件可能并没有加载完成
+    virtual void event_onTabFormActivation(QWidget* form){return;}; //当Tab内嵌窗口被选中，被激活时，将会激发此选项
+    virtual bool event_onTabFormCloseRequested(QWidget* form){return true;}; //当Tab内嵌窗口即将选择被关闭，但是还未关闭，将激发此选项，返回true则允许关闭，false则阻止关闭
 
 
 public:

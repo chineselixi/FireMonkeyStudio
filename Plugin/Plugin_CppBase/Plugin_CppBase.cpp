@@ -1,4 +1,9 @@
 ﻿#include "Plugin_CppBase.h"
+#include "QFile"
+#include "QFileInfo"
+#include "QMessageBox"
+#include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
+#include "Form/Form_CodeEditor.h"
 
 Plugin_CppBase::Plugin_CppBase()
 {
@@ -24,9 +29,66 @@ bool Plugin_CppBase::event_onPorjectLoad(QString proPath, QString proLangs, QStr
     proLangs = proLangs.toLower();
     if(proLangs.indexOf("cpp") != -1){
 
-
-
         return false; //阻止消息传递
+    }
+    return true;
+}
+
+
+//文件被加载，阻止消息继续触发
+bool Plugin_CppBase::event_onFileOpen(QString filePath)
+{
+    filePath = filePath.toLower();
+    if(stringRight(filePath,".h") ||
+        stringRight(filePath,".cpp") ||
+        stringRight(filePath,".hpp") ||
+        stringRight(filePath,".c") ||
+        stringRight(filePath,".cc")){
+
+        QIcon t_ico(":/tabIco/resources/unKnowFile.png"); //图标文件
+        if(stringRight(filePath,".cpp")) t_ico = QIcon(":/tabIco/resources/CPP_16x.png");
+        if(stringRight(filePath,".h")) t_ico = QIcon(":/tabIco/resources/CPPHeaderFile_16x.png");
+        if(stringRight(filePath,".c")) t_ico = QIcon(":/tabIco/resources/CFile_16x_color.png");
+
+
+        Form_CodeEditor* editor = new Form_CodeEditor();
+        if(!editor->loadForFile(filePath)){
+            QMessageBox::warning(nullptr,QObject::tr("文件异常"),QObject::tr("无法打开文件，文件不存在或通道被占用！"));
+        }
+
+        this->addTabWindow(QFileInfo(filePath).fileName(),editor,filePath,t_ico,PluginGlobalMsg::TabType::codeEditor); //添加到Tab
+        return false;
+    }
+    return true;
+}
+
+
+//插件加载完毕加载信息
+void Plugin_CppBase::event_onLoading()
+{
+    return;
+}
+
+
+//切换为了自己的Form
+void Plugin_CppBase::event_onTabFormActivation(QWidget *form)
+{
+
+}
+
+
+//Form即将被关闭
+bool Plugin_CppBase::event_onTabFormCloseRequested(QWidget *form)
+{
+    return true;
+}
+
+
+//判断是否拥有这个后缀
+bool Plugin_CppBase::stringRight(QString str, QString suffix)
+{
+    if(str.right(suffix.length()) != suffix){
+        return false;
     }
     return true;
 }

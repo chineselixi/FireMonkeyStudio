@@ -448,6 +448,10 @@ TRANSLATIONS = \
     qscintilla_pt_br.ts
 
 
+#INCLUDEPATH += $$PWD
+#INCLUDEPATH += $$PWD/Qsci
+#INCLUDEPATH += $$PWD/../scintilla/include
+
 
 
 DESTDIR = $$OUT_PWD/../../release/lib

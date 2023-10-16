@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/tabIco">
+        <file>resources/CFile_16x_color.png</file>
+        <file>resources/CPP_16x.png</file>
+        <file>resources/CPPHeaderFile_16x.png</file>
+        <file>resources/unKnowFile.png</file>
+    </qresource>
+</RCC>

@@ -132,7 +132,7 @@ void Plugin_Base::clearTextSpace()
 void Plugin_Base::addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco, PluginGlobalMsg::TabType type)
 {
     if(this->WorkSpace_addTabWindow){
-        this->WorkSpace_addTabWindow(title,form,sign,titeIco,type);
+        this->WorkSpace_addTabWindow(this,title,form,sign,titeIco,type);
     }
 }
 

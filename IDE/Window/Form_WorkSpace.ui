@@ -212,7 +212,7 @@ QMenu::item:disabled {/*菜单被禁用*/
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>25</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">
@@ -341,6 +341,15 @@ QMenu::item:disabled {/*菜单被禁用*/
     <addaction name="action_toolBar_findInMod"/>
    </widget>
    <widget class="QMenu" name="menu_editor">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>编辑(&amp;E)</string>
     </property>

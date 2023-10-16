@@ -1,7 +1,6 @@
 ﻿#include "mainwindow.h"
 //#include "CodeEditor/CodeEditor.h"
 
-#include "../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "SwSystem/System_GlobalVar.h"
 
 
@@ -35,8 +34,6 @@ int main(int argc, char *argv[])
     //a.setFont(QFont("Consolas"));
 
 
-
-
     //加载设置信息
     loadSettings();
 
@@ -56,9 +53,11 @@ int main(int argc, char *argv[])
     HistoryList::sys_pluginHistory = new System_History;
     HistoryList::sys_pluginHistory->Init(t_execRunPath + "/config/plugin.ini");
 
+
     //管理器
     Manger::pluginManger = new Plugin_Manger; //加载插件管理器
     Manger::pluginManger->initPlugin(t_execRunPath + "/plg","dll");
+
 
     //环境变量
     Manger::EnvVar = new System_EnvVar;//创建环境变量管理器
@@ -73,7 +72,6 @@ int main(int argc, char *argv[])
 
     Form_Index* wi = new Form_Index(); //index窗口将加载工作空间
     wi->show();
-
 
     //Form_WorkSpace ws;
     //ws.show();

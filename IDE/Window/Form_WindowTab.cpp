@@ -2,6 +2,10 @@
 #include "ui_Form_WindowTab.h"
 #include "QGridLayout"
 
+#include "QMenu"
+#include "SwSystem/System_GlobalVar.h"
+#include "Window/Form_WorkSpace.h"
+
 
 Form_WindowTab::Form_WindowTab(QWidget *parent) :
     QWidget(parent),
@@ -25,7 +29,7 @@ Form_WindowTab::~Form_WindowTab()
 
 
 //添加窗体到Tab
-void Form_WindowTab::addTabWidget(QString title, QWidget *form, QString sign, QIcon titeIco, bool select, PluginGlobalMsg::TabType type)
+void Form_WindowTab::addTabWidget(Plugin_Base* plg,QString title, QWidget *form, QString sign, QIcon titeIco, bool select, PluginGlobalMsg::TabType type)
 {
     QWidget* t_tab = new QWidget(ui->tabWidget);
     QGridLayout* t_layout = new QGridLayout(t_tab);
@@ -34,7 +38,7 @@ void Form_WindowTab::addTabWidget(QString title, QWidget *form, QString sign, QI
     t_layout->addWidget(form);
     t_tab->setLayout(t_layout);
     int t_index = ui->tabWidget->addTab(t_tab,titeIco,title);
-    this->tabMsgList.append({title,sign,form,t_tab,type}); //添加信息到列表
+    this->tabMsgList.append({title,sign,form,t_tab,plg,type}); //添加信息到列表
     if(select) ui->tabWidget->setCurrentIndex(t_index); //把当前窗口提升
 }
 
@@ -158,11 +162,48 @@ QString Form_WindowTab::getTopTabSign()
 }
 
 
+//当前窗体已关闭
 void Form_WindowTab::on_tabWidget_tabCloseRequested(int index)
 {
     QWidget* t_widget = ui->tabWidget->widget(index);
+    for(int a = 0;a<this->tabMsgList.length();a++){   //查找当前关闭的窗口
+        if(this->tabMsgList[a].tabWidgetPth == t_widget && this->tabMsgList[a].plg != nullptr){
+            if(this->tabMsgList[a].plg->event_onTabFormCloseRequested(t_widget) == false){  //激发插件的关闭事件。让用户确定，是否关闭此窗口
+                return;
+            }
+            break;
+        }
+    }
+
     this->removeTabMsg(t_widget);
-    ui->tabWidget->removeTab(index);
+    ui->tabWidget->removeTab(index); //会关闭子内嵌窗口
     delete t_widget;
+}
+
+
+//当前窗体已切换
+void Form_WindowTab::on_tabWidget_currentChanged(int index)
+{
+    QWidget* t_widget = ui->tabWidget->widget(index);
+
+    qDebug() << "on_tabWidget_currentChanged  load";
+
+    for(int a = 0;a<this->tabMsgList.length();a++){   //查找当前关闭的窗口
+        qDebug() << this->tabMsgList[a].tabWidgetPth << t_widget << this->tabMsgList[a].plg;
+
+        if(this->tabMsgList[a].tabWidgetPth == t_widget && this->tabMsgList[a].plg != nullptr){
+            //唤醒插件信息
+            this->tabMsgList[a].plg->event_onTabFormActivation(t_widget); //激发插件的窗体切换事件
+
+            //判断是否为代码编辑器类型，用于激活编辑菜单
+            if(this->tabMsgList[a].type == PluginGlobalMsg::TabType::codeEditor){
+                Window::workSpace->getEditorMenu()->setEnabled(true);
+            }
+            else{
+                Window::workSpace->getEditorMenu()->setEnabled(false);
+            }
+            break;
+        }
+    }
 }
 

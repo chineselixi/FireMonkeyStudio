@@ -22,9 +22,8 @@
 #define QSCILEXERCPP_H
 
 #include <QObject>
-
-#include <Qsci/qsciglobal.h>
-#include <Qsci/qscilexer.h>
+#include "qsciglobal.h"
+#include "qscilexer.h"
 
 
 //! \brief The QsciLexerCPP class encapsulates the Scintilla C++

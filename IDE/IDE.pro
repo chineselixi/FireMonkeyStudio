@@ -16,7 +16,6 @@ TARGET = FMS
 #子项目
 
 
-
 #复制文件到构建的目标目录.
 config.files = $$PWD/RunConfig/config           # 要复制的文件或目录
 config.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
@@ -155,7 +154,7 @@ icons.qrc \
     res.qrc
 
 
-#加载qsciscintilla库
+#load qsciscintilla
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintillad
 else:unix: LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla

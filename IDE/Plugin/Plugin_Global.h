@@ -80,6 +80,17 @@ enum toolBarMenuType{
 
 
 
+//编程接口
+enum langType{
+    normal, //默认没有任何语言
+    cpp, //C++语言
+    html,
+    javaScript,
+};
+
+
+
+
 //工程管理
 enum proMangerMenuType{
     Project,NewFile,ProNormal
@@ -96,16 +107,26 @@ typedef std::function<void()> fun_void; //基础函数类型，空返回
 
 
 //函数指针类型
+//class Plugin_Base; //插件类声明
 typedef std::function<void(QAction* act)> menuFun;  //添加菜单到menu
 typedef std::function<void(QToolBar* toolBar)> toolBarFun;
-typedef std::function<void(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)> addTabViewPth; //添加TabView函数指针类型
+typedef std::function<void(void* plg, QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)> addTabViewPth; //添加TabView函数指针类型
 //typedef std::function<void(ActionType actionType,bool enable)> workSpace_Action_setEnableFun; //设置Action启用函数
 
+
+
 //代码编辑器函数类型
-typedef std::function<QWidget*(std::function<void(QString leftText,QString rightText,QString lineText,QWidget* codeEditor)> onTipEventFun)> editorFun_create; //创建QWidget函数指针,其中参数包含代码编辑器的提示事件
+typedef std::function<void(int line, int index)> editorEvent_cursorPositionChanged; //光标移动事件
+typedef std::function<void()> editorEvent_textChanged; //文本改变事件
+
+//创建QWidget函数指针,参数为事件参数（光标位置改变，内容改变，）
+typedef std::function<QWidget*(editorEvent_cursorPositionChanged,editorEvent_textChanged,langType)> editorFun_create;
 typedef std::function<void(QWidget* editor,QVector<QString> keys,int index)> editorFun_addKetWord; //创建添加关键字信息
 typedef std::function<QString(QWidget*)> editorFun_getStr; //获取内容
 typedef std::function<void(QWidget* editor,QString str)> editorFun_addStr; //添加内容
+
+
+
 
 //输出容器
 typedef std::function<void(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor)> printFun_printList;

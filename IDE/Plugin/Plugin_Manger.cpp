@@ -83,8 +83,6 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
         }
     }
 
-
-
     //插件初始化以后，直接绑定插件管理器
     pluginManger_init_building(); //绑定插件管理器
 }
