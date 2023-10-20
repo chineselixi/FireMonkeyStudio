@@ -9,10 +9,11 @@ Form_CodeEditor::Form_CodeEditor(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
+    QFont font("Consolas", 12, QFont::Normal); //全局字体效果
 
 
     QsciLexer *textLexer = new QsciLexerCPP;
+    textLexer->setFont(font);
     textLexer->setColor(QColor("#008000"),QsciLexerCPP::Comment);
     textLexer->setColor(QColor("#ff0000"),QsciLexerCPP::Number);
     textLexer->setColor(QColor("#008000"),QsciLexerCPP::CommentLineDoc);
@@ -21,14 +22,12 @@ Form_CodeEditor::Form_CodeEditor(QWidget *parent) :
     textLexer->setColor(QColor("#0055ff"),QsciLexerCPP::Keyword);
     textLexer->setColor(QColor("#0055ff"),QsciLexerCPP::PreProcessor);
 
-
     ui->sciEditor->setLexer(textLexer);//给QsciScintilla设置词法分析器
 
     //代码提示
 //    QsciAPIs *apis = new QsciAPIs(textLexer);
 //    apis->prepare();
 
-    QFont font1("Consolas", 12, QFont::Normal);
     //    this->setFont(font1);
 
     ui->sciEditor->setAutoCompletionSource(QsciScintilla::AcsAll);   //设置源，自动补全所有地方出现的
@@ -58,17 +57,14 @@ Form_CodeEditor::Form_CodeEditor(QWidget *parent) :
     ui->sciEditor->setBraceMatching(QsciScintilla::SloppyBraceMatch);
 
     //设置左侧行号栏宽度等
-    QFont font("Consolas", 10, QFont::Normal);
     QFontMetrics fontmetrics(font);
     ui->sciEditor->setMarginWidth(0, fontmetrics.horizontalAdvance("0000"));
     ui->sciEditor->setMarginLineNumbers(0, true);
     ui->sciEditor->setBraceMatching(QsciScintilla::SloppyBraceMatch);//括号匹配
     ui->sciEditor->setTabWidth(4);
 
-    QFont margin_font;
-    margin_font.setFamily("SimSun");
-    margin_font.setPointSize(11);//边栏字体设置px我这里显示不出行号，不知道是怎么回事
-    ui->sciEditor->setMarginsFont(margin_font);//设置页边字体
+
+    ui->sciEditor->setMarginsFont(font);//设置页边字体
     ui->sciEditor->setMarginType(0,QsciScintilla::NumberMargin);//设置标号为0的页边显示行号
     //editor->setMarginMarkerMask(0,QsciScintilla::Background);//页边掩码
     //editor->setMarginSensitivity(0,true);//设置是否可以显示断点,注册通知事件，当用户点击边栏时，scintilla会通知我们

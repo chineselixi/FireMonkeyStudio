@@ -67,7 +67,9 @@ public:
     void workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool,PluginGlobalMsg::menuFun toolBar_set,PluginGlobalMsg::menuFun toolBar_help,PluginGlobalMsg::menuFun toolBar_view,
                             PluginGlobalMsg::menuFun toolBar_extend,PluginGlobalMsg::menuFun toolBar_db,PluginGlobalMsg::menuFun toolBar_comple,PluginGlobalMsg::menuFun toolBar_insert,PluginGlobalMsg::menuFun toolBar_file,
                             PluginGlobalMsg::menuFun ProManger_project,PluginGlobalMsg::menuFun ProManger_newFile,PluginGlobalMsg::menuFun ProManger_proNormal); //workSpace添加插件菜单
-    void workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth);//添加workSpace的tabView接口
+    void TabSpace_init_tabView(PluginGlobalMsg::addTabViewPth addTabFun,
+                                PluginGlobalMsg::tab_getSign getSignFun,PluginGlobalMsg::tab_getWidget getWidgetFun,
+                                PluginGlobalMsg::tab_hasTab_Sign hasSignFun,PluginGlobalMsg::tab_hasTab_WidgetPtr hasWidgtFun);//添加workSpace的tabView接口
 //    void workSpace_init_codeEditor(PluginGlobalMsg::editorFun_create createPth,PluginGlobalMsg::editorFun_addKetWord addWordPth,
 //                                   PluginGlobalMsg::editorFun_getStr getStrPth,PluginGlobalMsg::editorFun_addStr addStrPth); //添加workSpace的代码编辑器接口
     void workSpace_init_toolBarFuns(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr,PluginGlobalMsg::toolBarFun toolBar_addToolBarFunPtr); //设置工具栏内控件的启用与关闭,添加工具栏

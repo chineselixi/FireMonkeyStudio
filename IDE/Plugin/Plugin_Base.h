@@ -70,8 +70,13 @@ private:
     PluginGlobalMsg::printFun_printTextSpace WorkSpace_PrintOut_TextSpace_PrintLine = nullptr;//输出一行文本
     PluginGlobalMsg::printFun_clear WorkSpace_PrintOut_TextSpace_Clear = nullptr; //清空文本输出
 
-    //选项卡添加窗口接口
-    PluginGlobalMsg::addTabViewPth WorkSpace_addTabWindow = nullptr; //添加窗口到Tab
+    //选项卡TAB添加窗口接口
+    PluginGlobalMsg::addTabViewPth TabSpace_addTabWindow = nullptr; //添加窗口到Tab
+    PluginGlobalMsg::tab_hasTab_Sign TabSpace_hasTab_Sign = nullptr; //根据sign判断是否存在Tab
+    PluginGlobalMsg::tab_hasTab_WidgetPtr TabSpace_hasTab_WidgetPtr = nullptr; //根据widget指针判断是否存在Tab
+    PluginGlobalMsg::tab_getSign TabSpace_getTabSign = nullptr; //根据Widget获取sign
+    PluginGlobalMsg::tab_getWidget TabSpace_getTabSWidget = nullptr; //根据sign获取widget
+
 
     //插件消息投递
     PluginGlobalMsg::pluginFun_post PluginManger_PostMsg = nullptr; //使用插件管理器投递信息，每一个有效插件都将接收到收到这个信息，但是需要注意发送方的身份
@@ -97,11 +102,14 @@ public: //插件的基础方法
     void printTextSpace(QColor color,QString printText); //在文本窗口输出文本
     void printTextSpaceLine(QColor color,QString printText); //在文本窗口输出文本
     void clearTextSpace(); //清理文本窗口所有的文本
-    void addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type); //在Tab添加窗口
     QString postPluginMessage(QString pluginSign,QString pustMsg); //插件内投递消息
     void addDockWidget(Qt::DockWidgetArea area,QDockWidget* dockWidget); //添加DockWidget
     void removeDockWidget(QDockWidget* dockWidget); //移除DockWidget
-
+    void addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type); //在Tab添加窗口
+    bool hasTab(QString sign,bool select); //根据sign标记查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
+    bool hasTab(QWidget* widget,bool select); //根据QWidget指针查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
+    QWidget* getTabWidget(QString sign); //根据sign获取Widget指针
+    QString getTabSign(QWidget* widget); //根据widget指针获取sign信息
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
     virtual bool event_onModLoadFinish(){return true;};//当模块加载完毕，将第一时间激发此插件，禁止在获取实例处获得

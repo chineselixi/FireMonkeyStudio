@@ -4,6 +4,8 @@
 
 #include "QMenu"
 #include "SwSystem/System_GlobalVar.h"
+#include "Plugin/Plugin_Manger.h"
+
 #include "Window/Form_WorkSpace.h"
 
 
@@ -20,11 +22,26 @@ Form_WindowTab::Form_WindowTab(QWidget *parent) :
         ui->tabWidget->removeTab(i);  // 删除选项卡
         delete page;      // 删除子窗口
     }
+
+
+
+    //初始化Tab到插件管理器
+    PluginGlobalMsg::addTabViewPth t_addTab =
+        [this](void* plg, QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)
+    {this->addTabWidget((Plugin_Base*)plg,title,form,sign,titeIco,true,type);};
+
+    PluginGlobalMsg::tab_hasTab_Sign t_hasTabSign = [this](QString sign,bool select){return this->hasTabMsg(sign,select);};
+    PluginGlobalMsg::tab_hasTab_WidgetPtr t_hasTabWidget = [this](QWidget* widget,bool select){return this->hasTabMsg(widget,select);};
+    PluginGlobalMsg::tab_getSign t_getSign = [this](QWidget* widget){return this->getMsg(widget).signText;};
+    PluginGlobalMsg::tab_getWidget t_getWidget = [this](QString sign){return this->getMsg(sign).formPth;};
+    if(Manger::pluginManger) Manger::pluginManger->TabSpace_init_tabView(t_addTab,t_getSign,t_getWidget,t_hasTabSign,t_hasTabWidget); //初始化函数指针
+
 }
 
 Form_WindowTab::~Form_WindowTab()
 {
     delete ui;
+    if(Manger::pluginManger) Manger::pluginManger->TabSpace_init_tabView(nullptr,nullptr,nullptr,nullptr,nullptr); //置空指针
 }
 
 

@@ -110,8 +110,14 @@ typedef std::function<void()> fun_void; //基础函数类型，空返回
 //class Plugin_Base; //插件类声明
 typedef std::function<void(QAction* act)> menuFun;  //添加菜单到menu
 typedef std::function<void(QToolBar* toolBar)> toolBarFun;
+
+
+//Tab窗体操作
 typedef std::function<void(void* plg, QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)> addTabViewPth; //添加TabView函数指针类型
-//typedef std::function<void(ActionType actionType,bool enable)> workSpace_Action_setEnableFun; //设置Action启用函数
+typedef std::function<bool(QString sign,bool select)> tab_hasTab_Sign; //根据sign查找判断tab是否存在
+typedef std::function<bool(QWidget* sign,bool select)> tab_hasTab_WidgetPtr; //根据窗体指针判断Tab是否存在
+typedef std::function<QString(QWidget*)> tab_getSign; //根据Widget获取sign
+typedef std::function<QWidget*(QString)> tab_getWidget; //根据sign获取Widget
 
 
 
@@ -120,10 +126,10 @@ typedef std::function<void(int line, int index)> editorEvent_cursorPositionChang
 typedef std::function<void()> editorEvent_textChanged; //文本改变事件
 
 //创建QWidget函数指针,参数为事件参数（光标位置改变，内容改变，）
-typedef std::function<QWidget*(editorEvent_cursorPositionChanged,editorEvent_textChanged,langType)> editorFun_create;
-typedef std::function<void(QWidget* editor,QVector<QString> keys,int index)> editorFun_addKetWord; //创建添加关键字信息
-typedef std::function<QString(QWidget*)> editorFun_getStr; //获取内容
-typedef std::function<void(QWidget* editor,QString str)> editorFun_addStr; //添加内容
+//typedef std::function<QWidget*(editorEvent_cursorPositionChanged,editorEvent_textChanged,langType)> editorFun_create;
+//typedef std::function<void(QWidget* editor,QVector<QString> keys,int index)> editorFun_addKetWord; //创建添加关键字信息
+//typedef std::function<QString(QWidget*)> editorFun_getStr; //获取内容
+//typedef std::function<void(QWidget* editor,QString str)> editorFun_addStr; //添加内容
 
 
 

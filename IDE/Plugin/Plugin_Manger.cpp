@@ -161,11 +161,17 @@ void Plugin_Manger::workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool, P
 
 
 //添加workSpace的Tab窗口
-void Plugin_Manger::workSpace_init_tabView(PluginGlobalMsg::addTabViewPth pth)
+void Plugin_Manger::TabSpace_init_tabView(PluginGlobalMsg::addTabViewPth addTabFun,
+                                           PluginGlobalMsg::tab_getSign getSignFun,PluginGlobalMsg::tab_getWidget getWidgetFun,
+                                           PluginGlobalMsg::tab_hasTab_Sign hasSignFun,PluginGlobalMsg::tab_hasTab_WidgetPtr hasWidgtFun)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
-            this->List_plg[a].plgPth->WorkSpace_addTabWindow = pth;
+            this->List_plg[a].plgPth->TabSpace_addTabWindow = addTabFun;
+            this->List_plg[a].plgPth->TabSpace_getTabSign = getSignFun;
+            this->List_plg[a].plgPth->TabSpace_getTabSWidget = getWidgetFun;
+            this->List_plg[a].plgPth->TabSpace_hasTab_Sign = hasSignFun;
+            this->List_plg[a].plgPth->TabSpace_hasTab_WidgetPtr = hasWidgtFun;
         }
     }
 }

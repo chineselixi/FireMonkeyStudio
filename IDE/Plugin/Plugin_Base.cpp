@@ -131,9 +131,49 @@ void Plugin_Base::clearTextSpace()
 //在Tab添加窗口
 void Plugin_Base::addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco, PluginGlobalMsg::TabType type)
 {
-    if(this->WorkSpace_addTabWindow){
-        this->WorkSpace_addTabWindow(this,title,form,sign,titeIco,type);
+    if(this->TabSpace_addTabWindow){
+        this->TabSpace_addTabWindow(this,title,form,sign,titeIco,type);
     }
+}
+
+
+//根据sign标记查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
+bool Plugin_Base::hasTab(QString sign, bool select)
+{
+    if(this->TabSpace_hasTab_Sign){
+        return this->TabSpace_hasTab_Sign(sign,select);
+    }
+    return false;
+}
+
+
+//根据QWidget指针查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
+bool Plugin_Base::hasTab(QWidget *widget, bool select)
+{
+    if(this->TabSpace_hasTab_WidgetPtr){
+        return this->TabSpace_hasTab_WidgetPtr(widget,select);
+    }
+    return false;
+}
+
+
+//根据sign获取Widget指针
+QWidget *Plugin_Base::getTabWidget(QString sign)
+{
+    if(this->TabSpace_getTabSWidget){
+        return this->TabSpace_getTabSWidget(sign);
+    }
+    return nullptr;
+}
+
+
+//根据widget指针获取sign信息
+QString Plugin_Base::getTabSign(QWidget *widget)
+{
+    if(this->TabSpace_getTabSign){
+        return this->TabSpace_getTabSign(widget);
+    }
+    return "";
 }
 
 //插件内投递消息

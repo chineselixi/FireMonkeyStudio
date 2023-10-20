@@ -11733,6 +11733,9 @@ debug\Form_WindowTab.obj: Window\Form_WindowTab.cpp Window\Form_WindowTab.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QString \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\QVector \
 		D:\QT\6.5.2\msvc2019_64\include\QtCore\qvector.h \
+		Plugin\Plugin_Manger.h \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\QLibrary \
+		D:\QT\6.5.2\msvc2019_64\include\QtCore\qlibrary.h \
 		Window\Form_WorkSpace.h \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\QMainWindow \
 		D:\QT\6.5.2\msvc2019_64\include\QtWidgets\qmainwindow.h \

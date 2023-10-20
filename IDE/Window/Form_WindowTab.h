@@ -46,8 +46,8 @@ public:
     bool removeTabMsg(QString sign); //根据sign标记删除列表信息
     bool resetTabMsg(QString oldSign,tabMsg newMsg); //根据标记更改信息
     bool resetTabMsg(QWidget* oldWidget,tabMsg newMsg); //根据窗体指针更改信息
-    bool hasTabMsg(QString sign,bool select = false); //根据标记查看TAB是否已经存在
-    bool hasTabMsg(QWidget* widget,bool select = false); //根据Widgte指针查看TAB是否已经存在
+    bool hasTabMsg(QString sign,bool select = false); //根据标记查看TAB是否已经存在，参数2如果为真，则当Tab存在时立即选择
+    bool hasTabMsg(QWidget* widget,bool select = false); //根据Widgte指针查看TAB是否已经存在，参数2如果为真，则当Tab存在时立即选择
 
     tabMsg getMsg(QString sign); //根据标记获取信息
     tabMsg getMsg(QWidget* widget); //根据窗体指针获取信息

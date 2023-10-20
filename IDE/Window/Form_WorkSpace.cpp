@@ -120,13 +120,13 @@ void Form_WorkSpace::init()
 
 
     //=================插件，函数绑定=================
-    //绑定tabView
-    PluginGlobalMsg::addTabViewPth t_tabPth =
-        [this](void* plg, QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)
-    {
-            this->ui->widget_WindowTab->addTabWidget((Plugin_Base*)plg,title,form,sign,titeIco,true,type);
-    };
-    Manger::pluginManger->workSpace_init_tabView(t_tabPth);
+    //绑定tabView,此代码已经解耦合，已经注销无法使用。将在以后版本彻底优化，23.10.20
+    //    PluginGlobalMsg::addTabViewPth t_tabPth =
+    //        [this](void* plg, QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)
+    //    {
+    //            this->ui->widget_WindowTab->addTabWidget((Plugin_Base*)plg,title,form,sign,titeIco,true,type);
+    //    };
+    //    Manger::pluginManger->workSpace_init_tabView(t_tabPth);
 
 
     //绑定菜单添加函数

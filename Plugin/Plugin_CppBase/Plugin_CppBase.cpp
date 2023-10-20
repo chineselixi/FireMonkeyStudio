@@ -26,9 +26,14 @@ Plugin_CppBase::Plugin_CppBase()
 //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 bool Plugin_CppBase::event_onPorjectLoad(QString proPath, QString proLangs, QString proNoteClass)
 {
+    qDebug() << proPath << proLangs << proNoteClass;
     proLangs = proLangs.toLower();
-    if(proLangs.indexOf("cpp") != -1){
-
+    if(proLangs.indexOf("c++") != -1){
+        this->closeWorkSpaceAllAction(); //关闭所有ACTION
+        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
+        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
+        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
+        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,true); //允许在线编译
         return false; //阻止消息传递
     }
     return true;
@@ -50,6 +55,8 @@ bool Plugin_CppBase::event_onFileOpen(QString filePath)
         if(stringRight(filePath,".h")) t_ico = QIcon(":/tabIco/resources/CPPHeaderFile_16x.png");
         if(stringRight(filePath,".c")) t_ico = QIcon(":/tabIco/resources/CFile_16x_color.png");
 
+
+        if(this->hasTab(filePath,true)) return false; //如果文件已经在Tab里面，则不再重复打开。并且激活TAB（第二个参数为是否激活已经存在此sign的Tab）
 
         Form_CodeEditor* editor = new Form_CodeEditor();
         if(!editor->loadForFile(filePath)){
