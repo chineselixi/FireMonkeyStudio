@@ -63,7 +63,6 @@ SOURCES += \
     Window/Form_WorkSpace.cpp \
     Window/settingWindow/Form_settings_Basic.cpp \
     Window/settingWindow/Form_settings_Color.cpp \
-    Window/settingWindow/Form_settings_Compile.cpp \
     Window/settingWindow/Form_settings_DataBase.cpp \
     Window/settingWindow/Form_settings_Device.cpp \
     Window/settingWindow/Form_settings_Git.cpp \
@@ -104,7 +103,6 @@ HEADERS += \
     Window/Form_WorkSpace.h \
     Window/settingWindow/Form_settings_Basic.h \
     Window/settingWindow/Form_settings_Color.h \
-    Window/settingWindow/Form_settings_Compile.h \
     Window/settingWindow/Form_settings_DataBase.h \
     Window/settingWindow/Form_settings_Device.h \
     Window/settingWindow/Form_settings_Git.h \
@@ -137,7 +135,6 @@ FORMS += \
     Window/Form_WorkSpace.ui \
     Window/settingWindow/Form_settings_Basic.ui \
     Window/settingWindow/Form_settings_Color.ui \
-    Window/settingWindow/Form_settings_Compile.ui \
     Window/settingWindow/Form_settings_DataBase.ui \
     Window/settingWindow/Form_settings_Device.ui \
     Window/settingWindow/Form_settings_Git.ui \

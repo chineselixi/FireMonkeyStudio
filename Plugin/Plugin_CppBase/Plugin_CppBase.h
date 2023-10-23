@@ -22,7 +22,7 @@ public:
     void event_onTabFormActivation(QWidget* form) override; //当Tab内嵌窗口被选中，被激活时，将会激发此选项
     bool event_onTabFormCloseRequested(QWidget* form) override; //当Tab内嵌窗口即将选择被关闭，但是还未关闭，将激发此选项，返回true则允许关闭
 
-
+    void event_onLoadSettingsWidget(settingMsgList& msgList); //当加载设置组件的时候,加载设置组件
 
 private:
     bool stringRight(QString str,QString suffix); //判断是否拥有这个后缀

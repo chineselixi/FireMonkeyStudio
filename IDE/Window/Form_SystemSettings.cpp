@@ -5,7 +5,6 @@
 #include "Window/settingWindow/Form_settings_Color.h"
 #include "Window/settingWindow/Form_settings_Device.h"
 #include "Window/settingWindow/Form_settings_DataBase.h"
-#include "Window/settingWindow/Form_settings_Compile.h""
 #include "Window/settingWindow/Form_settings_Git.h"
 #include "Window/settingWindow/Form_settings_Qt.h"
 
@@ -23,7 +22,6 @@ Form_SystemSettings::Form_SystemSettings(QWidget *parent) :
     this->addSetItem("外观",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/color.png"),new Form_settings_Color(this));
     this->addSetItem("设备",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/device.png"),new Form_settings_Device(this));
     this->addSetItem("数据库",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/database.png"),new Form_settings_DataBase(this));
-    this->addSetItem("编译器",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/comple.png"),new Form_settings_Compile(this));
     this->addSetItem("git版本控制",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/git.png"),new Form_settings_Git(this));
     this->addSetItem("Qt代码库支持",QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/Qt.png"),new Form_settings_Qt(this));
 

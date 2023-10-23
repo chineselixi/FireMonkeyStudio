@@ -4,6 +4,7 @@
 #include "QMessageBox"
 #include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "Form/Form_CodeEditor.h"
+#include "Form/settingForm/Form_settings_Compile.h"
 
 Plugin_CppBase::Plugin_CppBase()
 {
@@ -88,6 +89,22 @@ void Plugin_CppBase::event_onTabFormActivation(QWidget *form)
 bool Plugin_CppBase::event_onTabFormCloseRequested(QWidget *form)
 {
     return true;
+}
+
+
+//加载设置组件
+void Plugin_CppBase::event_onLoadSettingsWidget(settingMsgList &msgList)
+{
+    //设置创建设置信息
+    settingWidgetMsg setWidgetMsg;
+    setWidgetMsg.ico_32px = QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/comple.png");
+    setWidgetMsg.title = QObject::tr("GCC编译器");
+    setWidgetMsg.settingWidget = new Form_settings_Compile;
+
+    //加载设置到列表
+    msgList.append(setWidgetMsg);
+
+    return;
 }
 
 

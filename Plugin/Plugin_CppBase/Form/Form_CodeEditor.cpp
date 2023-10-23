@@ -3,30 +3,56 @@
 #include "QFile"
 #include "../../QScintilla/src/Qsci/qscilexercpp.h"
 
+
+
+
+
 Form_CodeEditor::Form_CodeEditor(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form_CodeEditor)
 {
     ui->setupUi(this);
+    this->intiCodeEditor(); //初始化代码编辑器
+}
 
-    QFont font("Consolas", 12, QFont::Normal); //全局字体效果
+Form_CodeEditor::~Form_CodeEditor()
+{
+    delete ui;
+}
 
 
+//初始化代码编辑器
+void Form_CodeEditor::intiCodeEditor()
+{
+    //事件链接
+    connect(ui->sciEditor, SIGNAL(customContextMenuRequested(const QPoint&)),this,SLOT(event_customContextMenuRequested(const QPoint&)));//弹出上下文菜单
+    connect(ui->sciEditor, SIGNAL(textChanged()),this, SLOT(event_textChanged()));//文本改变
+    connect(ui->sciEditor, SIGNAL(cursorPositionChanged(int,int)),this, SLOT(event_cursorPositionChanged(int,int))); //光标位置改变
+    connect(ui->sciEditor, SIGNAL(marginClicked(int,int,Qt::KeyboardModifiers)),this, SLOT(event_marginClicked(int,int,Qt::KeyboardModifiers)));//边缘被点击
+
+    //全局字体效果
+    QFont font("Consolas", 12, QFont::Normal);
+
+    //高亮解析器
     QsciLexer *textLexer = new QsciLexerCPP;
     textLexer->setFont(font);
-    textLexer->setColor(QColor("#008000"),QsciLexerCPP::Comment);
-    textLexer->setColor(QColor("#ff0000"),QsciLexerCPP::Number);
-    textLexer->setColor(QColor("#008000"),QsciLexerCPP::CommentLineDoc);
-    textLexer->setColor(QColor("#008000"),QsciLexerCPP::DoubleQuotedString);
-    textLexer->setColor(QColor("#ff00ff"),QsciLexerCPP::SingleQuotedString);
-    textLexer->setColor(QColor("#0055ff"),QsciLexerCPP::Keyword);
-    textLexer->setColor(QColor("#0055ff"),QsciLexerCPP::PreProcessor);
+    textLexer->setColor(QColor("#008000"),QsciLexerCPP::Comment); //备注颜色
+    textLexer->setColor(QColor("#ff0000"),QsciLexerCPP::Number); //数字颜色
+    textLexer->setColor(QColor("#008000"),QsciLexerCPP::CommentLineDoc); //行备注颜色
+    textLexer->setColor(QColor("#008000"),QsciLexerCPP::DoubleQuotedString); //双引号字符串颜色
+    textLexer->setColor(QColor("#ff00ff"),QsciLexerCPP::SingleQuotedString); //单引号字符串颜色
+    textLexer->setColor(QColor("#003bba"),QsciLexerCPP::Keyword); //关键字颜色
+    textLexer->setColor(QColor("#0041c4"),QsciLexerCPP::PreProcessor); //预处理器颜色
+    textLexer->setColor(QColor("#a1edaa"),QsciLexerCPP::VerbatimString); //未闭合的字符串
+    textLexer->setColor(QColor("#0066d6"),QsciLexerCPP::Regex); //正则表达式
+    textLexer->setColor(QColor("#dbab00"),QsciLexerCPP::KeywordSet2); //第二套关键字
+
 
     ui->sciEditor->setLexer(textLexer);//给QsciScintilla设置词法分析器
 
     //代码提示
-//    QsciAPIs *apis = new QsciAPIs(textLexer);
-//    apis->prepare();
+    //    QsciAPIs *apis = new QsciAPIs(textLexer);
+    //    apis->prepare();
 
     //    this->setFont(font1);
 
@@ -37,33 +63,38 @@ Form_CodeEditor::Form_CodeEditor(QWidget *parent) :
     //设置自动缩进
     ui->sciEditor->setAutoIndent(true);
 
-    //Enables or disables, according to enable, this display of indentation guides.
+    //启用或禁用缩进辅助线的显示。
     ui->sciEditor->setIndentationGuides(true);
 
-    //current line color
+    //当前光标线条颜色
     ui->sciEditor->setCaretWidth(2);//光标宽度，0表示不显示光标
-    ui->sciEditor->setCaretForegroundColor(QColor("darkCyan"));  //光标颜色
+    ui->sciEditor->setCaretForegroundColor(Qt::darkCyan);  //光标颜色
     ui->sciEditor->setCaretLineVisible(true); //是否高亮显示光标所在行
     ui->sciEditor->setCaretLineBackgroundColor(QColor("#e0e0e0"));//光标所在行背景颜色
 
-    //selection color
+    //选择区块的颜色
     ui->sciEditor->setSelectionBackgroundColor(QColor("#99c9ef"));//选中文本背景色
     ui->sciEditor->setSelectionForegroundColor(Qt::gray);//选中文本前景色
 
-    //It is ignored if an indicator is being used. The default is blue.
-    ui->sciEditor->setUnmatchedBraceForegroundColor(Qt::blue);
-
-
-    ui->sciEditor->setBraceMatching(QsciScintilla::SloppyBraceMatch);
-
-    //设置左侧行号栏宽度等
-    QFontMetrics fontmetrics(font);
-    ui->sciEditor->setMarginWidth(0, fontmetrics.horizontalAdvance("0000"));
-    ui->sciEditor->setMarginLineNumbers(0, true);
+    //如果正在使用指示器，则会忽略它。默认值为蓝色。
+    ui->sciEditor->setUnmatchedBraceForegroundColor(Qt::red); //设置不匹配的大括号前景颜色
     ui->sciEditor->setBraceMatching(QsciScintilla::SloppyBraceMatch);//括号匹配
     ui->sciEditor->setTabWidth(4);
 
 
+    //自动填充
+    //Acs[None|All|Document|APIs]
+    //禁用自动补全提示功能|所有可用的资源|当前文档中出现的名称都自动补全提示|使用QsciAPIs类加入的名称都自动补全提示
+    ui->sciEditor->setAutoCompletionSource(QsciScintilla::AcsAll);//自动补全。对于所有Ascii字符
+    //editor->setAutoCompletionCaseSensitivity(false);//大小写敏感度，设置lexer可能会更改，不过貌似没啥效果
+    ui->sciEditor->setAutoCompletionThreshold(1);//设置每输入一个字符就会出现自动补全的提示
+
+
+
+    //0边栏，行号
+    QFontMetrics fontmetrics(font);
+    ui->sciEditor->setMarginWidth(0, fontmetrics.horizontalAdvance("0000"));
+    ui->sciEditor->setMarginLineNumbers(0, true);
     ui->sciEditor->setMarginsFont(font);//设置页边字体
     ui->sciEditor->setMarginType(0,QsciScintilla::NumberMargin);//设置标号为0的页边显示行号
     //editor->setMarginMarkerMask(0,QsciScintilla::Background);//页边掩码
@@ -74,24 +105,30 @@ Form_CodeEditor::Form_CodeEditor(QWidget *parent) :
     ui->sciEditor->setMarginsBackgroundColor(QColor("#43577b"));//显示行号背景颜色
     ui->sciEditor->setMarginsForegroundColor(QColor("#6ac916"));//行号颜色
 
-    ui->sciEditor->setFolding(QsciScintilla::BoxedTreeFoldStyle);//折叠样式
-    ui->sciEditor->setFoldMarginColors(QColor("#808080"),QColor("#808080"));//折叠栏颜色
 
-    //auto complete
-    //Acs[None|All|Document|APIs]
-    //禁用自动补全提示功能|所有可用的资源|当前文档中出现的名称都自动补全提示|使用QsciAPIs类加入的名称都自动补全提示
-    ui->sciEditor->setAutoCompletionSource(QsciScintilla::AcsAll);//自动补全。对于所有Ascii字符
-    //editor->setAutoCompletionCaseSensitivity(false);//大小写敏感度，设置lexer可能会更改，不过貌似没啥效果
-    ui->sciEditor->setAutoCompletionThreshold(3);//设置每输入一个字符就会出现自动补全的提示
+    //1边栏，断点操作
+    ui->sciEditor->setMarginType(1,QsciScintilla::SymbolMargin);
+    ui->sciEditor->setMarginWidth(1,30);
+    ui->sciEditor->setMarginSensitivity(1,true); //设置断点区域可被点击
+    ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETFORE, 0,QColor(Qt::red));
+    ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETBACK, 0,QColor(Qt::red));
 
 
+    //2边栏，运行与提示
+    ui->sciEditor->setMarginType(2,QsciScintilla::SymbolMargin);
+    ui->sciEditor->setMarginWidth(2,16);
+    ui->sciEditor->setFolding(QsciScintilla::FoldStyle::NoFoldStyle,2); //关闭默认的折叠样式
+    ui->sciEditor->setMarginSensitivity(1,true); //设置提示区域可被点击，但是由断点效果处理
 
+
+    //3边栏，代码折叠
+    ui->sciEditor->setMarginType(3,QsciScintilla::SymbolMargin);
+    ui->sciEditor->setMarginWidth(3,15);
+    ui->sciEditor->setFoldMarginColors(QColor("#F0F0F0"),QColor("#F0F0F0"));//折叠栏颜色，默认#808080
+    ui->sciEditor->setFolding(QsciScintilla::FoldStyle::BoxedTreeFoldStyle,3); //设置为折叠栏
 }
 
-Form_CodeEditor::~Form_CodeEditor()
-{
-    delete ui;
-}
+
 
 
 //从文件加载代码
@@ -122,4 +159,44 @@ void Form_CodeEditor::append(QString str)
 QString Form_CodeEditor::getText()
 {
     return ui->sciEditor->text();
+}
+
+
+//设置调试标记
+void Form_CodeEditor::setDebugSign(uint16_t line, bool sign)
+{
+    if(sign){ui->sciEditor->markerAdd(line,1);}
+    else{ui->sciEditor->markerDelete(line,1);}
+}
+
+//获取是否调试标记
+bool Form_CodeEditor::hasDebugSign(uint16_t line)
+{
+    return ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERGET,line) != 0;
+}
+
+
+
+//事件：文本发生改变
+void Form_CodeEditor::event_textChanged()
+{
+
+}
+
+//事件：光标位置发生改变
+void Form_CodeEditor::event_cursorPositionChanged(int line, int index)
+{
+
+}
+
+//事件：上下文菜单被请求
+void Form_CodeEditor::event_customContextMenuRequested(const QPoint &pos)
+{
+
+}
+
+//事件：边缘标记区域被点击
+void Form_CodeEditor::event_marginClicked(int margin, int line, Qt::KeyboardModifiers state)
+{
+    qDebug() << "margin:" << margin << line;
 }

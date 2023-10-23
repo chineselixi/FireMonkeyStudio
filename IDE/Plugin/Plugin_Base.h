@@ -3,6 +3,7 @@
 #define PLUGIN_BASE_H
 
 #include "Plugin_Global.h"
+#include "../module/mod_settingsFormBase.h"
 //#include "../../QScintilla/src/Qsci/qsciscintilla.h"
 
 //class QMainWindow; //声明QMainWindow
@@ -30,7 +31,7 @@ public:
     struct settingWidgetMsg{
         QString title = QAction::tr("new setting");
         QPixmap ico_32px;
-        Form_settings_Basic* settingWidget = nullptr;
+        QWidget* settingWidget = nullptr;
     };
 
 

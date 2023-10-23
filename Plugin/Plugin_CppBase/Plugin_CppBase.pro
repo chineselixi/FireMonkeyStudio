@@ -16,12 +16,23 @@ TARGET = Plugin_CppBase
 
 SOURCES += \
     Form/Form_CodeEditor.cpp \
+    Form/settingForm/Form_settings_Compile.cpp \
     Plugin_CppBase.cpp
 
 HEADERS += \
     Form/Form_CodeEditor.h \
+    Form/settingForm/Form_settings_Compile.h \
     Plugin_CppBase_global.h \
     Plugin_CppBase.h
+
+FORMS += \
+    Form/Form_CodeEditor.ui \
+    Form/settingForm/Form_settings_Compile.ui
+
+RESOURCES += \
+    res.qrc
+
+
 
 # Default rules for deployment.
 unix {
@@ -39,9 +50,4 @@ else:unix: LIBS += -L$$OUT_PWD/../../release/lib/ -lqscintilla
 INCLUDEPATH += $$OUT_PWD/../../release
 DEPENDPATH += $$OUT_PWD/../../release
 
-FORMS += \
-    Form/Form_CodeEditor.ui
-
-RESOURCES += \
-    res.qrc
 

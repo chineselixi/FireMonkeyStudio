@@ -173,7 +173,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="pushButton_check">
               <property name="text">
                <string>开始验证</string>
               </property>
