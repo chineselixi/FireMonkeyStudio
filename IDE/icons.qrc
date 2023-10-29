@@ -886,6 +886,7 @@
         <file>icon/compileTip/ok.png</file>
         <file>icon/compileTip/tip.png</file>
         <file>icon/compileTip/warning.png</file>
+        <file>icon/compileTip/arrow.png</file>
     </qresource>
     <qresource prefix="/Image/Index">
         <file>icon/index/index.png</file>

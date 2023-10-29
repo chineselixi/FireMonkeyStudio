@@ -5,4 +5,11 @@
         <file>resources/CPPHeaderFile_16x.png</file>
         <file>resources/unKnowFile.png</file>
     </qresource>
+    <qresource prefix="/editorSign">
+        <file>resources/editorSign/arrow.png</file>
+        <file>resources/editorSign/error.png</file>
+        <file>resources/editorSign/ok.png</file>
+        <file>resources/editorSign/tip.png</file>
+        <file>resources/editorSign/warning.png</file>
+    </qresource>
 </RCC>

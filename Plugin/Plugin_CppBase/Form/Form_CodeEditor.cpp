@@ -29,6 +29,7 @@ void Form_CodeEditor::intiCodeEditor()
     connect(ui->sciEditor, SIGNAL(textChanged()),this, SLOT(event_textChanged()));//文本改变
     connect(ui->sciEditor, SIGNAL(cursorPositionChanged(int,int)),this, SLOT(event_cursorPositionChanged(int,int))); //光标位置改变
     connect(ui->sciEditor, SIGNAL(marginClicked(int,int,Qt::KeyboardModifiers)),this, SLOT(event_marginClicked(int,int,Qt::KeyboardModifiers)));//边缘被点击
+    connect(ui->sciEditor, SIGNAL(SCN_ZOOM()),this, SLOT(event_zoomChanged()));//缩放改变
 
     //全局字体效果
     QFont font("Consolas", 12, QFont::Normal);
@@ -97,35 +98,50 @@ void Form_CodeEditor::intiCodeEditor()
     ui->sciEditor->setMarginLineNumbers(0, true);
     ui->sciEditor->setMarginsFont(font);//设置页边字体
     ui->sciEditor->setMarginType(0,QsciScintilla::NumberMargin);//设置标号为0的页边显示行号
-    //editor->setMarginMarkerMask(0,QsciScintilla::Background);//页边掩码
-    //editor->setMarginSensitivity(0,true);//设置是否可以显示断点,注册通知事件，当用户点击边栏时，scintilla会通知我们
-    //textEdit->setMarginsBackgroundColor(QColor("#bbfaae"));
-    //    this->setMarginLineNumbers(0,true);//设置第0个边栏为行号边栏，True表示显示
-    //    this->setMarginWidth(0,15);//设置0边栏宽度
     ui->sciEditor->setMarginsBackgroundColor(QColor("#43577b"));//显示行号背景颜色
     ui->sciEditor->setMarginsForegroundColor(QColor("#6ac916"));//行号颜色
 
 
     //1边栏，断点操作
     ui->sciEditor->setMarginType(1,QsciScintilla::SymbolMargin);
-    ui->sciEditor->setMarginWidth(1,30);
+    ui->sciEditor->setMarginWidth(1,20);
     ui->sciEditor->setMarginSensitivity(1,true); //设置断点区域可被点击
-    ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETFORE, 0,QColor(Qt::red));
-    ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETBACK, 0,QColor(Qt::red));
-
 
     //2边栏，运行与提示
     ui->sciEditor->setMarginType(2,QsciScintilla::SymbolMargin);
-    ui->sciEditor->setMarginWidth(2,16);
-    ui->sciEditor->setFolding(QsciScintilla::FoldStyle::NoFoldStyle,2); //关闭默认的折叠样式
-    ui->sciEditor->setMarginSensitivity(1,true); //设置提示区域可被点击，但是由断点效果处理
-
+    ui->sciEditor->setMarginWidth(2,20);
+    ui->sciEditor->setMarginSensitivity(2,true); //设置提示区域可被点击，但是由断点效果处理
 
     //3边栏，代码折叠
     ui->sciEditor->setMarginType(3,QsciScintilla::SymbolMargin);
     ui->sciEditor->setMarginWidth(3,15);
     ui->sciEditor->setFoldMarginColors(QColor("#F0F0F0"),QColor("#F0F0F0"));//折叠栏颜色，默认#808080
     ui->sciEditor->setFolding(QsciScintilla::FoldStyle::BoxedTreeFoldStyle,3); //设置为折叠栏
+
+
+
+
+
+    //注册标记
+    QImage t_sign_error = QImage(":/editorSign/resources/editorSign/error.png");
+    QImage t_sign_warning = QImage(":/editorSign/resources/editorSign/warning.png");
+    QImage t_sign_ok = QImage(":/editorSign/resources/editorSign/ok.png");
+    QImage t_sign_rightArrow = QImage(":/editorSign/resources/editorSign/arrow.png");
+
+
+    ui->sciEditor->markerDefine(QsciScintilla::MarkerSymbol::Circle,0); //定义0号为断点标记
+    ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETBACK, 0,QColor(Qt::red)); //断点标记背景色为红色
+    ui->sciEditor->markerDefine(t_sign_rightArrow,1); //定义1号为右箭头标记
+    ui->sciEditor->markerDefine(t_sign_error,2); //定义2号为错误标记
+    ui->sciEditor->markerDefine(t_sign_warning,3); //定义3号为警告标记
+    ui->sciEditor->markerDefine(t_sign_ok,4); //定义4号为正确标记
+
+
+
+    //设置边缘能够显示的标记                                         正确  警告  错误  右箭  断点
+    ui->sciEditor->setMarginMarkerMask(1,0b00001); //1号为断点边距     0    0     0    0    1
+    ui->sciEditor->setMarginMarkerMask(2,0b11110); //2号为提示边距     1    1     1    1    0
+
 }
 
 
@@ -163,16 +179,58 @@ QString Form_CodeEditor::getText()
 
 
 //设置调试标记
-void Form_CodeEditor::setDebugSign(uint16_t line, bool sign)
+void Form_CodeEditor:: setDebugSign(uint16_t line, bool sign,bool checked)
 {
-    if(sign){ui->sciEditor->markerAdd(line,1);}
-    else{ui->sciEditor->markerDelete(line,1);}
+    int mhandle,index;
+    this->getDebugSign(line,mhandle,index);
+
+    if(checked){
+        sign = (index == -1?true:false);
+    }
+
+    if(sign){
+        if(index == -1){
+            int mh = ui->sciEditor->markerAdd(line,0); //添加sign标记
+            this->debugsSign.append(mh); //添加行号句柄标记
+        }
+    }
+    else{
+        if(index != -1){
+            //this->debugsSign.removeAt(signNum);
+            ui->sciEditor->markerDeleteHandle(mhandle);
+            if(index >= 0 && index < this->debugsSign.length()) this->debugsSign.remove(index);
+        }
+    }
 }
 
+
 //获取是否调试标记
-bool Form_CodeEditor::hasDebugSign(uint16_t line)
+void Form_CodeEditor::getDebugSign(uint16_t line,int& mhandle,int& index)
 {
-    return ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERGET,line) != 0;
+    for(int i = 0; i < this->debugsSign.length(); i++){
+        if(ui->sciEditor->markerLine(this->debugsSign[i]) == line){
+            mhandle = this->debugsSign[i];
+            index = i;
+            return;
+        }
+    }
+    index = -1;
+}
+
+
+//添加标记，1为右箭头  2错误标记  3警告标记  4正确标记
+void Form_CodeEditor::addSign(uint16_t line, int markerNumber)
+{
+    ui->sciEditor->markerAdd(line,markerNumber);
+}
+
+//删除所有标记，-1为全部标记，1为右箭头  2错误标记  3警告标记  4正确标记
+void Form_CodeEditor::deleteAllSign(int markerNumber)
+{
+    if(markerNumber == -1 || markerNumber == 0){
+        debugsSign.clear(); //删除所有调试标记记录
+    }
+    ui->sciEditor->markerDeleteAll(markerNumber);
 }
 
 
@@ -198,5 +256,16 @@ void Form_CodeEditor::event_customContextMenuRequested(const QPoint &pos)
 //事件：边缘标记区域被点击
 void Form_CodeEditor::event_marginClicked(int margin, int line, Qt::KeyboardModifiers state)
 {
-    qDebug() << "margin:" << margin << line;
+    qDebug() << "margin:" << margin << " line:" << line;
+    if(margin == 1 || margin == 2){
+        this->setDebugSign(line,true,true);
+        this->addSign(line,1);
+    }
+}
+
+
+//事件：缩放被改变
+void Form_CodeEditor::event_zoomChanged()
+{
+    //qDebug() << ui->sciEditor->SendScintilla(QsciScintillaBase::SCI_GETZOOM); //获取缩放级别
 }
