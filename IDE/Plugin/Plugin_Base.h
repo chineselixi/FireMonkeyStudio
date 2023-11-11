@@ -86,6 +86,10 @@ private:
     PluginGlobalMsg::dockWidgetFun_add WorkSpace_DockWidget_Add = nullptr; //添加DockWidget
     PluginGlobalMsg::dockWidgetFun_rm WorkSpace_DockWidget_remove = nullptr; //删除DockWidget
 
+    //设置操作接口
+    PluginGlobalMsg::setPtr_addFun setFun_add = nullptr; //添加或变更一个设置
+    PluginGlobalMsg::setPtr_getFun setFun_get = nullptr; //获取一个设置信息
+    PluginGlobalMsg::setPtr_deleteFun setFun_del = nullptr; //删除一个设置信息
 
 public:
     //初始化信息，由IDE侧载，可复写
@@ -111,6 +115,9 @@ public: //插件的基础方法
     bool hasTab(QWidget* widget,bool select); //根据QWidget指针查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
     QWidget* getTabWidget(QString sign); //根据sign获取Widget指针
     QString getTabSign(QWidget* widget); //根据widget指针获取sign信息
+    void addMark(QString mark,QString value); //添加一个设置标记
+    QVariant getMark(QString mark,QString normal=""); //获取一个标记内容
+    void delMark(QString mark);//删除一个标记
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
     virtual bool event_onModLoadFinish(){return true;};//当模块加载完毕，将第一时间激发此插件，禁止在获取实例处获得

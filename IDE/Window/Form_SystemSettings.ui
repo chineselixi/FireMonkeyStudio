@@ -112,6 +112,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
           <property name="movement">
            <enum>QListView::Static</enum>
           </property>

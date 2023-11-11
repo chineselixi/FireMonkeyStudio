@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_SystemSettings.ui'
 **
-** Created by: Qt User Interface Compiler version 6.5.2
+** Created by: Qt User Interface Compiler version 6.6.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -102,6 +102,7 @@ public:
         listWidget->setObjectName("listWidget");
         listWidget->setMinimumSize(QSize(0, 0));
         listWidget->setMaximumSize(QSize(16777215, 16777215));
+        listWidget->setFrameShape(QFrame::NoFrame);
         listWidget->setMovement(QListView::Static);
         listWidget->setResizeMode(QListView::Adjust);
         listWidget->setViewMode(QListView::IconMode);

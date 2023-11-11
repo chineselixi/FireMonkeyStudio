@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_settings_Color.ui'
 **
-** Created by: Qt User Interface Compiler version 6.5.2
+** Created by: Qt User Interface Compiler version 6.6.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFontComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -41,7 +42,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_7;
-    QComboBox *comboBox_fonts;
+    QFontComboBox *fontComboBox;
     QLabel *label_2;
     QLineEdit *lineEdit_fontSize;
     QCheckBox *checkBox_bold;
@@ -81,7 +82,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 846, 604));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 850, 608));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setSpacing(20);
         verticalLayout_5->setObjectName("verticalLayout_5");
@@ -133,13 +134,10 @@ public:
 
         horizontalLayout_2->addWidget(label_7);
 
-        comboBox_fonts = new QComboBox(groupBox);
-        comboBox_fonts->setObjectName("comboBox_fonts");
-        comboBox_fonts->setEnabled(true);
-        comboBox_fonts->setMinimumSize(QSize(190, 0));
-        comboBox_fonts->setMaximumSize(QSize(190, 16777215));
+        fontComboBox = new QFontComboBox(groupBox);
+        fontComboBox->setObjectName("fontComboBox");
 
-        horizontalLayout_2->addWidget(comboBox_fonts);
+        horizontalLayout_2->addWidget(fontComboBox);
 
         label_2 = new QLabel(groupBox);
         label_2->setObjectName("label_2");

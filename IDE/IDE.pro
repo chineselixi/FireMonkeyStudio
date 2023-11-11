@@ -38,7 +38,7 @@ SOURCES += \
     Plugin/Plugin_Manger.cpp \
     SwSystem/System_GlobalVar.cpp \
     SwSystem/System_History.cpp \
-    SwSystem/System_EnvVar.cpp \
+    SwSystem/System_UtilFun.cpp \
     SwSystem/system_systemsetting.cpp \
     Widget/Widget_Button_ListItem.cpp \
     Widget/Widget_Button_ModHistoryItem.cpp \
@@ -78,7 +78,7 @@ HEADERS += \
     Plugin/Plugin_Manger.h \
     SwSystem/System_GlobalVar.h \
     SwSystem/System_History.h \
-    SwSystem/System_EnvVar.h \
+    SwSystem/System_UtilFun.h \
     SwSystem/system_systemsetting.h \
     Widget/Widget_Button_ListItem.h \
     Widget/Widget_Button_ModHistoryItem.h \

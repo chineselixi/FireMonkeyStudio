@@ -12,7 +12,7 @@ Form_WorkSpace* Window::workSpace = nullptr;
 
 //管理器
 Plugin_Manger* Manger::pluginManger = nullptr;//插件管理器
-System_EnvVar* Manger::EnvVar = nullptr;//环境变量管理器
+//System_EnvVar* Manger::EnvVar = nullptr;//环境变量管理器
 
 
 //历史列表
@@ -30,11 +30,7 @@ bool Setting::git_pushAddDate = false; //git添加日期
 bool Setting::git_outMsg = true; //git输出日志
 QString Setting::style_themeName = "Blue"; //主题名
 bool Setting::style_themeIsAuto = false; //自动更改主题
-QString Setting::style_font = ""; //字体名称
-QString Setting::style_fontStyle; //字体样式
-uint32_t Setting::style_fontSize = 14; //字体大小
-bool Setting::style_fontBold = false; //字体加粗
-bool Setting::style_fontItalic = false; //字体倾斜
+QFont Setting::style_font; //字体名称
 bool Setting::style_dailyTips = true; //每日一贴
 
 

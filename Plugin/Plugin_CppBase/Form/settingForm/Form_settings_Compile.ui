@@ -6,205 +6,894 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>832</height>
+    <width>823</width>
+    <height>607</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QScrollArea" name="scrollArea">
-     <property name="widgetResizable">
-      <bool>true</bool>
+  <layout class="QGridLayout" name="gridLayout_4">
+   <item row="1" column="0">
+    <widget class="QTabWidget" name="settingTabs">
+     <property name="currentIndex">
+      <number>4</number>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>776</width>
-        <height>808</height>
-       </rect>
+     <property name="movable">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="tabGeneral">
+      <property name="enabled">
+       <bool>true</bool>
       </property>
+      <attribute name="title">
+       <string>基本选项</string>
+      </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>GNU编译器套件</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>C编译器：</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_2">
-              <property name="minimumSize">
-               <size>
-                <width>140</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>140</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>版本：未知</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>C++编译器：</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_2"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="minimumSize">
-               <size>
-                <width>140</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>140</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>版本：未知</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QLabel" name="label_7">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>GDB调试器：</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_4"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_8">
-              <property name="minimumSize">
-               <size>
-                <width>140</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>140</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>版本：未知</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QPushButton" name="pushButton_check">
-              <property name="text">
-               <string>开始验证</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
+        <widget class="QWidget" name="panelCharset" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>构建过程</string>
+        <widget class="QCheckBox" name="s1_usingStatic">
+         <property name="text">
+          <string>用静态链接方式链接库文件</string>
          </property>
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="s1_usCompile">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>编译时加入下列选项</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="s1_otherCompile">
+         <property name="plainText">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="s1_usLink">
+         <property name="text">
+          <string>链接时加入下列选项</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="s1_otherLinke"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabSettings">
+      <attribute name="title">
+       <string>编译/链接选项</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="compleTabs">
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <property name="documentMode">
+          <bool>false</bool>
+         </property>
+         <property name="tabsClosable">
+          <bool>false</bool>
+         </property>
+         <property name="movable">
+          <bool>false</bool>
+         </property>
+         <property name="tabBarAutoHide">
+          <bool>false</bool>
+         </property>
+         <widget class="QWidget" name="tab_codeCreate">
+          <attribute name="title">
+           <string>代码生成</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_2">
+             <property name="text">
+              <string>优化级别 (-Ox)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QComboBox" name="s21_opLevel">
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Low (-O1)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Med (-O2)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Heigh (-O3)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Heighest (-Ofast)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Size (-Os)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Debug (-Og)</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_3">
+             <property name="text">
+              <string>C++语言标准 (-std)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QComboBox" name="s21_cppStd">
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++11</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++14</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++17</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++20</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++23</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++11</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++14</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++17</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++20</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++23</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_4">
+             <property name="text">
+              <string>C语言标准 (-std)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QComboBox" name="s21_cStd">
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C90</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C99</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C11</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C17</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C90</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C99</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C11</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C17</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_5">
+             <property name="text">
+              <string>启用特定指令集 (-mx)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QComboBox" name="s21_specificInstruct">
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>MMX</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>3D Now</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SSE</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SSE2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SSE3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SSSE3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SSE4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SSE4A</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SSE4.1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SSE4.2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>AVX</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>AVX2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>FMA4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>XOP</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>AES</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_6">
+             <property name="text">
+              <string>使用下列指针大小编译 (-mx)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QComboBox" name="s21_bit">
+             <item>
+              <property name="text">
+               <string>64 bit</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>32 bit</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_7">
+             <property name="text">
+              <string>编译模式 (默认使用IDE编译接口)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QComboBox" name="s21_compileMod">
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Debug</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Release</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QCheckBox" name="s21_generateDebug">
+             <property name="text">
+              <string>生成调试信息(-g3)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QCheckBox" name="s21_generatePerLog">
+             <property name="text">
+              <string>生成性能分析信息(-pg)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QCheckBox" name="s21_syntaxOnly">
+             <property name="text">
+              <string>只进行语法检查（不编译）(-syntax-only)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QCheckBox" name="s21_tepOpt">
+             <property name="text">
+              <string>快速编译 (启用缓存优化)</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0">
+            <widget class="QCheckBox" name="s21_enableThread">
+             <property name="text">
+              <string>启用多线程编译</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="1">
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>114</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_codeError">
+          <attribute name="title">
+           <string>代码警告</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="s22_ignoreAllWaring">
+             <property name="text">
+              <string>忽略所有警告信息 (-w)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QCheckBox" name="s22_wall">
+             <property name="text">
+              <string>启用常见问题警告 (-Wall)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="s22_wextra">
+             <property name="text">
+              <string>启用更多问题警告 (-Wextra)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QCheckBox" name="s22_checkComplyIsoCppStd">
+             <property name="text">
+              <string>检查是否严格遵守ISO C/C++标准</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <widget class="QCheckBox" name="s22_werror">
+             <property name="text">
+              <string>将警告作为错误处理 (-Werror)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0" colspan="2">
+            <widget class="QCheckBox" name="s22_wfatalErrors">
+             <property name="text">
+              <string>遇到第一个错误后立即中止编译 (-Wfatal-errors)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_8">
+             <property name="text">
+              <string>检查栈溢出(stack smashing)错误 (-fatack-protector)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QComboBox" name="s22_fstackProtector">
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Debug</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Release</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <spacer name="verticalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>236</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_codeLink">
+          <attribute name="title">
+           <string>链接器</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="s23_pipe">
+             <property name="text">
+              <string>编译时使用管道而不是临时文件 (-pipe)</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="s23_nostdlib">
+             <property name="text">
+              <string>不使用标准库和系统启动文件 (-nostdlib)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="s23_mwindows">
+             <property name="text">
+              <string>不产生控制台窗口 (-mwindows)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QCheckBox" name="s23_s">
+             <property name="text">
+              <string>剥除附加信息 (-s)</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <spacer name="verticalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>322</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabDirectories">
+      <attribute name="title">
+       <string>环境文件夹</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_9">
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="dirTabs">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <property name="documentMode">
+          <bool>false</bool>
+         </property>
+         <property name="tabsClosable">
+          <bool>false</bool>
+         </property>
+         <property name="movable">
+          <bool>false</bool>
+         </property>
+         <property name="tabBarAutoHide">
+          <bool>false</bool>
+         </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>源文件</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="Widget_List" name="s31_sourceFolders" native="true">
+             <property name="focusPolicy">
+              <enum>Qt::TabFocus</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>静态库</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="Widget_List" name="s32_staticFolders" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabPrograms">
+      <attribute name="title">
+       <string>构建套件</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="0" column="0" colspan="2">
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>C编译器(gcc)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="s4_txtCCompiler"/>
+          </item>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="s4_btnChooseCCompiler">
+            <property name="toolTip">
+             <string>Choose C Compiler</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>C++编译器(g++)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="s4_txtCppCompiler"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QToolButton" name="s4_btnChooseCppCompiler">
+            <property name="toolTip">
+             <string>Choose C++ Compiler</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>make</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="s4_txtMake"/>
+          </item>
+          <item row="2" column="2">
+           <widget class="QToolButton" name="s4_btnChooseMake">
+            <property name="toolTip">
+             <string>Choose make</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>gdb</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="s4_txtGDB"/>
+          </item>
+          <item row="3" column="2">
+           <widget class="QToolButton" name="s4_btnChooseGDB">
+            <property name="toolTip">
+             <string>Choose Debugger</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>gdb server</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="s4_txtGDBServer"/>
+          </item>
+          <item row="4" column="2">
+           <widget class="QToolButton" name="s4_btnChooseGDBServer">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>资源编辑器(windres)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="s4_txtResourceCompiler"/>
+          </item>
+          <item row="5" column="2">
+           <widget class="QToolButton" name="s4_btnChooseResourceCompiler">
+            <property name="toolTip">
+             <string>Choose Resource Compiler</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="s4_check">
+         <property name="text">
+          <string>验证套件</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -212,17 +901,228 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>577</height>
+           <height>40</height>
           </size>
          </property>
         </spacer>
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tabOutput">
+      <attribute name="title">
+       <string>输出</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lbCompilingSuffix">
+         <property name="text">
+          <string>编译(汇编代码)输出后缀</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="lbExecSuffix">
+         <property name="text">
+          <string>可执行文件后缀</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="3">
+        <widget class="QGroupBox" name="grpCompilationStages">
+         <property name="title">
+          <string>编译阶段</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QRadioButton" name="s5_rbPreprocessingOnly">
+            <property name="text">
+             <string>在完成预处理后停止编译</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="s5_rbCompilationProperOnly">
+            <property name="text">
+             <string>在生成汇编代码后停止</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="s5_rbGenerateExecutable">
+            <property name="text">
+             <string>链接得到可执行文件</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="s5_txtPreprocessingSuffix"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lbPreprocessingSuffix">
+         <property name="text">
+          <string>预处理输出后缀</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="1">
+        <widget class="QComboBox" name="s5_cbBinarySuffix">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="s5_txtExecutableSuffix"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="s5_txtCompilationSuffix"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="lbBinarySuffix">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>二进制文件类型</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>编译器配置方案</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QComboBox" name="cbCompilerSet"/>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnFindCompilers">
+        <property name="toolTip">
+         <string>Auto Find Compilers</string>
+        </property>
+        <property name="text">
+         <string>Auto Find Compilers</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../res.qrc">
+          <normaloff>:/compleIco/resources/icon/find.png</normaloff>:/compleIco/resources/icon/find.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnAddCompilerSetByFolder">
+        <property name="toolTip">
+         <string>Find Compiler in the Folder</string>
+        </property>
+        <property name="text">
+         <string>Find Compiler in the Folder</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../res.qrc">
+          <normaloff>:/compleIco/resources/icon/folder.png</normaloff>:/compleIco/resources/icon/folder.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnAddBlankCompilerSet">
+        <property name="toolTip">
+         <string>Add Blank Compiler Set</string>
+        </property>
+        <property name="text">
+         <string>Add Blank Compiler Set</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../res.qrc">
+          <normaloff>:/compleIco/resources/icon/add.png</normaloff>:/compleIco/resources/icon/add.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnRenameCompilerSet">
+        <property name="toolTip">
+         <string>Rename</string>
+        </property>
+        <property name="text">
+         <string>Rename</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../res.qrc">
+          <normaloff>:/compleIco/resources/icon/editor.png</normaloff>:/compleIco/resources/icon/editor.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnRemoveCompilerSet">
+        <property name="toolTip">
+         <string>Remove</string>
+        </property>
+        <property name="text">
+         <string>Remove</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../res.qrc">
+          <normaloff>:/compleIco/resources/icon/subtract.png</normaloff>:/compleIco/resources/icon/subtract.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <customwidgets>
+  <customwidget>
+   <class>Widget_List</class>
+   <extends>QWidget</extends>
+   <header>Widget/Widget_List.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../res.qrc"/>
+ </resources>
  <connections/>
 </ui>

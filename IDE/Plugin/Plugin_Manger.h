@@ -85,6 +85,7 @@ public:
 
     void pluginManger_init_building(); //插件接口绑定
 
+    void setting_init_building(); //设置接口绑定
 
 public:
 

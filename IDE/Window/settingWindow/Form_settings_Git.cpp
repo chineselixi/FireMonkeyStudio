@@ -5,7 +5,7 @@
 #include "ui_Form_settings_Git.h"
 #include "SwSystem/System_GlobalVar.h"
 #include "SwSystem/system_systemsetting.h"
-#include "SwSystem/System_EnvVar.h"
+#include "SwSystem/System_UtilFun.h"
 
 Form_settings_Git::Form_settings_Git(QWidget *parent) :
     QWidget(parent),
@@ -41,7 +41,7 @@ void Form_settings_Git::Init()
 
     //判断环境变量中是否已经存在Git
     if(Setting::git_path.isEmpty()){
-        Setting::git_path = Manger::EnvVar->getProgramPathForEnvVar("git"); //获取git的路径
+        Setting::git_path = System_Env::getProgramPathForEnvVar("git"); //获取git的路径
     }
 
     //测试Git是否存在

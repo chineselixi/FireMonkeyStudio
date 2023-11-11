@@ -149,7 +149,10 @@ typedef std::function<void(QDockWidget* dockWidget)> dockWidgetFun_rm;//移除Do
 //ToolBar操作
 typedef std::function<void(toolBarAction actionType,bool isEnable)> toolBar_action_setEnable; //设置工具栏的action是否启用
 
-
+//设置操作
+typedef std::function<void(QString key,QVariant value)> setPtr_addFun;//添加设置
+typedef std::function<QVariant(QString key,QString normal)> setPtr_getFun; //获取设置
+typedef std::function<void(QString key)> setPtr_deleteFun; //删除设置
 }
 
 

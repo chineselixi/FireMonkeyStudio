@@ -12,4 +12,11 @@
         <file>resources/editorSign/tip.png</file>
         <file>resources/editorSign/warning.png</file>
     </qresource>
+    <qresource prefix="/compleIco">
+        <file>resources/icon/add.png</file>
+        <file>resources/icon/editor.png</file>
+        <file>resources/icon/find.png</file>
+        <file>resources/icon/folder.png</file>
+        <file>resources/icon/subtract.png</file>
+    </qresource>
 </RCC>

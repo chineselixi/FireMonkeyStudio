@@ -202,9 +202,6 @@ void Form_WindowTab::on_tabWidget_tabCloseRequested(int index)
 void Form_WindowTab::on_tabWidget_currentChanged(int index)
 {
     QWidget* t_widget = ui->tabWidget->widget(index);
-
-    qDebug() << "on_tabWidget_currentChanged  load";
-
     for(int a = 0;a<this->tabMsgList.length();a++){   //查找当前关闭的窗口
         qDebug() << this->tabMsgList[a].tabWidgetPth << t_widget << this->tabMsgList[a].plg;
 

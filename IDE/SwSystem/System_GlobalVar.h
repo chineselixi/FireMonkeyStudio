@@ -3,7 +3,7 @@
 #define SYSTEM_GLOBALVAR_H
 #include "QString"
 #include "QVector"
-
+#include "QFont"
 //#include "SwSystem/System_History.h"
 
 
@@ -26,7 +26,7 @@ class Plugin_Manger;
 class System_EnvVar;
 namespace Manger{
 extern Plugin_Manger* pluginManger; //插件管理器
-extern System_EnvVar* EnvVar; //环境变量管理器
+//extern System_EnvVar* EnvVar; //环境变量管理器
 }
 
 
@@ -54,11 +54,7 @@ extern bool git_outMsg; //git输出日志
 
 extern QString style_themeName; //主题名
 extern bool style_themeIsAuto; //自动更改主题
-extern QString style_font; //字体名称
-extern QString style_fontStyle; //字体样式
-extern uint32_t style_fontSize; //字体大小
-extern bool style_fontBold; //字体加粗
-extern bool style_fontItalic; //字体倾斜
+extern QFont style_font; //字体名称
 extern bool style_dailyTips; //每日一贴
 }
 
@@ -67,7 +63,7 @@ extern bool style_dailyTips; //每日一贴
 
 //字符串处理
 namespace Str{
-QString getSubStr(QString srcStr, QString start, QString endStr); //获取两个字符之间的字符,如果左边或右边不存在，则直接返回空。
+QString getSubStr(QString srcStr, QString start, QString endStr); //获取两个字符之间的字符,如果开始字符串为空，则默认从0开始，如果结束字符串为空，则默认到字符串结尾
 }
 
 

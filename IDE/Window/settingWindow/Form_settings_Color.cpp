@@ -41,23 +41,18 @@ void Form_settings_Color::Init()
     //自动主题切换
     ui->checkBox_autoTheme->setChecked(Setting::style_themeIsAuto);
 
-    //获取系统所有字体
-    QStringList fontFamilies = QFontDatabase().families();
-    foreach (const QString &t_fontFamily, fontFamilies) {// 打印所有字体名称
-        ui->comboBox_fonts->addItem(t_fontFamily);
-    }
-    ui->comboBox_fonts->setCurrentText(Setting::sys_app->font().family()); //设定当前选项
-    if(!Setting::style_font.isEmpty()){ui->comboBox_fonts->setCurrentText(Setting::style_font);} //如果本地有存在，则直接加载本地的信息
+
+    //Setting::style_font = ui->fontComboBox->currentFont();
+    ui->fontComboBox->setCurrentText(Setting::style_font.family()); //如果本地有存在，则直接加载本地的信息
 
     //字体尺寸
-    if(Setting::style_fontSize == 0){Setting::style_fontSize = 14;}
-    ui->lineEdit_fontSize->setText(QString::number(Setting::style_fontSize));
+    ui->lineEdit_fontSize->setText(QString::number(Setting::style_font.pointSize()));
 
     //字体加粗
-    ui->checkBox_bold->setChecked(Setting::style_fontBold);
+    ui->checkBox_bold->setChecked(Setting::style_font.bold());
 
     //字体倾斜
-    ui->checkBox_italic->setChecked(Setting::style_fontItalic);
+    ui->checkBox_italic->setChecked(Setting::style_font.italic());
 
     //每日一贴
     ui->checkBox_dailyTips->setChecked(Setting::style_dailyTips);
@@ -69,10 +64,10 @@ void Form_settings_Color::loadSettings()
 {
     Setting::style_themeName = Setting::sys_setting->getSettingValue("Style","theme","Blue").toString(); //读取主题样式
     Setting::style_themeIsAuto = Setting::sys_setting->getSettingValue("Style","autoTheme",false).toBool(); //读取自动切换
-    Setting::style_font = Setting::sys_setting->getSettingValue("Style","fontName").toString(); //读取字体
-    Setting::style_fontSize = Setting::sys_setting->getSettingValue("Style","fontSize",14).toUInt(); //读取字体大小
-    Setting::style_fontBold = Setting::sys_setting->getSettingValue("Style","fontBold",false).toBool(); //读取字体加粗
-    Setting::style_fontItalic = Setting::sys_setting->getSettingValue("Style","fontItalic",false).toBool(); //读取字体倾斜
+    Setting::style_font = QFont(Setting::sys_setting->getSettingValue("Style","fontName").toString()); //读取字体
+    Setting::style_font.setPointSize(Setting::sys_setting->getSettingValue("Style","fontSize",14).toUInt()); //读取字体大小
+    Setting::style_font.setBold(Setting::sys_setting->getSettingValue("Style","fontBold",false).toBool()); //读取字体加粗
+    Setting::style_font.setItalic(Setting::sys_setting->getSettingValue("Style","fontItalic",false).toBool()); //读取字体倾斜
     Setting::style_dailyTips = Setting::sys_setting->getSettingValue("Style","dailyTips",true).toBool(); //读取每日一贴
 
 
@@ -88,17 +83,17 @@ void Form_settings_Color::Event_use()
     Setting::style_themeIsAuto = ui->checkBox_autoTheme->isChecked();
     Setting::sys_setting->changeSetting("Style","autoTheme",Setting::style_themeIsAuto); //保存主题样式
 
-    Setting::style_font = ui->comboBox_fonts->currentText(); //字体名称
-    Setting::sys_setting->changeSetting("Style","fontName",Setting::style_font); //保存字体
+    Setting::style_font = ui->fontComboBox->currentFont(); //字体名称
+    Setting::sys_setting->changeSetting("Style","fontName",Setting::style_font.family()); //保存字体
 
-    Setting::style_fontSize = ui->lineEdit_fontSize->text().toInt();
-    Setting::sys_setting->changeSetting("Style","fontSize",Setting::style_fontSize); //保存字体大小
+    Setting::style_font.setPointSize(ui->lineEdit_fontSize->text().toInt());
+    Setting::sys_setting->changeSetting("Style","fontSize",Setting::style_font.pointSize()); //保存字体大小
 
-    Setting::style_fontBold = ui->checkBox_bold->isChecked(); //字体加粗
-    Setting::sys_setting->changeSetting("Style","fontBold",Setting::style_fontBold); //保存字体加粗
+    Setting::style_font.setBold(ui->checkBox_bold->isChecked()); //字体加粗
+    Setting::sys_setting->changeSetting("Style","fontBold",Setting::style_font.bold()); //保存字体加粗
 
-    Setting::style_fontItalic = ui->checkBox_italic->isChecked(); //字体倾斜
-    Setting::sys_setting->changeSetting("Style","fontItalic",Setting::style_fontItalic); //保存字体倾斜
+    Setting::style_font.setItalic(ui->checkBox_italic->isChecked()); //字体倾斜
+    Setting::sys_setting->changeSetting("Style","fontItalic",Setting::style_font.italic()); //保存字体倾斜
 
     Setting::style_dailyTips = ui->checkBox_dailyTips; //每日一贴
     Setting::sys_setting->changeSetting("Style","dailyTips",Setting::style_dailyTips); //保存每日一贴

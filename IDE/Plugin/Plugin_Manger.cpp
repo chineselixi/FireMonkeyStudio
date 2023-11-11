@@ -5,6 +5,7 @@
 #include "QFileInfo"
 #include "SwSystem/System_GlobalVar.h""
 #include "SwSystem/System_History.h"
+#include "SwSystem/system_systemsetting.h"
 #include "QCoreApplication"
 
 Plugin_Manger::Plugin_Manger()
@@ -84,7 +85,10 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
     }
 
     //插件初始化以后，直接绑定插件管理器
-    pluginManger_init_building(); //绑定插件管理器
+    this->pluginManger_init_building(); //绑定插件管理器
+
+    //绑定设置接口
+    this->setting_init_building();//加载设置接口
 }
 
 
@@ -251,6 +255,31 @@ void Plugin_Manger::pluginManger_init_building()
                 }
                 return t_plgMsg; //返回最后一个信息投递的有效返回信息
             };
+        }
+    }
+}
+
+
+//设置接口绑定
+void Plugin_Manger::setting_init_building()
+{
+    PluginGlobalMsg::setPtr_addFun addPtr = [](QString maker,QVariant value){
+        Setting::sys_setting->changeSetting("PluginSetting",maker,value);
+    };
+
+    PluginGlobalMsg::setPtr_deleteFun delPtr = [](QString maker){
+        Setting::sys_setting->removeValue("PluginSetting",maker);
+    };
+
+    PluginGlobalMsg::setPtr_getFun getPtr = [](QString maker,QString normal)->QVariant{
+        return Setting::sys_setting->getSettingValue("PluginSetting",maker,normal);
+    };
+
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->setFun_add = addPtr;
+            this->List_plg[a].plgPth->setFun_del = delPtr;
+            this->List_plg[a].plgPth->setFun_get = getPtr;
         }
     }
 }

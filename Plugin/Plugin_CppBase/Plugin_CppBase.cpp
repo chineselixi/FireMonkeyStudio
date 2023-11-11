@@ -5,6 +5,9 @@
 #include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "Form/Form_CodeEditor.h"
 #include "Form/settingForm/Form_settings_Compile.h"
+#include "QCoreApplication"
+#include "../../IDE/SwSystem/System_UtilFun.h" //获取系统工具类
+
 
 Plugin_CppBase::Plugin_CppBase()
 {
@@ -74,6 +77,8 @@ bool Plugin_CppBase::event_onFileOpen(QString filePath)
 //插件加载完毕加载信息
 void Plugin_CppBase::event_onLoading()
 {
+    //加载设置信息
+    Form_settings_Compile::loadSetting(System_File::readFile(OUTSETFILE)); //加载设置信息
     return;
 }
 
@@ -98,8 +103,8 @@ void Plugin_CppBase::event_onLoadSettingsWidget(settingMsgList &msgList)
     //设置创建设置信息
     settingWidgetMsg setWidgetMsg;
     setWidgetMsg.ico_32px = QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/comple.png");
-    setWidgetMsg.title = QObject::tr("GCC编译器");
-    setWidgetMsg.settingWidget = new Form_settings_Compile;
+    setWidgetMsg.title = QObject::tr("GCC生成");
+    setWidgetMsg.settingWidget = new Form_settings_Compile(this,nullptr); //创建设置窗口，传递本对象
 
     //加载设置到列表
     msgList.append(setWidgetMsg);

@@ -176,6 +176,25 @@ QString Plugin_Base::getTabSign(QWidget *widget)
     return "";
 }
 
+
+//添加一个设置标记
+void Plugin_Base::addMark(QString mark, QString value)
+{
+    if(setFun_add)setFun_add(this->self_BaseMsg.name.replace(" ","_").replace("\r","_").replace("\n","_").append(".").append(mark),value);
+}
+
+//获取一个标记内容
+QVariant Plugin_Base::getMark(QString mark,QString normal)
+{
+    if(setFun_get) return setFun_get(mark,normal);
+}
+
+//删除一个标记
+void Plugin_Base::delMark(QString mark)
+{
+    if(setFun_del) setFun_del(mark);
+}
+
 //插件内投递消息
 QString Plugin_Base::postPluginMessage(QString pluginSign, QString pustMsg)
 {

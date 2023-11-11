@@ -5,6 +5,10 @@
 #include "../../IDE/Plugin/Plugin_Base.cpp"
 
 
+QVector<settingNamespace::settingNode> settingNamespace::settingList;//设置信息列表
+int settingNamespace::compilerIndex = -1; //编译器索引
+
+
 class PLUGIN_CPPBASE_EXPORT Plugin_CppBase : public Plugin_Base
 {
 private:
