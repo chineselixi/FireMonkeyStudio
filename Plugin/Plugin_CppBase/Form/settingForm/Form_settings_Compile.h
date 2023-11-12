@@ -36,6 +36,8 @@ private:
     settingNamespace::settingNode* getSignNode(QString name); //根据名称获取设置节点信息
     void getNotRepeatName(QString& name); //获取合适的构建名称
     QString getGppMsg(QString gcc_path); //获取g++信息
+    QString getProcessVersion(QString proPath,QString versionCmd = "--version",QString startSign = "",QString endSign = "\n"); //获取软件版本字符串
+    void processVersionThread(std::function<void()> thFun); //进程检查线程
 
 public:
     static QString buildJson(); //获取把属性信息保存为Json数据
@@ -50,8 +52,7 @@ private slots:
     void on_btnRemoveCompilerSet_clicked(); //移除编译套件
     void on_btnAddBlankCompilerSet_clicked(); //添加新的套件
     void on_cbCompilerSet_activated(int index); //更改当前索引,使用代码更改index不会激发
-
-
+    void on_s4_check_clicked(); //验证GCC基础套件
 };
 
 #endif // FORM_SETTINGS_COMPILE_H

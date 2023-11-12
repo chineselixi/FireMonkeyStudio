@@ -5,11 +5,16 @@
 #include "../../../../IDE/SwSystem/System_GlobalVar.cpp"
 #include "../../../../IDE/SwSystem/System_UtilFun.h"
 
+#include "thread"
+#include "shared_mutex"
 #include "QFileDialog"
 #include "QInputDialog"
 #include "QJsonDocument"
 #include "QJsonObject"
 #include "QJsonArray"
+
+std::mutex rw_mutex; //线程读写锁
+int threadNum = 0;
 
 Form_settings_Compile::Form_settings_Compile(Plugin_CppBase* pluginP,QWidget *parent) :
     pluginPtr(pluginP),
@@ -17,6 +22,7 @@ Form_settings_Compile::Form_settings_Compile(Plugin_CppBase* pluginP,QWidget *pa
     ui(new Ui::Form_settings_Compile)
 {
     ui->setupUi(this);
+    ui->settingTabs->setCurrentIndex(0); //默认0子夹
     this->updateCompilerUI(); //刷新UI
 }
 
@@ -25,30 +31,6 @@ Form_settings_Compile::~Form_settings_Compile()
     delete ui;
 }
 
-
-//确认键被按下
-void Form_settings_Compile::Event_Ok()
-{
-
-
-}
-
-//取消键被按下
-void Form_settings_Compile::Event_cancel()
-{
-
-}
-
-//应用键被按下
-void Form_settings_Compile::Event_use()
-{
-    //保存文件
-    QString t_out = buildJson();
-    if(!t_out.isEmpty()){
-        System_File::writeFile(OUTSETFILE,t_out.toUtf8());
-    }
-
-}
 
 
 //添加编译器标记
@@ -90,6 +72,14 @@ void Form_settings_Compile::updateCompilerUI()
     ui->tabPrograms->setEnabled(t_enable);
     ui->tabOutput->setEnabled(t_enable);
     if(!t_enable) return;
+
+    //隐藏S4套件版本信息
+    ui->label_tip_c->hide();
+    ui->label_tip_cpp->hide();
+    ui->label_tip_make->hide();
+    ui->label_tip_gdb->hide();
+    ui->label_tip_gdbServer->hide();
+    ui->label_tip_windres->hide();
 
 
     //获取当前设置信息
@@ -254,11 +244,53 @@ QString Form_settings_Compile::getGppMsg(QString gcc_path)
     QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
     QString name;
     if(!t_normalPut.isEmpty()){
-        name = tr("GCC生成器：") + Str::getSubStr(t_normalPut," ","\r\n"); //编译器名臣
+        //name = tr("GCC生成器：") + Str::getSubStr(t_normalPut,"","\r\n");
+        name = Str::getSubStr(t_normalPut,"","\r\n"); //编译器名称
     }
     t_process.close(); //关闭进程
     return name;
 }
+
+
+//获取软件版本字符串
+QString Form_settings_Compile::getProcessVersion(QString proPath, QString versionCmd, QString startSign, QString endSign)
+{
+    QFile t_exeFile(proPath);
+    if(!t_exeFile.exists()) return "";
+
+    QProcess t_process; //创建子进程对象
+    t_process.start(proPath,{versionCmd}); //运行查询版本
+    t_process.waitForReadyRead();
+    QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
+    QString name;
+    if(!t_normalPut.isEmpty()){
+        name = Str::getSubStr(t_normalPut,startSign,endSign); //编译器名称
+    }
+    t_process.close(); //关闭进程
+    return name;
+}
+
+
+
+//进程检查线程
+void Form_settings_Compile::processVersionThread(std::function<void ()> thFun)
+{
+    //查看版本，存在则展现
+    std::thread t_cThread([thFun,this](int){
+        thFun();
+        rw_mutex.lock(); //加锁
+        threadNum++;
+        if(threadNum == 6){
+            ui->s4_check->setEnabled(true);
+            ui->s4_check->setText(tr("验证套件"));
+        }
+        rw_mutex.unlock();
+    },0);
+    t_cThread.join();//运行线程
+}
+
+
+
 
 
 //获取把属性信息保存为Json数据
@@ -522,10 +554,6 @@ void Form_settings_Compile::on_btnRenameCompilerSet_clicked()
 //移除编译套件
 void Form_settings_Compile::on_btnRemoveCompilerSet_clicked()
 {
-    qDebug() << "end";
-    ui->s1_otherCompile->setPlainText(buildJson());
-    qDebug() << "end2";
-    return;
     if(settingNamespace::compilerIndex < 0 || settingNamespace::compilerIndex >= settingNamespace::settingList.length()){return;}
     settingNamespace::settingList.remove(settingNamespace::compilerIndex);
     settingNamespace::compilerIndex = settingNamespace::settingList.length() - 1; //选择新的套件索引
@@ -547,11 +575,151 @@ void Form_settings_Compile::on_btnAddBlankCompilerSet_clicked()
 //更改当前索引,使用代码更改index不会激发
 void Form_settings_Compile::on_cbCompilerSet_activated(int index)
 {
+    //隐藏版本信息
+    ui->label_tip_c->hide();
+    ui->label_tip_cpp->hide();
+    ui->label_tip_make->hide();
+    ui->label_tip_gdb->hide();
+    ui->label_tip_gdbServer->hide();
+    ui->label_tip_windres->hide();
+
     settingNamespace::compilerIndex = index;
     if(settingNamespace::compilerIndex < 0 || settingNamespace::compilerIndex >= settingNamespace::settingList.length()){
         ui->cbCompilerSet->setCurrentIndex(0);
         return;
     }
     this->updateCompilerUI(); //刷新UI
+}
+
+//验证GCC套件
+void Form_settings_Compile::on_s4_check_clicked()
+{
+    QString t_v;
+
+    //隐藏版本信息
+    ui->label_tip_c->hide();
+    ui->label_tip_cpp->hide();
+    ui->label_tip_make->hide();
+    ui->label_tip_gdb->hide();
+    ui->label_tip_gdbServer->hide();
+    ui->label_tip_windres->hide();
+
+    threadNum = 0;//当前线程完成数为0
+    ui->s4_check->setEnabled(false);
+    ui->s4_check->setText(tr("正在验证"));
+
+    //查看版本,多线程检查
+    this->processVersionThread([this](){
+        QString t_v = this->getProcessVersion(ui->s4_txtCCompiler->text());
+        if(!t_v.isEmpty()){ui->label_tip_c->setText(t_v);ui->label_tip_c->show();}
+    });
+
+    this->processVersionThread([this](){
+        QString t_v = this->getProcessVersion(ui->s4_txtCppCompiler->text());
+        if(!t_v.isEmpty()){ui->label_tip_cpp->setText(t_v);ui->label_tip_cpp->show();}
+    });
+
+    this->processVersionThread([this](){
+        QString t_v = this->getProcessVersion(ui->s4_txtMake->text());
+        if(!t_v.isEmpty()){ui->label_tip_make->setText(t_v);ui->label_tip_make->show();}
+    });
+
+    this->processVersionThread([this](){
+        QString t_v = this->getProcessVersion(ui->s4_txtGDB->text());
+        if(!t_v.isEmpty()){ui->label_tip_gdb->setText(t_v);ui->label_tip_gdb->show();}
+    });
+
+    this->processVersionThread([this](){
+        QString t_v = this->getProcessVersion(ui->s4_txtGDBServer->text());
+        if(!t_v.isEmpty()){ui->label_tip_gdbServer->setText(t_v);ui->label_tip_gdbServer->show();}
+    });
+
+    this->processVersionThread([this](){
+        QString t_v = this->getProcessVersion(ui->s4_txtResourceCompiler->text());
+        if(!t_v.isEmpty()){ui->label_tip_windres->setText(t_v);ui->label_tip_windres->show();}
+    });
+}
+
+
+//确认键被按下，会率先激发应用事件
+void Form_settings_Compile::Event_Ok()
+{
+    //保存文件
+    QString t_out = buildJson();
+    if(!t_out.isEmpty()){
+        System_File::writeFile(OUTSETFILE,t_out.toUtf8());
+    }
+}
+
+//取消键被按下
+void Form_settings_Compile::Event_cancel()
+{
+
+}
+
+//应用键被按下
+void Form_settings_Compile::Event_use()
+{
+    if(settingNamespace::compilerIndex < 0 || settingNamespace::compilerIndex >= settingNamespace::settingList.length()){
+        return;
+    }
+    settingNamespace::settingNode node = settingNamespace::settingList[settingNamespace::compilerIndex]; //获取当前的节点信息
+
+    //选项卡：基本设置
+    node.s1_usingStatic = ui->s1_usingStatic->isChecked();
+    node.s1_usCompile = ui->s1_usCompile->isChecked();
+    node.s1_otherCompile = ui->s1_otherCompile->toPlainText();
+    node.s1_usLink = ui->s1_usLink->isChecked();
+    node.s1_otherLinke = ui->s1_otherLinke->toPlainText();
+
+    //选项卡：编译/链接选项 -> 代码生成
+    node.s21_opLevel = ui->s21_opLevel->currentText();
+    node.s21_cppStd = ui->s21_cppStd->currentText();
+    node.s21_cStd = ui->s21_cStd->currentText();
+    node.s21_specificInstruct = ui->s21_specificInstruct->currentText();
+    node.s21_bit = ui->s21_bit->currentText();
+    node.s21_compileMod = ui->s21_compileMod->currentText();
+    node.s21_generateDebug = ui->s21_generateDebug->isChecked();
+    node.s21_generatePerLog = ui->s21_generatePerLog->isChecked();
+    node.s21_syntaxOnly = ui->s21_syntaxOnly->isChecked();
+    node.s21_tepOpt = ui->s21_tepOpt->isChecked();
+    node.s21_enableThread = ui->s21_enableThread->isChecked();
+    //选项卡：编译/链接选项 -> 代码警告
+    node.s22_ignoreAllWaring = ui->s22_ignoreAllWaring->isChecked();
+    node.s22_wall = ui->s22_wall->isChecked();
+    node.s22_wextra = ui->s22_wextra->isChecked();
+    node.s22_checkComplyIsoCppStd = ui->s22_checkComplyIsoCppStd->isChecked();
+    node.s22_werror = ui->s22_werror->isChecked();
+    node.s22_wfatalErrors = ui->s22_wfatalErrors->isChecked();
+    node.s22_fstackProtector = ui->s22_fstackProtector->currentText();
+    //选项卡：编译/链接选项 -> 链接器
+    node.s23_pipe = ui->s23_pipe->isChecked();
+    node.s23_nostdlib = ui->s23_nostdlib->isChecked();
+    node.s23_mwindows = ui->s23_mwindows->isChecked();
+    node.s23_s = ui->s23_s->isChecked();
+
+    //选项卡：环境文件夹
+    node.s31_sourceFolders = ui->s31_sourceFolders->getList();
+    node.s32_staticFolders = ui->s32_staticFolders->getList();
+
+    //选项卡：编译套件信息
+    node.s4_compileMsg.fp_gcc = ui->s4_txtCCompiler->text();
+    node.s4_compileMsg.fp_gpp = ui->s4_txtCppCompiler->text();
+    node.s4_compileMsg.fp_make = ui->s4_txtMake->text();
+    node.s4_compileMsg.fp_gdb = ui->s4_txtGDB->text();
+    node.s4_compileMsg.fp_gdbServer = ui->s4_txtGDBServer->text();
+    node.s4_compileMsg.fp_windres = ui->s4_txtResourceCompiler->text();
+
+    //选项卡：输出
+    node.s5_rbPreprocessingOnly = ui->s5_rbPreprocessingOnly->isChecked();
+    node.s5_rbCompilationProperOnly = ui->s5_rbCompilationProperOnly->isChecked();
+    node.s5_rbGenerateExecutable = ui->s5_rbGenerateExecutable->isChecked();
+    node.s5_txtPreprocessingSuffix = ui->s5_txtPreprocessingSuffix->text();
+    node.s5_txtCompilationSuffix = ui->s5_txtCompilationSuffix->text();
+    node.s5_txtExecutableSuffix = ui->s5_txtExecutableSuffix->text();
+    node.s5_cbBinarySuffix = ui->s5_cbBinarySuffix->currentText();
+
+    //重新应用更改
+    settingNamespace::settingList[settingNamespace::compilerIndex] = node; //重新应用更改
 }
 

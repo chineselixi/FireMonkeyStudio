@@ -70,18 +70,18 @@ int Form_SystemSettings::addSetItem(QString title, QPixmap pixmap, QWidget *widg
 }
 
 
-
+//确认被按下，（执行顺序：应用->确认->取消）
 void Form_SystemSettings::on_pushButton_ok_clicked()
 {
+    this->on_pushButton_use_clicked(); //率先执行应用后确认
     for(int i = 0;i < this->setMsgList.length(); i++){
         Form_settings_Basic* t_fb = (Form_settings_Basic*)this->setMsgList[i].form;
         t_fb->Event_Ok(); //执行OK事件
     }
-    this->on_pushButton_use_clicked();
     this->on_pushButton_cancel_clicked();
 }
 
-
+//取消被按下
 void Form_SystemSettings::on_pushButton_cancel_clicked()
 {
     for(int i = 0;i < this->setMsgList.length(); i++){
@@ -91,7 +91,7 @@ void Form_SystemSettings::on_pushButton_cancel_clicked()
     this->close(); //关闭
 }
 
-
+//应用被按下
 void Form_SystemSettings::on_pushButton_use_clicked()
 {
     for(int i = 0;i < this->setMsgList.length(); i++){

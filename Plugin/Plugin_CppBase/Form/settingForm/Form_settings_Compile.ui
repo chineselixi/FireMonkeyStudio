@@ -17,7 +17,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="settingTabs">
      <property name="currentIndex">
-      <number>4</number>
+      <number>3</number>
      </property>
      <property name="movable">
       <bool>false</bool>
@@ -744,6 +744,19 @@
        <string>构建套件</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_11">
+       <item row="2" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="0" column="0" colspan="2">
         <widget class="QFrame" name="frame">
          <property name="frameShape">
@@ -753,15 +766,39 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="s4_txtCppCompiler"/>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_tip_make">
             <property name="text">
-             <string>C编译器(gcc)</string>
+             <string>v1.0</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="s4_txtCCompiler"/>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="s4_txtGDB"/>
+          </item>
+          <item row="9" column="1">
+           <widget class="QLabel" name="label_tip_gdbServer">
+            <property name="text">
+             <string>v1.0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>资源编辑器(windres)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>make</string>
+            </property>
+           </widget>
           </item>
           <item row="0" column="2">
            <widget class="QToolButton" name="s4_btnChooseCCompiler">
@@ -773,17 +810,23 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_3">
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>C++编译器(g++)</string>
+             <string>gdb</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="s4_txtCppCompiler"/>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="s4_txtMake"/>
           </item>
-          <item row="1" column="2">
+          <item row="8" column="1">
+           <widget class="QLineEdit" name="s4_txtGDBServer"/>
+          </item>
+          <item row="10" column="1">
+           <widget class="QLineEdit" name="s4_txtResourceCompiler"/>
+          </item>
+          <item row="2" column="2">
            <widget class="QToolButton" name="s4_btnChooseCppCompiler">
             <property name="toolTip">
              <string>Choose C++ Compiler</string>
@@ -793,17 +836,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>make</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="s4_txtMake"/>
-          </item>
-          <item row="2" column="2">
+          <item row="4" column="2">
            <widget class="QToolButton" name="s4_btnChooseMake">
             <property name="toolTip">
              <string>Choose make</string>
@@ -813,54 +846,62 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>gdb</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="s4_txtGDB"/>
-          </item>
-          <item row="3" column="2">
-           <widget class="QToolButton" name="s4_btnChooseGDB">
-            <property name="toolTip">
-             <string>Choose Debugger</string>
-            </property>
-            <property name="text">
-             <string>...</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
              <string>gdb server</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="s4_txtGDBServer"/>
-          </item>
-          <item row="4" column="2">
+          <item row="8" column="2">
            <widget class="QToolButton" name="s4_btnChooseGDBServer">
             <property name="text">
              <string>...</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_6">
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_tip_c">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="text">
-             <string>资源编辑器(windres)</string>
+             <string>v1.0</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QLineEdit" name="s4_txtResourceCompiler"/>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="s4_txtCCompiler"/>
           </item>
-          <item row="5" column="2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>C编译器(gcc)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_tip_cpp">
+            <property name="text">
+             <string>v1.0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLabel" name="label_tip_gdb">
+            <property name="text">
+             <string>v1.0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>C++编译器(g++)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="2">
            <widget class="QToolButton" name="s4_btnChooseResourceCompiler">
             <property name="toolTip">
              <string>Choose Resource Compiler</string>
@@ -870,7 +911,34 @@
             </property>
            </widget>
           </item>
+          <item row="6" column="2">
+           <widget class="QToolButton" name="s4_btnChooseGDB">
+            <property name="toolTip">
+             <string>Choose Debugger</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
+           <widget class="QLabel" name="label_tip_windres">
+            <property name="text">
+             <string>v1.0</string>
+            </property>
+           </widget>
+          </item>
          </layout>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="s4_check">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>验证套件</string>
+         </property>
         </widget>
        </item>
        <item row="1" column="0">
@@ -882,26 +950,6 @@
           <size>
            <width>40</width>
            <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="s4_check">
-         <property name="text">
-          <string>验证套件</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
           </size>
          </property>
         </spacer>

@@ -36,7 +36,7 @@ public:
     static void changeThream(QString styleName = "Blue"); //改变主题
 
 private slots:
-    void on_pushButton_ok_clicked(); //确认按钮
+    void on_pushButton_ok_clicked(); //确认按钮（执行顺序：应用->确认->取消）
     void on_pushButton_cancel_clicked(); //取消按钮
     void on_pushButton_use_clicked(); //应用按钮
 };
