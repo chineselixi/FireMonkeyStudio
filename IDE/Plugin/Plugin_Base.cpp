@@ -195,6 +195,18 @@ void Plugin_Base::delMark(QString mark)
     if(setFun_del) setFun_del(mark);
 }
 
+
+//获取工程的基础信息
+PluginGlobalMsg::projectMsgBase Plugin_Base::getProjectMsgBase(QString proPath)
+{
+    PluginGlobalMsg::projectMsgBase t_retBase;
+    if(ProjectManger_getBase){
+        t_retBase = ProjectManger_getBase(proPath);
+    }
+    return t_retBase;
+}
+
+
 //插件内投递消息
 QString Plugin_Base::postPluginMessage(QString pluginSign, QString pustMsg)
 {

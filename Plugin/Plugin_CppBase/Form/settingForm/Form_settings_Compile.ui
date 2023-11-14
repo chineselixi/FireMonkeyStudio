@@ -110,7 +110,7 @@
        <item row="0" column="0">
         <widget class="QTabWidget" name="compleTabs">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <property name="documentMode">
           <bool>false</bool>
@@ -564,12 +564,17 @@
              </item>
              <item>
               <property name="text">
-               <string>Debug</string>
+               <string>Normal</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Release</string>
+               <string>Strong</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>All</string>
               </property>
              </item>
             </widget>

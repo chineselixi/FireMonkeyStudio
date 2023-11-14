@@ -47,7 +47,7 @@ enum toolBarAction{
     find, //查找
     run, //运行
     stop, //停止运行
-    Rerun, //重新运行
+    reRun, //重新运行
     toggleAllBreakpoints, //切换所有断点
     clearBreakpointGroup, //清除断点
     debugFind, //调试查找
@@ -98,6 +98,24 @@ enum proMangerMenuType{
 
 
 
+
+
+//工程结构信息基础（不包含完整工程信息）
+struct projectMsgBase{
+    QString proPath = ""; //工程目录
+    QString proName = "null";//工程名
+    QString proIconPath = "";//图标路径
+    QString proVerson = "1.0.0";//版本信息
+    int proVersonNum = -1;//版本号
+    QString proOrg = "";//社区与公司名称
+    QString proEmail = "null";//邮箱
+    QString proCall = "000-0000-0000";//电话
+    QString proNote = "";//备注
+    QString proSrcPath = "./src";//源码相对路径
+    QString proSystem = ""; //操作系统平台标记
+    QString proLanguage = ""; //语言标记
+    QString proNoteClass = ""; //其他备注标记
+};
 
 
 
@@ -153,6 +171,9 @@ typedef std::function<void(toolBarAction actionType,bool isEnable)> toolBar_acti
 typedef std::function<void(QString key,QVariant value)> setPtr_addFun;//添加设置
 typedef std::function<QVariant(QString key,QString normal)> setPtr_getFun; //获取设置
 typedef std::function<void(QString key)> setPtr_deleteFun; //删除设置
+
+//工程管理器操作
+typedef std::function<projectMsgBase(QString proPath)> projectManger_getProMsgBase; //工程管理器获取基础信息
 }
 
 

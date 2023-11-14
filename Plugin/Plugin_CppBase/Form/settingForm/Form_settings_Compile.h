@@ -45,7 +45,8 @@ public:
     static settingNamespace::settingNode getNowCompilerNode(); //获取当前的编译节点信息
 
 private slots:
-//    void on_cbCompilerSet_currentIndexChanged(int index);
+    void on_s4_btnChooseCCompiler_clicked();
+    //    void on_cbCompilerSet_currentIndexChanged(int index);
     void on_btnFindCompilers_clicked(); //查找编译器是否存在
     void on_btnAddCompilerSetByFolder_clicked(); //选择文件夹，查询编译器
     void on_btnRenameCompilerSet_clicked(); //更改套件名称
@@ -53,6 +54,11 @@ private slots:
     void on_btnAddBlankCompilerSet_clicked(); //添加新的套件
     void on_cbCompilerSet_activated(int index); //更改当前索引,使用代码更改index不会激发
     void on_s4_check_clicked(); //验证GCC基础套件
+    void on_s4_btnChooseCppCompiler_clicked(); //CPP编译器选择
+    void on_s4_btnChooseMake_clicked(); //Make选择
+    void on_s4_btnChooseGDB_clicked(); //Gdb选择
+    void on_s4_btnChooseGDBServer_clicked(); //GdbServer选择
+    void on_s4_btnChooseResourceCompiler_clicked(); //ResourceCompiler选择
 };
 
 #endif // FORM_SETTINGS_COMPILE_H

@@ -203,8 +203,6 @@ void Form_WindowTab::on_tabWidget_currentChanged(int index)
 {
     QWidget* t_widget = ui->tabWidget->widget(index);
     for(int a = 0;a<this->tabMsgList.length();a++){   //查找当前关闭的窗口
-        qDebug() << this->tabMsgList[a].tabWidgetPth << t_widget << this->tabMsgList[a].plg;
-
         if(this->tabMsgList[a].tabWidgetPth == t_widget && this->tabMsgList[a].plg != nullptr){
             //唤醒插件信息
             this->tabMsgList[a].plg->event_onTabFormActivation(t_widget); //激发插件的窗体切换事件

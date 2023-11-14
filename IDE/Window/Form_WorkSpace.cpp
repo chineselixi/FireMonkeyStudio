@@ -212,7 +212,7 @@ void Form_WorkSpace::init()
             case  PluginGlobalMsg::toolBarAction::find:{t_toolBarAction = this->ui->action_toolBar_find;break;}//查找
             case  PluginGlobalMsg::toolBarAction::run:{t_toolBarAction = this->ui->action_toolBar_run;break;}//运行
             case  PluginGlobalMsg::toolBarAction::stop:{t_toolBarAction = this->ui->action_toolBar_stop;break;}//停止运行
-            case  PluginGlobalMsg::toolBarAction::Rerun:{t_toolBarAction = this->ui->action_toolBar_Rerun;break;}//重新运行
+            case  PluginGlobalMsg::toolBarAction::reRun:{t_toolBarAction = this->ui->action_toolBar_Rerun;break;}//重新运行
             case  PluginGlobalMsg::toolBarAction::toggleAllBreakpoints:{t_toolBarAction = this->ui->action_toolBar_toggleAllBreakpoints;break;}//切换所有断点
             case  PluginGlobalMsg::toolBarAction::clearBreakpointGroup:{t_toolBarAction = this->ui->action_toolBar_clearBreakpointGroup;break;}//清除断点
             case  PluginGlobalMsg::toolBarAction::debugFind:{t_toolBarAction = this->ui->action_toolBar_debugFind;break;}//调试查找
@@ -287,6 +287,14 @@ void Form_WorkSpace::init()
 
 
 
+    //绑定工程管理器信息 projectMsgBase(QString proPath)
+    Manger::pluginManger->projectManger_init_building(
+        [this](QString proPath)->PluginGlobalMsg::projectMsgBase{
+            return ui->widget_ProjectManger->getProjectMsgBase(proPath);
+        });
+
+
+
     //绑定工具栏与菜单栏按钮的触发事件和启用事件
     std::function<void(bool)> t_fun = nullptr;
     t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::cut,this->project_path,this->project_lang,this->project_noteClass);};
@@ -342,7 +350,7 @@ void Form_WorkSpace::init()
     connect(this->ui->action_menu_stop,&QAction::triggered,t_fun);
     connect(this->ui->action_toolBar_stop,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_stop->setEnabled(isEnable);});//停止运行
 
-    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::Rerun,this->project_path,this->project_lang,this->project_noteClass);};
+    t_fun = [this](bool){Manger::pluginManger->event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction::reRun,this->project_path,this->project_lang,this->project_noteClass);};
     connect(this->ui->action_toolBar_Rerun,&QAction::triggered,t_fun);
     connect(this->ui->action_menu_Rerun,&QAction::triggered,t_fun);
     connect(this->ui->action_toolBar_Rerun,&QAction::enabledChanged,[this](bool isEnable){this->ui->action_menu_Rerun->setEnabled(isEnable);});//重新运行

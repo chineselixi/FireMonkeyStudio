@@ -723,3 +723,52 @@ void Form_settings_Compile::Event_use()
     settingNamespace::settingList[settingNamespace::compilerIndex] = node; //重新应用更改
 }
 
+
+//C编译器选择
+void Form_settings_Compile::on_s4_btnChooseCCompiler_clicked()
+{
+    QString t_fileName = QFileDialog::getOpenFileName(nullptr, tr("选择程序"), "", tr("所有文件 (*)"));
+    if(t_fileName.isEmpty()) return;
+    ui->s4_txtCCompiler->setText(t_fileName);
+}
+
+//CPP编译器选择
+void Form_settings_Compile::on_s4_btnChooseCppCompiler_clicked()
+{
+    QString t_fileName = QFileDialog::getOpenFileName(nullptr, tr("选择程序"), "", tr("所有文件 (*)"));
+    if(t_fileName.isEmpty()) return;
+    ui->s4_txtCppCompiler->setText(t_fileName);
+}
+
+//Make选择
+void Form_settings_Compile::on_s4_btnChooseMake_clicked()
+{
+    QString t_fileName = QFileDialog::getOpenFileName(nullptr, tr("选择程序"), "", tr("所有文件 (*)"));
+    if(t_fileName.isEmpty()) return;
+    ui->s4_txtMake->setText(t_fileName);
+}
+
+//Gdb选择
+void Form_settings_Compile::on_s4_btnChooseGDB_clicked()
+{
+    QString t_fileName = QFileDialog::getOpenFileName(nullptr, tr("选择程序"), "", tr("所有文件 (*)"));
+    if(t_fileName.isEmpty()) return;
+    ui->s4_txtGDB->setText(t_fileName);
+}
+
+//GdbServer选择
+void Form_settings_Compile::on_s4_btnChooseGDBServer_clicked()
+{
+    QString t_fileName = QFileDialog::getOpenFileName(nullptr, tr("选择程序"), "", tr("所有文件 (*)"));
+    if(t_fileName.isEmpty()) return;
+    ui->s4_txtGDBServer->setText(t_fileName);
+}
+
+//ResourceCompiler选择
+void Form_settings_Compile::on_s4_btnChooseResourceCompiler_clicked()
+{
+    QString t_fileName = QFileDialog::getOpenFileName(nullptr, tr("选择程序"), "", tr("所有文件 (*)"));
+    if(t_fileName.isEmpty()) return;
+    ui->s4_txtResourceCompiler->setText(t_fileName);
+}
+

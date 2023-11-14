@@ -10,6 +10,7 @@
 #include "QMessageBox"
 #include "QInputDialog"
 #include "Form_VisualFolder.h"
+#include "../Plugin/Plugin_Global.h"
 
 
 Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
@@ -217,7 +218,7 @@ bool Form_ProjectManger::addProjectForFmp(QString projectFile)
     this->ProjectList.append(t_proMsg);
 
     this->NowProjectMsg = t_proMsg;
-    this->onProjectActiveChanged(this->NowProjectMsg->proPath + this->NowProjectMsg->proSrcPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
+    this->onProjectActiveChanged(this->NowProjectMsg->proPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
 
     //允许工具栏按钮
     ui->action_AddFolder->setEnabled(true);
@@ -268,7 +269,7 @@ bool Form_ProjectManger::addProjectForDir(QString dirPath)
     this->ProjectList.append(t_proMsg);
 
     this->NowProjectMsg = t_proMsg;
-    this->onProjectActiveChanged(this->NowProjectMsg->proPath + this->NowProjectMsg->proSrcPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
+    this->onProjectActiveChanged(this->NowProjectMsg->proPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
 
     //允许工具栏按钮
     ui->action_AddFolder->setEnabled(true);
@@ -303,7 +304,7 @@ bool Form_ProjectManger::addProjectForFile(QString filePath)
     this->ProjectList.append(t_proMsg);
 
     this->NowProjectMsg = t_proMsg;
-    this->onProjectActiveChanged(this->NowProjectMsg->proPath + this->NowProjectMsg->proSrcPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
+    this->onProjectActiveChanged(this->NowProjectMsg->proPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
 
     //允许工具栏按钮
     ui->action_AddFolder->setEnabled(true);
@@ -665,6 +666,43 @@ bool Form_ProjectManger::projectExisted(QString proPath)
     return false;
 }
 
+
+
+//将ProjectMsg转换为PluginGlobalMsg::projectMsgBase
+PluginGlobalMsg::projectMsgBase Form_ProjectManger::projectMsgConvertToBase(ProjectMsg msg)
+{
+    PluginGlobalMsg::projectMsgBase t_base;
+    t_base.proPath = msg.proPath; //工程目录
+    t_base.proName = msg.proName;//工程名
+    t_base.proIconPath = msg.proIconPath;//图标路径
+    t_base.proVerson = msg.proVerson;//版本信息
+    t_base.proVersonNum = msg.proVersonNum;//版本号
+    t_base.proOrg = msg.proOrg;//社区与公司名称
+    t_base.proEmail = msg.proEmail;//邮箱
+    t_base.proCall = msg.proCall;//电话
+    t_base.proNote = msg.proNote;//备注
+    t_base.proSrcPath = msg.proSrcPath;//源码相对路径
+    t_base.proSystem = msg.proSystem; //操作系统平台标记
+    t_base.proLanguage = msg.proLanguage; //语言标记
+    t_base.proNoteClass = msg.proNoteClass; //其他备注标记
+    return t_base;
+}
+
+
+
+//获取工程的基础信息
+PluginGlobalMsg::projectMsgBase Form_ProjectManger::getProjectMsgBase(QString proPath)
+{
+    PluginGlobalMsg::projectMsgBase t_base;
+    for(int a = 0;a<this->ProjectList.length();a++){
+        if(this->ProjectList[a]->proPath == proPath) {
+            t_base = this->projectMsgConvertToBase(*this->ProjectList[a]);
+            break;
+        }
+    }
+    return t_base;
+}
+
 //移除项目的所有子项Item
 void Form_ProjectManger::RemoveAllItemChild(QTreeWidgetItem *parent)
 {
@@ -768,7 +806,7 @@ void Form_ProjectManger::event_proMneu_SetActive()
     ProjectMsg * t_pro = this->Find_ProjectMsg(ui->treeWidget->currentItem());
     if(t_pro == nullptr) return;
     this->NowProjectMsg = t_pro;
-    this->onProjectActiveChanged(t_pro->proPath + t_pro->proSrcPath,t_pro->proLanguage,t_pro->proNoteClass);
+    this->onProjectActiveChanged(t_pro->proPath,t_pro->proLanguage,t_pro->proNoteClass);
 }
 
 //刷新项目
@@ -824,7 +862,7 @@ void Form_ProjectManger::event_proMneu_Close()
             //如果是，则默认为第一个工程为当前工程。
             if(ProjectList.length() > 0){
                 this->NowProjectMsg = ProjectList[0]; //切换工程为第一个有效工程
-                this->onProjectActiveChanged(t_pro->proPath + t_pro->proSrcPath,t_pro->proLanguage,t_pro->proNoteClass);
+                this->onProjectActiveChanged(t_pro->proPath,t_pro->proLanguage,t_pro->proNoteClass);
             }
             else{
                 NowProjectMsg = nullptr; //工程已经全部清除，置空当前项目指针

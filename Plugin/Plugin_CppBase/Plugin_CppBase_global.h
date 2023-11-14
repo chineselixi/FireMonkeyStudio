@@ -53,7 +53,7 @@ struct settingNode{
     bool s21_generateDebug = false; //生成调试信息
     bool s21_generatePerLog = false; //生成性能分析信息
     bool s21_syntaxOnly = false; //只运行语法检查
-    bool s21_tepOpt = false; //快速编译
+    bool s21_tepOpt = true; //快速编译，默认开启
     bool s21_enableThread = false; //多线程编译
 
     //======选项卡：编译/链接选项 -> 代码警告======
@@ -91,5 +91,27 @@ struct settingNode{
 
 extern QVector<settingNode> settingList;//设置信息列表
 extern int compilerIndex; //编译器索引
+
+
+
+//工程属性
+struct projectAttribute{
+    QString programName = "app";                           //程序名称
+    QString copyright = QObject::tr("FMS 开发");            //版权信息
+    uint16_t versionCode[4] = {0,0,0,1};                    //版本信息
+    QString outPath = "${projectPath}/out";                 //输出文件目录
+    QString tempPath = "${projectPath}/out/temp";           //临时文件目录
+    QString icoPath ="${projectPath}/ico.ico";              //图标路径
+    QString programNote = QObject::tr("本程序由FMS开发！");   //程序备注说明
+    QString srcName = "";                                   //原始名称
+    QString orgName = QObject::tr("火猴开发社区");            //公司社区名称
+};
+
+
+
+
+
+
+
 }
 #endif // PLUGIN_CPPBASE_GLOBAL_H

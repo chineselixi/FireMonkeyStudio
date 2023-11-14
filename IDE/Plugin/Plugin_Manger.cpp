@@ -285,6 +285,17 @@ void Plugin_Manger::setting_init_building()
 }
 
 
+//工程管理器绑定
+void Plugin_Manger::projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase fun_getBase)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->ProjectManger_getBase = fun_getBase;
+        }
+    }
+}
+
+
 //浮动窗格绑定
 void Plugin_Manger::workSpace_init_dockWidget(PluginGlobalMsg::dockWidgetFun_add addFun,PluginGlobalMsg::dockWidgetFun_rm rmFun)
 {

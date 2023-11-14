@@ -82,7 +82,7 @@ private:
     //插件消息投递
     PluginGlobalMsg::pluginFun_post PluginManger_PostMsg = nullptr; //使用插件管理器投递信息，每一个有效插件都将接收到收到这个信息，但是需要注意发送方的身份
 
-    //获取WorkSpace窗口指针
+    //WorkSpace中的Dock操作
     PluginGlobalMsg::dockWidgetFun_add WorkSpace_DockWidget_Add = nullptr; //添加DockWidget
     PluginGlobalMsg::dockWidgetFun_rm WorkSpace_DockWidget_remove = nullptr; //删除DockWidget
 
@@ -90,6 +90,9 @@ private:
     PluginGlobalMsg::setPtr_addFun setFun_add = nullptr; //添加或变更一个设置
     PluginGlobalMsg::setPtr_getFun setFun_get = nullptr; //获取一个设置信息
     PluginGlobalMsg::setPtr_deleteFun setFun_del = nullptr; //删除一个设置信息
+
+    //插件管理器
+    PluginGlobalMsg::projectManger_getProMsgBase ProjectManger_getBase = nullptr; //插件管理器获取基础信息
 
 public:
     //初始化信息，由IDE侧载，可复写
@@ -116,8 +119,9 @@ public: //插件的基础方法
     QWidget* getTabWidget(QString sign); //根据sign获取Widget指针
     QString getTabSign(QWidget* widget); //根据widget指针获取sign信息
     void addMark(QString mark,QString value); //添加一个设置标记
-    QVariant getMark(QString mark,QString normal=""); //获取一个标记内容
-    void delMark(QString mark);//删除一个标记
+    QVariant getMark(QString mark,QString normal=""); //获取一个设置标记内容
+    void delMark(QString mark);//删除设置一个标记
+    PluginGlobalMsg::projectMsgBase getProjectMsgBase(QString proPath); //获取工程的基础信息
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
     virtual bool event_onModLoadFinish(){return true;};//当模块加载完毕，将第一时间激发此插件，禁止在获取实例处获得
@@ -127,7 +131,7 @@ public: //(可阻拦事件)事件触发，返回true则继续触发其他插件�
     virtual bool event_onFileClose(QString filePath){return true;}; //当前文件被删除或者关闭之前就发送的信息
     virtual bool event_onFileSave(QString filePath){return true;}; //当文件被保存激发事件
     virtual bool event_onFileSaveAll(){return true;}; //当全部保存被激发
-    virtual bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass){return true;};//当工具栏内部按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
+    virtual bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass){return true;};//当工具栏内部按钮被按下(参数1:激发按钮类型   参数2:工程的目录   参数3:工程的多个语言标记   参数4:工程类型标记)
     virtual bool event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 
 

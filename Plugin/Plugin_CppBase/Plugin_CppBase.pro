@@ -15,12 +15,14 @@ TARGET = Plugin_CppBase
 
 
 SOURCES += \
+    Form/Form_Attribute.cpp \
     Form/Form_CodeEditor.cpp \
     Form/settingForm/Form_settings_Compile.cpp \
     Form/settingForm/Widget/Widget_List.cpp \
     Plugin_CppBase.cpp
 
 HEADERS += \
+    Form/Form_Attributee.h \
     Form/Form_CodeEditor.h \
     Form/settingForm/Form_settings_Compile.h \
     Form/settingForm/Widget/Widget_List.h \
@@ -28,6 +30,7 @@ HEADERS += \
     Plugin_CppBase.h
 
 FORMS += \
+    Form/Form_Attribute.ui \
     Form/Form_CodeEditor.ui \
     Form/settingForm/Form_settings_Compile.ui \
     Form/settingForm/Widget/Widget_List.ui

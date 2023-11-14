@@ -5,6 +5,14 @@
 #include "QVector"
 #include "QTreeWidgetItem"
 
+
+//外部插件声明
+namespace PluginGlobalMsg{
+struct projectMsgBase; //工程信息基础结构体，仅仅声明，在Plugin_Global.h中有定义
+}
+
+
+
 namespace Ui {
 class Form_ProjectManger;
 }
@@ -23,8 +31,7 @@ class Form_ProjectManger : public QWidget
         file_normal, //文件，路径存在于工程目录下
     };
 
-
-    struct ProjectMsg;
+    struct ProjectMsg; //工程完整结构体
     //子项信息信息
     struct itemMsg{
         QString name;
@@ -177,6 +184,8 @@ public:
     static QString GetValidPath(QString pathName); //获取有效的文件路径
     static QString GetDirFileName(QString pathDir); //根据路径获取路径的最后一个文件夹
     bool projectExisted(QString proPath); //检查工程是否已经存在
+    PluginGlobalMsg::projectMsgBase projectMsgConvertToBase(ProjectMsg msg); //将ProjectMsg转换为PluginGlobalMsg::projectMsgBase
+    PluginGlobalMsg::projectMsgBase getProjectMsgBase(QString proPath); //获取工程的基础信息
 
 private:
     void InitMenu();//初始化菜单

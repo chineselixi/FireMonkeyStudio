@@ -87,6 +87,8 @@ public:
 
     void setting_init_building(); //设置接口绑定
 
+    void projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase fun_getBase); //工程管理器绑定
+
 public:
 
     void event_onModLoadFinish();//当模块加载完毕，将第一时间激发模块事件
