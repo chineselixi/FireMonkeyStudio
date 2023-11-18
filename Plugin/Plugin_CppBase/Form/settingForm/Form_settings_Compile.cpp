@@ -244,8 +244,8 @@ QString Form_settings_Compile::getGppMsg(QString gcc_path)
     QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
     QString name;
     if(!t_normalPut.isEmpty()){
-        //name = tr("GCC生成器：") + Str::getSubStr(t_normalPut,"","\r\n");
-        name = Str::getSubStr(t_normalPut,"","\r\n"); //编译器名称
+        //name = tr("GCC生成器：") + Str::getSubStr(t_normalPut," ","\r\n");
+        name = Str::getSubStr(t_normalPut," ","\r\n"); //编译器名称
     }
     t_process.close(); //关闭进程
     return name;

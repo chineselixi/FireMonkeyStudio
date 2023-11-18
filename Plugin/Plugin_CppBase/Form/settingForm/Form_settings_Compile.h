@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "../../IDE/module/mod_settingsFormBase.h"
-#include "../Plugin_CppBase_global.h"
+#include "../../Plugin_CppBase_global.h"
 
 class Plugin_CppBase;
 
@@ -46,7 +46,6 @@ public:
 
 private slots:
     void on_s4_btnChooseCCompiler_clicked();
-    //    void on_cbCompilerSet_currentIndexChanged(int index);
     void on_btnFindCompilers_clicked(); //查找编译器是否存在
     void on_btnAddCompilerSetByFolder_clicked(); //选择文件夹，查询编译器
     void on_btnRenameCompilerSet_clicked(); //更改套件名称

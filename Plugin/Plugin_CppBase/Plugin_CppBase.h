@@ -12,12 +12,15 @@ int settingNamespace::compilerIndex = -1; //编译器索引
 class PLUGIN_CPPBASE_EXPORT Plugin_CppBase : public Plugin_Base
 {
 private:
-    struct fileSign{
-        QString filePath;
-        qint64 timeStamp; //最后一次更改事件
+
+    struct MapperNode{
+        QString filePath = ""; //原始文件路径
+        qint64 timeStamp = 0; //最后一次更改时间戳
+        QString mapperName = ""; //输出文件的基础名称，不包含路径与后缀
+        bool lonelyCompile = false; //是否需要单独编译（当输出文件名与原始文件基础名称不是一致的时候，将单独进行编译）
+        bool neadCompile = true; //是否需要重新编译
     };
 
-    QVector<fileSign> hostryFileSignList; //历史文件信息组
 
 public:
     Plugin_CppBase();
@@ -44,17 +47,22 @@ private:
     bool stringRight(QString str,QString suffix); //判断是否拥有这个后缀
     bool checkIsCppProject(QString langSign); //根据语言标记，判断此工程是否为Cpp工程
     void findSource(QString projectPath,QVector<QString>& retSrcList); //查找源码文件
+    QString compileInit(); //编译初始化，用于检测编译器是否存在，返回错误信息，（）
+
+    QVector<MapperNode> parseCompileMapper(QString mapperContent); //根据编译映射文本信息读取编译映射
+    QString compileMapperToString(QVector<MapperNode> mapperList); //根据映射信息转换为文本
+    QVector<MapperNode> mergeMappers(QVector<MapperNode> m1,QVector<MapperNode>m2); //合并映射信息，自动整理
+    QVector<MapperNode> arrangeMappers(QVector<MapperNode> mappers); //整理Mapper，去除重复文件，优化重名，验证是否单独
+    QVector<MapperNode> getCompileMapper(QVector<QString> srcFiles,QVector<MapperNode> mapperList); //提供一个文件列表和原始的映射列表，返回新的编译映射列表
 
 
-    QVector<QString> getChangeFileList(QVector<QString> nowList); //根据一个文件列表获取更改的文件列表
-    void clearHostryFileList(); //清空历史文件列表
 
 
 private:
     void event_attribute(QString proPath); //属性被点击
     void event_stop(); //停止当前运行的进程
-    void event_run(QVector<QString> compileFiles,QVector<QString> changeFiles, QString outPath);//运行
-    void event_compile(QVector<QString> compileFiles,QVector<QString> changeFiles, QString outPath); //编译
+    void event_run(QString proPath, QVector<QString> compileFiles);//运行
+    QString event_compile(QString proPath, QVector<QString> compileFiles); //编译完成，成功返回编译的文件，失败返回空
 
 };
 

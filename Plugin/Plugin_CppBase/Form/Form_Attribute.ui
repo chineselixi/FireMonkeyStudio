@@ -19,6 +19,18 @@
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
@@ -29,8 +41,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>354</width>
-        <height>509</height>
+        <width>386</width>
+        <height>514</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
@@ -190,7 +202,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="txt_out">
+          <widget class="QLineEdit" name="txt_outPath">
            <property name="minimumSize">
             <size>
              <width>220</width>
@@ -200,7 +212,7 @@
           </widget>
          </item>
          <item row="0" column="2">
-          <widget class="QToolButton" name="s4_btnChooseCCompiler">
+          <widget class="QToolButton" name="btn_outPath">
            <property name="toolTip">
             <string>Choose C Compiler</string>
            </property>
@@ -217,7 +229,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="txt_temp">
+          <widget class="QLineEdit" name="txt_tempPath">
            <property name="minimumSize">
             <size>
              <width>220</width>
@@ -227,7 +239,7 @@
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QToolButton" name="s4_btnChooseCCompiler_2">
+          <widget class="QToolButton" name="btn_tempPath">
            <property name="toolTip">
             <string>Choose C Compiler</string>
            </property>
@@ -293,14 +305,14 @@
           </widget>
          </item>
          <item row="0" column="2">
-          <widget class="QPushButton" name="btn_import">
+          <widget class="QPushButton" name="btn_importIco">
            <property name="text">
             <string>导入...</string>
            </property>
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QPushButton" name="btn_rec">
+          <widget class="QPushButton" name="btn_recIco">
            <property name="text">
             <string>还原</string>
            </property>
@@ -354,7 +366,7 @@
           <number>20</number>
          </property>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="txt_companyName">
+          <widget class="QLineEdit" name="txt_orgName">
            <property name="minimumSize">
             <size>
              <width>220</width>

@@ -11,8 +11,8 @@ namespace System_Env
 
 
 namespace System_File {
-extern QByteArray readFile(QString filePath); //读取文件
-extern bool writeFile(QString filePath, QByteArray fileByte); //写出文件
+    extern QByteArray readFile(QString filePath); //读取文件
+    extern bool writeFile(QString filePath, QByteArray fileByte); //写出文件
 }
 
 #endif // SYSTEM_UTILFUN_H
