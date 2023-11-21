@@ -46,18 +46,18 @@ static constexpr auto qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS = QtMocHelp
     "checked",
     "on_action_dock_compilePrint_triggered",
     "on_action_dock_runTip_triggered",
-    "on_action_pluginManger_triggered",
-    "on_action_menu_about_triggered",
     "on_action_dock_debug_triggered",
     "on_action_dock_find_triggered",
+    "on_action_pluginManger_triggered",
+    "on_action_menu_about_triggered",
     "on_dockWidget_ProjectManger_visibilityChanged",
     "visible",
     "on_dockWidget_compilePrint_visibilityChanged",
     "on_dockWidget_print_visibilityChanged",
     "on_dockWidget_debug_visibilityChanged",
     "on_dockWidget_find_visibilityChanged",
-    "on_comboBox_compileMode_currentIndexChanged",
-    "index",
+    "on_comboBox_compileMode_currentTextChanged",
+    "arg1",
     "on_action_menu_run_enabledChanged",
     "enabled",
     "on_action_menu_Rerun_enabledChanged",
@@ -82,18 +82,18 @@ struct qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t {
     char stringdata5[8];
     char stringdata6[38];
     char stringdata7[32];
-    char stringdata8[33];
-    char stringdata9[31];
-    char stringdata10[31];
-    char stringdata11[30];
+    char stringdata8[31];
+    char stringdata9[30];
+    char stringdata10[33];
+    char stringdata11[31];
     char stringdata12[46];
     char stringdata13[8];
     char stringdata14[45];
     char stringdata15[38];
     char stringdata16[38];
     char stringdata17[37];
-    char stringdata18[44];
-    char stringdata19[6];
+    char stringdata18[43];
+    char stringdata19[5];
     char stringdata20[34];
     char stringdata21[8];
     char stringdata22[36];
@@ -119,30 +119,30 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t qt_met
         QT_MOC_LITERAL(114, 7),  // "checked"
         QT_MOC_LITERAL(122, 37),  // "on_action_dock_compilePrint_t..."
         QT_MOC_LITERAL(160, 31),  // "on_action_dock_runTip_triggered"
-        QT_MOC_LITERAL(192, 32),  // "on_action_pluginManger_triggered"
-        QT_MOC_LITERAL(225, 30),  // "on_action_menu_about_triggered"
-        QT_MOC_LITERAL(256, 30),  // "on_action_dock_debug_triggered"
-        QT_MOC_LITERAL(287, 29),  // "on_action_dock_find_triggered"
+        QT_MOC_LITERAL(192, 30),  // "on_action_dock_debug_triggered"
+        QT_MOC_LITERAL(223, 29),  // "on_action_dock_find_triggered"
+        QT_MOC_LITERAL(253, 32),  // "on_action_pluginManger_triggered"
+        QT_MOC_LITERAL(286, 30),  // "on_action_menu_about_triggered"
         QT_MOC_LITERAL(317, 45),  // "on_dockWidget_ProjectManger_v..."
         QT_MOC_LITERAL(363, 7),  // "visible"
         QT_MOC_LITERAL(371, 44),  // "on_dockWidget_compilePrint_vi..."
         QT_MOC_LITERAL(416, 37),  // "on_dockWidget_print_visibilit..."
         QT_MOC_LITERAL(454, 37),  // "on_dockWidget_debug_visibilit..."
         QT_MOC_LITERAL(492, 36),  // "on_dockWidget_find_visibility..."
-        QT_MOC_LITERAL(529, 43),  // "on_comboBox_compileMode_curre..."
-        QT_MOC_LITERAL(573, 5),  // "index"
-        QT_MOC_LITERAL(579, 33),  // "on_action_menu_run_enabledCha..."
-        QT_MOC_LITERAL(613, 7),  // "enabled"
-        QT_MOC_LITERAL(621, 35),  // "on_action_menu_Rerun_enabledC..."
-        QT_MOC_LITERAL(657, 34),  // "on_action_menu_stop_enabledCh..."
-        QT_MOC_LITERAL(692, 37),  // "on_action_menu_compile_enable..."
-        QT_MOC_LITERAL(730, 43),  // "on_action_menu_staticCompile_..."
-        QT_MOC_LITERAL(774, 34),  // "on_action_systemSettings_trig..."
-        QT_MOC_LITERAL(809, 32),  // "on_action_toolBar_blue_triggered"
-        QT_MOC_LITERAL(842, 33),  // "on_action_toolBar_white_trigg..."
-        QT_MOC_LITERAL(876, 32),  // "on_action_toolBar_Dark_triggered"
-        QT_MOC_LITERAL(909, 29),  // "on_action_file_save_triggered"
-        QT_MOC_LITERAL(939, 32)   // "on_action_file_saveAll_triggered"
+        QT_MOC_LITERAL(529, 42),  // "on_comboBox_compileMode_curre..."
+        QT_MOC_LITERAL(572, 4),  // "arg1"
+        QT_MOC_LITERAL(577, 33),  // "on_action_menu_run_enabledCha..."
+        QT_MOC_LITERAL(611, 7),  // "enabled"
+        QT_MOC_LITERAL(619, 35),  // "on_action_menu_Rerun_enabledC..."
+        QT_MOC_LITERAL(655, 34),  // "on_action_menu_stop_enabledCh..."
+        QT_MOC_LITERAL(690, 37),  // "on_action_menu_compile_enable..."
+        QT_MOC_LITERAL(728, 43),  // "on_action_menu_staticCompile_..."
+        QT_MOC_LITERAL(772, 34),  // "on_action_systemSettings_trig..."
+        QT_MOC_LITERAL(807, 32),  // "on_action_toolBar_blue_triggered"
+        QT_MOC_LITERAL(840, 33),  // "on_action_toolBar_white_trigg..."
+        QT_MOC_LITERAL(874, 32),  // "on_action_toolBar_Dark_triggered"
+        QT_MOC_LITERAL(907, 29),  // "on_action_file_save_triggered"
+        QT_MOC_LITERAL(937, 32)   // "on_action_file_saveAll_triggered"
     },
     "Form_WorkSpace",
     "on_action_file_newCreate_triggered",
@@ -152,18 +152,18 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t qt_met
     "checked",
     "on_action_dock_compilePrint_triggered",
     "on_action_dock_runTip_triggered",
-    "on_action_pluginManger_triggered",
-    "on_action_menu_about_triggered",
     "on_action_dock_debug_triggered",
     "on_action_dock_find_triggered",
+    "on_action_pluginManger_triggered",
+    "on_action_menu_about_triggered",
     "on_dockWidget_ProjectManger_visibilityChanged",
     "visible",
     "on_dockWidget_compilePrint_visibilityChanged",
     "on_dockWidget_print_visibilityChanged",
     "on_dockWidget_debug_visibilityChanged",
     "on_dockWidget_find_visibilityChanged",
-    "on_comboBox_compileMode_currentIndexChanged",
-    "index",
+    "on_comboBox_compileMode_currentTextChanged",
+    "arg1",
     "on_action_menu_run_enabledChanged",
     "enabled",
     "on_action_menu_Rerun_enabledChanged",
@@ -200,10 +200,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
        4,    1,  172,    2, 0x08,    3 /* Private */,
        6,    1,  175,    2, 0x08,    5 /* Private */,
        7,    1,  178,    2, 0x08,    7 /* Private */,
-       8,    0,  181,    2, 0x08,    9 /* Private */,
-       9,    0,  182,    2, 0x08,   10 /* Private */,
-      10,    1,  183,    2, 0x08,   11 /* Private */,
-      11,    1,  186,    2, 0x08,   13 /* Private */,
+       8,    1,  181,    2, 0x08,    9 /* Private */,
+       9,    1,  184,    2, 0x08,   11 /* Private */,
+      10,    0,  187,    2, 0x08,   13 /* Private */,
+      11,    0,  188,    2, 0x08,   14 /* Private */,
       12,    1,  189,    2, 0x08,   15 /* Private */,
       14,    1,  192,    2, 0x08,   17 /* Private */,
       15,    1,  195,    2, 0x08,   19 /* Private */,
@@ -228,16 +228,16 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
     QMetaType::Void, QMetaType::Bool,    5,
     QMetaType::Void, QMetaType::Bool,    5,
     QMetaType::Void, QMetaType::Bool,    5,
-    QMetaType::Void,
-    QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,    5,
     QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,   13,
     QMetaType::Void, QMetaType::Bool,   13,
     QMetaType::Void, QMetaType::Bool,   13,
     QMetaType::Void, QMetaType::Bool,   13,
     QMetaType::Void, QMetaType::Bool,   13,
-    QMetaType::Void, QMetaType::Int,   19,
+    QMetaType::Void, QMetaType::QString,   19,
     QMetaType::Void, QMetaType::Bool,   21,
     QMetaType::Void, QMetaType::Bool,   21,
     QMetaType::Void, QMetaType::Bool,   21,
@@ -275,16 +275,16 @@ Q_CONSTINIT const QMetaObject Form_WorkSpace::staticMetaObject = { {
         // method 'on_action_dock_runTip_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
-        // method 'on_action_pluginManger_triggered'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_action_menu_about_triggered'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_action_dock_debug_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         // method 'on_action_dock_find_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'on_action_pluginManger_triggered'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_action_menu_about_triggered'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_dockWidget_ProjectManger_visibilityChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
@@ -300,9 +300,9 @@ Q_CONSTINIT const QMetaObject Form_WorkSpace::staticMetaObject = { {
         // method 'on_dockWidget_find_visibilityChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
-        // method 'on_comboBox_compileMode_currentIndexChanged'
+        // method 'on_comboBox_compileMode_currentTextChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_action_menu_run_enabledChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
@@ -345,16 +345,16 @@ void Form_WorkSpace::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 2: _t->on_action_dock_project_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 3: _t->on_action_dock_compilePrint_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 4: _t->on_action_dock_runTip_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 5: _t->on_action_pluginManger_triggered(); break;
-        case 6: _t->on_action_menu_about_triggered(); break;
-        case 7: _t->on_action_dock_debug_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 8: _t->on_action_dock_find_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 5: _t->on_action_dock_debug_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 6: _t->on_action_dock_find_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 7: _t->on_action_pluginManger_triggered(); break;
+        case 8: _t->on_action_menu_about_triggered(); break;
         case 9: _t->on_dockWidget_ProjectManger_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 10: _t->on_dockWidget_compilePrint_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 11: _t->on_dockWidget_print_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 12: _t->on_dockWidget_debug_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 13: _t->on_dockWidget_find_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 14: _t->on_comboBox_compileMode_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 14: _t->on_comboBox_compileMode_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 15: _t->on_action_menu_run_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 16: _t->on_action_menu_Rerun_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 17: _t->on_action_menu_stop_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;

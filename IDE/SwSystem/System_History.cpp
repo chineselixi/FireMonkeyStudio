@@ -1,7 +1,9 @@
 
 #include "System_History.h"
-#include "QSettings"
-
+#include "QJsonDocument"
+#include "QJsonArray"
+#include "QJsonObject"
+#include "System_UtilFun.h""
 
 System_History::System_History()
 {
@@ -17,23 +19,23 @@ System_History::~System_History()
 bool System_History::Init(QString proHisConfigPath)
 {
     this->proHisPath = proHisConfigPath;
+    QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(this->proHisPath));
+    if(!t_jsonDoc.isArray()){
+        return false;
+    }
 
-    QSettings t_setPro_Name(proHisConfigPath, QSettings::IniFormat);//工程吗名称信息
-    t_setPro_Name.beginGroup("HisList_Name");
-    QSettings t_setPro_Ico(proHisConfigPath, QSettings::IniFormat);//工程总配置信息
-    t_setPro_Ico.beginGroup("HisList_Ico");
-    QSettings t_setPro_Path(proHisConfigPath, QSettings::IniFormat);//工程总配置信息
-    t_setPro_Path.beginGroup("HisList_Path");
-    QSettings t_setPro_Other(proHisConfigPath, QSettings::IniFormat);//工程总配置信息
-    t_setPro_Other.beginGroup("HisList_Other");
+    QJsonArray t_jsonArray = t_jsonDoc.array();
+    if(t_jsonArray.size() == 0){
+        return false;
+    }
 
     QString t_name,t_ico,t_path,t_other;
-
-    for(int a = 0;a<t_setPro_Name.allKeys().length();a++){
-        t_name = t_setPro_Name.value(QString::number(a)).toString();
-        t_ico = t_setPro_Ico.value(QString::number(a)).toString();
-        t_path = t_setPro_Path.value(QString::number(a)).toString();
-        t_other = t_setPro_Other.value(QString::number(a)).toString();
+    for(QJsonValueRef item : t_jsonArray){
+        QJsonObject t_obj = item.toObject();
+        t_name = t_obj.value("name").toString("");
+        t_ico = t_obj.value("ico").toString("");
+        t_path = t_obj.value("path").toString("");
+        t_other = t_obj.value("other").toString("");
         this->His_proList.append({t_name,t_ico,t_path,t_other});
     }
     return true;
@@ -100,21 +102,17 @@ bool System_History::has(QString filePath)
 //保存列表
 void System_History::saveHisList()
 {
-    QSettings t_setPro_Name(this->proHisPath, QSettings::IniFormat);//工程吗名称信息
-    t_setPro_Name.beginGroup("HisList_Name");
-    QSettings t_setPro_Ico(this->proHisPath, QSettings::IniFormat);//工程总配置信息
-    t_setPro_Ico.beginGroup("HisList_Ico");
-    QSettings t_setPro_Path(this->proHisPath, QSettings::IniFormat);//工程总配置信息
-    t_setPro_Path.beginGroup("HisList_Path");
-    QSettings t_setPro_Other(this->proHisPath, QSettings::IniFormat);//工程总配置信息
-    t_setPro_Other.beginGroup("HisList_Other");
-
-    t_setPro_Name.clear(); //删除全部的信息
+    QJsonDocument t_jsonDoc;
+    QJsonArray t_jsonArray;
     for(int a=0;a<this->His_proList.length();a++){
-        t_setPro_Name.setValue(QString::number(a),this->His_proList[a].showName); //工程名
-        t_setPro_Ico.setValue(QString::number(a),this->His_proList[a].showIco); //图标
-        t_setPro_Path.setValue(QString::number(a),this->His_proList[a].filePath); //文件路径
-        t_setPro_Other.setValue(QString::number(a),this->His_proList[a].other); //其他信息
+        QJsonObject t_jsonObj;
+        t_jsonObj.insert("name",this->His_proList[a].showName);
+        t_jsonObj.insert("ico",this->His_proList[a].showIco);
+        t_jsonObj.insert("path",this->His_proList[a].filePath);
+        t_jsonObj.insert("other",this->His_proList[a].other);
+        t_jsonArray.append(t_jsonObj);
     }
+    t_jsonDoc.setArray(t_jsonArray);
+    System_File::writeFile(this->proHisPath,t_jsonDoc.toJson());
 }
 

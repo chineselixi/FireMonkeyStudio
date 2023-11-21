@@ -97,29 +97,8 @@ Form_New::Form_New(QWidget *parent) :
             Window::workSpace->loadProject(); //加载工程
             this->close(); //关闭当前窗口
         });
-
     }
 
-
-
-    //===================================临时测试代码===================================
-    //加入最近列表
-
-//    itemWidget->SetOnClickFunction([](QString str){
-//        qDebug()<<str;
-//    });
-
-//    ui->listWidget_ProjectList->addItem(listItem);
-//    listItem->setSizeHint(QSize(100,65));
-//    ui->listWidget_ProjectList->setItemWidget(listItem,itemWidget);
-
-
-//    QListWidgetItem* listItem2 = new QListWidgetItem(ui->listWidget_ProjectList);
-//    Widget_Button_ListItem* itemWidget2 = new Widget_Button_ListItem(ui->listWidget_ProjectList);
-
-//    ui->listWidget_ProjectList->addItem(listItem2);
-//    listItem2->setSizeHint(QSize(100,65));
-//    ui->listWidget_ProjectList->setItemWidget(listItem2,itemWidget2);
 
 
 

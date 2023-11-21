@@ -106,9 +106,6 @@ void Form_settings_Compile::updateCompilerUI()
     ui->s21_specificInstruct->setCurrentText(node.s21_specificInstruct);
     ui->s21_bit->setCurrentText(node.s21_bit);
     ui->s21_compileMod->setCurrentText(node.s21_compileMod);
-    ui->s21_generateDebug->setChecked(node.s21_generateDebug);
-    ui->s21_generatePerLog->setChecked(node.s21_generatePerLog);
-    ui->s21_syntaxOnly->setChecked(node.s21_syntaxOnly);
     ui->s21_tepOpt->setChecked(node.s21_tepOpt);
     ui->s21_enableThread->setChecked(node.s21_enableThread);
     //选项卡：编译/链接选项 -> 代码警告
@@ -323,9 +320,6 @@ QString Form_settings_Compile::buildJson()
         t_obj.insert("s21_specificInstruct",settingNamespace::settingList[i].s21_specificInstruct); //启用特定指令集
         t_obj.insert("s21_bit",settingNamespace::settingList[i].s21_bit); //使用特定指针大小编译，64位或32位
         t_obj.insert("s21_compileMod",settingNamespace::settingList[i].s21_compileMod); //编译的模
-        t_obj.insert("s21_generateDebug",settingNamespace::settingList[i].s21_generateDebug); //生成调试信息
-        t_obj.insert("s21_generatePerLog",settingNamespace::settingList[i].s21_generatePerLog); //生成性能分析信息
-        t_obj.insert("s21_syntaxOnly",settingNamespace::settingList[i].s21_syntaxOnly); //只运行语法检查
         t_obj.insert("s21_tepOpt",settingNamespace::settingList[i].s21_tepOpt); //快速编译
         t_obj.insert("s21_enableThread",settingNamespace::settingList[i].s21_enableThread); //多线程编译
 
@@ -417,9 +411,6 @@ void Form_settings_Compile::loadSetting(QString jsonStr)
         t_node.s21_specificInstruct = t_obj.value("s21_specificInstruct").toString(""); //启用特定指令集
         t_node.s21_bit = t_obj.value("s21_bit").toString(""); //使用特定指针大小编译，64位或32位
         t_node.s21_compileMod = t_obj.value("s21_compileMod").toString("Debug"); //编译的模
-        t_node.s21_generateDebug = t_obj.value("s21_generateDebug").toBool(false); //生成调试信息
-        t_node.s21_generatePerLog = t_obj.value("s21_generatePerLog").toBool(false); //生成性能分析信息
-        t_node.s21_syntaxOnly = t_obj.value("s21_syntaxOnly").toBool(false); //只运行语法检查
         t_node.s21_tepOpt = t_obj.value("s21_tepOpt").toBool(true); //快速编译
         t_node.s21_enableThread = t_obj.value("s21_enableThread").toBool(true); //多线程编译
 
@@ -679,9 +670,6 @@ void Form_settings_Compile::Event_use()
     node.s21_specificInstruct = ui->s21_specificInstruct->currentText();
     node.s21_bit = ui->s21_bit->currentText();
     node.s21_compileMod = ui->s21_compileMod->currentText();
-    node.s21_generateDebug = ui->s21_generateDebug->isChecked();
-    node.s21_generatePerLog = ui->s21_generatePerLog->isChecked();
-    node.s21_syntaxOnly = ui->s21_syntaxOnly->isChecked();
     node.s21_tepOpt = ui->s21_tepOpt->isChecked();
     node.s21_enableThread = ui->s21_enableThread->isChecked();
     //选项卡：编译/链接选项 -> 代码警告

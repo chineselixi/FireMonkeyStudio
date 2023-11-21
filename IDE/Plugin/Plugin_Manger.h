@@ -15,7 +15,7 @@ public:
     struct PluginMsg{
         QString filePath = ""; //插件文件名
         Plugin_Base* plgPth = nullptr; //插件对象指针，禁止或未加载的指针是nullptr
-        QLibrary* qLibPth = nullptr;
+        QLibrary* qLibPth = nullptr;   //插件加载器指针
     };
 
     //菜单信息
@@ -63,7 +63,6 @@ public:
 
 
     //初始化菜单
-
     void workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool,PluginGlobalMsg::menuFun toolBar_set,PluginGlobalMsg::menuFun toolBar_help,PluginGlobalMsg::menuFun toolBar_view,
                             PluginGlobalMsg::menuFun toolBar_extend,PluginGlobalMsg::menuFun toolBar_db,PluginGlobalMsg::menuFun toolBar_comple,PluginGlobalMsg::menuFun toolBar_insert,PluginGlobalMsg::menuFun toolBar_file,
                             PluginGlobalMsg::menuFun ProManger_project,PluginGlobalMsg::menuFun ProManger_newFile,PluginGlobalMsg::menuFun ProManger_proNormal); //workSpace添加插件菜单
@@ -89,10 +88,16 @@ public:
 
     void projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase fun_getBase); //工程管理器绑定
 
+    void workSpace_init_compileMod(PluginGlobalMsg::compileMod_changeFun addFun, //添加编译模式
+                                   PluginGlobalMsg::compileMod_changeFun delFun, //删除编译模式
+                                   PluginGlobalMsg::compileMod_changeFun selectFun, //选择编译模式
+                                   PluginGlobalMsg::fun_void clsFun,    //清空编译模式
+                                   PluginGlobalMsg::fun_str getNowFun); //获取当前模式，  //初始化编译模式接口
+
 public:
 
     void event_onModLoadFinish();//当模块加载完毕，将第一时间激发模块事件
-    void event_onCompileTypeChanged(PluginGlobalMsg::generateType type); //当编译模式被改变激发模块事件
+    void event_onCompileTypeChanged(QString typeSign); //当编译模式被改变激发模块事件
     void event_onFileOpen(QString filePath); //当文件被打开，激发模块事件
     void event_onFileOpenFinish(QString filePath); //当前文件已经被打开，所有的文件被打开都会激发模块事件
     void event_onFileClose(QString filePath); //当文件被删除或者关闭

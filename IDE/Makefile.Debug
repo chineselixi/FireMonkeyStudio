@@ -8027,17 +8027,19 @@ debug\System_History.obj: SwSystem\System_History.cpp SwSystem\System_History.h 
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qstringlist.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qalgorithms.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qstringmatcher.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSettings \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qsettings.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qobject.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qobjectdefs.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfunctionaltools_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreevent.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qscopedpointer.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QJsonDocument \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qjsondocument.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qjsonvalue.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qshareddata.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcborvalue.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdatetime.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcalendar.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qvariant.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmetatype.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcompare.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdatastream.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qscopedpointer.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qiodevicebase.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfloat16.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmath.h \
@@ -8045,23 +8047,39 @@ debug\System_History.obj: SwSystem\System_History.cpp SwSystem\System_History.h 
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmetacontainer.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcontainerinfo.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtaggedpointer.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qobjectdefs.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfunctionaltools_impl.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qscopeguard.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qobject_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qbindingstorage.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qvariant.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdebug.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtextstream.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qstringconverter_base.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcontiguouscache.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qsharedpointer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qshareddata.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmap.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qshareddata_impl.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qset.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qhash.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qvarlengtharray.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\q23utility.h
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\q23utility.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qobject.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreevent.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qobject_impl.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qbindingstorage.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcborcommon.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qurl.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\quuid.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qendian.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QJsonArray \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qjsonarray.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QJsonObject \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qjsonobject.h \
+		SwSystem\System_UtilFun.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QProcessEnvironment \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qprocess.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qiodevice.h
 
 debug\System_UtilFun.obj: SwSystem\System_UtilFun.cpp SwSystem\System_UtilFun.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QProcessEnvironment \
@@ -11018,7 +11036,12 @@ debug\Form_ProjectManger.obj: Window\Form_ProjectManger.cpp Window\Form_ProjectM
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		Window\Form_VisualFolder.h
+		Window\Form_VisualFolder.h \
+		Plugin\Plugin_Global.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QDockWidget \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdockwidget.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolBar \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbar.h
 
 debug\Form_SystemSettings.obj: Window\Form_SystemSettings.cpp Window\Form_SystemSettings.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \

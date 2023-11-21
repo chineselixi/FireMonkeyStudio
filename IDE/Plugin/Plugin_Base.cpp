@@ -88,6 +88,48 @@ void Plugin_Base::addToolBarToWs(QToolBar *toolBar)
     }
 }
 
+
+//添加编译模式
+void Plugin_Base::addCompileMod(QString signName)
+{
+    if(WorkSpace_CompileMod_Add){
+        this->WorkSpace_CompileMod_Add(signName);
+    }
+}
+
+//删除编译模式
+void Plugin_Base::delCompileMod(QString signName)
+{
+    if(WorkSpace_CompileMod_Del){
+        this->WorkSpace_CompileMod_Del(signName);
+    }
+}
+
+//选择编译模式
+void Plugin_Base::selectCompileMod(QString signName)
+{
+    if(WorkSpace_CompileMod_Sel){
+        this->WorkSpace_CompileMod_Sel(signName);
+    }
+}
+
+//清空所有编译模式
+void Plugin_Base::clearAllCompileMod()
+{
+    if(WorkSpace_CompileMod_Cls){
+        this->WorkSpace_CompileMod_Cls();
+    }
+}
+
+//获取当前编译模式标记名称
+QString Plugin_Base::getCompileModSignName()
+{
+    if(WorkSpace_CompileMod_GetNow){
+        return this->WorkSpace_CompileMod_GetNow();
+    }
+    return "";
+}
+
 //在列表输出中输出一行文本
 void Plugin_Base::printList(QString code, QString text, QString project, QString file, int row, PluginGlobalMsg::printIcoType type, QColor textColor)
 {

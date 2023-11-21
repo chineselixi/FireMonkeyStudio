@@ -578,6 +578,7 @@ QString Form_ProjectManger::GetPath()
            t_itemMsg->type == listType::folder_leftSign ||
             t_itemMsg->type == listType::folder_rightSign){
             t_path = t_itemMsg->projectPth->proPath + t_itemMsg->projectPth->proSrcPath; //默认为工程目录标准文件路径
+            t_path = t_path.replace("./","/");
         }
         else if(t_itemMsg->type == listType::file_fmp || t_itemMsg->type == listType::file_normal){ //如果是文件
             t_path = QFileInfo(t_path).path();

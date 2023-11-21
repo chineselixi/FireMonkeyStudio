@@ -14,7 +14,7 @@
 #include "QString"
 #include "QObject"
 
-#define OUTSETFILE QCoreApplication::applicationDirPath() + "/config/gccSetting.ini"
+#define OUTSETFILE QCoreApplication::applicationDirPath() + "/config/gccSetting.json"
 
 namespace settingNamespace {
 
@@ -50,9 +50,6 @@ struct settingNode{
     QString s21_specificInstruct; //启用特定指令集
     QString s21_bit; //使用特定指针大小编译，64位或32位
     QString s21_compileMod; //编译的模
-    bool s21_generateDebug = false; //生成调试信息
-    bool s21_generatePerLog = false; //生成性能分析信息
-    bool s21_syntaxOnly = false; //只运行语法检查
     bool s21_tepOpt = true; //快速编译，默认开启
     bool s21_enableThread = false; //多线程编译
 

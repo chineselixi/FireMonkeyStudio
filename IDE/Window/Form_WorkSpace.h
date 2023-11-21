@@ -37,12 +37,11 @@ private slots:
 //    void on_action_dock_tool_triggered(bool checked); //Dock栏显示，工具箱
     void on_action_dock_compilePrint_triggered(bool checked); //Dock栏显示，编译输出
     void on_action_dock_runTip_triggered(bool checked); //Dock栏显示，输出与提示
-    void on_action_pluginManger_triggered();
-
-    void on_action_menu_about_triggered(); //关于菜单被按下
-
     void on_action_dock_debug_triggered(bool checked); //Dock栏显示，调试
     void on_action_dock_find_triggered(bool checked); //Dock栏显示，搜索结果
+
+    void on_action_pluginManger_triggered();
+    void on_action_menu_about_triggered(); //关于菜单被按下
 
     void on_dockWidget_ProjectManger_visibilityChanged(bool visible);//Dock栏控制菜单
 //    void on_dockWidget_toolBox_visibilityChanged(bool visible);//Dock栏控制菜单
@@ -51,7 +50,7 @@ private slots:
     void on_dockWidget_debug_visibilityChanged(bool visible);//Dock栏控制菜单
     void on_dockWidget_find_visibilityChanged(bool visible);//Dock栏控制菜单
 
-    void on_comboBox_compileMode_currentIndexChanged(int index); //编译模式被改变
+    void on_comboBox_compileMode_currentTextChanged(const QString &arg1); //编译模式被改变
 
     void on_action_menu_run_enabledChanged(bool enabled); //同步菜单与工具栏的enable
     void on_action_menu_Rerun_enabledChanged(bool enabled);

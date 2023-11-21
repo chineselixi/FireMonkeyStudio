@@ -17,7 +17,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="settingTabs">
      <property name="currentIndex">
-      <number>3</number>
+      <number>1</number>
      </property>
      <property name="movable">
       <bool>false</bool>
@@ -129,10 +129,46 @@
            <string>代码生成</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="QLabel" name="lbBinarySuffix_2">
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_3">
              <property name="text">
-              <string>优化级别 (-Ox)</string>
+              <string>C++语言标准 (-std)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QComboBox" name="s21_compileMod">
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Release (-g0)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Debug (-g1)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Debug (-g2)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Debug (-g3)</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_4">
+             <property name="text">
+              <string>C语言标准 (-std)</string>
              </property>
             </widget>
            </item>
@@ -173,145 +209,6 @@
                <string>Debug (-Og)</string>
               </property>
              </item>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="lbBinarySuffix_3">
-             <property name="text">
-              <string>C++语言标准 (-std)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QComboBox" name="s21_cppStd">
-             <item>
-              <property name="text">
-               <string/>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C++</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C++11</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C++14</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C++17</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C++20</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C++23</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C++</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C++11</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C++14</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C++17</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C++20</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C++23</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="lbBinarySuffix_4">
-             <property name="text">
-              <string>C语言标准 (-std)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QComboBox" name="s21_cStd">
-             <item>
-              <property name="text">
-               <string/>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C90</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C99</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C11</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO C17</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C90</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C99</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C11</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>GNU C17</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="lbBinarySuffix_5">
-             <property name="text">
-              <string>启用特定指令集 (-mx)</string>
-             </property>
             </widget>
            </item>
            <item row="3" column="2">
@@ -398,6 +295,20 @@
              </item>
             </widget>
            </item>
+           <item row="4" column="2">
+            <widget class="QComboBox" name="s21_bit">
+             <item>
+              <property name="text">
+               <string>64bit</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>32bit</string>
+              </property>
+             </item>
+            </widget>
+           </item>
            <item row="4" column="0">
             <widget class="QLabel" name="lbBinarySuffix_6">
              <property name="text">
@@ -405,29 +316,8 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="2">
-            <widget class="QComboBox" name="s21_bit">
-             <item>
-              <property name="text">
-               <string>64 bit</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>32 bit</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="lbBinarySuffix_7">
-             <property name="text">
-              <string>编译模式 (默认使用IDE编译接口)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="2">
-            <widget class="QComboBox" name="s21_compileMod">
+           <item row="2" column="2">
+            <widget class="QComboBox" name="s21_cStd">
              <item>
               <property name="text">
                <string/>
@@ -435,48 +325,54 @@
              </item>
              <item>
               <property name="text">
-               <string>Debug</string>
+               <string>ISO C90</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Release</string>
+               <string>ISO C99</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C11</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C17</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C90</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C99</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C11</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C17</string>
               </property>
              </item>
             </widget>
            </item>
-           <item row="6" column="0">
-            <widget class="QCheckBox" name="s21_generateDebug">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_2">
              <property name="text">
-              <string>生成调试信息(-g3)</string>
+              <string>优化级别 (-Ox)</string>
              </property>
             </widget>
            </item>
            <item row="7" column="0">
-            <widget class="QCheckBox" name="s21_generatePerLog">
-             <property name="text">
-              <string>生成性能分析信息(-pg)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="0">
-            <widget class="QCheckBox" name="s21_syntaxOnly">
-             <property name="text">
-              <string>只进行语法检查（不编译）(-syntax-only)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="0">
-            <widget class="QCheckBox" name="s21_tepOpt">
-             <property name="text">
-              <string>快速编译 (启用缓存优化)</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="10" column="0">
             <widget class="QCheckBox" name="s21_enableThread">
              <property name="text">
               <string>启用多线程编译</string>
@@ -486,7 +382,24 @@
              </property>
             </widget>
            </item>
-           <item row="11" column="1">
+           <item row="6" column="0">
+            <widget class="QCheckBox" name="s21_tepOpt">
+             <property name="text">
+              <string>快速编译 (启用缓存优化)</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_7">
+             <property name="text">
+              <string>编译模式 (默认使用IDE编译接口)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
             <spacer name="verticalSpacer_3">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -498,6 +411,82 @@
               </size>
              </property>
             </spacer>
+           </item>
+           <item row="1" column="2">
+            <widget class="QComboBox" name="s21_cppStd">
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++98</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++11</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++14</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++17</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++20</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO C++23</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++98</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++11</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++14</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++17</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++20</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>GNU C++23</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="lbBinarySuffix_5">
+             <property name="text">
+              <string>启用特定指令集 (-mx)</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>

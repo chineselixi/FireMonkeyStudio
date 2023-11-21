@@ -28,7 +28,7 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
     Window::workSpace = this;
 
     this->init(); //初始化代码
-    Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::generateType::debug); //响应编译模式
+    //Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::generateType::debug); //响应编译模式
     Manger::pluginManger->event_onWorkSpaceFinish(); //响应插件workSpace加载完成事件
 
 
@@ -153,48 +153,6 @@ void Form_WorkSpace::init()
         }
     }
 
-    //初始化代码编辑器接口
-//    Manger::pluginManger->workSpace_init_codeEditor(
-//        [this](std::function<void (QString leftText,QString rightText,QString lineText,QWidget* codeEditor)> tipEvent)->QWidget*{ //当代码编辑器创建(绑定智能提示)
-//            CodeEditor* t_editor = new CodeEditor;
-
-//            QTextCharFormat t_format;
-//            t_format.setForeground(QColor(0, 0, 255));
-//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::KeyWord1,t_format);
-//            t_format.setForeground(QColor(255, 0, 0));
-//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::KeyWord2,t_format);
-//            t_format.setForeground(QColor(0, 161, 0));
-//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::String,t_format);
-//            t_format.setForeground(QColor(26, 26, 255));
-//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::Sign,t_format);
-//            t_format.setForeground(QColor(12, 134, 12));
-//            t_editor->GetModel_HeighLight()->SetKeyWordFormat(mod_HeighLightEditor::Note,t_format);
-
-//            t_editor->setFont(QFont("Consolas",16));
-//            t_editor->SetLineFont(QFont("Consolas",16));
-
-//            connect(t_editor,&CodeEditor::event_onTipWillShow,[tipEvent,t_editor](QString leftText,QString rightText,QString lineText){
-//                tipEvent(leftText,rightText,lineText,(QWidget*)t_editor);
-//            });
-
-//            return (QWidget*)t_editor;
-//        },
-//        [this](QWidget* editor,QVector<QString> keys,int index){ //绑定添加关键字信息
-//            CodeEditor* t_editor = (CodeEditor*)editor;
-//            t_editor->GetModel_HeighLight()->addKeyWordMsg(keys,index); //添加高亮模块的关键字
-//            t_editor->GetModel_Tips()->AddListMsg(mod_TipList::listType::KeyWordList,keys);
-//        },
-//        [this](QWidget* editor)->QString{ // 获取代码编辑器文本信息
-//            CodeEditor* t_editor = (CodeEditor*)editor;
-//            return t_editor->toPlainText();
-//        },
-//        [this](QWidget* editor,QString str){ // 添加代码文本信息
-//            CodeEditor* t_editor = (CodeEditor*)editor;
-//            t_editor->appendPlainText(str);
-//        });
-
-
-
 
     //同步菜单与工具栏的enable,添加工具栏
     Manger::pluginManger->workSpace_init_toolBarFuns(
@@ -254,7 +212,22 @@ void Form_WorkSpace::init()
         });
 
 
-
+    Manger::pluginManger->workSpace_init_compileMod(
+        [this](QString sign){ //添加编译模式
+            ui->comboBox_compileMode->addItem(sign);
+        },
+        [this](QString sign){ //删除编译模式
+            ui->comboBox_compileMode->removeItem(ui->comboBox_compileMode->findText(sign));
+        },
+        [this](QString sign){ //选择编译模式
+            ui->comboBox_compileMode->setCurrentText(sign);
+        },
+        [this](){ //清空编译模式
+            ui->comboBox_compileMode->clear(); //清空
+        },
+        [this]()->QString{ //获取编译模式
+            return ui->comboBox_compileMode->currentText();
+        });
 
 
     //初始化内容输出接口
@@ -671,15 +644,11 @@ void Form_WorkSpace::on_action_menu_about_triggered()
 }
 
 //编译模式已经改变
-void Form_WorkSpace::on_comboBox_compileMode_currentIndexChanged(int index)
+void Form_WorkSpace::on_comboBox_compileMode_currentTextChanged(const QString &arg1)
 {
-    if(index == 0){  //如果是0则为debug模式，如果是
-        Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::generateType::debug);
-    }
-    else{
-        Manger::pluginManger->event_onCompileTypeChanged(PluginGlobalMsg::generateType::release);
-    }
+    Manger::pluginManger->event_onCompileTypeChanged(arg1);
 }
+
 
 
 
@@ -808,4 +777,8 @@ void Form_WorkSpace::on_action_file_saveAll_triggered()
 {
     Manger::pluginManger->event_onFileSaveAll();
 }
+
+
+
+
 

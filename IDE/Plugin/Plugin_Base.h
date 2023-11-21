@@ -59,6 +59,14 @@ private:
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_ProNormal = nullptr;//添加菜单到工程普通文件菜单
     //PluginGlobalMsg::menuFun WorkSpace_Mneu_UnityStyle_SelectAction = nullptr; //设置菜单选择Action的样式，在initPlugin方法里面就完成初始化
 
+
+    //操作编译模式
+    PluginGlobalMsg::compileMod_changeFun WorkSpace_CompileMod_Add = nullptr; //添加编译模式
+    PluginGlobalMsg::compileMod_changeFun WorkSpace_CompileMod_Del = nullptr; //删除编译模式
+    PluginGlobalMsg::compileMod_changeFun WorkSpace_CompileMod_Sel = nullptr; //选择编译模式
+    PluginGlobalMsg::fun_void WorkSpace_CompileMod_Cls = nullptr; //删除全部编译模式
+    PluginGlobalMsg::fun_str WorkSpace_CompileMod_GetNow = nullptr; //获取当前编译模式
+
     //设置ACtion的启用
     PluginGlobalMsg::toolBar_action_setEnable WorkSpace_ToolBar_setActionEnable = nullptr; //设置ToolBar的Action启动禁止
     PluginGlobalMsg::fun_void WorkSpace_ToolBar_closeAllAction = nullptr; //关闭所有的toolbar的Action
@@ -105,6 +113,19 @@ public: //插件的基础方法
     void setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction actionType,bool isEnable); //设置工作空间Action启用
     void closeWorkSpaceAllAction(); //关闭所有的工作控件子菜单
     void addToolBarToWs(QToolBar* toolBar); //添加工具栏到工作空间
+
+//    //添加删除编译模式
+//    PluginGlobalMsg::compileMod_changeFun WorkSpace_CompileMod_Add = nullptr; //添加编译模式
+//    PluginGlobalMsg::compileMod_changeFun WorkSpace_CompileMod_Del = nullptr; //删除编译模式
+//    PluginGlobalMsg::fun_void WorkSpace_CompileMod_Cls = nullptr; //删除全部编译模式
+//    PluginGlobalMsg::fun_str WorkSpace_CompileMod_GetNow = nullptr; //获取当前编译模式
+
+    void addCompileMod(QString signName); //添加编译模式
+    void delCompileMod(QString signName); //删除编译模式
+    void selectCompileMod(QString signName); //选择编译模式
+    void clearAllCompileMod(); //清空所有编译模式
+    QString getCompileModSignName(); //获取当前编译模式标记名称
+
     void printList(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor); //在列表输出中输出一行文本
     void clearList(); //清理行的所有行文本
     void printTextSpace(QColor color,QString printText); //在文本窗口输出文本
@@ -125,7 +146,7 @@ public: //插件的基础方法
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
     virtual bool event_onModLoadFinish(){return true;};//当模块加载完毕，将第一时间激发此插件，禁止在获取实例处获得
-    virtual bool event_onCompileTypeChanged(PluginGlobalMsg::generateType type){return true;}; //当编译模式被改变
+    virtual bool event_onCompileTypeChanged(QString signName){return true;}; //当编译模式被改变
     virtual bool event_onFileOpen(QString filePath){return true;}; //当文件被打开，注意：仅限于IDE无法打开之外的文件才激发此事件
     virtual bool event_onFileOpenFinish(QString filePath){return true;}; //当前文件已经被打开，所有的文件被打开都会激发此事件
     virtual bool event_onFileClose(QString filePath){return true;}; //当前文件被删除或者关闭之前就发送的信息

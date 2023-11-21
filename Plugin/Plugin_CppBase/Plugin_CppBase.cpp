@@ -14,7 +14,10 @@
 #include "Form/settingForm/Form_settings_Compile.h"
 #include "QCoreApplication"
 #include "../../IDE/SwSystem/System_UtilFun.h" //获取系统工具类
+#include "../../IDE/SwSystem/System_GlobalVar.h"
 
+#define MOD_DEBUG "Debug (调试)"
+#define MOD_RELEASE "Release (发布)"
 
 Plugin_CppBase::Plugin_CppBase()
 {
@@ -44,6 +47,7 @@ bool Plugin_CppBase::event_onPorjectLoad(QString proPath, QString proLangs, QStr
 
     if(this->checkIsCppProject(proLangs)){ //检查是否为Cpp对象
         this->closeWorkSpaceAllAction(); //关闭所有ACTION
+        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compleMode,true); //允许模式选择
         this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
         this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
         this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
@@ -53,6 +57,13 @@ bool Plugin_CppBase::event_onPorjectLoad(QString proPath, QString proLangs, QStr
         t_actionAttribute = new QAction(QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Constant_16x.png"),QObject::tr("配置"));
         t_actionAttribute->connect(t_actionAttribute,&QAction::triggered,t_attributeFun);
         this->addProMangerMenu(PluginGlobalMsg::proMangerMenuType::Project,t_actionAttribute);
+
+
+        //重构编译模式
+        this->clearAllCompileMod(); //清空编译模式
+        this->addCompileMod(MOD_RELEASE); //删除调试编译模式
+        this->addCompileMod(MOD_DEBUG); //添加调试编译模式
+        this->selectCompileMod(MOD_DEBUG); //选择调试编译模式
         return false; //阻止消息传递
     }
 
@@ -432,11 +443,78 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     this->clearList(); //清空输出列表
     this->clearTextSpace(); //清理空间信息
 
-
-    //开始编译
-    QProcess t_process; //进程对象
-
+    //读取设置信息
     settingNamespace::settingNode t_settingMsg = Form_settings_Compile::getNowCompilerNode(); //获取当前设置信息（包含s4编译器信息）
+
+
+    //运行参数==============================
+    QStringList t_runPar;
+    QString t_sPar;
+    //设置优化级别
+    if(!t_settingMsg.s21_opLevel.isEmpty()){
+        t_sPar = Str::getSubStr(t_settingMsg.s21_opLevel,"(",")");
+        if(!t_sPar.isEmpty() && t_sPar.left(2) == "-O"){
+            t_runPar.append(t_sPar);
+        }
+    }
+
+    //设置语言标准 ISO C++98
+    if(!t_settingMsg.s21_cppStd.isEmpty()){
+        t_sPar = Str::getSubStr(t_settingMsg.s21_cppStd,"ISO ","");
+        if(t_sPar.isEmpty()){
+            t_sPar = Str::getSubStr(t_settingMsg.s21_cppStd,"GNU C","");
+            if(!t_sPar.isEmpty()){
+                t_sPar = "gnu" + t_sPar;
+            }
+        }
+        if(!t_sPar.isEmpty()){
+            t_sPar = "-std=" + t_sPar.toLower(); //转换为小写参数
+            t_runPar.append(t_sPar);
+        }
+    }
+
+    //启用特殊指令集
+    if(!t_settingMsg.s21_specificInstruct.isEmpty()){
+        t_sPar = t_settingMsg.s21_specificInstruct;
+        t_sPar = t_sPar.replace(" ","").toLower();
+        t_sPar = "-m" + t_sPar;
+        t_runPar.append(t_sPar);
+    }
+
+    //使用指定指针
+    if(!t_settingMsg.s21_bit.isEmpty()){
+        t_sPar = Str::getSubStr(t_sPar,"","bit").toLower();
+        if(!t_sPar.isEmpty()){
+            t_sPar = "-m" + t_sPar;
+            t_runPar.append(t_sPar);
+        }
+    }
+
+    //使用发行或者调试
+    if(!t_settingMsg.s21_compileMod.isEmpty()){
+        t_sPar = Str::getSubStr(t_sPar,"(",")").toLower();
+        if(t_sPar.left(2) == "-g"){
+            t_runPar.append(t_sPar);
+        }
+    }
+    else{ //设置编译模式
+        t_sPar = this->getCompileModSignName(); //获取编译模式
+        if(t_sPar == MOD_DEBUG){
+            t_sPar = "-g";
+            t_runPar.append(t_sPar);
+        }
+    }
+
+    //多线程编译
+    if(t_settingMsg.s21_enableThread){
+        t_sPar = "-fopenmp";
+        t_runPar.append(t_sPar);
+    }
+
+
+
+
+
 
     //优化文件名，防止文件名异常
     if(t_proName.isEmpty()){
@@ -445,10 +523,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     }
     t_proName = t_proName.replace("*","_").replace("\\","_").replace("/","_").replace(":","_").replace("?","_").replace("\"","_").replace("<","_").replace(">","_").replace("|","_").replace(":","_");
 
-
     this->printList("",QObject::tr("开始编译..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("blue"));
-
-    this->closeWorkSpaceAllAction(); //关闭ws所有的控件
     if(t_settingMsg.s4_compileMsg.fp_gpp.isEmpty()){ //判断编译器是否存在
         this->printList("",QObject::tr("没有发现合适的编译器，工程无法编译！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
         return "";
@@ -492,7 +567,8 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     t_compileMapper = this->arrangeMappers(t_compileMapper); //整理Mapper
 
 
-
+    //开始编译
+    QProcess t_process; //进程对象
     //开始编译
     t_process.setWorkingDirectory(t_attr.tempPath); //设置工作目录
     QStringList t_parameterList; //设置参数列表
@@ -508,6 +584,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         }
     }
     if(t_compileFileNum > 0){ //是否存在需要编译的文件
+        t_parameterList.append(t_runPar); //添加附加编译选项
         t_process.start(t_settingMsg.s4_compileMsg.fp_gpp,t_parameterList); //编译为目标文件
         t_process.waitForReadyRead(); //等待输出
         QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
@@ -529,7 +606,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     //单独编译（用于单独的重名文件输出）
     t_process.close();
     t_process.setWorkingDirectory(t_attr.tempPath); //设置工作目录
-    t_parameterList.clear();//清空参数列表
+
     qsizetype t_compileFileNumRedirect = 0; //重定向编译的文件数量
     for(qsizetype i = 0; i<t_compileMapper.length(); i++){
         //需要单独编译，但是需要编译（编译没有缓存的mapper）
@@ -543,7 +620,11 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
                                 QColor()); //颜色
                 this->printTextSpaceLine(QColor("yellow"),QObject::tr("重定向编译：") + t_compileMapper[i].filePath);
 
-                t_process.start(t_settingMsg.s4_compileMsg.fp_gpp,{"-c",t_compileMapper[i].filePath,"-o",t_compileMapper[i].mapperName}); //单独编译文件
+                t_parameterList.clear();//清空参数列表
+                t_parameterList.append({"-c",t_compileMapper[i].filePath,"-o",t_compileMapper[i].mapperName + ".o"});//重新构建编译信息
+                t_parameterList.append(t_runPar); //添加附加编译选项
+
+                t_process.start(t_settingMsg.s4_compileMsg.fp_gpp,t_parameterList); //单独编译文件
                 t_process.waitForReadyRead(); //等待输出
                 QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
                 QString t_errorPut = QString().fromLocal8Bit(t_process.readAllStandardError()); //读取错误信息

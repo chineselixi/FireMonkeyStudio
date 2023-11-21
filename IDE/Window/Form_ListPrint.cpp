@@ -35,8 +35,9 @@ void Form_ListPrint::addMsg(QString code, QString text, QString project, QString
         t_ico = QIcon(":/CompileTip/icon/compileTip/warning.png");
         break;
     }
+    case PluginGlobalMsg::printIcoType::none:{}
     default:{
-        t_ico = QIcon(":/CompileTip/icon/compileTip/tip.png");
+        t_ico = QIcon();
         break;
     }
     }

@@ -73,9 +73,30 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
     }
 
 
+
+    //将未载入的插件排序到后面
+    int t_endIndex = this->List_plg.length() - 1;
+    for(int a=this->List_plg.length() - 1; a>=0; a--){
+        for(; t_endIndex>=0; t_endIndex--){
+            if(List_plg[t_endIndex].plgPth == nullptr){
+                PluginMsg t_plgMsg = List_plg[t_endIndex];
+                List_plg[t_endIndex] = List_plg[a];
+                List_plg[a] = t_plgMsg;
+                break;
+            }
+        }
+    }
+
+
     //插件优先级排序,优先级从大到小排序
     for(int a=0;a<this->List_plg.length() - 1;a++){
+        if(this->List_plg[a].plgPth == nullptr){ //遇到空插件则立即跳出
+            break;
+        }
         for(int b=0;b<this->List_plg.length() - 1 - a;b++){
+            if(this->List_plg[b].plgPth == nullptr){ //遇到空插件则立即跳出
+                break;
+            }
             if(this->List_plg[b].plgPth->self_BaseMsg.level < this->List_plg[b + 1].plgPth->self_BaseMsg.level){
                 PluginMsg t_plgMsg = this->List_plg[b];
                 this->List_plg[b] = this->List_plg[b+1];
@@ -296,6 +317,25 @@ void Plugin_Manger::projectManger_init_building(PluginGlobalMsg::projectManger_g
 }
 
 
+//初始化编译模式接口
+void Plugin_Manger::workSpace_init_compileMod(PluginGlobalMsg::compileMod_changeFun addFun,
+                                              PluginGlobalMsg::compileMod_changeFun delFun,
+                                              PluginGlobalMsg::compileMod_changeFun selectFun,
+                                              PluginGlobalMsg::fun_void clsFun,
+                                              PluginGlobalMsg::fun_str getNowFun)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->WorkSpace_CompileMod_Add = addFun;
+            this->List_plg[a].plgPth->WorkSpace_CompileMod_Del = delFun;
+            this->List_plg[a].plgPth->WorkSpace_CompileMod_Sel = selectFun;
+            this->List_plg[a].plgPth->WorkSpace_CompileMod_Cls = clsFun;
+            this->List_plg[a].plgPth->WorkSpace_CompileMod_GetNow = getNowFun;
+        }
+    }
+}
+
+
 //浮动窗格绑定
 void Plugin_Manger::workSpace_init_dockWidget(PluginGlobalMsg::dockWidgetFun_add addFun,PluginGlobalMsg::dockWidgetFun_rm rmFun)
 {
@@ -322,11 +362,11 @@ void Plugin_Manger::event_onModLoadFinish()
 }
 
 //当编译模式被改变激发模块事件
-void Plugin_Manger::event_onCompileTypeChanged(PluginGlobalMsg::generateType type)
+void Plugin_Manger::event_onCompileTypeChanged(QString typeSign)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-        if(List_plg[a].plgPth->event_onCompileTypeChanged(type) == false){ //若插件阻止触发，则跳出
+        if(List_plg[a].plgPth->event_onCompileTypeChanged(typeSign) == false){ //若插件阻止触发，则跳出
             break;
         }
     }

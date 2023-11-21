@@ -10,7 +10,7 @@
 namespace PluginGlobalMsg{
 
 //tab内容的类型
-enum TabType{
+enum class TabType{
     none = 0, //无效信息
     web = 1, //网页类型
     codeEditor = 2, //代码编辑器
@@ -18,24 +18,18 @@ enum TabType{
 };
 
 
-//编译模式
-enum generateType{
-    debug = 0,
-    release = 1,
-};
-
-
 
 //输出的Ico
-enum printIcoType{
-    tip = 0,
-    ok = 1,
-    error = 2,
-    warning = 3
+enum class printIcoType{
+    none = 0,
+    tip = 1,
+    ok = 2,
+    error = 3,
+    warning = 4
 };
 
 //工具栏Action对象类型
-enum toolBarAction{
+enum class toolBarAction{
     cut, //剪切
     copy, //复制
     paste, //粘贴
@@ -66,7 +60,7 @@ enum toolBarAction{
 
 
 //工具栏分类
-enum toolBarMenuType{
+enum class toolBarMenuType{
     toolType, //添加菜单到工具栏
     settingType, //添加菜单到设置
     helpsType, //添加菜单到帮助
@@ -81,7 +75,7 @@ enum toolBarMenuType{
 
 
 //编程接口
-enum langType{
+enum class langType{
     normal, //默认没有任何语言
     cpp, //C++语言
     html,
@@ -92,7 +86,7 @@ enum langType{
 
 
 //工程管理
-enum proMangerMenuType{
+enum class proMangerMenuType{
     Project,NewFile,ProNormal
 };
 
@@ -121,8 +115,8 @@ struct projectMsgBase{
 
 
 //默认基础函数类型
-typedef std::function<void()> fun_void; //基础函数类型，空返回
-
+typedef std::function<void()> fun_void; //基础函数类型，返回空
+typedef std::function<QString()> fun_str; //基础函数类型，返回字符串
 
 //函数指针类型
 //class Plugin_Base; //插件类声明
@@ -140,17 +134,11 @@ typedef std::function<QWidget*(QString)> tab_getWidget; //根据sign获取Widget
 
 
 //代码编辑器函数类型
-typedef std::function<void(int line, int index)> editorEvent_cursorPositionChanged; //光标移动事件
-typedef std::function<void()> editorEvent_textChanged; //文本改变事件
+//typedef std::function<void(int line, int index)> editorEvent_cursorPositionChanged; //光标移动事件
+//typedef std::function<void()> editorEvent_textChanged; //文本改变事件
 
-//创建QWidget函数指针,参数为事件参数（光标位置改变，内容改变，）
-//typedef std::function<QWidget*(editorEvent_cursorPositionChanged,editorEvent_textChanged,langType)> editorFun_create;
-//typedef std::function<void(QWidget* editor,QVector<QString> keys,int index)> editorFun_addKetWord; //创建添加关键字信息
-//typedef std::function<QString(QWidget*)> editorFun_getStr; //获取内容
-//typedef std::function<void(QWidget* editor,QString str)> editorFun_addStr; //添加内容
-
-
-
+//编译模式
+typedef std::function<void(QString signName)> compileMod_changeFun; //添加删除编译模式
 
 //输出容器
 typedef std::function<void(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor)> printFun_printList;
