@@ -1,9 +1,0 @@
-QTreeWidget{
-	background-color: rgb(230, 231, 232);
-}
-
-QHeaderView::section{  
-border:1px solid #94a6ca; 
-background-color:rgb(204, 213, 240);
-padding-left:10px;
-}
