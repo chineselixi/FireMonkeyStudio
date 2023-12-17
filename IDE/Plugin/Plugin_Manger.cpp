@@ -368,6 +368,7 @@ void Plugin_Manger::workSpace_init_compileMod(PluginGlobalMsg::compileMod_change
 //初始化通知管理器
 void Plugin_Manger::workSpace_init_tipsManger(PluginGlobalMsg::tipFun_postStr tipsFun_addPost,
                                               PluginGlobalMsg::tipFun_addTip tipsFun_addTip,
+                                              PluginGlobalMsg::tipFun_closeTip tipsFun_closeTip,
                                               PluginGlobalMsg::tipFun_hasTip tipsFun_hasTip,
                                               PluginGlobalMsg::tipFun_setTipTitle tipsFun_setTitle,
                                               PluginGlobalMsg::tipFun_setTipText tipsFun_setText,
@@ -380,6 +381,7 @@ void Plugin_Manger::workSpace_init_tipsManger(PluginGlobalMsg::tipFun_postStr ti
         if(this->List_plg[a].plgPth != nullptr){
             this->List_plg[a].plgPth->tipsFun_addPost = tipsFun_addPost;
             this->List_plg[a].plgPth->tipsFun_addTip = tipsFun_addTip;
+            this->List_plg[a].plgPth->tipsFun_closeTip = tipsFun_closeTip;
             this->List_plg[a].plgPth->tipsFun_hasTip = tipsFun_hasTip;
             this->List_plg[a].plgPth->tipsFun_setTitle = tipsFun_setTitle;
             this->List_plg[a].plgPth->tipsFun_setText = tipsFun_setText;

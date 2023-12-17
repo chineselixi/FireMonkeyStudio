@@ -32,7 +32,7 @@ public:
     ~Form_TipManger();
 
     uint16_t addTip(QString title = "", QString tip = "", qint64 showTime = 5000, TipType type = TipType::None, QPixmap pixmap = QPixmap(), bool canClose = true);       //添加一个提示消息
-    void closeTip(uint16_t id);                             //关闭一个提示
+    bool closeTip(uint16_t id);                             //关闭一个提示
     void closeAll();                                        //关闭所有提示
     bool hasTip(uint16_t id);                               //是否还存在此提示
     void adjustWindowRec();                                 //调整窗口尺寸

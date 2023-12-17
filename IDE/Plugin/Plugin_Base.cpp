@@ -265,6 +265,12 @@ uint16_t Plugin_Base::addTip(QString title, QString tip, PluginGlobalMsg::TipTyp
     if(tipsFun_addTip) return tipsFun_addTip(title, tip, type, pixmap, canClose, showTime);
 }
 
+//根据ID关闭一个停止，通知不存在则返回false
+bool Plugin_Base::closeTip(uint16_t id)
+{
+    if(tipsFun_closeTip) return tipsFun_closeTip(id);
+}
+
 //判断是否存在这个通知
 bool Plugin_Base::hasTip(uint16_t index)
 {

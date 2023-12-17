@@ -55,9 +55,6 @@ private:
     QVector<MapperNode> arrangeMappers(QVector<MapperNode> mappers); //整理Mapper，去除重复文件，优化重名，验证是否单独
     QVector<MapperNode> getCompileMapper(QVector<QString> srcFiles,QVector<MapperNode> mapperList); //提供一个文件列表和原始的映射列表，返回新的编译映射列表
 
-
-
-
 private:
     void event_attribute(QString proPath); //属性被点击
     void event_stop(); //停止当前运行的进程

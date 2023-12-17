@@ -46,7 +46,7 @@ uint16_t Form_TipManger::addTip(QString title, QString tip, qint64 showTime, Tip
     return t_node->id;
 }
 
-void Form_TipManger::closeTip(uint16_t id)
+bool Form_TipManger::closeTip(uint16_t id)
 {
     std::list<TipNode*>::iterator i;
     for(i = TipNodeList.begin(); i != TipNodeList.end(); i++){
@@ -56,9 +56,10 @@ void Form_TipManger::closeTip(uint16_t id)
             delete (*i)->item;
             TipNodeList.erase(i);
             adjustWindowRec();  //调整窗口大小
-            return;
+            return true;
         }
     }
+    return false;
 }
 
 //关闭所有提示

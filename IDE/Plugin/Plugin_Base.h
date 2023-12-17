@@ -107,6 +107,7 @@ private:
     //状态栏功能
     PluginGlobalMsg::tipFun_postStr tipsFun_addPost = nullptr; //投递字符串到状态栏
     PluginGlobalMsg::tipFun_addTip tipsFun_addTip = nullptr; //添加一个消息到通知管理器中
+    PluginGlobalMsg::tipFun_closeTip tipsFun_closeTip = nullptr; // 根据ID关闭一个停止，通知不存在则返回false
     PluginGlobalMsg::tipFun_hasTip tipsFun_hasTip = nullptr; //判断消息是否存在
     PluginGlobalMsg::tipFun_setTipTitle tipsFun_setTitle = nullptr; //设置提示标题
     PluginGlobalMsg::tipFun_setTipText tipsFun_setText = nullptr; //设置提示文本
@@ -170,6 +171,7 @@ public: //插件的基础方法
 
     void postTipStr(QString str,int showTime); //投递字符串到状态栏
     uint16_t addTip(QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime); //添加通知到通知管理器中
+    bool closeTip(uint16_t id); // 根据ID关闭一个停止，通知不存在则返回false
     bool hasTip(uint16_t index); //判断是否存在这个通知
     void setTipTitle(uint16_t index, QString title);//设置提示标题
     void setTipText(uint16_t index, QString text);//设置提示文本
@@ -182,9 +184,6 @@ public: //插件的基础方法
     void setChangedProgressIndex(int index); //设置状态栏进度条进度
     void setStatusButton(int btnIndex,QString title,QIcon ico_32x,QString sign,std::function<void(QString sign)> funPtr); //设置状态栏按钮，funPtr为nullptr时，隐藏.index的范围为1-6
     void setStatusHideAll(); //隐藏所有的按钮
-
-
-
 
     PluginGlobalMsg::projectMsgBase getProjectMsgBase(QString proPath); //获取工程的基础信息
 

@@ -174,6 +174,7 @@ typedef std::function<projectMsgBase(QString proPath)> projectManger_getProMsgBa
 //通知提示操作
 typedef std::function<void(QString str, int showTime)> tipFun_postStr; //投递字符串到状态栏
 typedef std::function<uint16_t(QString title, QString tip, TipType type, QPixmap pixmap, bool canClose, qint64 showTime)> tipFun_addTip; //添加一个消息到通知到管理器中，返回ID
+typedef std::function<bool(uint16_t id)> tipFun_closeTip; //根据通知的ID关闭通知，成功返回true,失败返回false
 typedef std::function<bool(uint16_t id)> tipFun_hasTip; //判断消息是否存在
 typedef std::function<void(uint16_t id, QString title)> tipFun_setTipTitle; //设置提示标题
 typedef tipFun_setTipTitle tipFun_setTipText; //设置提示文本

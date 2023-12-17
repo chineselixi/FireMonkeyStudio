@@ -63,6 +63,22 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
     //ui->textEdit_print->addLineText("测试红色",qRgb(255,0,0));
     ui->textEdit_print->addLineText("插件系统加载成功！",qRgb(0, 120, 215));
     ui->textEdit_print->addLineText("E:/QtProject/FireMonkeyStudio/release/plg/FireMonkeyStudioBasic/plugin_ideBasic.plg");
+
+
+
+    //展示出基本通知消息
+    Manger::workspace_tipManger->addTip(tr("欢迎"),tr("欢迎使用FMS"),500000,Form_TipManger::TipType::Normal);
+    Manger::workspace_tipManger->addTip(tr("插件"),tr("发现部分插件API缺省"),500000,Form_TipManger::TipType::Warning);
+    widget_statusbar->setBtn5(tr("插件"),QIcon(),"",[=](QString sign){
+        this->on_action_pluginManger_triggered(); //打开插件管理器
+    });
+    widget_statusbar->setBtn6(tr("QTC"),QIcon(),"",[=](QString sign){
+        this->on_action_pluginManger_triggered(); //打开插件管理器
+    });
+    ui->statusbar->showMessage(tr("欢迎使用FMS"),30000);
+
+    widget_statusbar->setProgress(70);
+
     //ui->textEdit_print->addText("左边文本",qRgb(255,0,0));
     //ui->textEdit_print->addText("右边文本");
     //ui->textEdit_print->clearTextEditor();
@@ -161,6 +177,9 @@ void Form_WorkSpace::init()
         [=](QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime)->uint16_t{ //添加通知到通知管理器中
             return Manger::workspace_tipManger->addTip(title,tip,showTime,type,pixmap,canClose);
         },
+        [=](uint16_t id)->bool{ //根据id关闭这个通知
+            return Manger::workspace_tipManger->closeTip(id);
+        },
         [=](uint16_t id)->bool{ //判断是否存在这个通知
             return Manger::workspace_tipManger->hasTip(id);
         },
@@ -214,16 +233,6 @@ void Form_WorkSpace::init()
         [=](){
             this->widget_statusbar->hideAll();
         });
-
-
-    //展示出基本通知消息
-    Manger::workspace_tipManger->addTip(tr("欢迎"),tr("欢迎使用FMS"),500000,Form_TipManger::TipType::Normal);
-    widget_statusbar->setBtn6(tr("插件"),QIcon(),"",[=](QString sign){
-        this->on_action_pluginManger_triggered(); //打开插件管理器
-    });
-    ui->statusbar->showMessage(tr("欢迎使用FMS"),30000);
-
-
 
 
     //=================加载主题样式表=================

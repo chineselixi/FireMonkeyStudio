@@ -4189,37 +4189,37 @@
 <context>
     <name>QsciScintilla</name>
     <message>
-        <location filename="qsciscintilla.cpp" line="4474"/>
+        <location filename="qsciscintilla.cpp" line="4478"/>
         <source>&amp;Undo</source>
         <translation>&amp;Rückgängig</translation>
     </message>
     <message>
-        <location filename="qsciscintilla.cpp" line="4478"/>
+        <location filename="qsciscintilla.cpp" line="4482"/>
         <source>&amp;Redo</source>
         <translation>Wieder&amp;herstellen</translation>
     </message>
     <message>
-        <location filename="qsciscintilla.cpp" line="4484"/>
+        <location filename="qsciscintilla.cpp" line="4488"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Ausschneiden</translation>
     </message>
     <message>
-        <location filename="qsciscintilla.cpp" line="4489"/>
+        <location filename="qsciscintilla.cpp" line="4493"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopieren</translation>
     </message>
     <message>
-        <location filename="qsciscintilla.cpp" line="4495"/>
+        <location filename="qsciscintilla.cpp" line="4499"/>
         <source>&amp;Paste</source>
         <translation>Ein&amp;fügen</translation>
     </message>
     <message>
-        <location filename="qsciscintilla.cpp" line="4499"/>
+        <location filename="qsciscintilla.cpp" line="4503"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="qsciscintilla.cpp" line="4506"/>
+        <location filename="qsciscintilla.cpp" line="4510"/>
         <source>Select All</source>
         <translation>Alle auswählen</translation>
     </message>

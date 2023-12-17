@@ -98,6 +98,7 @@ public:
 
     void workSpace_init_tipsManger(PluginGlobalMsg::tipFun_postStr tipsFun_addPost, //投递字符串到状态栏
                                    PluginGlobalMsg::tipFun_addTip tipsFun_addTip, //添加一个消息到通知管理器中
+                                   PluginGlobalMsg::tipFun_closeTip tipsFun_closeTip, //添加一个消息到通知管理器中
                                    PluginGlobalMsg::tipFun_hasTip tipsFun_hasTip, //判断消息是否存在
                                    PluginGlobalMsg::tipFun_setTipTitle tipsFun_setTitle, //设置提示标题
                                    PluginGlobalMsg::tipFun_setTipText tipsFun_setText, //设置提示文本
