@@ -2,7 +2,7 @@
 #include "QFile"
 #include "QFileInfo"
 #include "QApplication"
-
+#include "QWidget"
 
 
 
@@ -57,4 +57,25 @@ bool System_File::writeFile(QString filePath, QByteArray fileByte)
         return true;
     }
     return false;
+}
+
+
+//获取指定Widget在祖先Widget的相对位置
+QPoint System_Widget::getWidgetRelPos(QWidget *widget, QWidget *parent)
+{
+    QPoint t_point;
+    QWidget* t_widget = widget;
+    while(true){
+        QPoint t_wpos = t_widget->pos();
+        t_point.setX(t_point.x() + t_wpos.x());
+        t_point.setY(t_point.y() + t_wpos.y());
+        t_widget = t_widget->parentWidget();
+        if(t_widget == nullptr){
+            break;
+        }
+        else if(t_widget == parent){
+            return t_point;
+        }
+    }
+    return QPoint();
 }

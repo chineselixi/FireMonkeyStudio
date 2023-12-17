@@ -86,7 +86,9 @@ private:
     PluginGlobalMsg::tab_getSign TabSpace_getTabSign = nullptr; //根据Widget获取sign
     PluginGlobalMsg::tab_getWidget TabSpace_getTabSWidget = nullptr; //根据sign获取widget
 
-
+    //主题获取
+    PluginGlobalMsg::theme_setFunPtr Theme_set = nullptr; //主题设置
+    PluginGlobalMsg::theme_getFunPtr Theme_get = nullptr; //主题获取
     //插件消息投递
     PluginGlobalMsg::pluginFun_post PluginManger_PostMsg = nullptr; //使用插件管理器投递信息，每一个有效插件都将接收到收到这个信息，但是需要注意发送方的身份
 
@@ -98,6 +100,28 @@ private:
     PluginGlobalMsg::setPtr_addFun setFun_add = nullptr; //添加或变更一个设置
     PluginGlobalMsg::setPtr_getFun setFun_get = nullptr; //获取一个设置信息
     PluginGlobalMsg::setPtr_deleteFun setFun_del = nullptr; //删除一个设置信息
+
+    //通知提示管理器（也在状态栏实现）
+    PluginGlobalMsg::funStr_void WorkSpace_postMsg = nullptr; //在状态栏左下角显示一个信息
+
+    //状态栏功能
+    PluginGlobalMsg::tipFun_postStr tipsFun_addPost = nullptr; //投递字符串到状态栏
+    PluginGlobalMsg::tipFun_addTip tipsFun_addTip = nullptr; //添加一个消息到通知管理器中
+    PluginGlobalMsg::tipFun_hasTip tipsFun_hasTip = nullptr; //判断消息是否存在
+    PluginGlobalMsg::tipFun_setTipTitle tipsFun_setTitle = nullptr; //设置提示标题
+    PluginGlobalMsg::tipFun_setTipText tipsFun_setText = nullptr; //设置提示文本
+    PluginGlobalMsg::tipFun_setTipType tipsFun_setType = nullptr; //设置提示类型
+    PluginGlobalMsg::tipFun_setTipPixmap tipsFun_setPix = nullptr; //设置提示图片
+    PluginGlobalMsg::tipFun_setTipCanClose tipsFun_setCanClose = nullptr; //设置提示能够关闭
+    PluginGlobalMsg::tipFun_setTipShowTime  tipsFun_changeShowTime = nullptr; //设置提示时间
+
+    //状态栏输出通知，和状态栏按钮操作
+    PluginGlobalMsg::statusbarFun_setProgressIndex statusFun_changedProgressIndex = nullptr; //设置状态栏进度条进度
+    PluginGlobalMsg::statusbarFun_setButton statusFun_setBtn = nullptr; //设置状态栏按钮，funPtr为nullptr时，隐藏
+    PluginGlobalMsg::statusbarFun_hideAllBtn statusFun_hideAllBtn = nullptr; //隐藏所有的按钮
+
+
+
 
     //插件管理器
     PluginGlobalMsg::projectManger_getProMsgBase ProjectManger_getBase = nullptr; //插件管理器获取基础信息
@@ -114,11 +138,8 @@ public: //插件的基础方法
     void closeWorkSpaceAllAction(); //关闭所有的工作控件子菜单
     void addToolBarToWs(QToolBar* toolBar); //添加工具栏到工作空间
 
-//    //添加删除编译模式
-//    PluginGlobalMsg::compileMod_changeFun WorkSpace_CompileMod_Add = nullptr; //添加编译模式
-//    PluginGlobalMsg::compileMod_changeFun WorkSpace_CompileMod_Del = nullptr; //删除编译模式
-//    PluginGlobalMsg::fun_void WorkSpace_CompileMod_Cls = nullptr; //删除全部编译模式
-//    PluginGlobalMsg::fun_str WorkSpace_CompileMod_GetNow = nullptr; //获取当前编译模式
+    QString getThemeSign();                //获取主题标记
+    void setThemeSign(QString sign);       //设置主题标记
 
     void addCompileMod(QString signName); //添加编译模式
     void delCompileMod(QString signName); //删除编译模式
@@ -131,17 +152,40 @@ public: //插件的基础方法
     void printTextSpace(QColor color,QString printText); //在文本窗口输出文本
     void printTextSpaceLine(QColor color,QString printText); //在文本窗口输出文本
     void clearTextSpace(); //清理文本窗口所有的文本
+
     QString postPluginMessage(QString pluginSign,QString pustMsg); //插件内投递消息
     void addDockWidget(Qt::DockWidgetArea area,QDockWidget* dockWidget); //添加DockWidget
     void removeDockWidget(QDockWidget* dockWidget); //移除DockWidget
+
     void addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type); //在Tab添加窗口
     bool hasTab(QString sign,bool select); //根据sign标记查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
     bool hasTab(QWidget* widget,bool select); //根据QWidget指针查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
     QWidget* getTabWidget(QString sign); //根据sign获取Widget指针
     QString getTabSign(QWidget* widget); //根据widget指针获取sign信息
+
     void addMark(QString mark,QString value); //添加一个设置标记
     QVariant getMark(QString mark,QString normal=""); //获取一个设置标记内容
     void delMark(QString mark);//删除设置一个标记
+
+
+    void postTipStr(QString str,int showTime); //投递字符串到状态栏
+    uint16_t addTip(QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime); //添加通知到通知管理器中
+    bool hasTip(uint16_t index); //判断是否存在这个通知
+    void setTipTitle(uint16_t index, QString title);//设置提示标题
+    void setTipText(uint16_t index, QString text);//设置提示文本
+    void setTipType(uint16_t index, PluginGlobalMsg::TipType type); //设置提示类型
+    void setTipPixmap(uint16_t index, QPixmap pixmap); //设置提示图片
+    void setCanClose(uint16_t index, bool canClose); //设置提示能够关闭
+    void setTipShowTime(uint16_t index, qint64 newShowTime); //设置提示时间
+
+    //状态栏输出通知，和状态栏按钮操作
+    void setChangedProgressIndex(int index); //设置状态栏进度条进度
+    void setStatusButton(int btnIndex,QString title,QIcon ico_32x,QString sign,std::function<void(QString sign)> funPtr); //设置状态栏按钮，funPtr为nullptr时，隐藏.index的范围为1-6
+    void setStatusHideAll(); //隐藏所有的按钮
+
+
+
+
     PluginGlobalMsg::projectMsgBase getProjectMsgBase(QString proPath); //获取工程的基础信息
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
@@ -157,6 +201,7 @@ public: //(可阻拦事件)事件触发，返回true则继续触发其他插件�
 
 
 public: //(不可阻拦事件)事件触发，将激发每一个插件的事件
+    virtual void event_onThemeChanged(QString themeSign){return;}; //当主题改变，返回主题标记。常用Blue(蓝)，White(白)，Dark(黑)
     virtual void event_onWorkSpaceFinish(){return;}; //工作空间创建完毕事件，此事件不可阻止，，但是可以阻塞，将为每一个插件提供事件响应
     virtual void event_onWorkSpaceClose(){return;};  //工作空间正在被关闭，不可被阻止，但是可以阻塞，将为每一个插件提供事件响应
     virtual void event_onLoadSettingsWidget(settingMsgList& msgList){return;}; //当加载设置组件的时候

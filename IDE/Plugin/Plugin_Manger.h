@@ -86,6 +86,8 @@ public:
 
     void setting_init_building(); //设置接口绑定
 
+    void themeChanged_init_building(); //主题操作绑定
+
     void projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase fun_getBase); //工程管理器绑定
 
     void workSpace_init_compileMod(PluginGlobalMsg::compileMod_changeFun addFun, //添加编译模式
@@ -93,6 +95,23 @@ public:
                                    PluginGlobalMsg::compileMod_changeFun selectFun, //选择编译模式
                                    PluginGlobalMsg::fun_void clsFun,    //清空编译模式
                                    PluginGlobalMsg::fun_str getNowFun); //获取当前模式，  //初始化编译模式接口
+
+    void workSpace_init_tipsManger(PluginGlobalMsg::tipFun_postStr tipsFun_addPost, //投递字符串到状态栏
+                                   PluginGlobalMsg::tipFun_addTip tipsFun_addTip, //添加一个消息到通知管理器中
+                                   PluginGlobalMsg::tipFun_hasTip tipsFun_hasTip, //判断消息是否存在
+                                   PluginGlobalMsg::tipFun_setTipTitle tipsFun_setTitle, //设置提示标题
+                                   PluginGlobalMsg::tipFun_setTipText tipsFun_setText, //设置提示文本
+                                   PluginGlobalMsg::tipFun_setTipType tipsFun_setType, //设置提示类型
+                                   PluginGlobalMsg::tipFun_setTipPixmap tipsFun_setPix, //设置提示图片
+                                   PluginGlobalMsg::tipFun_setTipCanClose tipsFun_setCanClose, //设置提示能够关闭
+                                   PluginGlobalMsg::tipFun_setTipShowTime  tipsFun_changeShowTime //设置提示时间
+                                   ); //初始化通知管理器
+
+    void workSpace_init_statusOperate(PluginGlobalMsg::statusbarFun_setProgressIndex statusFun_changedProgressIndex, //设置状态栏进度条进度
+                                      PluginGlobalMsg::statusbarFun_setButton statusFun_setBtn, //设置状态栏按钮，funPtr为nullptr时，隐藏
+                                      PluginGlobalMsg::statusbarFun_hideAllBtn statusFun_hideAllBtn //隐藏所有的按钮
+                                      ); //初始化状态栏操作接口
+
 
 public:
 
@@ -105,6 +124,7 @@ public:
     void event_onFileSaveAll(); //当文件全部保存
     void event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass); //当工程被加载完毕，或者切换的工程已经被改变
 
+    void event_onThemeChanged(QString themeSign); //当主题标记被改变
 
     void event_onWorkSpaceFinish(); //工作空间创建完毕事件，此事件不可阻止，，但是可以阻塞，将为每一个插件提供事件响应
     void event_onWorkSpaceClose();  //工作空间正在被关闭，不可被阻止，但是可以阻塞，将为每一个插件提供事件响应

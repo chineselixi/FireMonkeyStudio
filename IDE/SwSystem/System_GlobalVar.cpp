@@ -12,6 +12,7 @@ Form_WorkSpace* Window::workSpace = nullptr;
 
 //管理器
 Plugin_Manger* Manger::pluginManger = nullptr;//插件管理器
+Form_TipManger* Manger::workspace_tipManger = nullptr;//通知消息管理器1
 //System_EnvVar* Manger::EnvVar = nullptr;//环境变量管理器
 
 

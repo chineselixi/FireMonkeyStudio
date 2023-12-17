@@ -88,6 +88,22 @@ void Plugin_Base::addToolBarToWs(QToolBar *toolBar)
     }
 }
 
+//获取主题标记
+QString Plugin_Base::getThemeSign()
+{
+    if(this->Theme_get){
+        return this->Theme_get();
+    }
+}
+
+//设置主题标记
+void Plugin_Base::setThemeSign(QString sign)
+{
+    if(this->Theme_set){
+        this->Theme_set(sign);
+    }
+}
+
 
 //添加编译模式
 void Plugin_Base::addCompileMod(QString signName)
@@ -235,6 +251,79 @@ QVariant Plugin_Base::getMark(QString mark,QString normal)
 void Plugin_Base::delMark(QString mark)
 {
     if(setFun_del) setFun_del(mark);
+}
+
+//投递字符串到状态栏
+void Plugin_Base::postTipStr(QString str,int showTime)
+{
+    if(tipsFun_addPost) tipsFun_addPost(str,showTime);
+}
+
+//添加通知到通知管理器中
+uint16_t Plugin_Base::addTip(QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime)
+{
+    if(tipsFun_addTip) return tipsFun_addTip(title, tip, type, pixmap, canClose, showTime);
+}
+
+//判断是否存在这个通知
+bool Plugin_Base::hasTip(uint16_t index)
+{
+    if(tipsFun_hasTip) return tipsFun_hasTip(index);
+}
+
+
+//设置提示标题
+void Plugin_Base::setTipTitle(uint16_t index, QString title)
+{
+    if(tipsFun_setTitle) tipsFun_setTitle(index,title);
+}
+
+//设置提示文本
+void Plugin_Base::setTipText(uint16_t index, QString text)
+{
+    if(tipsFun_setText) tipsFun_setText(index,text);
+}
+
+ //设置提示类型
+void Plugin_Base::setTipType(uint16_t index, PluginGlobalMsg::TipType type)
+{
+    if(tipsFun_setType) tipsFun_setType(index,type);
+}
+
+//设置提示图片
+void Plugin_Base::setTipPixmap(uint16_t index, QPixmap pixmap)
+{
+    if(tipsFun_setPix) tipsFun_setPix(index,pixmap);
+}
+
+//设置提示能够关闭
+void Plugin_Base::setCanClose(uint16_t index, bool canClose)
+{
+    if(tipsFun_setCanClose) tipsFun_setCanClose(index,canClose);
+}
+
+//设置提示时间
+void Plugin_Base::setTipShowTime(uint16_t index, qint64 newShowTime)
+{
+    if(tipsFun_changeShowTime) tipsFun_changeShowTime(index,newShowTime);
+}
+
+//设置状态栏进度条进度
+void Plugin_Base::setChangedProgressIndex(int index)
+{
+    if(statusFun_changedProgressIndex) statusFun_changedProgressIndex(index);
+}
+
+//设置状态栏按钮，funPtr为nullptr时，隐藏.index的范围为1-6
+void Plugin_Base::setStatusButton(int btnIndex, QString title, QIcon ico_32x, QString sign, std::function<void (QString)> funPtr)
+{
+    if(statusFun_setBtn) statusFun_setBtn(btnIndex,title,ico_32x,sign,funPtr);
+}
+
+//隐藏所有的按钮
+void Plugin_Base::setStatusHideAll()
+{
+    if(statusFun_hideAllBtn) statusFun_hideAllBtn();
 }
 
 

@@ -33,7 +33,7 @@ public:
     {
         if (Widget_Button_ListItem->objectName().isEmpty())
             Widget_Button_ListItem->setObjectName("Widget_Button_ListItem");
-        Widget_Button_ListItem->resize(400, 83);
+        Widget_Button_ListItem->resize(400, 84);
         Widget_Button_ListItem->setStyleSheet(QString::fromUtf8("#Widget_Button_Start{\n"
 "	background-color: rgb(238, 235, 235);\n"
 "}\n"

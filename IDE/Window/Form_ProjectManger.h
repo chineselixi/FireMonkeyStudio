@@ -76,7 +76,7 @@ public:
 
 
     //菜单指针
-    QMenu* Menu_pro = nullptr; //工程菜单
+    QMenu* Menu_pro = nullptr; //工程头右键菜单
     QMenu* Menu_normal = nullptr; //默认菜单
     QMenu* Menu_addNewFile = nullptr; //添加新文件菜单
 

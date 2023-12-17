@@ -110,6 +110,9 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
 
     //绑定设置接口
     this->setting_init_building();//加载设置接口
+
+    //初始化主题操作接口
+    this->themeChanged_init_building(); //设置主题设置获取接口
 }
 
 
@@ -305,6 +308,32 @@ void Plugin_Manger::setting_init_building()
     }
 }
 
+//声明主题改变
+class Form_SystemSettings{
+public:
+    static void changeThream(QString styleName = "Blue");
+};
+//主题操作绑定
+void Plugin_Manger::themeChanged_init_building()
+{
+    PluginGlobalMsg::theme_setFunPtr t_setPtr = [](QString sign){
+        Setting::style_themeName = sign;
+        Form_SystemSettings::changeThream(sign);
+    };
+
+    PluginGlobalMsg::theme_getFunPtr t_getPtr = []()->QString{
+        return Setting::style_themeName;
+    };
+
+
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->Theme_get = t_getPtr;
+            this->List_plg[a].plgPth->Theme_set = t_setPtr;
+        }
+    }
+}
+
 
 //工程管理器绑定
 void Plugin_Manger::projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase fun_getBase)
@@ -331,6 +360,48 @@ void Plugin_Manger::workSpace_init_compileMod(PluginGlobalMsg::compileMod_change
             this->List_plg[a].plgPth->WorkSpace_CompileMod_Sel = selectFun;
             this->List_plg[a].plgPth->WorkSpace_CompileMod_Cls = clsFun;
             this->List_plg[a].plgPth->WorkSpace_CompileMod_GetNow = getNowFun;
+        }
+    }
+}
+
+
+//初始化通知管理器
+void Plugin_Manger::workSpace_init_tipsManger(PluginGlobalMsg::tipFun_postStr tipsFun_addPost,
+                                              PluginGlobalMsg::tipFun_addTip tipsFun_addTip,
+                                              PluginGlobalMsg::tipFun_hasTip tipsFun_hasTip,
+                                              PluginGlobalMsg::tipFun_setTipTitle tipsFun_setTitle,
+                                              PluginGlobalMsg::tipFun_setTipText tipsFun_setText,
+                                              PluginGlobalMsg::tipFun_setTipType tipsFun_setType,
+                                              PluginGlobalMsg::tipFun_setTipPixmap tipsFun_setPix,
+                                              PluginGlobalMsg::tipFun_setTipCanClose tipsFun_setCanClose,
+                                              PluginGlobalMsg::tipFun_setTipShowTime tipsFun_changeShowTime)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->tipsFun_addPost = tipsFun_addPost;
+            this->List_plg[a].plgPth->tipsFun_addTip = tipsFun_addTip;
+            this->List_plg[a].plgPth->tipsFun_hasTip = tipsFun_hasTip;
+            this->List_plg[a].plgPth->tipsFun_setTitle = tipsFun_setTitle;
+            this->List_plg[a].plgPth->tipsFun_setText = tipsFun_setText;
+            this->List_plg[a].plgPth->tipsFun_setType = tipsFun_setType;
+            this->List_plg[a].plgPth->tipsFun_setPix = tipsFun_setPix;
+            this->List_plg[a].plgPth->tipsFun_setCanClose = tipsFun_setCanClose;
+            this->List_plg[a].plgPth->tipsFun_changeShowTime = tipsFun_changeShowTime;
+        }
+    }
+}
+
+
+//初始化状态栏操作接口
+void Plugin_Manger::workSpace_init_statusOperate(PluginGlobalMsg::statusbarFun_setProgressIndex statusFun_changedProgressIndex,
+                                                 PluginGlobalMsg::statusbarFun_setButton statusFun_setBtn,
+                                                 PluginGlobalMsg::statusbarFun_hideAllBtn statusFun_hideAllBtn)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->statusFun_changedProgressIndex = statusFun_changedProgressIndex;
+            this->List_plg[a].plgPth->statusFun_setBtn = statusFun_setBtn;
+            this->List_plg[a].plgPth->statusFun_hideAllBtn = statusFun_hideAllBtn;
         }
     }
 }
@@ -441,6 +512,16 @@ void Plugin_Manger::event_onPorjectLoad(QString proPath, QString proLangs, QStri
         if(List_plg[a].plgPth->event_onPorjectLoad(proPath,proLangs,proNoteClass) == false){ //若插件阻止触发，则跳出
             break;
         }
+    }
+}
+
+
+//当主题标记被改变
+void Plugin_Manger::event_onThemeChanged(QString themeSign)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        List_plg[a].plgPth->event_onThemeChanged(themeSign);
     }
 }
 

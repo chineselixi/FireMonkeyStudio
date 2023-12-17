@@ -107,12 +107,14 @@ void Form_SystemSettings::on_pushButton_use_clicked()
 //改变主题
 void Form_SystemSettings::changeThream(QString styleName)
 {
+    Setting::style_themeName = styleName;
     if(Window::workSpace != nullptr){
         //加载其他部件的QSS样式表
         Window::workSpace->setStyleSheet(Setting::sys_setting->readThemeStyle(styleName,"Form_WorkSpace")); //加载工作空间样式表
         Window::workSpace->setPorMangerStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ProjectManger")); //加载工程管理样式表
         Window::workSpace->setCompilePrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ListPrint")); //加载编译样式表
         Window::workSpace->setPrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_TextPrint")); //加载文本打印样式表
+        Window::workSpace->setTipMangerStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_TipManger")); //加载通知管理器样式表
 
         //设定选项样式
         Window::workSpace->setTheme(styleName);
@@ -136,6 +138,8 @@ void Form_SystemSettings::changeThream(QString styleName)
             (*t_i)->setIcon(t_ico); //设置新图标
         }
 
+        //插件管理器通知事件改变
+        if(Manger::pluginManger != nullptr) Manger::pluginManger->event_onThemeChanged(styleName);
 
     }
 }

@@ -33,7 +33,34 @@
 /*底部状态栏*/
 QStatusBar{
 	background-color:#40568d;
+	color:rgb(255,255,255);
 }
+
+QStatusBar QToolButton{
+	background-color:#40568d;
+	color:rgb(255,255,255);
+	border:0px;
+	margin-right:4px;
+}
+
+QStatusBar QToolButton:hover{
+	background-color:#6673a4;
+}
+
+QStatusBar QProgressBar{
+	font:9pt;
+	border-radius:5px;
+	text-align:center;
+	border:1px solid #E8EDF2;
+	background-color: rgb(255, 255, 255);
+	border-color: rgb(180, 180, 180);
+}
+
+QStatusBar QProgressBar:chunk{
+	border-radius:5px;
+	background-color:#1ABC9C;
+}
+
 
 /*菜单栏*/
 QMenuBar{
@@ -52,7 +79,7 @@ QToolBar::separator {
 	width: 1px;
 	border:0px;
 	margin:5px 0px;
-    background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Separator.png);
+	background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Separator.png);
  }
 
 /*工具栏拖动图片栏*/
@@ -212,7 +239,7 @@ QMenu::item:disabled {/*菜单被禁用*/
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">
@@ -323,7 +350,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <property name="title">
      <string>设置(&amp;S)</string>
     </property>
-    <widget class="QMenu" name="menu_T">
+    <widget class="QMenu" name="menu_theme">
      <property name="title">
       <string>主题(&amp;T)</string>
      </property>
@@ -335,7 +362,7 @@ QMenu::item:disabled {/*菜单被禁用*/
     <addaction name="action_pluginManger"/>
     <addaction name="separator"/>
     <addaction name="action_systemSettings"/>
-    <addaction name="menu_T"/>
+    <addaction name="menu_theme"/>
     <addaction name="separator"/>
     <addaction name="action_toolBar_attestation"/>
     <addaction name="action_toolBar_findInMod"/>

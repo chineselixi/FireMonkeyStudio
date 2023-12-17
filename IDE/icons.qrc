@@ -898,4 +898,9 @@
         <file>icon/WidgetIcon/logo/Logo_128.png</file>
         <file>icon/WidgetIcon/logo/Logo_256.png</file>
     </qresource>
+    <qresource prefix="/TipManger">
+        <file>icon/TipManger/error.png</file>
+        <file>icon/TipManger/warning.png</file>
+        <file>icon/TipManger/normal.png</file>
+    </qresource>
 </RCC>

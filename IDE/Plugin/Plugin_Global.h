@@ -92,6 +92,15 @@ enum class proMangerMenuType{
 
 
 
+//通知类型
+enum class TipType{
+    Normal,         //默认通知
+    Warning,        //警告
+    Error,          //错误
+    Custom,         //自定义通知，将使用pixmap的图片
+    None,           //无图标
+};
+
 
 
 //工程结构信息基础（不包含完整工程信息）
@@ -117,6 +126,7 @@ struct projectMsgBase{
 //默认基础函数类型
 typedef std::function<void()> fun_void; //基础函数类型，返回空
 typedef std::function<QString()> fun_str; //基础函数类型，返回字符串
+typedef std::function<void(QString)> funStr_void; //基础函数类型，传入字符串，返回空
 
 //函数指针类型
 //class Plugin_Base; //插件类声明
@@ -131,11 +141,9 @@ typedef std::function<bool(QWidget* sign,bool select)> tab_hasTab_WidgetPtr; //�
 typedef std::function<QString(QWidget*)> tab_getSign; //根据Widget获取sign
 typedef std::function<QWidget*(QString)> tab_getWidget; //根据sign获取Widget
 
-
-
-//代码编辑器函数类型
-//typedef std::function<void(int line, int index)> editorEvent_cursorPositionChanged; //光标移动事件
-//typedef std::function<void()> editorEvent_textChanged; //文本改变事件
+//主题操作
+typedef std::function<void(QString themeSign)> theme_setFunPtr; //光标移动事件
+typedef fun_str theme_getFunPtr; //文本改变事件
 
 //编译模式
 typedef std::function<void(QString signName)> compileMod_changeFun; //添加删除编译模式
@@ -162,6 +170,24 @@ typedef std::function<void(QString key)> setPtr_deleteFun; //删除设置
 
 //工程管理器操作
 typedef std::function<projectMsgBase(QString proPath)> projectManger_getProMsgBase; //工程管理器获取基础信息
+
+//通知提示操作
+typedef std::function<void(QString str, int showTime)> tipFun_postStr; //投递字符串到状态栏
+typedef std::function<uint16_t(QString title, QString tip, TipType type, QPixmap pixmap, bool canClose, qint64 showTime)> tipFun_addTip; //添加一个消息到通知到管理器中，返回ID
+typedef std::function<bool(uint16_t id)> tipFun_hasTip; //判断消息是否存在
+typedef std::function<void(uint16_t id, QString title)> tipFun_setTipTitle; //设置提示标题
+typedef tipFun_setTipTitle tipFun_setTipText; //设置提示文本
+typedef std::function<void(uint16_t id, TipType type)> tipFun_setTipType; //设置提示类型
+typedef std::function<void(uint16_t id, QPixmap pixmap)> tipFun_setTipPixmap; //设置提示图片
+typedef std::function<void(uint16_t id, bool canClose)> tipFun_setTipCanClose; //设置提示能够关闭
+typedef std::function<void(uint16_t id, qint64 showTime)> tipFun_setTipShowTime; //设置提示时间
+
+//状态栏操作
+typedef std::function<void(int index)> statusbarFun_setProgressIndex; //设置状态栏进度条进度
+typedef std::function<void(int btnIndex,QString title,QIcon ico_16x,QString sign,std::function<void(QString sign)> funPtr)> statusbarFun_setButton; //设置状态栏按钮，funPtr为nullptr时，隐藏
+typedef fun_void statusbarFun_hideAllBtn; //隐藏所有的按钮
+
+
 }
 
 

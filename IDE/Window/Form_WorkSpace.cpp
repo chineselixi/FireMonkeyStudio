@@ -5,10 +5,12 @@
 #include "QDialog"
 #include "QFileDialog"
 #include "QFileInfo"
+#include "QToolButton"
 #include <QScreen>
 
 #include "SwSystem/System_GlobalVar.h"
 #include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_UtilFun.h""
 #include "Plugin/Plugin_Manger.h"
 
 #include "Window/Form_New.h"
@@ -16,6 +18,9 @@
 #include "Window/Form_About.h"
 #include "Window/Form_PluginManger.h"
 #include "Window/Form_SystemSettings.h"
+#include "Window/Form_TipManger.h"
+
+#include "Widget/Widget_Statusbar.h"
 
 #include "module/mod_WebPage.h"
 
@@ -36,6 +41,7 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
     this->ui->action_toolBar_newFileCollection->setEnabled(true);
     this->ui->action_toolBar_open->setEnabled(true);
     this->ui->action_toolBar_save->setEnabled(false);
+
 
 //==============================临时代码==============================
     //添加工具
@@ -82,6 +88,21 @@ Form_WorkSpace::~Form_WorkSpace()
 }
 
 
+//窗口尺寸改变
+void Form_WorkSpace::resizeEvent(QResizeEvent *event)
+{
+    QPoint t_p = System_Widget::getWidgetRelPos(widget_statusbar->getArrowWidgetPtr(),this);
+    Manger::workspace_tipManger->moveToRT(t_p.x() + this->widget_statusbar->getArrowWidgetPtr()->width(),System_Widget::getWidgetRelPos(this->widget_statusbar,this).y());
+}
+
+//窗体显示
+void Form_WorkSpace::showEvent(QShowEvent *event)
+{
+    QMainWindow::show();
+    this->resizeEvent(nullptr);
+}
+
+
 //初始化
 void Form_WorkSpace::init()
 {
@@ -114,11 +135,6 @@ void Form_WorkSpace::init()
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectClose,this,&Form_WorkSpace::event_ProjectManger_onProjectClose); //工程被关闭
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onFileRename,this,&Form_WorkSpace::event_ProjectManger_onFileRename); //文件被更名
 
-
-    //=================加载主题样式表=================
-    Form_SystemSettings::changeThream(Setting::style_themeName); //加载主题
-
-
     //=================插件，函数绑定=================
     //绑定tabView,此代码已经解耦合，已经注销无法使用。将在以后版本彻底优化，23.10.20
     //    PluginGlobalMsg::addTabViewPth t_tabPth =
@@ -127,6 +143,91 @@ void Form_WorkSpace::init()
     //            this->ui->widget_WindowTab->addTabWidget((Plugin_Base*)plg,title,form,sign,titeIco,true,type);
     //    };
     //    Manger::pluginManger->workSpace_init_tabView(t_tabPth);
+
+
+
+
+    //状态栏控件
+    widget_statusbar = new Widget_Statusbar;
+    widget_statusbar->hideAll();
+    ui->statusbar->addPermanentWidget(widget_statusbar);
+
+    //通知管理器
+    Manger::workspace_tipManger =  new Form_TipManger(this);
+    Manger::pluginManger->workSpace_init_tipsManger(
+        [=](QString str,int showTime){  //投递字符串到状态栏
+            this->ui->statusbar->showMessage(str,showTime);
+        },
+        [=](QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime)->uint16_t{ //添加通知到通知管理器中
+            return Manger::workspace_tipManger->addTip(title,tip,showTime,type,pixmap,canClose);
+        },
+        [=](uint16_t id)->bool{ //判断是否存在这个通知
+            return Manger::workspace_tipManger->hasTip(id);
+        },
+        [=](uint16_t id, QString title){ //设置提示标题
+            Manger::workspace_tipManger->setTipTitle(id,title);
+        },
+        [=](uint16_t id, QString text){  //设置提示文本
+            Manger::workspace_tipManger->setTipText(id,text);
+        },
+        [=](uint16_t id, PluginGlobalMsg::TipType type){ //设置提示类型
+            Manger::workspace_tipManger->setTipType(id,type);
+        },
+        [=](uint16_t id, QPixmap pixmap){ //设置提示图片
+            Manger::workspace_tipManger->setTipPixmap(id,pixmap);
+        },
+        [=](uint16_t id, bool canClose){ //设置提示能够关闭
+            Manger::workspace_tipManger->setTipCanClose(id,canClose);
+        },
+        [=](uint16_t id, qint64 newShowTime){    //设置提示时间
+            Manger::workspace_tipManger->setTipShowTime(id,newShowTime);
+        });
+
+
+    //绑定通知器
+    connect((QToolButton*)widget_statusbar->getArrowWidgetPtr(),&QToolButton::clicked,this,[=](){
+        this->resizeEvent(nullptr); //调整通知器的位置
+        if(Manger::workspace_tipManger->isHidden()){
+            Manger::workspace_tipManger->show();
+        }
+        else{
+            Manger::workspace_tipManger->hide();
+        }
+    });
+
+    //初始化状态栏管理器
+    Manger::pluginManger->workSpace_init_statusOperate(
+        [=](int index){
+            this->widget_statusbar->setProgress(index);
+        },
+        [=](int btnIndex,QString title,QIcon ico_32x,QString sign,std::function<void(QString sign)> funPtr){
+            switch (btnIndex){
+                default:
+                case 1:{this->widget_statusbar->setBtn1(title,ico_32x,sign,funPtr);break;}
+                case 2:{this->widget_statusbar->setBtn2(title,ico_32x,sign,funPtr);break;}
+                case 3:{this->widget_statusbar->setBtn3(title,ico_32x,sign,funPtr);break;}
+                case 4:{this->widget_statusbar->setBtn4(title,ico_32x,sign,funPtr);break;}
+                case 5:{this->widget_statusbar->setBtn5(title,ico_32x,sign,funPtr);break;}
+                case 6:{this->widget_statusbar->setBtn6(title,ico_32x,sign,funPtr);break;}
+            }
+        },
+        [=](){
+            this->widget_statusbar->hideAll();
+        });
+
+
+    //展示出基本通知消息
+    Manger::workspace_tipManger->addTip(tr("欢迎"),tr("欢迎使用FMS"),500000,Form_TipManger::TipType::Normal);
+    widget_statusbar->setBtn6(tr("插件"),QIcon(),"",[=](QString sign){
+        this->on_action_pluginManger_triggered(); //打开插件管理器
+    });
+    ui->statusbar->showMessage(tr("欢迎使用FMS"),30000);
+
+
+
+
+    //=================加载主题样式表=================
+    Form_SystemSettings::changeThream(Setting::style_themeName); //加载主题
 
 
     //绑定菜单添加函数
@@ -643,6 +744,12 @@ void Form_WorkSpace::on_action_menu_about_triggered()
     t_about->show();
 }
 
+//主题菜单弹出
+void Form_WorkSpace::on_menu_theme_aboutToShow()
+{
+    this->setTheme(Setting::style_themeName);
+}
+
 //编译模式已经改变
 void Form_WorkSpace::on_comboBox_compileMode_currentTextChanged(const QString &arg1)
 {
@@ -714,6 +821,12 @@ void Form_WorkSpace::setCompilePrintStyle(QString style)
 void Form_WorkSpace::setPrintStyle(QString style)
 {
     ui->textEdit_print->setStyleSheet(style);
+}
+
+//设置通知管理器主题
+void Form_WorkSpace::setTipMangerStyle(QString style)
+{
+    Manger::workspace_tipManger->setStyleSheet(style);
 }
 
 

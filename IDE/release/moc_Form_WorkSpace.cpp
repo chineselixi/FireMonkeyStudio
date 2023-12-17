@@ -50,6 +50,7 @@ static constexpr auto qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS = QtMocHelp
     "on_action_dock_find_triggered",
     "on_action_pluginManger_triggered",
     "on_action_menu_about_triggered",
+    "on_menu_theme_aboutToShow",
     "on_dockWidget_ProjectManger_visibilityChanged",
     "visible",
     "on_dockWidget_compilePrint_visibilityChanged",
@@ -73,7 +74,7 @@ static constexpr auto qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS = QtMocHelp
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t {
-    uint offsetsAndSizes[64];
+    uint offsetsAndSizes[66];
     char stringdata0[15];
     char stringdata1[35];
     char stringdata2[1];
@@ -86,26 +87,27 @@ struct qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t {
     char stringdata9[30];
     char stringdata10[33];
     char stringdata11[31];
-    char stringdata12[46];
-    char stringdata13[8];
-    char stringdata14[45];
-    char stringdata15[38];
+    char stringdata12[26];
+    char stringdata13[46];
+    char stringdata14[8];
+    char stringdata15[45];
     char stringdata16[38];
-    char stringdata17[37];
-    char stringdata18[43];
-    char stringdata19[5];
-    char stringdata20[34];
-    char stringdata21[8];
-    char stringdata22[36];
-    char stringdata23[35];
-    char stringdata24[38];
-    char stringdata25[44];
-    char stringdata26[35];
-    char stringdata27[33];
-    char stringdata28[34];
-    char stringdata29[33];
-    char stringdata30[30];
-    char stringdata31[33];
+    char stringdata17[38];
+    char stringdata18[37];
+    char stringdata19[43];
+    char stringdata20[5];
+    char stringdata21[34];
+    char stringdata22[8];
+    char stringdata23[36];
+    char stringdata24[35];
+    char stringdata25[38];
+    char stringdata26[44];
+    char stringdata27[35];
+    char stringdata28[33];
+    char stringdata29[34];
+    char stringdata30[33];
+    char stringdata31[30];
+    char stringdata32[33];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -123,26 +125,27 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t qt_met
         QT_MOC_LITERAL(223, 29),  // "on_action_dock_find_triggered"
         QT_MOC_LITERAL(253, 32),  // "on_action_pluginManger_triggered"
         QT_MOC_LITERAL(286, 30),  // "on_action_menu_about_triggered"
-        QT_MOC_LITERAL(317, 45),  // "on_dockWidget_ProjectManger_v..."
-        QT_MOC_LITERAL(363, 7),  // "visible"
-        QT_MOC_LITERAL(371, 44),  // "on_dockWidget_compilePrint_vi..."
-        QT_MOC_LITERAL(416, 37),  // "on_dockWidget_print_visibilit..."
-        QT_MOC_LITERAL(454, 37),  // "on_dockWidget_debug_visibilit..."
-        QT_MOC_LITERAL(492, 36),  // "on_dockWidget_find_visibility..."
-        QT_MOC_LITERAL(529, 42),  // "on_comboBox_compileMode_curre..."
-        QT_MOC_LITERAL(572, 4),  // "arg1"
-        QT_MOC_LITERAL(577, 33),  // "on_action_menu_run_enabledCha..."
-        QT_MOC_LITERAL(611, 7),  // "enabled"
-        QT_MOC_LITERAL(619, 35),  // "on_action_menu_Rerun_enabledC..."
-        QT_MOC_LITERAL(655, 34),  // "on_action_menu_stop_enabledCh..."
-        QT_MOC_LITERAL(690, 37),  // "on_action_menu_compile_enable..."
-        QT_MOC_LITERAL(728, 43),  // "on_action_menu_staticCompile_..."
-        QT_MOC_LITERAL(772, 34),  // "on_action_systemSettings_trig..."
-        QT_MOC_LITERAL(807, 32),  // "on_action_toolBar_blue_triggered"
-        QT_MOC_LITERAL(840, 33),  // "on_action_toolBar_white_trigg..."
-        QT_MOC_LITERAL(874, 32),  // "on_action_toolBar_Dark_triggered"
-        QT_MOC_LITERAL(907, 29),  // "on_action_file_save_triggered"
-        QT_MOC_LITERAL(937, 32)   // "on_action_file_saveAll_triggered"
+        QT_MOC_LITERAL(317, 25),  // "on_menu_theme_aboutToShow"
+        QT_MOC_LITERAL(343, 45),  // "on_dockWidget_ProjectManger_v..."
+        QT_MOC_LITERAL(389, 7),  // "visible"
+        QT_MOC_LITERAL(397, 44),  // "on_dockWidget_compilePrint_vi..."
+        QT_MOC_LITERAL(442, 37),  // "on_dockWidget_print_visibilit..."
+        QT_MOC_LITERAL(480, 37),  // "on_dockWidget_debug_visibilit..."
+        QT_MOC_LITERAL(518, 36),  // "on_dockWidget_find_visibility..."
+        QT_MOC_LITERAL(555, 42),  // "on_comboBox_compileMode_curre..."
+        QT_MOC_LITERAL(598, 4),  // "arg1"
+        QT_MOC_LITERAL(603, 33),  // "on_action_menu_run_enabledCha..."
+        QT_MOC_LITERAL(637, 7),  // "enabled"
+        QT_MOC_LITERAL(645, 35),  // "on_action_menu_Rerun_enabledC..."
+        QT_MOC_LITERAL(681, 34),  // "on_action_menu_stop_enabledCh..."
+        QT_MOC_LITERAL(716, 37),  // "on_action_menu_compile_enable..."
+        QT_MOC_LITERAL(754, 43),  // "on_action_menu_staticCompile_..."
+        QT_MOC_LITERAL(798, 34),  // "on_action_systemSettings_trig..."
+        QT_MOC_LITERAL(833, 32),  // "on_action_toolBar_blue_triggered"
+        QT_MOC_LITERAL(866, 33),  // "on_action_toolBar_white_trigg..."
+        QT_MOC_LITERAL(900, 32),  // "on_action_toolBar_Dark_triggered"
+        QT_MOC_LITERAL(933, 29),  // "on_action_file_save_triggered"
+        QT_MOC_LITERAL(963, 32)   // "on_action_file_saveAll_triggered"
     },
     "Form_WorkSpace",
     "on_action_file_newCreate_triggered",
@@ -156,6 +159,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_WorkSpaceENDCLASS_t qt_met
     "on_action_dock_find_triggered",
     "on_action_pluginManger_triggered",
     "on_action_menu_about_triggered",
+    "on_menu_theme_aboutToShow",
     "on_dockWidget_ProjectManger_visibilityChanged",
     "visible",
     "on_dockWidget_compilePrint_visibilityChanged",
@@ -187,7 +191,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      26,   14, // methods
+      27,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -195,32 +199,33 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  170,    2, 0x08,    1 /* Private */,
-       3,    0,  171,    2, 0x08,    2 /* Private */,
-       4,    1,  172,    2, 0x08,    3 /* Private */,
-       6,    1,  175,    2, 0x08,    5 /* Private */,
-       7,    1,  178,    2, 0x08,    7 /* Private */,
-       8,    1,  181,    2, 0x08,    9 /* Private */,
-       9,    1,  184,    2, 0x08,   11 /* Private */,
-      10,    0,  187,    2, 0x08,   13 /* Private */,
-      11,    0,  188,    2, 0x08,   14 /* Private */,
-      12,    1,  189,    2, 0x08,   15 /* Private */,
-      14,    1,  192,    2, 0x08,   17 /* Private */,
-      15,    1,  195,    2, 0x08,   19 /* Private */,
-      16,    1,  198,    2, 0x08,   21 /* Private */,
-      17,    1,  201,    2, 0x08,   23 /* Private */,
-      18,    1,  204,    2, 0x08,   25 /* Private */,
-      20,    1,  207,    2, 0x08,   27 /* Private */,
-      22,    1,  210,    2, 0x08,   29 /* Private */,
-      23,    1,  213,    2, 0x08,   31 /* Private */,
-      24,    1,  216,    2, 0x08,   33 /* Private */,
-      25,    1,  219,    2, 0x08,   35 /* Private */,
-      26,    0,  222,    2, 0x08,   37 /* Private */,
-      27,    0,  223,    2, 0x08,   38 /* Private */,
-      28,    0,  224,    2, 0x08,   39 /* Private */,
-      29,    0,  225,    2, 0x08,   40 /* Private */,
-      30,    0,  226,    2, 0x08,   41 /* Private */,
-      31,    0,  227,    2, 0x08,   42 /* Private */,
+       1,    0,  176,    2, 0x08,    1 /* Private */,
+       3,    0,  177,    2, 0x08,    2 /* Private */,
+       4,    1,  178,    2, 0x08,    3 /* Private */,
+       6,    1,  181,    2, 0x08,    5 /* Private */,
+       7,    1,  184,    2, 0x08,    7 /* Private */,
+       8,    1,  187,    2, 0x08,    9 /* Private */,
+       9,    1,  190,    2, 0x08,   11 /* Private */,
+      10,    0,  193,    2, 0x08,   13 /* Private */,
+      11,    0,  194,    2, 0x08,   14 /* Private */,
+      12,    0,  195,    2, 0x08,   15 /* Private */,
+      13,    1,  196,    2, 0x08,   16 /* Private */,
+      15,    1,  199,    2, 0x08,   18 /* Private */,
+      16,    1,  202,    2, 0x08,   20 /* Private */,
+      17,    1,  205,    2, 0x08,   22 /* Private */,
+      18,    1,  208,    2, 0x08,   24 /* Private */,
+      19,    1,  211,    2, 0x08,   26 /* Private */,
+      21,    1,  214,    2, 0x08,   28 /* Private */,
+      23,    1,  217,    2, 0x08,   30 /* Private */,
+      24,    1,  220,    2, 0x08,   32 /* Private */,
+      25,    1,  223,    2, 0x08,   34 /* Private */,
+      26,    1,  226,    2, 0x08,   36 /* Private */,
+      27,    0,  229,    2, 0x08,   38 /* Private */,
+      28,    0,  230,    2, 0x08,   39 /* Private */,
+      29,    0,  231,    2, 0x08,   40 /* Private */,
+      30,    0,  232,    2, 0x08,   41 /* Private */,
+      31,    0,  233,    2, 0x08,   42 /* Private */,
+      32,    0,  234,    2, 0x08,   43 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -232,17 +237,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_WorkSpaceENDCLASS[] = {
     QMetaType::Void, QMetaType::Bool,    5,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   13,
-    QMetaType::Void, QMetaType::Bool,   13,
-    QMetaType::Void, QMetaType::Bool,   13,
-    QMetaType::Void, QMetaType::Bool,   13,
-    QMetaType::Void, QMetaType::Bool,   13,
-    QMetaType::Void, QMetaType::QString,   19,
-    QMetaType::Void, QMetaType::Bool,   21,
-    QMetaType::Void, QMetaType::Bool,   21,
-    QMetaType::Void, QMetaType::Bool,   21,
-    QMetaType::Void, QMetaType::Bool,   21,
-    QMetaType::Void, QMetaType::Bool,   21,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   14,
+    QMetaType::Void, QMetaType::Bool,   14,
+    QMetaType::Void, QMetaType::Bool,   14,
+    QMetaType::Void, QMetaType::Bool,   14,
+    QMetaType::Void, QMetaType::Bool,   14,
+    QMetaType::Void, QMetaType::QString,   20,
+    QMetaType::Void, QMetaType::Bool,   22,
+    QMetaType::Void, QMetaType::Bool,   22,
+    QMetaType::Void, QMetaType::Bool,   22,
+    QMetaType::Void, QMetaType::Bool,   22,
+    QMetaType::Void, QMetaType::Bool,   22,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -284,6 +290,8 @@ Q_CONSTINIT const QMetaObject Form_WorkSpace::staticMetaObject = { {
         // method 'on_action_pluginManger_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_action_menu_about_triggered'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_menu_theme_aboutToShow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_dockWidget_ProjectManger_visibilityChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -349,23 +357,24 @@ void Form_WorkSpace::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 6: _t->on_action_dock_find_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 7: _t->on_action_pluginManger_triggered(); break;
         case 8: _t->on_action_menu_about_triggered(); break;
-        case 9: _t->on_dockWidget_ProjectManger_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 10: _t->on_dockWidget_compilePrint_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 11: _t->on_dockWidget_print_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 12: _t->on_dockWidget_debug_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 13: _t->on_dockWidget_find_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 14: _t->on_comboBox_compileMode_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 15: _t->on_action_menu_run_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 16: _t->on_action_menu_Rerun_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 17: _t->on_action_menu_stop_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 18: _t->on_action_menu_compile_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 19: _t->on_action_menu_staticCompile_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 20: _t->on_action_systemSettings_triggered(); break;
-        case 21: _t->on_action_toolBar_blue_triggered(); break;
-        case 22: _t->on_action_toolBar_white_triggered(); break;
-        case 23: _t->on_action_toolBar_Dark_triggered(); break;
-        case 24: _t->on_action_file_save_triggered(); break;
-        case 25: _t->on_action_file_saveAll_triggered(); break;
+        case 9: _t->on_menu_theme_aboutToShow(); break;
+        case 10: _t->on_dockWidget_ProjectManger_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 11: _t->on_dockWidget_compilePrint_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 12: _t->on_dockWidget_print_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 13: _t->on_dockWidget_debug_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 14: _t->on_dockWidget_find_visibilityChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 15: _t->on_comboBox_compileMode_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 16: _t->on_action_menu_run_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 17: _t->on_action_menu_Rerun_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 18: _t->on_action_menu_stop_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 19: _t->on_action_menu_compile_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 20: _t->on_action_menu_staticCompile_enabledChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 21: _t->on_action_systemSettings_triggered(); break;
+        case 22: _t->on_action_toolBar_blue_triggered(); break;
+        case 23: _t->on_action_toolBar_white_triggered(); break;
+        case 24: _t->on_action_toolBar_Dark_triggered(); break;
+        case 25: _t->on_action_file_save_triggered(); break;
+        case 26: _t->on_action_file_saveAll_triggered(); break;
         default: ;
         }
     }
@@ -390,13 +399,13 @@ int Form_WorkSpace::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 26)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 26;
+        _id -= 27;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 26)
+        if (_id < 27)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 26;
+        _id -= 27;
     }
     return _id;
 }

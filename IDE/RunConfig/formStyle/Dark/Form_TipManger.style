@@ -1,0 +1,28 @@
+/*窗口背景*/
+.QListWidget{
+	background-color: #222222;
+	border-radius:10px;
+}
+
+/*标题颜色*/
+#label_title{
+	color: #d7dadb;
+}
+
+/*内容颜色*/
+#label_tip{
+	color: #d7dadb;
+}
+
+/*关闭按钮默认*/
+.QToolButton{
+	border: 0px;
+	color: #d8d8db;
+}
+
+/*关闭按钮焦点*/
+.QToolButton:hover{
+	border:1px solid #d8d8db;
+	border-radius:4px;
+	color: #d7dadb;
+}

@@ -46,6 +46,8 @@ SOURCES += \
     Widget/Widget_Button_PluginItem.cpp \
     Widget/Widget_Button_Start.cpp \
     Widget/Widget_Button_WidgetItem.cpp \
+    Widget/Widget_Statusbar.cpp \
+    Widget/Widget_TipItem.cpp \
     Window/Form_About.cpp \
     Window/Form_Begin.cpp \
     Window/Form_Content.cpp \
@@ -61,6 +63,7 @@ SOURCES += \
     Window/Form_WidgetBox.cpp \
     Window/Form_WindowTab.cpp \
     Window/Form_WorkSpace.cpp \
+    Window/Form_TipManger.cpp \
     Window/settingWindow/Form_settings_Basic.cpp \
     Window/settingWindow/Form_settings_Color.cpp \
     Window/settingWindow/Form_settings_DataBase.cpp \
@@ -86,6 +89,8 @@ HEADERS += \
     Widget/Widget_Button_PluginItem.h \
     Widget/Widget_Button_Start.h \
     Widget/Widget_Button_WidgetItem.h \
+    Widget/Widget_Statusbar.h \
+    Widget/Widget_TipItem.h \
     Window/Form_About.h \
     Window/Form_Begin.h \
     Window/Form_Content.h \
@@ -101,6 +106,7 @@ HEADERS += \
     Window/Form_WidgetBox.h \
     Window/Form_WindowTab.h \
     Window/Form_WorkSpace.h \
+    Window/Form_TipManger.h \
     Window/settingWindow/Form_settings_Basic.h \
     Window/settingWindow/Form_settings_Color.h \
     Window/settingWindow/Form_settings_DataBase.h \
@@ -118,6 +124,8 @@ FORMS += \
     Widget/Widget_Button_PluginItem.ui \
     Widget/Widget_Button_Start.ui \
     Widget/Widget_Button_WidgetItem.ui \
+    Widget/Widget_Statusbar.ui \
+    Widget/Widget_TipItem.ui \
     Window/Form_About.ui \
     Window/Form_Beginui.ui \
     Window/Form_Content.ui \
@@ -133,6 +141,7 @@ FORMS += \
     Window/Form_WidgetBox.ui \
     Window/Form_WindowTab.ui \
     Window/Form_WorkSpace.ui \
+    Window/Form_TipManger.ui \
     Window/settingWindow/Form_settings_Basic.ui \
     Window/settingWindow/Form_settings_Color.ui \
     Window/settingWindow/Form_settings_DataBase.ui \

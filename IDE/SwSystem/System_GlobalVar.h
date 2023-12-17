@@ -24,8 +24,10 @@ extern Form_WorkSpace* workSpace; //工作窗口
 //管理器
 class Plugin_Manger;
 class System_EnvVar;
+class Form_TipManger;
 namespace Manger{
 extern Plugin_Manger* pluginManger; //插件管理器
+extern Form_TipManger* workspace_tipManger; //提示管理器
 //extern System_EnvVar* EnvVar; //环境变量管理器
 }
 

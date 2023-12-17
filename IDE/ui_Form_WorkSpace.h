@@ -158,7 +158,7 @@ public:
     QMenu *menu_view;
     QMenu *menu_help;
     QMenu *menu_set;
-    QMenu *menu_T;
+    QMenu *menu_theme;
     QMenu *menu_editor;
     QStatusBar *statusbar;
     QDockWidget *dockWidget_ProjectManger;
@@ -199,7 +199,35 @@ public:
 "/*\345\272\225\351\203\250\347\212\266\346\200\201\346\240\217*/\n"
 "QStatusBar{\n"
 "	background-color:#40568d;\n"
+"	color:rgb(255,255,255);\n"
 "}\n"
+"\n"
+"QStatusBar QToolButton{\n"
+"	background-color:#40568d;\n"
+"	color:rgb(255,255,255);\n"
+"	border:0px;\n"
+"	margin-right:4px;\n"
+"}\n"
+"\n"
+"QStatusBar QToolButton:hover{\n"
+"	background-color:#6673a4;\n"
+"}\n"
+"\n"
+"QStatusBar QProgressBar{\n"
+"	font:9pt;\n"
+"	border-radius:5px;\n"
+"	text-align:center;\n"
+"	border:1px solid #E8EDF2;\n"
+"	background-color: rgb(255, 255, 255);\n"
+"	border-color: rgb(180, 180, 180);\n"
+"}\n"
+"\n"
+"QStatusBar QProgressBar:chunk{\n"
+"	border-radius:5px;\n"
+"	background-color:#1ABC9C;\n"
+"}\n"
+""
+                        "\n"
 "\n"
 "/*\350\217\234\345\215\225\346\240\217*/\n"
 "QMenuBar{\n"
@@ -218,11 +246,10 @@ public:
 "	width: 1px;\n"
 "	border:0px;\n"
 "	margin:5px 0px;\n"
-"    background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Separator.png);\n"
+"	background-image: url(:/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Separator.png);\n"
 " }\n"
 "\n"
-"/*\345\267\245\345\205\267"
-                        "\346\240\217\346\213\226\345\212\250\345\233\276\347\211\207\346\240\217*/\n"
+"/*\345\267\245\345\205\267\346\240\217\346\213\226\345\212\250\345\233\276\347\211\207\346\240\217*/\n"
 "QToolBar::handle {\n"
 "	margin:4px 6px;\n"
 "	width:5px;\n"
@@ -236,7 +263,8 @@ public:
 "}\n"
 "\n"
 "/*\346\250\241\345\274\217\351\200\211\346\213\251\346\241\206*/\n"
-"#comboBox_compileMode{\n"
+"#combo"
+                        "Box_compileMode{\n"
 "	margin:0px 5px;\n"
 "}\n"
 "\n"
@@ -253,10 +281,10 @@ public:
 "    background-color: #0B0E11;\n"
 "	 /*font-family:Consolas;   \350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\345\255\227\344\275\223*/\n"
 "	font-size:8pt;\n"
-"	color:rgb(255, 255, 255);    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207"
-                        "\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
+"	color:rgb(255, 255, 255);    /*\350\256\276\347\275\256tab\344\270\255\347\232\204\346\226\207\346\234\254\347\232\204\351\242\234\350\211\262*/\n"
 "	/*border-top-left-radius: 5px;    \350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\267\246\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
-"	/*border-top-right-radius: 5px;    \350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222\357\274\211*/\n"
+"	/*border-top-right-radius: 5px;    \350\256\276\347\275\256tab\347\232\204\350\276\271\346\241\206\347\232\204\345\234\206\350\247\222\357\274\210\345\217\263\344\270\212\345\234\206\350\247\222"
+                        "\357\274\211*/\n"
 "	min-width: 100px;\n"
 "	margin-right:2px;\n"
 "	padding: 5px;\n"
@@ -269,8 +297,7 @@ public:
 "	color:rgb(58, 52, 42);\n"
 "}\n"
 " \n"
-"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214"
-                        "\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
+"/*\350\256\276\347\275\256TabWidget\344\270\255\351\274\240\346\240\207\346\202\254\346\265\256\345\234\250QTabBar\347\232\204tab\344\270\212\357\274\214\344\275\206\346\234\252\351\200\211\344\270\255\350\257\245Tab\347\232\204\346\240\267\345\274\217*/\n"
 "QTabBar::tab:hover:!selected {\n"
 "    background-color: rgb(187, 198, 241);\n"
 "	color:rgb(92, 45, 145);\n"
@@ -283,7 +310,8 @@ public:
 "}\n"
 "\n"
 "\n"
-"/*\350\256\276\347\275\256TabWidget\347\232\204\350\276\271\346\241\206\347\232\204\346\240\267\345\274\217\n"
+"/*\350\256\276\347\275\256TabWidget\347\232\204\350"
+                        "\276\271\346\241\206\347\232\204\346\240\267\345\274\217\n"
 "/*\346\265\256\345\212\250\347\252\227\346\240\274*/\n"
 "QDockWidget{\n"
 "	color:rgb(255,255,255);\n"
@@ -301,8 +329,7 @@ public:
 "}\n"
 "\n"
 "\n"
-"/*\345\217\263\351\224\256\350\217\234\345\215\225*"
-                        "/\n"
+"/*\345\217\263\351\224\256\350\217\234\345\215\225*/\n"
 "QMenu{\n"
 "	background-color: rgb(233, 238, 255);\n"
 "	border:1px solid rgb(148, 166, 202);\n"
@@ -324,7 +351,8 @@ public:
 "	width:16px;\n"
 "	height:16px\n"
 "}\n"
-"QMenu::item:disabled {/*\350\217\234\345\215\225\350\242\253\347\246\201\347\224\250*/\n"
+"QMenu::item:disabled {/*\350\217"
+                        "\234\345\215\225\350\242\253\347\246\201\347\224\250*/\n"
 "	color: rgb(181, 194, 202);\n"
 "}"));
         Form_WorkSpace->setToolButtonStyle(Qt::ToolButtonIconOnly);
@@ -965,7 +993,7 @@ public:
         Form_WorkSpace->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Form_WorkSpace);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1200, 24));
+        menubar->setGeometry(QRect(0, 0, 1200, 21));
         menu_file = new QMenu(menubar);
         menu_file->setObjectName("menu_file");
         menu_check = new QMenu(menubar);
@@ -988,8 +1016,8 @@ public:
         menu_help->setObjectName("menu_help");
         menu_set = new QMenu(menubar);
         menu_set->setObjectName("menu_set");
-        menu_T = new QMenu(menu_set);
-        menu_T->setObjectName("menu_T");
+        menu_theme = new QMenu(menu_set);
+        menu_theme->setObjectName("menu_theme");
         menu_editor = new QMenu(menubar);
         menu_editor->setObjectName("menu_editor");
         menu_editor->setEnabled(true);
@@ -1145,13 +1173,13 @@ public:
         menu_set->addAction(action_pluginManger);
         menu_set->addSeparator();
         menu_set->addAction(action_systemSettings);
-        menu_set->addAction(menu_T->menuAction());
+        menu_set->addAction(menu_theme->menuAction());
         menu_set->addSeparator();
         menu_set->addAction(action_toolBar_attestation);
         menu_set->addAction(action_toolBar_findInMod);
-        menu_T->addAction(action_toolBar_blue);
-        menu_T->addAction(action_toolBar_white);
-        menu_T->addAction(action_toolBar_Dark);
+        menu_theme->addAction(action_toolBar_blue);
+        menu_theme->addAction(action_toolBar_white);
+        menu_theme->addAction(action_toolBar_Dark);
         menu_editor->addAction(action_editor_undo);
         menu_editor->addAction(action_editor_redo);
         menu_editor->addAction(action_editor_copy);
@@ -1622,7 +1650,7 @@ public:
         menu_view->setTitle(QCoreApplication::translate("Form_WorkSpace", "\350\247\206\345\233\276(&W)", nullptr));
         menu_help->setTitle(QCoreApplication::translate("Form_WorkSpace", "\345\270\256\345\212\251(&H)", nullptr));
         menu_set->setTitle(QCoreApplication::translate("Form_WorkSpace", "\350\256\276\347\275\256(&S)", nullptr));
-        menu_T->setTitle(QCoreApplication::translate("Form_WorkSpace", "\344\270\273\351\242\230(&T)", nullptr));
+        menu_theme->setTitle(QCoreApplication::translate("Form_WorkSpace", "\344\270\273\351\242\230(&T)", nullptr));
         menu_editor->setTitle(QCoreApplication::translate("Form_WorkSpace", "\347\274\226\350\276\221(&E)", nullptr));
         dockWidget_ProjectManger->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "\345\267\245\347\250\213\347\256\241\347\220\206", nullptr));
         dockWidget_compilePrint->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "\347\274\226\350\257\221\350\276\223\345\207\272", nullptr));

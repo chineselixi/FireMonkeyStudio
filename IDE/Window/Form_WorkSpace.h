@@ -5,6 +5,7 @@
 
 
 class mod_WebPage; //模块声明
+class Widget_Statusbar; //状态栏组件
 
 namespace Ui {
 class Form_WorkSpace;
@@ -18,12 +19,17 @@ public:
     explicit Form_WorkSpace(QWidget *parent = nullptr);
     ~Form_WorkSpace();
 
+protected:
+    void resizeEvent(QResizeEvent *event) override; //窗口尺寸改变
+    void showEvent(QShowEvent *event) override;     //窗体显示
+
 public:
     void loadProject(); //加载工程
     void init(); //初始化
     void setPorMangerStyle(QString style); //设置工程管理器样式表
     void setCompilePrintStyle(QString style); //设置编译输出样式表
     void setPrintStyle(QString style); //设置打印样式表
+    void setTipMangerStyle(QString style); //设置通知管理器主题
     void setTheme(QString themeName); //设定主题
     QMenu* getEditorMenu(); //获取UI对象
 
@@ -43,12 +49,14 @@ private slots:
     void on_action_pluginManger_triggered();
     void on_action_menu_about_triggered(); //关于菜单被按下
 
-    void on_dockWidget_ProjectManger_visibilityChanged(bool visible);//Dock栏控制菜单
-//    void on_dockWidget_toolBox_visibilityChanged(bool visible);//Dock栏控制菜单
-    void on_dockWidget_compilePrint_visibilityChanged(bool visible);//Dock栏控制菜单
-    void on_dockWidget_print_visibilityChanged(bool visible);//Dock栏控制菜单
-    void on_dockWidget_debug_visibilityChanged(bool visible);//Dock栏控制菜单
-    void on_dockWidget_find_visibilityChanged(bool visible);//Dock栏控制菜单
+    void on_menu_theme_aboutToShow();          //主题菜单触发
+
+    void on_dockWidget_ProjectManger_visibilityChanged(bool visible);   //Dock栏控制菜单
+//    void on_dockWidget_toolBox_visibilityChanged(bool visible);       //Dock栏控制菜单
+    void on_dockWidget_compilePrint_visibilityChanged(bool visible);    //Dock栏控制菜单
+    void on_dockWidget_print_visibilityChanged(bool visible);           //Dock栏控制菜单
+    void on_dockWidget_debug_visibilityChanged(bool visible);           //Dock栏控制菜单
+    void on_dockWidget_find_visibilityChanged(bool visible);            //Dock栏控制菜单
 
     void on_comboBox_compileMode_currentTextChanged(const QString &arg1); //编译模式被改变
 
@@ -80,6 +88,8 @@ private:
     QString project_lang;
     QString project_noteClass;
 
+    //通知栏控件
+    Widget_Statusbar* widget_statusbar;
 
 protected:
     //工程管理事件，在init方法内被初始化

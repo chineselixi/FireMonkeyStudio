@@ -7,7 +7,108 @@
 /*底部状态栏*/
 QStatusBar{
 	background-color:#40568d;
+	color:rgb(255,255,255);
 }
+
+QStatusBar QToolButton{
+	background-color:#40568d;
+	color:rgb(255,255,255);
+	border:0px;
+	margin-right:4px;
+}
+
+QStatusBar QToolButton:hover{
+	background-color:#6673a4;
+}
+
+QStatusBar QProgressBar{
+	font:9pt;
+	border-radius:5px;
+	text-align:center;
+	border:1px solid #E8EDF2;
+	background-color: rgb(255, 255, 255);
+	border-color: rgb(180, 180, 180);
+}
+
+QStatusBar QProgressBar:chunk{
+	border-radius:5px;
+	background-color:#1ABC9C;
+}
+
+
+
+
+/*滚动条颜色配置*/
+QScrollBar{
+      background: #fafafa;	/*背景颜色*/
+}
+QScrollBar::handle{
+	background: #c2c3c9;	/*滑块默认颜色*/
+}
+
+QScrollBar::handle:horizontal:hover,  QScrollBar::handle:vertical:hover {
+	background: #7f8291;		/*滑块焦点颜色*/
+}
+QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal,
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical,
+QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal,
+QScrollBar:up-arrow:vertical, QScrollBar::down-arrow:vertical{
+	background: #e4e4e8;		/*指示标颜色*/
+}
+
+/*水平滚动条*/
+QScrollBar:horizontal {
+      height: 15px;
+      margin: 0px 20px 0 20px;
+  }
+  QScrollBar::handle:horizontal {
+      min-width: 20px;
+  }
+  QScrollBar::add-line:horizontal {
+      width: 20px;
+      subcontrol-position: right;
+      subcontrol-origin: margin;
+  }
+  QScrollBar::sub-line:horizontal {
+      width: 20px;
+      subcontrol-position: left;
+      subcontrol-origin: margin;
+  }
+ QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal {
+      width: 10px;
+      height: 10px;
+  }
+
+  QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+      background: none;
+  }
+/*垂直滚动条*/
+QScrollBar:vertical {
+      width: 15px;
+      margin: 20px 0px 20 0px;
+  }
+  QScrollBar::handle:vertical {
+      min-height: 20px;
+  }
+  QScrollBar::add-line:vertical {
+      height: 20px;
+      subcontrol-position: bottom;
+      subcontrol-origin: margin;
+  }
+  QScrollBar::sub-line:vertical {
+      height: 20px;
+      subcontrol-position: top;
+      subcontrol-origin: margin;
+  }
+ QScrollBar:up-arrow:vertical, QScrollBar::down-arrow:vertical {
+      width: 3px;
+      height: 3px;
+  }
+  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+      background: none;
+  }
+
+
 
 /*菜单栏*/
 QMenuBar{
