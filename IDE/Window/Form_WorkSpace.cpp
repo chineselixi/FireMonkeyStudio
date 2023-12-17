@@ -705,7 +705,6 @@ void Form_WorkSpace::event_ProjectManger_onFileOpen(QString filePath)
 void Form_WorkSpace::event_ProjectManger_onFileClose(QString filePath)
 {
     Manger::pluginManger->event_onFileClose(filePath);
-    qDebug() << "文件被关闭" << filePath;
 }
 
 //当项目被构建
