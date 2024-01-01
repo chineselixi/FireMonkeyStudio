@@ -256,7 +256,6 @@ void Form_CodeEditor::event_customContextMenuRequested(const QPoint &pos)
 //事件：边缘标记区域被点击
 void Form_CodeEditor::event_marginClicked(int margin, int line, Qt::KeyboardModifiers state)
 {
-    qDebug() << "margin:" << margin << " line:" << line;
     if(margin == 1 || margin == 2){
         this->setDebugSign(line,true,true);
         this->addSign(line,1);

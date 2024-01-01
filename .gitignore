@@ -4,3 +4,6 @@
 /.qmake.*
 /FMS.pro.user*
 /Makefile
+
+*.obj
+Makefile.*

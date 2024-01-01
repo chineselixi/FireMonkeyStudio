@@ -72,8 +72,6 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
         this->List_plg.append(t_plgMsg); //添加实例插件
     }
 
-    qDebug()  << "插件加载到这里了";
-
     //将未载入的插件排序到后面
     int t_endIndex = this->List_plg.length() - 1;
     for(int a=this->List_plg.length() - 1; a>=0; a--){
@@ -104,17 +102,15 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
             }
         }
     }
-    qDebug()  << "插件加载到这里了1";
+
     //插件初始化以后，直接绑定插件管理器
     this->pluginManger_init_building(); //绑定插件管理器
-qDebug()  << "插件加载到这里了2";
+
     //绑定设置接口
     this->setting_init_building();//加载设置接口
-qDebug()  << "插件加载到这里了3";
+
     //初始化主题操作接口
     this->themeChanged_init_building(); //设置主题设置获取接口
-
-    qDebug()  << "插件加载到这里了4";
 }
 
 
@@ -265,10 +261,8 @@ void Plugin_Manger::workSpace_init_tipPrint(PluginGlobalMsg::printFun_printList 
 //插件接口绑定
 void Plugin_Manger::pluginManger_init_building()
 {
-    qDebug()  << "插件加载1";
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
-            qDebug()  << "插件加载2" << this->List_plg[a].plgPth;
             this->List_plg[a].plgPth->PluginManger_PostMsg = [this](QString selfSign,QString pluginSign,QString pustMsg)->QString{
                 QString t_plgMsg = "";
                 for(int b = 0;b < List_plg.length();b++){
@@ -282,7 +276,6 @@ void Plugin_Manger::pluginManger_init_building()
                 }
                 return t_plgMsg; //返回最后一个信息投递的有效返回信息
             };
-            qDebug()  << "插件加载3";
         }
     }
 
