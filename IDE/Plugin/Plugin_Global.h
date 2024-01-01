@@ -87,7 +87,7 @@ enum class langType{
 
 //工程管理
 enum class proMangerMenuType{
-    Project,NewFile,ProNormal
+    Project,Normal
 };
 
 
@@ -104,20 +104,19 @@ enum class TipType{
 
 
 //工程结构信息基础（不包含完整工程信息）
-struct projectMsgBase{
-    QString proPath = ""; //工程目录
-    QString proName = "null";//工程名
-    QString proIconPath = "";//图标路径
-    QString proVerson = "1.0.0";//版本信息
-    int proVersonNum = -1;//版本号
-    QString proOrg = "";//社区与公司名称
-    QString proEmail = "null";//邮箱
-    QString proCall = "000-0000-0000";//电话
-    QString proNote = "";//备注
-    QString proSrcPath = "./src";//源码相对路径
-    QString proSystem = ""; //操作系统平台标记
-    QString proLanguage = ""; //语言标记
-    QString proNoteClass = ""; //其他备注标记
+struct ProjectMsg{
+    QString proPath = "";               //工程目录（可以是文件，也可以是文件夹）
+    QString proName = "";           //工程名
+    QString proIconPath = "";           //图标路径
+    QString proVerson = "1.0.0";        //版本信息
+    int proVersonNum = 1;               //版本号
+    QString proOrg = "";                //社区与公司名称
+    QString proEmail = "null";          //邮箱
+    QString proCall = "000-0000-0000";  //电话
+    QString proNote = "";               //备注
+    QString proSystem = "";             //操作系统平台标记
+    QString proLanguage = "";           //语言标记
+    QString proNoteClass = "";          //其他备注标记
 };
 
 
@@ -169,7 +168,12 @@ typedef std::function<QVariant(QString key,QString normal)> setPtr_getFun; //获
 typedef std::function<void(QString key)> setPtr_deleteFun; //删除设置
 
 //工程管理器操作
-typedef std::function<projectMsgBase(QString proPath)> projectManger_getProMsgBase; //工程管理器获取基础信息
+typedef std::function<ProjectMsg(QString proPath)> projectManger_getProMsgBase; //工程管理器获取基础信息
+typedef std::function<void(QString suffix, QString sign, QIcon ico_16, QString normalName, QString content)> projectManger_addBuildFileSign; //添加新建工程文档
+typedef std::function<void(QString suffix)> projectManger_delBuildFileSign; //删除创建文件标记
+typedef std::function<void(QString suffix, QIcon ico)> projectManger_addFileIco; //添加类别文件图标
+typedef std::function<void(QIcon ico,QString objPath)> projectManger_setObjIco; //设置目标图标，如果目标为空，则设置类型为non的图标
+
 
 //通知提示操作
 typedef std::function<void(QString str, int showTime)> tipFun_postStr; //投递字符串到状态栏

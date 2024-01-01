@@ -2751,6 +2751,11 @@ debug\moc_Widget_TipItem.cpp: Widget\Widget_TipItem.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QTimer \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtimer.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qbasictimer.h \
+		Plugin\Plugin_Global.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QDockWidget \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdockwidget.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolBar \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbar.h \
 		debug\moc_predefs.h \
 		D:\QT\6.6.0\msvc2019_64\bin\moc.exe
 	D:\QT\6.6.0\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include E:/QtProject/FireMonkeyStudio/IDE/debug/moc_predefs.h -ID:/QT/6.6.0/msvc2019_64/mkspecs/win32-msvc -IE:/QtProject/FireMonkeyStudio/IDE -IE:/QtProject/FireMonkeyStudio/release -ID:/QT/6.6.0/msvc2019_64/include -ID:/QT/6.6.0/msvc2019_64/include/QtWebView -ID:/QT/6.6.0/msvc2019_64/include/QtWebEngineWidgets -ID:/QT/6.6.0/msvc2019_64/include/QtPrintSupport -ID:/QT/6.6.0/msvc2019_64/include/QtWidgets -ID:/QT/6.6.0/msvc2019_64/include/QtWebEngineCore -ID:/QT/6.6.0/msvc2019_64/include/QtQuick -ID:/QT/6.6.0/msvc2019_64/include/QtOpenGL -ID:/QT/6.6.0/msvc2019_64/include/QtGui -ID:/QT/6.6.0/msvc2019_64/include/QtQmlModels -ID:/QT/6.6.0/msvc2019_64/include/QtWebChannel -ID:/QT/6.6.0/msvc2019_64/include/QtQml -ID:/QT/6.6.0/msvc2019_64/include/QtNetwork -ID:/QT/6.6.0/msvc2019_64/include/QtQmlIntegration -ID:/QT/6.6.0/msvc2019_64/include/QtPositioning -ID:/QT/6.6.0/msvc2019_64/include/QtCore -ID:\VisualStudio\VC\Tools\MSVC\14.35.32215\include -ID:\VisualStudio\VC\Tools\MSVC\14.35.32215\ATLMFC\include -ID:\VisualStudio\VC\Auxiliary\VS\include -I"D:\Windows Kits\10\include\10.0.22000.0\ucrt" -I"D:\Windows Kits\10\\include\10.0.22000.0\\um" -I"D:\Windows Kits\10\\include\10.0.22000.0\\shared" -I"D:\Windows Kits\10\\include\10.0.22000.0\\winrt" -I"D:\Windows Kits\10\\include\10.0.22000.0\\cppwinrt" Widget\Widget_TipItem.h -o debug\moc_Widget_TipItem.cpp
@@ -4283,6 +4288,11 @@ debug\moc_Form_ProjectManger.cpp: Window\Form_ProjectManger.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVector \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qvector.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\QDesktopServices \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\qdesktopservices.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QUrl \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QFileSystemWatcher \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTreeWidgetItem \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreeview.h \
@@ -5527,6 +5537,11 @@ debug\moc_Form_TipManger.cpp: Window\Form_TipManger.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtimer.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qbasictimer.h \
 		Widget\Widget_TipItem.h \
+		Plugin\Plugin_Global.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QDockWidget \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdockwidget.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolBar \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbar.h \
 		debug\moc_predefs.h \
 		D:\QT\6.6.0\msvc2019_64\bin\moc.exe
 	D:\QT\6.6.0\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include E:/QtProject/FireMonkeyStudio/IDE/debug/moc_predefs.h -ID:/QT/6.6.0/msvc2019_64/mkspecs/win32-msvc -IE:/QtProject/FireMonkeyStudio/IDE -IE:/QtProject/FireMonkeyStudio/release -ID:/QT/6.6.0/msvc2019_64/include -ID:/QT/6.6.0/msvc2019_64/include/QtWebView -ID:/QT/6.6.0/msvc2019_64/include/QtWebEngineWidgets -ID:/QT/6.6.0/msvc2019_64/include/QtPrintSupport -ID:/QT/6.6.0/msvc2019_64/include/QtWidgets -ID:/QT/6.6.0/msvc2019_64/include/QtWebEngineCore -ID:/QT/6.6.0/msvc2019_64/include/QtQuick -ID:/QT/6.6.0/msvc2019_64/include/QtOpenGL -ID:/QT/6.6.0/msvc2019_64/include/QtGui -ID:/QT/6.6.0/msvc2019_64/include/QtQmlModels -ID:/QT/6.6.0/msvc2019_64/include/QtWebChannel -ID:/QT/6.6.0/msvc2019_64/include/QtQml -ID:/QT/6.6.0/msvc2019_64/include/QtNetwork -ID:/QT/6.6.0/msvc2019_64/include/QtQmlIntegration -ID:/QT/6.6.0/msvc2019_64/include/QtPositioning -ID:/QT/6.6.0/msvc2019_64/include/QtCore -ID:\VisualStudio\VC\Tools\MSVC\14.35.32215\include -ID:\VisualStudio\VC\Tools\MSVC\14.35.32215\ATLMFC\include -ID:\VisualStudio\VC\Auxiliary\VS\include -I"D:\Windows Kits\10\include\10.0.22000.0\ucrt" -I"D:\Windows Kits\10\\include\10.0.22000.0\\um" -I"D:\Windows Kits\10\\include\10.0.22000.0\\shared" -I"D:\Windows Kits\10\\include\10.0.22000.0\\winrt" -I"D:\Windows Kits\10\\include\10.0.22000.0\\cppwinrt" Window\Form_TipManger.h -o debug\moc_Form_TipManger.cpp
@@ -7327,6 +7342,11 @@ ui_Form_WorkSpace.h: Window\Form_WorkSpace.ui \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVector \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qvector.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\QDesktopServices \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\qdesktopservices.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QUrl \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QFileSystemWatcher \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTreeWidgetItem \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreeview.h \
@@ -8817,6 +8837,8 @@ debug\System_UtilFun.obj: SwSystem\System_UtilFun.cpp SwSystem\System_UtilFun.h 
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QDir \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdir.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qwidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qaction.h \
@@ -9172,41 +9194,7 @@ debug\Widget_Button_ListItem.obj: Widget\Widget_Button_ListItem.cpp Widget\Widge
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Widget_Button_ListItem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout
+		ui_Widget_Button_ListItem.h
 
 debug\Widget_Button_ModHistoryItem.obj: Widget\Widget_Button_ModHistoryItem.cpp Widget\Widget_Button_ModHistoryItem.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -9371,41 +9359,7 @@ debug\Widget_Button_ModHistoryItem.obj: Widget\Widget_Button_ModHistoryItem.cpp 
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Widget_Button_ModHistoryItem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem
+		ui_Widget_Button_ModHistoryItem.h
 
 debug\Widget_Button_ModItem.obj: Widget\Widget_Button_ModItem.cpp Widget\Widget_Button_ModItem.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -9570,42 +9524,7 @@ debug\Widget_Button_ModItem.obj: Widget\Widget_Button_ModItem.cpp Widget\Widget_
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Widget_Button_ModItem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout
+		ui_Widget_Button_ModItem.h
 
 debug\Widget_Button_PluginItem.obj: Widget\Widget_Button_PluginItem.cpp Widget\Widget_Button_PluginItem.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -9771,45 +9690,6 @@ debug\Widget_Button_PluginItem.obj: Widget\Widget_Button_PluginItem.cpp Widget\W
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		ui_Widget_Button_PluginItem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QFrame \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QImage \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QPainter \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpainter.h \
@@ -9979,41 +9859,7 @@ debug\Widget_Button_Start.obj: Widget\Widget_Button_Start.cpp Widget\Widget_Butt
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Widget_Button_Start.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout
+		ui_Widget_Button_Start.h
 
 debug\Widget_Button_WidgetItem.obj: Widget\Widget_Button_WidgetItem.cpp Widget\Widget_Button_WidgetItem.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -10178,40 +10024,7 @@ debug\Widget_Button_WidgetItem.obj: Widget\Widget_Button_WidgetItem.cpp Widget\W
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Widget_Button_WidgetItem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h
+		ui_Widget_Button_WidgetItem.h
 
 debug\Widget_Statusbar.obj: Widget\Widget_Statusbar.cpp Widget\Widget_Statusbar.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -10376,42 +10189,7 @@ debug\Widget_Statusbar.obj: Widget\Widget_Statusbar.cpp Widget\Widget_Statusbar.
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Widget_Statusbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QProgressBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qprogressbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h
+		ui_Widget_Statusbar.h
 
 debug\Widget_TipItem.obj: Widget\Widget_TipItem.cpp Widget\Widget_TipItem.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -10579,44 +10357,12 @@ debug\Widget_TipItem.obj: Widget\Widget_TipItem.cpp Widget\Widget_TipItem.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QTimer \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtimer.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qbasictimer.h \
-		ui_Widget_TipItem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout
+		Plugin\Plugin_Global.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QDockWidget \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdockwidget.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolBar \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbar.h \
+		ui_Widget_TipItem.h
 
 debug\Form_About.obj: Window\Form_About.cpp Window\Form_About.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -10781,44 +10527,7 @@ debug\Form_About.obj: Window\Form_About.cpp Window\Form_About.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Form_About.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QFrame \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout
+		ui_Form_About.h
 
 debug\Form_Begin.obj: Window\Form_Begin.cpp Window\Form_Begin.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -10983,37 +10692,7 @@ debug\Form_Begin.obj: Window\Form_Begin.cpp Window\Form_Begin.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Form_Beginui.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QProgressBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qprogressbar.h
+		ui_Form_Beginui.h
 
 debug\Form_Content.obj: Window\Form_Content.cpp Window\Form_Content.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMainWindow \
@@ -11180,36 +10859,7 @@ debug\Form_Content.obj: Window\Form_Content.cpp Window\Form_Content.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		ui_Form_Content.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMenuBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmenubar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmenu.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QStatusBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstatusbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget
+		ui_Form_Content.h
 
 debug\Form_Editor.obj: Window\Form_Editor.cpp Window\Form_Editor.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -11374,30 +11024,7 @@ debug\Form_Editor.obj: Window\Form_Editor.cpp Window\Form_Editor.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Form_Editor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h
+		ui_Form_Editor.h
 
 debug\Form_Index.obj: Window\Form_Index.cpp Window\Form_Index.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -11563,35 +11190,6 @@ debug\Form_Index.obj: Window\Form_Index.cpp Window\Form_Index.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		ui_Form_Index.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\QIcon \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
 		Window\Form_WorkSpace.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMainWindow \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmainwindow.h \
@@ -11769,56 +11367,6 @@ debug\Form_ListPrint.obj: Window\Form_ListPrint.cpp Window\Form_ListPrint.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolBar \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbar.h \
 		ui_Form_ListPrint.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHeaderView \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qheaderview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qitemselectionmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTreeWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreeview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidgetitemiterator.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QResizeEvent
 
 debug\Form_New.obj: Window\Form_New.cpp Window\Form_New.h \
@@ -12005,57 +11553,6 @@ debug\Form_New.obj: Window\Form_New.cpp Window\Form_New.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
 		ui_Form_New.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\QIcon \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QComboBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcombobox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QFrame \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLineEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlineedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QListWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QStackedWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstackedwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
-		Widget\Widget_Button_Start.h \
 		Widget\Widget_Button_ListItem.h \
 		Widget\Widget_Button_ModHistoryItem.h \
 		Widget\Widget_Button_ModItem.h \
@@ -12250,58 +11747,6 @@ debug\Form_PluginManger.obj: Window\Form_PluginManger.cpp Window\Form_PluginMang
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		ui_Form_PluginManger.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QListWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlistwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlistview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qitemselectionmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
 		SwSystem\System_GlobalVar.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QString \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVector \
@@ -12325,6 +11770,7 @@ debug\Form_PluginManger.obj: Window\Form_PluginManger.cpp Window\Form_PluginMang
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfileinfo.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdatetime.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcalendar.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtimezone.h \
 		Widget\Widget_Button_PluginItem.h
 
@@ -12493,6 +11939,11 @@ debug\Form_ProjectManger.obj: Window\Form_ProjectManger.cpp Window\Form_ProjectM
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVector \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qvector.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\QDesktopServices \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\qdesktopservices.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QUrl \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QFileSystemWatcher \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTreeWidgetItem \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreeview.h \
@@ -12522,39 +11973,6 @@ debug\Form_ProjectManger.obj: Window\Form_ProjectManger.cpp Window\Form_ProjectM
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcalendar.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtimezone.h \
 		ui_Form_ProjectManger.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\QAction \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHeaderView \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qheaderview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTreeWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QFile \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QFileInfo \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSettings \
@@ -12574,10 +11992,23 @@ debug\Form_ProjectManger.obj: Window\Form_ProjectManger.cpp Window\Form_ProjectM
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		Window\Form_VisualFolder.h \
-		Plugin\Plugin_Global.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QDockWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdockwidget.h
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QJsonDocument \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qjsondocument.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qjsonvalue.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcborvalue.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcborcommon.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\quuid.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qendian.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QJsonObject \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qjsonobject.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QElapsedTimer \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QProgressDialog \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qprogressdialog.h \
+		SwSystem\System_UtilFun.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QProcessEnvironment \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qprocess.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QPoint
 
 debug\Form_SystemSettings.obj: Window\Form_SystemSettings.cpp Window\Form_SystemSettings.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -12764,52 +12195,6 @@ debug\Form_SystemSettings.obj: Window\Form_SystemSettings.cpp Window\Form_System
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
 		ui_Form_SystemSettings.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QFrame \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLineEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlineedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QListWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QStackedWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstackedwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
 		Window\settingWindow\Form_settings_Basic.h \
 		module\mod_settingsFormBase.h \
 		Window\settingWindow\Form_settings_Color.h \
@@ -13006,44 +12391,7 @@ debug\Form_TextPrint.obj: Window\Form_TextPrint.cpp Window\Form_TextPrint.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSizeF \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
-		ui_Form_TextPrint.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTextEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtextedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h
+		ui_Form_TextPrint.h
 
 debug\Form_VisualFolder.obj: Window\Form_VisualFolder.cpp Window\Form_VisualFolder.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -13209,64 +12557,6 @@ debug\Form_VisualFolder.obj: Window\Form_VisualFolder.cpp Window\Form_VisualFold
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		ui_Form_VisualFolder.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QComboBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcombobox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLineEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlineedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMessageBox \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmessagebox.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdialog.h
@@ -13435,53 +12725,6 @@ debug\Form_WidgetBox.obj: Window\Form_WidgetBox.cpp Window\Form_WidgetBox.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		ui_Form_WidgetBox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QListWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlistwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlistview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qitemselectionmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
 		Widget\Widget_Button_WidgetItem.h
 
 debug\Form_WindowTab.obj: Window\Form_WindowTab.cpp Window\Form_WindowTab.h \
@@ -13655,36 +12898,11 @@ debug\Form_WindowTab.obj: Window\Form_WindowTab.cpp Window\Form_WindowTab.h \
 		Plugin\Plugin_Base.h \
 		module\mod_settingsFormBase.h \
 		ui_Form_WindowTab.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTabWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMenu \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmenu.h \
 		SwSystem\System_GlobalVar.h \
@@ -13697,7 +12915,8 @@ debug\Form_WindowTab.obj: Window\Form_WindowTab.cpp Window\Form_WindowTab.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlibrary.h \
 		Window\Form_WorkSpace.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMainWindow \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmainwindow.h
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmainwindow.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h
 
 debug\Form_WorkSpace.obj: Window\Form_WorkSpace.cpp Window\Form_WorkSpace.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMainWindow \
@@ -13865,77 +13084,6 @@ debug\Form_WorkSpace.obj: Window\Form_WorkSpace.cpp Window\Form_WorkSpace.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		ui_Form_WorkSpace.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\QAction \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\QIcon \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QComboBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcombobox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QDockWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdockwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMenu \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmenu.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMenuBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmenubar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QStatusBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstatusbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
-		Window\Form_ListPrint.h \
-		Plugin\Plugin_Global.h \
-		Window\Form_ProjectManger.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVector \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qvector.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTreeWidgetItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreeview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qitemselectionmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidgetitemiterator.h \
-		Window\Form_TextPrint.h \
-		Window\Form_WindowTab.h \
-		Plugin\Plugin_Base.h \
-		module\mod_settingsFormBase.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QDialog \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdialog.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QFileDialog \
@@ -13946,6 +13094,7 @@ debug\Form_WorkSpace.obj: Window\Form_WorkSpace.cpp Window\Form_WorkSpace.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfileinfo.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdatetime.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcalendar.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtimezone.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QFileInfo \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolButton \
@@ -13954,6 +13103,8 @@ debug\Form_WorkSpace.obj: Window\Form_WorkSpace.cpp Window\Form_WorkSpace.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QScreen \
 		SwSystem\System_GlobalVar.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QString \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVector \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qvector.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QFont \
 		SwSystem\system_systemsetting.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QSettings \
@@ -14151,35 +13302,12 @@ debug\Form_TipManger.obj: Window\Form_TipManger.cpp Window\Form_TipManger.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtimer.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qbasictimer.h \
 		Widget\Widget_TipItem.h \
+		Plugin\Plugin_Global.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QDockWidget \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qdockwidget.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QToolBar \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtoolbar.h \
 		ui_Form_TipManger.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QListWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QDateTime \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdatetime.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcalendar.h
@@ -14348,73 +13476,7 @@ debug\Form_settings_Basic.obj: Window\settingWindow\Form_settings_Basic.cpp Wind
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		module\mod_settingsFormBase.h \
-		ui_Form_settings_Basic.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QCheckBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcheckbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QComboBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcombobox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGroupBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLineEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlineedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QScrollArea \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout
+		ui_Form_settings_Basic.h
 
 debug\Form_settings_Color.obj: Window\settingWindow\Form_settings_Color.cpp Window\settingWindow\Form_settings_Color.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -14581,74 +13643,8 @@ debug\Form_settings_Color.obj: Window\settingWindow\Form_settings_Color.cpp Wind
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		module\mod_settingsFormBase.h \
 		ui_Form_settings_Color.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QCheckBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcheckbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QComboBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcombobox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QFontComboBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qfontcombobox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qfontdatabase.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGroupBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLineEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlineedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QScrollArea \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QFontDatabase \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\qfontdatabase.h \
 		SwSystem\System_GlobalVar.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QString \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVector \
@@ -14666,7 +13662,22 @@ debug\Form_settings_Color.obj: Window\settingWindow\Form_settings_Color.cpp Wind
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlistwidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlistview.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qitemselectionmodel.h
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h
 
 debug\Form_settings_DataBase.obj: Window\settingWindow\Form_settings_DataBase.cpp Window\settingWindow\Form_settings_DataBase.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -14832,55 +13843,7 @@ debug\Form_settings_DataBase.obj: Window\settingWindow\Form_settings_DataBase.cp
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		module\mod_settingsFormBase.h \
-		ui_Form_settings_DataBase.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QCheckBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcheckbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGroupBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLineEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlineedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout
+		ui_Form_settings_DataBase.h
 
 debug\Form_settings_Device.obj: Window\settingWindow\Form_settings_Device.cpp Window\settingWindow\Form_settings_Device.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget \
@@ -15046,40 +14009,7 @@ debug\Form_settings_Device.obj: Window\settingWindow\Form_settings_Device.cpp Wi
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		module\mod_settingsFormBase.h \
-		ui_Form_settings_Device.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h
+		ui_Form_settings_Device.h
 
 debug\Form_settings_Git.obj: Window\settingWindow\Form_settings_Git.cpp D:\QT\6.6.0\msvc2019_64\include\QtCore\QFile \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfile.h \
@@ -15260,53 +14190,6 @@ debug\Form_settings_Git.obj: Window\settingWindow\Form_settings_Git.cpp D:\QT\6.
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QProcess \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qprocess.h \
 		ui_Form_settings_Git.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QCheckBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcheckbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGroupBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLineEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlineedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout \
 		SwSystem\System_GlobalVar.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QString \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVector \
@@ -15483,81 +14366,7 @@ debug\Form_settings_Qt.obj: Window\settingWindow\Form_settings_Qt.cpp Window\set
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		module\mod_settingsFormBase.h \
-		ui_Form_settings_Qt.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QCheckBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcheckbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QComboBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qcombobox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGridLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgridlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QGroupBox \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHBoxLayout \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QHeaderView \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qheaderview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qitemselectionmodel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLabel \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpicture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QLineEdit \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qlineedit.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qpen.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QScrollArea \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qscrollarea.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QSpacerItem \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTreeWidget \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidget.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreeview.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidgetitemiterator.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QVBoxLayout
+		ui_Form_settings_Qt.h
 
 debug\main.obj: main.cpp mainwindow.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMainWindow \
@@ -15752,6 +14561,11 @@ debug\main.obj: main.cpp mainwindow.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabbar.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qrubberband.h \
 		Window\Form_ProjectManger.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\QDesktopServices \
+		D:\QT\6.6.0\msvc2019_64\include\QtGui\qdesktopservices.h \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QUrl \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\QFileSystemWatcher \
+		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QTreeWidgetItem \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreewidget.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtreeview.h \
@@ -15931,36 +14745,7 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtGui\QTransform \
 		D:\QT\6.6.0\msvc2019_64\include\QtCore\qnativeinterface.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		ui_mainwindow.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\QVariant \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QApplication \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qmutex.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthreadpool.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qthread.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qexception.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qpromise.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtCore\qlocale.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QMenuBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmenubar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qmenu.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QStatusBar \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\qstatusbar.h \
-		D:\QT\6.6.0\msvc2019_64\include\QtWidgets\QWidget
+		ui_mainwindow.h
 
 debug\mod_WebPage.obj: module\mod_WebPage.cpp module\mod_WebPage.h \
 		D:\QT\6.6.0\msvc2019_64\include\QtWebEngineWidgets\QWebEngineView \

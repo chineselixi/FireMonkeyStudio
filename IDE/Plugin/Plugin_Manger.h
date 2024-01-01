@@ -15,7 +15,7 @@ public:
     struct PluginMsg{
         QString filePath = ""; //插件文件名
         Plugin_Base* plgPth = nullptr; //插件对象指针，禁止或未加载的指针是nullptr
-        QLibrary* qLibPth = nullptr;   //插件加载器指针
+        QLibrary* qLibPth  = nullptr;   //插件加载器指针
     };
 
     //菜单信息
@@ -65,7 +65,7 @@ public:
     //初始化菜单
     void workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool,PluginGlobalMsg::menuFun toolBar_set,PluginGlobalMsg::menuFun toolBar_help,PluginGlobalMsg::menuFun toolBar_view,
                             PluginGlobalMsg::menuFun toolBar_extend,PluginGlobalMsg::menuFun toolBar_db,PluginGlobalMsg::menuFun toolBar_comple,PluginGlobalMsg::menuFun toolBar_insert,PluginGlobalMsg::menuFun toolBar_file,
-                            PluginGlobalMsg::menuFun ProManger_project,PluginGlobalMsg::menuFun ProManger_newFile,PluginGlobalMsg::menuFun ProManger_proNormal); //workSpace添加插件菜单
+                            PluginGlobalMsg::menuFun ProManger_project,PluginGlobalMsg::menuFun ProManger_proNormal); //workSpace添加插件菜单
     void TabSpace_init_tabView(PluginGlobalMsg::addTabViewPth addTabFun,
                                 PluginGlobalMsg::tab_getSign getSignFun,PluginGlobalMsg::tab_getWidget getWidgetFun,
                                 PluginGlobalMsg::tab_hasTab_Sign hasSignFun,PluginGlobalMsg::tab_hasTab_WidgetPtr hasWidgtFun);//添加workSpace的tabView接口
@@ -88,7 +88,11 @@ public:
 
     void themeChanged_init_building(); //主题操作绑定
 
-    void projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase fun_getBase); //工程管理器绑定
+    void projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase ProjectManger_getBaseFun, //工程管理器获取基础信息
+                                     PluginGlobalMsg::projectManger_addBuildFileSign ProjectManger_addBuildSignFun, //添加新建工程文档
+                                     PluginGlobalMsg::projectManger_delBuildFileSign ProjectManger_delBuildSignFun, //删除创建文件标记
+                                     PluginGlobalMsg::projectManger_addFileIco ProjectManger_addFileIcoFun, //添加类别文件图标
+                                     PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIcoFun); //设置目标图标，如果目标为空，则设置类型为non的图标
 
     void workSpace_init_compileMod(PluginGlobalMsg::compileMod_changeFun addFun, //添加编译模式
                                    PluginGlobalMsg::compileMod_changeFun delFun, //删除编译模式
@@ -118,12 +122,18 @@ public:
 
     void event_onModLoadFinish();//当模块加载完毕，将第一时间激发模块事件
     void event_onCompileTypeChanged(QString typeSign); //当编译模式被改变激发模块事件
+
+
+    void event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass); //当工程被加载完毕，或者切换的工程已经被改变
+    void event_onProjectBuild(QString projectPath); //工程被构建
+    void event_onProjectClear(QString projectPath); //工程被清理
+
     void event_onFileOpen(QString filePath); //当文件被打开，激发模块事件
-    void event_onFileOpenFinish(QString filePath); //当前文件已经被打开，所有的文件被打开都会激发模块事件
     void event_onFileClose(QString filePath); //当文件被删除或者关闭
+    void event_onFileRename(QString oldPath, QString newPath); //当文件路径被改变
+
     void event_onFileSave(QString filePath); //当文件被保存
     void event_onFileSaveAll(); //当文件全部保存
-    void event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass); //当工程被加载完毕，或者切换的工程已经被改变
 
     void event_onThemeChanged(QString themeSign); //当主题标记被改变
 

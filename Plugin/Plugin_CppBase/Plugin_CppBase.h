@@ -26,7 +26,8 @@ public:
     Plugin_CppBase();
 
 private: //全局事件：返回false则阻止继续触发事件
-    bool event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass) override; //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
+
+    bool event_onProjectActiveChanged(QString proPath,QString proLangs,QString proNoteClass) override; //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
     //当工具栏内部按钮被按下(参数1:激发按钮类型   参数2:工程的目录   参数3:工程的多个语言标记   参数4:工程类型标记)
     bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass);
     bool event_onFileOpen(QString filePath) override; //文件被加载，阻止消息继续触发，返回false阻止

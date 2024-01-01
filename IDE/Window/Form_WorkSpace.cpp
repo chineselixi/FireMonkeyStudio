@@ -144,12 +144,15 @@ void Form_WorkSpace::init()
 
 
     //=================初始化工程管理事件=================
+    connect(ui->widget_ProjectManger,&Form_ProjectManger::onOpenProject,this,&Form_WorkSpace::event_ProjectManger_onOpenProject); //工程打开
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectActiveChanged,this,&Form_WorkSpace::event_ProjectManger_onProjectActiveChanged); //工程改变
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onFileOpen,this,&Form_WorkSpace::event_ProjectManger_onFileOpen); //打开文件
-    connect(ui->widget_ProjectManger,&Form_ProjectManger::onFileClose,this,&Form_WorkSpace::event_ProjectManger_onFileClose); //文件删除或者关闭
+    connect(ui->widget_ProjectManger,&Form_ProjectManger::onFileOrDirDel,this,&Form_WorkSpace::event_ProjectManger_onFileClose); //文件删除或者关闭
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectBuild,this,&Form_WorkSpace::event_ProjectManger_onProjectBuild); //工程创建完毕
+    connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectClear,this,&Form_WorkSpace::event_ProjectManger_onProjectClear); //工程创建清理
+    connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectAttribute,this,&Form_WorkSpace::event_ProjectManger_onProjectAttribute); //项目属性
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectClose,this,&Form_WorkSpace::event_ProjectManger_onProjectClose); //工程被关闭
-    connect(ui->widget_ProjectManger,&Form_ProjectManger::onFileRename,this,&Form_WorkSpace::event_ProjectManger_onFileRename); //文件被更名
+    connect(ui->widget_ProjectManger,&Form_ProjectManger::onRename,this,&Form_WorkSpace::event_ProjectManger_onFileRename); //文件被更名
 
     //=================插件，函数绑定=================
     //绑定tabView,此代码已经解耦合，已经注销无法使用。将在以后版本彻底优化，23.10.20
@@ -251,7 +254,6 @@ void Form_WorkSpace::init()
         [this](QAction* act){ui->menu_insert->addAction(act);},//toolBar_insert
         [this](QAction* act){ui->menu_file->addAction(act);},//toolBar_file
         [this](QAction* act){ui->widget_ProjectManger->Menu_pro->addAction(act);},//ProManger_project
-        [this](QAction* act){ui->widget_ProjectManger->Menu_addNewFile->addAction(act);},//ProManger_newFile
         [this](QAction* act){ui->widget_ProjectManger->Menu_normal->addAction(act);});//ProManger_proNormal
 
 
@@ -370,10 +372,22 @@ void Form_WorkSpace::init()
 
 
 
-    //绑定工程管理器信息 projectMsgBase(QString proPath)
+    //绑定工程管理器信息 ProjectMsg(QString proPath)
     Manger::pluginManger->projectManger_init_building(
-        [this](QString proPath)->PluginGlobalMsg::projectMsgBase{
-            return ui->widget_ProjectManger->getProjectMsgBase(proPath);
+        [this](QString proPath)->PluginGlobalMsg::ProjectMsg{
+            return ui->widget_ProjectManger->getProjectMsg(proPath);
+        },
+        [this](QString suffix, QString sign, QIcon ico_16, QString normalName, QString content){
+            ui->widget_ProjectManger->addBuildFileSign(suffix,sign,ico_16,normalName,content);
+        },
+        [this](QString suffix){
+            ui->widget_ProjectManger->delBuildFileSign(suffix);
+        },
+        [this](QString suffix, QIcon ico){
+            ui->widget_ProjectManger->addFileIco(suffix,ico);
+        },
+        [this](QIcon ico,QString objPath){
+            ui->widget_ProjectManger->setObjIco(ico,objPath);
         });
 
 
@@ -515,21 +529,8 @@ void Form_WorkSpace::init()
 //通过文件或者路径加载工程
 void Form_WorkSpace::loadProject()
 {
-    QFileInfo t_fileInfo(ProjectOpen::projectPath);
-    if(!t_fileInfo.exists()) return;
     Form_ProjectManger* t_proManger = (Form_ProjectManger*)ui->widget_ProjectManger; //工程管理器对象
-    if(t_fileInfo.isDir()){
-        t_proManger->addProjectForDir(t_fileInfo.absoluteFilePath());
-    }
-    else if(t_fileInfo.isFile()){
-        if(t_fileInfo.suffix() == "fmp"){
-            t_proManger->addProjectForFmp(t_fileInfo.absoluteFilePath());
-        }
-        else{
-            t_proManger->addProjectForFile(t_fileInfo.absoluteFilePath());
-        }
-    }
-    t_proManger->flashTreeWidget(); //刷新树框
+    t_proManger->addProject(ProjectOpen::projectPath);
     ProjectOpen::projectPath = "";
 }
 
@@ -719,7 +720,19 @@ void Form_WorkSpace::event_ProjectManger_onFileClose(QString filePath)
 //当项目被构建
 void Form_WorkSpace::event_ProjectManger_onProjectBuild(QString projectPath)
 {
-    qDebug() << "项目被构建" << projectPath;
+    Manger::pluginManger->event_onProjectBuild(projectPath);
+}
+
+//当项目被清理
+void Form_WorkSpace::event_ProjectManger_onProjectClear(QString projectPath)
+{
+    Manger::pluginManger->event_onProjectClear(projectPath);
+}
+
+//当项目属性被点击
+void Form_WorkSpace::event_ProjectManger_onProjectAttribute(QString projectPath)
+{
+    qDebug() << "工程属性被点击" << projectPath;
 }
 
 //当项目被关闭
@@ -731,7 +744,7 @@ void Form_WorkSpace::event_ProjectManger_onProjectClose(QString projectPath)
 //文件被更名
 void Form_WorkSpace::event_ProjectManger_onFileRename(QString filePath, QString newFilePath)
 {
-    qDebug() << "文件被更名" << filePath << newFilePath;
+    Manger::pluginManger->event_onFileRename(filePath, newFilePath);
 }
 
 //插件管理器被打开
@@ -897,6 +910,12 @@ void Form_WorkSpace::on_action_file_save_triggered()
 void Form_WorkSpace::on_action_file_saveAll_triggered()
 {
     Manger::pluginManger->event_onFileSaveAll();
+}
+
+//当工程被打开
+void Form_WorkSpace::event_ProjectManger_onOpenProject()
+{
+    this->on_action_file_open_triggered();
 }
 
 

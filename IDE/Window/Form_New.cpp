@@ -1,20 +1,21 @@
 #include "Form_New.h"
 #include "ui_Form_New.h"
 
-#include "Widget/Widget_Button_ListItem.h"
-#include "Widget/Widget_Button_ModHistoryItem.h"
-#include "Widget/Widget_Button_ModItem.h"
-#include "Window/Form_WorkSpace.h"
+#include "../Widget/Widget_Button_ListItem.h"
+#include "../Widget/Widget_Button_ModHistoryItem.h"
+#include "../Widget/Widget_Button_ModItem.h"
+#include "../Window/Form_WorkSpace.h"
 
-#include "SwSystem/System_History.h"
-#include "SwSystem/System_GlobalVar.h"
-
+#include "../SwSystem/System_History.h"
+#include "../SwSystem/System_GlobalVar.h"
+#include "../SwSystem/System_UtilFun.h"
 
 #include "QStandardPaths"
 #include "QDir"
 #include "QFileDialog"
-#include "QSettings"
 #include "QMessageBox"
+#include "QJsonDocument"
+#include "QJsonObject"
 
 Form_New::Form_New(QWidget *parent) :
     QWidget(parent),
@@ -111,26 +112,28 @@ Form_New::Form_New(QWidget *parent) :
             continue;//如果文件不存在，则直接跳过
         }
 
+        //创建模板历史项目
         QListWidgetItem* t_listItem = new QListWidgetItem(ui->listWidget_ModHistory);
         Widget_Button_ModHistoryItem* t_itemWidget = new Widget_Button_ModHistoryItem(ui->listWidget_ModHistory);
         ui->listWidget_ModHistory->addItem(t_listItem);
         ui->listWidget_ModHistory->setItemWidget(t_listItem,t_itemWidget);
         t_listItem->setSizeHint(QSize(100,42));
 
+        //将相对目录替换为自身目录
         QString t_modFilePath = t_modHisList[a].filePath;
         t_modFilePath = t_modFilePath.replace("<modPath>",QCoreApplication::applicationDirPath());
 
+        //读取历史模板的信息
         t_itemWidget->SetIcon(QPixmap(QPixmap(QFileInfo(t_modFilePath).path() + "/ico.png")));
         t_itemWidget->SetTitle(t_modHisList[a].showName);
         t_itemWidget->SetModStr(t_modHisList[a].other); //这里显示的是编程语言
 
         connect(t_itemWidget,&Widget_Button_ModHistoryItem::onDown,this,[t_modFilePath,this,t_listItem](){
             this->modFilePath = t_modFilePath;
-
-            QSettings t_setMod(this->modFilePath, QSettings::IniFormat);//保存工程名称信息
-            t_setMod.beginGroup("FireMonkeyProJect");
-            this->modName = t_setMod.value("ProjectName","SystemError").toString();
-            this->modLang = t_setMod.value("Language","other").toString();
+            QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(this->modFilePath));
+            QJsonObject t_jsonObj = t_jsonDoc.object();
+            this->modName = t_jsonObj.value("proName").toString("SystemError"); //模板名称（也是默认的工程名称）
+            this->modLang = t_jsonObj.value("proLanguage").toString("other"); //模板语言
 
             ui->pushButton_next_toCreate->setEnabled(true); //允许工程创建工程文件
             t_listItem->setSelected(true);
@@ -154,13 +157,15 @@ Form_New::Form_New(QWidget *parent) :
     for(int a = 0;a<t_profileList.length();a++){
         modListMsg t_modMsg;
         t_modMsg.fmpPath = t_profileList[a]; //配置文件名
-        QSettings t_setMod(t_modMsg.fmpPath, QSettings::IniFormat);//工程总配置信息
-        t_setMod.beginGroup("FireMonkeyProJect");
-        t_modMsg.modNmae = t_setMod.value("ProjectName").toString(); //模板名称（也是默认的工程名称）
-        t_modMsg.modTip = t_setMod.value("Note").toString(); //模板提示，也是工程提示
-        t_modMsg.modLang = t_setMod.value("Language").toString(); //模板语言
-        t_modMsg.modSystem = t_setMod.value("System").toString(); //模板系统
-        t_modMsg.modNoteClass = t_setMod.value("NoteClass").toString(); //模板其他分类
+
+        QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(t_modMsg.fmpPath));
+        QJsonObject t_jsonObj = t_jsonDoc.object();
+
+        t_modMsg.modNmae = t_jsonObj.value("proName").toString(); //模板名称（也是默认的工程名称）
+        t_modMsg.modTip = t_jsonObj.value("proNote").toString(); //模板提示，也是工程提示
+        t_modMsg.modLang = t_jsonObj.value("proLanguage").toString(); //模板语言
+        t_modMsg.modSystem = t_jsonObj.value("proSystem").toString(); //模板系统
+        t_modMsg.modNoteClass = t_jsonObj.value("proNoteClass").toString(); //模板其他分类
         this->modMsgList.append(t_modMsg); //加入工程模板信息
 
 
@@ -180,10 +185,10 @@ Form_New::Form_New(QWidget *parent) :
         connect(t_itemWidget,&Widget_Button_ModItem::onDown,this,[t_modMsg,this,t_listItem](){ //模板文件
             this->modFilePath = t_modMsg.fmpPath;
 
-            QSettings t_setMod(this->modFilePath, QSettings::IniFormat);//保存工程名称信息
-            t_setMod.beginGroup("FireMonkeyProJect");
-            this->modName = t_setMod.value("ProjectName","SystemError").toString();
-            this->modLang = t_setMod.value("Language","other").toString();
+            QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(this->modFilePath));
+            QJsonObject t_jsonObj = t_jsonDoc.object();
+            this->modName = t_jsonObj.value("proName").toString("SystemError"); //模板名称（也是默认的工程名称）
+            this->modLang = t_jsonObj.value("proLanguage").toString("other"); //模板语言
 
             ui->pushButton_next_toCreate->setEnabled(true); //允许工程创建工程文件
             t_listItem->setSelected(true);
@@ -247,7 +252,7 @@ void Form_New::findMod(QString path, QVector<QString>& retList)
             QDir t_dirFiles(t_infoListDir[a].filePath());
             QFileInfoList t_infoListFile = t_dirFiles.entryInfoList(QDir::Files|QDir::NoDotAndDotDot); //只检查有多少文件
             for(int b = 0;b<t_infoListFile.length();b++){
-                if(t_infoListFile[b].isFile() && t_infoListFile[b].suffix() == "fmp"){ //判断是否为工程模板文件
+                if(t_infoListFile[b].isFile() && t_infoListFile[b].fileName() == "pro.fmp"){ //判断是否为工程模板文件
                     retList.append(t_infoListFile[b].absoluteFilePath());
                 }
             }
@@ -505,16 +510,19 @@ void Form_New::on_pushButton_createProject_clicked()
 
 
     QString t_proPath = t_newPath + "/" + t_modName;//工程文件的启动文件
-    //更改启动文件名称
-    if(QFile::rename(t_newPath + "/" + t_modName,t_newPath + "/" + ui->lineEdit_projectName->text() + ".fmp")){
-        t_proPath = t_newPath + "/" + ui->lineEdit_projectName->text() + ".fmp"; //文件修改成功则更名文件信息
-    }
+    //更改启动文件名称，已废弃，强制要求文件为pro.fmp
+    //if(QFile::rename(t_newPath + "/" + t_modName,t_newPath + "/" + ui->lineEdit_projectName->text() + ".fmp")){
+    //    t_proPath = t_newPath + "/" + ui->lineEdit_projectName->text() + ".fmp"; //文件修改成功则更名文件信息
+    //}
 
 
     //更改配置信息
-    QSettings t_setMod(t_proPath, QSettings::IniFormat);//工程总配置信息
-    t_setMod.beginGroup("FireMonkeyProJect");
-    t_setMod.setValue("ProjectName",ui->lineEdit_projectName->text()); //设置工程模板
+    QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(t_proPath));
+    QJsonObject t_jsonObj = t_jsonDoc.object();
+    t_jsonObj.remove("proName");
+    t_jsonObj.insert("proName",ui->lineEdit_projectName->text());
+    t_jsonDoc.setObject(t_jsonObj);
+    System_File::writeFile(t_proPath,t_jsonDoc.toJson()); //保存Json信息
 
     ProjectOpen::projectPath = t_proPath; //工程路径
     if(Window::workSpace == nullptr){

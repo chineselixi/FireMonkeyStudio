@@ -36,6 +36,7 @@ public:
         if (Form_ProjectManger->objectName().isEmpty())
             Form_ProjectManger->setObjectName("Form_ProjectManger");
         Form_ProjectManger->resize(200, 586);
+        Form_ProjectManger->setMinimumSize(QSize(0, 0));
         Form_ProjectManger->setStyleSheet(QString::fromUtf8("/*\345\267\245\345\205\267\346\240\217*/\n"
 "QToolBar{\n"
 "	background-color:rgb(204, 213, 240);\n"
@@ -118,6 +119,7 @@ public:
         treeWidget = new QTreeWidget(Form_ProjectManger);
         treeWidget->setObjectName("treeWidget");
         treeWidget->setEditTriggers(QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked);
+        treeWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerItem);
         treeWidget->header()->setVisible(false);
 
         verticalLayout->addWidget(treeWidget);

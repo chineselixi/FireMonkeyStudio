@@ -1,0 +1,13 @@
+{
+    "proName": "HTML空模板",
+    "proCall": "000-0000-0000",
+    "proEmail": "null",
+    "proIconPath": "ico.png",
+    "proLanguage": "Html",
+    "proNote": "这是一个Html的空模板，只存在默认的index文件，用于构建web页面",
+    "proNoteClass": "Web Html jsvaScript Vue",
+    "proOrg": "火猴开发社区",
+    "proSystem": "Windows Linux Mac ChromeOS FydeOS",
+    "proVerson": "1.0.0",
+    "proVersonNum": 1
+}

@@ -55,7 +55,6 @@ private:
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ToolBar_File = nullptr; //添加菜单到打开文件
 
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_Project = nullptr;//添加菜单到工程
-    PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_NewFile = nullptr;//添加菜单到新建文件
     PluginGlobalMsg::menuFun WorkSpace_AddMenu_ProManger_ProNormal = nullptr;//添加菜单到工程普通文件菜单
     //PluginGlobalMsg::menuFun WorkSpace_Mneu_UnityStyle_SelectAction = nullptr; //设置菜单选择Action的样式，在initPlugin方法里面就完成初始化
 
@@ -121,11 +120,13 @@ private:
     PluginGlobalMsg::statusbarFun_setButton statusFun_setBtn = nullptr; //设置状态栏按钮，funPtr为nullptr时，隐藏
     PluginGlobalMsg::statusbarFun_hideAllBtn statusFun_hideAllBtn = nullptr; //隐藏所有的按钮
 
+    //工程管理器
+    PluginGlobalMsg::projectManger_getProMsgBase ProjectManger_getBase = nullptr; //工程管理器获取基础信息
+    PluginGlobalMsg::projectManger_addBuildFileSign ProjectManger_addBuildSign = nullptr; //添加新建工程文档
+    PluginGlobalMsg::projectManger_delBuildFileSign ProjectManger_delBuildSign = nullptr; //删除创建文件标记
+    PluginGlobalMsg::projectManger_addFileIco ProjectManger_addFileIco = nullptr; //添加类别文件图标
+    PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIco = nullptr; //设置目标图标，如果目标为空，则设置类型为non的图标
 
-
-
-    //插件管理器
-    PluginGlobalMsg::projectManger_getProMsgBase ProjectManger_getBase = nullptr; //插件管理器获取基础信息
 
 public:
     //初始化信息，由IDE侧载，可复写
@@ -133,70 +134,94 @@ public:
 
 
 public: //插件的基础方法
-    void addToolBarMenu(PluginGlobalMsg::toolBarMenuType menuType,QAction* action); //添加菜单到工具栏菜单
-    void addProMangerMenu(PluginGlobalMsg::proMangerMenuType menuType,QAction* action); //添加菜单到项目管理器
-    void setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction actionType,bool isEnable); //设置工作空间Action启用
-    void closeWorkSpaceAllAction(); //关闭所有的工作控件子菜单
-    void addToolBarToWs(QToolBar* toolBar); //添加工具栏到工作空间
 
-    QString getThemeSign();                //获取主题标记
-    void setThemeSign(QString sign);       //设置主题标记
+    //菜单
+    void menu_addToolBarMenu(PluginGlobalMsg::toolBarMenuType menuType,QAction* action); //添加菜单到工具栏菜单
+    void menu_addProMangerMenu(PluginGlobalMsg::proMangerMenuType menuType,QAction* action); //添加菜单到项目管理器
+    void menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction actionType,bool isEnable); //设置工作空间Action启用
+    void menu_closeWorkSpaceAllAction(); //关闭所有的工作控件子菜单
+    void menu_addToolBarToWs(QToolBar* toolBar); //添加工具栏到工作空间
 
-    void addCompileMod(QString signName); //添加编译模式
-    void delCompileMod(QString signName); //删除编译模式
-    void selectCompileMod(QString signName); //选择编译模式
-    void clearAllCompileMod(); //清空所有编译模式
-    QString getCompileModSignName(); //获取当前编译模式标记名称
+    //主题
+    QString theme_getThemeSign();                //获取主题标记
+    void theme_setThemeSign(QString sign);       //设置主题标记
 
-    void printList(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor); //在列表输出中输出一行文本
-    void clearList(); //清理行的所有行文本
-    void printTextSpace(QColor color,QString printText); //在文本窗口输出文本
-    void printTextSpaceLine(QColor color,QString printText); //在文本窗口输出文本
-    void clearTextSpace(); //清理文本窗口所有的文本
+    //编译
+    void compile_addCompileMod(QString signName); //添加编译模式
+    void compile_delCompileMod(QString signName); //删除编译模式
+    void compile_selectCompileMod(QString signName); //选择编译模式
+    void compile_clearAllCompileMod(); //清空所有编译模式
+    QString compile_getCompileModSignName(); //获取当前编译模式标记名称
 
-    QString postPluginMessage(QString pluginSign,QString pustMsg); //插件内投递消息
-    void addDockWidget(Qt::DockWidgetArea area,QDockWidget* dockWidget); //添加DockWidget
-    void removeDockWidget(QDockWidget* dockWidget); //移除DockWidget
+    //打印输出
+    void print_printList(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor); //在列表输出中输出一行文本
+    void print_clearList(); //清理行的所有行文本
+    void print_printTextSpace(QColor color,QString printText); //在文本窗口输出文本
+    void print_printTextSpaceLine(QColor color,QString printText); //在文本窗口输出文本
+    void print_clearTextSpace(); //清理文本窗口所有的文本
 
-    void addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type); //在Tab添加窗口
-    bool hasTab(QString sign,bool select); //根据sign标记查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
-    bool hasTab(QWidget* widget,bool select); //根据QWidget指针查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
-    QWidget* getTabWidget(QString sign); //根据sign获取Widget指针
-    QString getTabSign(QWidget* widget); //根据widget指针获取sign信息
+    //插件
+    QString plugin_postPluginMessage(QString pluginSign,QString pustMsg); //插件内投递消息
 
-    void addMark(QString mark,QString value); //添加一个设置标记
-    QVariant getMark(QString mark,QString normal=""); //获取一个设置标记内容
-    void delMark(QString mark);//删除设置一个标记
+    //DockWidget窗格
+    void dockwidget_addDockWidget(Qt::DockWidgetArea area,QDockWidget* dockWidget); //添加DockWidget
+    void dockwidget_removeDockWidget(QDockWidget* dockWidget); //移除DockWidget
 
+    //TabWindow
+    void tabWindow_addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type); //在Tab添加窗口
+    bool tabWindow_hasTab(QString sign,bool select); //根据sign标记查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
+    bool tabWindow_hasTab(QWidget* widget,bool select); //根据QWidget指针查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
+    QWidget* tabWindow_getTabWidget(QString sign); //根据sign获取Widget指针
+    QString tabWindow_getTabSign(QWidget* widget); //根据widget指针获取sign信息
 
-    void postTipStr(QString str,int showTime); //投递字符串到状态栏
-    uint16_t addTip(QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime); //添加通知到通知管理器中
-    bool closeTip(uint16_t id); // 根据ID关闭一个停止，通知不存在则返回false
-    bool hasTip(uint16_t index); //判断是否存在这个通知
-    void setTipTitle(uint16_t index, QString title);//设置提示标题
-    void setTipText(uint16_t index, QString text);//设置提示文本
-    void setTipType(uint16_t index, PluginGlobalMsg::TipType type); //设置提示类型
-    void setTipPixmap(uint16_t index, QPixmap pixmap); //设置提示图片
-    void setCanClose(uint16_t index, bool canClose); //设置提示能够关闭
-    void setTipShowTime(uint16_t index, qint64 newShowTime); //设置提示时间
+    //设置标记Mark
+    void mark_addMark(QString mark,QString value); //添加一个设置标记
+    QVariant mark_getMark(QString mark,QString normal=""); //获取一个设置标记内容
+    void mark_delMark(QString mark);//删除设置一个标记
+
+    //提示消息
+    void tip_postTipStr(QString str,int showTime); //投递字符串到状态栏
+    uint16_t tip_addTip(QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime); //添加通知到通知管理器中
+    bool tip_closeTip(uint16_t id); // 根据ID关闭一个停止，通知不存在则返回false
+    bool tip_hasTip(uint16_t index); //判断是否存在这个通知
+    void tip_setTipTitle(uint16_t index, QString title);//设置提示标题
+    void tip_setTipText(uint16_t index, QString text);//设置提示文本
+    void tip_setTipType(uint16_t index, PluginGlobalMsg::TipType type); //设置提示类型
+    void tip_setTipPixmap(uint16_t index, QPixmap pixmap); //设置提示图片
+    void tip_setCanClose(uint16_t index, bool canClose); //设置提示能够关闭
+    void tip_setTipShowTime(uint16_t index, qint64 newShowTime); //设置提示时间
 
     //状态栏输出通知，和状态栏按钮操作
-    void setChangedProgressIndex(int index); //设置状态栏进度条进度
-    void setStatusButton(int btnIndex,QString title,QIcon ico_32x,QString sign,std::function<void(QString sign)> funPtr); //设置状态栏按钮，funPtr为nullptr时，隐藏.index的范围为1-6
-    void setStatusHideAll(); //隐藏所有的按钮
+    void statusBar_setChangedProgressIndex(int index); //设置状态栏进度条进度
+    void statusBar_setStatusButton(int btnIndex,QString title,QIcon ico_32x,QString sign,std::function<void(QString sign)> funPtr); //设置状态栏按钮，funPtr为nullptr时，隐藏.index的范围为1-6
+    void statusBar_setStatusHideAll(); //隐藏所有的按钮
 
-    PluginGlobalMsg::projectMsgBase getProjectMsgBase(QString proPath); //获取工程的基础信息
+
+    //工程管理器方法
+    PluginGlobalMsg::ProjectMsg projectManger_getProjectInfo(QString proPath); //根据工程获取工程信息
+    void projectManger_addBuildFileSign(QString suffix, QString sign, QIcon ico_16, QString normalName, QString content); //添加新建工程文档
+    void projectManger_delBuildFileSign(QString suffix); //删除创建文件标记
+    void projectManger_addFileIco(QString suffix, QIcon ico); //添加类别文件图标
+    void projectManger_setObjIco(QIcon ico,QString objPath); //设置目标图标，如果目标为空，则设置类型为non的图标
+
+
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
     virtual bool event_onModLoadFinish(){return true;};//当模块加载完毕，将第一时间激发此插件，禁止在获取实例处获得
     virtual bool event_onCompileTypeChanged(QString signName){return true;}; //当编译模式被改变
-    virtual bool event_onFileOpen(QString filePath){return true;}; //当文件被打开，注意：仅限于IDE无法打开之外的文件才激发此事件
-    virtual bool event_onFileOpenFinish(QString filePath){return true;}; //当前文件已经被打开，所有的文件被打开都会激发此事件
-    virtual bool event_onFileClose(QString filePath){return true;}; //当前文件被删除或者关闭之前就发送的信息
+
+
+    //工程管理器事件
+    virtual bool event_onProjectActiveChanged(QString projectPath,QString projectLang,QString projectNoteClass){return true;}; //当活动工程被改变
+    virtual bool event_onFileOpen(QString filePath){return true;};//当文件被打开
+    virtual bool event_onFileClose(QString filePath){return true;}; //当前文件被关闭
+    virtual bool event_onProjectBuild(QString projectPath){return true;};//当项目被构建
+    virtual bool event_onProjectClear(QString projectPath){return true;};//当项目被清理
+
+
     virtual bool event_onFileSave(QString filePath){return true;}; //当文件被保存激发事件
     virtual bool event_onFileSaveAll(){return true;}; //当全部保存被激发
     virtual bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass){return true;};//当工具栏内部按钮被按下(参数1:激发按钮类型   参数2:工程的目录   参数3:工程的多个语言标记   参数4:工程类型标记)
-    virtual bool event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass){return true;}; //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 
 
 public: //(不可阻拦事件)事件触发，将激发每一个插件的事件
@@ -204,7 +229,7 @@ public: //(不可阻拦事件)事件触发，将激发每一个插件的事件
     virtual void event_onWorkSpaceFinish(){return;}; //工作空间创建完毕事件，此事件不可阻止，，但是可以阻塞，将为每一个插件提供事件响应
     virtual void event_onWorkSpaceClose(){return;};  //工作空间正在被关闭，不可被阻止，但是可以阻塞，将为每一个插件提供事件响应
     virtual void event_onLoadSettingsWidget(settingMsgList& msgList){return;}; //当加载设置组件的时候
-
+    virtual void event_onFileRename(QString oldPath, QString newPath){return;};//当文件被更名
 
 public: //专有事件，仅仅通知注册需要的插件
     virtual void event_onLoading(){return;}; //初次加载事件，插件被成功加载完成以后第一次通知的事件，注意：此时其他插件可能并没有加载完成

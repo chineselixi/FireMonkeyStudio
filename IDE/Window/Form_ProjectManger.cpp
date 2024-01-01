@@ -9,8 +9,15 @@
 #include "QFileDialog"
 #include "QMessageBox"
 #include "QInputDialog"
-#include "Form_VisualFolder.h"
-#include "../Plugin/Plugin_Global.h"
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "QElapsedTimer"
+#include "QProgressDialog" //进度对话框
+#include "QMessageBox" //信息框
+
+#include "../SwSystem/System_UtilFun.h"
+//#include "Form_VisualFolder.h"
+//#include "../Plugin/Plugin_Global.h"
 
 
 Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
@@ -19,8 +26,10 @@ Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
 {
     ui->setupUi(this);
     //this->setStyleSheet("");
-    ui->treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);//设定树框自定义上下文菜单模式(右键菜单)，响应customContextMenuRequested事件
 
+
+    ui->treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);//设定树框自定义上下文菜单模式(右键菜单)，响应customContextMenuRequested事件
+/*
     connect(ui->action_AddFolder, &QAction::triggered,this,&Form_ProjectManger::event_menu_createNewFolder);
     connect(ui->action_AddForm, &QAction::triggered,this,&Form_ProjectManger::event_menu_addForm);
     connect(ui->action_AddHasFile, &QAction::triggered,this,&Form_ProjectManger::event_menu_addHasFile);
@@ -32,7 +41,7 @@ Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
     ui->action_AddHasFile->setEnabled(false);
     ui->action_AddNewFile->setEnabled(false);
 
-/*
+
     QString  t_fileName = QCoreApplication::applicationDirPath() + "/Config.ini";
 
     QSettings t_setPro(t_fileName, QSettings::IniFormat);//工程总配置信息
@@ -70,8 +79,31 @@ Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
 
 */
 
-
+    //初始化构建菜单
     InitMenu();
+
+
+    //初始化图标
+    this->addFileIco("cpp",ico_fileType_cpp);
+    this->addFileIco("h",ico_fileType_h);
+    this->addFileIco("c",ico_fileType_c);
+    this->addFileIco("java",ico_fileType_java);
+    this->addFileIco("js",ico_fileType_js);
+    this->addFileIco("json",ico_fileType_json);
+    this->addFileIco("py",ico_fileType_py);
+    this->addFileIco("php",ico_fileType_php);
+    this->addFileIco("jar",ico_fileType_jar);
+    this->addFileIco("link",ico_fileType_link);
+    this->addFileIco("html",ico_fileType_html);
+    this->addFileIco("css",ico_fileType_css);
+    this->addFileIco("ini",ico_fileType_ini);
+    this->addFileIco("sql",ico_fileType_sql);
+    this->addFileIco("txt",ico_fileType_txt);
+    this->addFileIco("xml",ico_fileType_xml);
+    this->addFileIco("zip",ico_fileType_zip);
+    this->addFileIco("uix",ico_window);
+    this->addFileIco("ui",ico_window);
+    this->addFileIco("fmp",ico_fmp);
 
 
     //测试代码
@@ -92,1033 +124,1099 @@ QSize Form_ProjectManger::sizeHint() const
     return QSize(200,900);
 }
 
-//使用fmp添加工程
-bool Form_ProjectManger::addProjectForFmp(QString projectFile)
-{
-    QFileInfo t_fileInfo(projectFile);
-    if(!t_fileInfo.exists()) return false;
-
-    ProjectMsg* t_proMsg = new ProjectMsg;
-
-    //设定工程目录
-    t_proMsg->proPath = t_fileInfo.absolutePath();
-
-    //读取工程目录信息
-    QSettings t_setPro(projectFile, QSettings::IniFormat);//工程总配置信息
-    t_setPro.beginGroup("FireMonkeyProJect");
-    t_proMsg->proName = t_setPro.value("ProjectName").toString(); //工程名
-    t_proMsg->proIconPath = t_setPro.value("IconPath").toString(); //图标文件
-    t_proMsg->proVerson = t_setPro.value("Version").toString(); //版本文本信息
-    t_proMsg->proVersonNum = t_setPro.value("VersionNumber").toInt(); //版本号
-    t_proMsg->proOrg = t_setPro.value("Organization").toString(); //组织信息（公司或者组织）
-    t_proMsg->proEmail = t_setPro.value("Email").toString(); //邮箱信息
-    t_proMsg->proCall = t_setPro.value("Call").toString(); //联系电话
-    t_proMsg->proNote = t_setPro.value("Note","本程序由火猴开发平台构建").toString(); //联系电话
-    t_proMsg->proSrcPath = t_setPro.value("SrcPath").toString(); //工程文件在当前配置文件的那个相对位置
-    t_proMsg->proSystem =  t_setPro.value("System").toString(); //支持的操作系统平台<存在于模板条件筛选>
-    t_proMsg->proLanguage =  t_setPro.value("Language").toString(); //使用的编程语言<存在于模板条件筛选>
-    t_proMsg->proNoteClass =  t_setPro.value("NoteClass").toString(); //其他备注类<存在于模板条件筛选>
-
-    if(this->projectExisted(t_proMsg->proPath)) return false; //工程已经存在了，防止多次打开
-
-    //添加启动文件类型
-    this->addItem(t_fileInfo.fileName(),  //文件名
-                  projectFile, //标记文本
-                  ico_fmp, //图标文件
-                  t_proMsg, //父项目指针
-                  listType::file_fmp //文件类型
-                  );
-
-    //虚拟分类文件夹，left:左边存在，right:右边存在，has:只要存在
-    QSettings t_setVirFolders(projectFile, QSettings::IniFormat); //虚拟文件夹
-    t_setVirFolders.beginGroup("Fmp_VirtualFolders");
-    QStringList t_strList = t_setVirFolders.allKeys();
-    for(QStringList::Iterator t_it = t_strList.begin();t_it < t_strList.end();t_it++){
-        //遍历所有虚拟文件夹
-        QString t_key = *t_it;
-        if(!t_key.isEmpty()){
-            listType t_type = listType::folder_rightSign;
-
-            QString t_value = t_setVirFolders.value(t_key).toString(); //获取标记的数值
-            int t_index = t_value.indexOf('/');
-            QString t_l = t_value.left(t_index); //虚拟文件夹的后缀信息
-            QString t_r = t_value.right(t_value.length() - t_index - 1); //虚拟文件夹类型
-
-            if(t_r == "left"){
-                t_type = listType::folder_leftSign;
-            }
-            else if(t_r == "has"){
-                t_type = listType::folder_hasSign;
-            }
-
-            //虚拟后缀
-            if(t_l == "") continue;
-            this->addItem(t_key,
-                          t_l, //后缀标记
-                          ico_signFolder,
-                          t_proMsg,
-                          listType::folder_rightSign //虚拟文件夹类型
-                          );
-        }
-    }
-
-//    //加入窗体文件分类文件夹
-//    this->addItem(tr("窗体"),  //文件名
-//                  ".uix", //标记文本
-//                  ico_uiFolder, //图标文件
-//                  t_proMsg, //父项目指针
-//                  listType::folder_rightSign //文件类型
-//                  );
-
-//    //加入资源文件分类文件夹
-//    this->addItem(tr("资源文件"),  //文件名
-//                  ".res", //标记文本
-//                  ico_resFolder, //图标文件
-//                  t_proMsg, //父项目指针
-//                  listType::folder_rightSign //文件类型
-//                  );
-
-
-
-    //加入文件夹信息
-    QSettings t_setNormalFolders(projectFile, QSettings::IniFormat); //真实自定义文件夹
-    t_setNormalFolders.beginGroup("Fmp_NormalFolders");
-    t_strList = t_setNormalFolders.allKeys();
-    for(QStringList::Iterator t_it = t_strList.begin();t_it < t_strList.end();t_it++){
-        QString t_str = t_setNormalFolders.value(*t_it).toString();
-        t_str.replace("<srcPath>", t_proMsg->proPath + t_proMsg->proSrcPath);
-        this->addItem(*t_it,  //文件夹名
-                      t_str, //标记文本
-                      ico_normalFolder, //图标文件
-                      t_proMsg, //父项目指针
-                      listType::folder_normalSign //文件类型
-                      );
-    }
-
-
-
-    //加入文件信息
-    QSettings t_setFilelist(projectFile, QSettings::IniFormat); //文件列表
-    t_setFilelist.beginGroup("Fmp_Filelist");
-    t_strList = t_setFilelist.allKeys();
-    for(QStringList::Iterator t_it = t_strList.begin();t_it < t_strList.end();t_it++){
-        QString t_str = t_setFilelist.value(*t_it).toString();
-        t_str.replace("<srcPath>", t_proMsg->proPath + t_proMsg->proSrcPath);
-        this->addItem(*t_it,  //文件名
-                      t_str, //标记文本
-                      ico_fileType_unKnow, //图标文件
-                      t_proMsg, //父项目指针
-                      listType::file_normal //文件类型
-                      );
-    }
-
-
-    //将工程添加到工程列表
-    t_proMsg->proParentItem = new QTreeWidgetItem(); //创建工程最初的树项
-    this->ProjectList.append(t_proMsg);
-
-    this->NowProjectMsg = t_proMsg;
-    this->onProjectActiveChanged(this->NowProjectMsg->proPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
-
-    //允许工具栏按钮
-    ui->action_AddFolder->setEnabled(true);
-    ui->action_AddForm->setEnabled(true);
-    ui->action_AddHasFile->setEnabled(true);
-    ui->action_AddNewFile->setEnabled(true);
-    return true;
-}
-
-//使用文件夹添加工程
-bool Form_ProjectManger::addProjectForDir(QString dirPath)
-{
-    QDir t_dir(dirPath);
-    if(!t_dir.exists()) return false;
-
-    ProjectMsg* t_proMsg = new ProjectMsg; //新文件夹创建工程
-    t_proMsg->proName = Form_ProjectManger::GetDirFileName(dirPath);
-    t_proMsg->proPath = dirPath;
-    t_proMsg->proSrcPath = "";
-
-    if(this->projectExisted(t_proMsg->proPath)) return false;//工程已经存在，防止多次打开
-
-    QVector<QString> t_dirList;
-    QVector<QString> t_fileList;
-    this->Find_DirFile(dirPath,t_dirList,t_fileList);
-
-    for(int a = 0;a<t_dirList.length();a++){
-        this->addItem(Form_ProjectManger::GetDirFileName(t_dirList[a]),  //文件夹类型
-                      t_dirList[a], //文件夹路径
-                      ico_normalFolder, //图标文件
-                      t_proMsg, //父项目指针
-                      listType::folder_normalSign //文件夹类型
-                      );
-    }
-
-    for(int a = 0;a<t_fileList.length();a++){
-        this->addItem(Form_ProjectManger::GetDirFileName(t_fileList[a]),  //文件名
-                      t_fileList[a], //标记文本
-                      ico_fileType_unKnow, //图标文件
-                      t_proMsg, //父项目指针
-                      listType::file_normal //文件类型
-                      );
-    }
-
-    //整合虚拟工程
-    //将工程添加到工程列表
-    t_proMsg->proParentItem = new QTreeWidgetItem(); //创建工程最初的树项
-    this->ProjectList.append(t_proMsg);
-
-    this->NowProjectMsg = t_proMsg;
-    this->onProjectActiveChanged(this->NowProjectMsg->proPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
-
-    //允许工具栏按钮
-    ui->action_AddFolder->setEnabled(true);
-    ui->action_AddForm->setEnabled(true);
-    ui->action_AddHasFile->setEnabled(true);
-    ui->action_AddNewFile->setEnabled(true);
-    return true;
-}
-
-//使用普通文件添加工程
-bool Form_ProjectManger::addProjectForFile(QString filePath)
-{
-    QFileInfo t_fileInfo(filePath);
-    if(!t_fileInfo.exists()) return false;
-
-    ProjectMsg* t_proMsg = new ProjectMsg; //新文件夹创建工程
-    t_proMsg->proName = t_fileInfo.baseName();
-    t_proMsg->proPath = t_fileInfo.path();
-    t_proMsg->proSrcPath = "";
-
-    if(this->projectExisted(t_proMsg->proPath)) return false;//工程已经存在，防止多次打开
-
-    this->addItem(t_fileInfo.fileName(),  //文件名
-                  filePath, //标记文本
-                  ico_fileType_unKnow, //图标文件
-                  t_proMsg, //父项目指针
-                  listType::file_normal //文件类型
-                  );
-
-    //将工程添加到工程列表
-    t_proMsg->proParentItem = new QTreeWidgetItem(); //创建工程最初的树项
-    this->ProjectList.append(t_proMsg);
-
-    this->NowProjectMsg = t_proMsg;
-    this->onProjectActiveChanged(this->NowProjectMsg->proPath,this->NowProjectMsg->proLanguage,this->NowProjectMsg->proNoteClass); //激发工程切换事件
-
-    //允许工具栏按钮
-    ui->action_AddFolder->setEnabled(true);
-    ui->action_AddForm->setEnabled(true);
-    ui->action_AddHasFile->setEnabled(true);
-    ui->action_AddNewFile->setEnabled(true);
-    return true;
-}
-
-
-//添加项目并且标记
-QTreeWidgetItem* Form_ProjectManger::addItem(QString name, QString signText,QIcon ico,ProjectMsg * itemParent,listType type)
-{
-    itemMsg t_itemMsg;
-    t_itemMsg.name = name; //子项名称
-    t_itemMsg.signText = signText; //子项标记
-    t_itemMsg.projectPth = itemParent; //子项父类标记
-    t_itemMsg.type = type; //子项类型
-    t_itemMsg.item = new QTreeWidgetItem; //设定子项
-    t_itemMsg.item->setIcon(0,ico);       //设定图标
-    t_itemMsg.item->setText(0,name);      //设定标题
-    //t_itemMsg.item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-    itemParent->proItemList.append(t_itemMsg); //添加Item信息到父组件;
-    return t_itemMsg.item;
-}
-
-
-//刷新树框
-void Form_ProjectManger::flashTreeWidget()
-{
-
-    QVector<ProjectMsg*>::Iterator t_itRoot;
-    //项目合集操作
-    for(t_itRoot = ProjectList.begin();t_itRoot < ProjectList.end();t_itRoot++){
-        //(*t_itRoot)->proParentItem = new QTreeWidgetItem();
-        (*t_itRoot)->proParentItem->setIcon(0,ico_project);
-        (*t_itRoot)->proParentItem->setText(0,(*t_itRoot)->proName);
-        ui->treeWidget->addTopLevelItem((*t_itRoot)->proParentItem);
-
-        //子项合集操作
-        QVector<itemMsg>::Iterator t_itItem;
-        for(t_itItem = (*t_itRoot)->proItemList.begin();t_itItem < (*t_itRoot)->proItemList.end();t_itItem++){
-            QIcon t_ico = this->ico_fileType_unKnow; //默认文件图标
-
-            QTreeWidgetItem* t_parentItem = (*t_itRoot)->proParentItem;
-            if(t_itItem->type == listType::file_normal || t_itItem->type == listType::file_fmp){ //如果是文件信息，则扫描是否包含于文件夹当中
-                //检索是否存在于某个文件夹之下
-                QVector<itemMsg>::Iterator t_itItem2;
-                for(t_itItem2 = (*t_itRoot)->proItemList.begin();t_itItem2 < (*t_itRoot)->proItemList.end();t_itItem2++){
-                    //检索是否存在于真实文件夹目录下
-                    if(t_itItem2->type == listType::folder_normalSign && QFileInfo(t_itItem->signText).path() == t_itItem2->signText){
-                        t_parentItem = t_itItem2->item;//普通文件夹，直接嵌入子项
-                        break;
-                    }
-
-                    //文件目录在根目录
-                    if(QFileInfo(t_itItem->signText).path() == (*t_itRoot)->proPath + (*t_itRoot)->proSrcPath){
-                        if(t_itItem2->type == listType::folder_hasSign){ //文件在虚拟文件夹-存在
-                            if(QFileInfo(t_itItem2->signText).fileName().indexOf(t_itItem->signText) != -1){
-                                t_parentItem = t_itItem2->item;//存在文件夹
-                                break;
-                            }
-                        }
-                        else if(t_itItem2->type == listType::folder_leftSign){ //文件在虚拟文件夹-左存在
-                            if(QFileInfo(t_itItem->signText).fileName().left(t_itItem2->signText.length()) == t_itItem2->signText){
-                                t_parentItem = t_itItem2->item;//左边存在
-                                break;
-                            }
-                        }
-                        else if(t_itItem2->type == listType::folder_rightSign){ //文件在虚拟文件夹-右存在
-                            if(QFileInfo(t_itItem->signText).fileName().right(t_itItem2->signText.length()) == t_itItem2->signText){
-                                t_parentItem = t_itItem2->item;//右边存在
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                //根据文件后缀纠正关联的图标信息
-                for(int a = 0;a<icoList_file.length();a++){
-                    if(t_itItem->name.right(icoList_file[a].str.length()) == icoList_file[a].str){
-                        t_ico = icoList_file[a].ico;
-                        break;
-                    }
-                }
-
-            }
-            else if(t_itItem->type == listType::folder_normalSign){ //若是默认文件夹信息
-                QVector<itemMsg>::Iterator t_itItem2;
-                for(t_itItem2 = (*t_itRoot)->proItemList.begin();t_itItem2 < (*t_itRoot)->proItemList.end();t_itItem2++){
-                    if(t_itItem2->type == listType::folder_normalSign){
-                        QString t_str = t_itItem->signText;
-                        //当前文件夹比对比的长，并且当前的文件夹去除对比的文件夹后不存在‘/’
-                        if(t_str.length() > t_itItem2->signText.length() && t_str.replace(t_itItem2->signText + '/',"").indexOf("/") == -1){
-                            t_parentItem = t_itItem2->item;
-                            break;
-                        }
-                    }
-                }
-                t_ico = ico_normalFolder;
-
-            }
-            else if(t_itItem->type == listType::folder_leftSign || t_itItem->type == listType::folder_rightSign || t_itItem->type == listType::folder_hasSign){
-                t_ico = ico_signFolder; //默认标记
-
-                //根据信息更改虚拟文件夹图标
-                for(int a = 0;a<icoList_visualFolder.length();a++){
-                    if(t_itItem->signText == icoList_visualFolder[a].str){
-                        t_ico = icoList_visualFolder[a].ico;
-                        break;
-                    }
-                }
-
-            }
-
-            t_itItem->item->setIcon(0,t_ico); //设定预设好的ICO文件，否则保持默认
-            t_parentItem->addChild(t_itItem->item); //添加到父项，若存在则不重叠
-        }
-    }
-}
-
-
-//刷新工程列表内信息表的排序，按照枚举类型排序
-void Form_ProjectManger::sortItem(ProjectMsg *itemParent)
-{
-    //冒泡排序整理信息
-    for(int a = 0;a<itemParent->proItemList.length();a++){
-        for(int b = 0;b<itemParent->proItemList.length() - a - 1;b++){
-            if(itemParent->proItemList[b].type > itemParent->proItemList[b + 1].type){
-                itemMsg t_itemMsg = itemParent->proItemList[b];
-                itemParent->proItemList[b] = itemParent->proItemList[b + 1];
-                itemParent->proItemList[b + 1] = t_itemMsg;
-            }
-        }
-    }
-}
-
-
-//移除工程列表所有的Item关联子项关联
-void Form_ProjectManger::initItem(ProjectMsg *itemParent)
-{
-    for(int a = 0;a<itemParent->proItemList.length();a++){
-        if(itemParent->proItemList[a].item->parent() != nullptr){
-            itemParent->proItemList[a].item->parent()->removeChild(itemParent->proItemList[a].item); //移除所有子项关联
-        }
-    }
-}
-
 
 //初始化菜单
 void Form_ProjectManger::InitMenu()
 {
-    //构建工程菜单
+    //新建菜单
+    Menu_addNewFile = new QMenu(this);
+    Menu_addNewFile->setTitle("新建");
+    Menu_addNewFile->setIcon(ico_menu_folder);
+    act_new_file = Menu_addNewFile->addAction(ico_fileType_unKnow,tr("文件"));
+    connect(act_new_file,&QAction::triggered,this,&Form_ProjectManger::event_newMenu_file);
+    act_new_folder = Menu_addNewFile->addAction(ico_menu_addFolder,tr("文件夹"));
+    connect(act_new_folder,&QAction::triggered,this,&Form_ProjectManger::event_newMenu_folder);
+    Menu_addNewFile->addSeparator();//添加分割线
+
+
+    //工程菜单
     Menu_pro = new QMenu(this);
-    QAction* t_menuAction;
-    t_menuAction = Menu_pro->addAction(ico_menu_build,tr("构建"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_Biild);
-    t_menuAction = Menu_pro->addAction(ico_menu_clear,tr("清理"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_proMneu_Clear);
+    Menu_pro->addMenu(Menu_addNewFile);
+    act_pro_openProject = Menu_pro->addAction(ico_project,tr("打开新工程"));
+    connect(act_pro_openProject,&QAction::triggered,this,&Form_ProjectManger::event_proMneu_openNewProject);
     Menu_pro->addSeparator();//添加分割线
-    t_menuAction = Menu_pro->addAction(ico_menu_Action,tr("设定为活动工程"));
-    this->menuAction_setActive = t_menuAction; //保存当前的活动工程的右键菜单选项
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_proMneu_SetActive);
+    act_pro_paste = Menu_pro->addAction(QIcon(),tr("粘贴到工程目录 "));
     Menu_pro->addSeparator();//添加分割线
-    t_menuAction = Menu_pro->addAction(ico_menu_check,tr("刷新项目结构"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_proMneu_Flash);
-    t_menuAction = Menu_pro->addAction(ico_menu_check,tr("验证项目文件"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_proMneu_Check);
+    connect(act_pro_paste,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_paste);
+    act_pro_flash = Menu_pro->addAction(ico_menu_check,tr("刷新"));
+    connect(act_pro_flash,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_flash);
+    act_pro_explorer = Menu_pro->addAction(ico_menu_addVisualFolder,tr("在资源管理器打开"));
+    connect(act_pro_explorer,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_explorer);
     Menu_pro->addSeparator();//添加分割线
-    t_menuAction = Menu_pro->addAction(ico_menu_addFolder,tr("添加根文件夹"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_createNewFolder); //在根工程菜单添加一个文件夹添加接口菜单
+    act_pro_activity = Menu_pro->addAction(ico_menu_Action,tr("设置为活动工程"));
+    connect(act_pro_activity,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_setActive);
+    act_pro_build = Menu_pro->addAction(ico_menu_build,tr("构建"));
+    connect(act_pro_build,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_build);
+    act_pro_clear = Menu_pro->addAction(ico_menu_clear,tr("清理"));
+    connect(act_pro_clear,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_clear);
     Menu_pro->addSeparator();//添加分割线
-    t_menuAction = Menu_pro->addAction(ico_menu_close,tr("关闭项目"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_proMneu_Close);
+    act_pro_attribute = Menu_pro->addAction(QIcon(),tr("工程属性"));
+    connect(act_pro_attribute,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_attribute);
+    act_pro_close = Menu_pro->addAction(ico_menu_close,tr("关闭项目"));
+    connect(act_pro_close,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_close);
+    Menu_pro->addSeparator();//添加分割线
+    //connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_proMenu_Biild);
+    //Menu_pro->addSeparator();//添加分割线
 
 
-    //构建文件菜单
+    //默认菜单
     Menu_normal = new QMenu(this);
-    QMenu* t_Menu_item = new QMenu(Menu_normal);//子项菜单
-    Menu_addNewFile = t_Menu_item;
-    t_Menu_item->setTitle("添加文件");
-    t_Menu_item->setIcon(ico_menu_addNewFile);
-    t_menuAction = t_Menu_item->addAction(ico_menu_addNewFile,tr("头文件(.h)"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_addHead);
-    t_menuAction = t_Menu_item->addAction(ico_menu_addNewFile,tr("源文件(.cpp)"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_addCpp);
-    t_menuAction = t_Menu_item->addAction(ico_menu_addFormFile,tr("窗体文件(.uix)"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_addForm);
-    t_menuAction = t_Menu_item->addAction(ico_fileType_unKnow,tr("其他文件"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_addOtherFile);
-    Menu_normal->addMenu(t_Menu_item);
-
-    t_menuAction = Menu_normal->addAction(ico_menu_addHasFile,tr("添加已有文件"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_addHasFile);
+    Menu_normal->addMenu(Menu_addNewFile);
     Menu_normal->addSeparator();//添加分割线
-
-    t_Menu_item = new QMenu(Menu_normal);//子项菜单
-    t_Menu_item->setTitle("文件夹/分类器");
-    t_Menu_item->setIcon(ico_menu_folder);
-    t_menuAction = t_Menu_item->addAction(ico_menu_addFolder,tr("创建文件夹"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_createNewFolder);
-    t_menuAction = t_Menu_item->addAction(ico_menu_addVisualFolder,tr("创建虚拟文件夹"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_createVisualFolder);
-    Menu_normal->addMenu(t_Menu_item);
+    act_nor_cut = Menu_normal->addAction(QIcon(),tr("剪切"));
+    connect(act_nor_cut,&QAction::triggered,this,&Form_ProjectManger::event_norMenu_cut);
+    act_nor_copy = Menu_normal->addAction(QIcon(),tr("复制"));
+    connect(act_nor_copy,&QAction::triggered,this,&Form_ProjectManger::event_norMenu_copy);
+    act_nor_paste = Menu_normal->addAction(QIcon(),tr("粘贴"));
+    connect(act_nor_paste,&QAction::triggered,this,&Form_ProjectManger::event_norMenu_paste);
     Menu_normal->addSeparator();//添加分割线
-
-    t_menuAction = Menu_normal->addAction(ico_menu_rename,tr("重命名"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_rename);
+    act_nor_flash = Menu_normal->addAction(ico_menu_check,tr("刷新"));
+    connect(act_nor_flash,&QAction::triggered,this,&Form_ProjectManger::event_norMenu_flash);
+    act_nor_rename = Menu_normal->addAction(QIcon(),tr("重命名"));
+    connect(act_nor_rename,&QAction::triggered,this,&Form_ProjectManger::event_norMenu_rename);
     Menu_normal->addSeparator();//添加分割线
-
-    t_menuAction = Menu_normal->addAction(ico_menu_delete,tr("永久删除"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_delete);
-    t_menuAction = Menu_normal->addAction(ico_menu_remove,tr("从项目列表移除"));
-    connect(t_menuAction,&QAction::triggered,this,&Form_ProjectManger::event_menu_remove);
-    //Menu_normal->addSeparator();//添加分割线
-
-
-
+    act_nor_explorer = Menu_normal->addAction(ico_menu_addVisualFolder,tr("在资源管理器打开"));
+    connect(act_nor_explorer,&QAction::triggered,this,&Form_ProjectManger::event_norMenu_explorer);
+    Menu_normal->addSeparator();//添加分割线
+    act_nor_remove = Menu_normal->addAction(QIcon(),tr("删除"));
+    connect(act_nor_remove,&QAction::triggered,this,&Form_ProjectManger::event_norMenu_remove);
+    Menu_normal->addSeparator();//添加分割线
 }
 
 
-//查找Poeject指针，不存在返回nullptr
-Form_ProjectManger::ProjectMsg *Form_ProjectManger::Find_ProjectMsg(QTreeWidgetItem *item)
+//是否存在此路径
+bool Form_ProjectManger::existPath(QString path)
 {
-    QVector<ProjectMsg*>::Iterator t_it;
-    for(t_it = ProjectList.begin();t_it<ProjectList.end();t_it++){
-        if((*t_it)->proParentItem == item){ //直接查找工程指针信息
-            return (*t_it);
+    for(int a = 0; a < this->projectArray.length(); a++){
+        for(int i = 0; i < this->projectArray[a]->itemNodes.length(); i++){
+            if(this->projectArray[a]->itemNodes[i].path.indexOf(path) != -1){
+                return true;
+            }
         }
-        else{
-            QVector<itemMsg>::Iterator t_itItem;
-            for(t_itItem = (*t_it)->proItemList.begin();t_itItem < (*t_it)->proItemList.end();t_itItem++){
-                if(t_itItem->item == item){ //从子项查找工程指针信息
-                    return t_itItem->projectPth;
-                }
+    }
+    return false;
+}
+
+
+//删除也有此路径的节点
+//void Form_ProjectManger::delPath(QString path)
+//{
+
+//    //删除父树的QTreeWidgetItem，子树也会一并删除
+//    for(int a = 0; a < this->projectArray.length(); a++){
+//        for(int i = 0; i < this->projectArray[a]->itemNodes.length(); i++){
+//            if(this->projectArray[a]->itemNodes[i].path == path){
+//                if(this->projectArray[a]->itemNodes[i].treeItem != nullptr) delete this->projectArray[a]->itemNodes[i].treeItem;
+//                this->projectArray[a]->watcher->delLikeLeftPath(path); //watcher停止监视此信息
+//                break;
+//            }
+//        }
+//    }
+
+//    //倒找删除子项目信息
+//    for(int a = 0; a < this->projectArray.length(); a++){
+//        for(int i = this->projectArray[a]->itemNodes.length() - 1; i >= 0 ; i--){
+//            if(this->projectArray[a]->itemNodes[i].path.indexOf(path) != -1){
+//                this->projectArray[a]->itemNodes.remove(i);
+//            }
+//        }
+//    }
+//}
+
+
+//读取FMS信息
+PluginGlobalMsg::ProjectMsg Form_ProjectManger::readProjectMsg(QString fmsFilePath)
+{
+    QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(fmsFilePath));
+    if(!t_jsonDoc.isObject()) return PluginGlobalMsg::ProjectMsg();
+    PluginGlobalMsg::ProjectMsg t_retMsg;
+    QJsonObject t_jsonObj = t_jsonDoc.object();
+    t_retMsg.proName = t_jsonObj.value("proName").toString("");
+    t_retMsg.proIconPath = t_jsonObj.value("proIconPath").toString("");
+    t_retMsg.proVerson = t_jsonObj.value("proVerson").toString("1.0.0");
+    t_retMsg.proVersonNum = t_jsonObj.value("proVersonNum").toInt(1);
+    t_retMsg.proOrg = t_jsonObj.value("proOrg").toString("");
+    t_retMsg.proEmail = t_jsonObj.value("proEmail").toString("null");
+    t_retMsg.proCall = t_jsonObj.value("proCall").toString("");
+    t_retMsg.proNote = t_jsonObj.value("proNote").toString("");
+    t_retMsg.proSystem = t_jsonObj.value("proSystem").toString("");
+    t_retMsg.proLanguage = t_jsonObj.value("proLanguage").toString("");
+    t_retMsg.proNoteClass = t_jsonObj.value("proNoteClass").toString("");
+    return t_retMsg;
+}
+
+
+//根据一个路径，在工程列表中查找是否存在这个工程，存在则返回
+Form_ProjectManger::ProjectNode* Form_ProjectManger::getProjectNode(QString path)
+{
+    for(int i = 0; i < this->projectArray.length(); i++){
+        ProjectNode* pro  = this->projectArray[i];
+        for(auto nodeItem : pro->itemNodes){
+            if(nodeItem.path == path){
+                return pro;
             }
         }
     }
     return nullptr;
 }
 
-//查找itemMsg指针，不存在返回nullptr
-Form_ProjectManger::itemMsg *Form_ProjectManger::Find_ItemMsg(QTreeWidgetItem *item)
+
+//根据一个QTreeWidgetItem指针，在工程列表中查找是否存在这个工程，存在则返回
+Form_ProjectManger::ProjectNode *Form_ProjectManger::getProjectNode(QTreeWidgetItem *item)
 {
-    QVector<ProjectMsg*>::Iterator t_it;
-    for(t_it = ProjectList.begin();t_it<ProjectList.end();t_it++){
-        QVector<itemMsg>::Iterator t_it2;
-        for(t_it2 = (*t_it)->proItemList.begin();t_it2 < (*t_it)->proItemList.end();t_it2++){
-            if(t_it2->item == item){
-                return t_it2;
+    for(int i = 0; i < this->projectArray.length(); i++){
+        ProjectNode* pro  = this->projectArray[i];
+        for(auto nodeItem : pro->itemNodes){
+            if(nodeItem.treeItem == item){
+                return pro;
             }
         }
     }
     return nullptr;
 }
 
-//获取文件或者文件夹路径
-QString Form_ProjectManger::GetPath()
-{
-    QString t_path = "";
-    itemMsg* t_itemMsg = this->Find_ItemMsg(ui->treeWidget->currentItem());
-    if(t_itemMsg == nullptr) { //如果不是子项目，则扫描工程，获取工程的路径
-        ProjectMsg* t_proMsg = Find_ProjectMsg(ui->treeWidget->currentItem()); //扫描是否为本地工程
-        if(t_proMsg != nullptr){
-            t_path = t_proMsg->proPath + t_proMsg->proSrcPath; //默认为工程目录标准文件路径
-        }
 
+//扫描自定路径下的文件信息，构建成节点树，但是不创建QTreeWidgetItem
+QVector<Form_ProjectManger::ItemTreeNode> Form_ProjectManger::scanSubNode(QString path)
+{
+    QVector<ItemTreeNode> fileList;
+    QDir directory(path);
+    directory.setFilter(QDir::AllEntries | QDir::NoDotAndDotDot);
+    QFileInfoList fileInfoList = directory.entryInfoList();
+    foreach (const QFileInfo& fileInfo, fileInfoList) {
+        ItemTreeNode t_item; //临时节点存储
+        t_item.node.path = fileInfo.filePath();
+        if(fileInfo.isDir()){
+            t_item.node.type = ItemType::Folder;
+            t_item.subItem = this->scanSubNode(t_item.node.path);
+        }
+        else if(fileInfo.isFile()){
+            t_item.node.type = ItemType::File;
+            if(fileInfo.fileName() == FMP){
+                t_item.node.type = ItemType::project;
+            }
+            //t_item.node.treeItem = new QTreeWidgetItem;
+        }
+        fileList.append(t_item); //加入到返回列表
     }
-    else{
-        if(t_itemMsg->type == listType::folder_hasSign ||   //如果是虚拟文件夹
-           t_itemMsg->type == listType::folder_leftSign ||
-            t_itemMsg->type == listType::folder_rightSign){
-            t_path = t_itemMsg->projectPth->proPath + t_itemMsg->projectPth->proSrcPath; //默认为工程目录标准文件路径
-            t_path = t_path.replace("./","/");
-        }
-        else if(t_itemMsg->type == listType::file_fmp || t_itemMsg->type == listType::file_normal){ //如果是文件
-            t_path = QFileInfo(t_path).path();
-        }
-        else if(t_itemMsg->type == listType::folder_normalSign){ //如果是文件夹
-            t_path = QFileInfo(t_path).absoluteFilePath();
-        }
-    }
-    return t_path;
+    return fileList;
 }
 
-//添加一个文件
-void Form_ProjectManger::AddFile(QString name)
+
+//根据树创建Item
+void Form_ProjectManger::createItemFromTree(QVector<ItemTreeNode> &tree)
 {
-    QString t_path = this->GetPath();
-    if(t_path.isEmpty()) return;
-    t_path = t_path + "/" + name; //添加头文件
-        t_path = Form_ProjectManger::GetValidPath(t_path); //纠正文件类型
-
-    itemMsg* t_itemMsg = this->Find_ItemMsg(ui->treeWidget->currentItem());
-        if(t_itemMsg == nullptr || t_itemMsg->projectPth == nullptr) return;
-
-    QFile t_file(t_path);
-    if(!t_file.open(QIODevice::WriteOnly)) return;
-    t_file.close(); //写出一个文件
-
-    this->addItem(QFileInfo(t_path).fileName(),  //文件名
-                  t_path, //标记文本
-                  ico_fmp, //图标文件
-                  t_itemMsg->projectPth, //父项目指针
-                  listType::file_normal //文件类型
-                  );
-    this->flashTreeWidget();//刷新树信息
-}
-
-//检查当前工程是否存在这个文件
-bool Form_ProjectManger::HasFile(QString filePath)
-{
-    if(NowProjectMsg == nullptr) return false;
-    QVector<itemMsg>::Iterator t_it;
-    for(t_it = NowProjectMsg->proItemList.begin();t_it < NowProjectMsg->proItemList.end();t_it++){
-        if(t_it->type == listType::file_fmp || t_it->type == listType::file_normal){
-            if(t_it->signText == filePath) return true;
+    for(int i = 0; i < tree.length(); i++){
+        if(tree[i].node.treeItem == nullptr){
+            tree[i].node.treeItem = new QTreeWidgetItem();
+            tree[i].node.treeItem->setText(0,QFileInfo(tree[i].node.path).fileName());
+            this->createItemFromTree(tree[i].subItem); //给子项创建Item
         }
-    }
-    return false;
-}
-
-//获取有效的文件路径
-QString Form_ProjectManger::GetValidPath(QString pathName)
-{
-    if(!QFileInfo(pathName).exists()) return pathName;
-
-    QFileInfo t_fileinfo = QFileInfo(pathName);
-    QString t_suffix = t_fileinfo.suffix();     //文件后缀
-    QString t_baseName = t_fileinfo.baseName(); //基础名字
-    QString t_path = t_fileinfo.path();         //文件路径
-
-    QString t_pathName;
-    int a = 0;
-    while(true){
-        a++;
-        t_pathName = t_path + "/" + t_baseName + "(" + QString::number(a) + ")." + t_suffix;
-        if(!QFileInfo(t_pathName).exists()) return t_pathName;
+        //parentItem->addChild(tree[i].node.treeItem);
     }
 }
 
 
-//根据路径获取路径的最后一个文件夹
-QString Form_ProjectManger::GetDirFileName(QString pathDir)
+//根据列表创建item
+void Form_ProjectManger::cerateItemFromVector(QVector<ItemNode>& list)
 {
-    int t_index = pathDir.lastIndexOf('/');
-    if(t_index == -1) return "";
-    return pathDir.right(pathDir.length() - t_index - 1); //工程文件名
+    for(ItemNode& node : list){
+        if(node.treeItem == nullptr){
+            node.treeItem = new QTreeWidgetItem();
+            node.treeItem->setText(0,QFileInfo(node.path).fileName());
+        }
+        //parentItem->addChild(tree[i].node.treeItem);
+    }
 }
 
 
-//检查工程是否已经存在
-bool Form_ProjectManger::projectExisted(QString proPath)
+//把树节点，添加到记录表
+QVector<Form_ProjectManger::ItemNode> Form_ProjectManger::TreeToArray(QVector<ItemTreeNode> &tree)
 {
-    for(int a = 0;a<this->ProjectList.length();a++){
-        if(this->ProjectList[a]->proPath == proPath) {
-            return true;
+    QVector<ItemNode> t_retArray;
+    t_retArray.reserve(50);
+
+    for(int i = 0; i < tree.length(); i++){
+        t_retArray.append(tree[i].node);
+        if(tree[i].subItem.length() > 0){
+            t_retArray.append(this->TreeToArray(tree[i].subItem));
         }
     }
-    return false;
+    return t_retArray;
 }
 
 
-
-//将ProjectMsg转换为PluginGlobalMsg::projectMsgBase
-PluginGlobalMsg::projectMsgBase Form_ProjectManger::projectMsgConvertToBase(ProjectMsg msg)
+//根据列表创建树
+QVector<Form_ProjectManger::ItemTreeNode> Form_ProjectManger::ArrayToTree(QVector<ItemNode>& array)
 {
-    PluginGlobalMsg::projectMsgBase t_base;
-    t_base.proPath = msg.proPath; //工程目录
-    t_base.proName = msg.proName;//工程名
-    t_base.proIconPath = msg.proIconPath;//图标路径
-    t_base.proVerson = msg.proVerson;//版本信息
-    t_base.proVersonNum = msg.proVersonNum;//版本号
-    t_base.proOrg = msg.proOrg;//社区与公司名称
-    t_base.proEmail = msg.proEmail;//邮箱
-    t_base.proCall = msg.proCall;//电话
-    t_base.proNote = msg.proNote;//备注
-    t_base.proSrcPath = msg.proSrcPath;//源码相对路径
-    t_base.proSystem = msg.proSystem; //操作系统平台标记
-    t_base.proLanguage = msg.proLanguage; //语言标记
-    t_base.proNoteClass = msg.proNoteClass; //其他备注标记
-    return t_base;
-}
 
+    QVector<ItemTreeNode> t_retTree;
 
-
-//获取工程的基础信息
-PluginGlobalMsg::projectMsgBase Form_ProjectManger::getProjectMsgBase(QString proPath)
-{
-    PluginGlobalMsg::projectMsgBase t_base;
-    for(int a = 0;a<this->ProjectList.length();a++){
-        if(this->ProjectList[a]->proPath == proPath) {
-            t_base = this->projectMsgConvertToBase(*this->ProjectList[a]);
-            break;
+    //冒泡排序，从大到小
+    for(int a = 0; a < array.length(); a++){
+        for(int b = 0; b < array.length() - a - 1; b++){
+            if(array[b].path.length() < array[b + 1].path.length()){ //从大到小排序
+                ItemNode t_node;
+                t_node = array[b];
+                array[b] = array[b + 1];
+                array[b + 1] = t_node;
+            }
         }
     }
-    return t_base;
+
+    //创建标记组
+    int* nums = new int[array.length()];
+    for(int a = 0; a < array.length(); a++) nums[a] = 0;
+
+
+    for(int a = array.length() - 1; a >= 0 ; a--){
+        if(nums[a] == 1){continue;} //有标记则跳过
+        nums[a] = 1; //标记此处被使用了
+        ItemTreeNode t_treeNode;
+        t_treeNode.node = array[a];
+        QVector<ItemNode> t_subs;
+        QString t_scanIndexStr = array[a].path + "/";
+        for(int b = a - 1; b >= 0; b--){
+            if(nums[b] == 1){continue;} //有标记则跳过
+            if(array[b].path.indexOf(t_scanIndexStr) != -1){
+                t_subs.append(array[b]);
+                nums[b] = 1;//打上标记，后面的跳过此位置
+            }
+        }
+
+        //递归查找子Node
+        if(t_subs.length() > 0){
+            t_treeNode.subItem = this->ArrayToTree(t_subs);
+        }
+        t_retTree.append(t_treeNode);
+    }
+
+    //排序节点(从小到大排序)
+    for(int x = 0; x < t_retTree.length(); x++){
+        for(int y = 0; y < t_retTree.length() - x - 1; y++){
+            if(t_retTree[y].node.path.compare(t_retTree[y + 1].node.path) > 0){
+                ItemTreeNode t_treeNode = t_retTree[y];
+                t_retTree[y] = t_retTree[y + 1];
+                t_retTree[y + 1] = t_treeNode;
+            }
+        }
+    }
+
+    //把节点分类
+    QVector<ItemTreeNode> t_tNodes;
+    t_tNodes.reserve(t_retTree.length());
+    for(int i = 0; i < t_retTree.length(); i++){ //工程节点
+        if(t_retTree[i].node.type == ItemType::project){
+            t_tNodes.append(t_retTree[i]);
+        }
+    }
+    for(int i = 0; i < t_retTree.length(); i++){ //文件夹
+        if(t_retTree[i].node.type == ItemType::Folder){t_tNodes.append(t_retTree[i]);}
+    }
+    for(int i = 0; i < t_retTree.length(); i++){ //文件
+        if(t_retTree[i].node.type == ItemType::File){t_tNodes.append(t_retTree[i]);}
+    }
+    for(int i = 0; i < t_retTree.length(); i++){ //其他
+        if(t_retTree[i].node.type != ItemType::project &&
+            t_retTree[i].node.type != ItemType::Folder &&
+            t_retTree[i].node.type != ItemType::File)
+        {t_tNodes.append(t_retTree[i]);}
+    }
+
+    delete [] nums;
+    return t_tNodes;
 }
 
-//移除项目的所有子项Item
-void Form_ProjectManger::RemoveAllItemChild(QTreeWidgetItem *parent)
+
+//调整树信息
+void Form_ProjectManger::adjustTree(QVector<ItemTreeNode> tree)
 {
-    while(parent->childCount() > 0){
-        parent->removeChild(parent->child(0));
+    for(int a = 0; a < tree.length(); a++){
+        bool t_ex = tree[a].node.treeItem->isExpanded();
+        for(int b = 0; b < tree[a].subItem.length(); b++){
+            if(tree[a].node.treeItem->child(b) != tree[a].subItem[b].node.treeItem){ //位置不正确，则刷新
+                tree[a].node.treeItem->removeChild(tree[a].subItem[b].node.treeItem); //先移除
+                tree[a].node.treeItem->insertChild(b,tree[a].subItem[b].node.treeItem); //调整位置
+            }
+        }
+        this->adjustTree(tree[a].subItem);
+        tree[a].node.treeItem->setExpanded(t_ex);
     }
 }
 
-//重命名item
-bool Form_ProjectManger::RenameItem()
+
+//清理无效的树（scanPath为包含的路径,checkExists为检查是否存在，如果不检查，则直接移除）
+QVector<Form_ProjectManger::ItemTreeNode> Form_ProjectManger::clearSpentTree(QVector<ItemTreeNode> tree, QString scanPath, bool checkExists)
 {
-    if(this->canEditorItem == nullptr) return false;
-    itemMsg* t_itemMsgPtr = this->Find_ItemMsg(this->canEditorItem);
-    QString t_newName = this->canEditorItem->text(0);
-    this->canEditorItem = nullptr;//置空信息
-    if(t_itemMsgPtr != nullptr){
-        if(t_itemMsgPtr->name == t_itemMsgPtr->item->text(0)) return true;//未更名则不做任何分配
-        QString t_olderName = t_itemMsgPtr->signText;
-        if(t_itemMsgPtr->type == listType::file_fmp || t_itemMsgPtr->type == listType::file_normal){ //如果是文件
-            QFile t_file(t_itemMsgPtr->signText);
-            QString t_newFilePath = QFileInfo(t_itemMsgPtr->signText).path() + "/" + t_newName; //新的文件名（包含路径）
-            if(t_file.rename(t_newFilePath) == false){ //文件更名
-                //更名失败
-                t_itemMsgPtr->item->setText(0,t_itemMsgPtr->name); //还原名称
-                return false;
+    for(int a = tree.length() - 1; a >= 0; a--){
+        if(tree[a].node.path.indexOf(scanPath) != -1){
+
+
+            //递归删除子项目，主要是用于回收子项目itemWidget内存
+            if(tree[a].subItem.length() > 0){
+                tree[a].subItem = this->clearSpentTree(tree[a].subItem,scanPath,checkExists);
             }
 
-            this->onFileRename(t_itemMsgPtr->signText,t_newFilePath); //激发文件更名事件
-            t_itemMsgPtr->name = t_newName; //设定新名称
-            t_itemMsgPtr->signText = t_newFilePath; //设定新路径
 
-            if(QFileInfo(t_olderName).suffix() != QFileInfo(t_itemMsgPtr->item->text(0)).suffix()){ //后缀对比,新后缀将重新创建Item
-                QMessageBox::warning(this,tr("文件后缀变动"),tr("注意：当前的文件类型存在变动，若当前文件在分类器中，可能会重新分配！"));
-                delete t_itemMsgPtr->item;//回收内存信息
-                t_itemMsgPtr->item = new QTreeWidgetItem;//创建新的子项
-                t_itemMsgPtr->item->setText(0,t_newName);
-            }
-            return true;
-        }
-        if(t_itemMsgPtr->type == listType::folder_hasSign || t_itemMsgPtr->type == listType::folder_leftSign || t_itemMsgPtr->type == listType::folder_rightSign){//若是分类文件夹
-            t_itemMsgPtr->name = t_newName; //直接更改信息
-            return true;
-        }
-        if(t_itemMsgPtr->type == listType::folder_normalSign){ //文件夹更名
-            int t_index = t_itemMsgPtr->signText.lastIndexOf('/');
-            if(t_index == -1) return false;
-            QString t_p = t_itemMsgPtr->signText.left(t_index) + "/" + t_newName;
-            QDir t_dir;
-            if(t_dir.rename(t_itemMsgPtr->signText,t_p) == false){
-                t_itemMsgPtr->item->setText(0,t_itemMsgPtr->name); //还原名称
-                return false;
-            }
-            t_itemMsgPtr->name = t_newName;
-            t_itemMsgPtr->signText = t_p;
-            return true;
-        }
-    }
-    return false;
-}
-
-
-//遍历文件夹与子文件夹，还有文件
-void Form_ProjectManger::Find_DirFile(QString dirPath, QVector<QString> &dirList, QVector<QString> &fileList)
-{
-    QDir t_dir(dirPath);
-    if(!t_dir.exists()) return;
-    QFileInfoList t_infoList = t_dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
-    for(int a = 0;a<t_infoList.length();a++){
-        QString t_filaPath = t_infoList[a].absoluteFilePath();
-        if(t_infoList[a].isDir()){
-            dirList.append(t_filaPath);
-            this->Find_DirFile(t_filaPath,dirList,fileList);
-        }
-        else{
-            fileList.append(t_filaPath);
-        }
-    }
-}
-
-//构建项目
-void Form_ProjectManger::event_proMenu_Biild()
-{
-    ProjectMsg * t_pro = this->Find_ProjectMsg(ui->treeWidget->currentItem());
-    if(t_pro != nullptr){
-        this->onProjectBuild(t_pro->proPath + t_pro->proSrcPath);
-    }
-}
-//清理项目
-void Form_ProjectManger::event_proMneu_Clear()
-{
-    ProjectMsg * t_pro = this->Find_ProjectMsg(ui->treeWidget->currentItem());
-    if(t_pro != nullptr){
-        this->onFileClose(t_pro->proPath + t_pro->proSrcPath);
-    }
-}
-
-
-//切换活动项目
-void Form_ProjectManger::event_proMneu_SetActive()
-{
-    ProjectMsg * t_pro = this->Find_ProjectMsg(ui->treeWidget->currentItem());
-    if(t_pro == nullptr) return;
-    this->NowProjectMsg = t_pro;
-    this->onProjectActiveChanged(t_pro->proPath,t_pro->proLanguage,t_pro->proNoteClass);
-}
-
-//刷新项目
-void Form_ProjectManger::event_proMneu_Flash()
-{
-    ProjectMsg * t_pro = this->Find_ProjectMsg(ui->treeWidget->currentItem());
-    if(t_pro != nullptr){
-        this->sortItem(t_pro);
-        this->initItem(t_pro);
-        this->flashTreeWidget();
-    }
-}
-//验证项目
-void Form_ProjectManger::event_proMneu_Check()
-{
-    ProjectMsg * t_pro = this->Find_ProjectMsg(ui->treeWidget->currentItem());
-    if(t_pro != nullptr){
-        QVector<itemMsg>::Iterator t_it;
-        for(t_it = t_pro->proItemList.begin();t_it < t_pro->proItemList.end();t_it++){
-            if(t_it->type == listType::file_fmp || t_it->type == listType::file_normal){ //如果是工程文件或者是普通文件
-                //开始验证文件是否存在
-                if(QFile(t_it->signText).exists()){
-                    t_it->item->setForeground(0,color_Normal); //文件存在，默认取色
+            if(checkExists){ //需要检查是否存在
+                if(!QFileInfo(tree[a].node.path).exists()){ //不存在的项目则删除，存在的项目不删除
+                    goto ITEMDEL;
                 }
-                else{
-                    t_it->item->setForeground(0,color_HasNot); //不存在，则默认灰色显示
-                }
-                continue;
-            }
-            else if(t_it->type == listType::folder_normalSign){
-                QDir t_folder(t_it->signText);
-                if(t_folder.exists()){
-                    t_it->item->setForeground(0,color_Normal); //文件存在，默认取色
-                }
-                else{
-                    t_it->item->setForeground(0,color_HasNot); //不存在，则默认灰色显示
-                }
-                continue;
-            }
-        }
-    }
-}
-//关闭项目
-void Form_ProjectManger::event_proMneu_Close()
-{
-    ProjectMsg * t_pro = this->Find_ProjectMsg(ui->treeWidget->currentItem());
-    if(t_pro != nullptr){
-        this->onProjectClose(t_pro->proPath + t_pro->proSrcPath); //响应关闭事件
-        //清理项目树框组件
-        delete t_pro->proParentItem; //直接delete后会自动回收删除Item的所有子节点
-        ProjectList.removeOne(t_pro); //移除当前的项目信息
-        if(NowProjectMsg == t_pro){ //判断关闭的工程是否为当前工程
-            //如果是，则默认为第一个工程为当前工程。
-            if(ProjectList.length() > 0){
-                this->NowProjectMsg = ProjectList[0]; //切换工程为第一个有效工程
-                this->onProjectActiveChanged(t_pro->proPath,t_pro->proLanguage,t_pro->proNoteClass);
             }
             else{
-                NowProjectMsg = nullptr; //工程已经全部清除，置空当前项目指针
-                this->onProjectActiveChanged("","","");
+                ITEMDEL:
+
+                //移除所有的TreeWidgetItem(注意，此时不会销毁item)
+                for(int b = tree[a].node.treeItem->childCount() - 1; b >= 0; b--){
+                    tree[a].node.treeItem->removeChild(tree[a].node.treeItem->child(b));
+                }
+
+                //删除TreeWidgetItem
+                if(tree[a].node.treeItem != nullptr){
+                    delete tree[a].node.treeItem;
+                }
+
+                tree.remove(a); //删除当前树对象
             }
         }
     }
-
-    if(ProjectList.length() == 0){
-        //如果没有工程则禁用工具栏按钮
-        ui->action_AddFolder->setEnabled(false);
-        ui->action_AddForm->setEnabled(false);
-        ui->action_AddHasFile->setEnabled(false);
-        ui->action_AddNewFile->setEnabled(false);
-    }
+    return tree;
 }
 
 
-//添加头文件
-void Form_ProjectManger::event_menu_addHead()
+//清理无效列表
+QVector<Form_ProjectManger::ItemNode> Form_ProjectManger::clearSpentList(QVector<ItemNode> list, QString scanPath, bool checkExists)
 {
-    this->AddFile("头文件.h");
-}
+//    QVector<ItemNode> t_retList;
+//    t_retList.reserve(t_retList.length());
+    for(int a = list.length() - 1; a >= 0; a--){
+        if(list[a].path.indexOf(scanPath) != -1){
 
-//添加源文件
-void Form_ProjectManger::event_menu_addCpp()
-{
-    this->AddFile("源文件.cpp");
-}
-
-//添加窗体文件
-void Form_ProjectManger::event_menu_addForm()
-{
-    this->AddFile("newForm.uix");
-}
-
-//添加其他类型文件
-void Form_ProjectManger::event_menu_addOtherFile()
-{
-    QString t_str = QInputDialog::getText(this, tr("添加文件"), tr("请输入文件名："), QLineEdit::Normal, QString());
-    if(t_str.isEmpty()) return;
-    this->AddFile(t_str);
-}
-
-//添加已有文件
-void Form_ProjectManger::event_menu_addHasFile()
-{
-    QString t_path = this->GetPath();//获取当前目录
-    QString t_filePath = QFileDialog::getOpenFileName(this, tr("打开已有文件"), "", "默认工程文件 (*.h *.c *.cpp *.uix);;所有文件(*.*)");
-    if(t_filePath.isEmpty() || !QFileInfo(t_filePath).exists()) return;//如果文件不存在
-    if(this->HasFile(t_filePath)) return;//工程已经存在这个文件，直接返回
-
-    QString t_newFilePath = t_path + "/" + QFileInfo(t_filePath).fileName(); //新文件路径
-    if(QFile(t_newFilePath).exists()){
-        if(QMessageBox::question(this,tr("当前工程已经存在同名文件，是否覆盖？"),"",QMessageBox::Yes | QMessageBox::No,QMessageBox::No) == QMessageBox::No){
-            //不覆盖同名文件，创建新的文件
-            t_newFilePath = this->GetValidPath(t_newFilePath);
-        }
-    }
-    QFile::copy(t_filePath,t_newFilePath);
-    this->addItem(QFileInfo(t_newFilePath).fileName(),  //文件名
-                  t_newFilePath, //标记文本
-                  ico_fmp, //图标文件
-                  this->NowProjectMsg, //父项目指针
-                  listType::file_normal //文件类型
-                  );
-    this->flashTreeWidget();//刷新树信息
-}
-
-//创建文件夹
-void Form_ProjectManger::event_menu_createNewFolder()
-{
-    ProjectMsg* t_proPth = nullptr;
-    itemMsg* t_itemMsg = this->Find_ItemMsg(ui->treeWidget->currentItem());
-    if(t_itemMsg != nullptr){
-        t_proPth = t_itemMsg->projectPth;
-    }
-    else{
-        t_proPth = this->Find_ProjectMsg(ui->treeWidget->currentItem());
-    }
-    if(t_proPth == nullptr) return; //指针信息正确
-
-    QString t_folderName = QInputDialog::getText(nullptr,"输入","文件夹名");
-    if(t_folderName.isEmpty()) return;
-
-    QString t_path = this->GetPath();
-    if(t_path.isEmpty()) return;
-
-    QString t_folderSign = t_path + "/" + t_folderName;
-    if(QDir(t_folderSign).exists()){
-        for (int a = 1;true; a++) { //注意：目录后缀的添加是以"1"开始
-            t_folderSign = t_path + "/" + t_folderName + QString::number(a);
-            if(!QDir(t_folderSign).exists()){
-                t_folderName = t_folderName + QString::number(a); //新文件夹名称
-                break;
-            }
-        }
-    }
-
-    QDir t_dir;
-    if(t_dir.mkpath(t_folderSign)){
-        this->addItem(t_folderName,  //文件名
-                      t_folderSign, //标记文本
-                      ico_normalFolder, //图标文件
-                      t_proPth, //父项目指针
-                      listType::folder_normalSign //文件夹类型
-                      );
-    }
-    this->flashTreeWidget();//刷新树信息
-}
-
-//创建虚拟文件夹
-void Form_ProjectManger::event_menu_createVisualFolder()
-{
-    QTreeWidgetItem* t_currentItem = ui->treeWidget->currentItem();//临时保存Item指针
-    Form_VisualFolder* t_vfolder = new Form_VisualFolder(nullptr);
-
-    t_vfolder->setAttribute(Qt::WA_ShowModal, true); //设置模态,也就是对话窗口模式
-
-    t_vfolder->setFun([this,t_currentItem](QString folderName,QString folderText,int type){
-        if(folderName.isEmpty() || folderText.isEmpty()) return;
-        listType t_type;
-        switch(type){
-        default:{
-            t_type = listType::folder_rightSign;
-            break;
-        }
-        case 0:{ //后缀分类
-            t_type = listType::folder_rightSign;
-            break;
-        }
-        case 1:{ //前缀分类
-            t_type = listType::folder_leftSign;
-            break;
-        }
-        case 2:{ //存在分类
-            t_type = listType::folder_hasSign;
-            break;
-        }
-        }
-        itemMsg* t_itemMsg = this->Find_ItemMsg(t_currentItem);
-        if(t_itemMsg == nullptr) return;
-        this->addItem(folderName,  //文件名
-                      folderText, //标记文本
-                      ico_signFolder, //图标文件
-                      t_itemMsg->projectPth, //父项目指针
-                      t_type //文件类型
-                      );
-        this->flashTreeWidget();//刷新树信息
-    });
-
-    t_vfolder->setWindowModality(Qt::ApplicationModal); //设置为对话模式
-    t_vfolder->show();
-}
-
-//重命名
-void Form_ProjectManger::event_menu_rename()
-{
-    itemMsg* t_itemMsgPtr = this->Find_ItemMsg(ui->treeWidget->currentItem());
-    if(t_itemMsgPtr == nullptr) return;
-    ui->treeWidget->openPersistentEditor(t_itemMsgPtr->item,0);//设置为可编辑
-
-    canEditorItem = t_itemMsgPtr->item; //设定当前可编辑的item指针
-
-
-
-}
-
-//永久删除
-void Form_ProjectManger::event_menu_delete()
-{
-    itemMsg t_itemMsg = *this->Find_ItemMsg(ui->treeWidget->currentItem());
-    if(t_itemMsg.type == listType::file_fmp) QMessageBox::warning(this,tr("警告"),tr("无法删除工程配置文件，强制移除可能会导致工程配置异常！"));
-    if(t_itemMsg.type != listType::file_normal && t_itemMsg.type != listType::folder_normalSign) return;//不删除虚拟文件文件和启动文件
-
-    if(t_itemMsg.type == listType::file_normal){
-        QFile t_file(t_itemMsg.signText);
-        if(!t_file.exists() || !t_file.remove()){
-            QMessageBox::critical(this, tr("错误"), tr("出现问题，无法删除该项目文件！"));
-            return;
-        }
-        this->onFileClose(t_itemMsg.signText); //激发文件被删除事件
-    }
-    else if(t_itemMsg.type == listType::folder_normalSign){
-        QDir t_dir(t_itemMsg.signText);
-        if(!t_dir.exists() || !t_dir.removeRecursively()){
-            QMessageBox::critical(this, tr("错误"), tr("出现问题，无法删除该目录！"));
-            return;
-        }
-    }
-
-    //文件删除完成，删除项目结构目录
-    this->event_menu_remove();
-}
-
-//从列表移除
-void Form_ProjectManger::event_menu_remove()
-{
-    //获取当前选择的项目信息和工程信息
-    itemMsg* t_itemMsgPtr = this->Find_ItemMsg(ui->treeWidget->currentItem());
-    ProjectMsg* t_proMsgPtr = this->Find_ProjectMsg(ui->treeWidget->currentItem()); //查找的工程信息
-    if(t_proMsgPtr == nullptr || t_itemMsgPtr == nullptr) return;
-
-    itemMsg t_itemMsg = *t_itemMsgPtr; //取出信息，防止QVector列表删除造成的数据指针所指向的内存发生变动
-    QTreeWidgetItem* t_nowitem = t_itemMsg.item; //当前选择的树框item
-
-    if(t_itemMsg.type == listType::file_fmp){
-        QMessageBox::warning(this,"警告","无法移除工程配置文件，强制移除可能会导致工程配置异常！");
-        return;
-    }
-
-
-    QVector<itemMsg>::Iterator t_it;
-    if(t_itemMsg.type == listType::folder_normalSign){ //如果这是普通文件夹，则自动清空子项的所有信息
-        //遍历移除工程子项信息,并且删除
-        CLEAR_LIST:
-        QVector<itemMsg>::Iterator t_it;
-        int a = 0;
-        for(t_it = t_proMsgPtr->proItemList.begin();t_it != t_proMsgPtr->proItemList.end();t_it++){ //清空所有子项信息
-            if(t_it->type == listType::file_fmp || t_it->type == listType::file_normal || t_it->type == listType::folder_normalSign){
-                if(t_it->signText.left(t_itemMsg.signText.length()) == t_itemMsg.signText){
-                    t_proMsgPtr->proItemList.removeAt(a);
-                    goto CLEAR_LIST; //再次执行。直到清除完毕，减少代码的递归写法
+            if(checkExists){ //需要检查是否存在
+                if(!QFileInfo(list[a].path).exists()){ //不存在的项目则删除，存在的项目不删除
+                    goto ITEMDEL;
                 }
             }
-            a++;
-        }
-        delete t_nowitem;
-    }
-    else{//如果这是虚拟文件夹,则直接删除自身信息,并且清除item信息
-        //删除子项信息
-        QVector<itemMsg>::Iterator t_it;
-        int a = 0;
-        for(t_it = t_proMsgPtr->proItemList.begin();t_it < t_proMsgPtr->proItemList.end();t_it++){ //清空所有子项信息
-            if(t_it->item == t_itemMsg.item){//子项信息
-                //移除当前项目所有的子项
-                this->RemoveAllItemChild(t_it->item);
-                delete t_nowitem;
-                t_proMsgPtr->proItemList.removeAt(a); //删除当前子项信息
-                break;
+            else{
+                ITEMDEL:
+                //移除所有的TreeWidgetItem(注意，此时不会销毁item)
+                for(int b = list[a].treeItem->childCount() - 1; b >= 0; b--){
+                    list[a].treeItem->removeChild(list[a].treeItem->child(b));
+                }
+                //删除TreeWidgetItem
+                if(list[a].treeItem != nullptr){
+                    delete list[a].treeItem;
+                }
+                list.remove(a); //删除当前树对象
             }
-            a++;
         }
     }
-    //刷新树
-    this->flashTreeWidget();
+    return list;
+}
 
-    //判断是否有工程存在，操作工具栏
-    if(this->ProjectList.length() == 0){
-        ui->action_AddFolder->setEnabled(false);
-        ui->action_AddForm->setEnabled(false);
-        ui->action_AddHasFile->setEnabled(false);
-        ui->action_AddNewFile->setEnabled(false);
+
+//根据QTreeWidgetItem指针获取节点信息
+void Form_ProjectManger::getNodeByTreeWidgetItem(QTreeWidgetItem *item, ItemNode &retNode, ProjectNode *&proPtr)
+{
+    if(item == nullptr) return;
+    for(ProjectNode* proNode : this->projectArray){
+        for(ItemNode node : proNode->itemNodes){
+            if(node.treeItem == item){
+                retNode = node;
+                proPtr = proNode;
+                return;
+            }
+        }
     }
 }
+
+
+//融合list2到List1中，返回新的Lsit
+QVector<Form_ProjectManger::ItemNode> Form_ProjectManger::fusionNodeLsit(QVector<ItemNode> list1, QVector<ItemNode> list2)
+{
+    QVector<ItemNode> t_retList;
+    t_retList.reserve(list1.length() + list2.length());
+
+    t_retList.append(list1);
+    for(ItemNode node2 : list2){
+        for(ItemNode node1 : list1){
+            if(node2.path == node1.path){ //已经存在此节点，则不在追加
+                goto GOOUT;
+            }
+        }
+        //追加新的节点
+        t_retList.append(node2);
+        GOOUT:
+        continue;
+    }
+        return t_retList;
+}
+
+
+//更新观察对象,重新监测文件对象
+void Form_ProjectManger::updateWatcher(ProjectNode* proNodePtr, QVector<ItemNode> list)
+{
+    if(proNodePtr->watcher != nullptr){delete proNodePtr->watcher;}
+    QFileSystemWatcher* watcher = new QFileSystemWatcher;
+    connect(watcher,&QFileSystemWatcher::directoryChanged,[=](const QString& path){
+    this->directoryChanged(proNodePtr,path);
+    }); //连接信号
+    QStringList t_strList;
+    t_strList.reserve(list.length() + 10);
+    for(ItemNode item : list){
+        if(item.type == ItemType::Folder || item.type == ItemType::project){
+            if(QFileInfo(item.path).isDir()){
+                t_strList.append(item.path);
+            }
+        }
+    }
+    watcher->addPaths(t_strList);
+    proNodePtr->watcher = watcher;
+}
+
+
+
+//添加Node
+void Form_ProjectManger::addItemNode(ProjectNode *proNodePtr, QString path)
+{
+    QFileInfo info(path);
+    if(!info.exists()) return;
+
+    for(auto& item : proNodePtr->itemNodes){
+        if(item.path == path){
+            return;
+        }
+    }
+
+    ItemNode t_itemNode;
+    t_itemNode.path = path;
+    t_itemNode.treeItem = new QTreeWidgetItem;
+    t_itemNode.treeItem->setText(0,info.fileName());
+
+    t_itemNode.type = ItemType::Non;
+    if(info.isFile()){
+        t_itemNode.type = ItemType::File;
+    }
+    else if(info.isDir()){
+        t_itemNode.type = ItemType::Folder;
+        proNodePtr->itemNodes.append(t_itemNode);
+
+        //扫描子目录信息
+        if(proNodePtr->watcher != nullptr){
+            proNodePtr->watcher->addPath(path);
+        }
+    }
+
+
+}
+
+//根据路径选择Item，让Item获取焦点
+void Form_ProjectManger::selectItemByPath(QString path)
+{
+    for(int i = 0; i < this->projectArray.length(); i++){
+        ProjectNode* pro  = this->projectArray[i];
+        for(auto nodeItem : pro->itemNodes){
+            if(nodeItem.path == path && nodeItem.treeItem != nullptr){
+                nodeItem.treeItem->setSelected(true); //选中Item
+            }
+        }
+    }
+}
+
+
+//文件夹改变
+void Form_ProjectManger::directoryChanged(ProjectNode* proNodePtr, const QString &path)
+{
+    QString newPath = path;
+    QFileInfo fileInfo(path);
+    if(!fileInfo.exists()){
+        newPath = fileInfo.dir().path();
+    }
+    this->flashProjectPath(proNodePtr,newPath);
+}
+
+
+
+//从文件或者文件夹添加一个工程
+bool Form_ProjectManger::addProject(QString path)
+{
+    //排除工程节点是否已经存在
+    if(this->getProjectNode(path) != nullptr) return false; //根据一个路径，判断是否已经在工程列表中出现
+
+    QFileInfo t_fileInfo(path);
+    if(!t_fileInfo.exists()) return false; //文件或者文件夹不存在则添加失败
+    //if(this->existPath(path)) return false; //已经存在列表则不添加
+
+    ItemNode t_rootNode; //根节点信息
+    t_rootNode.path = path;
+    t_rootNode.type = ItemType::project;
+    //t_rootNode.treeItem = new QTreeWidgetItem;
+
+    ProjectNode* t_newProject; //新工程节点
+
+    //文件文件夹分开处理
+    if(t_fileInfo.isFile()){ //如果是文件
+        if(t_fileInfo.fileName() == FMP){ //如果是启动文件，则按照文件夹类型打开
+            path = t_fileInfo.path();
+            goto ISDIR;
+        }
+        else{ //如果只是单文件，则按照单文件内容打开
+            t_rootNode.treeItem = new QTreeWidgetItem;
+            t_rootNode.treeItem->setText(0,t_fileInfo.fileName());
+
+            //工程树
+            t_newProject = new ProjectNode;
+            t_newProject->itemNodes.append(t_rootNode); //加入根节点信息
+            t_newProject->proMsg.proName = t_rootNode.treeItem->text(0); //工程名
+            t_newProject->proMsg.proPath = path;
+
+            //加入到UI
+            ui->treeWidget->addTopLevelItem(t_rootNode.treeItem);
+            //添加到工程信息
+            projectArray.append(t_newProject);
+
+            //更改当前活动工程
+            //判断工程是否为空，为空则切换工程
+            if(nowProject == nullptr){
+                nowProject = t_newProject;
+                this->onProjectActiveChanged(nowProject->proMsg.proPath,nowProject->proMsg.proLanguage,nowProject->proMsg.proNoteClass);//当活动工程被改变
+            }
+        }
+    }
+    else if(t_fileInfo.isDir()){ //如果是文件夹
+        ISDIR:
+        t_rootNode.path = path; //这里重新赋值的原因是因为可能是pro文件启动的工程
+
+        //创建项目根节点
+        t_newProject = new ProjectNode;
+        t_newProject->proMsg = this->readProjectMsg(path + "/" + FMP);
+        t_newProject->proMsg.proPath = path;
+
+        //创建根节点的TreeItem
+        t_rootNode.treeItem = new QTreeWidgetItem;
+        QString t_proName = t_newProject->proMsg.proName;
+        if(t_proName.isEmpty()){
+            t_proName = t_fileInfo.fileName();
+            t_newProject->proMsg.proName = t_proName;
+        }
+        t_rootNode.treeItem->setText(0,t_proName);
+
+        //扫描本地文件，获取工程树
+        QVector<ItemTreeNode> t_treeNode =  this->scanSubNode(t_newProject->proMsg.proPath);
+
+        //把数组变为工程树（此时已经排序）
+        //t_treeNode =  this->ArrayToTree(t_newProject->itemNodes);
+
+        //把根节点加入到工程节点列表
+        t_newProject->itemNodes.append(t_rootNode); //把根节点加入到项目节点组里面
+
+        //给工程树创建QTreeWidgetItem;
+        this->createItemFromTree(t_treeNode);
+
+        //把树节点加入到项目的记录表,注意：最开始的根节点并没有添加，防止出现有一个根
+        t_newProject->itemNodes.append(this->TreeToArray(t_treeNode));
+
+        //把树节点加入根树节点
+        for(int i = 0; i < t_treeNode.length(); i++){
+            t_rootNode.treeItem->addChild(t_treeNode[i].node.treeItem);
+        }
+
+        //加入到UI
+        ui->treeWidget->addTopLevelItem(t_rootNode.treeItem);
+
+        //添加观察者
+        this->updateWatcher(t_newProject,t_newProject->itemNodes);
+
+        //将工程根节点与树根节点保存
+        projectArray.append(t_newProject);
+
+        //更改当前活动工程
+        this->onProjectActiveChanged(t_newProject->proMsg.proPath,t_newProject->proMsg.proLanguage,t_newProject->proMsg.proNoteClass);//当活动工程被改变
+
+        //刷新工程树，调整QTreeWidget结构
+        flashProjectTree(t_newProject->proMsg.proPath);
+
+        //判断工程是否为空，为空则切换工程
+        if(nowProject == nullptr){
+            nowProject = t_newProject;
+            this->onProjectActiveChanged(nowProject->proMsg.proPath,nowProject->proMsg.proLanguage,nowProject->proMsg.proNoteClass);//当活动工程被改变
+        }
+    }
+
+    this->flashProjectIcon(); //刷新工程树的图标
+    return true;
+}
+
+
+//关闭工程
+bool Form_ProjectManger::closeProject(QString path)
+{
+    //获取目标根
+    for(int i = 0; i < this->projectArray.length(); i++){
+        ProjectNode* pro  = this->projectArray[i];
+        if(pro->proMsg.proPath == path){
+            //回收监视对象
+            if(pro->watcher != nullptr){
+                delete pro->watcher;
+            }
+
+            //删除根QTreeWidgetItem节点
+            for(auto nodeItem : pro->itemNodes){
+                if(nodeItem.path == path && nodeItem.type == ItemType::project){
+                    delete nodeItem.treeItem; //回收最开始的根节点，所有子节点都删除
+                }
+            }
+
+            //激发工程改变
+            if(this->projectArray.length() <= 0){ //已经没有工程
+                nowProject = nullptr;
+                this->onProjectActiveChanged("","","");
+            }
+            else{   //还存在其他工程，则尝试打开其他工程
+                if(i > 0){
+                    nowProject = this->projectArray[i - 1]; //删除的不是第一个，那么自动选择上一个
+                }
+                else{
+                    if(this->projectArray.length() == 1){ //删除的是第一个，且只存在这一个，则工程失效
+                        nowProject = nullptr;
+                    }
+                    else{
+                        nowProject = this->projectArray[1]; //删除的是第一个，总长度大于一，那么选择第二个
+                    }
+                }
+
+                //激发工程改变信息
+                if(nowProject){
+                    this->onProjectActiveChanged(nowProject->proMsg.proPath,nowProject->proMsg.proLanguage,nowProject->proMsg.proNoteClass);//当活动工程被改变
+                }
+                else{
+                    this->onProjectActiveChanged("","","");//当活动工程被改变
+                }
+            }
+
+            //工程被关闭信号
+            this->onProjectClose(path);
+
+            //回收工程内存
+            delete pro;
+
+            //自身信息从工程列表移除
+            this->projectArray.remove(i);
+
+            return true;
+        }
+    }
+    return false;
+}
+
+
+//刷新工程的某个路径信息（自动判断是否有效，自动更改观察者）
+bool Form_ProjectManger::flashProjectPath(ProjectNode *proNodePtr, QString scanPath)
+{
+    if(proNodePtr == nullptr) return false; //工程指针为空则返回，并且不处理
+    if(!QFileInfo(proNodePtr->proMsg.proPath).exists()){ //工程目标路径已经不存在，则立即关闭工程
+        this->closeProject(proNodePtr->proMsg.proPath); //工程不存在，关闭工程
+        return false;
+    }
+
+    //如果工程根不是文件夹，则不扫描
+    if(!QDir(proNodePtr->proMsg.proPath).exists()){
+        return false;
+    }
+
+    //根据节点组，创建节点树，去除无用的树节点
+    QVector<ItemTreeNode> t_tree;
+    QVector<ItemNode> t_list;
+
+//    QElapsedTimer timer;
+//    timer.start();
+
+    t_tree = this->scanSubNode(scanPath);    //扫描此路径，获取子树结构
+    t_list = this->fusionNodeLsit(proNodePtr->itemNodes,this->TreeToArray(t_tree));//将扫描到的新树融合
+    t_list = clearSpentList(t_list,scanPath,true); //把已经失效的信息移除
+    this->cerateItemFromVector(t_list); //给没有创建TreeWidgetItem的对象创建TreeWidgetItem
+    this->adjustTree(ArrayToTree(t_list)); //刷新树结构
+    proNodePtr->itemNodes = t_list; //更新节点列表
+    this->flashProjectIcon(); //更新图标信息
+
+
+    //test(ArrayToTree(t_list));
+
+    //重新构建观察着信息
+    this->updateWatcher(proNodePtr,proNodePtr->itemNodes); //更新观察者信息
+    return true;
+}
+
+
+//刷新工程
+bool Form_ProjectManger::flashProjectTree(QString projectPath)
+{
+    ProjectNode* project = nullptr;
+    for(int i = 0; i < this->projectArray.length(); i++){
+        if(this->projectArray[i]->proMsg.proPath == projectPath){
+            project = this->projectArray[i];
+            break;
+        }
+    }
+    if(project == nullptr) return false;
+    adjustTree(this->ArrayToTree(project->itemNodes)); //调整树结构对象
+}
+
+
+//刷新工程图标
+void Form_ProjectManger::flashProjectIcon(QString projectPath)
+{
+    this->setFolderIco(ico_normalFolder);
+    this->setProjectIco(ico_project);
+    for(FileIconNode node : fileIconArray){
+        this->setFileIcoBySuffix(node.ico,projectPath,node.suffix);  //根据后缀设置图标
+    }
+}
+
+
+//设置目标图标，如果目标为空，则设置类型为non的图标
+void Form_ProjectManger::setObjIco(QIcon ico, QString objPath)
+{
+    for(ProjectNode* proNode : this->projectArray){
+        for(ItemNode& item : proNode->itemNodes){
+            if(item.path == objPath || (objPath.isEmpty() && item.type == ItemType::Non)){
+                item.treeItem->setIcon(0,ico);
+                return;
+            }
+        }
+    }
+}
+
+
+//设置文件夹图标,(工程路径，目标路径)
+void Form_ProjectManger::setFolderIco(QIcon ico, QString proPath, QString objPath)
+{
+    for(ProjectNode* proNode : this->projectArray){
+        if(proPath.isEmpty() || proNode->proMsg.proPath == proPath){
+            for(ItemNode& item : proNode->itemNodes){
+                if(item.type == ItemType::Folder){
+                    if(objPath.isEmpty() || item.path == objPath){
+                        item.treeItem->setIcon(0,ico);
+                        if(!objPath.isEmpty()){
+                            break;
+                        }
+                    }
+                }
+            }
+            if(!proPath.isEmpty()){
+                return;
+            }
+        }
+    }
+}
+
+
+//设置工程图标，工程路径为空则设置全部工程图标
+void Form_ProjectManger::setpRrojectIco(QIcon ico, QString proPath)
+{
+    for(ProjectNode* proNode : this->projectArray){
+        if(proPath.isEmpty() || proNode->proMsg.proPath == proPath){
+            for(ItemNode& item : proNode->itemNodes){
+                if(item.type == ItemType::project){
+                    item.treeItem->setIcon(0,ico);
+                }
+            }
+        }
+    }
+}
+
+
+//设置文件图标,(工程路径，目标路径)
+void Form_ProjectManger::setFileIco(QIcon ico, QString proPath, QString objPath)
+{
+    for(ProjectNode* proNode : this->projectArray){
+        if(proPath.isEmpty() || proNode->proMsg.proPath == proPath){
+            for(ItemNode& item : proNode->itemNodes){
+                if(item.type == ItemType::File){
+                    if(objPath.isEmpty() || item.path == objPath){
+                        item.treeItem->setIcon(0,ico);
+                        if(!objPath.isEmpty()){
+                            break;
+                        }
+                    }
+                }
+            }
+            if(!proPath.isEmpty()){
+                return;
+            }
+        }
+    }
+}
+
+
+//根据后缀设置文件图标,(工程路径，目标路径)
+void Form_ProjectManger::setFileIcoBySuffix(QIcon ico, QString path, QString suffix)
+{
+    for(ProjectNode* proNode : this->projectArray){
+        if(path.isEmpty() || path.indexOf(proNode->proMsg.proPath) == 0){
+            for(ItemNode& item : proNode->itemNodes){
+                if(item.type == ItemType::File){
+                    if(path.isEmpty() || item.path.indexOf(path) == 0){
+                        if(QFileInfo(item.path).suffix() == suffix){
+                            item.treeItem->setIcon(0,ico);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//给指定文件后缀的文件添加图标，已存在则覆盖。如果ICO为空，则是删除此ICO信息
+void Form_ProjectManger::addFileIco(QString suffix, QIcon ico)
+{
+    for(int i = 0; i < fileIconArray.length(); i++){
+        if(fileIconArray[i].suffix == suffix){
+            if(ico.isNull()){
+                fileIconArray.remove(i); goto BREAK;
+            }
+            fileIconArray[i].ico = ico; goto BREAK;
+        }
+    }
+    fileIconArray.append({suffix,ico});
+BREAK:
+    return;
+    //this->setFileIcoBySuffix(ico,"",suffix);    //设置文件图标
+}
+
+
+
+//设置工程图标
+void Form_ProjectManger::setProjectIco(QIcon ico, QString proPath)
+{
+    for(ProjectNode* proNode : this->projectArray){
+        if(proPath.isEmpty() || proNode->proMsg.proPath == proPath){
+            for(ItemNode& item : proNode->itemNodes){
+                if(item.type == ItemType::project){
+                    item.treeItem->setIcon(0,ico);
+                }
+            }
+        }
+    }
+}
+
+
+
+//新增一个文件,返回新增的文件名，如果为空则创建失败
+QString Form_ProjectManger::addNewFile(QString path, QString fileName, QString content)
+{
+    QDir t_dir(path);
+    if(!t_dir.exists()) return "";
+
+    QFileInfo t_info(fileName);;
+    QString t_newFilePath = path + "/" +fileName;
+    unsigned int t_num = 0;
+
+    while(QFile(t_newFilePath).exists()){
+        t_num++;
+        t_newFilePath = path + "/" + t_info.baseName() + "(" + QString::number(t_num) + ")." + t_info.suffix();
+    }
+
+    QFile t_outFile(t_newFilePath);
+    if(!t_outFile.open(QIODevice::ReadWrite)) return "";
+    t_outFile.write(content.toUtf8());
+    t_outFile.close();
+    return t_newFilePath;
+}
+
+
+//添加文件夹，若添加成功返回文件夹名
+QString Form_ProjectManger::addNewFolder(QString path, QString folderName)
+{
+    if(!QDir(path).exists()) return "";
+    QString t_newPath = path + "/" + folderName;
+    unsigned int t_num = 0;
+
+    while(QDir(t_newPath).exists()){
+        t_num++;
+        t_newPath = path + "/" + folderName + "(" + QString::number(t_num) + ")";
+    }
+
+    if(QDir().mkdir(t_newPath)){ //创建单级目录
+        return t_newPath;
+    }
+    else{
+        return "";
+    }
+}
+
+
+//获取当前工程
+PluginGlobalMsg::ProjectMsg Form_ProjectManger::getNowProjectMsg()
+{
+    if(this->nowProject){
+        return this->getProjectMsg(this->nowProject->proMsg.proPath);
+    }
+    return PluginGlobalMsg::ProjectMsg();
+}
+
+
+//根据一个文件或者文件夹路径，获取已经可用的文件夹路径
+QString Form_ProjectManger::getCreatePath(QString srcPath)
+{
+    QString t_savePath = "";
+    QFileInfo t_info(srcPath);
+    if(t_info.isDir()){
+        t_savePath = srcPath;
+    }
+    else if(t_info.isFile()){
+        t_savePath = t_info.path();
+    }
+    if(t_savePath.isEmpty()) return "";
+    return t_savePath;
+}
+
+
+
+//获取当前工程信息
+PluginGlobalMsg::ProjectMsg Form_ProjectManger::getProjectMsg(QString proPath)
+{
+    QString t_savePath = "";
+    t_savePath = this->getCreatePath(proPath); //获取一个有效的创建路径
+    t_savePath = t_savePath.append("/").append(FMP);
+
+    QJsonDocument t_jsonDoc;
+    t_jsonDoc.fromJson(System_File::readFile(t_savePath));
+    QJsonObject t_jsonObj = t_jsonDoc.object();
+
+    PluginGlobalMsg::ProjectMsg t_retMsg;
+    t_retMsg.proPath = proPath;
+    t_retMsg.proName = t_jsonObj.value("proName").toString("");           //工程名
+    t_retMsg.proIconPath = t_jsonObj.value("proIconPath").toString("");           //图标路径
+    t_retMsg.proVerson = t_jsonObj.value("proVerson").toString("1.0.0");        //版本信息
+    t_retMsg.proVersonNum = t_jsonObj.value("proVersonNum").toInt(1);              //版本号
+    t_retMsg.proOrg = t_jsonObj.value("proOrg").toString("");                //社区与公司名称
+    t_retMsg.proEmail = t_jsonObj.value("proEmail").toString("null");          //邮箱
+    t_retMsg.proCall = t_jsonObj.value("proCall").toString("000-0000-0000");  //电话
+    t_retMsg.proNote = t_jsonObj.value("proNote").toString("");               //备注
+    t_retMsg.proSystem = t_jsonObj.value("proSystem").toString("");             //操作系统平台标记
+    t_retMsg.proLanguage = t_jsonObj.value("proLanguage").toString("");           //语言标记
+    t_retMsg.proNoteClass = t_jsonObj.value("proNoteClass").toString("");          //其他备注标记
+    return t_retMsg;
+}
+
+
+
+//保存当前工程信息
+bool Form_ProjectManger::saveProjectMsg(QString proPath, PluginGlobalMsg::ProjectMsg proMsg)
+{
+    QString t_savePath = "";
+    t_savePath = this->getCreatePath(proPath); //获取一个有效的创建路径
+    if(t_savePath.isEmpty()) return false;
+
+    QJsonDocument t_jsonDoc;
+    QJsonObject t_jsonObj;
+    t_jsonObj.insert("proName",proMsg.proName);           //工程名
+    t_jsonObj.insert("proIconPath",proMsg.proIconPath);           //图标路径
+    t_jsonObj.insert("proVerson",proMsg.proVerson);        //版本信息
+    t_jsonObj.insert("proVersonNum",proMsg.proVersonNum);              //版本号
+    t_jsonObj.insert("proOrg",proMsg.proOrg);                //社区与公司名称
+    t_jsonObj.insert("proEmail",proMsg.proEmail);          //邮箱
+    t_jsonObj.insert("proCall",proMsg.proCall);  //电话
+    t_jsonObj.insert("proNote",proMsg.proNote);               //备注
+    t_jsonObj.insert("proSystem",proMsg.proSystem);             //操作系统平台标记
+    t_jsonObj.insert("proLanguage",proMsg.proLanguage);           //语言标记
+    t_jsonObj.insert("proNoteClass",proMsg.proNoteClass);          //其他备注标记
+    t_jsonDoc.setObject(t_jsonObj);
+    return System_File::writeFile(t_savePath + "/" + FMP,t_jsonDoc.toJson());
+}
+
+
+//添加创建文件标记（后缀，图标，默认名称，默认内容）
+void Form_ProjectManger::addBuildFileSign(QString suffix, QString sign, QIcon ico_16, QString normalName, QString content)
+{
+    if(!ico_16.isNull()){this->addFileIco(suffix,ico_16);} //新增文件的图标如果不是空，则添加
+
+    for(BuildFileNode& bItem : buildFileArray){
+        if(bItem.icoNode.suffix == suffix){
+            bItem.icoNode.ico = ico_16;
+            bItem.action->setIcon(ico_16);
+            bItem.action->setText(sign);
+            bItem.normalName = normalName;
+            bItem.normalContent = content;
+            return;
+        }
+    }
+
+    BuildFileNode t_bfNode;
+    t_bfNode.icoNode.suffix = suffix;
+    t_bfNode.icoNode.ico = ico_16;
+    t_bfNode.action = new QAction;
+    t_bfNode.action->setIcon(ico_16);
+    t_bfNode.action->setText(sign);
+    t_bfNode.normalName = normalName;
+    t_bfNode.normalContent = content;
+    Menu_addNewFile->addAction(t_bfNode.action);
+
+    //创建新的文件
+    connect(t_bfNode.action,&QAction::triggered,[=]{
+        ItemNode t_node;
+        ProjectNode* t_proNode = nullptr;
+        this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+        QString t_oPath = getCreatePath(t_node.path);
+        if(t_oPath.isEmpty()) return;
+
+        QString t_newName = QInputDialog::getText(this,tr("输入"),tr("新文件名"),QLineEdit::Normal,t_bfNode.normalName);
+        if(t_newName.isEmpty()) return;
+
+        int t_lastIndex = t_newName.lastIndexOf("."); //如果已经存在后缀
+        QString t_newSuffix = "." + t_bfNode.icoNode.suffix;
+        if(t_lastIndex != -1){
+            if(t_bfNode.icoNode.suffix == t_newName.right(t_newName.length() - t_lastIndex - 1)){
+                t_newSuffix = "";
+            }
+            else{
+                t_newSuffix = "." + t_bfNode.icoNode.suffix;
+            }
+        }
+        this->addNewFile(t_oPath,t_newName + t_newSuffix,t_bfNode.normalContent); //创建新文件
+        this->flashProjectPath(t_proNode,t_oPath); //刷新工程树
+    });
+}
+
+
+//删除创建文件标记
+void Form_ProjectManger::delBuildFileSign(QString suffix)
+{
+    this->addFileIco(suffix,QIcon()); //清空此后缀的文件信息
+    for(int i = buildFileArray.length() - 1; i >= 0; i--){
+        if(buildFileArray[i].icoNode.suffix == suffix){
+            delete buildFileArray[i].action;
+            buildFileArray.remove(i);
+            return;
+        }
+    }
+
+}
+
+
+//打印树结构
+//void Form_ProjectManger::test(QVector<ItemTreeNode> trees, QString str)
+//{
+//    for(auto item : trees){
+//        qDebug() << str + item.node.path << item.node.treeItem;
+//        test(item.subItem,str + "----");
+//    }
+//}
+
+
+
 
 
 
@@ -1129,55 +1227,356 @@ void Form_ProjectManger::on_treeWidget_customContextMenuRequested(const QPoint &
     QTreeWidgetItem* t_item = ui->treeWidget->currentItem();
     if(!t_item) return; //无工程，不打开右键菜单
 
-    QVector<ProjectMsg*>::Iterator t_it;
-    for(t_it = ProjectList.begin();t_it < ProjectList.end();t_it++){
-        if((*t_it)->proParentItem == t_item){ //如果是工程的节点
-            isProItem = true;
-            break;
+    ItemNode t_nodeMsg;
+    ProjectNode* t_nowSelectProject;
+    for(int a = 0; a<projectArray.length(); a++){
+        for(int b = 0; b<projectArray[a]->itemNodes.length(); b++){
+            if(projectArray[a]->itemNodes[b].treeItem == t_item){
+                t_nowSelectProject = projectArray[a];
+                t_nodeMsg = t_nowSelectProject->itemNodes[b];
+                goto ITEMMSG;
+            }
         }
     }
-    //否则弹出基础文件右键菜单
-    if(isProItem){
-        ProjectMsg* t_proMsgPtr = this->Find_ProjectMsg(t_item); //查找的工程信息
-        if(t_proMsgPtr == nullptr) return;
-        if(t_proMsgPtr != NowProjectMsg){ //判断当前的工程是不是活动工程，如果不是则允许切换
-            this->menuAction_setActive->setEnabled(true);
-            this->menuAction_setActive->setCheckable(true);
-        }
-        else{
-            this->menuAction_setActive->setEnabled(false);
-            this->menuAction_setActive->setCheckable(false);
-        }
+    ITEMMSG:
+    if(t_nodeMsg.treeItem == nullptr){ //判断当前获取的节点数是否正常
+        return;
+    }
 
-        Menu_pro->exec(QCursor::pos());
+    //如果是工程，且工程还是文件
+    if(t_nodeMsg.type == ItemType::project && QFileInfo(t_nodeMsg.path).isFile()){
+        this->Menu_addNewFile->setEnabled(false);
     }
     else{
-        Menu_normal->exec(QCursor::pos());
+        this->Menu_addNewFile->setEnabled(true);
     }
 
 
+    //判断是否可粘贴
+    QFileInfo t_pasteInfo(this->copyMsg.path);
+    if(t_pasteInfo.exists() && QFileInfo(t_nodeMsg.path).isDir()){
+        this->act_nor_paste->setEnabled(true);
+        this->act_pro_paste->setEnabled(true);
+    }
+    else{
+        this->act_nor_paste->setEnabled(false);
+        this->act_pro_paste->setEnabled(false);
+    }
+
+
+    //对文件夹开放刷新菜单，文件项目不显示刷新菜单
+    if(QFileInfo(t_nodeMsg.path).isDir()){
+        this->act_pro_flash->setEnabled(true);
+        this->act_nor_flash->setEnabled(true);
+    }
+    else{
+        this->act_pro_flash->setEnabled(false);
+        this->act_nor_flash->setEnabled(false);
+    }
+
+    //根据节点类型判断,弹出工程菜单或者普通菜单
+    if(t_nodeMsg.type == ItemType::project){
+        if(t_nowSelectProject == nowProject){   //判断选择的工程是否为活动工程，如果是活动工程则屏蔽设置当前为活动工程的菜单
+            this->act_pro_activity->setEnabled(false);
+        }
+        else{
+            this->act_pro_activity->setEnabled(true);
+        }
+
+        Menu_pro->popup(QCursor::pos());
+    }
+    else if(t_nodeMsg.type == ItemType::File || t_nodeMsg.type == ItemType::Folder){
+        Menu_normal->popup(QCursor::pos());
+    }
 }
 
 
-//项目名称被改变
-void Form_ProjectManger::on_treeWidget_itemChanged(QTreeWidgetItem *item, int column)
-{
-    if(this->canEditorItem == nullptr) return;
-    itemMsg* t_itemMsgPtr = this->Find_ItemMsg(this->canEditorItem);
-    if(t_itemMsgPtr == nullptr) return;
-    this->RenameItem();
-    ui->treeWidget->closePersistentEditor(t_itemMsgPtr->item,0); //关闭可编辑状态
-    this->flashTreeWidget(); //刷新树
-}
 
 //项目被双击，文件被打开
 void Form_ProjectManger::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
-    itemMsg* t_itemMsgPtr = this->Find_ItemMsg(item);
-    if(t_itemMsgPtr == nullptr) return;
-
-    if(t_itemMsgPtr->type == listType::file_fmp || t_itemMsgPtr->type == listType::file_normal){ //文件被打开
-        this->onFileOpen(t_itemMsgPtr->signText);
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    if(t_node.type == ItemType::File) {
+        this->onFileOpen(t_node.path);
     }
 }
+
+
+//工程右键菜单_打开新的工程
+void Form_ProjectManger::event_proMneu_openNewProject()
+{
+    this->onOpenProject();
+}
+
+//工程右键菜单_刷新
+void Form_ProjectManger::event_proMenu_flash()
+{
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    if(t_node.type == ItemType::Non || t_proNode == nullptr) return;
+    this->flashProjectPath(t_proNode,t_node.path); //刷新工程树
+}
+
+//工程右键菜单_粘贴
+void Form_ProjectManger::event_proMenu_paste()
+{
+    this->event_norMenu_paste();
+}
+
+//工程右键菜单_在资源管理器打开
+void Form_ProjectManger::event_proMenu_explorer()
+{
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    if(t_node.type == ItemType::Non) return;
+
+    QString t_flashPath = t_node.path;
+    QFileInfo t_info(t_node.path);
+    if(t_info.isFile()){t_flashPath = t_info.absolutePath();}
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(t_flashPath));
+}
+
+//工程右键菜单_设定为活动工程
+void Form_ProjectManger::event_proMenu_setActive()
+{
+    ProjectNode* t_proNode = this->getProjectNode(ui->treeWidget->currentItem());
+    if(t_proNode != nullptr){
+        this->nowProject = t_proNode;
+        this->onProjectActiveChanged(nowProject->proMsg.proPath,nowProject->proMsg.proLanguage,nowProject->proMsg.proNoteClass);//当活动工程被改变
+    }
+}
+
+//工程右键菜单_构建项目
+void Form_ProjectManger::event_proMenu_build()
+{
+    ProjectNode* t_proNode = this->getProjectNode(ui->treeWidget->currentItem());
+    if(t_proNode != nullptr){
+        this->onProjectBuild(t_proNode->proMsg.proPath);
+    }
+}
+
+//工程右键菜单_清理项目
+void Form_ProjectManger::event_proMenu_clear()
+{
+    ProjectNode* t_proNode = this->getProjectNode(ui->treeWidget->currentItem());
+    if(t_proNode != nullptr){
+        this->onProjectClear(t_proNode->proMsg.proPath);
+    }
+}
+
+//工程右键菜单_工程属性
+void Form_ProjectManger::event_proMenu_attribute()
+{
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    if(t_proNode != nullptr){
+        this->onProjectAttribute(t_proNode->proMsg.proPath); //投递项目关闭消息
+    }
+}
+
+//工程右键菜单_关闭项目
+void Form_ProjectManger::event_proMenu_close()
+{
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    if(t_proNode != nullptr){
+        this->closeProject(t_proNode->proMsg.proPath);
+        //this->onProjectClose(t_proNode->proMsg.proPath); //投递项目关闭消息，这里不用投递，在closeProject，方法里面已经消息投递了
+    }
+}
+
+
+//默认菜单_剪切
+void Form_ProjectManger::event_norMenu_cut()
+{
+    this->copyMsg.type = CopyType::Cut;
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    this->copyMsg.path = t_node.path;
+}
+
+//默认菜单_复制
+void Form_ProjectManger::event_norMenu_copy()
+{
+    copyMsg.type = CopyType::Copy;
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    this->copyMsg.path = t_node.path;
+}
+
+//默认菜单_粘贴
+void Form_ProjectManger::event_norMenu_paste()
+{
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    QFileInfo t_info(t_node.path);  //t_node.path为复制的文件夹路径
+    if(!(t_info.exists() && t_info.isDir())) return;
+
+    QFileInfo t_srcInfo(this->copyMsg.path);
+    if(t_srcInfo.isFile()){ //复制文件
+        QString t_newFileName = QFileInfo(this->copyMsg.path).fileName();
+        if(QFile(t_node.path + "/" + t_newFileName).exists()){
+            if(QMessageBox::question(this, tr("提示"), tr("文件已存在，是否覆盖"), QMessageBox::Yes|QMessageBox::No) == QMessageBox::No){return;}
+        }
+        if(!QFile().copy(this->copyMsg.path,t_node.path + "/" + t_newFileName)) return; //复制文件
+    }
+    else if(t_srcInfo.isDir()){ //复制目录
+        QString t_newFolderName = QDir(this->copyMsg.path).dirName();
+        if(QDir(t_node.path + "/" + t_newFolderName).exists()){
+            if(QMessageBox::question(this, tr("提示"), tr("目录已存在，是否覆盖"), QMessageBox::Yes|QMessageBox::No) == QMessageBox::No){return;}
+        }
+        QProgressDialog t_progressDialog;
+        t_progressDialog.setWindowTitle(tr("正在拷贝"));//对话框标题
+        t_progressDialog.setLabelText("");//对话框文本
+        t_progressDialog.setCancelButtonText(tr("取消"));//设置取消按钮
+        t_progressDialog.setRange(1,100);//设置进度条范围
+        t_progressDialog.setModal(true);//以模态方式弹出对话框
+        t_progressDialog.show();
+
+        if(!System_File::copyPath(this->copyMsg.path,t_node.path + "/" + t_newFolderName,[&](int index)->bool{
+            t_progressDialog.setValue(index);
+            return !t_progressDialog.wasCanceled();
+            })){ //复制文件夹
+            return;
+        }
+    }
+    this->flashProjectPath(t_proNode,t_node.path);
+
+    //如果是剪切，则删除源目标
+    if(this->copyMsg.type == CopyType::Cut){
+        if(t_srcInfo.isFile()){
+            QFile(this->copyMsg.path).remove();
+        }
+        else if(t_srcInfo.isDir()){
+            //防止剪切的路径是目标的父路径
+            if(t_node.path.indexOf(this->copyMsg.path) == 0){ //如果是父路径
+                QMessageBox::warning(this,tr("警告"),tr("剪切对象不合法，已使用复制代替！"));
+            }
+            else{
+                QDir(this->copyMsg.path).removeRecursively();
+            }
+        }
+        this->flashProjectPath(t_proNode,t_srcInfo.dir().path()); //扫描父目录
+    }
+
+}
+
+//默认菜单_刷新
+void Form_ProjectManger::event_norMenu_flash()
+{
+    this->event_proMenu_flash();
+}
+
+//默认菜单_重命名
+void Form_ProjectManger::event_norMenu_rename()
+{
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+
+    QFileInfo t_info(t_node.path);
+    if(t_info.isFile()){
+        QFile t_file(t_node.path);
+        QString t_newName = QInputDialog::getText(this,tr("输入"),tr("新文件名"),QLineEdit::Normal,t_info.fileName());
+        if(t_newName.isEmpty()){return;}
+        if(t_file.rename(t_info.dir().path() + "/" + t_newName)){
+            this->flashProjectPath(t_proNode,t_info.dir().path()); //文件更名成功后刷新
+            this->onRename(t_node.path, t_info.dir().path() + "/" + t_newName); //激发文件更名信号
+        }
+    }
+    else if(t_info.isDir()){
+        QDir t_dir(t_node.path);
+        QString t_newName = QInputDialog::getText(this,tr("输入"),tr("新文件名"),QLineEdit::Normal,t_info.fileName());
+        if(t_newName.isEmpty()){return;}
+
+        //移除存在的监视
+        QStringList t_pathList = t_proNode->watcher->directories();
+        QStringList t_rmList;
+        for(QString path : t_pathList){if(path.indexOf(t_node.path) != -1){t_rmList.append(path);}}
+        t_proNode->watcher->removePaths(t_rmList);
+
+        //开始重命名
+        if(t_dir.rename(t_node.path,t_info.dir().path() + "/" + t_newName)){
+            t_proNode->watcher->addPath(t_info.dir().path() + "/" + t_newName); //移除成功，添加新监视
+            this->flashProjectPath(t_proNode,t_info.dir().path()); //文件更名成功后刷新
+            this->onRename(t_node.path,t_info.dir().path() + "/" + t_newName); //激发文件夹更名信号
+        }
+        else{
+            t_proNode->watcher->addPath(t_node.path); //移除失败，重新添加监视
+        }
+    }
+
+}
+
+//默认菜单_在资源管理器打开
+void Form_ProjectManger::event_norMenu_explorer()
+{
+    this->event_proMenu_explorer();
+}
+
+//默认菜单_删除
+void Form_ProjectManger::event_norMenu_remove()
+{
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    if(QFileInfo(t_node.path).isDir()){
+        QDir(t_node.path).removeRecursively();
+    }
+    else{
+        QFile(t_node.path).remove();
+    }
+    this->flashProjectPath(t_proNode,QFileInfo(t_node.path).dir().path()); //扫描父目录
+    this->onFileOrDirDel(t_node.path); //投递删除信号
+}
+
+//新建菜单_文件
+void Form_ProjectManger::event_newMenu_file()
+{
+
+
+    this->selectItemByPath(""); //根据路径选择Item
+}
+
+//新建菜单_文件夹
+void Form_ProjectManger::event_newMenu_folder()
+{
+    ItemNode t_node;
+    ProjectNode* t_proNode = nullptr;
+    this->getNodeByTreeWidgetItem(ui->treeWidget->currentItem(),t_node,t_proNode);
+    QString t_oPath = getCreatePath(t_node.path);
+    if(t_oPath.isEmpty()) return;
+    QString t_newName = QInputDialog::getText(this,tr("输入"),tr("文件夹名称"),QLineEdit::Normal,"");
+    if(t_newName.isEmpty()) return;
+
+    if(QDir(t_oPath + "/" + t_newName).exists()){
+        QMessageBox t_msgBox(QMessageBox::Question,tr("提示"), tr("当前文件夹已存在，需要如何操作？"));
+        QPushButton* t_cover = t_msgBox.addButton(tr("覆盖"),QMessageBox::DestructiveRole);
+        QPushButton* t_rename = t_msgBox.addButton(tr("创建不重名"),QMessageBox::YesRole);
+        QPushButton* t_no = t_msgBox.addButton(tr("取消"),QMessageBox::NoRole);
+        t_msgBox.exec();
+
+        if(t_msgBox.clickedButton() == (QAbstractButton*)t_cover){ //覆盖
+            QDir t_dir(t_oPath + "/" + t_newName);
+            t_dir.removeRecursively();
+        }
+        else if(t_msgBox.clickedButton() == (QAbstractButton*)t_no){
+            return;
+        }
+    }
+    this->addNewFolder(t_oPath,t_newName);
+    this->flashProjectPath(t_proNode,t_oPath); //刷新工程树
+}
+
+
 

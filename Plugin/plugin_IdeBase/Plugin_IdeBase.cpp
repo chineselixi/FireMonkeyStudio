@@ -31,9 +31,9 @@ Plugin_IdeBase::Plugin_IdeBase()
 
 void Plugin_IdeBase::event_onWorkSpaceFinish()
 {
-    this->clearList();
-    this->closeWorkSpaceAllAction(); //禁用所有Action
-    this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem,true); //启用书签主菜单
+    this->print_clearList();
+    this->menu_closeWorkSpaceAllAction(); //禁用所有Action
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem,true); //启用书签主菜单
 }
 
 

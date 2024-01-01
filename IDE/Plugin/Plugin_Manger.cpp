@@ -72,7 +72,7 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
         this->List_plg.append(t_plgMsg); //添加实例插件
     }
 
-
+    qDebug()  << "插件加载到这里了";
 
     //将未载入的插件排序到后面
     int t_endIndex = this->List_plg.length() - 1;
@@ -104,15 +104,17 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
             }
         }
     }
-
+    qDebug()  << "插件加载到这里了1";
     //插件初始化以后，直接绑定插件管理器
     this->pluginManger_init_building(); //绑定插件管理器
-
+qDebug()  << "插件加载到这里了2";
     //绑定设置接口
     this->setting_init_building();//加载设置接口
-
+qDebug()  << "插件加载到这里了3";
     //初始化主题操作接口
     this->themeChanged_init_building(); //设置主题设置获取接口
+
+    qDebug()  << "插件加载到这里了4";
 }
 
 
@@ -166,7 +168,7 @@ Plugin_Base::settingMsgList Plugin_Manger::getSettingWidgets()
 //初始化workSpace的插件菜单
 void Plugin_Manger::workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool, PluginGlobalMsg::menuFun toolBar_set, PluginGlobalMsg::menuFun toolBar_help, PluginGlobalMsg::menuFun toolBar_view,
                                         PluginGlobalMsg::menuFun toolBar_extend, PluginGlobalMsg::menuFun toolBar_db, PluginGlobalMsg::menuFun toolBar_comple, PluginGlobalMsg::menuFun toolBar_insert, PluginGlobalMsg::menuFun toolBar_file,
-                                        PluginGlobalMsg::menuFun ProManger_project, PluginGlobalMsg::menuFun ProManger_newFile, PluginGlobalMsg::menuFun ProManger_proNormal)
+                                        PluginGlobalMsg::menuFun ProManger_project, PluginGlobalMsg::menuFun ProManger_proNormal)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
@@ -180,7 +182,6 @@ void Plugin_Manger::workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool, P
             this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_Insert = toolBar_insert;
             this->List_plg[a].plgPth->WorkSpace_AddMenu_ToolBar_File = toolBar_file;
             this->List_plg[a].plgPth->WorkSpace_AddMenu_ProManger_Project = ProManger_project;
-            this->List_plg[a].plgPth->WorkSpace_AddMenu_ProManger_NewFile = ProManger_newFile;
             this->List_plg[a].plgPth->WorkSpace_AddMenu_ProManger_ProNormal = ProManger_proNormal;
         }
     }
@@ -264,8 +265,10 @@ void Plugin_Manger::workSpace_init_tipPrint(PluginGlobalMsg::printFun_printList 
 //插件接口绑定
 void Plugin_Manger::pluginManger_init_building()
 {
+    qDebug()  << "插件加载1";
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
+            qDebug()  << "插件加载2" << this->List_plg[a].plgPth;
             this->List_plg[a].plgPth->PluginManger_PostMsg = [this](QString selfSign,QString pluginSign,QString pustMsg)->QString{
                 QString t_plgMsg = "";
                 for(int b = 0;b < List_plg.length();b++){
@@ -279,8 +282,10 @@ void Plugin_Manger::pluginManger_init_building()
                 }
                 return t_plgMsg; //返回最后一个信息投递的有效返回信息
             };
+            qDebug()  << "插件加载3";
         }
     }
+
 }
 
 
@@ -334,13 +339,20 @@ void Plugin_Manger::themeChanged_init_building()
     }
 }
 
-
 //工程管理器绑定
-void Plugin_Manger::projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase fun_getBase)
+void Plugin_Manger::projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase ProjectManger_getBaseFun,
+                                                PluginGlobalMsg::projectManger_addBuildFileSign ProjectManger_addBuildSignFun,
+                                                PluginGlobalMsg::projectManger_delBuildFileSign ProjectManger_delBuildSignFun,
+                                                PluginGlobalMsg::projectManger_addFileIco ProjectManger_addFileIcoFun,
+                                                PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIcoFun)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
-            this->List_plg[a].plgPth->ProjectManger_getBase = fun_getBase;
+            this->List_plg[a].plgPth->ProjectManger_getBase = ProjectManger_getBaseFun;
+            this->List_plg[a].plgPth->ProjectManger_addBuildSign = ProjectManger_addBuildSignFun;
+            this->List_plg[a].plgPth->ProjectManger_delBuildSign = ProjectManger_delBuildSignFun;
+            this->List_plg[a].plgPth->ProjectManger_addFileIco = ProjectManger_addFileIcoFun;
+            this->List_plg[a].plgPth->ProjectManger_setObjIco = ProjectManger_setObjIcoFun;
         }
     }
 }
@@ -456,17 +468,6 @@ void Plugin_Manger::event_onFileOpen(QString filePath)
     }
 }
 
-//当前文件已经被打开，所有的文件被打开都会激发模块事件
-void Plugin_Manger::event_onFileOpenFinish(QString filePath)
-{
-    for(int a = 0;a < List_plg.length();a++){
-        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-        if(List_plg[a].plgPth->event_onFileOpenFinish(filePath) == false){ //若插件阻止触发，则跳出
-            break;
-        }
-    }
-}
-
 
 //当文件被删除或者关闭事件激发
 void Plugin_Manger::event_onFileClose(QString filePath)
@@ -511,9 +512,43 @@ void Plugin_Manger::event_onPorjectLoad(QString proPath, QString proLangs, QStri
 {
     for(int a = 0;a < List_plg.length();a++){
         if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-        if(List_plg[a].plgPth->event_onPorjectLoad(proPath,proLangs,proNoteClass) == false){ //若插件阻止触发，则跳出
+        if(List_plg[a].plgPth->event_onProjectActiveChanged(proPath,proLangs,proNoteClass) == false){ //若插件阻止触发，则跳出
             break;
         }
+    }
+}
+
+
+//工程被构建
+void Plugin_Manger::event_onProjectBuild(QString projectPath)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        if(List_plg[a].plgPth->event_onProjectBuild(projectPath) == false){ //若插件阻止触发，则跳出
+            break;
+        }
+    }
+}
+
+
+//工程被清理
+void Plugin_Manger::event_onProjectClear(QString projectPath)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        if(List_plg[a].plgPth->event_onProjectClear(projectPath) == false){ //若插件阻止触发，则跳出
+            break;
+        }
+    }
+}
+
+
+//当文件路径被改变
+void Plugin_Manger::event_onFileRename(QString oldPath, QString newPath)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        List_plg[a].plgPth->event_onFileRename(oldPath,newPath);
     }
 }
 

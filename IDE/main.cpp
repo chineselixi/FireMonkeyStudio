@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     HistoryList::sys_pluginHistory = new System_History;
     HistoryList::sys_pluginHistory->Init(t_execRunPath + "/config/plugin.json");
 
-    //管理器
+    //插件管理器
     Manger::pluginManger = new Plugin_Manger; //加载插件管理器
     Manger::pluginManger->initPlugin(t_execRunPath + "/plg","dll");
 

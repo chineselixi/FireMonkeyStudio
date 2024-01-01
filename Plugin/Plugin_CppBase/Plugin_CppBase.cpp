@@ -38,7 +38,7 @@ Plugin_CppBase::Plugin_CppBase()
 
 
 //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
-bool Plugin_CppBase::event_onPorjectLoad(QString proPath, QString proLangs, QString proNoteClass)
+bool Plugin_CppBase::event_onProjectActiveChanged(QString proPath, QString proLangs, QString proNoteClass)
 {
     static QAction* t_actionAttribute = nullptr; //属性菜单
     std::function<void()> t_attributeFun = [this,proPath](){
@@ -46,24 +46,24 @@ bool Plugin_CppBase::event_onPorjectLoad(QString proPath, QString proLangs, QStr
     };
 
     if(this->checkIsCppProject(proLangs)){ //检查是否为Cpp对象
-        this->closeWorkSpaceAllAction(); //关闭所有ACTION
-        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compleMode,true); //允许模式选择
-        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
-        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
-        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
-        this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,true); //允许在线编译
+        this->menu_closeWorkSpaceAllAction(); //关闭所有ACTION
+        this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compleMode,true); //允许模式选择
+        this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
+        this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
+        this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
+        this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,true); //允许在线编译
 
         //添加属性到工程菜单
         t_actionAttribute = new QAction(QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Constant_16x.png"),QObject::tr("配置"));
         t_actionAttribute->connect(t_actionAttribute,&QAction::triggered,t_attributeFun);
-        this->addProMangerMenu(PluginGlobalMsg::proMangerMenuType::Project,t_actionAttribute);
+        this->menu_addProMangerMenu(PluginGlobalMsg::proMangerMenuType::Project,t_actionAttribute);
 
 
         //重构编译模式
-        this->clearAllCompileMod(); //清空编译模式
-        this->addCompileMod(MOD_RELEASE); //删除调试编译模式
-        this->addCompileMod(MOD_DEBUG); //添加调试编译模式
-        this->selectCompileMod(MOD_DEBUG); //选择调试编译模式
+        this->compile_clearAllCompileMod(); //清空编译模式
+        this->compile_addCompileMod(MOD_RELEASE); //删除调试编译模式
+        this->compile_addCompileMod(MOD_DEBUG); //添加调试编译模式
+        this->compile_selectCompileMod(MOD_DEBUG); //选择调试编译模式
         return false; //阻止消息传递
     }
 
@@ -106,18 +106,18 @@ bool Plugin_CppBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
         }
         case PluginGlobalMsg::toolBarAction::compile:{ //编译
             this->event_compile(proPath,t_srcList); //默认输出路径：proPath + "/out"
-            this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
-            this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
-            this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
-            this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,true); //允许在线编译
+            this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
+            this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
+            this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
+            this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,true); //允许在线编译
             break;
         }
         case PluginGlobalMsg::toolBarAction::staticCompile:{ //静态编译
             this->event_compile(proPath,t_srcList); //静态编译暂时没实现，使用普通编译
-            this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
-            this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
-            this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
-            this->setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,true); //允许在线编译
+            this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
+            this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
+            this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
+            this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,true); //允许在线编译
             break;
         }
         }
@@ -147,14 +147,14 @@ bool Plugin_CppBase::event_onFileOpen(QString filePath)
         if(stringRight(filePath,".c")) t_ico = QIcon(":/tabIco/resources/CFile_16x_color.png");
 
 
-        if(this->hasTab(filePath,true)) return false; //如果文件已经在Tab里面，则不再重复打开。并且激活TAB（第二个参数为是否激活已经存在此sign的Tab）
+        if(this->tabWindow_hasTab(filePath,true)) return false; //如果文件已经在Tab里面，则不再重复打开。并且激活TAB（第二个参数为是否激活已经存在此sign的Tab）
 
         Form_CodeEditor* editor = new Form_CodeEditor();
         if(!editor->loadForFile(filePath)){
             QMessageBox::warning(nullptr,QObject::tr("文件异常"),QObject::tr("无法打开文件，文件不存在或通道被占用！"));
         }
 
-        this->addTabWindow(QFileInfo(filePath).fileName(),editor,filePath,t_ico,PluginGlobalMsg::TabType::codeEditor); //添加到Tab
+        this->tabWindow_addTabWindow(QFileInfo(filePath).fileName(),editor,filePath,t_ico,PluginGlobalMsg::TabType::codeEditor); //添加到Tab
         return false;
     }
     return true;
@@ -397,9 +397,9 @@ QVector<Plugin_CppBase::MapperNode> Plugin_CppBase::mergeMappers(QVector<MapperN
 void Plugin_CppBase::event_attribute(QString proPath)
 {
     QString t_attrFile = proPath + "/config.json";
-    if(this->hasTab(t_attrFile,true) == false){
-        QString t_proName = this->getProjectMsgBase(proPath).proName; //获取工程名
-        this->addTabWindow(QObject::tr("配置") + (t_proName.isEmpty()?"":"(" + t_proName + ")"),new Form_Attribute(nullptr,t_attrFile,this->getProjectMsgBase(proPath).proName),t_attrFile,QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Constant_16x.png"),PluginGlobalMsg::TabType::form);
+    if(this->tabWindow_hasTab(t_attrFile,true) == false){
+        QString t_proName = this->projectManger_getProjectInfo(proPath).proName; //获取工程名
+        this->tabWindow_addTabWindow(QObject::tr("配置") + (t_proName.isEmpty()?"":"(" + t_proName + ")"),new Form_Attribute(nullptr,t_attrFile,this->projectManger_getProjectInfo(proPath).proName),t_attrFile,QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Constant_16x.png"),PluginGlobalMsg::TabType::form);
     }
 }
 
@@ -416,32 +416,32 @@ void Plugin_CppBase::event_stop()
 void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
 {
     QString t_exeFile = this->event_compile(proPath,compileFiles);
-    QString t_proName = this->getProjectMsgBase(proPath).proName; //获取工程名称
+    QString t_proName = this->projectManger_getProjectInfo(proPath).proName; //获取工程名称
     if(t_exeFile.isEmpty()){
-        this->printList("",QObject::tr("运行失败"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+        this->print_printList("",QObject::tr("运行失败"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
     }
 }
 
 //编译（compileFiles编译的文件组，changeFiles文件组中改变的文件）
 QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileFiles)
 {
-    QString t_proName = this->getProjectMsgBase(proPath).proName; //获取工程名称
+    QString t_proName = this->projectManger_getProjectInfo(proPath).proName; //获取工程名称
     QElapsedTimer t_runTime;
     t_runTime.restart();
 
     //判断输入参数是否合法
     if(compileFiles.length() == 0){
-        this->printList("",QObject::tr("需要编译的文件为空，不存在编译信息"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+        this->print_printList("",QObject::tr("需要编译的文件为空，不存在编译信息"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
         return "";
     }
     if(!QDir(proPath).exists()){
-        this->printList("",QObject::tr("工程不存在"),t_proName,proPath,-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+        this->print_printList("",QObject::tr("工程不存在"),t_proName,proPath,-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
         return "";
     }
 
 
-    this->clearList(); //清空输出列表
-    this->clearTextSpace(); //清理空间信息
+    this->print_clearList(); //清空输出列表
+    this->print_clearTextSpace(); //清理空间信息
 
     //读取设置信息
     settingNamespace::settingNode t_settingMsg = Form_settings_Compile::getNowCompilerNode(); //获取当前设置信息（包含s4编译器信息）
@@ -498,7 +498,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         }
     }
     else{ //设置编译模式
-        t_sPar = this->getCompileModSignName(); //获取编译模式
+        t_sPar = this->compile_getCompileModSignName(); //获取编译模式
         if(t_sPar == MOD_DEBUG){
             t_sPar = "-g";
             t_runPar.append(t_sPar);
@@ -518,14 +518,14 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
     //优化文件名，防止文件名异常
     if(t_proName.isEmpty()){
-        this->printList("",QObject::tr("工程名为空，无法编译！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+        this->print_printList("",QObject::tr("工程名为空，无法编译！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
         return "";
     }
     t_proName = t_proName.replace("*","_").replace("\\","_").replace("/","_").replace(":","_").replace("?","_").replace("\"","_").replace("<","_").replace(">","_").replace("|","_").replace(":","_");
 
-    this->printList("",QObject::tr("开始编译..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("blue"));
+    this->print_printList("",QObject::tr("开始编译..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("blue"));
     if(t_settingMsg.s4_compileMsg.fp_gpp.isEmpty()){ //判断编译器是否存在
-        this->printList("",QObject::tr("没有发现合适的编译器，工程无法编译！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+        this->print_printList("",QObject::tr("没有发现合适的编译器，工程无法编译！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
         return "";
     }
 
@@ -539,7 +539,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
     //验证输出目录与临时目录
     if(!QDir().mkpath(t_attr.outPath) || !QDir().mkpath(t_attr.tempPath)){
-        this->printList("",QObject::tr("无法创建输出目录或临时目录，指定的输出路径无效！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+        this->print_printList("",QObject::tr("无法创建输出目录或临时目录，指定的输出路径无效！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
         return "";
     }
 
@@ -548,17 +548,17 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     QVector<MapperNode> t_staticCompileMappers; //快读编译静态映射缓存
 
     if(t_settingMsg.s21_tepOpt){ //静态映射缓存（快速编译）启用
-        this->printList("",QObject::tr("已启用静态缓存加速编译"),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor());
+        this->print_printList("",QObject::tr("已启用静态缓存加速编译"),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor());
         t_staticCompileMappers = this->parseCompileMapper(System_File::readFile(t_compileCacheJsonPath));
         for(MapperNode& node : t_staticCompileMappers){
             node.filePath.replace("${projectPath}",proPath); //文件名符号转换，用于相对路径文件信息整理
         }
         if(t_staticCompileMappers.length() == 0){ //判断是否成功读入静态缓存
-            this->printList("",QObject::tr("没有静态缓存支持，首次编译事件可能较长"),t_proName,"",-1,PluginGlobalMsg::printIcoType::warning,QColor("yellow"));
+            this->print_printList("",QObject::tr("没有静态缓存支持，首次编译事件可能较长"),t_proName,"",-1,PluginGlobalMsg::printIcoType::warning,QColor("yellow"));
         }
     }
     else{
-        this->printList("",QObject::tr("未开启快速编译（缓存优化）"),t_proName,"",-1,PluginGlobalMsg::printIcoType::warning,QColor("yellow"));
+        this->print_printList("",QObject::tr("未开启快速编译（缓存优化）"),t_proName,"",-1,PluginGlobalMsg::printIcoType::warning,QColor("yellow"));
     }
 
 
@@ -577,7 +577,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     for(qsizetype i = 0; i<t_compileMapper.length(); i++){
         if(t_compileMapper[i].lonelyCompile == false){ //不需要单独编译
             if(t_compileMapper[i].neadCompile || !t_settingMsg.s21_tepOpt){ //需要编译（编译没有缓存的mapper）  或 关闭了快速编译
-                this->printTextSpaceLine(QColor(),QObject::tr("编译文件：") + t_compileMapper[i].filePath);
+                this->print_printTextSpaceLine(QColor(),QObject::tr("编译文件：") + t_compileMapper[i].filePath);
                 t_parameterList.append(t_compileMapper[i].filePath); //插入文件编译信息
                 t_compileFileNum++; //记录直接编译的文件数量
             }
@@ -589,17 +589,17 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         t_process.waitForReadyRead(); //等待输出
         QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
         QString t_errorPut = QString().fromLocal8Bit(t_process.readAllStandardError()); //读取错误信息
-        this->printTextSpaceLine(QColor(),t_normalPut); //输出到运行空间
-        this->printTextSpaceLine(QColor("red"),t_errorPut);
+        this->print_printTextSpaceLine(QColor(),t_normalPut); //输出到运行空间
+        this->print_printTextSpaceLine(QColor("red"),t_errorPut);
         if(!t_errorPut.isEmpty()){
-            this->printTextSpaceLine(QColor("red"),t_errorPut);
-            this->printList("",QObject::tr("编译出错！详情信息请请查看输出！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+            this->print_printTextSpaceLine(QColor("red"),t_errorPut);
+            this->print_printList("",QObject::tr("编译出错！详情信息请请查看输出！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
             t_process.close();
             return "";
         }
     }
     else{
-        this->printList("",QObject::tr("存在加速缓存,跳过编译..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::warning,QColor("yellow"));
+        this->print_printList("",QObject::tr("存在加速缓存,跳过编译..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::warning,QColor("yellow"));
     }
 
 
@@ -612,13 +612,13 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         //需要单独编译，但是需要编译（编译没有缓存的mapper）
         if(t_compileMapper[i].lonelyCompile == true){
             if(t_compileMapper[i].neadCompile || !t_settingMsg.s21_tepOpt){ //需要编译（编译没有缓存的mapper）  或 关闭了快速编译
-                this->printList("",QObject::tr("发现重名的源文件，已处理为：") + t_compileMapper[i].mapperName,
+                this->print_printList("",QObject::tr("发现重名的源文件，已处理为：") + t_compileMapper[i].mapperName,
                                 t_proName,                      //工程名称
                                 t_compileMapper[i].filePath,    //源文件路径
                                 -1,                             //行号
                                 PluginGlobalMsg::printIcoType::warning, //提示图标
                                 QColor()); //颜色
-                this->printTextSpaceLine(QColor("yellow"),QObject::tr("重定向编译：") + t_compileMapper[i].filePath);
+                this->print_printTextSpaceLine(QColor("yellow"),QObject::tr("重定向编译：") + t_compileMapper[i].filePath);
 
                 t_parameterList.clear();//清空参数列表
                 t_parameterList.append({"-c",t_compileMapper[i].filePath,"-o",t_compileMapper[i].mapperName + ".o"});//重新构建编译信息
@@ -628,11 +628,11 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
                 t_process.waitForReadyRead(); //等待输出
                 QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
                 QString t_errorPut = QString().fromLocal8Bit(t_process.readAllStandardError()); //读取错误信息
-                this->printTextSpaceLine(QColor(),t_normalPut); //输出到运行空间
-                this->printTextSpaceLine(QColor("red"),t_errorPut);
+                this->print_printTextSpaceLine(QColor(),t_normalPut); //输出到运行空间
+                this->print_printTextSpaceLine(QColor("red"),t_errorPut);
                 t_process.close(); //关闭文件
                 if(!t_errorPut.isEmpty()){
-                    this->printList("",QObject::tr("编译出现错误，详情请查看输出！"),t_proName,t_compileMapper[i].filePath,-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+                    this->print_printList("",QObject::tr("编译出现错误，详情请查看输出！"),t_proName,t_compileMapper[i].filePath,-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
                     return "";
                 }
 
@@ -643,8 +643,8 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
 
     //开始进行静态链接
-    this->printList("",QObject::tr("完成目标文件编译，等待链接..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor("green"));
-    this->printList("",QObject::tr("开始静态链接..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("blue"));
+    this->print_printList("",QObject::tr("完成目标文件编译，等待链接..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor("green"));
+    this->print_printList("",QObject::tr("开始静态链接..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("blue"));
 
 
     //静态链接
@@ -654,7 +654,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
     //若没有需要编译的文件，且启用了快速编译，则直接返回
     if(t_compileFileNum + t_compileFileNumRedirect == 0 && t_settingMsg.s21_tepOpt){
-        this->printList("",QObject::tr("快速编译：未改动代码"),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("green"));
+        this->print_printList("",QObject::tr("快速编译：未改动代码"),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("green"));
     }
     else{
         for(qsizetype i = 0; i<t_compileMapper.length(); i++){
@@ -666,10 +666,10 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         t_process.waitForReadyRead(); //等待输出
         QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
         QString t_errorPut = QString().fromLocal8Bit(t_process.readAllStandardError()); //读取错误信息
-        this->printTextSpaceLine(QColor(),t_normalPut); //输出到运行空间
-        this->printTextSpaceLine(QColor("red"),t_errorPut);
+        this->print_printTextSpaceLine(QColor(),t_normalPut); //输出到运行空间
+        this->print_printTextSpaceLine(QColor("red"),t_errorPut);
         if(!t_errorPut.isEmpty()){
-            this->printList("",QObject::tr("链接文件出现问题！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+            this->print_printList("",QObject::tr("链接文件出现问题！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
             t_process.close();
             return "";
         }
@@ -678,7 +678,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
 
     //文件输出
-    this->printList("",QObject::tr("编译完成！用时：") + QString::number(t_runTime.elapsed() / 1000,'f',3) + QObject::tr("秒"),t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor("green"));
+    this->print_printList("",QObject::tr("编译完成！用时：") + QString::number(t_runTime.elapsed() / 1000,'f',3) + QObject::tr("秒"),t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor("green"));
 
     //重新保存映射缓存配置文件
     if(!t_settingMsg.s21_tepOpt){ //没有开启快速编译，则手动读取静态映射缓存文件
