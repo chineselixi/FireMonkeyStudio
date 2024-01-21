@@ -33,6 +33,7 @@ Plugin_CppBase::Plugin_CppBase()
     this->self_BaseMsg.note = "用于支持C++语言在FMS平台的基础工程开发，注意：若本插件未被启用，则将丧失C++语言的编程能力。C++工程将由其他插件进行代理。";
     this->self_BaseMsg.loadTip = "";//加载时输出的文字信息，可以作为加载成功的提示
     this->self_BaseMsg.level = 100; //排序级别范围：0-65535，默认为最低级别，相同的级别系统将随机分配，自定义插件建议高于0
+
 }
 
 
@@ -79,7 +80,7 @@ bool Plugin_CppBase::event_onProjectActiveChanged(QString proPath, QString proLa
 
 //当工具栏内部按钮被按下(参数1:激发按钮类型   参数2:工程的目录   参数3:工程的多个语言标记   参数4:工程类型标记)
 bool Plugin_CppBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath, QString proLangs, QString proNoteClass)
-{
+{    
     if(!this->checkIsCppProject(proLangs)){
         return true; //不是C++工程则组织，继续触发别的插件消息
     }
@@ -90,6 +91,10 @@ bool Plugin_CppBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
         actionType == PluginGlobalMsg::toolBarAction::staticCompile //静态编译
         )
     {
+        //保存当前的代码
+        //this->saveCode();
+
+        //扫描工程的文件，开始编译
         QVector<QString> t_srcList;
         t_srcList.reserve(50);//先设置容量为50个长度，防止多次扩容
         this->findSource(proPath,t_srcList);//扫描文件
@@ -150,6 +155,7 @@ bool Plugin_CppBase::event_onFileOpen(QString filePath)
         if(this->tabWindow_hasTab(filePath,true)) return false; //如果文件已经在Tab里面，则不再重复打开。并且激活TAB（第二个参数为是否激活已经存在此sign的Tab）
 
         Form_CodeEditor* editor = new Form_CodeEditor();
+        //QObject::connect(this,&Plugin_CppBase::saveCode,editor,&Form_CodeEditor::event_timer_textChanged); //绑定此方法，在按钮被点击的时候。立即保存
         if(!editor->loadForFile(filePath)){
             QMessageBox::warning(nullptr,QObject::tr("文件异常"),QObject::tr("无法打开文件，文件不存在或通道被占用！"));
         }
@@ -197,6 +203,34 @@ void Plugin_CppBase::event_onLoadSettingsWidget(settingMsgList &msgList)
     msgList.append(setWidgetMsg);
 
     return;
+}
+
+
+//工作空间加载完毕
+void Plugin_CppBase::event_onWorkSpaceFinish()
+{
+    //加载文件图标
+//    this->projectManger_addFileIco("cpp",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CPP_16x.png"));
+//    this->projectManger_addFileIco("c",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CFile_16x_color.png"));
+//    this->projectManger_addFileIco("h",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CPPHeaderFile_16x.png"));
+
+    //添加新建文件类型
+    this->projectManger_addBuildFileSign("h",
+                                         QObject::tr("头文件(h)"),
+                                         QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CPPHeaderFile_16x.png"),
+                                         QObject::tr("头文件"),
+                                         "#pragma once\n\n\n\n");
+    this->projectManger_addBuildFileSign("c",
+                                         QObject::tr("C源文件(c)"),
+                                         QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CFile_16x_color.png"),
+                                         QObject::tr("C源"),
+                                         "");
+    this->projectManger_addBuildFileSign("cpp",
+                                         QObject::tr("C++源文件(cpp)"),
+                                         QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CPP_16x.png"),
+                                         QObject::tr("Cpp源"),
+                                         "");
+
 }
 
 
@@ -367,6 +401,17 @@ QVector<Plugin_CppBase::MapperNode> Plugin_CppBase::getCompileMapper(QVector<QSt
 }
 
 
+//关闭相关Action
+void Plugin_CppBase::closeRunActions()
+{
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,false); //禁止运行
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::stop,false); //禁止停止
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,false); //禁止编译
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,false); //禁止静态编译
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,false); //禁止在线编译
+}
+
+
 
 
 //合并映射信息
@@ -415,27 +460,56 @@ void Plugin_CppBase::event_stop()
 //运行程序（compileFiles编译的文件组，changeFiles文件组中改变的文件）
 void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
 {
+    //编译
     QString t_exeFile = this->event_compile(proPath,compileFiles);
     QString t_proName = this->projectManger_getProjectInfo(proPath).proName; //获取工程名称
-    if(t_exeFile.isEmpty()){
-        this->print_printList("",QObject::tr("运行失败"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+    //运行程序
+    if(!t_exeFile.isEmpty()){
+        this->statusBar_setStatusHideAll();
+        this->tip_addTip(tr("通知"),tr("编译成功"),2000,PluginGlobalMsg::TipType::Normal);
+
+        if(execProcess == nullptr) execProcess = new QProcess;
+
+        execProcess->kill();        //结束以前的程序
+        execProcess->disconnect();  //断开全部的链接
+        connect(execProcess,&QProcess::started,this,&Plugin_CppBase::event_runStarted);     //程序开始运行
+        connect(execProcess,&QProcess::finished,this,&Plugin_CppBase::event_runFinished);   //程序运行完毕
+
+        this->closeRunActions();
+
+        //t_exeFile.append(".exe");
+        if(execProcess->startDetached(t_exeFile,{})){
+            this->print_printList("",QObject::tr("运行: ") + t_exeFile,t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor());
+        }
+        else{
+            this->print_printList("",QObject::tr("失败: ") + t_exeFile,t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+            this->tip_addTip(tr("停止"),tr("运行失败"),5000,PluginGlobalMsg::TipType::Error);
+        }
+
+        return;
     }
+    this->tip_addTip(tr("停止"),tr("运行失败"),5000,PluginGlobalMsg::TipType::Error);
+    this->print_printList("",QObject::tr("运行失败"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+
 }
 
 //编译（compileFiles编译的文件组，changeFiles文件组中改变的文件）
 QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileFiles)
 {
     QString t_proName = this->projectManger_getProjectInfo(proPath).proName; //获取工程名称
+
     QElapsedTimer t_runTime;
     t_runTime.restart();
 
     //判断输入参数是否合法
     if(compileFiles.length() == 0){
         this->print_printList("",QObject::tr("需要编译的文件为空，不存在编译信息"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+        this->tip_addTip(tr("失败"),tr("需要编译的文件为空，不存在编译信息"),5000,PluginGlobalMsg::TipType::Error);
         return "";
     }
     if(!QDir(proPath).exists()){
         this->print_printList("",QObject::tr("工程不存在"),t_proName,proPath,-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
+        this->tip_addTip(tr("失败"),tr("工程不存在"),5000,PluginGlobalMsg::TipType::Error);
         return "";
     }
 
@@ -510,9 +584,6 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         t_sPar = "-fopenmp";
         t_runPar.append(t_sPar);
     }
-
-
-
 
 
 
@@ -599,7 +670,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         }
     }
     else{
-        this->print_printList("",QObject::tr("存在加速缓存,跳过编译..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::warning,QColor("yellow"));
+        this->print_printList("",QObject::tr("存在加速缓存,跳过编译..."),t_proName,"",-1,PluginGlobalMsg::printIcoType::warning,QColor("orange"));
     }
 
 
@@ -688,8 +759,24 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     for(MapperNode& node : t_outMappers){node.filePath.replace(proPath, "${projectPath}");} //将相对路径转换为标识符
     System_File::writeFile(t_compileCacheJsonPath,this->compileMapperToString(t_outMappers).toUtf8()); //重新写出配置文件
 
-
     return t_attr.outPath + "/" + t_attr.programName; //返回完成的程序文件路径
+}
+
+
+//程序开始运行
+void Plugin_CppBase::event_runStarted()
+{
+    this->closeRunActions();
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::stop,true); //允许停止
+    qDebug() << "程序运行开始，允许停止";
+}
+
+//程序运行完毕
+void Plugin_CppBase::event_runFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    this->closeRunActions();
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
+    qDebug() << "程序停止，允许允许";
 }
 
 

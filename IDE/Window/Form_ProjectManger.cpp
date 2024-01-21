@@ -1092,7 +1092,7 @@ PluginGlobalMsg::ProjectMsg Form_ProjectManger::getProjectMsg(QString proPath)
     t_savePath = t_savePath.append("/").append(FMP);
 
     QJsonDocument t_jsonDoc;
-    t_jsonDoc.fromJson(System_File::readFile(t_savePath));
+    t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(t_savePath));
     QJsonObject t_jsonObj = t_jsonDoc.object();
 
     PluginGlobalMsg::ProjectMsg t_retMsg;

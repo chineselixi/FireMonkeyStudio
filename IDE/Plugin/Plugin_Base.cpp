@@ -283,7 +283,7 @@ void Plugin_Base::tip_postTipStr(QString str,int showTime)
 }
 
 //添加通知到通知管理器中
-uint16_t Plugin_Base::tip_addTip(QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime)
+uint16_t Plugin_Base::tip_addTip(QString title, QString tip, qint64 showTime, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose)
 {
     if(tipsFun_addTip) return tipsFun_addTip(title, tip, type, pixmap, canClose, showTime);
 }

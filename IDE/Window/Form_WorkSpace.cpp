@@ -67,8 +67,8 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
 
 
     //展示出基本通知消息
-    Manger::workspace_tipManger->addTip(tr("欢迎"),tr("欢迎使用FMS"),500000,Form_TipManger::TipType::Normal);
-    Manger::workspace_tipManger->addTip(tr("插件"),tr("发现部分插件API缺省"),500000,Form_TipManger::TipType::Warning);
+    Manger::workspace_tipManger->addTip(tr("欢迎"),tr("欢迎使用FMS"),10000,Form_TipManger::TipType::Normal);
+    //Manger::workspace_tipManger->addTip(tr("插件"),tr("发现部分插件API缺省"),500000,Form_TipManger::TipType::Warning);
     widget_statusbar->setBtn5(tr("插件"),QIcon(),"",[=](QString sign){
         this->on_action_pluginManger_triggered(); //打开插件管理器
     });
@@ -696,7 +696,6 @@ void Form_WorkSpace::event_ProjectManger_onProjectActiveChanged(QString projectP
     this->project_lang = projectLang;
     this->project_noteClass = projectNoteClass;
     Manger::pluginManger->event_onPorjectLoad(projectPath,projectLang,projectNoteClass); //激发当前工程已经被改变
-
     if(this->project_path.isEmpty()){
         this->ui->action_toolBar_save->setEnabled(false); //工程已经全部关闭，保存按钮禁用
     }

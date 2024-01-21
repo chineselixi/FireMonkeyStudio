@@ -40,9 +40,10 @@ uint16_t Form_TipManger::addTip(QString title, QString tip, qint64 showTime, Tip
 
     ui->listWidget->addItem(t_node->item);
     ui->listWidget->setItemWidget(t_node->item,t_node->widget);   //将item与widget绑定
-
     TipNodeList.push_back(t_node);
-    t_node->timer.start(showTime + 10); //开始循环
+
+    t_node->timer.start(showTime); //开始循环
+    this->adjustWindowRec();       //更新窗口的尺寸
     return t_node->id;
 }
 

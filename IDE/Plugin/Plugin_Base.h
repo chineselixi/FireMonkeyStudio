@@ -2,6 +2,7 @@
 #ifndef PLUGIN_BASE_H
 #define PLUGIN_BASE_H
 
+#include "QObject"
 #include "Plugin_Global.h"
 #include "../module/mod_settingsFormBase.h"
 //#include "../../QScintilla/src/Qsci/qsciscintilla.h"
@@ -10,8 +11,9 @@
 class Form_settings_Basic;
 
 
-class Plugin_Base
+class Plugin_Base : public QObject
 {
+//    Q_OBJECT
 public:
     friend class Plugin_Manger;
     //friend class Form_WorkSpace;
@@ -181,7 +183,7 @@ public: //插件的基础方法
 
     //提示消息
     void tip_postTipStr(QString str,int showTime); //投递字符串到状态栏
-    uint16_t tip_addTip(QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime); //添加通知到通知管理器中
+    uint16_t tip_addTip(QString title = "", QString tip = "", qint64 showTime = 5000,  PluginGlobalMsg::TipType type = PluginGlobalMsg::TipType::None, QPixmap pixmap = QPixmap(), bool canClose = true); //添加通知到通知管理器中
     bool tip_closeTip(uint16_t id); // 根据ID关闭一个停止，通知不存在则返回false
     bool tip_hasTip(uint16_t index); //判断是否存在这个通知
     void tip_setTipTitle(uint16_t index, QString title);//设置提示标题

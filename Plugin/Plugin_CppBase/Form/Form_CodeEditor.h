@@ -2,6 +2,8 @@
 #define FORM_CODEEDITOR_H
 
 #include <QWidget>
+#include "QTimer"
+
 
 namespace Ui {
 class Form_CodeEditor;
@@ -12,8 +14,11 @@ class Form_CodeEditor : public QWidget
     Q_OBJECT
 
 private:
-    QVector<int> debugsSign; //调试标记
+    Ui::Form_CodeEditor *ui;
 
+    QVector<int> debugsSign; //调试标记
+    QString nowOpenFilePath; //当前打开的文件路径
+    QTimer saveTimer;
 
 private:
     void intiCodeEditor(); //初始化代码编辑器
@@ -45,8 +50,10 @@ public slots:
     void event_marginClicked(int margin, int line, Qt::KeyboardModifiers state); //边缘标记区域被点击
     void event_zoomChanged(); //缩放被改变
 
-private:
-    Ui::Form_CodeEditor *ui;
+    //定时器事件
+    void event_timer_textChanged(); //定时器文件被改变
+
+
 };
 
 #endif // FORM_CODEEDITOR_H

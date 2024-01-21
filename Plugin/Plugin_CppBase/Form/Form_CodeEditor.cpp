@@ -1,6 +1,7 @@
 #include "Form_CodeEditor.h"
 #include "ui_Form_CodeEditor.h"
 #include "QFile"
+#include "../../../IDE/SwSystem/System_UtilFun.h"
 #include "../../QScintilla/src/Qsci/qscilexercpp.h"
 
 
@@ -13,10 +14,16 @@ Form_CodeEditor::Form_CodeEditor(QWidget *parent) :
 {
     ui->setupUi(this);
     this->intiCodeEditor(); //初始化代码编辑器
+
+    //绑定Timer
+    connect(&saveTimer,&QTimer::timeout,this,&Form_CodeEditor::event_timer_textChanged);
 }
 
 Form_CodeEditor::~Form_CodeEditor()
 {
+    //保存信息
+    this->event_timer_textChanged();
+
     delete ui;
 }
 
@@ -154,6 +161,7 @@ bool Form_CodeEditor::loadForFile(QString fileName)
     if(file.open(QIODevice::ReadOnly) == false) return false;
     this->setText(file.readAll()); //从本地加载文件
     file.close();
+    this->nowOpenFilePath = fileName; //保存当前打开的文件名
     return true;
 }
 
@@ -238,7 +246,9 @@ void Form_CodeEditor::deleteAllSign(int markerNumber)
 //事件：文本发生改变
 void Form_CodeEditor::event_textChanged()
 {
-
+    //三秒自动保存
+    this->saveTimer.stop();
+    this->saveTimer.start(3000);
 }
 
 //事件：光标位置发生改变
@@ -267,4 +277,12 @@ void Form_CodeEditor::event_marginClicked(int margin, int line, Qt::KeyboardModi
 void Form_CodeEditor::event_zoomChanged()
 {
     //qDebug() << ui->sciEditor->SendScintilla(QsciScintillaBase::SCI_GETZOOM); //获取缩放级别
+}
+
+
+//定时器文件被改变
+void Form_CodeEditor::event_timer_textChanged()
+{
+    this->saveTimer.stop();
+    System_File::writeFile(this->nowOpenFilePath,ui->sciEditor->text().toUtf8());
 }

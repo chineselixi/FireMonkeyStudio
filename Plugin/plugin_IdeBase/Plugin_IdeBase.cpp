@@ -31,6 +31,34 @@ Plugin_IdeBase::Plugin_IdeBase()
 
 void Plugin_IdeBase::event_onWorkSpaceFinish()
 {
+    //添加文件类型图标
+    this->projectManger_addFileIco("c",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CFile_16x_color.png"));
+    this->projectManger_addFileIco("cpp",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CPP_16x.png"));
+    this->projectManger_addFileIco("h",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CPPHeaderFile_16x.png"));
+    this->projectManger_addFileIco("css",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/CSSLink_16x.png"));
+    this->projectManger_addFileIco("ec",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/ec.png"));
+    this->projectManger_addFileIco("html",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/HTMLFile_16x.png"));
+    this->projectManger_addFileIco("ico",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/IconFile_16x.png"));
+    this->projectManger_addFileIco("jar",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/JARFile_16x.png"));
+    this->projectManger_addFileIco("java",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/JavaFile_16x.png"));
+    this->projectManger_addFileIco("js",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/JS_16x.png"));
+    this->projectManger_addFileIco("json",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/JSONFile_16x.png"));
+    this->projectManger_addFileIco("link",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/LinkFile_16x.png"));
+    this->projectManger_addFileIco("obj",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/NoncompilableFile_16x.png"));
+    this->projectManger_addFileIco("php",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/PHPFile_16x.png"));
+    this->projectManger_addFileIco("png",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/pic.png"));
+    this->projectManger_addFileIco("jpg",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/pic.png"));
+    this->projectManger_addFileIco("bmp",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/pic.png"));
+    this->projectManger_addFileIco("py",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/PY_16x.png"));
+    this->projectManger_addFileIco("sql",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/SQLFile_16x.png"));
+    this->projectManger_addFileIco("text",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/TextFile_16x.png"));
+    this->projectManger_addFileIco("xml",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/XMLFile_16x.png"));
+    this->projectManger_addFileIco("zip",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/ZipFile_16x.png"));
+    this->projectManger_addFileIco("rar",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/ZipFile_16x.png"));
+    this->projectManger_addFileIco("7z",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/ZipFile_16x.png"));
+
+
+    //初始化基本参数
     this->print_clearList();
     this->menu_closeWorkSpaceAllAction(); //禁用所有Action
     this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem,true); //启用书签主菜单
