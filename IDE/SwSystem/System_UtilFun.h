@@ -19,7 +19,8 @@ namespace System_File {
 
 
 namespace System_Widget{
-extern QPoint getWidgetRelPos(QWidget *widget, QWidget *parent); //获取指定Widget在祖先Widget的相对位置
+    extern QPoint getWidgetRelPos(QWidget *widget, QWidget *parent); //获取指定Widget在祖先Widget的相对位置
+    extern QWidget* getSubWidgetPtr(QWidget* parentWidget, QString subObjctName); //获取父类指针下指定名称控件的窗口指针
 }
 
 #endif // SYSTEM_UTILFUN_H

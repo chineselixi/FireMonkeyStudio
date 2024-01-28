@@ -80,7 +80,7 @@ public:
                                  PluginGlobalMsg::printFun_printTextSpace fun_printTextLine,PluginGlobalMsg::printFun_clear fun_clearPrintList,
                                  PluginGlobalMsg::printFun_clear fun_clearTextSpace); //初始化提示输出接口
 
-    void workSpace_init_dockWidget(PluginGlobalMsg::dockWidgetFun_add addFun,PluginGlobalMsg::dockWidgetFun_rm rmFun); //浮动窗格绑定
+    //void workSpace_init_dockWidget(PluginGlobalMsg::dockWidgetFun_add addFun,PluginGlobalMsg::dockWidgetFun_rm rmFun); //浮动窗格绑定
 
     void pluginManger_init_building(); //插件接口绑定
 
@@ -117,6 +117,7 @@ public:
                                       PluginGlobalMsg::statusbarFun_hideAllBtn statusFun_hideAllBtn //隐藏所有的按钮
                                       ); //初始化状态栏操作接口
 
+    void workSpace_init_widget(PluginGlobalMsg::widgetFun_getWidget widget_getMainWindow); //初始化控件
 
 public:
 

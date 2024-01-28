@@ -94,8 +94,8 @@ private:
     PluginGlobalMsg::pluginFun_post PluginManger_PostMsg = nullptr; //使用插件管理器投递信息，每一个有效插件都将接收到收到这个信息，但是需要注意发送方的身份
 
     //WorkSpace中的Dock操作
-    PluginGlobalMsg::dockWidgetFun_add WorkSpace_DockWidget_Add = nullptr; //添加DockWidget
-    PluginGlobalMsg::dockWidgetFun_rm WorkSpace_DockWidget_remove = nullptr; //删除DockWidget
+    //PluginGlobalMsg::dockWidgetFun_add WorkSpace_DockWidget_Add = nullptr; //添加DockWidget
+    //PluginGlobalMsg::dockWidgetFun_rm WorkSpace_DockWidget_remove = nullptr; //删除DockWidget
 
     //设置操作接口
     PluginGlobalMsg::setPtr_addFun setFun_add = nullptr; //添加或变更一个设置
@@ -129,6 +129,8 @@ private:
     PluginGlobalMsg::projectManger_addFileIco ProjectManger_addFileIco = nullptr; //添加类别文件图标
     PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIco = nullptr; //设置目标图标，如果目标为空，则设置类型为non的图标
 
+    //窗口获取
+    PluginGlobalMsg::widgetFun_getWidget Widget_getWorkSpaceWindowPtr = nullptr; //获取工作空间窗口指针
 
 public:
     //初始化信息，由IDE侧载，可复写
@@ -166,8 +168,8 @@ public: //插件的基础方法
     QString plugin_postPluginMessage(QString pluginSign,QString pustMsg); //插件内投递消息
 
     //DockWidget窗格
-    void dockwidget_addDockWidget(Qt::DockWidgetArea area,QDockWidget* dockWidget); //添加DockWidget
-    void dockwidget_removeDockWidget(QDockWidget* dockWidget); //移除DockWidget
+    //void dockwidget_addDockWidget(Qt::DockWidgetArea area,QDockWidget* dockWidget); //添加DockWidget
+    //void dockwidget_removeDockWidget(QDockWidget* dockWidget); //移除DockWidget
 
     //TabWindow
     void tabWindow_addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type); //在Tab添加窗口
@@ -206,7 +208,9 @@ public: //插件的基础方法
     void projectManger_addFileIco(QString suffix, QIcon ico); //添加类别文件图标
     void projectManger_setObjIco(QIcon ico,QString objPath); //设置目标图标，如果目标为空，则设置类型为non的图标
 
-
+    //窗口操作
+    QMainWindow* widget_getWorkSpaceWindowPtr(); //获取工作空间窗口指针
+    //QWidget* widget_getSubWidgetPtr(QWidget* parentWidget, QString subObjctName); //获取子控件对象指针
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
     virtual bool event_onModLoadFinish(){return true;};//当模块加载完毕，将第一时间激发此插件，禁止在获取实例处获得

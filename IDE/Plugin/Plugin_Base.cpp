@@ -192,21 +192,21 @@ QString Plugin_Base::plugin_postPluginMessage(QString pluginSign, QString pustMs
     return QString();
 }
 
-//添加DockWidget
-void Plugin_Base::dockwidget_addDockWidget(Qt::DockWidgetArea area, QDockWidget *dockWidget)
-{
-    if(this->WorkSpace_DockWidget_Add){
-        this->WorkSpace_DockWidget_Add(area,dockWidget);
-    }
-}
+////添加DockWidget
+//void Plugin_Base::dockwidget_addDockWidget(Qt::DockWidgetArea area, QDockWidget *dockWidget)
+//{
+//    if(this->WorkSpace_DockWidget_Add){
+//        this->WorkSpace_DockWidget_Add(area,dockWidget);
+//    }
+//}
 
-//移除DockWidget
-void Plugin_Base::dockwidget_removeDockWidget(QDockWidget *dockWidget)
-{
-    if(this->WorkSpace_DockWidget_remove){
-        this->WorkSpace_DockWidget_remove(dockWidget);
-    }
-}
+////移除DockWidget
+//void Plugin_Base::dockwidget_removeDockWidget(QDockWidget *dockWidget)
+//{
+//    if(this->WorkSpace_DockWidget_remove){
+//        this->WorkSpace_DockWidget_remove(dockWidget);
+//    }
+//}
 
 
 //在Tab添加窗口
@@ -398,3 +398,20 @@ void Plugin_Base::projectManger_setObjIco(QIcon ico, QString objPath)
         ProjectManger_setObjIco(ico, objPath);
     }
 }
+
+
+//获取工作空间窗口指针
+QMainWindow *Plugin_Base::widget_getWorkSpaceWindowPtr()
+{
+    if(Widget_getWorkSpaceWindowPtr){
+        return (QMainWindow*)Widget_getWorkSpaceWindowPtr();
+    }
+    return nullptr;
+}
+
+//QWidget *Plugin_Base::widget_getSubWidgetPtr(QWidget *parentWidget, QString subObjctName)
+//{
+//    return System_Widget::getSubWidgetPtr(parentWidget,subObjctName);
+//}
+
+

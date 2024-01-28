@@ -362,12 +362,20 @@ void Form_WorkSpace::init()
 
 
     //初始化Dock添加信息
-    Manger::pluginManger->workSpace_init_dockWidget(
-        [this](Qt::DockWidgetArea area,QDockWidget* dockWidget){
-            this->addDockWidget(area,dockWidget);
-        },
-        [this](QDockWidget* dockWidget){
-            this->removeDockWidget(dockWidget);
+    //Manger::pluginManger->workSpace_init_dockWidget(
+    //[this](Qt::DockWidgetArea area,QDockWidget* dockWidget){
+    //    this->addDockWidget(area,dockWidget);
+    //},
+    //[this](QDockWidget* dockWidget){
+    //    this->removeDockWidget(dockWidget);
+    //});
+
+
+
+    //初始化Widget信息
+    Manger::pluginManger->workSpace_init_widget(
+        [this]()->QWidget*{
+            return this;
         });
 
 

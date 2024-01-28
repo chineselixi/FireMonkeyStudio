@@ -81,6 +81,20 @@ QPoint System_Widget::getWidgetRelPos(QWidget *widget, QWidget *parent)
 }
 
 
+//获取父类指针下指定名称控件的窗口指针
+QWidget *System_Widget::getSubWidgetPtr(QWidget *parentWidget, QString subObjctName)
+{
+    QObjectList t_subs = parentWidget->children();
+    for(QObject* t_obj : t_subs){
+        if(t_obj->objectName() == subObjctName){
+            return (QWidget*)t_obj;
+        }
+    }
+    return nullptr;
+}
+
+
+
 //扫描全部文件及文件夹
 void System_File::scanDirectory(const QString &path, QVector<QString> &folders, QVector<QString> &files)
 {
@@ -142,3 +156,6 @@ bool System_File::copyPath(QString srcPath, QString newPath, std::function<bool 
     }
     return true;
 }
+
+
+

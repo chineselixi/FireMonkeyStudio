@@ -414,16 +414,27 @@ void Plugin_Manger::workSpace_init_statusOperate(PluginGlobalMsg::statusbarFun_s
 }
 
 
-//浮动窗格绑定
-void Plugin_Manger::workSpace_init_dockWidget(PluginGlobalMsg::dockWidgetFun_add addFun,PluginGlobalMsg::dockWidgetFun_rm rmFun)
+//初始化控件
+void Plugin_Manger::workSpace_init_widget(PluginGlobalMsg::widgetFun_getWidget widget_getMainWindow)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
-            this->List_plg[a].plgPth->WorkSpace_DockWidget_Add = addFun;
-            this->List_plg[a].plgPth->WorkSpace_DockWidget_remove = rmFun;
+            this->List_plg[a].plgPth->Widget_getWorkSpaceWindowPtr = widget_getMainWindow;
         }
     }
 }
+
+
+//浮动窗格绑定
+//void Plugin_Manger::workSpace_init_dockWidget(PluginGlobalMsg::dockWidgetFun_add addFun,PluginGlobalMsg::dockWidgetFun_rm rmFun)
+//{
+//    for(int a = 0;a < List_plg.length();a++){
+//        if(this->List_plg[a].plgPth != nullptr){
+//            this->List_plg[a].plgPth->WorkSpace_DockWidget_Add = addFun;
+//            this->List_plg[a].plgPth->WorkSpace_DockWidget_remove = rmFun;
+//        }
+//    }
+//}
 
 
 

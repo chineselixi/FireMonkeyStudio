@@ -58,6 +58,20 @@ enum class toolBarAction{
     compleMode, //编译模式选择器
 };
 
+//Dock位置枚举
+enum class dockerArea{
+    top,        //上
+    buttom,     //下
+    left,       //左
+    right,      //右
+};
+
+//Dock目标枚举
+enum class dockerMark{
+    proMangerDocker,
+
+};
+
 
 //工具栏分类
 enum class toolBarMenuType{
@@ -192,6 +206,8 @@ typedef std::function<void(int index)> statusbarFun_setProgressIndex; //设置�
 typedef std::function<void(int btnIndex,QString title,QIcon ico_16x,QString sign,std::function<void(QString sign)> funPtr)> statusbarFun_setButton; //设置状态栏按钮，funPtr为nullptr时，隐藏
 typedef fun_void statusbarFun_hideAllBtn; //隐藏所有的按钮
 
+//窗口操作
+typedef std::function<QWidget*()> widgetFun_getWidget; //获取QWidget
 
 }
 
