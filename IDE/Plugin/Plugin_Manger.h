@@ -128,6 +128,7 @@ public:
     void event_onPorjectLoad(QString proPath,QString proLangs,QString proNoteClass); //当工程被加载完毕，或者切换的工程已经被改变
     void event_onProjectBuild(QString projectPath); //工程被构建
     void event_onProjectClear(QString projectPath); //工程被清理
+    void event_onProjectClose(QString projectPath); //工程被关闭
 
     void event_onFileOpen(QString filePath); //当文件被打开，激发模块事件
     void event_onFileClose(QString filePath); //当文件被删除或者关闭

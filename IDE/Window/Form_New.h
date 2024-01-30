@@ -45,11 +45,13 @@ private slots:
 
     void on_comboBox_findMod_editTextChanged(const QString &arg1);
 
-    void on_pushButton_next_toCreate_clicked();
+    void on_pushButton_next_toCreate_clicked(); //当前界面已经切换事件
 
     void on_pushButton_path_3_clicked(); //选择文件夹路径
 
     void on_pushButton_createProject_clicked(); //创建工程
+
+    void on_stackedWidget_currentChanged(int arg1);
 
     void on_lineEdit_projectName_textEdited(const QString &arg1); //项目名被改变
 

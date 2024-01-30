@@ -745,7 +745,7 @@ void Form_WorkSpace::event_ProjectManger_onProjectAttribute(QString projectPath)
 //当项目被关闭
 void Form_WorkSpace::event_ProjectManger_onProjectClose(QString projectPath)
 {
-    qDebug() << "项目被关闭" << projectPath;
+    Manger::pluginManger->event_onProjectClose(projectPath);
 }
 
 //文件被更名

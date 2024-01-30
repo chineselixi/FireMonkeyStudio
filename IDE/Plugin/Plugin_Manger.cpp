@@ -547,6 +547,18 @@ void Plugin_Manger::event_onProjectClear(QString projectPath)
 }
 
 
+//工程被关闭
+void Plugin_Manger::event_onProjectClose(QString projectPath)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
+        if(List_plg[a].plgPth->event_onProjectClose(projectPath) == false){ //若插件阻止触发，则跳出
+            break;
+        }
+    }
+}
+
+
 //当文件路径被改变
 void Plugin_Manger::event_onFileRename(QString oldPath, QString newPath)
 {

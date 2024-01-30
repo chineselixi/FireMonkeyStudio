@@ -223,7 +223,7 @@ public: //(可阻拦事件)事件触发，返回true则继续触发其他插件�
     virtual bool event_onFileClose(QString filePath){return true;}; //当前文件被关闭
     virtual bool event_onProjectBuild(QString projectPath){return true;};//当项目被构建
     virtual bool event_onProjectClear(QString projectPath){return true;};//当项目被清理
-
+    virtual bool event_onProjectClose(QString projectPath){return true;};//当项目被关闭
 
     virtual bool event_onFileSave(QString filePath){return true;}; //当文件被保存激发事件
     virtual bool event_onFileSaveAll(){return true;}; //当全部保存被激发

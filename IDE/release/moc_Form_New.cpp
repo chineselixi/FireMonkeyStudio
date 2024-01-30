@@ -53,6 +53,7 @@ static constexpr auto qt_meta_stringdata_CLASSForm_NewENDCLASS = QtMocHelpers::s
     "on_pushButton_next_toCreate_clicked",
     "on_pushButton_path_3_clicked",
     "on_pushButton_createProject_clicked",
+    "on_stackedWidget_currentChanged",
     "on_lineEdit_projectName_textEdited",
     "OnBtnOpenDuwn",
     "OnBtnOpenDirDuwn",
@@ -61,7 +62,7 @@ static constexpr auto qt_meta_stringdata_CLASSForm_NewENDCLASS = QtMocHelpers::s
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSForm_NewENDCLASS_t {
-    uint offsetsAndSizes[40];
+    uint offsetsAndSizes[42];
     char stringdata0[9];
     char stringdata1[35];
     char stringdata2[1];
@@ -77,11 +78,12 @@ struct qt_meta_stringdata_CLASSForm_NewENDCLASS_t {
     char stringdata12[36];
     char stringdata13[29];
     char stringdata14[36];
-    char stringdata15[35];
-    char stringdata16[14];
-    char stringdata17[17];
-    char stringdata18[16];
-    char stringdata19[13];
+    char stringdata15[32];
+    char stringdata16[35];
+    char stringdata17[14];
+    char stringdata18[17];
+    char stringdata19[16];
+    char stringdata20[13];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSForm_NewENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -102,11 +104,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_NewENDCLASS_t qt_meta_stri
         QT_MOC_LITERAL(275, 35),  // "on_pushButton_next_toCreate_c..."
         QT_MOC_LITERAL(311, 28),  // "on_pushButton_path_3_clicked"
         QT_MOC_LITERAL(340, 35),  // "on_pushButton_createProject_c..."
-        QT_MOC_LITERAL(376, 34),  // "on_lineEdit_projectName_textE..."
-        QT_MOC_LITERAL(411, 13),  // "OnBtnOpenDuwn"
-        QT_MOC_LITERAL(425, 16),  // "OnBtnOpenDirDuwn"
-        QT_MOC_LITERAL(442, 15),  // "OnBtnCreateDuwn"
-        QT_MOC_LITERAL(458, 12)   // "OnBtnGitDown"
+        QT_MOC_LITERAL(376, 31),  // "on_stackedWidget_currentChanged"
+        QT_MOC_LITERAL(408, 34),  // "on_lineEdit_projectName_textE..."
+        QT_MOC_LITERAL(443, 13),  // "OnBtnOpenDuwn"
+        QT_MOC_LITERAL(457, 16),  // "OnBtnOpenDirDuwn"
+        QT_MOC_LITERAL(474, 15),  // "OnBtnCreateDuwn"
+        QT_MOC_LITERAL(490, 12)   // "OnBtnGitDown"
     },
     "Form_New",
     "on_pushButton_back_toStart_clicked",
@@ -123,6 +126,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSForm_NewENDCLASS_t qt_meta_stri
     "on_pushButton_next_toCreate_clicked",
     "on_pushButton_path_3_clicked",
     "on_pushButton_createProject_clicked",
+    "on_stackedWidget_currentChanged",
     "on_lineEdit_projectName_textEdited",
     "OnBtnOpenDuwn",
     "OnBtnOpenDirDuwn",
@@ -139,7 +143,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_NewENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -147,22 +151,23 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_NewENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  110,    2, 0x08,    1 /* Private */,
-       3,    0,  111,    2, 0x08,    2 /* Private */,
-       4,    0,  112,    2, 0x08,    3 /* Private */,
-       5,    0,  113,    2, 0x08,    4 /* Private */,
-       6,    1,  114,    2, 0x08,    5 /* Private */,
-       8,    1,  117,    2, 0x08,    7 /* Private */,
-       9,    1,  120,    2, 0x08,    9 /* Private */,
-      10,    1,  123,    2, 0x08,   11 /* Private */,
-      12,    0,  126,    2, 0x08,   13 /* Private */,
-      13,    0,  127,    2, 0x08,   14 /* Private */,
-      14,    0,  128,    2, 0x08,   15 /* Private */,
-      15,    1,  129,    2, 0x08,   16 /* Private */,
-      16,    0,  132,    2, 0x09,   18 /* Protected */,
-      17,    0,  133,    2, 0x09,   19 /* Protected */,
-      18,    0,  134,    2, 0x09,   20 /* Protected */,
-      19,    0,  135,    2, 0x09,   21 /* Protected */,
+       1,    0,  116,    2, 0x08,    1 /* Private */,
+       3,    0,  117,    2, 0x08,    2 /* Private */,
+       4,    0,  118,    2, 0x08,    3 /* Private */,
+       5,    0,  119,    2, 0x08,    4 /* Private */,
+       6,    1,  120,    2, 0x08,    5 /* Private */,
+       8,    1,  123,    2, 0x08,    7 /* Private */,
+       9,    1,  126,    2, 0x08,    9 /* Private */,
+      10,    1,  129,    2, 0x08,   11 /* Private */,
+      12,    0,  132,    2, 0x08,   13 /* Private */,
+      13,    0,  133,    2, 0x08,   14 /* Private */,
+      14,    0,  134,    2, 0x08,   15 /* Private */,
+      15,    1,  135,    2, 0x08,   16 /* Private */,
+      16,    1,  138,    2, 0x08,   18 /* Private */,
+      17,    0,  141,    2, 0x09,   20 /* Protected */,
+      18,    0,  142,    2, 0x09,   21 /* Protected */,
+      19,    0,  143,    2, 0x09,   22 /* Protected */,
+      20,    0,  144,    2, 0x09,   23 /* Protected */,
 
  // slots: parameters
     QMetaType::Void,
@@ -176,6 +181,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSForm_NewENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void, QMetaType::QString,   11,
     QMetaType::Void,
     QMetaType::Void,
@@ -220,6 +226,9 @@ Q_CONSTINIT const QMetaObject Form_New::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_createProject_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_stackedWidget_currentChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_lineEdit_projectName_textEdited'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
@@ -252,11 +261,12 @@ void Form_New::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 8: _t->on_pushButton_next_toCreate_clicked(); break;
         case 9: _t->on_pushButton_path_3_clicked(); break;
         case 10: _t->on_pushButton_createProject_clicked(); break;
-        case 11: _t->on_lineEdit_projectName_textEdited((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 12: _t->OnBtnOpenDuwn(); break;
-        case 13: _t->OnBtnOpenDirDuwn(); break;
-        case 14: _t->OnBtnCreateDuwn(); break;
-        case 15: _t->OnBtnGitDown(); break;
+        case 11: _t->on_stackedWidget_currentChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 12: _t->on_lineEdit_projectName_textEdited((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 13: _t->OnBtnOpenDuwn(); break;
+        case 14: _t->OnBtnOpenDirDuwn(); break;
+        case 15: _t->OnBtnCreateDuwn(); break;
+        case 16: _t->OnBtnGitDown(); break;
         default: ;
         }
     }
@@ -281,13 +291,13 @@ int Form_New::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 17)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

@@ -7,6 +7,7 @@
 #include "QJsonArray"
 #include "QJsonObject"
 #include "QElapsedTimer"
+#include "QMainWindow"
 
 #include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "Form/Form_CodeEditor.h"
@@ -41,11 +42,6 @@ Plugin_CppBase::Plugin_CppBase()
 //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
 bool Plugin_CppBase::event_onProjectActiveChanged(QString proPath, QString proLangs, QString proNoteClass)
 {
-    static QAction* t_actionAttribute = nullptr; //属性菜单
-    std::function<void()> t_attributeFun = [this,proPath](){
-        this->event_attribute(proPath); //执行属性菜单
-    };
-
     if(this->checkIsCppProject(proLangs)){ //检查是否为Cpp对象
         this->menu_closeWorkSpaceAllAction(); //关闭所有ACTION
         this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compleMode,true); //允许模式选择
@@ -54,11 +50,8 @@ bool Plugin_CppBase::event_onProjectActiveChanged(QString proPath, QString proLa
         this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
         this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::onlineCompile,true); //允许在线编译
 
-        //添加属性到工程菜单
-        t_actionAttribute = new QAction(QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Constant_16x.png"),QObject::tr("配置"));
-        t_actionAttribute->connect(t_actionAttribute,&QAction::triggered,t_attributeFun);
-        this->menu_addProMangerMenu(PluginGlobalMsg::proMangerMenuType::Project,t_actionAttribute);
-
+        //添加菜单到工程菜单
+        this->addConfigMenuToProManger(proPath);
 
         //重构编译模式
         this->compile_clearAllCompileMod(); //清空编译模式
@@ -67,13 +60,19 @@ bool Plugin_CppBase::event_onProjectActiveChanged(QString proPath, QString proLa
         this->compile_selectCompileMod(MOD_DEBUG); //选择调试编译模式
         return false; //阻止消息传递
     }
+    return true;
+}
 
+
+//当项目被关闭
+bool Plugin_CppBase::event_onProjectClose(QString projectPath)
+{
     //删除菜单
-    if(t_actionAttribute!=nullptr){
-        t_actionAttribute->disconnect();
-        delete t_actionAttribute;
+    PluginGlobalMsg::ProjectMsg t_proMsg = this->projectManger_getProjectInfo(projectPath);
+    if(this->checkIsCppProject(t_proMsg.proLanguage)){
+        this->delConfigMenuToProManger(projectPath);
+        return false;
     }
-
     return true;
 }
 
@@ -139,6 +138,9 @@ bool Plugin_CppBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
 //文件被加载，阻止消息继续触发
 bool Plugin_CppBase::event_onFileOpen(QString filePath)
 {
+    this->tip_addTip("终端","无法确定版本",10000,PluginGlobalMsg::TipType::Warning);
+    this->tip_addTip("错误","未找到构造器",10000,PluginGlobalMsg::TipType::Error);
+
     filePath = filePath.toLower();
     if(stringRight(filePath,".h") ||
         stringRight(filePath,".cpp") ||
@@ -231,6 +233,26 @@ void Plugin_CppBase::event_onWorkSpaceFinish()
                                          QObject::tr("Cpp源"),
                                          "");
 
+    //添加新的
+    QMainWindow* t_mainWindow = this->widget_getWorkSpaceWindowPtr();
+    if(t_mainWindow != nullptr){
+        QList<QDockWidget*> t_docks = t_mainWindow->findChildren<QDockWidget*>("dockWidget_print");  //查找运行与提示Dock
+        if(t_docks.length() == 1){
+            //测试代码
+
+
+            QWidget* newWidget = new QWidget();
+            newWidget->setWindowTitle("测试窗口");
+
+            QDockWidget* dock = new QDockWidget;
+            dock->setWindowTitle("测试窗口2");
+            dock->setWidget(newWidget);
+
+            t_mainWindow->tabifyDockWidget(t_docks[0],dock);
+            qDebug() << "找到了";
+        }
+    }
+
 }
 
 
@@ -241,6 +263,39 @@ bool Plugin_CppBase::stringRight(QString str, QString suffix)
         return false;
     }
     return true;
+}
+
+//添加菜单到工程右键菜单，已存在则不添加
+bool Plugin_CppBase::addConfigMenuToProManger(QString proPath)
+{
+    this->delConfigMenuToProManger(proPath);
+    std::function<void()> t_attributeFun = [this,proPath](){
+        this->event_attribute(proPath); //执行属性菜单
+    };
+
+    //添加属性到工程菜单(工程菜单只添加一次)
+    QAction* t_actionAttribute = new QAction(QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Constant_16x.png"),
+                                    QObject::tr("配置") + "(" + this->projectManger_getProjectInfo(proPath).proName + ")");
+    t_actionAttribute->setStatusTip(proPath);
+    t_actionAttribute->connect(t_actionAttribute,&QAction::triggered,t_attributeFun);
+    this->menu_addProMangerMenu(PluginGlobalMsg::proMangerMenuType::Project,t_actionAttribute);
+    this->proConfigMenus.append({proPath,t_actionAttribute});   //添加到列表保存
+    return true;
+}
+
+
+//删除菜单项到工程右键菜单
+bool Plugin_CppBase::delConfigMenuToProManger(QString proPath)
+{
+    for(qsizetype a = this->proConfigMenus.length() - 1; a >= 0; a--){
+        if(this->proConfigMenus[a].proPath == proPath){
+            this->proConfigMenus[a].menuAction->disconnect();
+            delete this->proConfigMenus[a].menuAction;
+            this->proConfigMenus.remove(a);
+            return true;
+        }
+    }
+    return false;
 }
 
 

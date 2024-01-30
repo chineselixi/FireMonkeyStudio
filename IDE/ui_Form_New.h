@@ -92,7 +92,7 @@ public:
     QVBoxLayout *verticalLayout_6;
     QHBoxLayout *horizontalLayout_8;
     QFrame *frame_6;
-    QLabel *label_tip1_5;
+    QLabel *label_proTitle;
     QLabel *label_9;
     QLineEdit *lineEdit_Path_3;
     QLabel *label_10;
@@ -527,12 +527,12 @@ public:
         frame_6->setMaximumSize(QSize(65535, 320));
         frame_6->setFrameShape(QFrame::StyledPanel);
         frame_6->setFrameShadow(QFrame::Raised);
-        label_tip1_5 = new QLabel(frame_6);
-        label_tip1_5->setObjectName("label_tip1_5");
-        label_tip1_5->setGeometry(QRect(20, 65, 388, 30));
-        label_tip1_5->setMinimumSize(QSize(0, 0));
-        label_tip1_5->setMaximumSize(QSize(16777215, 70));
-        label_tip1_5->setFont(font1);
+        label_proTitle = new QLabel(frame_6);
+        label_proTitle->setObjectName("label_proTitle");
+        label_proTitle->setGeometry(QRect(20, 65, 388, 30));
+        label_proTitle->setMinimumSize(QSize(0, 0));
+        label_proTitle->setMaximumSize(QSize(16777215, 70));
+        label_proTitle->setFont(font1);
         label_9 = new QLabel(frame_6);
         label_9->setObjectName("label_9");
         label_9->setGeometry(QRect(20, 115, 111, 20));
@@ -617,7 +617,7 @@ public:
 
         retranslateUi(Form_New);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(3);
         pushButton_clone->setDefault(false);
         pushButton_next_toCreate->setDefault(false);
         pushButton_createProject->setDefault(false);
@@ -654,7 +654,7 @@ public:
 
         pushButton_back_toMain2->setText(QCoreApplication::translate("Form_New", "\344\270\212\344\270\200\346\255\245", nullptr));
         pushButton_next_toCreate->setText(QCoreApplication::translate("Form_New", "\344\270\213\344\270\200\346\255\245", nullptr));
-        label_tip1_5->setText(QCoreApplication::translate("Form_New", "\346\216\247\345\210\266\345\217\260\345\272\224\347\224\250", nullptr));
+        label_proTitle->setText(QCoreApplication::translate("Form_New", "\346\234\252\347\237\245\347\232\204\345\272\224\347\224\250", nullptr));
         label_9->setText(QCoreApplication::translate("Form_New", "\351\241\271\347\233\256\345\220\215\347\247\260", nullptr));
         lineEdit_Path_3->setPlaceholderText(QCoreApplication::translate("Form_New", "uesr/document/src", nullptr));
         label_10->setText(QCoreApplication::translate("Form_New", "\350\267\257\345\276\204", nullptr));

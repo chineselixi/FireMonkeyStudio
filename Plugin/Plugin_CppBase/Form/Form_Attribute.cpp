@@ -39,6 +39,10 @@ void Form_Attribute::updateUi(Attribute attr)
 
     //读取版本信息
     QStringList t_strLsit = attr.versionCode.split(".");
+
+    qDebug() << "版本" << attr.versionCode;
+
+
     if(t_strLsit.length()>0) ui->txt_version4->setText(t_strLsit[t_strLsit.length() - 1]);
     if(t_strLsit.length()>1) ui->txt_version3->setText(t_strLsit[t_strLsit.length() - 2]);
     if(t_strLsit.length()>2) ui->txt_version2->setText(t_strLsit[t_strLsit.length() - 3]);
@@ -155,12 +159,13 @@ Form_Attribute::Attribute Form_Attribute::loadAttribute(QString jsonStr)
     QJsonObject t_jsonObj = t_jsonDocument.object();//读取Json
     t_attr.programName = t_jsonObj.value("programName").toString("");                           //程序名称
     t_attr.copyright = t_jsonObj.value("copyright").toString(QObject::tr("FMS 开发"));            //版权信息
-    t_attr.versionCode = t_jsonObj.value("versionCode").toString("0,0,0,1");                    //版本信息
+    t_attr.versionCode = t_jsonObj.value("versionCode").toString("0.0.0.1");                    //版本信息
     t_attr.outPath = t_jsonObj.value("outPath").toString("${projectPath}/out");                 //输出文件目录
     t_attr.tempPath = t_jsonObj.value("tempPath").toString("${projectPath}/out/temp");           //临时文件目录
     t_attr.icoPath = t_jsonObj.value("icoPath").toString("${projectPath}/ico.ico");              //图标路径
     t_attr.programNote = t_jsonObj.value("programNote").toString(QObject::tr("本程序由FMS开发！"));   //程序备注说明
     t_attr.srcName = t_jsonObj.value("srcName").toString("");                                   //原始名称
     t_attr.orgName = t_jsonObj.value("orgName").toString(QObject::tr("火猴开发社区"));            //公司社区名称
+
     return t_attr;
 }

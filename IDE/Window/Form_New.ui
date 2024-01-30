@@ -108,7 +108,7 @@ QPushButton:!enabled{
    <item row="0" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="page_main">
       <layout class="QGridLayout" name="gridLayout_2">
@@ -975,7 +975,7 @@ QPushButton:!enabled{
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="QLabel" name="label_tip1_5">
+           <widget class="QLabel" name="label_proTitle">
             <property name="geometry">
              <rect>
               <x>20</x>
@@ -1002,7 +1002,7 @@ QPushButton:!enabled{
              </font>
             </property>
             <property name="text">
-             <string>控制台应用</string>
+             <string>未知的应用</string>
             </property>
            </widget>
            <widget class="QLabel" name="label_9">

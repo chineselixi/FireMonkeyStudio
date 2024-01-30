@@ -25,6 +25,8 @@ Form_New::Form_New(QWidget *parent) :
     //this->setFixedHeight(782);
     //this->setFixedWidth(1113);
 
+    //选择第一个界面
+    ui->stackedWidget->setCurrentIndex(0);
 
 
     ui->Btn_OpenProject->SetIcon(QPixmap(":/WidgetIcon/icon/WidgetIcon/newCreate/open1.png"));
@@ -455,6 +457,7 @@ void Form_New::on_pushButton_next_toCreate_clicked()
         QMessageBox::critical(this,"Error",tr("工程模板文件不存在，无法使用创建项目！"));
         return;
     }
+
     ui->stackedWidget->setCurrentIndex(3);
     ui->lineEdit_projectName->setFocus();//获取激活焦点
 }
@@ -489,7 +492,7 @@ void Form_New::on_lineEdit_projectName_textEdited(const QString &arg1)
     ui->label_createTip->setText("");
 }
 
-//创建工程
+//创建工程按钮被点击
 void Form_New::on_pushButton_createProject_clicked()
 {
     QString t_modName = QFileInfo(this->modFilePath).fileName(); //基础文件名
@@ -520,16 +523,32 @@ void Form_New::on_pushButton_createProject_clicked()
     QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(t_proPath));
     QJsonObject t_jsonObj = t_jsonDoc.object();
     t_jsonObj.remove("proName");
-    t_jsonObj.insert("proName",ui->lineEdit_projectName->text());
+    t_jsonObj.insert("proName",ui->lineEdit_projectName->text()); //更改工程名
     t_jsonDoc.setObject(t_jsonObj);
     System_File::writeFile(t_proPath,t_jsonDoc.toJson()); //保存Json信息
 
-    ProjectOpen::projectPath = t_proPath; //工程路径
-    if(Window::workSpace == nullptr){
+    //打开工程向导
+    QString t_wizard = t_jsonObj.value("proWizard").toString();
+    t_wizard = t_wizard.replace("{pwd}",QCoreApplication::applicationDirPath()); //将特程序预先目录替换
+    if(!t_wizard.isEmpty()){ //向导存在，不是空白，则运行向导
+        if(!QFile(t_wizard).exists()){
+            QMessageBox::warning(this, tr("注意"),tr("此工程应该存在工程向导，但是IDE无法找到此向导。工程构建信息可能不可信！"));
+        }
+        else{ //存在则运行
+            QProcess t_pro;
+            if(t_pro.execute(t_wizard,{t_proPath}) != 0){ //运行程序
+                QMessageBox::warning(this, tr("注意"),tr("工程向导未正常退出，工程构建信息可能不可信！"));
+            }
+        }
+    }
+
+    //工作空间开始加载工程
+    ProjectOpen::projectPath = t_proPath; //工程路径，在工作空间加载时读取这个参数
+    if(Window::workSpace == nullptr){               //若工作空间窗口未打开，则打开窗口
         Window::workSpace = new Form_WorkSpace;
         Window::workSpace->show();
     }
-    Window::workSpace->loadProject(); //加载工程
+    Window::workSpace->loadProject(); //加载工程，读取ProjectOpen::projectPath工程
 
 
     //保存历史记录
@@ -546,4 +565,14 @@ void Form_New::on_pushButton_createProject_clicked()
 }
 
 
+
+//当前界面已经切换事件
+void Form_New::on_stackedWidget_currentChanged(int arg1)
+{
+    if(arg1 == 3){  //如果为新建工程，则默认的标题配置则为工程模板的名称
+        QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(this->modFilePath));
+        QJsonObject t_jsonObj = t_jsonDoc.object();
+        ui->label_proTitle->setText(t_jsonObj.value("proName").toString(tr("未知的工程配置")));
+    }
+}
 

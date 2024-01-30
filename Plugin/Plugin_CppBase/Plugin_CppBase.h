@@ -23,9 +23,15 @@ private:
         bool neadCompile = true; //是否需要重新编译
     };
 
+    struct proConfigMenu{
+        QString proPath;
+        QAction* menuAction = nullptr;
+    };
+
+
 private:
     QProcess* execProcess = nullptr;
-
+    QVector<proConfigMenu> proConfigMenus; //工程配置菜单列表
 
 public:
     Plugin_CppBase();
@@ -34,6 +40,8 @@ public:
 private: //全局事件：返回false则阻止继续触发事件
     //当工程被加载完毕(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
     bool event_onProjectActiveChanged(QString proPath,QString proLangs,QString proNoteClass) override;
+    //当项目被关闭
+    bool event_onProjectClose(QString projectPath) override;
     //当工具栏内部按钮被按下(参数1:激发按钮类型   参数2:工程的目录   参数3:工程的多个语言标记   参数4:工程类型标记)
     bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass);
     //文件被加载，阻止消息继续触发，返回false阻止
@@ -60,6 +68,11 @@ private: //专有事件（只有本插件本通知的事件）
 private:
     //判断是否拥有这个后缀
     bool stringRight(QString str,QString suffix);
+    //添加菜单项到工程右键菜单，已存在则不添加
+    bool addConfigMenuToProManger(QString proPath);
+    //删除菜单项到工程右键菜单
+    bool delConfigMenuToProManger(QString proPath);
+
     //根据语言标记，判断此工程是否为Cpp工程
     bool checkIsCppProject(QString langSign);
     //查找源码文件

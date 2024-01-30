@@ -765,6 +765,9 @@ bool Form_ProjectManger::closeProject(QString path)
     for(int i = 0; i < this->projectArray.length(); i++){
         ProjectNode* pro  = this->projectArray[i];
         if(pro->proMsg.proPath == path){
+            //工程被关闭信号
+            this->onProjectClose(path);
+
             //回收监视对象
             if(pro->watcher != nullptr){
                 delete pro->watcher;
@@ -803,9 +806,6 @@ bool Form_ProjectManger::closeProject(QString path)
                     this->onProjectActiveChanged("","","");//当活动工程被改变
                 }
             }
-
-            //工程被关闭信号
-            this->onProjectClose(path);
 
             //回收工程内存
             delete pro;

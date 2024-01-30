@@ -44,6 +44,7 @@ uint16_t Form_TipManger::addTip(QString title, QString tip, qint64 showTime, Tip
 
     t_node->timer.start(showTime); //开始循环
     this->adjustWindowRec();       //更新窗口的尺寸
+    this->raise();                 //提升到最顶层
     return t_node->id;
 }
 

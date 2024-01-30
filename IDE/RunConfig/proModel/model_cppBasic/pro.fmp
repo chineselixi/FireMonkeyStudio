@@ -1,5 +1,5 @@
 {
-    "proName": "C++空模板测试",
+    "proName": "C++空模板",
     "proCall": "000-0000-0000",
     "proEmail": "null",
     "proIconPath": "ico.png",
@@ -8,6 +8,7 @@
     "proNoteClass": "FMS",
     "proOrg": "火猴开发社区",
     "proSystem": "Windows Linux Mac",
-    "proVerson": "1.0.0",
-    "proVersonNum": 1
+    "proVersion": "0.0.1.0",
+    "proVersonNum": 1,
+    "proWizard":""
 }

@@ -8,6 +8,7 @@
     "proNoteClass": "Web Html jsvaScript Vue",
     "proOrg": "火猴开发社区",
     "proSystem": "Windows Linux Mac ChromeOS FydeOS",
-    "proVerson": "1.0.0",
-    "proVersonNum": 1
+    "proVersion": "0.0.1.0",
+    "proVersonNum": 1,
+    "proWizard":""
 }
