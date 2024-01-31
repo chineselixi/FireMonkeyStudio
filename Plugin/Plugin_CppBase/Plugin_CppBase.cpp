@@ -497,6 +497,8 @@ QVector<Plugin_CppBase::MapperNode> Plugin_CppBase::mergeMappers(QVector<MapperN
 void Plugin_CppBase::event_attribute(QString proPath)
 {
     QString t_attrFile = proPath + "/config.json";
+    //(new Form_Attribute(nullptr,t_attrFile,this->projectManger_getProjectInfo(proPath).proName))->show();
+
     if(this->tabWindow_hasTab(t_attrFile,true) == false){
         QString t_proName = this->projectManger_getProjectInfo(proPath).proName; //获取工程名
         this->tabWindow_addTabWindow(QObject::tr("配置") + (t_proName.isEmpty()?"":"(" + t_proName + ")"),new Form_Attribute(nullptr,t_attrFile,this->projectManger_getProjectInfo(proPath).proName),t_attrFile,QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Constant_16x.png"),PluginGlobalMsg::TabType::form);

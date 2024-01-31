@@ -100,6 +100,8 @@ struct projectAttribute{
     QString versionCode = "0.0.1.0";                    //版本信息
     QString outPath = "${projectPath}/out";                 //输出文件目录
     QString tempPath = "${projectPath}/out/temp";           //临时文件目录
+    bool    useFmsTerminal = false;                         //使用FMS内置终端
+    QString runArgs = "";                                   //程序启动参数
     QString icoPath ="${projectPath}/ico.ico";              //图标路径
     QString programNote = QObject::tr("本程序由FMS开发！");   //程序备注说明
     QString srcName = "";                                   //原始名称

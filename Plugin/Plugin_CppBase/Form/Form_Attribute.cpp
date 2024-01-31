@@ -40,9 +40,6 @@ void Form_Attribute::updateUi(Attribute attr)
     //读取版本信息
     QStringList t_strLsit = attr.versionCode.split(".");
 
-    qDebug() << "版本" << attr.versionCode;
-
-
     if(t_strLsit.length()>0) ui->txt_version4->setText(t_strLsit[t_strLsit.length() - 1]);
     if(t_strLsit.length()>1) ui->txt_version3->setText(t_strLsit[t_strLsit.length() - 2]);
     if(t_strLsit.length()>2) ui->txt_version2->setText(t_strLsit[t_strLsit.length() - 3]);
@@ -54,6 +51,12 @@ void Form_Attribute::updateUi(Attribute attr)
     attr.tempPath = attr.tempPath.replace("${projectPath}",QFileInfo(attributeFilePath).path());
     ui->txt_tempPath->setText(attr.tempPath); //临时文件路径
 
+    //运行参数
+    ui->radio_normalRun->setChecked(!attr.useFmsTerminal);
+    ui->radio_fmsTerminal->setChecked(attr.useFmsTerminal);
+    ui->txt_runArgs->setText(attr.runArgs);
+
+    //图标与原始参数
     attr.icoPath = attr.icoPath.replace("${projectPath}",QFileInfo(attributeFilePath).path());//替换为正确的路径
     QPixmap t_pixmap(attr.icoPath);
     if(!t_pixmap.isNull()){
@@ -82,6 +85,8 @@ Form_Attribute::Attribute Form_Attribute::getAttrFromUi()
     //输出文件路径 ;//替换为正确的路径
     t_retAttr.outPath = ui->txt_outPath->text().replace(QFileInfo(attributeFilePath).path(), "${projectPath}"); //输出路径
     t_retAttr.tempPath = ui->txt_tempPath->text().replace(QFileInfo(attributeFilePath).path(), "${projectPath}"); //临时文件路径
+    t_retAttr.useFmsTerminal = ui->radio_fmsTerminal->isChecked();
+    t_retAttr.runArgs = ui->txt_runArgs->text();
     t_retAttr.icoPath = this->icoPath.replace(QFileInfo(attributeFilePath).path(),"${projectPath}"); //获取图标路径
     t_retAttr.programNote = ui->txt_explain->toPlainText(); //程序备注说明
     t_retAttr.srcName = ui->txt_srcName->text(); //原始名称
@@ -142,6 +147,8 @@ QString Form_Attribute::buildJson(Attribute attr)
     t_jsonObj.insert("versionCode",attr.versionCode);
     t_jsonObj.insert("outPath",attr.outPath);
     t_jsonObj.insert("tempPath",attr.tempPath);
+    t_jsonObj.insert("useFmsTerminal",attr.useFmsTerminal);
+    t_jsonObj.insert("runArgs",attr.runArgs);
     t_jsonObj.insert("icoPath",attr.icoPath);
     t_jsonObj.insert("programNote",attr.programNote);
     t_jsonObj.insert("srcName",attr.srcName);
@@ -162,6 +169,8 @@ Form_Attribute::Attribute Form_Attribute::loadAttribute(QString jsonStr)
     t_attr.versionCode = t_jsonObj.value("versionCode").toString("0.0.0.1");                    //版本信息
     t_attr.outPath = t_jsonObj.value("outPath").toString("${projectPath}/out");                 //输出文件目录
     t_attr.tempPath = t_jsonObj.value("tempPath").toString("${projectPath}/out/temp");           //临时文件目录
+    t_attr.useFmsTerminal = t_jsonObj.value("useFmsTerminal").toBool(false);                    //使用FMS内置终端
+    t_attr.runArgs = t_jsonObj.value("runArgs").toString("");                                   //程序默认启动参数
     t_attr.icoPath = t_jsonObj.value("icoPath").toString("${projectPath}/ico.ico");              //图标路径
     t_attr.programNote = t_jsonObj.value("programNote").toString(QObject::tr("本程序由FMS开发！"));   //程序备注说明
     t_attr.srcName = t_jsonObj.value("srcName").toString("");                                   //原始名称
