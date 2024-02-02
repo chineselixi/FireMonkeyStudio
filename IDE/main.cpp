@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
     //保存本程序对象
     Setting::sys_app = &a;
-    QString t_execRunPath = QCoreApplication::applicationDirPath(); //获取程序的运行目录
+    QString t_execRunPath = System_OS::getaApplicationDirPath_EX(); //获取程序的运行目录
 
     //加载工程历史配置文件
     HistoryList::sys_proHistory = new System_History;
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 
     //插件管理器
     Manger::pluginManger = new Plugin_Manger; //加载插件管理器
-    Manger::pluginManger->initPlugin(t_execRunPath + "/plg","dll");
+    Manger::pluginManger->initPlugin(t_execRunPath + "/plg",System_OS::getDynamicLibrarySuffix());
 
     Form_Index* wi = new Form_Index(); //index窗口将加载工作空间
     wi->show();
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 //加载设置信息
 void loadSettings(){
     //初始化设置加载器
-    Setting::sys_setting = new System_systemSetting(QCoreApplication::applicationDirPath() + "/config/systemSetting.ini");
+    Setting::sys_setting = new System_systemSetting(System_OS::getaApplicationDirPath_EX() + "/config/systemSetting.ini");
     Form_settings_Git::loadSettings(); //加载git设置
     Form_settings_Color::loadSettings(); //加载颜色
 }

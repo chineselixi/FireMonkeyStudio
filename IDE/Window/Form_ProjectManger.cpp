@@ -42,7 +42,7 @@ Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
     ui->action_AddNewFile->setEnabled(false);
 
 
-    QString  t_fileName = QCoreApplication::applicationDirPath() + "/Config.ini";
+    QString  t_fileName = System_OS::getaApplicationDirPath_EX() + "/Config.ini";
 
     QSettings t_setPro(t_fileName, QSettings::IniFormat);//工程总配置信息
     t_setPro.beginGroup("FireMonkeyProJect");

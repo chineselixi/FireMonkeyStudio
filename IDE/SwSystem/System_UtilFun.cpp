@@ -159,3 +159,83 @@ bool System_File::copyPath(QString srcPath, QString newPath, std::function<bool 
 
 
 
+//获取操作系统类型
+System_OS::OSType System_OS::getOsType()
+{
+    #if defined(Q_OS_WIN)
+        return OSType::WINDOWS;
+    #elif defined(Q_OS_MAC)
+        return OSType::MACOS;
+    #elif defined(Q_OS_LINUX)
+        return OSType::LINUX;
+    #else
+        return OSType::NON;
+    #endif
+}
+
+
+//获取可执行文件后缀
+QString System_OS::getSoftwareSuffix()
+{
+    switch (System_OS::getOsType()) {
+    case OSType::WINDOWS:{
+        return "exe";
+        break;
+    }
+    case OSType::LINUX:{
+        return "";
+        break;
+    }
+    case OSType::MACOS:{
+        return "app";
+        break;
+    }
+    default:{
+        return "";
+        break;
+    }
+    }
+}
+
+//获取动态库后缀
+QString System_OS::getDynamicLibrarySuffix()
+{
+    switch (System_OS::getOsType()) {
+    case OSType::WINDOWS:{
+        return "dll";
+        break;
+    }
+    case OSType::LINUX:{
+        return "so";
+        break;
+    }
+    case OSType::MACOS:{
+        return "dylib";
+        break;
+    }
+    default:{
+        return "";
+        break;
+    }
+    }
+}
+
+//获取当前程序运行程序的文件的路径
+QString System_OS::getaApplicationDirPath_EX()
+{
+    QString t_appPath = QApplication::applicationDirPath();
+    switch (System_OS::getOsType()) {
+    case OSType::MACOS:{
+        int t_index = t_appPath.indexOf(".app");
+        if(t_index == -1) return t_appPath;
+        t_index = t_appPath.lastIndexOf("/",t_index);
+        if(t_index == -1) return t_appPath;
+        return t_appPath.left(t_index);
+        break;
+    }
+    default:{
+        return t_appPath;
+        break;
+    }
+    }
+}

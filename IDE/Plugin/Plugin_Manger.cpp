@@ -6,6 +6,8 @@
 #include "SwSystem/System_GlobalVar.h""
 #include "SwSystem/System_History.h"
 #include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_UtilFun.h"
+
 #include "QCoreApplication"
 
 Plugin_Manger::Plugin_Manger()
@@ -53,7 +55,7 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
     for(int a=0;a<t_pathList.length();a++){
         PluginMsg t_plgMsg; //插件信息
         t_plgMsg.filePath = t_pathList[a];
-        if(HistoryList::sys_pluginHistory->has(t_pathList[a].replace(QCoreApplication::applicationDirPath(),"<pluginPath>"))){ //检查插件是否已经启用
+        if(HistoryList::sys_pluginHistory->has(t_pathList[a].replace(System_OS::getaApplicationDirPath_EX(),"<pluginPath>"))){ //检查插件是否已经启用
             QLibrary* t_lib = new QLibrary(t_plgMsg.filePath); //加载插件（以动态库的形式加载插件，插件本身就是一个动态库）
             if(t_lib->load()){
                 typedef Plugin_Base* (*fun)();

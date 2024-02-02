@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 11.0.3, 2024-01-27T01:30:57. -->
+<!-- Written by QtCreator 11.0.3, 2024-02-03T04:00:16. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -136,7 +136,7 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">E:\QtProject\Terminal</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">E:/QtProject/build-Terminal-Desktop_Qt_6_6_0_MSVC2019_64bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">E:/QtProject/Terminal</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -238,8 +238,9 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:E:/QtProject/Terminal/Terminal.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/QtProject/Terminal/Terminal.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Terminal2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:E:/QtProject/FireMonkeyStudio/ExampleProject/Terminal/Terminal.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/QtProject/FireMonkeyStudio/ExampleProject/Terminal/Terminal.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>

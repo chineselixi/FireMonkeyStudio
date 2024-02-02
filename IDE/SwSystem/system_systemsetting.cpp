@@ -1,4 +1,4 @@
-
+#include "System_UtilFun.h"
 #include "system_systemsetting.h"
 #include "QApplication"
 
@@ -46,7 +46,7 @@ void System_systemSetting::removeClass(QString className)
 QString System_systemSetting::readThemeStyle(QString styleName, QString formName)
 {
     if(formName.isEmpty()) formName = "Form_WorkSpace"; //默认加载工作空间类似的主题
-    QFile t_qss(QApplication::applicationDirPath() + "/formStyle/" + styleName + "/" + formName + ".style");
+    QFile t_qss(System_OS::getaApplicationDirPath_EX() + "/formStyle/" + styleName + "/" + formName + ".style");
     t_qss.open(QFile::ReadOnly);
     QString t_retStyle = t_qss.readAll();
     t_qss.close();

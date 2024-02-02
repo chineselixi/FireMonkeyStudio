@@ -133,7 +133,7 @@ void Form_WorkSpace::init()
     //=================设置主页显示模式=================
     mod_webs = new mod_WebPage(this);
     ui->widget_WindowTab->addTabWidget(nullptr,"主页",mod_webs,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web);  //添加到TAB
-    mod_webs->setUrl(QUrl("file:" + QApplication::applicationDirPath() + "/web/Start/index.html"));
+    mod_webs->setUrl(QUrl("file:" + System_OS::getaApplicationDirPath_EX() + "/web/Start/index.html"));
     mod_webs->show();
 
 

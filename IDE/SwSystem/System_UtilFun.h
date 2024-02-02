@@ -23,4 +23,18 @@ namespace System_Widget{
     extern QWidget* getSubWidgetPtr(QWidget* parentWidget, QString subObjctName); //获取父类指针下指定名称控件的窗口指针
 }
 
+
+namespace System_OS {
+    enum class OSType{
+        WINDOWS,
+        MACOS,
+        LINUX,
+        NON
+    };
+    extern OSType getOsType(); //获取当前操作系统类型
+    extern QString getSoftwareSuffix(); //获取可执行文件后缀
+    extern QString getDynamicLibrarySuffix(); //获取动态库后缀
+    extern QString getaApplicationDirPath_EX(); //获取当前程序运行程序的文件的路径
+
+}
 #endif // SYSTEM_UTILFUN_H

@@ -109,7 +109,7 @@ Form_New::Form_New(QWidget *parent) :
     auto t_modHisList = HistoryList::sys_modHistory->getHisList();
     //加入最近模板列表,模板信息倒装，最后的信息在最前面
     for(int a = t_modHisList.length()-1;a>=0;a--){
-        if(!QFile(t_modHisList[a].filePath.replace("<modPath>",QCoreApplication::applicationDirPath())).exists()){
+        if(!QFile(t_modHisList[a].filePath.replace("<modPath>",System_OS::getaApplicationDirPath_EX())).exists()){
             HistoryList::sys_modHistory->removeProHisList(t_modHisList[a].filePath);
             continue;//如果文件不存在，则直接跳过
         }
@@ -123,7 +123,7 @@ Form_New::Form_New(QWidget *parent) :
 
         //将相对目录替换为自身目录
         QString t_modFilePath = t_modHisList[a].filePath;
-        t_modFilePath = t_modFilePath.replace("<modPath>",QCoreApplication::applicationDirPath());
+        t_modFilePath = t_modFilePath.replace("<modPath>",System_OS::getaApplicationDirPath_EX());
 
         //读取历史模板的信息
         t_itemWidget->SetIcon(QPixmap(QPixmap(QFileInfo(t_modFilePath).path() + "/ico.png")));
@@ -146,7 +146,7 @@ Form_New::Form_New(QWidget *parent) :
 
     //扫描本地模板
     QVector<QString> t_profileList;
-    QString t_path = QCoreApplication::applicationDirPath() + "/proModel";
+    QString t_path = System_OS::getaApplicationDirPath_EX() + "/proModel";
     t_profileList.clear(); //清理数据
     this->findMod(t_path,t_profileList); //查找信息
     QVector<QString> t_mod_system; //系统模块列表
@@ -529,7 +529,7 @@ void Form_New::on_pushButton_createProject_clicked()
 
     //打开工程向导
     QString t_wizard = t_jsonObj.value("proWizard").toString();
-    t_wizard = t_wizard.replace("{pwd}",QCoreApplication::applicationDirPath()); //将特程序预先目录替换
+    t_wizard = t_wizard.replace("{pwd}",System_OS::getaApplicationDirPath_EX()); //将特程序预先目录替换
     if(!t_wizard.isEmpty()){ //向导存在，不是空白，则运行向导
         if(!QFile(t_wizard).exists()){
             QMessageBox::warning(this, tr("注意"),tr("此工程应该存在工程向导，但是IDE无法找到此向导。工程构建信息可能不可信！"));
@@ -556,7 +556,7 @@ void Form_New::on_pushButton_createProject_clicked()
     HistoryList::sys_proHistory->addMsg(ui->lineEdit_projectName->text(),t_newPath + "/ico.png",t_proPath,QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm"));
     HistoryList::sys_proHistory->saveHisList(); //保存历史记录
     //保存模板历史
-    QString t_abModPath = t_modPath.replace(QCoreApplication::applicationDirPath(),"<modPath>"); //模板工程的记录采用相对路径
+    QString t_abModPath = t_modPath.replace(System_OS::getaApplicationDirPath_EX(),"<modPath>"); //模板工程的记录采用相对路径
     HistoryList::sys_modHistory->addMsg(this->modName,t_abModPath + "ico.png",this->modFilePath,this->modLang);
     HistoryList::sys_modHistory->clearRepeat(); //清理重复数据
     HistoryList::sys_modHistory->saveHisList(); //保存模板历史记录

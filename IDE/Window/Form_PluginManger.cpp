@@ -3,6 +3,7 @@
 
 #include "SwSystem/System_GlobalVar.h"
 #include "SwSystem/System_History.h"
+#include "SwSystem/System_UtilFun.h"
 
 #include "Plugin/Plugin_Manger.h"
 
@@ -69,7 +70,7 @@ Form_PluginManger::Form_PluginManger(QWidget *parent) :
             //t_filePath.
 
             QString t_path = t_filePath;
-            t_path = t_path.replace(QCoreApplication::applicationDirPath(),"<pluginPath>");
+            t_path = t_path.replace(System_OS::getaApplicationDirPath_EX(),"<pluginPath>");
             if(enable){
                HistoryList::sys_pluginHistory->addMsg("","",t_path,"");
             }
