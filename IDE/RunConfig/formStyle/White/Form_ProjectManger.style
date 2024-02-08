@@ -40,3 +40,9 @@ QMenu::separator{
 QMenu::item:disabled {/*菜单被禁用*/
 	color: #c4c1bd;
 }
+
+
+/*去除Frame边框*/
+.QFrame{
+	border:0px;
+}

@@ -1,3 +1,9 @@
 #textEdit{
 	background-color: #f5f5f5;
 }
+
+
+/*去除Frame边框*/
+.QFrame{
+	border:0px;
+}

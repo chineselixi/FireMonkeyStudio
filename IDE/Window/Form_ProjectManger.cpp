@@ -870,6 +870,7 @@ bool Form_ProjectManger::flashProjectTree(QString projectPath)
     }
     if(project == nullptr) return false;
     adjustTree(this->ArrayToTree(project->itemNodes)); //调整树结构对象
+    return true;
 }
 
 

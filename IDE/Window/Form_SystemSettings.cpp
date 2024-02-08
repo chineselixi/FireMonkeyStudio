@@ -110,6 +110,7 @@ void Form_SystemSettings::changeThream(QString styleName)
     Setting::style_themeName = styleName;
     if(Window::workSpace != nullptr){
         //加载其他部件的QSS样式表
+        Setting::sys_app->setStyleSheet(Setting::sys_setting->readThemeStyle(styleName,"NormalStyle"));
         Window::workSpace->setStyleSheet(Setting::sys_setting->readThemeStyle(styleName,"Form_WorkSpace")); //加载工作空间样式表
         Window::workSpace->setPorMangerStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ProjectManger")); //加载工程管理样式表
         Window::workSpace->setCompilePrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ListPrint")); //加载编译样式表

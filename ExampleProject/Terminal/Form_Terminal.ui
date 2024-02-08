@@ -7,17 +7,22 @@
     <x>0</x>
     <y>0</y>
     <width>717</width>
-    <height>447</height>
+    <height>315</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>FMS Terminal</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="Widget_TextEdit" name="textEdit" native="true"/>
-   </item>
-  </layout>
+  <widget class="Widget_TextEdit" name="textEdit" native="true">
+   <property name="geometry">
+    <rect>
+     <x>77</x>
+     <y>9</y>
+     <width>631</width>
+     <height>297</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>

@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
     //保存本程序对象
     Setting::sys_app = &a;
     QString t_execRunPath = System_OS::getaApplicationDirPath_EX(); //获取程序的运行目录
+    //a.setStyleSheet("QTextEdit{background-color: rgb(233, 238, 255);}");
 
     //加载工程历史配置文件
     HistoryList::sys_proHistory = new System_History;

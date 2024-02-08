@@ -14,3 +14,9 @@ QHeaderView::section{
 	background-color:#3c3c40;
 	padding-left:10px;
 }
+
+
+/*去除Frame边框*/
+.QFrame{
+	border:0px;
+}

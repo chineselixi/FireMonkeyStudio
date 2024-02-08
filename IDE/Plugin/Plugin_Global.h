@@ -74,7 +74,7 @@ enum class dockerMark{
 
 
 //工具栏分类
-enum class toolBarMenuType{
+enum class MenuBarType{
     toolType, //添加菜单到工具栏
     settingType, //添加菜单到设置
     helpsType, //添加菜单到帮助

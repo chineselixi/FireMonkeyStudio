@@ -140,7 +140,7 @@ public:
 public: //插件的基础方法
 
     //菜单
-    void menu_addToolBarMenu(PluginGlobalMsg::toolBarMenuType menuType,QAction* action); //添加菜单到工具栏菜单
+    void menu_addMenuBarMenu(PluginGlobalMsg::MenuBarType menuType,QAction* action); //添加菜单到工具栏菜单
     void menu_addProMangerMenu(PluginGlobalMsg::proMangerMenuType menuType,QAction* action); //添加菜单到项目管理器
     void menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction actionType,bool isEnable); //设置工作空间Action启用
     void menu_closeWorkSpaceAllAction(); //关闭所有的工作控件子菜单

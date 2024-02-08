@@ -190,6 +190,12 @@ public:
 "#label_createTip{\n"
 "	color: rgb(255, 0, 0);\n"
 "	margin-right:20px;\n"
+"}\n"
+"\n"
+"\n"
+"/*\345\216\273\351\231\244Frame\350\276\271\346\241\206*/\n"
+".QFrame{\n"
+"	border:0px;\n"
 "}"));
         gridLayout = new QGridLayout(Form_New);
         gridLayout->setObjectName("gridLayout");

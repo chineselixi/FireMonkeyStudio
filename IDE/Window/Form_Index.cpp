@@ -16,6 +16,7 @@ Form_Index::Form_Index(QWidget *parent) :
         ws->show();
         delete this;
     });
+
     timer->start(3000);
 }
 

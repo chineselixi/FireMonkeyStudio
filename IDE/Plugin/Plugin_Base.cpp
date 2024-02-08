@@ -3,36 +3,36 @@
 
 
 //添加菜单到工具栏菜单
-void Plugin_Base::menu_addToolBarMenu(PluginGlobalMsg::toolBarMenuType menuType, QAction *action)
+void Plugin_Base::menu_addMenuBarMenu(PluginGlobalMsg::MenuBarType menuType, QAction *action)
 {
     PluginGlobalMsg::menuFun t_fun = nullptr;
     switch (menuType) {
     default:{}
-    case PluginGlobalMsg::toolBarMenuType::extendType:{ //拓展菜单
+    case PluginGlobalMsg::MenuBarType::extendType:{ //拓展菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_Extend;break;
     }
-    case PluginGlobalMsg::toolBarMenuType::toolType:{ //工具菜单
+    case PluginGlobalMsg::MenuBarType::toolType:{ //工具菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_Tool;break;
     }
-    case PluginGlobalMsg::toolBarMenuType::settingType:{ //设置菜单
+    case PluginGlobalMsg::MenuBarType::settingType:{ //设置菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_Setting;break;
     }
-    case PluginGlobalMsg::toolBarMenuType::helpsType:{ //帮助菜单
+    case PluginGlobalMsg::MenuBarType::helpsType:{ //帮助菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_Helps;break;
     }
-    case PluginGlobalMsg::toolBarMenuType::viewType:{ //视图菜单
+    case PluginGlobalMsg::MenuBarType::viewType:{ //视图菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_View;break;
     }
-    case PluginGlobalMsg::toolBarMenuType::compileType:{ //编译菜单
+    case PluginGlobalMsg::MenuBarType::compileType:{ //编译菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_Compile;break;
     }
-    case PluginGlobalMsg::toolBarMenuType::dataBaseType:{ //数据库菜单
+    case PluginGlobalMsg::MenuBarType::dataBaseType:{ //数据库菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_DataBase;break;
     }
-    case PluginGlobalMsg::toolBarMenuType::insertType:{ //插入菜单
+    case PluginGlobalMsg::MenuBarType::insertType:{ //插入菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_Insert;break;
     }
-    case PluginGlobalMsg::toolBarMenuType::fileType:{ //文件菜单
+    case PluginGlobalMsg::MenuBarType::fileType:{ //文件菜单
         t_fun = this->WorkSpace_AddMenu_ToolBar_File;break;
     }
     }

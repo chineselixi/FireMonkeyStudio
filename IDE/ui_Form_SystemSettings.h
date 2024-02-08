@@ -77,6 +77,12 @@ public:
 "#listWidget::item:selected:!active"
                         "{\n"
 "	background-color: rgb(196, 213, 255);\n"
+"}\n"
+"\n"
+"\n"
+"/*\345\216\273\351\231\244Frame\350\276\271\346\241\206*/\n"
+".QFrame{\n"
+"	border:0px;\n"
 "}"));
         verticalLayout_3 = new QVBoxLayout(Form_SystemSettings);
         verticalLayout_3->setObjectName("verticalLayout_3");

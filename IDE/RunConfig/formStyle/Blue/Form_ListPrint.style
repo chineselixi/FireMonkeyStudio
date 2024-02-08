@@ -7,3 +7,8 @@ border:1px solid #94a6ca;
 background-color:rgb(204, 213, 240);
 padding-left:10px;
 }
+
+/*去除Frame边框*/
+.QFrame{
+	border:0px;
+}

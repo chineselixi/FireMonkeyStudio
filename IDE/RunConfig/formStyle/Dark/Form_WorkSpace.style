@@ -249,3 +249,9 @@ QMenu:icon{
 QMenu::item:disabled {/*菜单被禁用*/
 	color: ##5e5e5e;
 }
+
+
+/*去除Frame边框*/
+.QFrame{
+	border:0px;
+}

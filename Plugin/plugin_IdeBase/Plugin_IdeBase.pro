@@ -17,10 +17,16 @@ TARGET = Plugin_IdeBase
 
 
 SOURCES += \
+    Form/Form_Terminal.cpp \
+    Widget/Widget_TextEdit.cpp \
+    util/InputList.cpp \
     Dialog/Dialog_Index.cpp \
     Plugin_IdeBase.cpp
 
 HEADERS += \
+    Form/Form_Terminal.h \
+    Widget/Widget_TextEdit.h \
+    util/InputList.h \
     Dialog/Dialog_Index.h \
     plugin_IdeBase_global.h \
     Plugin_IdeBase.h
@@ -32,6 +38,7 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
+    Form/Form_Terminal.ui \
     Dialog/Dialog_Index.ui
 
 

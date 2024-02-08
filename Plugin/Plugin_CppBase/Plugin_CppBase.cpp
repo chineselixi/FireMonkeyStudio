@@ -11,7 +11,7 @@
 
 #include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "Form/Form_CodeEditor.h"
-#include "Form/Form_Attributee.h""
+#include "Form/Form_Attributee.h"
 #include "Form/settingForm/Form_settings_Compile.h"
 #include "QCoreApplication"
 #include "../../IDE/SwSystem/System_UtilFun.h" //获取系统工具类
@@ -138,20 +138,17 @@ bool Plugin_CppBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
 //文件被加载，阻止消息继续触发
 bool Plugin_CppBase::event_onFileOpen(QString filePath)
 {
-    this->tip_addTip("终端","无法确定版本",10000,PluginGlobalMsg::TipType::Warning);
-    this->tip_addTip("错误","未找到构造器",10000,PluginGlobalMsg::TipType::Error);
-
-    filePath = filePath.toLower();
-    if(stringRight(filePath,".h") ||
-        stringRight(filePath,".cpp") ||
-        stringRight(filePath,".hpp") ||
-        stringRight(filePath,".c") ||
-        stringRight(filePath,".cc")){
+    QString t_lowerPath = filePath.toLower();
+    if(stringRight(t_lowerPath,".h") ||
+        stringRight(t_lowerPath,".cpp") ||
+        stringRight(t_lowerPath,".hpp") ||
+        stringRight(t_lowerPath,".c") ||
+        stringRight(t_lowerPath,".cc")){
 
         QIcon t_ico(":/tabIco/resources/unKnowFile.png"); //图标文件
-        if(stringRight(filePath,".cpp")) t_ico = QIcon(":/tabIco/resources/CPP_16x.png");
-        if(stringRight(filePath,".h")) t_ico = QIcon(":/tabIco/resources/CPPHeaderFile_16x.png");
-        if(stringRight(filePath,".c")) t_ico = QIcon(":/tabIco/resources/CFile_16x_color.png");
+        if(stringRight(t_lowerPath,".cpp")) t_ico = QIcon(":/tabIco/resources/CPP_16x.png");
+        if(stringRight(t_lowerPath,".h")) t_ico = QIcon(":/tabIco/resources/CPPHeaderFile_16x.png");
+        if(stringRight(t_lowerPath,".c")) t_ico = QIcon(":/tabIco/resources/CFile_16x_color.png");
 
 
         if(this->tabWindow_hasTab(filePath,true)) return false; //如果文件已经在Tab里面，则不再重复打开。并且激活TAB（第二个参数为是否激活已经存在此sign的Tab）
@@ -249,10 +246,8 @@ void Plugin_CppBase::event_onWorkSpaceFinish()
             dock->setWidget(newWidget);
 
             t_mainWindow->tabifyDockWidget(t_docks[0],dock);
-            qDebug() << "找到了";
         }
     }
-
 }
 
 
@@ -525,6 +520,24 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
         this->statusBar_setStatusHideAll();
         this->tip_addTip(tr("通知"),tr("编译成功"),2000,PluginGlobalMsg::TipType::Normal);
 
+
+        //内置终端运行方式
+        QJsonDocument t_jsonDoc;
+        QJsonObject t_jsonObj;
+        t_jsonObj.insert("type","runProcess");
+        t_jsonObj.insert("command",t_exeFile);
+        t_jsonDoc.setObject(t_jsonObj);
+
+        QString t_retSign = this->plugin_postPluginMessage("IDE_Base",t_jsonDoc.toJson()); //向Base提交信息，调用终端运行
+
+        qDebug() << "运行返回" << t_retSign;
+
+        return;
+
+
+
+
+        //通常运行方式
         if(execProcess == nullptr) execProcess = new QProcess;
 
         execProcess->kill();        //结束以前的程序

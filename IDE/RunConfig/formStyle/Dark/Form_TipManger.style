@@ -26,3 +26,9 @@
 	border-radius:4px;
 	color: #d7dadb;
 }
+
+
+/*去除Frame边框*/
+.QFrame{
+	border:0px;
+}

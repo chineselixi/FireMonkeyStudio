@@ -31,6 +31,8 @@ public:
 
 private slots:
     void on_textEdit_textChanged(); //文本改变
+    void on_btn_start_clicked();    //开始按钮被按下
+    void on_btn_kill_clicked();     //停止按钮被按下
 
 private:
     Ui::Form_Terminal *ui;
@@ -44,9 +46,14 @@ private:
     //历史容器
     InputList inputLsit;
 
+    //外部调用的消息记录
+    QString runCommand;
+
 public:
-    QString runProcess();
-    void killProcess();
+    bool runProcess(QString command);     //运行命令
+    bool isRunning();                     //检测终端是否有程序正在运行
+    void killProcess();                   //结束程序
+    QString getRunCommand();              //获取外部调用命令行
 
 private:
 

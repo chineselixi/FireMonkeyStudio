@@ -90,6 +90,12 @@ QPushButton:!enabled{
 #label_createTip{
 	color: rgb(255, 0, 0);
 	margin-right:20px;
+}
+
+
+/*去除Frame边框*/
+.QFrame{
+	border:0px;
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">

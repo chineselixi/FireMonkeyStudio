@@ -1,5 +1,9 @@
 ﻿#include "Plugin_IdeBase.h"
-
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "QJsonArray"
+#include "QProcess"
+#include "QMainWindow"
 #include "Dialog/Dialog_Index.h"
 
 
@@ -62,6 +66,18 @@ void Plugin_IdeBase::event_onWorkSpaceFinish()
     this->print_clearList();
     this->menu_closeWorkSpaceAllAction(); //禁用所有Action
     this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem,true); //启用书签主菜单
+
+    //添加菜单
+    QAction* t_terminalAction = new QAction();
+    t_terminalAction->setText(tr("创建新终端"));
+
+    //创建菜单，用于菜单创建终端
+    connect(t_terminalAction,&QAction::triggered,[=](){
+        static int t_id = 0; t_id++;
+        this->createTerminalWidget("Terminal" + QString::number(t_id));
+    });
+
+    this->menu_addMenuBarMenu(PluginGlobalMsg::MenuBarType::toolType,t_terminalAction);
 }
 
 
@@ -72,5 +88,90 @@ bool Plugin_IdeBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
         di->show();
     }
     return true; //阻止消息传递
+}
+
+
+//base插件收到消息
+QString Plugin_IdeBase::event_onPluginReceive(QString sendPluginSign, QString msg)
+{
+    //获取消息对象
+    QJsonDocument t_jsonDoc = QJsonDocument::fromJson(msg.toUtf8());
+    QJsonObject t_jsonObj = t_jsonDoc.object();
+    if(t_jsonObj.isEmpty()) return "";
+
+    //获取消息类型
+    QString t_msgType = t_jsonObj.value("type").toString();
+    if(t_msgType.isEmpty()) return "";
+
+    if(t_msgType == "runProcess"){
+        QString t_command = t_jsonObj.value("command").toString();
+        if(t_command.isEmpty()) return ""; //若没有运行的命令，则停止
+
+        //获取终端，并且运行
+        Form_Terminal* t_terminal = this->createTerminalWidget(t_command);
+        if(t_terminal->isRunning()) t_terminal->killProcess(); //停止已经运行的程序
+        t_terminal->runProcess(t_command); //运行新的命令
+        t_terminal->raise(); //提升到当前选择项
+        return t_command;
+    }
+
+    return "";
+}
+
+//创建终端窗口
+Form_Terminal *Plugin_IdeBase::createTerminalWidget(QString command)
+{
+    for(Form_Terminal* item : terminalList){
+        if(item && item->getRunCommand() == command){
+            return item;
+        }
+    }
+
+    //创建新的终端窗口
+    Form_Terminal* t_terminal = new Form_Terminal();
+    Form_Terminal::connect(t_terminal,&QWidget::destroyed,[=]{  //终端窗口被关闭，绑定自动删除
+        this->deleteTerminalWidget(t_terminal);
+    });
+
+    terminalList.append(t_terminal);
+    //t_terminal->runProcess(command);
+
+    //将终端加入IDE
+    QMainWindow* t_mainWindow = this->widget_getWorkSpaceWindowPtr();
+    if(t_mainWindow){  //获取工作控件窗口
+        QDockWidget* t_dockWidget = nullptr;
+        QList<QDockWidget*> t_docks = t_mainWindow->findChildren<QDockWidget*>("IdeBase_Dock_Terminal");  //查找运行与提示Dock
+        if(t_docks.length() == 0){
+            t_docks = t_mainWindow->findChildren<QDockWidget*>("dockWidget_print");  //查找运行与提示Dock
+        }
+
+        //取最后一个DockWidget
+        if(t_docks.length() > 0) t_dockWidget = t_docks[t_docks.length() - 1];
+
+        //将新的终端加入到IDE中
+        if(t_dockWidget != nullptr){
+            QDockWidget* dock = new QDockWidget;
+            dock->setWindowTitle(tr("终端"));
+            dock->setWidget(t_terminal);
+            t_mainWindow->tabifyDockWidget(t_dockWidget,dock);
+
+            //设置可见，并且提升，相当于选择这个
+            dock->setVisible(true);
+            dock->raise();
+        }
+    }
+    return t_terminal;
+}
+
+
+//删除终端窗口
+void Plugin_IdeBase::deleteTerminalWidget(Form_Terminal *widget)
+{
+    for(qsizetype i = 0; i < this->terminalList.length(); i ++){
+        if(this->terminalList[i] == widget){
+            terminalList.remove(i);
+            return;
+        }
+    }
 }
 

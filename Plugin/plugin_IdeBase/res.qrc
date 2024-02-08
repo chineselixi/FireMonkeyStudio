@@ -5,4 +5,10 @@
     <qresource prefix="/QRCode">
         <file>res/QRCode.png</file>
     </qresource>
+    <qresource prefix="/icon/btn">
+        <file>res/icon/Run_16x.png</file>
+        <file>res/icon/Stop_16x.png</file>
+        <file>res/icon/displayicon/Run_16x.png</file>
+        <file>res/icon/displayicon/Stop_16x.png</file>
+    </qresource>
 </RCC>

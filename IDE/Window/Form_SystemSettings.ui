@@ -41,6 +41,12 @@
 }
 #listWidget::item:selected:!active{
 	background-color: rgb(196, 213, 255);
+}
+
+
+/*去除Frame边框*/
+.QFrame{
+	border:0px;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
