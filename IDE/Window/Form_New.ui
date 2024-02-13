@@ -114,7 +114,7 @@ QPushButton:!enabled{
    <item row="0" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_main">
       <layout class="QGridLayout" name="gridLayout_2">
@@ -146,7 +146,7 @@ QPushButton:!enabled{
             </font>
            </property>
            <property name="text">
-            <string>FireMonkey Studio 2023</string>
+            <string>FireMonkey Studio 2024</string>
            </property>
           </widget>
          </item>

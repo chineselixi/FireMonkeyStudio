@@ -5,18 +5,19 @@
 
 
 #include "Window/Form_Index.h"
-#include "Window/Form_New.h"
-#include "Window/Form_ProjectManger.h"
-#include "Window/Form_WindowTab.h"
-#include "Window/Form_PluginManger.h""
-#include "Window/Form_WorkSpace.h"
+//#include "Window/Form_New.h"
+//#include "Window/Form_ProjectManger.h"
+//#include "Window/Form_WindowTab.h"
+//#include "Window/Form_PluginManger.h"
+//#include "Window/Form_WorkSpace.h"
 
 
 #include "Plugin/Plugin_Manger.h"
 
 #include "SwSystem/System_History.h"
-#include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_Systemsetting.h"
 #include "SwSystem/System_UtilFun.h"
+#include "SwSystem/System_CodeEditorManger.h"
 
 #include "Window/settingWindow/Form_settings_Git.h"
 #include "Window/settingWindow/Form_settings_Color.h"
@@ -58,6 +59,9 @@ int main(int argc, char *argv[])
     Manger::pluginManger = new Plugin_Manger; //加载插件管理器
     Manger::pluginManger->initPlugin(t_execRunPath + "/plg",System_OS::getDynamicLibrarySuffix());
 
+    //代码编辑器管理器
+    Manger::codeEditorManger = new System_CodeEditorManger();
+
     Form_Index* wi = new Form_Index(); //index窗口将加载工作空间
     wi->show();
 
@@ -68,7 +72,7 @@ int main(int argc, char *argv[])
 //加载设置信息
 void loadSettings(){
     //初始化设置加载器
-    Setting::sys_setting = new System_systemSetting(System_OS::getaApplicationDirPath_EX() + "/config/systemSetting.ini");
+    Setting::sys_setting = new System_SystemSetting(System_OS::getaApplicationDirPath_EX() + "/config/systemSetting.ini");
     Form_settings_Git::loadSettings(); //加载git设置
     Form_settings_Color::loadSettings(); //加载颜色
 }

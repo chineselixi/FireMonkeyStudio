@@ -88,6 +88,13 @@ public:
 
     void themeChanged_init_building(); //主题操作绑定
 
+    void codeEditorManger_init_building(
+                                    PluginGlobalMsg::funStr_void CodeEditor_save,     //保存指定路径代码编辑器内的代码
+                                    PluginGlobalMsg::fun_void CodeEditor_saveAll,     //保存全部已打开代码
+                                    PluginGlobalMsg::codeEditorFun CodeEditor_addToMangerPtr,    //将代码编辑器添加到管理器
+                                    PluginGlobalMsg::codeEditorFun CodeEditor_removeForMangerPtr    //将代码编辑器从管理器移除
+                                    ); //代码编辑器管理器绑定
+
     void projectManger_init_building(PluginGlobalMsg::projectManger_getProMsgBase ProjectManger_getBaseFun, //工程管理器获取基础信息
                                      PluginGlobalMsg::projectManger_addBuildFileSign ProjectManger_addBuildSignFun, //添加新建工程文档
                                      PluginGlobalMsg::projectManger_delBuildFileSign ProjectManger_delBuildSignFun, //删除创建文件标记

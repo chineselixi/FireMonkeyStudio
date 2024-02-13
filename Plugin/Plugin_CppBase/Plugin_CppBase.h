@@ -32,6 +32,7 @@ private:
 private:
     QProcess* execProcess = nullptr;
     QVector<proConfigMenu> proConfigMenus; //工程配置菜单列表
+    QString runProPath = "";    //当前运行的工程
 
 public:
     Plugin_CppBase();
@@ -62,6 +63,10 @@ private: //专有事件（只有本插件本通知的事件）
     void event_onTabFormActivation(QWidget* form) override;
     //当Tab内嵌窗口即将选择被关闭，但是还未关闭，将激发此选项，返回true则允许关闭
     bool event_onTabFormCloseRequested(QWidget* form) override;
+
+public: //消息投递事件
+    //插件管理器接口
+    QString event_onPluginReceive(QString sendPluginSign,QString msg); //参数（发送者标记，发送信息），返回值（当返回的信息不是空则第一时间返回），当插件接收到发送的信息
 
 
 //======================内部方法======================
@@ -103,7 +108,8 @@ private:
 
 private:
     void event_runStarted(); //程序开始运行
-    void event_runFinished(int exitCode, QProcess::ExitStatus exitStatus); //程序执行完毕
+    void event_runFinished(int exitCode, QProcess::ExitStatus exitStatus = QProcess::ExitStatus::NormalExit); //程序执行完毕
+    void event_runError(QProcess::ProcessError error); //程序开始运行
 
  //======================内部信号======================
 //Q_SIGNALS:

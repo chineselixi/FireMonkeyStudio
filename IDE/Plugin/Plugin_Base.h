@@ -26,7 +26,7 @@ public:
         QString sign = ""; //插件标记，插件之间的通信需要的标记。注意，插件的标记可以相同，管理器将通过这些标记进行数据传输
         QString note = "Plugin for FireMonkey Studio";
         QString loadTip = "";//加载时输出的文字信息，可以作为加载成功的提示
-        uint16_t level = 0; //排序级别范围：0-65535，默认为最低级别，相同的级别系统将随机分配，自定义插件建议高于0
+        size_t level = 0; //排序级别范围：0-65535，默认为最低级别，相同的级别系统将随机分配，自定义插件建议高于0
     };
 
     //设置组件信息
@@ -132,6 +132,12 @@ private:
     //窗口获取
     PluginGlobalMsg::widgetFun_getWidget Widget_getWorkSpaceWindowPtr = nullptr; //获取工作空间窗口指针
 
+    //代码编辑器
+    PluginGlobalMsg::funStr_void CodeEditor_save = nullptr;     //保存指定路径代码编辑器内的代码
+    PluginGlobalMsg::fun_void CodeEditor_saveAll = nullptr;     //保存全部已打开代码
+    PluginGlobalMsg::codeEditorFun CodeEditor_addToMangerPtr = nullptr;    //将代码编辑器添加到管理器
+    PluginGlobalMsg::codeEditorFun CodeEditor_removeForMangerPtr = nullptr;    //将代码编辑器从管理器移除
+
 public:
     //初始化信息，由IDE侧载，可复写
     virtual libMsg getBaseMsg(){return self_BaseMsg;}; //获取基础的类信息
@@ -158,7 +164,7 @@ public: //插件的基础方法
     QString compile_getCompileModSignName(); //获取当前编译模式标记名称
 
     //打印输出
-    void print_printList(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor); //在列表输出中输出一行文本
+    void print_printList(QString code = "", QString text = "",QString project = "",QString file = "",int row = 0,PluginGlobalMsg::printIcoType type = PluginGlobalMsg::printIcoType::none,QColor textColor = QColor()); //在列表输出中输出一行文本
     void print_clearList(); //清理行的所有行文本
     void print_printTextSpace(QColor color,QString printText); //在文本窗口输出文本
     void print_printTextSpaceLine(QColor color,QString printText); //在文本窗口输出文本
@@ -211,6 +217,12 @@ public: //插件的基础方法
     //窗口操作
     QMainWindow* widget_getWorkSpaceWindowPtr(); //获取工作空间窗口指针
     //QWidget* widget_getSubWidgetPtr(QWidget* parentWidget, QString subObjctName); //获取子控件对象指针
+
+    //代码编辑器
+    void codeEditor_save(QString pathSign);             //保存指定路径的代码
+    void codeEditor_saveAll();                          //保存全部代码
+    bool codeEditor_addToManger(QObject* obj);          //添加到编辑器管理器当中，注意，若对象销毁，则自动删除
+    bool codeEditor_removeForManger(QObject* obj);      //从编辑器管理器删除
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
     virtual bool event_onModLoadFinish(){return true;};//当模块加载完毕，将第一时间激发此插件，禁止在获取实例处获得

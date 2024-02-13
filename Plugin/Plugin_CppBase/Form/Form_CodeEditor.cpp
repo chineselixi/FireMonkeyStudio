@@ -3,7 +3,7 @@
 #include "QFile"
 #include "../../../IDE/SwSystem/System_UtilFun.h"
 #include "../../QScintilla/src/Qsci/qscilexercpp.h"
-
+#include "../../../IDE/SwSystem/System_UtilFun.h"
 
 
 
@@ -38,25 +38,26 @@ void Form_CodeEditor::intiCodeEditor()
     connect(ui->sciEditor, SIGNAL(marginClicked(int,int,Qt::KeyboardModifiers)),this, SLOT(event_marginClicked(int,int,Qt::KeyboardModifiers)));//边缘被点击
     connect(ui->sciEditor, SIGNAL(SCN_ZOOM()),this, SLOT(event_zoomChanged()));//缩放改变
 
-    //全局字体效果
-    QFont font("Consolas", 12, QFont::Normal);
+//    //全局字体效果
+//    QFont font("Consolas", 12, QFont::Normal);
 
-    //高亮解析器
-    QsciLexer *textLexer = new QsciLexerCPP;
-    textLexer->setFont(font);
-    textLexer->setColor(QColor("#008000"),QsciLexerCPP::Comment); //备注颜色
-    textLexer->setColor(QColor("#ff0000"),QsciLexerCPP::Number); //数字颜色
-    textLexer->setColor(QColor("#008000"),QsciLexerCPP::CommentLineDoc); //行备注颜色
-    textLexer->setColor(QColor("#008000"),QsciLexerCPP::DoubleQuotedString); //双引号字符串颜色
-    textLexer->setColor(QColor("#ff00ff"),QsciLexerCPP::SingleQuotedString); //单引号字符串颜色
-    textLexer->setColor(QColor("#003bba"),QsciLexerCPP::Keyword); //关键字颜色
-    textLexer->setColor(QColor("#0041c4"),QsciLexerCPP::PreProcessor); //预处理器颜色
-    textLexer->setColor(QColor("#a1edaa"),QsciLexerCPP::VerbatimString); //未闭合的字符串
-    textLexer->setColor(QColor("#0066d6"),QsciLexerCPP::Regex); //正则表达式
-    textLexer->setColor(QColor("#dbab00"),QsciLexerCPP::KeywordSet2); //第二套关键字
+//    //高亮解析器
+//    QsciLexer *textLexer = new QsciLexerCPP;
+//    textLexer->setFont(font);
+//    textLexer->setColor(QColor("#008000"),QsciLexerCPP::Comment); //备注颜色
+//    textLexer->setColor(QColor("#ff0000"),QsciLexerCPP::Number); //数字颜色
+//    textLexer->setColor(QColor("#008000"),QsciLexerCPP::CommentLineDoc); //行备注颜色
+//    textLexer->setColor(QColor("#008000"),QsciLexerCPP::DoubleQuotedString); //双引号字符串颜色
+//    textLexer->setColor(QColor("#ff00ff"),QsciLexerCPP::SingleQuotedString); //单引号字符串颜色
+//    textLexer->setColor(QColor("#003bba"),QsciLexerCPP::Keyword); //关键字颜色
+//    textLexer->setColor(QColor("#dbab00"),QsciLexerCPP::KeywordSet2); //第二套关键字
+//    textLexer->setColor(QColor("#0041c4"),QsciLexerCPP::PreProcessor); //预处理器颜色
+//    textLexer->setColor(QColor("#a1edaa"),QsciLexerCPP::VerbatimString); //未闭合的字符串
+//    textLexer->setColor(QColor("#0066d6"),QsciLexerCPP::Regex); //正则表达式
 
 
-    ui->sciEditor->setLexer(textLexer);//给QsciScintilla设置词法分析器
+
+//    ui->sciEditor->setLexer(textLexer);//给QsciScintilla设置词法分析器
 
     //代码提示
     //    QsciAPIs *apis = new QsciAPIs(textLexer);
@@ -76,16 +77,16 @@ void Form_CodeEditor::intiCodeEditor()
 
     //当前光标线条颜色
     ui->sciEditor->setCaretWidth(2);//光标宽度，0表示不显示光标
-    ui->sciEditor->setCaretForegroundColor(Qt::darkCyan);  //光标颜色
+    //ui->sciEditor->setCaretForegroundColor(Qt::darkCyan);  //光标颜色
     ui->sciEditor->setCaretLineVisible(true); //是否高亮显示光标所在行
-    ui->sciEditor->setCaretLineBackgroundColor(QColor("#e0e0e0"));//光标所在行背景颜色
+    //ui->sciEditor->setCaretLineBackgroundColor(QColor("#e0e0e0"));//光标所在行背景颜色
 
     //选择区块的颜色
-    ui->sciEditor->setSelectionBackgroundColor(QColor("#99c9ef"));//选中文本背景色
-    ui->sciEditor->setSelectionForegroundColor(Qt::gray);//选中文本前景色
+    //ui->sciEditor->setSelectionBackgroundColor(QColor("#99c9ef"));//选中文本背景色
+    //ui->sciEditor->setSelectionForegroundColor(Qt::gray);//选中文本前景色
 
     //如果正在使用指示器，则会忽略它。默认值为蓝色。
-    ui->sciEditor->setUnmatchedBraceForegroundColor(Qt::red); //设置不匹配的大括号前景颜色
+    //ui->sciEditor->setUnmatchedBraceForegroundColor(Qt::red); //设置不匹配的大括号前景颜色
     ui->sciEditor->setBraceMatching(QsciScintilla::SloppyBraceMatch);//括号匹配
     ui->sciEditor->setTabWidth(4);
 
@@ -100,13 +101,13 @@ void Form_CodeEditor::intiCodeEditor()
 
 
     //0边栏，行号
-    QFontMetrics fontmetrics(font);
-    ui->sciEditor->setMarginWidth(0, fontmetrics.horizontalAdvance("0000"));
+//    QFontMetrics fontmetrics(font);
+//    ui->sciEditor->setMarginWidth(0, fontmetrics.horizontalAdvance("0000"));
     ui->sciEditor->setMarginLineNumbers(0, true);
-    ui->sciEditor->setMarginsFont(font);//设置页边字体
+    //ui->sciEditor->setMarginsFont(font);//设置页边字体
     ui->sciEditor->setMarginType(0,QsciScintilla::NumberMargin);//设置标号为0的页边显示行号
-    ui->sciEditor->setMarginsBackgroundColor(QColor("#43577b"));//显示行号背景颜色
-    ui->sciEditor->setMarginsForegroundColor(QColor("#6ac916"));//行号颜色
+    //ui->sciEditor->setMarginsBackgroundColor(QColor("#43577b"));//显示行号背景颜色
+    //ui->sciEditor->setMarginsForegroundColor(QColor("#6ac916"));//行号颜色
 
 
     //1边栏，断点操作
@@ -122,12 +123,8 @@ void Form_CodeEditor::intiCodeEditor()
     //3边栏，代码折叠
     ui->sciEditor->setMarginType(3,QsciScintilla::SymbolMargin);
     ui->sciEditor->setMarginWidth(3,15);
-    ui->sciEditor->setFoldMarginColors(QColor("#F0F0F0"),QColor("#F0F0F0"));//折叠栏颜色，默认#808080
+    //ui->sciEditor->setFoldMarginColors(QColor("#F0F0F0"),QColor("#F0F0F0"));//折叠栏颜色，默认#808080
     ui->sciEditor->setFolding(QsciScintilla::FoldStyle::BoxedTreeFoldStyle,3); //设置为折叠栏
-
-
-
-
 
     //注册标记
     QImage t_sign_error = QImage(":/editorSign/resources/editorSign/error.png");
@@ -137,7 +134,7 @@ void Form_CodeEditor::intiCodeEditor()
 
 
     ui->sciEditor->markerDefine(QsciScintilla::MarkerSymbol::Circle,0); //定义0号为断点标记
-    ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETBACK, 0,QColor(Qt::red)); //断点标记背景色为红色
+    //ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETBACK, 0,QColor(Qt::red)); //断点标记背景色为红色
     ui->sciEditor->markerDefine(t_sign_rightArrow,1); //定义1号为右箭头标记
     ui->sciEditor->markerDefine(t_sign_error,2); //定义2号为错误标记
     ui->sciEditor->markerDefine(t_sign_warning,3); //定义3号为警告标记
@@ -149,6 +146,71 @@ void Form_CodeEditor::intiCodeEditor()
     ui->sciEditor->setMarginMarkerMask(1,0b00001); //1号为断点边距     0    0     0    0    1
     ui->sciEditor->setMarginMarkerMask(2,0b11110); //2号为提示边距     1    1     1    1    0
 
+}
+
+
+
+//设置主题颜色
+void Form_CodeEditor::setCodeEditorThemeColor(
+        QString fontName,                       //字体名称
+        QColor Normal,                          //默认文本颜色
+        QColor Paper,                           //整个编辑器背景颜色
+        QColor Comment,                         //备注颜色
+        QColor Number,                          //数字颜色
+        QColor CommentLineDoc,                  //行备注颜色
+        QColor DoubleQuotedString,              //双引号字符串颜色
+        QColor SingleQuotedString,              //单引号字符串颜色
+        QColor Keyword,                         //关键字颜色
+        QColor KeywordSet2,                     //第二套关键字
+        QColor PreProcessor,                    //预处理器颜色
+        QColor VerbatimString,                  //未闭合的字符串
+        QColor Regex,                           //正则表达式
+        QColor CaretForeground,                 //光标前景色
+        QColor CaretLineBackground,             //光标行背景色
+        QColor SelectionBackground,             //选中文本背景色
+        QColor SelectionForeground,             //选中文本前景色
+        QColor UnmatchedBraceForeground,        //设置不匹配的大括号前景颜色
+        QColor MarginsBackground,               //显示行号背景颜色
+        QColor MarginsForeground,               //行号颜色
+        QColor FoldMarginFore,                  //折叠栏前景色，默认#808080
+        QColor FoldMarginBack,                  //折叠栏背景色，默认#808080
+        QColor Breakpoint                       //断点标记背景色为红色
+    )
+{
+    //全局字体效果
+    QFont font(fontName, 12, QFont::Normal);
+    ui->sciEditor->setMarginsFont(font);//设置页边字体
+    QFontMetrics fontmetrics(font);
+    ui->sciEditor->setMarginWidth(0, fontmetrics.horizontalAdvance("0000"));
+
+    //高亮解析器
+    QsciLexer *textLexer = new QsciLexerCPP;
+    textLexer->setFont(font);
+
+    textLexer->setColor(Normal);
+    textLexer->setPaper(Paper);         //文本背景颜色
+    textLexer->setDefaultPaper(Paper);  //编辑器背景颜色
+    textLexer->setColor(Comment,QsciLexerCPP::Comment); //备注颜色
+    textLexer->setColor(Number,QsciLexerCPP::Number); //数字颜色
+    textLexer->setColor(CommentLineDoc,QsciLexerCPP::CommentLineDoc); //行备注颜色
+    textLexer->setColor(DoubleQuotedString,QsciLexerCPP::DoubleQuotedString); //双引号字符串颜色
+    textLexer->setColor(SingleQuotedString,QsciLexerCPP::SingleQuotedString); //单引号字符串颜色
+    textLexer->setColor(Keyword,QsciLexerCPP::Keyword); //关键字颜色
+    textLexer->setColor(KeywordSet2,QsciLexerCPP::KeywordSet2); //第二套关键字
+    textLexer->setColor(PreProcessor,QsciLexerCPP::PreProcessor); //预处理器颜色
+    textLexer->setColor(VerbatimString,QsciLexerCPP::VerbatimString); //未闭合的字符串
+    textLexer->setColor(Regex,QsciLexerCPP::Regex); //正则表达式
+    ui->sciEditor->setLexer(textLexer);//给QsciScintilla设置词法分析器
+
+    ui->sciEditor->setCaretForegroundColor(CaretForeground);  //光标颜色
+    ui->sciEditor->setCaretLineBackgroundColor(CaretLineBackground);//光标所在行背景颜色
+    ui->sciEditor->setSelectionBackgroundColor(SelectionBackground);//选中文本背景色
+    ui->sciEditor->setSelectionForegroundColor(SelectionForeground);//选中文本前景色
+    ui->sciEditor->setUnmatchedBraceForegroundColor(UnmatchedBraceForeground); //设置不匹配的大括号前景颜色
+    ui->sciEditor->setMarginsBackgroundColor(MarginsBackground);//显示行号背景颜色
+    ui->sciEditor->setMarginsForegroundColor(MarginsForeground);//行号颜色
+    ui->sciEditor->setFoldMarginColors(FoldMarginFore,FoldMarginBack);//折叠栏颜色，默认#808080
+    ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETBACK, 0,Breakpoint); //断点标记背景色为红色
 }
 
 
@@ -286,3 +348,118 @@ void Form_CodeEditor::event_timer_textChanged()
     this->saveTimer.stop();
     System_File::writeFile(this->nowOpenFilePath,ui->sciEditor->text().toUtf8());
 }
+
+
+//保存文件
+void Form_CodeEditor::onSave()
+{
+    this->event_timer_textChanged();
+}
+
+
+//主题已经改变(主题标记)
+void Form_CodeEditor::onThemeChange(QString themeSign)
+{
+    if(themeSign == "White"){
+        this->setCodeEditorThemeColor(
+            "Consolas",                 //字体名称
+            QColor("#080000"),          //默认颜色
+            QColor("#ffffff"),          //文本区域和编辑器默认颜色
+            QColor("#008000"),          //备注颜色
+            QColor("#ff0000"),          //数字颜色
+            QColor("#008000"),          //行备注颜色
+            QColor("#008000"),          //双引号字符串颜色
+            QColor("#ff00ff"),          //单引号字符串颜色
+            QColor("#0000ff"),          //关键字颜色
+            QColor("#dbab00"),          //第二套关键字
+            QColor("#0041c4"),          //预处理器颜色
+            QColor("#a1edaa"),          //未闭合的字符串
+            QColor("#0066d6"),          //正则表达式
+            Qt::darkCyan,               //光标前景色
+            QColor("#e0e0e0"),          //光标行背景色
+            QColor("#99c9ef"),          //选中文本背景色
+            Qt::gray,                   //选中文本前景色
+            Qt::red,                    //设置不匹配的大括号前景颜色
+            QColor("#e6e7e8"),          //显示行号背景颜色
+            QColor("#7b829d"),          //行号颜色
+            QColor("#ffffff"),          //折叠栏前景色，默认#808080
+            QColor("#ffffff"),          //折叠栏背景色，默认#808080
+            QColor(Qt::red)             //断点标记背景色为红色
+            );
+    }
+    else if(themeSign == "Dark"){
+        this->setCodeEditorThemeColor(
+            "Consolas",                 //字体名称
+            QColor("#dccca6"),          //默认颜色
+            QColor("#262626"),          //文本区域和编辑器默认颜色
+            QColor("#348546"),          //备注颜色
+            QColor("#b5ce9a"),          //数字颜色
+            QColor("#008000"),          //行备注颜色
+            QColor("#d69d85"),          //双引号字符串颜色
+            QColor("#d69d85"),          //单引号字符串颜色
+            QColor("#2a6ac3"),          //关键字颜色
+            QColor("#d6a0df"),          //第二套关键字
+            QColor("#bcbcba"),          //预处理器颜色
+            QColor("#d69d85"),          //未闭合的字符串
+            QColor("#0066d6"),          //正则表达式
+            QColor("#a4b4aa"),          //光标前景色
+            QColor("#7d7d7d"),          //光标行背景色
+            QColor("#264f78"),          //选中文本背景色
+            Qt::gray,                   //选中文本前景色
+            Qt::red,                    //设置不匹配的大括号前景颜色
+            QColor("#1e1e1e"),          //显示行号背景颜色
+            QColor("#8a8775"),          //行号颜色
+            QColor("#1e1e1e"),          //折叠栏前景色，默认#808080
+            QColor("#1e1e1e"),          //折叠栏背景色，默认#808080
+            QColor(Qt::red)             //断点标记背景色为红色
+            );
+    }
+    else{   //Blue
+        this->setCodeEditorThemeColor(
+            "Consolas",                 //字体名称
+            QColor("#080000"),          //默认颜色
+            QColor("#fafafa"),          //文本区域和编辑器默认颜色
+            QColor("#008000"),          //备注颜色
+            QColor("#ff0000"),          //数字颜色
+            QColor("#008000"),          //行备注颜色
+            QColor("#008000"),          //双引号字符串颜色
+            QColor("#ff00ff"),          //单引号字符串颜色
+            QColor("#003bba"),          //关键字颜色
+            QColor("#dbab00"),          //第二套关键字
+            QColor("#0041c4"),          //预处理器颜色
+            QColor("#a1edaa"),          //未闭合的字符串
+            QColor("#0066d6"),          //正则表达式
+            Qt::darkCyan,               //光标前景色
+            QColor("#e0e0e0"),          //光标行背景色
+            QColor("#99c9ef"),          //选中文本背景色
+            Qt::gray,                   //选中文本前景色
+            Qt::red,                    //设置不匹配的大括号前景颜色
+            QColor("#43577b"),          //显示行号背景颜色
+            QColor("#6ac916"),          //行号颜色
+            QColor("#F0F0F0"),          //折叠栏前景色，默认#808080
+            QColor("#F0F0F0"),          //折叠栏背景色，默认#808080
+            QColor(Qt::red)             //断点标记背景色为红色
+            );
+    }
+}
+
+
+//获取编辑器内的代码
+QString Form_CodeEditor::getCodeText()
+{
+    return ui->sciEditor->text();
+}
+
+
+//获取文件保存的路径
+QString Form_CodeEditor::getSavePath()
+{
+    return nowOpenFilePath;
+}
+
+//获取火花代码编辑器指针
+QsciScintilla *Form_CodeEditor::getSciCodeEditor()
+{
+    return ui->sciEditor;
+}
+

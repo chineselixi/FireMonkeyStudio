@@ -1224,7 +1224,6 @@ void Form_ProjectManger::delBuildFileSign(QString suffix)
 //弹出菜单
 void Form_ProjectManger::on_treeWidget_customContextMenuRequested(const QPoint &pos)
 {
-    bool isProItem = false;
     QTreeWidgetItem* t_item = ui->treeWidget->currentItem();
     if(!t_item) return; //无工程，不打开右键菜单
 

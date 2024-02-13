@@ -13,7 +13,7 @@ Form_WorkSpace* Window::workSpace = nullptr;
 //管理器
 Plugin_Manger* Manger::pluginManger = nullptr;//插件管理器
 Form_TipManger* Manger::workspace_tipManger = nullptr;//通知消息管理器1
-//System_EnvVar* Manger::EnvVar = nullptr;//环境变量管理器
+System_CodeEditorManger* Manger::codeEditorManger = nullptr;//代码编辑器管理器
 
 
 //历史列表
@@ -22,7 +22,7 @@ System_History* HistoryList::sys_modHistory = nullptr; //工程模板历史列�
 System_History* HistoryList::sys_pluginHistory = nullptr; //插件开启的列表
 
 //设置加载
-System_systemSetting* Setting::sys_setting = nullptr; //设置对象
+System_SystemSetting* Setting::sys_setting = nullptr; //设置对象
 QApplication* Setting::sys_app = nullptr; //本程序对象
 QString Setting::git_path = "";
 QString Setting::git_branch = "";

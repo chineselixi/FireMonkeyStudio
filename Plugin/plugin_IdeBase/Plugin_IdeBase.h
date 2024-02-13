@@ -5,7 +5,7 @@
 #include "../../IDE/Plugin/Plugin_Base.cpp"
 #include "Form/Form_Terminal.h"
 #include "QVector"
-
+#include "QMap"
 
 class Plugin_IdeBase : public Plugin_Base
 {
@@ -26,10 +26,13 @@ public:
 
 private:
     QVector<Form_Terminal*> terminalList; //终端列表
+
 private:
     Form_Terminal* createTerminalWidget(QString command);   //创建终端窗口
     void deleteTerminalWidget(Form_Terminal* widget);       //删除终端窗口
-
+    QString ret_JsonOK(bool isOK);                          //Json返回正确信息
+    QString ret_budJson(QMap<QString,QJsonValue> map);      //构建Json信息
+    QString postJson(QString pluginName,QMap<QString,QJsonValue> map); //插件消息投递
 };
 
 

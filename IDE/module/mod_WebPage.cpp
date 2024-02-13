@@ -2,7 +2,7 @@
 #include "QWebChannel"
 #include "QMessageBox"
 #include "../SwSystem/System_GlobalVar.h"
-#include "../Window/Form_WorkSpace.h""
+#include "../Window/Form_WorkSpace.h"
 #include "SwSystem/System_History.h"
 
 

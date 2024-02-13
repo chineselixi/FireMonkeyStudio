@@ -3,12 +3,14 @@
 
 #include "QDir"
 #include "QFileInfo"
-#include "SwSystem/System_GlobalVar.h""
+#include "SwSystem/System_GlobalVar.h"
 #include "SwSystem/System_History.h"
 #include "SwSystem/system_systemsetting.h"
 #include "SwSystem/System_UtilFun.h"
 
 #include "QCoreApplication"
+
+#include "QMessageBox"
 
 Plugin_Manger::Plugin_Manger()
 {
@@ -55,6 +57,7 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
     for(int a=0;a<t_pathList.length();a++){
         PluginMsg t_plgMsg; //插件信息
         t_plgMsg.filePath = t_pathList[a];
+
         if(HistoryList::sys_pluginHistory->has(t_pathList[a].replace(System_OS::getaApplicationDirPath_EX(),"<pluginPath>"))){ //检查插件是否已经启用
             QLibrary* t_lib = new QLibrary(t_plgMsg.filePath); //加载插件（以动态库的形式加载插件，插件本身就是一个动态库）
             if(t_lib->load()){
@@ -74,6 +77,7 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
         this->List_plg.append(t_plgMsg); //添加实例插件
     }
 
+
     //将未载入的插件排序到后面
     int t_endIndex = this->List_plg.length() - 1;
     for(int a=this->List_plg.length() - 1; a>=0; a--){
@@ -86,7 +90,6 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
             }
         }
     }
-
 
     //插件优先级排序,优先级从大到小排序
     for(int a=0;a<this->List_plg.length() - 1;a++){
@@ -330,6 +333,25 @@ void Plugin_Manger::themeChanged_init_building()
         if(this->List_plg[a].plgPth != nullptr){
             this->List_plg[a].plgPth->Theme_get = t_getPtr;
             this->List_plg[a].plgPth->Theme_set = t_setPtr;
+        }
+    }
+}
+
+
+//代码编辑器管理器绑定
+void Plugin_Manger::codeEditorManger_init_building(
+    PluginGlobalMsg::funStr_void CodeEditor_save,     //保存指定路径代码编辑器内的代码
+    PluginGlobalMsg::fun_void CodeEditor_saveAll,     //保存全部已打开代码
+    PluginGlobalMsg::codeEditorFun CodeEditor_addToMangerPtr,    //将代码编辑器添加到管理器
+    PluginGlobalMsg::codeEditorFun CodeEditor_removeForMangerPtr    //将代码编辑器从管理器移除
+)
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            this->List_plg[a].plgPth->CodeEditor_save = CodeEditor_save;
+            this->List_plg[a].plgPth->CodeEditor_saveAll = CodeEditor_saveAll;
+            this->List_plg[a].plgPth->CodeEditor_addToMangerPtr = CodeEditor_addToMangerPtr;
+            this->List_plg[a].plgPth->CodeEditor_removeForMangerPtr = CodeEditor_removeForMangerPtr;
         }
     }
 }

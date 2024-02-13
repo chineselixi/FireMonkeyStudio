@@ -209,6 +209,9 @@ typedef fun_void statusbarFun_hideAllBtn; //隐藏所有的按钮
 //窗口操作
 typedef std::function<QWidget*()> widgetFun_getWidget; //获取QWidget
 
+//代码编辑器
+typedef std::function<bool(QObject* plg)> codeEditorFun;    //添加或删除代码编辑器对象
+
 }
 
 

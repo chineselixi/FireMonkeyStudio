@@ -25,10 +25,11 @@ extern Form_WorkSpace* workSpace; //工作窗口
 class Plugin_Manger;
 class System_EnvVar;
 class Form_TipManger;
+class System_CodeEditorManger;
 namespace Manger{
 extern Plugin_Manger* pluginManger; //插件管理器
 extern Form_TipManger* workspace_tipManger; //提示管理器
-//extern System_EnvVar* EnvVar; //环境变量管理器
+extern System_CodeEditorManger* codeEditorManger; //代码编辑器管理器
 }
 
 
@@ -42,10 +43,10 @@ extern System_History* sys_pluginHistory; //插件开启的列表
 
 
 //设置记录器
-class System_systemSetting;
+class System_SystemSetting;
 class QApplication;
 namespace Setting{
-extern System_systemSetting* sys_setting;
+extern System_SystemSetting* sys_setting;
 extern QApplication* sys_app; //本程序对象
 
 extern QString git_path; //Git路径

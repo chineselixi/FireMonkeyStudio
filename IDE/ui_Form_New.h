@@ -623,7 +623,7 @@ public:
 
         retranslateUi(Form_New);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
         pushButton_clone->setDefault(false);
         pushButton_next_toCreate->setDefault(false);
         pushButton_createProject->setDefault(false);
@@ -635,7 +635,7 @@ public:
     void retranslateUi(QWidget *Form_New)
     {
         Form_New->setWindowTitle(QCoreApplication::translate("Form_New", "\345\210\233\345\273\272\346\210\226\346\211\223\345\274\200\345\267\245\347\250\213", nullptr));
-        label->setText(QCoreApplication::translate("Form_New", "FireMonkey Studio 2023", nullptr));
+        label->setText(QCoreApplication::translate("Form_New", "FireMonkey Studio 2024", nullptr));
         label_tip1->setText(QCoreApplication::translate("Form_New", "\346\211\223\345\274\200\346\234\200\350\277\221\344\275\277\347\224\250\347\232\204\345\206\205\345\256\271", nullptr));
         label_tip2->setText(QCoreApplication::translate("Form_New", "\345\274\200\345\247\213\344\275\277\347\224\250", nullptr));
         label_Jump->setText(QCoreApplication::translate("Form_New", "\347\273\247\347\273\255\344\275\206\346\227\240\351\234\200\344\273\243\347\240\201 \342\206\222", nullptr));

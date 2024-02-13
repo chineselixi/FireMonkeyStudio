@@ -37,10 +37,11 @@ SOURCES += \
     Plugin/Plugin_CodeEditorInterface.cpp \
     Plugin/Plugin_Global.cpp \
     Plugin/Plugin_Manger.cpp \
+    SwSystem/System_CodeEditorManger.cpp \
     SwSystem/System_GlobalVar.cpp \
     SwSystem/System_History.cpp \
     SwSystem/System_UtilFun.cpp \
-    SwSystem/system_systemsetting.cpp \
+    SwSystem/System_SystemSetting.cpp \
     Widget/Widget_Button_ListItem.cpp \
     Widget/Widget_Button_ModHistoryItem.cpp \
     Widget/Widget_Button_ModItem.cpp \
@@ -81,10 +82,11 @@ HEADERS += \
     Plugin/Plugin_CodeEditorInterface.h \
     Plugin/Plugin_Global.h \
     Plugin/Plugin_Manger.h \
+    SwSystem/System_CodeEditorManger.h \
     SwSystem/System_GlobalVar.h \
     SwSystem/System_History.h \
     SwSystem/System_UtilFun.h \
-    SwSystem/system_systemsetting.h \
+    SwSystem/System_SystemSetting.h \
     Widget/Widget_Button_ListItem.h \
     Widget/Widget_Button_ModHistoryItem.h \
     Widget/Widget_Button_ModItem.h \
@@ -164,7 +166,7 @@ icons.qrc \
 
 #load qsciscintilla
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintillad
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
 else:unix: LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
 
 INCLUDEPATH += $$OUT_PWD/../release

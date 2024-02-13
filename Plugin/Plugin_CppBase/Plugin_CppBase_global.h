@@ -95,9 +95,9 @@ extern int compilerIndex; //编译器索引
 namespace cppAttributeNamespace {
 //工程属性
 struct projectAttribute{
-    QString programName = "";                           //程序名称
-    QString copyright = QObject::tr("FMS 开发");            //版权信息
-    QString versionCode = "0.0.1.0";                    //版本信息
+    QString programName = "";                               //程序名称
+    QString copyright = QObject::tr("FMS 开发");             //版权信息
+    QString versionCode = "0.0.1.0";                        //版本信息
     QString outPath = "${projectPath}/out";                 //输出文件目录
     QString tempPath = "${projectPath}/out/temp";           //临时文件目录
     bool    useFmsTerminal = false;                         //使用FMS内置终端

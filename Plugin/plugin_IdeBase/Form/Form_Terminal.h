@@ -77,9 +77,17 @@ private:
     void readyReadStandardOutput();     //状态输出
     void readyReadStandardError();      //错误输出
 
-    void errorOccurred(QProcess::ProcessError error);       //出现错误
-    void stateChanged(QProcess::ProcessState state);        //程序状态改变
-    void finished(int exitCode, QProcess::ExitStatus exitStatus = QProcess::NormalExit);    //程序执行完毕
+public slots:
+    void start();                                                             //程序启动完成
+    void errorOccurred(QProcess::ProcessError error);                                       //出现错误
+    void stateChanged(QProcess::ProcessState state);                                        //程序状态改变
+    void finished(int exitCode, QProcess::ExitStatus exitStatus);    //程序执行完毕
+
+
+signals:
+    void sig_start(QString comm);                       //程序开始运行
+    void sig_error(QString comm,QString errorMsg);      //程序出现错误(运行的命令，错误信息)
+    void sig_finish(QString comm, int exitCode);                      //程序执行完毕
 };
 
 #endif // FORM_TERMINAL_H

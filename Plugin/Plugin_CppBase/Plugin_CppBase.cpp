@@ -9,13 +9,17 @@
 #include "QElapsedTimer"
 #include "QMainWindow"
 
-#include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
+//#include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "Form/Form_CodeEditor.h"
 #include "Form/Form_Attributee.h"
 #include "Form/settingForm/Form_settings_Compile.h"
 #include "QCoreApplication"
 #include "../../IDE/SwSystem/System_UtilFun.h" //获取系统工具类
 #include "../../IDE/SwSystem/System_GlobalVar.h"
+
+#if defined(Q_OS_WIN)
+#include "windows.h"
+#endif
 
 #define MOD_DEBUG "Debug (调试)"
 #define MOD_RELEASE "Release (发布)"
@@ -131,7 +135,7 @@ bool Plugin_CppBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
     }
 
 
-
+    return false; //阻止消息继续触发
 }
 
 
@@ -158,6 +162,8 @@ bool Plugin_CppBase::event_onFileOpen(QString filePath)
         if(!editor->loadForFile(filePath)){
             QMessageBox::warning(nullptr,QObject::tr("文件异常"),QObject::tr("无法打开文件，文件不存在或通道被占用！"));
         }
+
+        this->codeEditor_addToManger(editor); //添加到代码管理器
 
         this->tabWindow_addTabWindow(QFileInfo(filePath).fileName(),editor,filePath,t_ico,PluginGlobalMsg::TabType::codeEditor); //添加到Tab
         return false;
@@ -186,6 +192,34 @@ void Plugin_CppBase::event_onTabFormActivation(QWidget *form)
 bool Plugin_CppBase::event_onTabFormCloseRequested(QWidget *form)
 {
     return true;
+}
+
+
+//当插件接收到发送的信息   参数（发送者标记，发送信息），返回值（当返回的信息不是空则第一时间返回），
+QString Plugin_CppBase::event_onPluginReceive(QString sendPluginSign, QString msg)
+{
+    if(sendPluginSign == "IDE_Base"){
+        QJsonDocument t_jsonDoc = QJsonDocument::fromJson(msg.toUtf8());
+        QJsonObject t_jsonObj = t_jsonDoc.object();
+
+        if(!t_jsonObj.isEmpty()){       //json对象不是空
+            QString t_sign = t_jsonObj.value("sign").toString();
+            QString t_state = t_jsonObj.value("state").toString();
+
+            if(t_sign == "terminal"){   //终端消息返回
+                if(t_state == "start"){
+                    this->event_runStarted();
+                }
+                else if(t_state == "error"){
+                    this->event_runFinished(-1);
+                }
+                else if(t_state == "finish"){
+                    this->event_runFinished(t_jsonObj.value("exitCode").toInt(0));
+                }
+            }
+        }
+    }
+    return "";
 }
 
 
@@ -230,24 +264,24 @@ void Plugin_CppBase::event_onWorkSpaceFinish()
                                          QObject::tr("Cpp源"),
                                          "");
 
-    //添加新的
-    QMainWindow* t_mainWindow = this->widget_getWorkSpaceWindowPtr();
-    if(t_mainWindow != nullptr){
-        QList<QDockWidget*> t_docks = t_mainWindow->findChildren<QDockWidget*>("dockWidget_print");  //查找运行与提示Dock
-        if(t_docks.length() == 1){
-            //测试代码
+//    //添加新的
+//    QMainWindow* t_mainWindow = this->widget_getWorkSpaceWindowPtr();
+//    if(t_mainWindow != nullptr){
+//        QList<QDockWidget*> t_docks = t_mainWindow->findChildren<QDockWidget*>("dockWidget_print");  //查找运行与提示Dock
+//        if(t_docks.length() == 1){
+//            //测试代码
 
 
-            QWidget* newWidget = new QWidget();
-            newWidget->setWindowTitle("测试窗口");
+//            QWidget* newWidget = new QWidget();
+//            newWidget->setWindowTitle("测试窗口");
 
-            QDockWidget* dock = new QDockWidget;
-            dock->setWindowTitle("测试窗口2");
-            dock->setWidget(newWidget);
+//            QDockWidget* dock = new QDockWidget;
+//            dock->setWindowTitle("测试窗口2");
+//            dock->setWidget(newWidget);
 
-            t_mainWindow->tabifyDockWidget(t_docks[0],dock);
-        }
-    }
+//            t_mainWindow->tabifyDockWidget(t_docks[0],dock);
+//        }
+//    }
 }
 
 
@@ -417,7 +451,7 @@ QVector<Plugin_CppBase::MapperNode> Plugin_CppBase::arrangeMappers(QVector<Mappe
         retMappers[x].lonelyCompile = (t_filrInfro.baseName() != retMappers[x].mapperName); //设置是否需要单独编译
     }
 
-    delete t_arraySign;
+    delete[] t_arraySign;
     return retMappers;
 }
 
@@ -512,56 +546,89 @@ void Plugin_CppBase::event_stop()
 //运行程序（compileFiles编译的文件组，changeFiles文件组中改变的文件）
 void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
 {
+    //保存当前的全局信息
+    this->runProPath = proPath;
+
     //编译
-    QString t_exeFile = this->event_compile(proPath,compileFiles);
+    QString t_exeFile = this->event_compile(proPath,compileFiles);          //编译后运行
     QString t_proName = this->projectManger_getProjectInfo(proPath).proName; //获取工程名称
+
     //运行程序
     if(!t_exeFile.isEmpty()){
-        this->statusBar_setStatusHideAll();
+        // this->statusBar_setStatusHideAll();隐藏全部按钮
+
+        //运行成功
         this->tip_addTip(tr("通知"),tr("编译成功"),2000,PluginGlobalMsg::TipType::Normal);
+        //读取本地属性信息
+        QString t_attrFile = proPath + "/config.json";
+        cppAttributeNamespace::projectAttribute t_attr = Form_Attribute::loadAttribute(System_File::readFile(t_attrFile)); //尝试读取属性文件
+        if(t_attr.programName.isEmpty()) t_attr.programName = t_proName; //如果没有指定输出内容，则用工程名
+        t_attr.outPath.replace("${projectPath}",proPath); //最终编译输出内容
+        t_attr.tempPath.replace("${projectPath}",proPath); //临时文件输出内容
 
 
-        //内置终端运行方式
-        QJsonDocument t_jsonDoc;
-        QJsonObject t_jsonObj;
-        t_jsonObj.insert("type","runProcess");
-        t_jsonObj.insert("command",t_exeFile);
-        t_jsonDoc.setObject(t_jsonObj);
+        //根据本地属性配置，选择合适的运行方式(终端/外部)
+        if(t_attr.useFmsTerminal){  //使用内置终端运行
+            //内置终端运行方式
+            QJsonDocument t_jsonDoc;
+            QJsonObject t_jsonObj;
+            t_jsonObj.insert("type","runProcess");
+            t_jsonObj.insert("command",t_exeFile);
+            t_jsonDoc.setObject(t_jsonObj);
+            QString t_retSign = this->plugin_postPluginMessage("IDE_Base",t_jsonDoc.toJson()); //向Base提交信息，调用终端运行
 
-        QString t_retSign = this->plugin_postPluginMessage("IDE_Base",t_jsonDoc.toJson()); //向Base提交信息，调用终端运行
-
-        qDebug() << "运行返回" << t_retSign;
-
-        return;
-
-
-
-
-        //通常运行方式
-        if(execProcess == nullptr) execProcess = new QProcess;
-
-        execProcess->kill();        //结束以前的程序
-        execProcess->disconnect();  //断开全部的链接
-        connect(execProcess,&QProcess::started,this,&Plugin_CppBase::event_runStarted);     //程序开始运行
-        connect(execProcess,&QProcess::finished,this,&Plugin_CppBase::event_runFinished);   //程序运行完毕
-
-        this->closeRunActions();
-
-        //t_exeFile.append(".exe");
-        if(execProcess->startDetached(t_exeFile,{})){
-            this->print_printList("",QObject::tr("运行: ") + t_exeFile,t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor());
         }
-        else{
-            this->print_printList("",QObject::tr("失败: ") + t_exeFile,t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
-            this->tip_addTip(tr("停止"),tr("运行失败"),5000,PluginGlobalMsg::TipType::Error);
-        }
+        else{   //外部独立运行
 
+            //构建进程对象
+            if(execProcess == nullptr) execProcess = new QProcess;
+            execProcess->kill();        //结束以前的程序
+            execProcess->disconnect();  //断开全部的链接
+            connect(this->execProcess,&QProcess::started,this,&Plugin_CppBase::event_runStarted);     //程序开始运行
+            connect(this->execProcess,&QProcess::finished,this,&Plugin_CppBase::event_runFinished);   //程序运行完毕
+            connect(this->execProcess,&QProcess::errorOccurred,this,&Plugin_CppBase::event_runError);   //程序运行异常
+
+            QString t_runCommand = ""; //运行命令行模板
+            switch (System_OS::getOsType()) {
+            case System_OS::OSType::WINDOWS:{   //Windows默认在内部运行
+                this->execProcess->setCreateProcessArgumentsModifier(  //Windows系统显示终端
+                    [](QProcess::CreateProcessArguments *args) {
+                        args->flags |= CREATE_NEW_CONSOLE;
+                        args->flags &= ~CREATE_NO_WINDOW;
+                        args->startupInfo->dwFlags &=~ STARTF_USESTDHANDLES;
+                    }
+                );
+
+                t_runCommand = "{runPath} {args}";
+                break;
+            }
+            case System_OS::OSType::MACOS:{     //在Linux系统下
+                t_runCommand = "open -a Terminal.app {runPath} --args {args}";
+                break;
+            }
+            case System_OS::OSType::LINUX:
+            default:{
+                t_runCommand = "gnome-terminal -- bash -c \"{runPath} {args}; exec bash\"";
+                break;
+            }
+            }
+
+            //替换参数
+            t_runCommand = t_runCommand.replace("{runPath}",t_exeFile);
+            t_runCommand = t_runCommand.replace("{args}",t_attr.runArgs);
+
+            //开始运行
+            this->print_printList("",QObject::tr("运行：") + t_exeFile,t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor("green"));
+            this->execProcess->startCommand(t_runCommand);
+        }
         return;
     }
     this->tip_addTip(tr("停止"),tr("运行失败"),5000,PluginGlobalMsg::TipType::Error);
     this->print_printList("",QObject::tr("运行失败"),t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
-
 }
+
+
+
 
 //编译（compileFiles编译的文件组，changeFiles文件组中改变的文件）
 QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileFiles)
@@ -586,6 +653,10 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
     this->print_clearList(); //清空输出列表
     this->print_clearTextSpace(); //清理空间信息
+
+    //保存正在编辑的代码
+    this->codeEditor_saveAll();
+
 
     //读取设置信息
     settingNamespace::settingNode t_settingMsg = Form_settings_Compile::getNowCompilerNode(); //获取当前设置信息（包含s4编译器信息）
@@ -836,9 +907,12 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 //程序开始运行
 void Plugin_CppBase::event_runStarted()
 {
-    this->closeRunActions();
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,false); //允许运行
     this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::stop,true); //允许停止
-    qDebug() << "程序运行开始，允许停止";
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,false); //允许编译
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,false); //允许静态编译
+
+    this->tip_addTip("开始运行","程序开始运行",2000,PluginGlobalMsg::TipType::Normal); //提示消息
 }
 
 //程序运行完毕
@@ -846,7 +920,48 @@ void Plugin_CppBase::event_runFinished(int exitCode, QProcess::ExitStatus exitSt
 {
     this->closeRunActions();
     this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
-    qDebug() << "程序停止，允许允许";
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::stop,false); //允许停止
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
+
+    QString t_proName = this->projectManger_getProjectInfo(this->runProPath).proName; //获取工程名称
+    this->print_printList("",QObject::tr("执行完毕！"),t_proName);
+}
+
+//程序开始运行
+void Plugin_CppBase::event_runError(QProcess::ProcessError error)
+{
+    QString t_errorStr;
+    switch (error){
+    case QProcess::ProcessError::FailedToStart:{
+        t_errorStr = tr("无法执行此命令，请检查命令是否合法！");
+        break;
+    }
+    case QProcess::ProcessError::Crashed:{
+        t_errorStr = tr("程序奔溃！");
+        break;
+    }
+    case QProcess::ProcessError::Timedout:{
+        t_errorStr = tr("程序运行超时！");
+        break;
+    }
+    case QProcess::ProcessError::ReadError:{
+        t_errorStr = tr("程序读取错误！");
+        break;
+    }
+    case QProcess::ProcessError::WriteError:{
+        t_errorStr = tr("程序写入错误");
+        break;
+    }
+    default:
+    case QProcess::ProcessError::UnknownError:{
+        t_errorStr = tr("未知错误");
+        break;
+    }
+    }
+
+    QString t_proName = this->projectManger_getProjectInfo(this->runProPath).proName; //获取工程名称
+    this->print_printList("",QObject::tr("运行时出现错误：") + t_errorStr,t_proName,"",-1,PluginGlobalMsg::printIcoType::error,QColor("red"));
 }
 
 

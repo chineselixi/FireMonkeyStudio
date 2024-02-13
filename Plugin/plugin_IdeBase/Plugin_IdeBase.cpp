@@ -94,6 +94,9 @@ bool Plugin_IdeBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
 //base插件收到消息
 QString Plugin_IdeBase::event_onPluginReceive(QString sendPluginSign, QString msg)
 {
+    qDebug() << "IDE sendPluginSign===" << sendPluginSign;
+
+
     //获取消息对象
     QJsonDocument t_jsonDoc = QJsonDocument::fromJson(msg.toUtf8());
     QJsonObject t_jsonObj = t_jsonDoc.object();
@@ -109,13 +112,40 @@ QString Plugin_IdeBase::event_onPluginReceive(QString sendPluginSign, QString ms
 
         //获取终端，并且运行
         Form_Terminal* t_terminal = this->createTerminalWidget(t_command);
+        t_terminal->disconnect();
+        Form_Terminal::connect(t_terminal,&Form_Terminal::sig_start,[this,sendPluginSign](QString comm){//终端程序开始运行
+            QMap<QString,QJsonValue> t_map;
+            t_map.insert("sign","terminal");
+            t_map.insert("comm",comm);
+            t_map.insert("state","start");
+            t_map.insert("error","");
+            this->postJson(sendPluginSign,t_map);
+        });
+        Form_Terminal::connect(t_terminal,&Form_Terminal::sig_error,[this,sendPluginSign](QString comm,QString errorMsg){ //终端程序出现错误
+            QMap<QString,QJsonValue> t_map;
+            t_map.insert("sign","terminal");
+            t_map.insert("comm",comm);
+            t_map.insert("state","error");
+            t_map.insert("error",errorMsg);
+            this->postJson(sendPluginSign,t_map);
+        });
+        Form_Terminal::connect(t_terminal,&Form_Terminal::sig_finish,[this,sendPluginSign](QString comm, int exitCode){ //终端程序停止运行
+            QMap<QString,QJsonValue> t_map;
+            t_map.insert("sign","terminal");
+            t_map.insert("comm",comm);
+            t_map.insert("state","finish");
+            t_map.insert("exitCode",exitCode);
+            this->postJson(sendPluginSign,t_map);
+        });
+
+
         if(t_terminal->isRunning()) t_terminal->killProcess(); //停止已经运行的程序
         t_terminal->runProcess(t_command); //运行新的命令
         t_terminal->raise(); //提升到当前选择项
-        return t_command;
+        return this->ret_JsonOK(true);
     }
 
-    return "";
+    return this->ret_JsonOK(false);
 }
 
 //创建终端窗口
@@ -173,5 +203,37 @@ void Plugin_IdeBase::deleteTerminalWidget(Form_Terminal *widget)
             return;
         }
     }
+}
+
+
+//Json返回信息
+QString Plugin_IdeBase::ret_JsonOK(bool isOK)
+{
+    return this->ret_budJson({
+                       {"sign","terminal"},
+                       {"isOK",isOK}
+    });
+}
+
+
+//构建Json信息
+QString Plugin_IdeBase::ret_budJson(QMap<QString, QJsonValue> map)
+{
+    QJsonDocument t_jsonDoc;
+    QJsonObject t_jsonObj;
+    QMap<QString, QJsonValue>::Iterator i;
+    for(i = map.begin(); i != map.end(); ++i)
+    {
+        t_jsonObj.insert(i.key(),i.value());
+    }
+    t_jsonDoc.setObject(t_jsonObj);
+    return t_jsonDoc.toJson();
+}
+
+
+//插件消息投递
+QString Plugin_IdeBase::postJson(QString pluginName, QMap<QString, QJsonValue> map)
+{
+    return this->plugin_postPluginMessage(pluginName,this->ret_budJson(map));
 }
 

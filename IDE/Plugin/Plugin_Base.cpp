@@ -91,6 +91,7 @@ QString Plugin_Base::theme_getThemeSign()
     if(this->Theme_get){
         return this->Theme_get();
     }
+    return "";
 }
 
 //设置主题标记
@@ -268,6 +269,7 @@ void Plugin_Base::mark_addMark(QString mark, QString value)
 QVariant Plugin_Base::mark_getMark(QString mark,QString normal)
 {
     if(setFun_get) return setFun_get(mark,normal);
+    return QVariant();
 }
 
 //删除一个标记
@@ -286,18 +288,21 @@ void Plugin_Base::tip_postTipStr(QString str,int showTime)
 uint16_t Plugin_Base::tip_addTip(QString title, QString tip, qint64 showTime, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose)
 {
     if(tipsFun_addTip) return tipsFun_addTip(title, tip, type, pixmap, canClose, showTime);
+    return 0;
 }
 
 //根据ID关闭一个停止，通知不存在则返回false
 bool Plugin_Base::tip_closeTip(uint16_t id)
 {
     if(tipsFun_closeTip) return tipsFun_closeTip(id);
+    return false;
 }
 
 //判断是否存在这个通知
 bool Plugin_Base::tip_hasTip(uint16_t index)
 {
     if(tipsFun_hasTip) return tipsFun_hasTip(index);
+    return false;
 }
 
 
@@ -407,6 +412,44 @@ QMainWindow *Plugin_Base::widget_getWorkSpaceWindowPtr()
         return (QMainWindow*)Widget_getWorkSpaceWindowPtr();
     }
     return nullptr;
+}
+
+
+//保存指定路径的代码
+void Plugin_Base::codeEditor_save(QString pathSign)
+{
+    if(CodeEditor_save){
+        CodeEditor_save(pathSign);
+    }
+}
+
+
+//保存全部代码
+void Plugin_Base::codeEditor_saveAll()
+{
+    if(CodeEditor_saveAll){
+        CodeEditor_saveAll();
+    }
+}
+
+
+//添加到编辑器管理器当中，注意，若对象销毁，则自动删除
+bool Plugin_Base::codeEditor_addToManger(QObject *obj)
+{
+    if(CodeEditor_addToMangerPtr){
+        return CodeEditor_addToMangerPtr(obj);
+    }
+    return false;
+}
+
+
+//从编辑器管理器删除
+bool Plugin_Base::codeEditor_removeForManger(QObject *obj)
+{
+    if(CodeEditor_removeForMangerPtr){
+        return CodeEditor_removeForMangerPtr(obj);
+    }
+    return false;
 }
 
 //QWidget *Plugin_Base::widget_getSubWidgetPtr(QWidget *parentWidget, QString subObjctName)

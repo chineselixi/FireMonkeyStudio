@@ -93,7 +93,7 @@ bool Form_TipManger::hasTip(uint16_t id)
 void Form_TipManger::adjustWindowRec()
 {
     QRect t_rect = this->geometry();
-    uint16_t t_heigh = 0;
+    size_t t_heigh = 0;
     if(TipNodeList.size() >= 10){
         t_heigh = 500;
     }

@@ -5,15 +5,15 @@
 #include "QFile"
 
 
-class System_systemSetting
+class System_SystemSetting
 {
 private:
     QString objFile; //设置保存的文件
     QSettings* objSetting;
 
 public:
-    System_systemSetting(QString settingFile);
-    ~System_systemSetting();
+    System_SystemSetting(QString settingFile);
+    ~System_SystemSetting();
 
     void changeSetting(QString className,QString idName,QVariant value); //添加或者给改变ID
     QVariant getSettingValue(QString className,QString idName,QVariant normalReturn = QVariant()); //获取节点值

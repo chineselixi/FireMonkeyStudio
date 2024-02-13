@@ -9,7 +9,8 @@
 #include "Window/settingWindow/Form_settings_Qt.h"
 
 #include "SwSystem/System_GlobalVar.h"
-#include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_Systemsetting.h"
+#include "SwSystem/System_CodeEditorManger.h"
 #include "Window/Form_WorkSpace.h"
 #include "Plugin/Plugin_Manger.h"
 
@@ -142,5 +143,6 @@ void Form_SystemSettings::changeThream(QString styleName)
         //插件管理器通知事件改变
         if(Manger::pluginManger != nullptr) Manger::pluginManger->event_onThemeChanged(styleName);
 
+        if(Manger::codeEditorManger != nullptr) Manger::codeEditorManger->tipEvent_onThemeChange(styleName);
     }
 }

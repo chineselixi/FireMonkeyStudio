@@ -10,7 +10,7 @@
 
 #include "SwSystem/System_GlobalVar.h"
 #include "SwSystem/system_systemsetting.h"
-#include "SwSystem/System_UtilFun.h""
+#include "SwSystem/System_UtilFun.h"
 #include "Plugin/Plugin_Manger.h"
 
 #include "Window/Form_New.h"
@@ -72,12 +72,10 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
     widget_statusbar->setBtn5(tr("插件"),QIcon(),"",[=](QString sign){
         this->on_action_pluginManger_triggered(); //打开插件管理器
     });
-    widget_statusbar->setBtn6(tr("QTC"),QIcon(),"",[=](QString sign){
-        this->on_action_pluginManger_triggered(); //打开插件管理器
-    });
+
     ui->statusbar->showMessage(tr("欢迎使用FMS"),30000);
 
-    widget_statusbar->setProgress(70);
+    widget_statusbar->setProgress(-1);
 
     //ui->textEdit_print->addText("左边文本",qRgb(255,0,0));
     //ui->textEdit_print->addText("右边文本");

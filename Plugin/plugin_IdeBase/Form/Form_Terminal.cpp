@@ -55,6 +55,7 @@ void Form_Terminal::init(QString runPath)
     connect(process,&QProcess::readyReadStandardOutput,this,&Form_Terminal::readyReadStandardOutput);
     connect(process,&QProcess::readyReadStandardError,this,&Form_Terminal::readyReadStandardError);
 
+    connect(process,&QProcess::started,this,&Form_Terminal::start);
     connect(process,&QProcess::stateChanged,this,&Form_Terminal::stateChanged);
     connect(process,&QProcess::errorOccurred,this,&Form_Terminal::errorOccurred);
     connect(process,&QProcess::finished,this,&Form_Terminal::finished);
@@ -120,8 +121,6 @@ QString Form_Terminal::parsePath(QString pathStr, QString runPath)
         return "";
     }
     QString retPath = ""; //返回的路径
-
-    //qDebug() << "parsePath" << pathStr << runPath;
 
     //判断是否为绝对路径
     if(QDir(pathStr).exists() && pathStr.left(1) != '.' && (pathStr.indexOf(":") != -1 || pathStr.indexOf("/") != -1)){
@@ -475,6 +474,13 @@ void Form_Terminal::readyReadStandardError()
 }
 
 
+//程序启动完成
+void Form_Terminal::start()
+{
+    this->sig_start(this->runCommand);
+}
+
+
 //出现错误
 void Form_Terminal::errorOccurred(QProcess::ProcessError error)
 {
@@ -508,13 +514,13 @@ void Form_Terminal::errorOccurred(QProcess::ProcessError error)
     }
     //this->stateChanged(QProcess::ProcessState::NotRunning);
     this->normalLoad(1,t_errorStr + "\n");
+    this->sig_error(this->runCommand,t_errorStr);
 }
 
 
 //程序状态改变
 void Form_Terminal::stateChanged(QProcess::ProcessState state)
 {
-
     if(state == QProcess::ProcessState::Running){           //运行状态
         ui->btn_start->setEnabled(false);
         ui->btn_kill->setEnabled(true);
@@ -544,6 +550,8 @@ void Form_Terminal::finished(int exitCode, QProcess::ExitStatus exitStatus)
         this->printError('\n' + t_out + '\n');
     }
     this->normalLoad(0);
+
+    this->sig_finish(this->runCommand,exitCode);
 }
 
 
@@ -555,6 +563,7 @@ void Form_Terminal::on_btn_start_clicked()
         this->runProcess(t_comm);
     }
 }
+
 
 //停止按钮被按下
 void Form_Terminal::on_btn_kill_clicked()
