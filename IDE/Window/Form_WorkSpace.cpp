@@ -61,8 +61,8 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
 
 
     //ui->textEdit_print->addLineText("测试红色",qRgb(255,0,0));
-    ui->textEdit_print->addLineText("插件系统加载成功！",qRgb(0, 120, 215));
-    ui->textEdit_print->addLineText("E:/QtProject/FireMonkeyStudio/release/plg/FireMonkeyStudioBasic/plugin_ideBasic.plg");
+    //ui->textEdit_print->addLineText("插件系统加载成功！",qRgb(0, 120, 215));
+    //ui->textEdit_print->addLineText("E:/QtProject/FireMonkeyStudio/release/plg/FireMonkeyStudioBasic/plugin_ideBasic.plg");
 
 
 
@@ -75,7 +75,7 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
 
     ui->statusbar->showMessage(tr("欢迎使用FMS"),30000);
 
-    widget_statusbar->setProgress(-1);
+    widget_statusbar->setProgress(-1); //隐藏进度
 
     //ui->textEdit_print->addText("左边文本",qRgb(255,0,0));
     //ui->textEdit_print->addText("右边文本");

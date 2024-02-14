@@ -17,7 +17,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="settingTabs">
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <property name="movable">
       <bool>false</bool>
@@ -61,7 +61,7 @@
           <bool>true</bool>
          </property>
          <property name="text">
-          <string>编译时加入下列选项</string>
+          <string>编译时加入下列选项（使用空格区分不同参数）</string>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -110,7 +110,7 @@
        <item row="0" column="0">
         <widget class="QTabWidget" name="compleTabs">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="documentMode">
           <bool>false</bool>
@@ -661,7 +661,7 @@
        <item row="0" column="0">
         <widget class="QTabWidget" name="dirTabs">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="documentMode">
           <bool>false</bool>

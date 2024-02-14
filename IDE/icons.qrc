@@ -880,6 +880,7 @@
         <file>icon/Theme/Blue/Image/ResManagerView/FileType/WebFile_16x.png</file>
         <file>icon/Theme/Blue/Image/ResManagerView/FileType/XMLFile_16x.png</file>
         <file>icon/Theme/Blue/Image/ResManagerView/FileType/ZipFile_16x.png</file>
+        <file>icon/Theme/Blue/Image/ResManagerView/FileType/exe.png</file>
     </qresource>
     <qresource prefix="/CompileTip">
         <file>icon/compileTip/error.png</file>

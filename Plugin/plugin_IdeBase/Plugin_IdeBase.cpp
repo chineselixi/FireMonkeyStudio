@@ -60,7 +60,7 @@ void Plugin_IdeBase::event_onWorkSpaceFinish()
     this->projectManger_addFileIco("zip",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/ZipFile_16x.png"));
     this->projectManger_addFileIco("rar",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/ZipFile_16x.png"));
     this->projectManger_addFileIco("7z",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/ZipFile_16x.png"));
-
+    this->projectManger_addFileIco("exe",QIcon(":/FileType/icon/Theme/Blue/Image/ResManagerView/FileType/exe.png"));
 
     //初始化基本参数
     this->print_clearList();

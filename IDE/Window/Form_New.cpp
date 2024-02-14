@@ -10,6 +10,8 @@
 #include "../SwSystem/System_GlobalVar.h"
 #include "../SwSystem/System_UtilFun.h"
 
+#include "../Plugin/Plugin_Global.h"
+
 #include "QStandardPaths"
 #include "QDir"
 #include "QFileDialog"
@@ -342,6 +344,21 @@ void Form_New::OnBtnOpenDuwn()
         Window::workSpace->show();
     }
     Window::workSpace->loadProject(); //加载工程
+
+
+    QFileInfo t_fileInfo(t_path);
+    QString t_hisName = t_fileInfo.fileName();
+    QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(t_path));
+    if(t_jsonDoc.isObject()){
+        QJsonObject t_jsonObj = t_jsonDoc.object();
+        t_hisName = t_jsonObj.value("proName").toString(t_hisName);
+    }
+
+    //保存打开的工程
+    HistoryList::sys_proHistory->addMsg(t_hisName,QFileInfo(t_path).absolutePath() + "/ico.png",t_path,QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm"));
+    HistoryList::sys_proHistory->clearRepeat(); //清理重复数据
+    HistoryList::sys_proHistory->saveHisList(); //保存历史记录
+
     this->close(); //关闭当前窗口
 }
 
@@ -554,6 +571,7 @@ void Form_New::on_pushButton_createProject_clicked()
     //保存历史记录
     //保存工程历史
     HistoryList::sys_proHistory->addMsg(ui->lineEdit_projectName->text(),t_newPath + "/ico.png",t_proPath,QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm"));
+    HistoryList::sys_proHistory->clearRepeat(); //清理重复数据
     HistoryList::sys_proHistory->saveHisList(); //保存历史记录
     //保存模板历史
     QString t_abModPath = t_modPath.replace(System_OS::getaApplicationDirPath_EX(),"<modPath>"); //模板工程的记录采用相对路径

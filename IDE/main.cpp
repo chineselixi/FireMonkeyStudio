@@ -28,12 +28,10 @@
 void loadSettings(); //加载设置信息
 
 
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //a.setFont(QFont("Consolas"));
-
 
     //加载设置信息
     loadSettings();

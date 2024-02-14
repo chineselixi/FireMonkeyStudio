@@ -1,6 +1,6 @@
 ﻿#include "Form_Index.h"
 #include "ui_Form_Index.h"
-#include "Form_WorkSpace.h"
+#include "Form_New.h"
 #include "QTimer"
 
 Form_Index::Form_Index(QWidget *parent) :
@@ -12,7 +12,7 @@ Form_Index::Form_Index(QWidget *parent) :
 
     timer = new QTimer;
     connect(timer,&QTimer::timeout,[this](){
-        Form_WorkSpace* ws = new Form_WorkSpace;
+        Form_New* ws = new Form_New;
         ws->show();
         delete this;
     });

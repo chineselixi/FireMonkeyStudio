@@ -44,8 +44,11 @@ void Widget_List::on_btnAdd_clicked()
 //删除按钮被按下
 void Widget_List::on_btnDelete_clicked()
 {
-    this->removeNode(ui->listWidget->currentItem()->text());
-    this->flashUI(); //更新UI
+    QListWidgetItem* t_item = ui->listWidget->currentItem();
+    if(t_item){
+        this->removeNode(t_item->text());
+        this->flashUI(); //更新UI
+    }
 }
 
 //去重整理
@@ -86,3 +89,5 @@ void Widget_List::removeNode(QString sign)
         }
     }
 }
+
+
