@@ -5,7 +5,7 @@
 #include "QFileInfo"
 #include "SwSystem/System_GlobalVar.h"
 #include "SwSystem/System_History.h"
-#include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_SystemSetting.h"
 #include "SwSystem/System_UtilFun.h"
 
 #include "QCoreApplication"

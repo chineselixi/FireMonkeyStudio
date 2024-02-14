@@ -9,7 +9,7 @@
 #include <QScreen>
 
 #include "SwSystem/System_GlobalVar.h"
-#include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_SystemSetting.h"
 #include "SwSystem/System_UtilFun.h"
 #include "Plugin/Plugin_Manger.h"
 

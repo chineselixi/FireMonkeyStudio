@@ -3,7 +3,7 @@
 #include "QFontDatabase"
 
 #include "SwSystem/System_GlobalVar.h"
-#include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_SystemSetting.h"
 
 #include "Window/Form_SystemSettings.h"
 

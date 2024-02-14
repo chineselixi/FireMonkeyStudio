@@ -4,7 +4,7 @@
 #include "Form_settings_Git.h"
 #include "ui_Form_settings_Git.h"
 #include "SwSystem/System_GlobalVar.h"
-#include "SwSystem/system_systemsetting.h"
+#include "SwSystem/System_SystemSetting.h"
 #include "SwSystem/System_UtilFun.h"
 
 Form_settings_Git::Form_settings_Git(QWidget *parent) :

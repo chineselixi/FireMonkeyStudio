@@ -9,7 +9,7 @@
 #include "Window/settingWindow/Form_settings_Qt.h"
 
 #include "SwSystem/System_GlobalVar.h"
-#include "SwSystem/System_Systemsetting.h"
+#include "SwSystem/System_SystemSetting.h"
 #include "SwSystem/System_CodeEditorManger.h"
 #include "Window/Form_WorkSpace.h"
 #include "Plugin/Plugin_Manger.h"

@@ -595,29 +595,22 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
             connect(this->execProcess,&QProcess::errorOccurred,this,&Plugin_CppBase::event_runError);   //程序运行异常
 
             QString t_runCommand = ""; //运行命令行模板
-            switch (System_OS::getOsType()) {
-            case System_OS::OSType::WINDOWS:{   //Windows默认在内部运行
-                this->execProcess->setCreateProcessArgumentsModifier(  //Windows系统显示终端
-                    [](QProcess::CreateProcessArguments *args) {
-                        args->flags |= CREATE_NEW_CONSOLE;
-                        args->flags &= ~CREATE_NO_WINDOW;
-                        args->startupInfo->dwFlags &=~ STARTF_USESTDHANDLES;
-                    }
+#if defined(Q_OS_WIN)
+            this->execProcess->setCreateProcessArgumentsModifier(  //Windows系统显示终端
+                [](QProcess::CreateProcessArguments *args) {
+                    args->flags |= CREATE_NEW_CONSOLE;
+                    args->flags &= ~CREATE_NO_WINDOW;
+                    args->startupInfo->dwFlags &=~ STARTF_USESTDHANDLES;
+                }
                 );
-
-                t_runCommand = "{runPath} {args}";
-                break;
-            }
-            case System_OS::OSType::MACOS:{     //在Linux系统下
-                t_runCommand = "open -a Terminal.app {runPath} --args {args}";
-                break;
-            }
-            case System_OS::OSType::LINUX:
-            default:{
-                t_runCommand = "gnome-terminal -- bash -c \"{runPath} {args}; exec bash\"";
-                break;
-            }
-            }
+            t_runCommand = "{runPath} {args}";
+#elif defined(Q_OS_MAC)
+            t_runCommand = "open -a Terminal.app {runPath} --args {args}";
+#elif defined(Q_OS_LINUX)
+            t_runCommand = "gnome-terminal -- bash -c \"{runPath} {args}; exec bash\"";
+#else
+            t_runCommand = "";
+#endif
 
             //替换参数
             t_runCommand = t_runCommand.replace("{runPath}",t_exeFile);
@@ -734,7 +727,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
     //编译时加入以下选项
     if(t_settingMsg.s1_usCompile){
-        t_sPar = t_settingMsg.s1_otherCompile + " ";
+        t_sPar = t_settingMsg.s1_otherCompile;
         QStringList t_args = t_sPar.split(" ");
         t_runPar.append(t_args);
     }
@@ -896,7 +889,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
         //链接时加入如下参数
         if(t_settingMsg.s1_usLink){
-            t_sPar = t_settingMsg.s1_otherLinke + " ";
+            t_sPar = t_settingMsg.s1_otherLinke ;
             QStringList t_args = t_sPar.split(" ");
             t_parameterList.append(t_args);
         }
