@@ -40,7 +40,7 @@ private:
     QString lastStr; //上一行的文本
     QString newStr; //新输入的文本
     QString lastHtml; //上一次的Html
-
+    QString workPath; //设置工作目录
     QString execPath; //运行路径
 
     //历史容器
@@ -50,10 +50,11 @@ private:
     QString runCommand;
 
 public:
-    bool runProcess(QString command);     //运行命令
-    bool isRunning();                     //检测终端是否有程序正在运行
-    void killProcess();                   //结束程序
-    QString getRunCommand();              //获取外部调用命令行
+    bool runProcess(QString command);                   //运行命令
+    bool isRunning();                                   //检测终端是否有程序正在运行
+    void killProcess();                                 //结束程序
+    void setWorkDirectory(QString workingDirectory);    //设置环境工作目录
+    QString getRunCommand();                            //获取外部调用命令行
 
 private:
 

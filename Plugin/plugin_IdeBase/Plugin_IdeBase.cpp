@@ -74,7 +74,7 @@ void Plugin_IdeBase::event_onWorkSpaceFinish()
     //创建菜单，用于菜单创建终端
     connect(t_terminalAction,&QAction::triggered,[=](){
         static int t_id = 0; t_id++;
-        this->createTerminalWidget("Terminal" + QString::number(t_id));
+        this->createTerminalWidget("Terminal" + QString::number(t_id),"");
     });
 
     this->menu_addMenuBarMenu(PluginGlobalMsg::MenuBarType::toolType,t_terminalAction);
@@ -94,9 +94,6 @@ bool Plugin_IdeBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
 //base插件收到消息
 QString Plugin_IdeBase::event_onPluginReceive(QString sendPluginSign, QString msg)
 {
-    qDebug() << "IDE sendPluginSign===" << sendPluginSign;
-
-
     //获取消息对象
     QJsonDocument t_jsonDoc = QJsonDocument::fromJson(msg.toUtf8());
     QJsonObject t_jsonObj = t_jsonDoc.object();
@@ -108,10 +105,11 @@ QString Plugin_IdeBase::event_onPluginReceive(QString sendPluginSign, QString ms
 
     if(t_msgType == "runProcess"){
         QString t_command = t_jsonObj.value("command").toString();
+        QString t_workingDirectory = t_jsonObj.value("workingDirectory").toString();
         if(t_command.isEmpty()) return ""; //若没有运行的命令，则停止
 
         //获取终端，并且运行
-        Form_Terminal* t_terminal = this->createTerminalWidget(t_command);
+        Form_Terminal* t_terminal = this->createTerminalWidget(t_command,t_workingDirectory);
         t_terminal->disconnect();
         Form_Terminal::connect(t_terminal,&Form_Terminal::sig_start,[this,sendPluginSign](QString comm){//终端程序开始运行
             QMap<QString,QJsonValue> t_map;
@@ -149,7 +147,7 @@ QString Plugin_IdeBase::event_onPluginReceive(QString sendPluginSign, QString ms
 }
 
 //创建终端窗口
-Form_Terminal *Plugin_IdeBase::createTerminalWidget(QString command)
+Form_Terminal *Plugin_IdeBase::createTerminalWidget(QString command,QString workingDirectory)
 {
     for(Form_Terminal* item : terminalList){
         if(item && item->getRunCommand() == command){
@@ -159,6 +157,7 @@ Form_Terminal *Plugin_IdeBase::createTerminalWidget(QString command)
 
     //创建新的终端窗口
     Form_Terminal* t_terminal = new Form_Terminal();
+    t_terminal->setWorkDirectory(workingDirectory); //设置工作环境
     Form_Terminal::connect(t_terminal,&QWidget::destroyed,[=]{  //终端窗口被关闭，绑定自动删除
         this->deleteTerminalWidget(t_terminal);
     });

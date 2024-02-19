@@ -55,6 +55,7 @@ void Form_ListPrint::addMsg(QString code, QString text, QString project, QString
     }
     t_item->setIcon(0,t_ico);
     ui->treeWidget->addTopLevelItem(t_item);
+    ui->treeWidget->scrollToBottom(); //总是显示最后一行
 }
 
 

@@ -566,14 +566,25 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
         t_attr.outPath.replace("${projectPath}",proPath); //最终编译输出内容
         t_attr.tempPath.replace("${projectPath}",proPath); //临时文件输出内容
 
+        //读取设置信息
+        settingNamespace::settingNode t_settingMsg = Form_settings_Compile::getNowCompilerNode(); //获取当前设置信息（包含s4编译器信息）
+        QString t_workingDirectory = QFileInfo(t_settingMsg.s4_compileMsg.fp_gpp).path(); //工作路径
+        qputenv("path",t_workingDirectory.toUtf8());
 
         //根据本地属性配置，选择合适的运行方式(终端/外部)
+        QString t_runCommand = "{runPath} {args}";
+
         if(t_attr.useFmsTerminal){  //使用内置终端运行
             //内置终端运行方式
             QJsonDocument t_jsonDoc;
             QJsonObject t_jsonObj;
+
+            t_runCommand = t_runCommand.replace("{runPath}",t_exeFile);
+            t_runCommand = t_runCommand.replace("{args}",t_attr.runArgs);
+
             t_jsonObj.insert("type","runProcess");
-            t_jsonObj.insert("command",t_exeFile);
+            t_jsonObj.insert("command",t_runCommand);
+            t_jsonObj.insert("workingDirectory","");
             t_jsonDoc.setObject(t_jsonObj);
 
             this->print_printList("",QObject::tr("使用内置终端运行：") + t_exeFile,t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor("green"));
@@ -594,7 +605,6 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
             connect(this->execProcess,&QProcess::finished,this,&Plugin_CppBase::event_runFinished);   //程序运行完毕
             connect(this->execProcess,&QProcess::errorOccurred,this,&Plugin_CppBase::event_runError);   //程序运行异常
 
-            QString t_runCommand = ""; //运行命令行模板
 #if defined(Q_OS_WIN)
             this->execProcess->setCreateProcessArgumentsModifier(  //Windows系统显示终端
                 [](QProcess::CreateProcessArguments *args) {
@@ -618,8 +628,12 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
 
             //开始运行
             this->print_printList("",QObject::tr("运行：") + t_exeFile,t_proName,"",-1,PluginGlobalMsg::printIcoType::ok,QColor("green"));
+//            if(!t_workingDirectory.isEmpty()){ //设置工作目录为编译器目录
+//                execProcess->setWorkingDirectory(t_workingDirectory);
+//            }
             this->execProcess->startCommand(t_runCommand);
         }
+        this->print_printTextSpaceLine(QColor("#1a9b34"),QObject::tr("运行：") + t_runCommand);
         return;
     }
     this->tip_addTip(tr("停止"),tr("运行失败"),5000,PluginGlobalMsg::TipType::Error);
@@ -661,7 +675,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     settingNamespace::settingNode t_settingMsg = Form_settings_Compile::getNowCompilerNode(); //获取当前设置信息（包含s4编译器信息）
 
 
-    //运行参数==============================
+    //编译运行参数==============================
     QStringList t_runPar;
     QString t_sPar;
     //设置优化级别
@@ -724,6 +738,15 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         t_sPar = "-fopenmp";
         t_runPar.append(t_sPar);
     }
+
+    //加入环境文件夹
+    for(QString t_pathItem : t_settingMsg.s31_sourceFolders){
+        if(t_pathItem.isEmpty()){
+            t_sPar = "-I" + t_pathItem;
+            t_runPar.append(t_sPar);
+        }
+    }
+
 
     //编译时加入以下选项
     if(t_settingMsg.s1_usCompile){
@@ -876,16 +899,17 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     t_parameterList.clear();//清空参数列表
 
     //若没有需要编译的文件，且启用了快速编译，则直接返回
-    if(t_compileFileNum + t_compileFileNumRedirect == 0 && t_settingMsg.s21_tepOpt){
-        this->print_printList("",QObject::tr("快速编译：未改动代码"),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("green"));
+    t_attr.programName += ("." + (t_settingMsg.s5_txtExecutableSuffix.isEmpty()?System_OS::getSoftwareSuffix() : t_settingMsg.s5_txtExecutableSuffix));
+    if(t_compileFileNum + t_compileFileNumRedirect == 0 && t_settingMsg.s21_tepOpt && QFile::exists(t_attr.outPath + "/" + t_attr.programName)){
+        this->print_printList("",QObject::tr("跳过编译：未改动任何代码"),t_proName,"",-1,PluginGlobalMsg::printIcoType::tip,QColor("green"));
     }
     else{
         for(qsizetype i = 0; i<t_compileMapper.length(); i++){
             t_parameterList.append(t_attr.tempPath + "/" + t_compileMapper[i].mapperName + ".o"); //获取目标文件
         }
+
         t_parameterList.append("-o");
         t_parameterList.append(t_attr.programName);
-
 
         //链接时加入如下参数
         if(t_settingMsg.s1_usLink){
@@ -949,7 +973,8 @@ void Plugin_CppBase::event_runFinished(int exitCode, QProcess::ExitStatus exitSt
     this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,true); //允许静态编译
 
     QString t_proName = this->projectManger_getProjectInfo(this->runProPath).proName; //获取工程名称
-    this->print_printList("",QObject::tr("执行完毕！"),t_proName);
+    this->print_printList("",QObject::tr("执行完成，程序已退出！"),t_proName,"",-1,PluginGlobalMsg::printIcoType::ok);
+    this->print_printTextSpaceLine(QColor(),QObject::tr("执行完成，程序已退出！退出代码:") + QString::number(exitCode));
 }
 
 //程序开始运行

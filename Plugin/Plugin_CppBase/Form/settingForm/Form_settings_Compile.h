@@ -5,6 +5,9 @@
 #include "../../IDE/module/mod_settingsFormBase.h"
 #include "../../Plugin_CppBase_global.h"
 
+
+#define RUN_PATH_SIGN "${runPath}"
+
 class Plugin_CppBase;
 
 namespace Ui {

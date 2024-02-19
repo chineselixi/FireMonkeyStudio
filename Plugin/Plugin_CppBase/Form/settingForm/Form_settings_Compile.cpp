@@ -341,24 +341,25 @@ QString Form_settings_Compile::buildJson()
         //======选项卡：环境文件夹======
         QJsonArray t_s31_sourceFolders;
         for(unsigned int a = 0; a<settingNamespace::settingList[i].s31_sourceFolders.length(); a++){
-            t_s31_sourceFolders.append(settingNamespace::settingList[i].s31_sourceFolders[a]);
+            t_s31_sourceFolders.append(QString(settingNamespace::settingList[i].s31_sourceFolders[a]).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
         }
         t_obj.insert("s31_sourceFolders",t_s31_sourceFolders); //源文件夹列表
 
         QJsonArray t_s32_staticFolders;
         for(unsigned int a = 0; a<settingNamespace::settingList[i].s32_staticFolders.length(); a++){
-            t_s32_staticFolders.append(settingNamespace::settingList[i].s32_staticFolders[a]);
+            t_s32_staticFolders.append(QString(settingNamespace::settingList[i].s32_staticFolders[a]).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
         }
         t_obj.insert("s32_staticFolders",t_s32_staticFolders); //源文件夹列表
 
         //======选项卡：编译套件信息======
+
         QJsonObject t_s4_compileMsg;
-        t_s4_compileMsg.insert("fp_gcc",settingNamespace::settingList[i].s4_compileMsg.fp_gcc);
-        t_s4_compileMsg.insert("fp_gpp",settingNamespace::settingList[i].s4_compileMsg.fp_gpp);
-        t_s4_compileMsg.insert("fp_make",settingNamespace::settingList[i].s4_compileMsg.fp_make);
-        t_s4_compileMsg.insert("fp_gdb",settingNamespace::settingList[i].s4_compileMsg.fp_gdb);
-        t_s4_compileMsg.insert("fp_gdbServer",settingNamespace::settingList[i].s4_compileMsg.fp_gdbServer);
-        t_s4_compileMsg.insert("fp_windres",settingNamespace::settingList[i].s4_compileMsg.fp_windres);
+        t_s4_compileMsg.insert("fp_gcc",QString(settingNamespace::settingList[i].s4_compileMsg.fp_gcc).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
+        t_s4_compileMsg.insert("fp_gpp",QString(settingNamespace::settingList[i].s4_compileMsg.fp_gpp).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
+        t_s4_compileMsg.insert("fp_make",QString(settingNamespace::settingList[i].s4_compileMsg.fp_make).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
+        t_s4_compileMsg.insert("fp_gdb",QString(settingNamespace::settingList[i].s4_compileMsg.fp_gdb).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
+        t_s4_compileMsg.insert("fp_gdbServer",QString(settingNamespace::settingList[i].s4_compileMsg.fp_gdbServer).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
+        t_s4_compileMsg.insert("fp_windres",QString(settingNamespace::settingList[i].s4_compileMsg.fp_windres).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
         t_obj.insert("s4_compileMsg",t_s4_compileMsg);
 
         t_obj.insert("s5_rbPreprocessingOnly",settingNamespace::settingList[i].s5_rbPreprocessingOnly); //在完成预处理后停止编译
@@ -432,22 +433,23 @@ void Form_settings_Compile::loadSetting(QString jsonStr)
         //======选项卡：环境文件夹======
         QJsonArray t_s31_sourceFolders = t_obj.value("s31_sourceFolders").toArray(); //源文件夹列表
         for(unsigned int a = 0; a<t_s31_sourceFolders.size(); a++){
-            t_node.s31_sourceFolders.append(t_s31_sourceFolders.at(a).toString());
+            t_node.s31_sourceFolders.append(t_s31_sourceFolders.at(a).toString().replace(RUN_PATH_SIGN,System_OS::getaApplicationDirPath_EX()));
         }
 
         QJsonArray t_s32_staticFolders = t_obj.value("s32_staticFolders").toArray(); //静态文件夹列表
         for(unsigned int a = 0; a<t_s32_staticFolders.size(); a++){
-            t_node.s32_staticFolders.append(t_s32_staticFolders.at(a).toString());
+            t_node.s32_staticFolders.append(t_s32_staticFolders.at(a).toString().replace(RUN_PATH_SIGN,System_OS::getaApplicationDirPath_EX()));
         }
 
         //======选项卡：编译套件信息======
         QJsonObject t_s4_compileMsg = t_obj.value("s4_compileMsg").toObject();
-        t_node.s4_compileMsg.fp_gcc = t_s4_compileMsg.value("fp_gcc").toString();
-        t_node.s4_compileMsg.fp_gpp = t_s4_compileMsg.value("fp_gpp").toString();
-        t_node.s4_compileMsg.fp_make = t_s4_compileMsg.value("fp_make").toString();
-        t_node.s4_compileMsg.fp_gdb = t_s4_compileMsg.value("fp_gdb").toString();
-        t_node.s4_compileMsg.fp_gdbServer = t_s4_compileMsg.value("fp_gdbServer").toString();
-        t_node.s4_compileMsg.fp_windres = t_s4_compileMsg.value("fp_windres").toString();
+
+        t_node.s4_compileMsg.fp_gcc = t_s4_compileMsg.value("fp_gcc").toString().replace(RUN_PATH_SIGN,System_OS::getaApplicationDirPath_EX());
+        t_node.s4_compileMsg.fp_gpp = t_s4_compileMsg.value("fp_gpp").toString().replace(RUN_PATH_SIGN,System_OS::getaApplicationDirPath_EX());
+        t_node.s4_compileMsg.fp_make = t_s4_compileMsg.value("fp_make").toString().replace(RUN_PATH_SIGN,System_OS::getaApplicationDirPath_EX());
+        t_node.s4_compileMsg.fp_gdb = t_s4_compileMsg.value("fp_gdb").toString().replace(RUN_PATH_SIGN,System_OS::getaApplicationDirPath_EX());
+        t_node.s4_compileMsg.fp_gdbServer = t_s4_compileMsg.value("fp_gdbServer").toString().replace(RUN_PATH_SIGN,System_OS::getaApplicationDirPath_EX());
+        t_node.s4_compileMsg.fp_windres = t_s4_compileMsg.value("fp_windres").toString().replace(RUN_PATH_SIGN,System_OS::getaApplicationDirPath_EX());
 
         //======选项卡：输出======
         t_node.s5_rbPreprocessingOnly = t_obj.value("s5_rbPreprocessingOnly").toBool(false); //在完成预处理后停止编译
@@ -468,8 +470,6 @@ void Form_settings_Compile::loadSetting(QString jsonStr)
             }
         }
     }
-
-
 }
 
 

@@ -28,7 +28,7 @@ private:
     QVector<Form_Terminal*> terminalList; //终端列表
 
 private:
-    Form_Terminal* createTerminalWidget(QString command);   //创建终端窗口
+    Form_Terminal* createTerminalWidget(QString command,QString workingDirectory);   //创建终端窗口
     void deleteTerminalWidget(Form_Terminal* widget);       //删除终端窗口
     QString ret_JsonOK(bool isOK);                          //Json返回正确信息
     QString ret_budJson(QMap<QString,QJsonValue> map);      //构建Json信息

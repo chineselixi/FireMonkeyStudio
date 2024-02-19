@@ -253,6 +253,9 @@ bool Form_Terminal::onKeyDown(QKeyEvent *e)
     //如果使用回车按钮
     if(e->key() == 16777220){
         if(!ui->textEdit->isReadOnly()){
+            if(process && process->state() != QProcess::Running){  //清空外部传入的工作环境
+                this->workPath = "";
+            }
             this->onStreamIput(this->newStr);
             return false;
         }
@@ -355,6 +358,13 @@ void Form_Terminal::killProcess()
     }
 }
 
+
+//设置环境工作目录
+void Form_Terminal::setWorkDirectory(QString workingDirectory)
+{
+    this->workPath = workingDirectory;
+}
+
 //获取外部调用命令行
 QString Form_Terminal::getRunCommand()
 {
@@ -435,7 +445,11 @@ void Form_Terminal::onStreamIput(QString inputStr)
     //运行程序或者执行命令
     this->printNomal("\n");
     if(process->state() != QProcess::Running){
-        process->setWorkingDirectory(this->getRunPath());
+        QString t_runWorkPath = this->workPath;
+        if(t_runWorkPath.isEmpty()){
+            t_runWorkPath = this->getRunPath();
+        }
+        process->setWorkingDirectory(t_runWorkPath);
         process->startCommand(inputStr);
 
         //启用控制按钮
