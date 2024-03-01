@@ -4,13 +4,12 @@
 #include "../../../IDE/SwSystem/System_UtilFun.h"
 #include "../../QScintilla/src/Qsci/qscilexercpp.h"
 #include "../../../IDE/SwSystem/System_UtilFun.h"
+//#include "../Plugin_CppBase.h"
 
-
-
-
-Form_CodeEditor::Form_CodeEditor(QWidget *parent) :
+Form_CodeEditor::Form_CodeEditor(Plugin_Base* plg,QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Form_CodeEditor)
+    ui(new Ui::Form_CodeEditor),
+    cppPlgPtr(plg)
 {
     ui->setupUi(this);
     this->intiCodeEditor(); //初始化代码编辑器
@@ -37,6 +36,12 @@ void Form_CodeEditor::intiCodeEditor()
     connect(ui->sciEditor, SIGNAL(cursorPositionChanged(int,int)),this, SLOT(event_cursorPositionChanged(int,int))); //光标位置改变
     connect(ui->sciEditor, SIGNAL(marginClicked(int,int,Qt::KeyboardModifiers)),this, SLOT(event_marginClicked(int,int,Qt::KeyboardModifiers)));//边缘被点击
     connect(ui->sciEditor, SIGNAL(SCN_ZOOM()),this, SLOT(event_zoomChanged()));//缩放改变
+
+
+
+//    //创建标记线条索引
+    signLineIndex_squiggle = ui->sciEditor->indicatorDefine(QsciScintilla::IndicatorStyle::SquigglePixmapIndicator); //定义波浪指示器
+    signLineIndex_straight = ui->sciEditor->indicatorDefine(QsciScintilla::IndicatorStyle::PlainIndicator); //定义直线指示器
 
 //    //全局字体效果
 //    QFont font("Consolas", 12, QFont::Normal);
@@ -88,8 +93,8 @@ void Form_CodeEditor::intiCodeEditor()
     //如果正在使用指示器，则会忽略它。默认值为蓝色。
     //ui->sciEditor->setUnmatchedBraceForegroundColor(Qt::red); //设置不匹配的大括号前景颜色
     ui->sciEditor->setBraceMatching(QsciScintilla::SloppyBraceMatch);//括号匹配
+    ui->sciEditor->setIndentationsUseTabs(false); //使用空格，而不是tab占位符
     ui->sciEditor->setTabWidth(4);
-
 
     //自动填充
     //Acs[None|All|Document|APIs]
@@ -211,8 +216,8 @@ void Form_CodeEditor::setCodeEditorThemeColor(
     ui->sciEditor->setMarginsForegroundColor(MarginsForeground);//行号颜色
     ui->sciEditor->setFoldMarginColors(FoldMarginFore,FoldMarginBack);//折叠栏颜色，默认#808080
     ui->sciEditor->SendScintilla(QsciScintilla::SCI_MARKERSETBACK, 0,Breakpoint); //断点标记背景色为红色
-}
 
+}
 
 
 
@@ -289,18 +294,52 @@ void Form_CodeEditor::getDebugSign(uint16_t line,int& mhandle,int& index)
 
 
 //添加标记，1为右箭头  2错误标记  3警告标记  4正确标记
-void Form_CodeEditor::addSign(uint16_t line, int markerNumber)
+void Form_CodeEditor::addMarginSign(uint16_t line, int markerNumber)
 {
     ui->sciEditor->markerAdd(line,markerNumber);
+
 }
 
 //删除所有标记，-1为全部标记，1为右箭头  2错误标记  3警告标记  4正确标记
-void Form_CodeEditor::deleteAllSign(int markerNumber)
+void Form_CodeEditor::delMarginAllSign(int markerNumber)
 {
     if(markerNumber == -1 || markerNumber == 0){
         debugsSign.clear(); //删除所有调试标记记录
     }
     ui->sciEditor->markerDeleteAll(markerNumber);
+}
+
+
+//添加波浪线
+void Form_CodeEditor::addLineSquiggle(uint16_t line, uint16_t startPos, uint16_t endPos, QColor color)
+{
+    ui->sciEditor->setIndicatorForegroundColor(color,signLineIndex_squiggle);   //设置指示器颜色
+    ui->sciEditor->setIndicatorDrawUnder(false,signLineIndex_squiggle);
+    ui->sciEditor->fillIndicatorRange(line,startPos,line,endPos,signLineIndex_squiggle); //设置指示器范围
+}
+
+
+//添加笔直线条
+void Form_CodeEditor::addLineStraight(uint16_t line, uint16_t startPos, uint16_t endPos, QColor color)
+{
+    ui->sciEditor->setIndicatorForegroundColor(color,signLineIndex_straight);   //设置指示器颜色
+    ui->sciEditor->setIndicatorDrawUnder(false,signLineIndex_straight);
+    ui->sciEditor->fillIndicatorRange(line,startPos,line,endPos,signLineIndex_straight); //设置指示器范围
+}
+
+
+//删除所有标记
+void Form_CodeEditor::delAllLineSign()
+{
+    ui->sciEditor->clearIndicatorRange(0,0,ui->sciEditor->lines(),0,signLineIndex_squiggle);
+    ui->sciEditor->clearIndicatorRange(0,0,ui->sciEditor->lines(),0,signLineIndex_straight);
+}
+
+
+//选择标记文本
+void Form_CodeEditor::selectCodeText(uint16_t line, uint16_t lineIndex, uint16_t len)
+{
+    ui->sciEditor->setSelection(line,lineIndex,line,lineIndex + len);
 }
 
 
@@ -330,7 +369,9 @@ void Form_CodeEditor::event_marginClicked(int margin, int line, Qt::KeyboardModi
 {
     if(margin == 1 || margin == 2){
         this->setDebugSign(line,true,true);
-        this->addSign(line,1);
+
+        //this->addLineSquiggle(line,1,4);
+        //this->addSign(line,1);
     }
 }
 
@@ -346,7 +387,8 @@ void Form_CodeEditor::event_zoomChanged()
 void Form_CodeEditor::event_timer_textChanged()
 {
     this->saveTimer.stop();
-    System_File::writeFile(this->nowOpenFilePath,ui->sciEditor->text().toUtf8());
+    System_File::writeFile(this->getSavePath(),ui->sciEditor->text().toUtf8());
+    onTimeOut(); //激发外部定时器消息
 }
 
 
@@ -461,5 +503,12 @@ QString Form_CodeEditor::getSavePath()
 QsciScintilla *Form_CodeEditor::getSciCodeEditor()
 {
     return ui->sciEditor;
+}
+
+
+//文件被保存事件
+void Form_CodeEditor::event_onFilePathChanged(QString newFilePath)
+{
+    this->nowOpenFilePath = newFilePath;
 }
 

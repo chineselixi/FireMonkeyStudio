@@ -3,6 +3,7 @@
 #include "QJsonObject"
 #include "QJsonArray"
 #include "QProcess"
+#include "QMessageBox"
 #include "QMainWindow"
 #include "Dialog/Dialog_Index.h"
 
@@ -30,7 +31,7 @@ Plugin_IdeBase::Plugin_IdeBase()
     this->self_BaseMsg.sign = "IDE_Base"; //插件标记，插件之间的通信需要的标记。注意，插件的标记可以相同，管理器将通过这些标记进行数据传输
     this->self_BaseMsg.note = "本插件为IDE基础功能插件，不提供语言支持能力。当无任何自定义插件处理事件时本插件将处理最终的激发事件，这是静默执行，且不会阻止插件信息的进一步传递。";
     this->self_BaseMsg.loadTip = "欢迎使用FMS！";//加载时输出的文字信息，可以作为加载成功的提示
-    this->self_BaseMsg.level = 05; //排序级别范围：0-65535，默认为最低级别，相同的级别系统将随机分配，自定义插件建议高于0
+    this->self_BaseMsg.level = 0; //排序级别范围：0-65535，默认为最低级别，相同的级别系统将随机分配，等级越高越先被加载。自定义插件建议高于0
 }
 
 void Plugin_IdeBase::event_onWorkSpaceFinish()
@@ -88,6 +89,14 @@ bool Plugin_IdeBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
         di->show();
     }
     return true; //阻止消息传递
+}
+
+
+//文件被加载，阻止消息继续触发，返回false阻止
+bool Plugin_IdeBase::event_onFileOpen(QString filePath, uint16_t line, uint16_t lineIndex, uint16_t len)
+{
+    QMessageBox::information(nullptr,tr("没有匹配项"),tr("IDE内部没有针对此文件打开的编辑器，无法打开此文件！"));
+    return false;
 }
 
 

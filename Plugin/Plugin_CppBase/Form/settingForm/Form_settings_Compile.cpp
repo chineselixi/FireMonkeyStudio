@@ -143,6 +143,21 @@ void Form_settings_Compile::updateCompilerUI()
     ui->s5_txtCompilationSuffix->setText(node.s5_txtCompilationSuffix);
     ui->s5_txtExecutableSuffix->setText(node.s5_txtExecutableSuffix);
     ui->s5_cbBinarySuffix->setCurrentText(node.s5_cbBinarySuffix);
+
+    //选项卡：步骤
+    ui->s61_useComposeBefore->setChecked(node.s61_useComposeBefore);
+    ui->s61_useComposeFinish->setChecked(node.s61_useComposeFinish);
+    ui->s61_useComposeError->setChecked(node.s61_useComposeError);
+    ui->s61_composeBeforeEditor->setPlainText(node.s61_composeBeforeEditor);
+    ui->s61_composeFinishEditor->setPlainText(node.s61_composeFinishEditor);
+    ui->s61_composeErrorEditor->setPlainText(node.s61_composeErrorEditor);
+    ui->s61_useRunBefore->setChecked(node.s61_useRunBefore);
+    ui->s61_useRunFinish->setChecked(node.s61_useRunFinish);
+    ui->s61_useRunError->setChecked(node.s61_useRunError);
+    ui->s61_runBeforeEditor->setPlainText(node.s61_runBeforeEditor);
+    ui->s61_runFinishEditor->setPlainText(node.s61_runFinishEditor);
+    ui->s61_runErrorEditor->setPlainText(node.s61_runErrorEditor);
+
 }
 
 
@@ -352,7 +367,6 @@ QString Form_settings_Compile::buildJson()
         t_obj.insert("s32_staticFolders",t_s32_staticFolders); //源文件夹列表
 
         //======选项卡：编译套件信息======
-
         QJsonObject t_s4_compileMsg;
         t_s4_compileMsg.insert("fp_gcc",QString(settingNamespace::settingList[i].s4_compileMsg.fp_gcc).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
         t_s4_compileMsg.insert("fp_gpp",QString(settingNamespace::settingList[i].s4_compileMsg.fp_gpp).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
@@ -362,6 +376,7 @@ QString Form_settings_Compile::buildJson()
         t_s4_compileMsg.insert("fp_windres",QString(settingNamespace::settingList[i].s4_compileMsg.fp_windres).replace(System_OS::getaApplicationDirPath_EX(),RUN_PATH_SIGN));
         t_obj.insert("s4_compileMsg",t_s4_compileMsg);
 
+        //======选项卡：输出======
         t_obj.insert("s5_rbPreprocessingOnly",settingNamespace::settingList[i].s5_rbPreprocessingOnly); //在完成预处理后停止编译
         t_obj.insert("s5_rbCompilationProperOnly",settingNamespace::settingList[i].s5_rbCompilationProperOnly); //在生成汇编代码后停止
         t_obj.insert("s5_rbGenerateExecutable",settingNamespace::settingList[i].s5_rbGenerateExecutable); //链接得到可执行文件
@@ -369,6 +384,21 @@ QString Form_settings_Compile::buildJson()
         t_obj.insert("s5_txtCompilationSuffix",settingNamespace::settingList[i].s5_txtCompilationSuffix); //汇编输出后缀
         t_obj.insert("s5_txtExecutableSuffix",settingNamespace::settingList[i].s5_txtExecutableSuffix); //可执行文件后缀
         t_obj.insert("s5_cbBinarySuffix",settingNamespace::settingList[i].s5_cbBinarySuffix); //二进制文件类型
+
+        //======选项卡：步骤======
+        t_obj.insert("s61_useComposeBefore",settingNamespace::settingList[i].s61_useComposeBefore);    //开启编译前命令
+        t_obj.insert("s61_useComposeFinish",settingNamespace::settingList[i].s61_useComposeFinish);    //开启编译后命令
+        t_obj.insert("s61_useComposeError",settingNamespace::settingList[i].s61_useComposeError);       //开启编译错误时命令
+        t_obj.insert("s61_composeBeforeEditor",settingNamespace::settingList[i].s61_composeBeforeEditor); //编译前命令
+        t_obj.insert("s61_composeFinishEditor",settingNamespace::settingList[i].s61_composeFinishEditor); //编译后命令
+        t_obj.insert("s61_composeErrorEditor",settingNamespace::settingList[i].s61_composeErrorEditor);   //编译错误时命令
+        t_obj.insert("s61_useRunBefore",settingNamespace::settingList[i].s61_useRunBefore);    //开启运行前命令
+        t_obj.insert("s61_useRunFinish",settingNamespace::settingList[i].s61_useRunFinish);    //开启运行后命令
+        t_obj.insert("s61_useRunError",settingNamespace::settingList[i].s61_useRunError);       //开启运行错误时命令
+        t_obj.insert("s61_runBeforeEditor",settingNamespace::settingList[i].s61_runBeforeEditor); //运行前命令
+        t_obj.insert("s61_runFinishEditor",settingNamespace::settingList[i].s61_runFinishEditor); //运行后命令
+        t_obj.insert("s61_runErrorEditor",settingNamespace::settingList[i].s61_runErrorEditor);  //运行错误时命令
+
         t_jsonArray.append(t_obj);
     }
     t_jsonObj.insert("list",t_jsonArray);
@@ -459,6 +489,21 @@ void Form_settings_Compile::loadSetting(QString jsonStr)
         t_node.s5_txtCompilationSuffix = t_obj.value("s5_txtCompilationSuffix").toString(); //汇编输出后缀
         t_node.s5_txtExecutableSuffix = t_obj.value("s5_txtExecutableSuffix").toString(); //可执行文件后缀
         t_node.s5_cbBinarySuffix = t_obj.value("s5_cbBinarySuffix").toString(); //二进制文件类型
+
+        //======选项卡：步骤======
+        t_node.s61_useComposeBefore = t_obj.value("s61_useComposeBefore").toBool(false);    //开启编译前命令
+        t_node.s61_useComposeFinish = t_obj.value("s61_useComposeFinish").toBool(false);    //开启编译后命令
+        t_node.s61_useComposeError = t_obj.value("s61_useComposeError").toBool(true);       //开启编译错误时命令
+        t_node.s61_composeBeforeEditor = t_obj.value("s61_composeBeforeEditor").toString(); //编译前命令
+        t_node.s61_composeFinishEditor = t_obj.value("s61_composeFinishEditor").toString(); //编译后命令
+        t_node.s61_composeErrorEditor = t_obj.value("s61_composeErrorEditor").toString();   //编译错误时命令
+        t_node.s61_useRunBefore = t_obj.value("s61_useRunBefore").toBool(false);    //开启运行前命令
+        t_node.s61_useRunFinish = t_obj.value("s61_useRunFinish").toBool(false);    //开启运行后命令
+        t_node.s61_useRunError = t_obj.value("s61_useRunError").toBool(true);       //开启运行错误时命令
+        t_node.s61_runBeforeEditor = t_obj.value("s61_runBeforeEditor").toString(); //运行前命令
+        t_node.s61_runFinishEditor = t_obj.value("s61_runFinishEditor").toString(); //运行后命令
+        t_node.s61_runErrorEditor  = t_obj.value("s61_runErrorEditor").toString();  //运行错误时命令
+
         settingNamespace::settingList.append(t_node);
     }
 
@@ -706,6 +751,20 @@ void Form_settings_Compile::Event_use()
     node.s5_txtCompilationSuffix = ui->s5_txtCompilationSuffix->text();
     node.s5_txtExecutableSuffix = ui->s5_txtExecutableSuffix->text();
     node.s5_cbBinarySuffix = ui->s5_cbBinarySuffix->currentText();
+
+    //选项卡：步骤
+    node.s61_useComposeBefore = ui->s61_useComposeBefore->isChecked();          //开启编译前命令
+    node.s61_useComposeFinish = ui->s61_useComposeFinish->isChecked();          //开启编译后命令
+    node.s61_useComposeError = ui->s61_useComposeError->isChecked();            //开启编译错误时命令
+    node.s61_composeBeforeEditor = ui->s61_composeBeforeEditor->toPlainText();  //编译前命令
+    node.s61_composeFinishEditor = ui->s61_composeFinishEditor->toPlainText();  //编译后命令
+    node.s61_composeErrorEditor = ui->s61_composeErrorEditor->toPlainText();    //编译错误时命令
+    node.s61_useRunBefore = ui->s61_useRunBefore->isChecked();          //开启运行前命令
+    node.s61_useRunFinish = ui->s61_useRunFinish->isChecked();          //开启运行后命令
+    node.s61_useRunError =  ui->s61_useRunError->isChecked();           //开启运行错误时命令
+    node.s61_runBeforeEditor = ui->s61_runBeforeEditor->toPlainText();; //运行前命令
+    node.s61_runFinishEditor = ui->s61_runFinishEditor->toPlainText();; //运行后命令
+    node.s61_runErrorEditor = ui->s61_runErrorEditor->toPlainText();;   //运行错误时命令
 
     //重新应用更改
     settingNamespace::settingList[settingNamespace::compilerIndex] = node; //重新应用更改

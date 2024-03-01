@@ -18,8 +18,10 @@ public: //不可阻止事件
 
 
 public: //返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
-    bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass) override;//当工具栏内部按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
-
+    //当工具栏内部按钮被按下(参数1:工程的目录   参数2:工程的多个语言标记   参数3:工程类型标记)
+    bool event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath,QString proLangs,QString proNoteClass) override;
+    //文件被加载，阻止消息继续触发，返回false阻止
+    bool event_onFileOpen(QString filePath,uint16_t line = 0,uint16_t lineIndex = 0,uint16_t len = 0) override;
 
 public:
     QString event_onPluginReceive(QString sendPluginSign,QString msg); //插件消息投递完成

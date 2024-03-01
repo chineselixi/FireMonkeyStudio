@@ -83,6 +83,21 @@ struct settingNode{
     QString s5_txtCompilationSuffix; //汇编输出后缀
     QString s5_txtExecutableSuffix; //可执行文件后缀
     QString s5_cbBinarySuffix; //二进制文件类型
+
+    //======选项卡：步骤======
+    bool s61_useComposeBefore = false; //开启编译前命令
+    bool s61_useComposeFinish = false; //开启编译后命令
+    bool s61_useComposeError = false;  //开启编译错误时命令
+    QString s61_composeBeforeEditor; //编译前命令
+    QString s61_composeFinishEditor; //编译后命令
+    QString s61_composeErrorEditor;  //编译错误时命令
+    bool s61_useRunBefore = false; //开启运行前命令
+    bool s61_useRunFinish = false; //开启运行后命令
+    bool s61_useRunError = false;  //开启运行错误时命令
+    QString s61_runBeforeEditor; //运行前命令
+    QString s61_runFinishEditor; //运行后命令
+    QString s61_runErrorEditor;  //运行错误时命令
+
 };
 
 

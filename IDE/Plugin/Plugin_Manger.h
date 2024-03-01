@@ -68,7 +68,8 @@ public:
                             PluginGlobalMsg::menuFun ProManger_project,PluginGlobalMsg::menuFun ProManger_proNormal); //workSpace添加插件菜单
     void TabSpace_init_tabView(PluginGlobalMsg::addTabViewPth addTabFun,
                                 PluginGlobalMsg::tab_getSign getSignFun,PluginGlobalMsg::tab_getWidget getWidgetFun,
-                                PluginGlobalMsg::tab_hasTab_Sign hasSignFun,PluginGlobalMsg::tab_hasTab_WidgetPtr hasWidgtFun);//添加workSpace的tabView接口
+                                PluginGlobalMsg::tab_hasTab_Sign hasSignFun,PluginGlobalMsg::tab_hasTab_WidgetPtr hasWidgtFun,
+                                PluginGlobalMsg::tab_getNowWidget getNowWidget,PluginGlobalMsg::tab_getNowSign getNowSign);//添加workSpace的tabView接口
 //    void workSpace_init_codeEditor(PluginGlobalMsg::editorFun_create createPth,PluginGlobalMsg::editorFun_addKetWord addWordPth,
 //                                   PluginGlobalMsg::editorFun_getStr getStrPth,PluginGlobalMsg::editorFun_addStr addStrPth); //添加workSpace的代码编辑器接口
     void workSpace_init_toolBarFuns(PluginGlobalMsg::toolBar_action_setEnable toolBar_setActionEnableFunPtr,PluginGlobalMsg::fun_void toolBar_clearAllActionFunPtr,PluginGlobalMsg::toolBarFun toolBar_addToolBarFunPtr); //设置工具栏内控件的启用与关闭,添加工具栏
@@ -137,7 +138,7 @@ public:
     void event_onProjectClear(QString projectPath); //工程被清理
     void event_onProjectClose(QString projectPath); //工程被关闭
 
-    void event_onFileOpen(QString filePath); //当文件被打开，激发模块事件
+    void event_onFileOpen(QString filePath,uint16_t line = 0,uint16_t lineIndex = 0,uint16_t len = 0); //当文件被打开，激发模块事件
     void event_onFileClose(QString filePath); //当文件被删除或者关闭
     void event_onFileRename(QString oldPath, QString newPath); //当文件路径被改变
 

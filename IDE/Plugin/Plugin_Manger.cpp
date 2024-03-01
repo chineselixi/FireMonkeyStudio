@@ -193,7 +193,8 @@ void Plugin_Manger::workSpace_init_Menu(PluginGlobalMsg::menuFun toolBar_tool, P
 //添加workSpace的Tab窗口
 void Plugin_Manger::TabSpace_init_tabView(PluginGlobalMsg::addTabViewPth addTabFun,
                                            PluginGlobalMsg::tab_getSign getSignFun,PluginGlobalMsg::tab_getWidget getWidgetFun,
-                                           PluginGlobalMsg::tab_hasTab_Sign hasSignFun,PluginGlobalMsg::tab_hasTab_WidgetPtr hasWidgtFun)
+                                           PluginGlobalMsg::tab_hasTab_Sign hasSignFun,PluginGlobalMsg::tab_hasTab_WidgetPtr hasWidgtFun,
+                                           PluginGlobalMsg::tab_getNowWidget getNowWidget,PluginGlobalMsg::tab_getNowSign getNowSign)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
@@ -202,6 +203,8 @@ void Plugin_Manger::TabSpace_init_tabView(PluginGlobalMsg::addTabViewPth addTabF
             this->List_plg[a].plgPth->TabSpace_getTabSWidget = getWidgetFun;
             this->List_plg[a].plgPth->TabSpace_hasTab_Sign = hasSignFun;
             this->List_plg[a].plgPth->TabSpace_hasTab_WidgetPtr = hasWidgtFun;
+            this->List_plg[a].plgPth->TabSpace_getNowWidget = getNowWidget;
+            this->List_plg[a].plgPth->TabSpace_getNowSign = getNowSign;
         }
     }
 }
@@ -486,11 +489,11 @@ void Plugin_Manger::event_onCompileTypeChanged(QString typeSign)
 }
 
 //当文件被打开，激发模块事件
-void Plugin_Manger::event_onFileOpen(QString filePath)
+void Plugin_Manger::event_onFileOpen(QString filePath,uint16_t line,uint16_t lineIndex,uint16_t len)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(List_plg[a].plgPth == nullptr){continue;} //如果插件未载入，则不操作
-        if(List_plg[a].plgPth->event_onFileOpen(filePath) == false){ //若插件阻止触发，则跳出
+        if(List_plg[a].plgPth->event_onFileOpen(filePath,line,lineIndex,len) == false){ //若插件阻止触发，则跳出
             break;
         }
     }

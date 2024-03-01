@@ -4,7 +4,7 @@
 
 #include "QObject"
 #include "Plugin_Global.h"
-#include "../module/mod_settingsFormBase.h"
+//#include "../module/mod_settingsFormBase.h"
 //#include "../../QScintilla/src/Qsci/qsciscintilla.h"
 
 //class QMainWindow; //声明QMainWindow
@@ -86,6 +86,9 @@ private:
     PluginGlobalMsg::tab_hasTab_WidgetPtr TabSpace_hasTab_WidgetPtr = nullptr; //根据widget指针判断是否存在Tab
     PluginGlobalMsg::tab_getSign TabSpace_getTabSign = nullptr; //根据Widget获取sign
     PluginGlobalMsg::tab_getWidget TabSpace_getTabSWidget = nullptr; //根据sign获取widget
+    PluginGlobalMsg::tab_getNowWidget TabSpace_getNowWidget = nullptr; //获取当前Widget
+    PluginGlobalMsg::tab_getNowSign TabSpace_getNowSign = nullptr; //获取当前Sign
+
 
     //主题获取
     PluginGlobalMsg::theme_setFunPtr Theme_set = nullptr; //主题设置
@@ -164,7 +167,7 @@ public: //插件的基础方法
     QString compile_getCompileModSignName(); //获取当前编译模式标记名称
 
     //打印输出
-    void print_printList(QString code = "", QString text = "",QString project = "",QString file = "",int row = 0,PluginGlobalMsg::printIcoType type = PluginGlobalMsg::printIcoType::none,QColor textColor = QColor()); //在列表输出中输出一行文本
+    void print_printList(QString code = "", QString text = "",QString project = "",QString file = "",uint16_t line = 0,uint16_t lineIndex = 0,uint16_t len = 0,PluginGlobalMsg::printIcoType type = PluginGlobalMsg::printIcoType::none,QColor textColor = QColor()); //在列表输出中输出一行文本
     void print_clearList(); //清理行的所有行文本
     void print_printTextSpace(QColor color,QString printText); //在文本窗口输出文本
     void print_printTextSpaceLine(QColor color,QString printText); //在文本窗口输出文本
@@ -178,11 +181,13 @@ public: //插件的基础方法
     //void dockwidget_removeDockWidget(QDockWidget* dockWidget); //移除DockWidget
 
     //TabWindow
-    void tabWindow_addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type); //在Tab添加窗口
+    void tabWindow_addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type = PluginGlobalMsg::TabType::form,bool autoMangement = false); //在Tab添加窗口
     bool tabWindow_hasTab(QString sign,bool select); //根据sign标记查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
     bool tabWindow_hasTab(QWidget* widget,bool select); //根据QWidget指针查找是否存在Tab，如果存在，是否选择。此方法可由于查找和选择
     QWidget* tabWindow_getTabWidget(QString sign); //根据sign获取Widget指针
     QString tabWindow_getTabSign(QWidget* widget); //根据widget指针获取sign信息
+    QWidget* tabWindow_getNowWidget();             //获取当前的Widget控件
+    QString tabWindow_getNowSign();                //获取当前Widget指针
 
     //设置标记Mark
     void mark_addMark(QString mark,QString value); //添加一个设置标记
@@ -231,7 +236,7 @@ public: //(可阻拦事件)事件触发，返回true则继续触发其他插件�
 
     //工程管理器事件
     virtual bool event_onProjectActiveChanged(QString projectPath,QString projectLang,QString projectNoteClass){return true;}; //当活动工程被改变
-    virtual bool event_onFileOpen(QString filePath){return true;};//当文件被打开
+    virtual bool event_onFileOpen(QString filePath,uint16_t line = 0,uint16_t lineIndex = 0,uint16_t len = 0){return true;};//当文件被打开
     virtual bool event_onFileClose(QString filePath){return true;}; //当前文件被关闭
     virtual bool event_onProjectBuild(QString projectPath){return true;};//当项目被构建
     virtual bool event_onProjectClear(QString projectPath){return true;};//当项目被清理

@@ -1562,7 +1562,7 @@ void Form_ProjectManger::event_newMenu_folder()
     if(QDir(t_oPath + "/" + t_newName).exists()){
         QMessageBox t_msgBox(QMessageBox::Question,tr("提示"), tr("当前文件夹已存在，需要如何操作？"));
         QPushButton* t_cover = t_msgBox.addButton(tr("覆盖"),QMessageBox::DestructiveRole);
-        QPushButton* t_rename = t_msgBox.addButton(tr("创建不重名"),QMessageBox::YesRole);
+        //QPushButton* t_rename = t_msgBox.addButton(tr("创建不重名"),QMessageBox::YesRole);
         QPushButton* t_no = t_msgBox.addButton(tr("取消"),QMessageBox::NoRole);
         t_msgBox.exec();
 

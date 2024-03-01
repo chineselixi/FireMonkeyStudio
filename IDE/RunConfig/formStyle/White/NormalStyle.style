@@ -1,5 +1,5 @@
 QTextEdit{
-	background-color: #e6e7e8;
+	background-color: #f5f5f5;
 }
 
 QScrollArea{

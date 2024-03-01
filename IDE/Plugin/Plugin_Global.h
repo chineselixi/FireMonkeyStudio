@@ -148,11 +148,13 @@ typedef std::function<void(QToolBar* toolBar)> toolBarFun;
 
 
 //Tab窗体操作
-typedef std::function<void(void* plg, QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type)> addTabViewPth; //添加TabView函数指针类型
+typedef std::function<void(void* plg, QString title, QWidget *form, QString sign, QIcon titeIco,PluginGlobalMsg::TabType type,bool autoMangement)> addTabViewPth; //添加TabView函数指针类型
 typedef std::function<bool(QString sign,bool select)> tab_hasTab_Sign; //根据sign查找判断tab是否存在
 typedef std::function<bool(QWidget* sign,bool select)> tab_hasTab_WidgetPtr; //根据窗体指针判断Tab是否存在
 typedef std::function<QString(QWidget*)> tab_getSign; //根据Widget获取sign
 typedef std::function<QWidget*(QString)> tab_getWidget; //根据sign获取Widget
+typedef std::function<QWidget*()> tab_getNowWidget; //获取当前的Widget
+typedef fun_str tab_getNowSign; //获取当前的标记
 
 //主题操作
 typedef std::function<void(QString themeSign)> theme_setFunPtr; //光标移动事件
@@ -162,7 +164,7 @@ typedef fun_str theme_getFunPtr; //文本改变事件
 typedef std::function<void(QString signName)> compileMod_changeFun; //添加删除编译模式
 
 //输出容器
-typedef std::function<void(QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor)> printFun_printList;
+typedef std::function<void(QString code, QString text,QString project,QString file,uint16_t line,uint16_t lineIndex,uint16_t len,PluginGlobalMsg::printIcoType type,QColor textColor)> printFun_printList;
 typedef std::function<void()> printFun_clear;
 typedef std::function<void(QColor color,QString printText)> printFun_printTextSpace;
 

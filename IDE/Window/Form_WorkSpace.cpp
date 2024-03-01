@@ -77,19 +77,6 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
 
     widget_statusbar->setProgress(-1); //隐藏进度
 
-    //ui->textEdit_print->addText("左边文本",qRgb(255,0,0));
-    //ui->textEdit_print->addText("右边文本");
-    //ui->textEdit_print->clearTextEditor();
-
-
-//    for(int a = 0;a<10;a++){
-//        ui->textEdit_compilePrint->addMsg("","加载成功了","","",0);
-//    }
-
-//    Form_About* ab = new Form_About;
-//    ui->widget_WindowTab->addTabWidget("关于我们",ab,"",QIcon(":/ProjectView/icon/Theme/Blue/Image/ProJectView/Dialog.png"));
-
-
 
 
 }
@@ -130,7 +117,7 @@ void Form_WorkSpace::init()
 
     //=================设置主页显示模式=================
     mod_webs = new mod_WebPage(this);
-    ui->widget_WindowTab->addTabWidget(nullptr,"主页",mod_webs,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web);  //添加到TAB
+    ui->widget_WindowTab->addTabWidget(nullptr,"主页",mod_webs,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web,false);  //添加到TAB
     mod_webs->setUrl(QUrl("file:" + System_OS::getaApplicationDirPath_EX() + "/web/Start/index.html"));
     mod_webs->show();
 
@@ -151,6 +138,10 @@ void Form_WorkSpace::init()
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectAttribute,this,&Form_WorkSpace::event_ProjectManger_onProjectAttribute); //项目属性
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onProjectClose,this,&Form_WorkSpace::event_ProjectManger_onProjectClose); //工程被关闭
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onRename,this,&Form_WorkSpace::event_ProjectManger_onFileRename); //文件被更名
+
+    //=================初始化打印列表事件=================
+    connect(ui->textEdit_compilePrint,&Form_ListPrint::onFileOpen,this,&Form_WorkSpace::event_ListPrint_onFileOpen); //列表打印点击后打开文件
+
 
     //=================插件，函数绑定=================
     //绑定tabView,此代码已经解耦合，已经注销无法使用。将在以后版本彻底优化，23.10.20
@@ -259,7 +250,7 @@ void Form_WorkSpace::init()
     QVector<Plugin_Manger::PluginMsg> t_plgMsgs = Manger::pluginManger->getPluginList();
     for(int a = 0;a<t_plgMsgs.length();a++){
         if(t_plgMsgs[a].plgPth != nullptr){  //只是筛选加载的插件
-            ui->textEdit_compilePrint->addMsg("",t_plgMsgs[a].plgPth->getBaseMsg().loadTip,"","",0);
+            ui->textEdit_compilePrint->addMsg("",t_plgMsgs[a].plgPth->getBaseMsg().loadTip,"","",0,0,0);
         }
     }
 
@@ -342,8 +333,8 @@ void Form_WorkSpace::init()
 
     //初始化内容输出接口
     Manger::pluginManger->workSpace_init_tipPrint(
-        [this](QString code, QString text,QString project,QString file,int row,PluginGlobalMsg::printIcoType type,QColor textColor){ //从列表输出提示
-            this->ui->textEdit_compilePrint->addMsg(code,text,project,file,row,type,textColor);
+        [this](QString code, QString text,QString project,QString file,uint16_t line,uint16_t lineIndex,uint16_t len,PluginGlobalMsg::printIcoType type,QColor textColor){ //从列表输出提示
+            this->ui->textEdit_compilePrint->addMsg(code,text,project,file,line,lineIndex,len,type,textColor);
         },
         [this](QColor color,QString printText){ //输出单个文本信息
             this->ui->textEdit_print->addText(printText,color);
@@ -708,12 +699,10 @@ void Form_WorkSpace::event_ProjectManger_onProjectActiveChanged(QString projectP
 }
 
 //文件被打开事件
-void Form_WorkSpace::event_ProjectManger_onFileOpen(QString filePath)
+void Form_WorkSpace::event_ProjectManger_onFileOpen(QString filePath,uint16_t line,uint16_t lineIndex,uint16_t len)
 {
-    if(!ui->widget_WindowTab->hasTabMsg(filePath,true)){
-        Manger::pluginManger->event_onFileOpen(filePath);
-        this->ui->action_toolBar_save->setEnabled(true); //保存按钮将可用
-    }
+    Manger::pluginManger->event_onFileOpen(filePath,line,lineIndex,len);
+    this->ui->action_toolBar_save->setEnabled(true); //保存按钮将可用
 }
 
 //文件被删除或者关闭
@@ -749,7 +738,15 @@ void Form_WorkSpace::event_ProjectManger_onProjectClose(QString projectPath)
 //文件被更名
 void Form_WorkSpace::event_ProjectManger_onFileRename(QString filePath, QString newFilePath)
 {
+    ui->widget_WindowTab->autoMangerment(filePath,newFilePath);
     Manger::pluginManger->event_onFileRename(filePath, newFilePath);
+}
+
+
+//列表打印被双击后打开文件事件
+void Form_WorkSpace::event_ListPrint_onFileOpen(QString file, uint16_t line, uint16_t lineIndex, uint16_t len)
+{
+    this->event_ProjectManger_onFileOpen(file,line,lineIndex,len);
 }
 
 //插件管理器被打开

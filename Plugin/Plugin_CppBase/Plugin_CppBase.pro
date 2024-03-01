@@ -19,7 +19,8 @@ SOURCES += \
     Form/Form_CodeEditor.cpp \
     Form/settingForm/Form_settings_Compile.cpp \
     Form/settingForm/Widget/Widget_List.cpp \
-    Plugin_CppBase.cpp
+    Plugin_CppBase.cpp \
+    util/GccUtil.cpp
 
 HEADERS += \
     Form/Form_Attributee.h \
@@ -27,7 +28,8 @@ HEADERS += \
     Form/settingForm/Form_settings_Compile.h \
     Form/settingForm/Widget/Widget_List.h \
     Plugin_CppBase_global.h \
-    Plugin_CppBase.h
+    Plugin_CppBase.h \
+    util/GccUtil.h
 
 FORMS += \
     Form/Form_Attribute.ui \

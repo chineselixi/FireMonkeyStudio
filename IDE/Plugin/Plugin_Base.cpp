@@ -144,11 +144,12 @@ QString Plugin_Base::compile_getCompileModSignName()
     return "";
 }
 
+
 //在列表输出中输出一行文本
-void Plugin_Base::print_printList(QString code, QString text, QString project, QString file, int row, PluginGlobalMsg::printIcoType type, QColor textColor)
+void Plugin_Base::print_printList(QString code, QString text, QString project, QString file, uint16_t line, uint16_t lineIndex, uint16_t len, PluginGlobalMsg::printIcoType type, QColor textColor)
 {
     if(this->WorkSpace_PrintOut_List){
-        this->WorkSpace_PrintOut_List(code,text,project,file,row,type,textColor);
+        this->WorkSpace_PrintOut_List(code,text,project,file,line,lineIndex,len,type,textColor);
     }
 }
 
@@ -211,10 +212,10 @@ QString Plugin_Base::plugin_postPluginMessage(QString pluginSign, QString pustMs
 
 
 //在Tab添加窗口
-void Plugin_Base::tabWindow_addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco, PluginGlobalMsg::TabType type)
+void Plugin_Base::tabWindow_addTabWindow(QString title, QWidget *form, QString sign, QIcon titeIco, PluginGlobalMsg::TabType type,bool autoMangement)
 {
     if(this->TabSpace_addTabWindow){
-        this->TabSpace_addTabWindow(this,title,form,sign,titeIco,type);
+        this->TabSpace_addTabWindow(this,title,form,sign,titeIco,type,autoMangement);
     }
 }
 
@@ -254,6 +255,26 @@ QString Plugin_Base::tabWindow_getTabSign(QWidget *widget)
 {
     if(this->TabSpace_getTabSign){
         return this->TabSpace_getTabSign(widget);
+    }
+    return "";
+}
+
+
+//获取当前的Widget控件
+QWidget *Plugin_Base::tabWindow_getNowWidget()
+{
+    if(TabSpace_getNowWidget){
+        return TabSpace_getNowWidget();
+    }
+    return nullptr;
+}
+
+
+//获取当前Widget指针
+QString Plugin_Base::tabWindow_getNowSign()
+{
+    if(TabSpace_getNowSign){
+        return TabSpace_getNowSign();
     }
     return "";
 }

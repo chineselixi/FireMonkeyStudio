@@ -27,6 +27,8 @@ public:
     virtual QsciScintilla* getSciCodeEditor(){return nullptr;} //获取火花代码编辑器指针
 
 
+public: //激发的事件
+    virtual void event_onFilePathChanged(QString newFilePath){}; //文件路径被改变
 };
 
 #endif // PLUGIN_CODEEDITORINTERFACE_H

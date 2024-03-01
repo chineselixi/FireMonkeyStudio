@@ -242,7 +242,7 @@ public:
 signals:
     void onOpenProject(); //当打开工程
     void onProjectActiveChanged(QString projectPath,QString projectLang,QString projectNoteClass); //当活动工程被改变
-    void onFileOpen(QString filePath);//文件被打开事件
+    void onFileOpen(QString filePath,uint16_t line = 0,uint16_t lineIndex = 0,uint16_t len = 0);//文件被打开事件
     void onFileOrDirDel(QString path);//文件或文件夹被删除
     void onProjectBuild(QString projectPath);//当项目被构建
     void onProjectClear(QString projectPath);//当项目被清理

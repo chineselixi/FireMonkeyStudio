@@ -95,7 +95,7 @@ protected:
     //工程管理事件，在init方法内被初始化
     void event_ProjectManger_onOpenProject();//当工程被打开
     void event_ProjectManger_onProjectActiveChanged(QString projectPath,QString projectLang,QString projectNoteClass); //当活动工程被改变
-    void event_ProjectManger_onFileOpen(QString filePath);//文件被打开事件
+    void event_ProjectManger_onFileOpen(QString filePath,uint16_t line = 0,uint16_t lineIndex = 0,uint16_t len = 0);//文件被打开事件
     void event_ProjectManger_onFileClose(QString filePath);//文件被删除或者关闭
     void event_ProjectManger_onProjectBuild(QString projectPath);//当项目被构建
     void event_ProjectManger_onProjectClear(QString projectPath);//当项目被清理
@@ -103,8 +103,8 @@ protected:
     void event_ProjectManger_onProjectClose(QString projectPath);//当项目被关闭
     void event_ProjectManger_onFileRename(QString filePath,QString newFilePath);//文件被更名
 
-    //代码编辑器事件
-
+    //列表打印
+    void event_ListPrint_onFileOpen(QString file,uint16_t line,uint16_t lineIndex,uint16_t len); //列表打印被双击后打开文件事件
 
 };
 

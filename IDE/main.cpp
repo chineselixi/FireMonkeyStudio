@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
     Form_Index* wi = new Form_Index(); //index窗口将加载工作空间
     wi->show();
 
+    //a.setFont(QFont("Terminal"));
     return a.exec();
 }
 
