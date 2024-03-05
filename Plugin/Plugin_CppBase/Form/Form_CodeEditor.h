@@ -7,6 +7,8 @@
 #include "../../../IDE/Plugin/Plugin_Base.h"
 
 
+#define UPDATETIME 2000
+
 
 namespace Ui {
 class Form_CodeEditor;

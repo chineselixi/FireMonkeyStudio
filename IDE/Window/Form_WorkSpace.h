@@ -6,6 +6,7 @@
 
 class mod_WebPage; //模块声明
 class Widget_Statusbar; //状态栏组件
+class Form_SearchList;
 
 namespace Ui {
 class Form_WorkSpace;
@@ -31,6 +32,8 @@ public:
     void setPrintStyle(QString style); //设置打印样式表
     void setTipMangerStyle(QString style); //设置通知管理器主题
     void setTheme(QString themeName); //设定主题
+    void showSearchListDock(); //显示搜索列表Dock
+    Form_SearchList* getSearchListForm(); //获取搜索窗口指针
     QMenu* getEditorMenu(); //获取UI对象
 
 
@@ -59,6 +62,8 @@ private slots:
     void on_dockWidget_find_visibilityChanged(bool visible);            //Dock栏控制菜单
 
     void on_comboBox_compileMode_currentTextChanged(const QString &arg1); //编译模式被改变
+    void on_action_editor_quickFind_triggered();                          //查找被打开
+
 
     void on_action_menu_run_enabledChanged(bool enabled); //同步菜单与工具栏的enable
     void on_action_menu_Rerun_enabledChanged(bool enabled);
@@ -102,9 +107,6 @@ protected:
     void event_ProjectManger_onProjectAttribute(QString projectPath);//当项目属性被点击
     void event_ProjectManger_onProjectClose(QString projectPath);//当项目被关闭
     void event_ProjectManger_onFileRename(QString filePath,QString newFilePath);//文件被更名
-
-    //列表打印
-    void event_ListPrint_onFileOpen(QString file,uint16_t line,uint16_t lineIndex,uint16_t len); //列表打印被双击后打开文件事件
 
 };
 

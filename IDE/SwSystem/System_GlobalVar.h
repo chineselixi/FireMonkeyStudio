@@ -2,7 +2,7 @@
 #ifndef SYSTEM_GLOBALVAR_H
 #define SYSTEM_GLOBALVAR_H
 #include "QString"
-#include "QVector"
+#include "QList"
 #include "QFont"
 //#include "SwSystem/System_History.h"
 
@@ -25,10 +25,14 @@ extern Form_WorkSpace* workSpace; //工作窗口
 class Plugin_Manger;
 class System_EnvVar;
 class Form_TipManger;
+class Form_ProjectManger;
+class Form_WindowTab;
 class System_CodeEditorManger;
 namespace Manger{
 extern Plugin_Manger* pluginManger; //插件管理器
 extern Form_TipManger* workspace_tipManger; //提示管理器
+extern Form_ProjectManger* workspace_projectManger; //工程管理器
+extern Form_WindowTab* workspace_winTabManger; //工程TAB管理器
 extern System_CodeEditorManger* codeEditorManger; //代码编辑器管理器
 }
 
@@ -59,6 +63,9 @@ extern QString style_themeName; //主题名
 extern bool style_themeIsAuto; //自动更改主题
 extern QFont style_font; //字体名称
 extern bool style_dailyTips; //每日一贴
+
+//extern QList<>
+
 }
 
 

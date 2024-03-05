@@ -3,6 +3,7 @@
 
 #include "plugin_IdeBase_global.h"
 #include "../../IDE/Plugin/Plugin_Base.cpp"
+#include "../../IDE/SwSystem/System_UtilFun.cpp"
 #include "Form/Form_Terminal.h"
 #include "QVector"
 #include "QMap"
@@ -23,8 +24,11 @@ public: //返回true则继续触发其他插件的同类型时间，返回false�
     //文件被加载，阻止消息继续触发，返回false阻止
     bool event_onFileOpen(QString filePath,uint16_t line = 0,uint16_t lineIndex = 0,uint16_t len = 0) override;
 
+
 public:
     QString event_onPluginReceive(QString sendPluginSign,QString msg); //插件消息投递完成
+
+
 
 private:
     QVector<Form_Terminal*> terminalList; //终端列表

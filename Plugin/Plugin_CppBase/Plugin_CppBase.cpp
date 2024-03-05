@@ -47,7 +47,7 @@ Plugin_CppBase::Plugin_CppBase()
 bool Plugin_CppBase::event_onProjectActiveChanged(QString proPath, QString proLangs, QString proNoteClass)
 {
     if(this->checkIsCppProject(proLangs)){ //检查是否为Cpp对象
-        this->menu_closeWorkSpaceAllAction(); //关闭所有ACTION
+        this->closeRunActions(); //关闭所有ACTION
         this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compleMode,true); //允许模式选择
         this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::run,true); //允许运行
         this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,true); //允许编译
@@ -132,6 +132,9 @@ bool Plugin_CppBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarActi
     }
     else if(actionType == PluginGlobalMsg::toolBarAction::stop){
         this->event_stop(); //停止
+    }
+    else{
+        return true;
     }
 
 
@@ -631,7 +634,6 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
     QString t_exeFile = this->event_compile(proPath,compileFiles);          //编译后运行
     QString t_proName = this->projectManger_getProjectInfo(proPath).proName; //获取工程名称
 
-
     //读取本地属性信息
     QString t_attrFile = proPath + "/config.json";
     cppAttributeNamespace::projectAttribute t_attr = Form_Attribute::loadAttribute(System_File::readFile(t_attrFile)); //尝试读取属性文件
@@ -949,8 +951,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     t_compileMapper = this->arrangeMappers(t_compileMapper); //整理Mapper
 
     //判断输出内容
-    QString t_outFilePath = t_attr.outPath + "/" + t_attr.programName;
-
+    QString t_outFilePath = t_attr.outPath + "/" + t_attr.programName + ("." + (t_settingMsg.s5_txtExecutableSuffix.isEmpty()?System_OS::getSoftwareSuffix() : t_settingMsg.s5_txtExecutableSuffix));
 
     //编译之前运行
     if(t_settingMsg.s61_useComposeBefore) this->runCommand(attrAdjust(t_settingMsg.s61_composeBeforeEditor,t_settingMsg,t_attr,proPath,t_outFilePath));
@@ -1063,7 +1064,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
 
     //若没有需要编译的文件，且启用了快速编译，则直接返回
     t_attr.programName += ("." + (t_settingMsg.s5_txtExecutableSuffix.isEmpty()?System_OS::getSoftwareSuffix() : t_settingMsg.s5_txtExecutableSuffix));
-    if(t_compileFileNum + t_compileFileNumRedirect == 0 && t_settingMsg.s21_tepOpt && QFile::exists(t_attr.outPath + "/" + t_attr.programName)){
+    if(t_compileFileNum + t_compileFileNumRedirect == 0 && t_settingMsg.s21_tepOpt && QFile::exists(t_outFilePath)){
         this->print_printList("",QObject::tr("跳过编译：未改动任何代码"),t_proName,"",0,0,0,PluginGlobalMsg::printIcoType::tip,QColor("green"));
     }
     else{
@@ -1072,7 +1073,7 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         }
 
         t_parameterList.append("-o");
-        t_parameterList.append(t_attr.programName);
+        t_parameterList.append(t_outFilePath);
 
         //链接时加入如下参数
         if(t_settingMsg.s1_usLink){
@@ -1098,7 +1099,6 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         }
         t_process.close(); //关闭进程
     }
-
 
     //文件输出
     this->print_printList("",QObject::tr("编译完成！用时：") + QString::number(t_runTime.elapsed() / 1000.0,'f',3) + QObject::tr("秒"),t_proName,"",0,0,0,PluginGlobalMsg::printIcoType::ok,QColor("green"));

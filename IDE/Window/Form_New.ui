@@ -20,8 +20,8 @@
    <string>创建或打开工程</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="applications-office">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset theme="applications-office" resource="../icons.qrc">
+    <normaloff>:/WidgetIcon/icon/WidgetIcon/logo/Logo_32.png</normaloff>:/WidgetIcon/icon/WidgetIcon/logo/Logo_32.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">/*主背景和列表背景*/
@@ -1276,6 +1276,8 @@ QPushButton:!enabled{
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

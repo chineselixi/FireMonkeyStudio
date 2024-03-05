@@ -19,6 +19,7 @@ private:
     QString proHisPath = ""; //工程历史目录配置文件
 
     QVector<HistoryMsg> His_proList;
+    int hisMaxSize = -1;
 
 public:
     System_History();
@@ -27,7 +28,7 @@ public:
 
 
 public:
-    bool Init(QString proHisConfigPath); //初始化
+    bool Init(QString proHisConfigPath,int maxSize = -1); //初始化
     QVector<HistoryMsg> getHisList(); //获取工程历史列表
     bool removeProHisList(QString sign); //移除工程列表历史记录
     void clearRepeat(); //清理重复数据

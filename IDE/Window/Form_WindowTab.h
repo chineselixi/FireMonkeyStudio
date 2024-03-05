@@ -57,7 +57,7 @@ public:
     tabMsg getTopTabMsg(); //获取当前顶部选项卡信息
     QString getTopTabSign(); //获取当前顶部选项卡的标记
 
-
+    void saveAllCode(); //保存所有代码文本
 
 private:
     void autoMangerment(QString oldPath, QString newPath); //这个方法是给WorkSpace，用于自动更改标题与标记文本

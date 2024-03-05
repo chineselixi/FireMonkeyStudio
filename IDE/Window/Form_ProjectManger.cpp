@@ -15,6 +15,8 @@
 #include "QProgressDialog" //进度对话框
 #include "QMessageBox" //信息框
 
+#include "../SwSystem/System_GlobalVar.h"
+#include "../SwSystem/System_History.h"
 #include "../SwSystem/System_UtilFun.h"
 //#include "Form_VisualFolder.h"
 //#include "../Plugin/Plugin_Global.h"
@@ -25,59 +27,12 @@ Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
     ui(new Ui::Form_ProjectManger)
 {
     ui->setupUi(this);
-    //this->setStyleSheet("");
 
+    //保存当前指针
+    Manger::workspace_projectManger = this;
 
-    ui->treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);//设定树框自定义上下文菜单模式(右键菜单)，响应customContextMenuRequested事件
-/*
-    connect(ui->action_AddFolder, &QAction::triggered,this,&Form_ProjectManger::event_menu_createNewFolder);
-    connect(ui->action_AddForm, &QAction::triggered,this,&Form_ProjectManger::event_menu_addForm);
-    connect(ui->action_AddHasFile, &QAction::triggered,this,&Form_ProjectManger::event_menu_addHasFile);
-    connect(ui->action_AddNewFile, &QAction::triggered,this,&Form_ProjectManger::event_menu_addOtherFile);
-
-    //默认就用工具栏
-    ui->action_AddFolder->setEnabled(false);
-    ui->action_AddForm->setEnabled(false);
-    ui->action_AddHasFile->setEnabled(false);
-    ui->action_AddNewFile->setEnabled(false);
-
-
-    QString  t_fileName = System_OS::getaApplicationDirPath_EX() + "/Config.ini";
-
-    QSettings t_setPro(t_fileName, QSettings::IniFormat);//工程总配置信息
-    t_setPro.beginGroup("FireMonkeyProJect");
-    t_setPro.setValue("ProjectName","测试工程名"); //工程名
-    t_setPro.setValue("IconPath",""); //图标文件
-    t_setPro.setValue("Version","1.0"); //版本文本信息
-    t_setPro.setValue("VersionNumber",0); //版本号
-    t_setPro.setValue("Organization","无"); //组织信息（公司或者组织）
-    t_setPro.setValue("Email","NULL"); //邮箱信息
-    t_setPro.setValue("Call","000-0000-0000"); //联系电话
-    t_setPro.setValue("Note","本程序基于火猴开发平台"); //联系电话
-    t_setPro.setValue("Note","本程序基于火猴开发平台"); //联系电话
-    t_setPro.setValue("SrcPath","./src"); //工程文件在当前配置文件的那个相对位置
-
-
-    QSettings t_setVirFolders(t_fileName, QSettings::IniFormat); //虚拟文件夹
-    t_setVirFolders.beginGroup("Fmp_VirtualFolders");
-    t_setVirFolders.setValue("头文件",".h/right"); //虚拟分类文件夹，left:左边存在，right:右边存在，has:只要存在
-    t_setVirFolders.setValue("源文件",".cpp/right");
-
-
-    QSettings t_setNormalFolders(t_fileName, QSettings::IniFormat); //真实自定义文件夹
-    t_setNormalFolders.beginGroup("Fmp_NormalFolders");
-    t_setNormalFolders.setValue("自定义分类文件夹","/自定义分类文件夹");
-
-
-    QSettings t_setFilelist(t_fileName, QSettings::IniFormat); //文件列表
-    t_setFilelist.beginGroup("Fmp_Filelist");
-    QString t_file1 = "<srcPath>/test.h";
-    QString t_file2 = "<srcPath>/main.cpp";
-    t_setFilelist.setValue(QFileInfo(t_file1).fileName(),t_file1);
-    t_setFilelist.setValue(QFileInfo(t_file2).fileName(),t_file2);
-    return;
-
-*/
+    //设定树框自定义上下文菜单模式(右键菜单)，响应customContextMenuRequested事件
+    ui->treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
 
     //初始化构建菜单
     InitMenu();
@@ -104,18 +59,12 @@ Form_ProjectManger::Form_ProjectManger(QWidget *parent) :
     this->addFileIco("uix",ico_window);
     this->addFileIco("ui",ico_window);
     this->addFileIco("fmp",ico_fmp);
-
-
-    //测试代码
-    //this->addProjectForFile("C:/Users/31914/Desktop/FmpProject/src/test.h");
-    //this->addProjectForDir("C:/Users/31914/Desktop/FmpProject/src"); //以目录添加工程
-    //this->addProjectForFmp("C:/Users/31914/Desktop/FmpProject/FmProject.fmp"); //以启动文件添加工程
-    //this->flashTreeWidget();
 }
 
 Form_ProjectManger::~Form_ProjectManger()
 {
     delete ui;
+    Manger::workspace_projectManger = nullptr;
 }
 
 //获取初始尺寸信息
@@ -253,6 +202,13 @@ PluginGlobalMsg::ProjectMsg Form_ProjectManger::readProjectMsg(QString fmsFilePa
     t_retMsg.proLanguage = t_jsonObj.value("proLanguage").toString("");
     t_retMsg.proNoteClass = t_jsonObj.value("proNoteClass").toString("");
     return t_retMsg;
+}
+
+
+//获取所有工程信息
+QVector<Form_ProjectManger::ProjectNode *> Form_ProjectManger::getProjectAll()
+{
+    return this->projectArray;
 }
 
 
@@ -662,7 +618,7 @@ bool Form_ProjectManger::addProject(QString path)
     t_rootNode.type = ItemType::project;
     //t_rootNode.treeItem = new QTreeWidgetItem;
 
-    ProjectNode* t_newProject; //新工程节点
+    ProjectNode* t_newProject = nullptr; //新工程节点
 
     //文件文件夹分开处理
     if(t_fileInfo.isFile()){ //如果是文件
@@ -753,8 +709,25 @@ bool Form_ProjectManger::addProject(QString path)
         }
     }
 
+
+
+
     this->flashProjectIcon(); //刷新工程树的图标
-    return true;
+
+    //如果临时工程指针存在，则表明工程分析打开成功
+    if(t_newProject != nullptr){
+        //保存进历史
+        //保存打开的工程
+        HistoryList::sys_proHistory->addMsg(t_newProject->proMsg.proName,
+                                            t_newProject->proMsg.proPath + "/" + t_newProject->proMsg.proIconPath,
+                                            t_newProject->proMsg.proPath,
+                                            QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm"));
+        HistoryList::sys_proHistory->clearRepeat(); //清理重复数据
+        HistoryList::sys_proHistory->saveHisList(); //保存历史记录
+        return true;
+    }
+    return false;
+
 }
 
 
@@ -1163,6 +1136,7 @@ void Form_ProjectManger::addBuildFileSign(QString suffix, QString sign, QIcon ic
     t_bfNode.action->setText(sign);
     t_bfNode.normalName = normalName;
     t_bfNode.normalContent = content;
+    this->buildFileArray.append(t_bfNode); //添加标记信息
     Menu_addNewFile->addAction(t_bfNode.action);
 
     //创建新的文件
@@ -1204,6 +1178,17 @@ void Form_ProjectManger::delBuildFileSign(QString suffix)
         }
     }
 
+}
+
+
+//获取后缀列表
+QStringList Form_ProjectManger::getSuffixList()
+{
+    QStringList t_retList;
+    for(int i = buildFileArray.length() - 1; i >= 0; i--){
+        t_retList.append(buildFileArray[i].icoNode.suffix);
+    }
+    return t_retList;
 }
 
 

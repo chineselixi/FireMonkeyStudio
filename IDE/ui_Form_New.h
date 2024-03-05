@@ -120,7 +120,7 @@ public:
         if (QIcon::hasThemeIcon(iconThemeName)) {
             icon = QIcon::fromTheme(iconThemeName);
         } else {
-            icon.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+            icon.addFile(QString::fromUtf8(":/WidgetIcon/icon/WidgetIcon/logo/Logo_32.png"), QSize(), QIcon::Normal, QIcon::Off);
         }
         Form_New->setWindowIcon(icon);
         Form_New->setStyleSheet(QString::fromUtf8("/*\344\270\273\350\203\214\346\231\257\345\222\214\345\210\227\350\241\250\350\203\214\346\231\257*/\n"

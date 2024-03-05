@@ -16,8 +16,9 @@ System_History::~System_History()
 }
 
 //初始化
-bool System_History::Init(QString proHisConfigPath)
+bool System_History::Init(QString proHisConfigPath,int maxSize)
 {
+    this->hisMaxSize = maxSize;
     this->proHisPath = proHisConfigPath;
     QJsonDocument t_jsonDoc = QJsonDocument::fromJson(System_File::readFile(this->proHisPath));
     if(!t_jsonDoc.isArray()){
@@ -104,7 +105,13 @@ void System_History::saveHisList()
 {
     QJsonDocument t_jsonDoc;
     QJsonArray t_jsonArray;
-    for(int a=0;a<this->His_proList.length();a++){
+
+    int t_outSize = this->His_proList.length();
+    if(hisMaxSize >= 0 && hisMaxSize < t_outSize){
+        t_outSize = hisMaxSize; //限定历史长度
+    }
+
+    for(int a = this->His_proList.length() - t_outSize;a<this->His_proList.length();a++){
         QJsonObject t_jsonObj;
         t_jsonObj.insert("name",this->His_proList[a].showName);
         t_jsonObj.insert("ico",this->His_proList[a].showIco);

@@ -4,17 +4,20 @@
 
 #include "QMenu"
 #include "QFileInfo"
-#include "SwSystem/System_GlobalVar.h"
-#include "Plugin/Plugin_Manger.h"
-#include "Plugin/Plugin_CodeEditorInterface.h""
-#include "Window/Form_WorkSpace.h"
-
+#include "../SwSystem/System_GlobalVar.h"
+#include "../Plugin/Plugin_Manger.h"
+#include "../Plugin/Plugin_CodeEditorInterface.h"
+#include "../Window/Form_WorkSpace.h"
+#include "../Window/Form_WindowTab.h"
 
 Form_WindowTab::Form_WindowTab(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form_WindowTab)
 {
     ui->setupUi(this);
+
+    //保存管理器
+    Manger::workspace_winTabManger = this;
 
     //删除自身的信息，本类存在预览选项卡
     for (int i = ui->tabWidget->count() - 1; i >= 0; i--)
@@ -23,8 +26,6 @@ Form_WindowTab::Form_WindowTab(QWidget *parent) :
         ui->tabWidget->removeTab(i);  // 删除选项卡
         delete page;      // 删除子窗口
     }
-
-
 
     //初始化Tab到插件管理器
     PluginGlobalMsg::addTabViewPth t_addTab =
@@ -43,6 +44,7 @@ Form_WindowTab::Form_WindowTab(QWidget *parent) :
 Form_WindowTab::~Form_WindowTab()
 {
     delete ui;
+    Manger::workspace_winTabManger = nullptr;
     if(Manger::pluginManger) Manger::pluginManger->TabSpace_init_tabView(nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr); //置空指针
 }
 
@@ -172,6 +174,18 @@ Form_WindowTab::tabMsg Form_WindowTab::getMsg(QWidget *widget)
 QString Form_WindowTab::getTopTabSign()
 {
     return getTopTabMsg().signText;
+}
+
+
+//保存所有代码文本
+void Form_WindowTab::saveAllCode()
+{
+    for(int a = 0;a<this->tabMsgList.length();a++){
+        Plugin_CodeEditorInterface* t_cei = dynamic_cast<Plugin_CodeEditorInterface*>(this->tabMsgList[a].formPtr);
+        if(t_cei != nullptr){
+            t_cei->onSave(); //保存
+        }
+    }
 }
 
 

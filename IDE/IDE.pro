@@ -56,9 +56,11 @@ SOURCES += \
     Window/Form_Editor.cpp \
     Window/Form_Index.cpp \
     Window/Form_ListPrint.cpp \
+    Window/Form_SearchList.cpp \
     Window/Form_New.cpp \
     Window/Form_PluginManger.cpp \
     Window/Form_ProjectManger.cpp \
+    Window/Form_Search.cpp \
     Window/Form_SystemSettings.cpp \
     Window/Form_TextPrint.cpp \
     Window/Form_VisualFolder.cpp \
@@ -71,6 +73,7 @@ SOURCES += \
     Window/settingWindow/Form_settings_DataBase.cpp \
     Window/settingWindow/Form_settings_Device.cpp \
     Window/settingWindow/Form_settings_Git.cpp \
+    Window/settingWindow/Form_settings_ProjectManger.cpp \
     Window/settingWindow/Form_settings_Qt.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -101,9 +104,11 @@ HEADERS += \
     Window/Form_Editor.h \
     Window/Form_Index.h \
     Window/Form_ListPrint.h \
+    Window/Form_SearchList.h \
     Window/Form_New.h \
     Window/Form_PluginManger.h \
     Window/Form_ProjectManger.h \
+    Window/Form_Search.h \
     Window/Form_SystemSettings.h \
     Window/Form_TextPrint.h \
     Window/Form_VisualFolder.h \
@@ -116,6 +121,7 @@ HEADERS += \
     Window/settingWindow/Form_settings_DataBase.h \
     Window/settingWindow/Form_settings_Device.h \
     Window/settingWindow/Form_settings_Git.h \
+    Window/settingWindow/Form_settings_ProjectManger.h \
     Window/settingWindow/Form_settings_Qt.h \
     mainwindow.h \
     module/mod_WebPage.h \
@@ -136,9 +142,11 @@ FORMS += \
     Window/Form_Editor.ui \
     Window/Form_Index.ui \
     Window/Form_ListPrint.ui \
+    Window/Form_SearchList.ui \
     Window/Form_New.ui \
     Window/Form_PluginManger.ui \
     Window/Form_ProjectManger.ui \
+    Window/Form_Search.ui \
     Window/Form_SystemSettings.ui \
     Window/Form_TextPrint.ui \
     Window/Form_VisualFolder.ui \
@@ -151,6 +159,7 @@ FORMS += \
     Window/settingWindow/Form_settings_DataBase.ui \
     Window/settingWindow/Form_settings_Device.ui \
     Window/settingWindow/Form_settings_Git.ui \
+    Window/settingWindow/Form_settings_ProjectManger.ui \
     Window/settingWindow/Form_settings_Qt.ui \
     mainwindow.ui
 

@@ -95,6 +95,9 @@ void Form_ListPrint::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int 
     for(qsizetype i = 0; i < this->nodeList.length(); i++){
         if(this->nodeList[i].item == item){
             if(!this->nodeList[i].filePath.isEmpty() && this->nodeList[i].len > 0){
+
+
+
                 this->onFileOpen(this->nodeList[i].filePath,this->nodeList[i].line,this->nodeList[i].lineIndex,this->nodeList[i].len);
             }
             break;

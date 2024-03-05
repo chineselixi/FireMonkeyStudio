@@ -557,6 +557,9 @@ QMenu::item:disabled {/*菜单被禁用*/
      <property name="bottomMargin">
       <number>0</number>
      </property>
+     <item row="0" column="0">
+      <widget class="Form_SearchList" name="searchList" native="true"/>
+     </item>
     </layout>
    </widget>
   </widget>
@@ -867,6 +870,9 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
   </action>
   <action name="action_toolBar_find">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -1501,6 +1507,9 @@ QMenu::item:disabled {/*菜单被禁用*/
    </property>
   </action>
   <action name="action_editor_quickFind">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="../icons.qrc">
      <normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</normaloff>:/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png</iconset>
@@ -2205,6 +2214,12 @@ QMenu::item:disabled {/*菜单被禁用*/
    <class>Form_WindowTab</class>
    <extends>QWidget</extends>
    <header>Window/Form_WindowTab.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Form_SearchList</class>
+   <extends>QWidget</extends>
+   <header>Window/Form_SearchList.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

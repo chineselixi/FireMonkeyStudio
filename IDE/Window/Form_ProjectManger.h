@@ -23,7 +23,7 @@ class Form_ProjectManger : public QWidget
 {
     Q_OBJECT
 
-
+public:
     //节点类型
     enum class ItemType{
         File,               //文件
@@ -233,9 +233,13 @@ public:
     QString getCreatePath(QString srcPath); //根据一个文件或者文件夹路径，获取已经可用的文件夹路径
     bool saveProjectMsg(QString proPath, PluginGlobalMsg::ProjectMsg proMsg); //保存指定工程信息
 
+    QVector<ProjectNode*> getProjectAll(); //获取所有工程信息
+
     //菜单操作类
     void addBuildFileSign(QString suffix, QString sign, QIcon ico_16 = QIcon(), QString normalName = "", QString content = "");  //添加创建文件标记（后缀，图标，默认名称，默认内容）
     void delBuildFileSign(QString suffix); //删除创建文件标记
+    QStringList getSuffixList(); //获取后缀列表
+
 
     //void test(QVector<ItemTreeNode> trees,QString str = ""); //打印树结构
 

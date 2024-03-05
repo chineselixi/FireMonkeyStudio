@@ -22,7 +22,6 @@ Form_CodeEditor::~Form_CodeEditor()
 {
     //保存信息
     this->event_timer_textChanged();
-
     delete ui;
 }
 
@@ -349,7 +348,7 @@ void Form_CodeEditor::event_textChanged()
 {
     //三秒自动保存
     this->saveTimer.stop();
-    this->saveTimer.start(3000);
+    this->saveTimer.start(UPDATETIME);
 }
 
 //事件：光标位置发生改变
@@ -369,9 +368,6 @@ void Form_CodeEditor::event_marginClicked(int margin, int line, Qt::KeyboardModi
 {
     if(margin == 1 || margin == 2){
         this->setDebugSign(line,true,true);
-
-        //this->addLineSquiggle(line,1,4);
-        //this->addSign(line,1);
     }
 }
 

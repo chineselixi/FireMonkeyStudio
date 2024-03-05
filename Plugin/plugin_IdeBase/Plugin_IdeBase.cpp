@@ -67,6 +67,8 @@ void Plugin_IdeBase::event_onWorkSpaceFinish()
     this->print_clearList();
     this->menu_closeWorkSpaceAllAction(); //禁用所有Action
     this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem,true); //启用书签主菜单
+    this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::find,true); //启用查找菜单
+
 
     //添加菜单
     QAction* t_terminalAction = new QAction();
@@ -84,10 +86,26 @@ void Plugin_IdeBase::event_onWorkSpaceFinish()
 
 bool Plugin_IdeBase::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath, QString proLangs, QString proNoteClass)
 {
-    if(actionType == PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem){
+    switch(actionType){
+    case PluginGlobalMsg::toolBarAction::bookmarkMainMenuTabitem:{
         Dialog_Index* di = new Dialog_Index();
         di->show();
+        break;
     }
+    case PluginGlobalMsg::toolBarAction::find:{
+        QWidget* t_widget = System_Widget::getSubWidgetPtr(this->widget_getWorkSpaceWindowPtr(),"action_editor_quickFind");
+        if(t_widget){
+            QAction* t_action = (QAction*)t_widget;
+            t_action->trigger(); //调用菜单栏按钮事件
+        }
+
+        break;
+    }
+    default:{
+        break;
+    }
+    }
+
     return true; //阻止消息传递
 }
 

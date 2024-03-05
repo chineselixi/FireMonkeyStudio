@@ -19,6 +19,7 @@
 #include "Window/Form_PluginManger.h"
 #include "Window/Form_SystemSettings.h"
 #include "Window/Form_TipManger.h"
+#include "Window/Form_Search.h"
 
 #include "Widget/Widget_Statusbar.h"
 
@@ -140,7 +141,8 @@ void Form_WorkSpace::init()
     connect(ui->widget_ProjectManger,&Form_ProjectManger::onRename,this,&Form_WorkSpace::event_ProjectManger_onFileRename); //文件被更名
 
     //=================初始化打印列表事件=================
-    connect(ui->textEdit_compilePrint,&Form_ListPrint::onFileOpen,this,&Form_WorkSpace::event_ListPrint_onFileOpen); //列表打印点击后打开文件
+    connect(ui->textEdit_compilePrint,&Form_ListPrint::onFileOpen,this,&Form_WorkSpace::event_ProjectManger_onFileOpen); //列表打印点击后打开文件
+    connect(ui->searchList,&Form_SearchList::onFileOpen,this,&Form_WorkSpace::event_ProjectManger_onFileOpen); //列表打印点击后打开文件
 
 
     //=================插件，函数绑定=================
@@ -743,12 +745,6 @@ void Form_WorkSpace::event_ProjectManger_onFileRename(QString filePath, QString 
 }
 
 
-//列表打印被双击后打开文件事件
-void Form_WorkSpace::event_ListPrint_onFileOpen(QString file, uint16_t line, uint16_t lineIndex, uint16_t len)
-{
-    this->event_ProjectManger_onFileOpen(file,line,lineIndex,len);
-}
-
 //插件管理器被打开
 void Form_WorkSpace::on_action_pluginManger_triggered()
 {
@@ -876,6 +872,21 @@ void Form_WorkSpace::setTheme(QString themeName)
 }
 
 
+//显示搜索列表Dock
+void Form_WorkSpace::showSearchListDock()
+{
+    ui->dockWidget_find->show();
+    ui->dockWidget_find->raise();
+}
+
+
+//获取搜索列表窗口指针
+Form_SearchList *Form_WorkSpace::getSearchListForm()
+{
+    return ui->searchList;
+}
+
+
 //获取编辑器Actor对象
 QMenu *Form_WorkSpace::getEditorMenu()
 {
@@ -922,5 +933,10 @@ void Form_WorkSpace::event_ProjectManger_onOpenProject()
 
 
 
-
+//查找被打开
+void Form_WorkSpace::on_action_editor_quickFind_triggered()
+{
+    Form_Search* t_search = Form_Search::create(this);
+    t_search->show();
+}
 

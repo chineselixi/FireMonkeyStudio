@@ -24,6 +24,7 @@
 #include <QtWidgets/QWidget>
 #include "Window/Form_ListPrint.h"
 #include "Window/Form_ProjectManger.h"
+#include "Window/Form_SearchList.h"
 #include "Window/Form_TextPrint.h"
 #include "Window/Form_WindowTab.h"
 
@@ -178,6 +179,7 @@ public:
     QDockWidget *dockWidget_find;
     QWidget *dockWidgetContents_13;
     QGridLayout *gridLayout_7;
+    Form_SearchList *searchList;
     QToolBar *toolBar;
     QToolBar *toolBar_2;
 
@@ -447,6 +449,7 @@ public:
         action_toolBar_onlineCompile->setIcon(icon13);
         action_toolBar_find = new QAction(Form_WorkSpace);
         action_toolBar_find->setObjectName("action_toolBar_find");
+        action_toolBar_find->setCheckable(false);
         action_toolBar_find->setEnabled(true);
         QIcon icon14;
         icon14.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/ToolBar/Btn/SearchInFile_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -717,6 +720,7 @@ public:
         action_editor_deleteRow->setObjectName("action_editor_deleteRow");
         action_editor_quickFind = new QAction(Form_WorkSpace);
         action_editor_quickFind->setObjectName("action_editor_quickFind");
+        action_editor_quickFind->setCheckable(true);
         QIcon icon54;
         icon54.addFile(QString::fromUtf8(":/Theme/Blue/icon/Theme/Blue/Image/MenuBar/QuickFind_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_editor_quickFind->setIcon(icon54);
@@ -1089,6 +1093,11 @@ public:
         gridLayout_7 = new QGridLayout(dockWidgetContents_13);
         gridLayout_7->setObjectName("gridLayout_7");
         gridLayout_7->setContentsMargins(0, 0, 0, 0);
+        searchList = new Form_SearchList(dockWidgetContents_13);
+        searchList->setObjectName("searchList");
+
+        gridLayout_7->addWidget(searchList, 0, 0, 1, 1);
+
         dockWidget_find->setWidget(dockWidgetContents_13);
         Form_WorkSpace->addDockWidget(Qt::BottomDockWidgetArea, dockWidget_find);
         toolBar = new QToolBar(Form_WorkSpace);

@@ -3,6 +3,8 @@
 
 #include "QDir"
 #include "QFileInfo"
+//#include "QElapsedTimer"
+#include "QDateTime"
 #include "SwSystem/System_GlobalVar.h"
 #include "SwSystem/System_History.h"
 #include "SwSystem/System_SystemSetting.h"
@@ -630,6 +632,14 @@ void Plugin_Manger::event_onWorkSpaceClose()
 //当工具栏的Action被触发
 void Plugin_Manger::event_onToolBarActionTriggered(PluginGlobalMsg::toolBarAction actionType, QString proPath, QString proLangs, QString proNoteClass)
 {
+    //阻塞按钮消息，防止重复消息嵌套错误
+    static qint64 startTime = 0;
+    qint64 newTime = QDateTime::currentMSecsSinceEpoch();
+    if(newTime - startTime < 100){ //防止过度传递
+        return;
+    }
+    startTime = newTime;
+
     for(int a = 0;a < List_plg.length();a++){
         if(List_plg[a].plgPth != nullptr){ //只对加载的插件进行绑定
             if(List_plg[a].plgPth->event_onToolBarActionTriggered(actionType,proPath,proLangs,proNoteClass) == false){

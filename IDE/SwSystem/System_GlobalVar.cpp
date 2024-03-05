@@ -12,7 +12,9 @@ Form_WorkSpace* Window::workSpace = nullptr;
 
 //管理器
 Plugin_Manger* Manger::pluginManger = nullptr;//插件管理器
-Form_TipManger* Manger::workspace_tipManger = nullptr;//通知消息管理器1
+Form_TipManger* Manger::workspace_tipManger = nullptr;//通知消息管理器
+Form_ProjectManger* Manger::workspace_projectManger = nullptr;//工程管理器
+Form_WindowTab* Manger::workspace_winTabManger = nullptr; //工程TAB管理器
 System_CodeEditorManger* Manger::codeEditorManger = nullptr;//代码编辑器管理器
 
 

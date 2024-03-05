@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_SearchList</class>
+ <widget class="QWidget" name="Form_SearchList">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>987</width>
+    <height>207</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QTreeWidget{
+	background-color: rgb(230, 231, 232);
+}
+
+QHeaderView::section{  
+border:1px solid #94a6ca; 
+background-color:rgb(204, 213, 240);
+padding-left:10px;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QTreeWidget" name="treeWidget">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="uniformRowHeights">
+      <bool>false</bool>
+     </property>
+     <property name="headerHidden">
+      <bool>false</bool>
+     </property>
+     <attribute name="headerVisible">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="headerDefaultSectionSize">
+      <number>125</number>
+     </attribute>
+     <attribute name="headerShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="headerStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>代码文本</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>文件</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>项目</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>行</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>列</string>
+      </property>
+     </column>
+     <item>
+      <property name="text">
+       <string>测试代码</string>
+      </property>
+      <property name="text">
+       <string>C:/Users/31914/Desktop/testProject/src/main.cpp</string>
+      </property>
+      <property name="text">
+       <string>测试项目</string>
+      </property>
+      <property name="text">
+       <string>20</string>
+      </property>
+      <property name="text">
+       <string>5</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
