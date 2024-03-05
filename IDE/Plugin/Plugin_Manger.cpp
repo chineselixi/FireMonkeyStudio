@@ -366,7 +366,8 @@ void Plugin_Manger::projectManger_init_building(PluginGlobalMsg::projectManger_g
                                                 PluginGlobalMsg::projectManger_addBuildFileSign ProjectManger_addBuildSignFun,
                                                 PluginGlobalMsg::projectManger_delBuildFileSign ProjectManger_delBuildSignFun,
                                                 PluginGlobalMsg::projectManger_addFileIco ProjectManger_addFileIcoFun,
-                                                PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIcoFun)
+                                                PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIcoFun,
+                                                PluginGlobalMsg::projectManger_getFileProName ProjectManger_getFileProNameFun)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
@@ -375,6 +376,7 @@ void Plugin_Manger::projectManger_init_building(PluginGlobalMsg::projectManger_g
             this->List_plg[a].plgPth->ProjectManger_delBuildSign = ProjectManger_delBuildSignFun;
             this->List_plg[a].plgPth->ProjectManger_addFileIco = ProjectManger_addFileIcoFun;
             this->List_plg[a].plgPth->ProjectManger_setObjIco = ProjectManger_setObjIcoFun;
+            this->List_plg[a].plgPth->ProjectManger_getFileProName = ProjectManger_getFileProNameFun;
         }
     }
 }

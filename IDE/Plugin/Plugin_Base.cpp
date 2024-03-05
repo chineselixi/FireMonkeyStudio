@@ -426,6 +426,16 @@ void Plugin_Base::projectManger_setObjIco(QIcon ico, QString objPath)
 }
 
 
+//获取一个文件的所在的工程名字
+QString Plugin_Base::projectManger_getFileProName(QString filePath)
+{
+    if(ProjectManger_getFileProName){
+        return ProjectManger_getFileProName(filePath);
+    }
+    return "";
+}
+
+
 //获取工作空间窗口指针
 QMainWindow *Plugin_Base::widget_getWorkSpaceWindowPtr()
 {

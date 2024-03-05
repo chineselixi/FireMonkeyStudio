@@ -778,7 +778,15 @@ void Plugin_CppBase::event_errorTips(QString errorStr, Form_CodeEditor* codeEdit
             this->print_clearList();
         }
 
-        this->print_printList("",item.tipStr,"",item.file,item.line,item.startIndex,item.len,(item.type==GccUtil::GccType::ERR?PluginGlobalMsg::printIcoType::error:PluginGlobalMsg::printIcoType::warning),(item.type==GccUtil::GccType::ERR?QColor("#ff2700"):QColor("#ffa200")));
+        //获取当前文件的工程名，最大限度减少插件查询的调用成本
+        static QString t_filePath = "";
+        static QString t_proName = "";
+        if(item.file != t_filePath){
+            t_proName = this->projectManger_getFileProName(item.file);
+            t_filePath = item.file;
+        }
+
+        this->print_printList("",item.tipStr,t_proName,item.file,item.line,item.startIndex,item.len,(item.type==GccUtil::GccType::ERR?PluginGlobalMsg::printIcoType::error:PluginGlobalMsg::printIcoType::warning),(item.type==GccUtil::GccType::ERR?QColor("#ff2700"):QColor("#ffa200")));
 
         //this->print_printList("",QObject::tr("使用内置终端运行：") + t_exeFile,t_proName,"",0,0,0,PluginGlobalMsg::printIcoType::ok,QColor("green"));
         //qDebug() << "file:" << item.file << "line:" << item.line << "index:" << item.index << "startIndex:" << item.startIndex << "len:" << item.len << "tip:" << item.tipStr << "type:" << (item.type == GccUtil::GccType::ERR?"error":"warn");

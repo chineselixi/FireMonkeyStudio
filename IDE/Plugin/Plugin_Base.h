@@ -131,6 +131,7 @@ private:
     PluginGlobalMsg::projectManger_delBuildFileSign ProjectManger_delBuildSign = nullptr; //删除创建文件标记
     PluginGlobalMsg::projectManger_addFileIco ProjectManger_addFileIco = nullptr; //添加类别文件图标
     PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIco = nullptr; //设置目标图标，如果目标为空，则设置类型为non的图标
+    PluginGlobalMsg::projectManger_getFileProName ProjectManger_getFileProName = nullptr; //获取一个文件的所在的工程名字
 
     //窗口获取
     PluginGlobalMsg::widgetFun_getWidget Widget_getWorkSpaceWindowPtr = nullptr; //获取工作空间窗口指针
@@ -218,6 +219,7 @@ public: //插件的基础方法
     void projectManger_delBuildFileSign(QString suffix); //删除创建文件标记
     void projectManger_addFileIco(QString suffix, QIcon ico); //添加类别文件图标
     void projectManger_setObjIco(QIcon ico,QString objPath); //设置目标图标，如果目标为空，则设置类型为non的图标
+    QString projectManger_getFileProName(QString filePath); //获取一个文件的所在的工程名字
 
     //窗口操作
     QMainWindow* widget_getWorkSpaceWindowPtr(); //获取工作空间窗口指针

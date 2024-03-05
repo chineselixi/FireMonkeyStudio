@@ -1087,6 +1087,53 @@ PluginGlobalMsg::ProjectMsg Form_ProjectManger::getProjectMsg(QString proPath)
 
 
 
+//获取文件所在工程的工程名
+QString Form_ProjectManger::getFileProName(QString filePath)
+{
+    QVector<Form_ProjectManger::ProjectNode*> pros = this->getProjectAll();
+
+    struct t_node{
+        QString path;
+        QString proName;
+    };
+
+    //获取工程路径信息
+    QList<t_node> proNodes;
+    for(Form_ProjectManger::ProjectNode* item : pros){
+        if(item){
+            QFileInfo t_info(item->proMsg.proPath);
+            if(t_info.isDir()){
+                proNodes.append({item->proMsg.proPath,item->proMsg.proName});
+            }
+            else if(t_info.isFile()){
+                proNodes.append({t_info.path(),item->proMsg.proName});
+            }
+        }
+    }
+
+
+    //从大到小冒泡排序
+    for(qsizetype a = 0; a < proNodes.length(); a++){
+        for(qsizetype b = 0; b < proNodes.length() - a - 1; b++){
+            if(proNodes[b].path.length() < proNodes[b+1].path.length()){
+                t_node t_str = proNodes[b];
+                proNodes[b] = proNodes[b+1];
+                proNodes[b+1] = t_str;
+            }
+        }
+    }
+
+    //判断是否为此工程信息
+    for(t_node item : proNodes){
+        if(filePath.indexOf(item.path) == 0){
+            return item.proName;
+        }
+    }
+    return "";
+}
+
+
+
 //保存当前工程信息
 bool Form_ProjectManger::saveProjectMsg(QString proPath, PluginGlobalMsg::ProjectMsg proMsg)
 {

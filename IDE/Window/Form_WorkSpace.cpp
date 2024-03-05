@@ -387,6 +387,9 @@ void Form_WorkSpace::init()
         },
         [this](QIcon ico,QString objPath){
             ui->widget_ProjectManger->setObjIco(ico,objPath);
+        },
+        [this](QString filePath)->QString{
+            return ui->widget_ProjectManger->getFileProName(filePath);
         });
 
 

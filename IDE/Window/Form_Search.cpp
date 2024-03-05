@@ -265,51 +265,10 @@ QList<Form_Search::searchMsg> Form_Search::queryIndex(QString filePath, QString 
 //获取文件的工程名
 QString Form_Search::getFileProName(QString filePath)
 {
-    //获取所有工程信息
-    QVector<Form_ProjectManger::ProjectNode*> pros = Manger::workspace_projectManger->getProjectAll();
     if(Manger::workspace_projectManger == nullptr){ //扫描存在的工程信息
         return "";
     }
-
-
-    struct t_node{
-        QString path;
-        QString proName;
-    };
-
-    //获取工程路径信息
-    QList<t_node> proNodes;
-    for(Form_ProjectManger::ProjectNode* item : pros){
-        if(item){
-            QFileInfo t_info(item->proMsg.proPath);
-            if(t_info.isDir()){
-                proNodes.append({item->proMsg.proPath,item->proMsg.proName});
-            }
-            else if(t_info.isFile()){
-                proNodes.append({t_info.path(),item->proMsg.proName});
-            }
-        }
-    }
-
-
-    //从大到小冒泡排序
-    for(qsizetype a = 0; a < proNodes.length(); a++){
-        for(qsizetype b = 0; b < proNodes.length() - a - 1; b++){
-            if(proNodes[b].path.length() < proNodes[b+1].path.length()){
-                t_node t_str = proNodes[b];
-                proNodes[b] = proNodes[b+1];
-                proNodes[b+1] = t_str;
-            }
-        }
-    }
-
-    //判断是否为此工程信息
-    for(t_node item : proNodes){
-        if(filePath.indexOf(item.path) == 0){
-            return item.proName;
-        }
-    }
-    return "";
+    return Manger::workspace_projectManger->getFileProName(filePath);
 }
 
 

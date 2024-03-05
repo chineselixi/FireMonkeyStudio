@@ -230,6 +230,7 @@ public:
 
     PluginGlobalMsg::ProjectMsg getNowProjectMsg(); //获取当前工程
     PluginGlobalMsg::ProjectMsg getProjectMsg(QString proPath); //获取当前工程信息
+    QString getFileProName(QString filePath); //获取文件所在工程的工程名
     QString getCreatePath(QString srcPath); //根据一个文件或者文件夹路径，获取已经可用的文件夹路径
     bool saveProjectMsg(QString proPath, PluginGlobalMsg::ProjectMsg proMsg); //保存指定工程信息
 

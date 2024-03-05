@@ -140,6 +140,7 @@ struct ProjectMsg{
 typedef std::function<void()> fun_void; //基础函数类型，返回空
 typedef std::function<QString()> fun_str; //基础函数类型，返回字符串
 typedef std::function<void(QString)> funStr_void; //基础函数类型，传入字符串，返回空
+typedef std::function<QString(QString)> funStr_str; //基础函数类型，传入字符串，返回字符串
 
 //函数指针类型
 //class Plugin_Base; //插件类声明
@@ -189,6 +190,7 @@ typedef std::function<void(QString suffix, QString sign, QIcon ico_16, QString n
 typedef std::function<void(QString suffix)> projectManger_delBuildFileSign; //删除创建文件标记
 typedef std::function<void(QString suffix, QIcon ico)> projectManger_addFileIco; //添加类别文件图标
 typedef std::function<void(QIcon ico,QString objPath)> projectManger_setObjIco; //设置目标图标，如果目标为空，则设置类型为non的图标
+typedef funStr_str projectManger_getFileProName; //获取一个文件的所在的工程名字
 
 
 //通知提示操作

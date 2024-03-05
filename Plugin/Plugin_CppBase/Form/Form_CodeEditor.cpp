@@ -384,7 +384,7 @@ void Form_CodeEditor::event_timer_textChanged()
 {
     this->saveTimer.stop();
     System_File::writeFile(this->getSavePath(),ui->sciEditor->text().toUtf8());
-    onTimeOut(); //激发外部定时器消息
+    this->onTimeOut(); //激发外部定时器消息
 }
 
 

@@ -100,7 +100,8 @@ public:
                                      PluginGlobalMsg::projectManger_addBuildFileSign ProjectManger_addBuildSignFun, //添加新建工程文档
                                      PluginGlobalMsg::projectManger_delBuildFileSign ProjectManger_delBuildSignFun, //删除创建文件标记
                                      PluginGlobalMsg::projectManger_addFileIco ProjectManger_addFileIcoFun, //添加类别文件图标
-                                     PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIcoFun); //设置目标图标，如果目标为空，则设置类型为non的图标
+                                     PluginGlobalMsg::projectManger_setObjIco ProjectManger_setObjIcoFun,
+                                     PluginGlobalMsg::projectManger_getFileProName ProjectManger_getFileProNameFun); //设置目标图标，如果目标为空，则设置类型为non的图标
 
     void workSpace_init_compileMod(PluginGlobalMsg::compileMod_changeFun addFun, //添加编译模式
                                    PluginGlobalMsg::compileMod_changeFun delFun, //删除编译模式
