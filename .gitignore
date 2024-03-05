@@ -1,6 +1,7 @@
 /.git/
 /.qtc_clangd/
 /release/
+/debug/
 /.qmake.*
 /FMS.pro.user*
 /Makefile
