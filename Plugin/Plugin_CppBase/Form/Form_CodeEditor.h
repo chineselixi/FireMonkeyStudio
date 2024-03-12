@@ -43,7 +43,6 @@ private:
         QColor Paper,                           //整个编辑器背景颜色
         QColor Comment,                         //备注颜色
         QColor Number,                          //数字颜色
-        QColor CommentLineDoc,                  //行备注颜色
         QColor DoubleQuotedString,              //双引号字符串颜色
         QColor SingleQuotedString,              //单引号字符串颜色
         QColor Keyword,                         //关键字颜色

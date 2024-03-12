@@ -196,7 +196,8 @@ void Plugin_CppBase::event_onTabFormActivation(QWidget *form)
 
     if(tipProcess == nullptr) tipProcess = new QProcess();
     disconnect(tipProcess);
-    QProcess::connect(tipProcess,&QProcess::readyReadStandardError,[=](){        
+
+    QProcess::connect(tipProcess,&QProcess::readyReadStandardError,[=](){
         QString errorStr = tipProcess->readAllStandardError();
         this->event_errorTips(errorStr);
     });
@@ -210,7 +211,9 @@ void Plugin_CppBase::event_onTabFormActivation(QWidget *form)
     connect(t_codeEditorForm,&Form_CodeEditor::onTimeOut,[=](){
         //运行错误检查程序
         if(!t_settingMsg.s4_compileMsg.fp_gpp.isEmpty()){
-            tipProcess ->start(t_settingMsg.s4_compileMsg.fp_gpp, QStringList()<<"-fsyntax-only" << "-Wall" << "-Wextra" << t_codeEditorForm->getSavePath());
+            tipProcess->kill(); //强制关闭进程
+            this->event_errorTips(); //清空当前的错误信息
+            tipProcess->start(t_settingMsg.s4_compileMsg.fp_gpp, QStringList()<<"-fsyntax-only" << "-Wall" << "-Wextra" << t_codeEditorForm->getSavePath());
             this->needClearPrint = true;
             this->needClearMarginSign = true;
             this->needClearTextSign = true;
@@ -738,6 +741,14 @@ void Plugin_CppBase::event_errorTips(QString errorStr, Form_CodeEditor* codeEdit
     Form_CodeEditor* t_codeEditorForm = codeEditorPtr;
     if(t_codeEditorForm == nullptr){
         t_codeEditorForm = dynamic_cast<Form_CodeEditor*>(this->tabWindow_getNowWidget());
+    }
+
+    if(errorStr.isEmpty() && t_codeEditorForm != nullptr){ //如果没有数据，那么就直接清空信息
+        t_codeEditorForm->delAllLineSign(); //清空行标记
+        t_codeEditorForm->delMarginAllSign(2); //清空错误边界标记
+        t_codeEditorForm->delMarginAllSign(3); //清空警告边界标记
+        this->print_clearList(); //清空提示列表
+        return;
     }
 
     for(auto item : GccUtil::parsingGccError(errorStr)){

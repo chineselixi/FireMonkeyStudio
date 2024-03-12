@@ -53,7 +53,7 @@ Form_WindowTab::~Form_WindowTab()
 void Form_WindowTab::addTabWidget(Plugin_Base* plg,QString title, QWidget *form, QString sign, QIcon titeIco, bool select, PluginGlobalMsg::TabType type,bool autoMangement)
 {
     QWidget* t_tab = new QWidget(ui->tabWidget);
-    QGridLayout* t_layout = new QGridLayout(t_tab);
+    QHBoxLayout* t_layout = new QHBoxLayout(t_tab);
     t_layout->setContentsMargins(0,0,0,0); //设置布局边距
     t_layout->setSpacing(0); //设置组件的间距
     t_layout->addWidget(form);

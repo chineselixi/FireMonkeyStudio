@@ -93,10 +93,13 @@ public:
         gridLayout->setContentsMargins(0, 0, 0, 0);
         tabWidget = new QTabWidget(Form_WindowTab);
         tabWidget->setObjectName("tabWidget");
+        tabWidget->setBaseSize(QSize(0, 0));
         tabWidget->setFocusPolicy(Qt::TabFocus);
+        tabWidget->setStyleSheet(QString::fromUtf8(""));
         tabWidget->setTabPosition(QTabWidget::North);
         tabWidget->setTabShape(QTabWidget::Rounded);
         tabWidget->setElideMode(Qt::ElideNone);
+        tabWidget->setDocumentMode(true);
         tabWidget->setTabsClosable(true);
         tabWidget->setMovable(true);
         tab = new QWidget();
@@ -111,7 +114,7 @@ public:
 
         retranslateUi(Form_WindowTab);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Form_WindowTab);

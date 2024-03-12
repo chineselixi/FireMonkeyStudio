@@ -161,7 +161,6 @@ void Form_CodeEditor::setCodeEditorThemeColor(
         QColor Paper,                           //整个编辑器背景颜色
         QColor Comment,                         //备注颜色
         QColor Number,                          //数字颜色
-        QColor CommentLineDoc,                  //行备注颜色
         QColor DoubleQuotedString,              //双引号字符串颜色
         QColor SingleQuotedString,              //单引号字符串颜色
         QColor Keyword,                         //关键字颜色
@@ -195,8 +194,14 @@ void Form_CodeEditor::setCodeEditorThemeColor(
     textLexer->setPaper(Paper);         //文本背景颜色
     textLexer->setDefaultPaper(Paper);  //编辑器背景颜色
     textLexer->setColor(Comment,QsciLexerCPP::Comment); //备注颜色
+    textLexer->setColor(Comment,QsciLexerCPP::InactiveComment); //备注颜色
+    textLexer->setColor(Comment,QsciLexerCPP::CommentLine); //备注颜色
+    textLexer->setColor(Comment,QsciLexerCPP::InactiveCommentLine); //备注颜色
+    textLexer->setColor(Comment,QsciLexerCPP::CommentDoc); //备注颜色
+    textLexer->setColor(Comment,QsciLexerCPP::InactiveCommentDoc); //备注颜色
+    textLexer->setColor(Comment,QsciLexerCPP::CommentLineDoc); //备注颜色
+    textLexer->setColor(Comment,QsciLexerCPP::InactiveCommentLineDoc); //备注颜色
     textLexer->setColor(Number,QsciLexerCPP::Number); //数字颜色
-    textLexer->setColor(CommentLineDoc,QsciLexerCPP::CommentLineDoc); //行备注颜色
     textLexer->setColor(DoubleQuotedString,QsciLexerCPP::DoubleQuotedString); //双引号字符串颜色
     textLexer->setColor(SingleQuotedString,QsciLexerCPP::SingleQuotedString); //单引号字符串颜色
     textLexer->setColor(Keyword,QsciLexerCPP::Keyword); //关键字颜色
@@ -405,7 +410,6 @@ void Form_CodeEditor::onThemeChange(QString themeSign)
             QColor("#ffffff"),          //文本区域和编辑器默认颜色
             QColor("#008000"),          //备注颜色
             QColor("#ff0000"),          //数字颜色
-            QColor("#008000"),          //行备注颜色
             QColor("#008000"),          //双引号字符串颜色
             QColor("#ff00ff"),          //单引号字符串颜色
             QColor("#0000ff"),          //关键字颜色
@@ -432,7 +436,6 @@ void Form_CodeEditor::onThemeChange(QString themeSign)
             QColor("#262626"),          //文本区域和编辑器默认颜色
             QColor("#348546"),          //备注颜色
             QColor("#b5ce9a"),          //数字颜色
-            QColor("#008000"),          //行备注颜色
             QColor("#d69d85"),          //双引号字符串颜色
             QColor("#d69d85"),          //单引号字符串颜色
             QColor("#2a6ac3"),          //关键字颜色
@@ -441,7 +444,7 @@ void Form_CodeEditor::onThemeChange(QString themeSign)
             QColor("#d69d85"),          //未闭合的字符串
             QColor("#0066d6"),          //正则表达式
             QColor("#a4b4aa"),          //光标前景色
-            QColor("#7d7d7d"),          //光标行背景色
+            QColor("#1d545c"),          //光标行背景色
             QColor("#264f78"),          //选中文本背景色
             Qt::gray,                   //选中文本前景色
             Qt::red,                    //设置不匹配的大括号前景颜色
@@ -459,7 +462,6 @@ void Form_CodeEditor::onThemeChange(QString themeSign)
             QColor("#fafafa"),          //文本区域和编辑器默认颜色
             QColor("#008000"),          //备注颜色
             QColor("#ff0000"),          //数字颜色
-            QColor("#008000"),          //行备注颜色
             QColor("#008000"),          //双引号字符串颜色
             QColor("#ff00ff"),          //单引号字符串颜色
             QColor("#003bba"),          //关键字颜色

@@ -837,6 +837,7 @@ void Form_WorkSpace::setPorMangerStyle(QString style)
 void Form_WorkSpace::setCompilePrintStyle(QString style)
 {
     ui->textEdit_compilePrint->setStyleSheet(style);
+    ui->searchList->setStyleSheet(style);
 }
 
 //设置打印样式表

@@ -126,7 +126,7 @@ private:
     void event_attribute(QString proPath); //属性被点击
     void event_stop(); //停止当前运行的进程
     void event_run(QString proPath, QVector<QString> compileFiles);//运行
-    void event_errorTips(QString errorStr, Form_CodeEditor* codeEditorPtr = nullptr); //错误提示信息
+    void event_errorTips(QString errorStr = "", Form_CodeEditor* codeEditorPtr = nullptr); //错误提示信息
     QString event_compile(QString proPath, QVector<QString> compileFiles); //编译完成，成功返回编译的文件，失败返回空
 
 private:
