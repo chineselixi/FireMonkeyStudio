@@ -1270,7 +1270,7 @@ public:
 
     void retranslateUi(QMainWindow *Form_WorkSpace)
     {
-        Form_WorkSpace->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "FireMonky Studio 2024", nullptr));
+        Form_WorkSpace->setWindowTitle(QCoreApplication::translate("Form_WorkSpace", "FireMonkey Studio 2024", nullptr));
         action_toolBar_backward->setText(QCoreApplication::translate("Form_WorkSpace", "\350\267\263\345\210\260\345\211\215\350\267\263\350\275\254\345\244\204", nullptr));
 #if QT_CONFIG(tooltip)
         action_toolBar_backward->setToolTip(QCoreApplication::translate("Form_WorkSpace", "\350\267\263\345\210\260\345\211\215\350\267\263\350\275\254\345\244\204", nullptr));
