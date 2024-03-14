@@ -2,10 +2,10 @@
 
 #### 介绍
 FireMonkeyStudio2024是一款跨平台可拓展的IDE，支持Windows，Linux，MacOS。外观类似于VisualStudio
-![起始页](1710425898909.png)
-![UI编辑器](1710425898924.jpg)
-![MacOS的效果](1710425898900.png)
-![UOS下的效果](1710426019044.jpg)
+![起始页](gitImg/1710425898909.png)
+![UI编辑器](gitImg/1710425898924.jpg)
+![MacOS的效果](gitImg/1710425898900.png)
+![UOS下的效果](gitImg/1710426019044.jpg)
 
 
 #### 开发
