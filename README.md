@@ -1,26 +1,20 @@
 # FireMonkeyStudio
 
 #### 介绍
-FireMonkeyStudio2024是一款跨平台可拓展的IDE产品
-![IDE主界面](https://foruda.gitee.com/images/1683894502305593321/8251e670_7894732.jpeg "ide1.jpg")
-![智能提示](https://foruda.gitee.com/images/1683894537450937068/ede9cac9_7894732.jpeg "ide2.jpg")
-![插件系统](https://foruda.gitee.com/images/1683894546582667332/e797e63e_7894732.jpeg "ide3.jpg")
+FireMonkeyStudio2024是一款跨平台可拓展的IDE，支持Windows，Linux，MacOS。外观类似于VisualStudio
+![起始页](1710425898909.png)
+![UI编辑器](1710425898924.jpg)
+![错误感知](1710425898892.png)
+![MacOS的效果](1710425898900.png)
+![UOS下的效果](1710426019044.jpg)
 
 
-#### 软件架构
-基于QT6.2，模块化开发
+#### 开发
+本软件使用QT6开发，部分功能使用了部分开源项目tree sitter、QScintilla等...
 
 
-#### 安装教程
+#### 参与贡献（网络称呼）
 
-暂无发行版
-
-#### 使用说明
-
-暂无发行版
-
-#### 参与贡献
-
-1. 开发者：雪花
+1. 开发者：雪花、点点
 2. UI设计：狗蛋
 
