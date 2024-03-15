@@ -16,4 +16,5 @@ FireMonkeyStudio2024是一款跨平台可拓展的IDE，支持Windows，Linux，
 
 1. 开发者：雪花、点点
 2. UI设计：狗蛋
+3. 其他：斩月
 
