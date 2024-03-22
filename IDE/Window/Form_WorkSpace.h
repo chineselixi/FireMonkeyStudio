@@ -4,9 +4,9 @@
 #include <QMainWindow>
 
 
-class mod_WebPage; //模块声明
 class Widget_Statusbar; //状态栏组件
 class Form_SearchList;
+class Form_Start;
 
 namespace Ui {
 class Form_WorkSpace;
@@ -15,7 +15,7 @@ class Form_WorkSpace;
 class Form_WorkSpace : public QMainWindow
 {
     Q_OBJECT
-    friend class cppObject; //设定WebEngine的cppobj为友元
+    friend class Form_Start; //设定WebEngine的cppobj为友元
 public:
     explicit Form_WorkSpace(QWidget *parent = nullptr);
     ~Form_WorkSpace();
@@ -85,7 +85,7 @@ private slots:
 
 private:
     Ui::Form_WorkSpace *ui;
-    mod_WebPage* mod_webs; //Web页面模块
+    Form_Start* form_start; //Web页面模块
 
 
     //工程信息

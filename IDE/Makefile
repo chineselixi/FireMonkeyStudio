@@ -382,13 +382,13 @@ Makefile: IDE.pro D:\QT\6.6.0\msvc2019_64\mkspecs\win32-msvc\qmake.conf D:\QT\6.
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\exclusive_builds_post.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\default_post.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\file_copies.prf \
-		D:\QT\6.6.0\msvc2019_64\mkspecs\features\resources_functions.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\qtquickcompiler.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\entrypoint.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\precompile_header.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\warn_on.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\permissions.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\qt.prf \
+		D:\QT\6.6.0\msvc2019_64\mkspecs\features\resources_functions.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\resources.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\moc.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\win32\opengl.prf \
@@ -400,37 +400,15 @@ Makefile: IDE.pro D:\QT\6.6.0\msvc2019_64\mkspecs\win32-msvc\qmake.conf D:\QT\6.
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\yacc.prf \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\lex.prf \
 		IDE.pro \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6WebView.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6WebEngineWidgets.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6PrintSupport.prl \
 		D:\QT\6.6.0\msvc2019_64\lib\Qt6Widgets.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6WebEngineCore.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6Quick.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6OpenGL.prl \
 		D:\QT\6.6.0\msvc2019_64\lib\Qt6Gui.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6QmlModels.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6WebChannel.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6Qml.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6Network.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6Positioning.prl \
 		D:\QT\6.6.0\msvc2019_64\lib\Qt6Core.prl \
 		D:\QT\6.6.0\msvc2019_64\lib\Qt6EntryPoint.prl \
 		D:\QT\6.6.0\msvc2019_64\mkspecs\features\build_pass.prf \
 		icons.qrc \
 		res.qrc \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6WebViewd.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6WebEngineWidgetsd.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6PrintSupportd.prl \
 		D:\QT\6.6.0\msvc2019_64\lib\Qt6Widgetsd.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6WebEngineCored.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6Quickd.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6OpenGLd.prl \
 		D:\QT\6.6.0\msvc2019_64\lib\Qt6Guid.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6QmlModelsd.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6WebChanneld.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6Qmld.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6Networkd.prl \
-		D:\QT\6.6.0\msvc2019_64\lib\Qt6Positioningd.prl \
 		D:\QT\6.6.0\msvc2019_64\lib\Qt6Cored.prl \
 		D:\QT\6.6.0\msvc2019_64\lib\Qt6EntryPointd.prl
 	$(QMAKE) -o Makefile IDE.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
@@ -732,13 +710,13 @@ D:\QT\6.6.0\msvc2019_64\mkspecs\features\resolve_config.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\exclusive_builds_post.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\default_post.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\file_copies.prf:
-D:\QT\6.6.0\msvc2019_64\mkspecs\features\resources_functions.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\qtquickcompiler.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\entrypoint.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\precompile_header.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\warn_on.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\permissions.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\qt.prf:
+D:\QT\6.6.0\msvc2019_64\mkspecs\features\resources_functions.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\resources.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\moc.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\win32\opengl.prf:
@@ -750,37 +728,15 @@ D:\QT\6.6.0\msvc2019_64\mkspecs\features\exceptions.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\yacc.prf:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\lex.prf:
 IDE.pro:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6WebView.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6WebEngineWidgets.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6PrintSupport.prl:
 D:\QT\6.6.0\msvc2019_64\lib\Qt6Widgets.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6WebEngineCore.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6Quick.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6OpenGL.prl:
 D:\QT\6.6.0\msvc2019_64\lib\Qt6Gui.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6QmlModels.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6WebChannel.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6Qml.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6Network.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6Positioning.prl:
 D:\QT\6.6.0\msvc2019_64\lib\Qt6Core.prl:
 D:\QT\6.6.0\msvc2019_64\lib\Qt6EntryPoint.prl:
 D:\QT\6.6.0\msvc2019_64\mkspecs\features\build_pass.prf:
 icons.qrc:
 res.qrc:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6WebViewd.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6WebEngineWidgetsd.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6PrintSupportd.prl:
 D:\QT\6.6.0\msvc2019_64\lib\Qt6Widgetsd.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6WebEngineCored.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6Quickd.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6OpenGLd.prl:
 D:\QT\6.6.0\msvc2019_64\lib\Qt6Guid.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6QmlModelsd.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6WebChanneld.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6Qmld.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6Networkd.prl:
-D:\QT\6.6.0\msvc2019_64\lib\Qt6Positioningd.prl:
 D:\QT\6.6.0\msvc2019_64\lib\Qt6Cored.prl:
 D:\QT\6.6.0\msvc2019_64\lib\Qt6EntryPointd.prl:
 qmake: FORCE

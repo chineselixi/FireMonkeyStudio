@@ -20,10 +20,11 @@
 #include "Window/Form_SystemSettings.h"
 #include "Window/Form_TipManger.h"
 #include "Window/Form_Search.h"
+#include "Window/Form_Start.h"
 
 #include "Widget/Widget_Statusbar.h"
 
-#include "module/mod_WebPage.h"
+
 
 
 Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
@@ -117,10 +118,9 @@ void Form_WorkSpace::init()
     ui->toolBar->insertAction(ui->action_toolBar_compile,ui->toolBar->addWidget(ui->comboBox_compileMode));
 
     //=================设置主页显示模式=================
-    mod_webs = new mod_WebPage(this);
-    ui->widget_WindowTab->addTabWidget(nullptr,"主页",mod_webs,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web,false);  //添加到TAB
-    mod_webs->setUrl(QUrl("file:" + System_OS::getaApplicationDirPath_EX() + "/web/Start/index.html"));
-    mod_webs->show();
+    form_start = new Form_Start(this);
+    ui->widget_WindowTab->addTabWidget(nullptr,"主页",form_start,"",QIcon(":/WidgetIcon/icon/WidgetIcon/logo/Logo_64.png"),true,PluginGlobalMsg::TabType::web,false);  //添加到TAB
+    form_start->show();
 
 
     //=================融合部分Dockwidget=================
@@ -871,7 +871,7 @@ void Form_WorkSpace::setTheme(QString themeName)
     }
 
     Setting::style_themeName = themeName;
-    mod_webs->page()->runJavaScript("changeTheme('" + Setting::style_themeName + "')"); //更换web样式
+    //mod_webs->page()->runJavaScript("changeTheme('" + Setting::style_themeName + "')"); //更换web样式
     Setting::sys_setting->changeSetting("Style","theme",Setting::style_themeName); //保存主题样式
 }
 

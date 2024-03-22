@@ -31,6 +31,9 @@ private:
     int signLineIndex_squiggle = -1; //波浪线
     int signLineIndex_straight = -1; //直线
 
+    //自身指针索引
+    //static QList<Form_CodeEditor*> formList;
+
 public:
     explicit Form_CodeEditor(Plugin_Base* plg,QWidget *parent = nullptr);
     ~Form_CodeEditor();
@@ -89,6 +92,9 @@ public:
 
     //选择标记文本
     void selectCodeText(uint16_t line = 0,uint16_t lineIndex = 0,uint16_t len = 0); //选择标记文本
+
+public:
+    static QList<Form_CodeEditor*> getForms(); //静态获取所有窗口
 
 public slots:
     void event_textChanged(); //文本发生改变

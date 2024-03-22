@@ -1,6 +1,6 @@
-QT       += core gui webview
+QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webenginecore webenginewidgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17 file_copies
 
@@ -50,6 +50,8 @@ SOURCES += \
     Widget/Widget_Button_WidgetItem.cpp \
     Widget/Widget_Statusbar.cpp \
     Widget/Widget_TipItem.cpp \
+    Widget/Widget_Button_HistoryItem.cpp \
+    Widget/Widget_HistoryList.cpp \
     Window/Form_About.cpp \
     Window/Form_Begin.cpp \
     Window/Form_Content.cpp \
@@ -68,6 +70,7 @@ SOURCES += \
     Window/Form_WindowTab.cpp \
     Window/Form_WorkSpace.cpp \
     Window/Form_TipManger.cpp \
+    Window/Form_Start.cpp \
     Window/settingWindow/Form_settings_Basic.cpp \
     Window/settingWindow/Form_settings_Color.cpp \
     Window/settingWindow/Form_settings_DataBase.cpp \
@@ -77,7 +80,6 @@ SOURCES += \
     Window/settingWindow/Form_settings_Qt.cpp \
     main.cpp \
     mainwindow.cpp \
-    module/mod_WebPage.cpp \
     module/mod_settingsFormBase.cpp
 
 HEADERS += \
@@ -98,6 +100,8 @@ HEADERS += \
     Widget/Widget_Button_WidgetItem.h \
     Widget/Widget_Statusbar.h \
     Widget/Widget_TipItem.h \
+    Widget/Widget_Button_HistoryItem.h \
+    Widget/Widget_HistoryList.h \
     Window/Form_About.h \
     Window/Form_Begin.h \
     Window/Form_Content.h \
@@ -116,6 +120,7 @@ HEADERS += \
     Window/Form_WindowTab.h \
     Window/Form_WorkSpace.h \
     Window/Form_TipManger.h \
+    Window/Form_Start.h \
     Window/settingWindow/Form_settings_Basic.h \
     Window/settingWindow/Form_settings_Color.h \
     Window/settingWindow/Form_settings_DataBase.h \
@@ -124,7 +129,6 @@ HEADERS += \
     Window/settingWindow/Form_settings_ProjectManger.h \
     Window/settingWindow/Form_settings_Qt.h \
     mainwindow.h \
-    module/mod_WebPage.h \
     module/mod_settingsFormBase.h
 
 FORMS += \
@@ -136,6 +140,8 @@ FORMS += \
     Widget/Widget_Button_WidgetItem.ui \
     Widget/Widget_Statusbar.ui \
     Widget/Widget_TipItem.ui \
+    Widget/Widget_Button_HistoryItem.ui \
+    Widget/Widget_HistoryList.ui \
     Window/Form_About.ui \
     Window/Form_Beginui.ui \
     Window/Form_Content.ui \
@@ -154,6 +160,7 @@ FORMS += \
     Window/Form_WindowTab.ui \
     Window/Form_WorkSpace.ui \
     Window/Form_TipManger.ui \
+    Window/Form_Start.ui \
     Window/settingWindow/Form_settings_Basic.ui \
     Window/settingWindow/Form_settings_Color.ui \
     Window/settingWindow/Form_settings_DataBase.ui \

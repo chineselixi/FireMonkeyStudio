@@ -653,6 +653,7 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
     if(!t_exeFile.isEmpty()){
         // this->statusBar_setStatusHideAll();隐藏全部按钮
 
+
         //运行成功
         this->tip_addTip(tr("通知"),tr("编译成功"),2000,PluginGlobalMsg::TipType::Normal);
 

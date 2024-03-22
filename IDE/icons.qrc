@@ -755,7 +755,7 @@
         <file>icon/WidgetIcon/logo/Logo_64.png</file>
         <file>icon/WidgetIcon/logo/Logo_256.png</file>
         <file>icon/WidgetIcon/logo/Logo_128.png</file>
-        <file>icon/WidgetIcon/plugin/pluginNormal.png</file>
+        <file alias="/Other">icon/WidgetIcon/plugin/pluginNormal.png</file>
         <file>icon/WidgetIcon/setting/Logo_wb.png</file>
         <file>icon/WidgetIcon/setting/color.png</file>
         <file>icon/WidgetIcon/setting/comple.png</file>
@@ -903,5 +903,8 @@
         <file>icon/TipManger/error.png</file>
         <file>icon/TipManger/warning.png</file>
         <file>icon/TipManger/normal.png</file>
+    </qresource>
+    <qresource prefix="/Other">
+        <file>icon/Other/damage.png</file>
     </qresource>
 </RCC>

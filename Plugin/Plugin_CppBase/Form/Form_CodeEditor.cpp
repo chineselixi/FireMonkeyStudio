@@ -12,6 +12,8 @@ Form_CodeEditor::Form_CodeEditor(Plugin_Base* plg,QWidget *parent) :
     cppPlgPtr(plg)
 {
     ui->setupUi(this);
+    //formList.append(this); //保存自身
+
     this->intiCodeEditor(); //初始化代码编辑器
 
     //绑定Timer
@@ -23,6 +25,9 @@ Form_CodeEditor::~Form_CodeEditor()
     //保存信息
     this->event_timer_textChanged();
     delete ui;
+
+    //删除自身信息
+    //formList.removeOne(this);
 }
 
 
@@ -344,6 +349,14 @@ void Form_CodeEditor::delAllLineSign()
 void Form_CodeEditor::selectCodeText(uint16_t line, uint16_t lineIndex, uint16_t len)
 {
     ui->sciEditor->setSelection(line,lineIndex,line,lineIndex + len);
+}
+
+
+
+//静态获取所有窗口
+QList<Form_CodeEditor *> Form_CodeEditor::getForms()
+{
+    return QList<Form_CodeEditor *>();
 }
 
 

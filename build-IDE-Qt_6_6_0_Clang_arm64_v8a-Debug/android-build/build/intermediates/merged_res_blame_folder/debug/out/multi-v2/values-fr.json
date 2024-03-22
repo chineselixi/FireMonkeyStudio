@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "org.fms.dev-mergeDebugResources-7:/values-fr/values-fr.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\31914\\.gradle\\caches\\transforms-3\\4be2570fd98c550226d6d381b2ee3a14\\transformed\\core-1.10.1\\res\\values-fr\\values-fr.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,354,456,560,664,782",
+                        "endColumns": "97,101,98,101,103,103,117,100",
+                        "endOffsets": "148,250,349,451,555,659,777,878"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,10",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,354,456,560,664,900",
+                        "endColumns": "97,101,98,101,103,103,117,100",
+                        "endOffsets": "148,250,349,451,555,659,777,996"
+                    }
+                },
+                {
+                    "source": "D:\\QT\\6.6.0\\android_arm64_v8a\\src\\android\\java\\res\\values-fr\\strings.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,173",
+                        "endColumns": "117,102",
+                        "endOffsets": "168,271"
+                    },
+                    "to": {
+                        "startLines": "9,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "782,1001",
+                        "endColumns": "117,102",
+                        "endOffsets": "895,1099"
+                    }
+                }
+            ]
+        }
+    ]
+}
