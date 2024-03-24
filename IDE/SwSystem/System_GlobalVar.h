@@ -15,8 +15,10 @@ extern QString projectPath;//工程项目文件记录
 
 //所有的窗口指针
 class Form_WorkSpace;
+class Form_Start;
 namespace Window{
-extern Form_WorkSpace* workSpace; //工作窗口
+extern Form_WorkSpace* workSpace;   //工作窗口
+extern Form_Start* start;           //开始窗口
 }
 
 

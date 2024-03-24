@@ -117,6 +117,7 @@ void Form_SystemSettings::changeThream(QString styleName)
         Window::workSpace->setCompilePrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_ListPrint")); //加载编译样式表
         Window::workSpace->setPrintStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_TextPrint")); //加载文本打印样式表
         Window::workSpace->setTipMangerStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_TipManger")); //加载通知管理器样式表
+        Window::workSpace->setStartStyle(Setting::sys_setting->readThemeStyle(styleName,"Form_Start")); //加载开始界面样式表
 
         //设定选项样式
         Window::workSpace->setTheme(styleName);

@@ -11,11 +11,13 @@ Form_Start::Form_Start(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->widget_historyList,&Widget_HistoryList::event_onProjectOpen,this,&Form_Start::onProjectOpen); //连接打开信号槽
+    Window::start = this;
 }
 
 Form_Start::~Form_Start()
 {
     delete ui;
+    Window::start = nullptr;
 }
 
 

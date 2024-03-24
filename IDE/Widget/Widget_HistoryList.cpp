@@ -18,6 +18,8 @@ Widget_HistoryList::Widget_HistoryList(QWidget *parent) :
     for(auto vlaue : t_list){
         this->addItem({vlaue.showIco,vlaue.showName,vlaue.filePath,vlaue.filePath});
     }
+
+    this->adjustListWidgetHeigh(); //调整列表高度
 }
 
 Widget_HistoryList::~Widget_HistoryList()
@@ -47,10 +49,10 @@ void Widget_HistoryList::addItem(itemMsg item)
     //工程关闭被点击
     connect(itemWidget,&Widget_Button_HistoryItem::itemClose,[=](QString path){
         delete listItem;    //关闭当前行
-        HistoryList::sys_proHistory->removeProHisList(path); //删除单个记录
-        HistoryList::sys_proHistory->saveHisList(); //保存记录
+        deleteItem(path);
     });
 
+    this->adjustListWidgetHeigh(); //调整列表高度
 }
 
 
@@ -66,10 +68,11 @@ void Widget_HistoryList::addItems(QList<itemMsg> items)
 //根据path删除item
 void Widget_HistoryList::deleteItem(QString path)
 {
-    if(ui->listWidget->count() == 0){
-        ui->pushButton_clear->hide();
-        ui->label_tip->show();
+    if(HistoryList::sys_proHistory){
+        HistoryList::sys_proHistory->removeProHisList(path); //删除单个记录
+        HistoryList::sys_proHistory->saveHisList(); //保存记录
     }
+    this->adjustListWidgetHeigh(); //调整列表高度
 }
 
 
@@ -82,6 +85,28 @@ void Widget_HistoryList::deleteAll()
 
     HistoryList::sys_proHistory->clearRepeat();
     HistoryList::sys_proHistory->saveHisList();
+    this->adjustListWidgetHeigh(); //调整列表高度
+}
+
+
+//调整列表框高度
+void Widget_HistoryList::adjustListWidgetHeigh()
+{
+    //调整关键按钮的可视化
+    if(ui->listWidget->count() == 0){
+        ui->pushButton_clear->hide();
+        ui->label_tip->show();
+        ui->listWidget->hide();
+    }
+    else{
+        ui->pushButton_clear->show();
+        ui->label_tip->hide();
+        QRect t_rec = ui->listWidget->geometry();
+        ui->listWidget->setGeometry(t_rec.x(),t_rec.y() * ui->listWidget->count(),200,t_rec.y());
+        ui->listWidget->show();
+    }
+
+
 }
 
 //清理全部被点击

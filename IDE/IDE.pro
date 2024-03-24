@@ -3,6 +3,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17 file_copies
+TEMPLATE = app
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -181,9 +182,29 @@ icons.qrc \
 
 
 #load qsciscintilla
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
-else:unix: LIBS += -L$$OUT_PWD/../release/lib/ -lqscintilla
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release/ -lqscintilla
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/ -lqscintilla
+else:unix: LIBS += -L$$OUT_PWD/../release/ -lqscintilla
+
+
+#using android files
+#android{
+#styleBlue.files += formStyle/Blue/*.style
+#styleBlue.path = /assets/formStyle/Blue
+#styleDark.files += formStyle/Blue/*.style
+#styleDark.path = /assets/formStyle/Blue
+#styleWhite.files += formStyle/Blue/*.style
+#styleWhite.path = /assets/formStyle/Blue
+#INSTALLS += styleBlue styleDark styleWhite
+#}
+
 
 INCLUDEPATH += $$OUT_PWD/../release
 DEPENDPATH += $$OUT_PWD/../release
+
+contains(ANDROID_TARGET_ARCH,arm64-v8a) {
+    ANDROID_PACKAGE_SOURCE_DIR = \
+        $$PWD/android
+
+    ANDROID_EXTRA_LIBS =
+}

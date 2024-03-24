@@ -31,6 +31,7 @@ public:
     void setCompilePrintStyle(QString style); //设置编译输出样式表
     void setPrintStyle(QString style); //设置打印样式表
     void setTipMangerStyle(QString style); //设置通知管理器主题
+    void setStartStyle(QString style); //设置开始界面主题
     void setTheme(QString themeName); //设定主题
     void showSearchListDock(); //显示搜索列表Dock
     Form_SearchList* getSearchListForm(); //获取搜索窗口指针
@@ -95,6 +96,7 @@ private:
 
     //通知栏控件
     Widget_Statusbar* widget_statusbar;
+
 
 protected:
     //工程管理事件，在init方法内被初始化

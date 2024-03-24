@@ -19,7 +19,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "Widget/Widget_HistoryList.h"
+#include "../Widget/Widget_HistoryList.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -56,7 +56,7 @@ public:
     QWidget *widget_Notice;
     QVBoxLayout *verticalLayout_7;
     QLabel *label_notice;
-    QLabel *label;
+    QLabel *label_newContent;
     QWidget *widget_news;
     QLabel *label_news;
 
@@ -65,30 +65,62 @@ public:
         if (Form_Start->objectName().isEmpty())
             Form_Start->setObjectName("Form_Start");
         Form_Start->resize(841, 663);
-        Form_Start->setStyleSheet(QString::fromUtf8("#Form_Start{\n"
+        Form_Start->setStyleSheet(QString::fromUtf8("/*\350\223\235\350\211\262\344\270\273\351\242\230*/\n"
+"/*\351\273\230\350\256\244\350\203\214\346\231\257*/\n"
+"#Form_Start,#widget_body{\n"
 "	background-color: #f2f2f2;\n"
 "}\n"
 "\n"
+"/*\351\241\266\351\203\250\345\214\272\345\237\237\350\203\214\346\231\257\350\211\262*/\n"
 "#widget_title{\n"
 "	background-color: rgb(92, 45, 145);\n"
 "}\n"
 "\n"
-"#label_title1,#label_title2{\n"
+"/*\351\241\266\351\203\250\345\214\272\345\237\237\344\270\273\346\240\207\351\242\230*/\n"
+"#label_title1{\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
+"/*\351\241\266\351\203\250\345\214\272\345\237\237\345\211\257\346\240\207\351\242\230*/\n"
+"#label_title2{\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/*body\346\240\207\351\242\230\351\242\234\350\211\262*/\n"
 "#label_start,#label_history,#label_notice,#label_news{\n"
 "	color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
+"/*\350\276\223\345\205\245\346\214\211\351\222\256\345\206\205\345\241\253\345\205\205*/\n"
 "QPushButton{\n"
 "	padding:0px;\n"
 "}\n"
 "\n"
+"/*\345\217\257\347\224\250\346\223\215\344\275\234\346\214\211\351\222"
+                        "\256\351\242\234\350\211\262*/\n"
 "#pushButton_new,#pushButton_open,#pushButton_store,#pushButton_set,#label_history_tip,#widget_historyList>#label_tip,#widget_historyList>#pushButton_clear{\n"
 "	color: royalblue;\n"
 "}\n"
-""));
+"\n"
+"/*\346\226\260\351\227\273\345\206\205\345\256\271\351\242\234\350\211\262*/\n"
+"#label_newContent{\n"
+"	color:  #2e2f30;\n"
+"}\n"
+"\n"
+"/*\345\216\206\345\217\262\345\210\227\350\241\250\346\240\207\351\242\230*/\n"
+"#Widget_Button_HistoryItem>#label_mainTip{\n"
+"	color:  #2e2f30;\n"
+"}\n"
+"\n"
+"/*\345\216\206\345\217\262\345\210\227\350\241\250\350\267\257\345\276\204\346\240\207\350\256\260*/\n"
+"#Widget_Button_HistoryItem>#label_secTip{\n"
+"	color:  #c9c9c9;\n"
+"}\n"
+"\n"
+"/*\345\216\206\345\217\262\345\210\227\350\241\250\345\205\263\351\227\255\303\227\351\242\234\350\211\262*/\n"
+"#Widget_Button_HistoryItem>#pushButton_close{\n"
+"	color:  #4ab4d3;\n"
+"}"));
         gridLayout_2 = new QGridLayout(Form_Start);
         gridLayout_2->setSpacing(0);
         gridLayout_2->setObjectName("gridLayout_2");
@@ -113,6 +145,7 @@ public:
         verticalLayout_2->setContentsMargins(40, 40, 0, 40);
         label_title1 = new QLabel(widget_title);
         label_title1->setObjectName("label_title1");
+        label_title1->setMinimumSize(QSize(0, 52));
         QFont font;
         font.setPointSize(32);
         font.setBold(true);
@@ -142,7 +175,7 @@ public:
         widget_left->setMinimumSize(QSize(300, 0));
         widget_left->setMaximumSize(QSize(300, 16777215));
         verticalLayout_3 = new QVBoxLayout(widget_left);
-        verticalLayout_3->setSpacing(0);
+        verticalLayout_3->setSpacing(20);
         verticalLayout_3->setObjectName("verticalLayout_3");
         verticalLayout_3->setContentsMargins(40, 40, 40, 40);
         widget = new QWidget(widget_left);
@@ -266,7 +299,7 @@ public:
         widget_right = new QWidget(widget_body);
         widget_right->setObjectName("widget_right");
         verticalLayout_6 = new QVBoxLayout(widget_right);
-        verticalLayout_6->setSpacing(0);
+        verticalLayout_6->setSpacing(20);
         verticalLayout_6->setObjectName("verticalLayout_6");
         verticalLayout_6->setContentsMargins(40, 40, 40, 40);
         widget_Notice = new QWidget(widget_right);
@@ -285,12 +318,12 @@ public:
 
         verticalLayout_7->addWidget(label_notice);
 
-        label = new QLabel(widget_Notice);
-        label->setObjectName("label");
-        label->setFont(font2);
-        label->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label_newContent = new QLabel(widget_Notice);
+        label_newContent->setObjectName("label_newContent");
+        label_newContent->setFont(font2);
+        label_newContent->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
 
-        verticalLayout_7->addWidget(label);
+        verticalLayout_7->addWidget(label_newContent);
 
 
         verticalLayout_6->addWidget(widget_Notice);
@@ -342,7 +375,7 @@ public:
         pushButton_set->setText(QCoreApplication::translate("Form_Start", "\347\263\273\347\273\237\350\256\276\347\275\256", nullptr));
         label_history->setText(QCoreApplication::translate("Form_Start", "\346\234\200\350\277\221\345\267\245\347\250\213", nullptr));
         label_notice->setText(QCoreApplication::translate("Form_Start", "\345\205\254\345\221\212", nullptr));
-        label->setText(QCoreApplication::translate("Form_Start", "\346\227\240\345\206\205\345\256\271", nullptr));
+        label_newContent->setText(QCoreApplication::translate("Form_Start", "\346\227\240\345\206\205\345\256\271", nullptr));
         label_news->setText(QCoreApplication::translate("Form_Start", "\345\274\200\345\217\221\350\200\205\346\226\260\351\227\273", nullptr));
     } // retranslateUi
 

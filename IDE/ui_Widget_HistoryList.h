@@ -25,11 +25,9 @@ class Ui_Widget_HistoryList
 {
 public:
     QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout_tip;
-    QLabel *label_tip;
-    QSpacerItem *horizontalSpacer;
     QListWidget *listWidget;
     QHBoxLayout *horizontalLayout_clear;
+    QLabel *label_tip;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButton_clear;
 
@@ -41,23 +39,6 @@ public:
         verticalLayout = new QVBoxLayout(Widget_HistoryList);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout_tip = new QHBoxLayout();
-        horizontalLayout_tip->setObjectName("horizontalLayout_tip");
-        label_tip = new QLabel(Widget_HistoryList);
-        label_tip->setObjectName("label_tip");
-        QFont font;
-        font.setPointSize(12);
-        label_tip->setFont(font);
-
-        horizontalLayout_tip->addWidget(label_tip);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_tip->addItem(horizontalSpacer);
-
-
-        verticalLayout->addLayout(horizontalLayout_tip);
-
         listWidget = new QListWidget(Widget_HistoryList);
         listWidget->setObjectName("listWidget");
         listWidget->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
@@ -71,6 +52,14 @@ public:
 
         horizontalLayout_clear = new QHBoxLayout();
         horizontalLayout_clear->setObjectName("horizontalLayout_clear");
+        label_tip = new QLabel(Widget_HistoryList);
+        label_tip->setObjectName("label_tip");
+        QFont font;
+        font.setPointSize(12);
+        label_tip->setFont(font);
+
+        horizontalLayout_clear->addWidget(label_tip);
+
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_clear->addItem(horizontalSpacer_2);

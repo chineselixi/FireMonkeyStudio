@@ -1,0 +1,55 @@
+/*黑色主题*/
+/*默认背景*/
+#Form_Start,#widget_body{
+	background-color: #2e2e2e;
+}
+
+/*顶部区域背景色*/
+#widget_title{
+	background-color: #1f1f1f;
+}
+
+/*顶部区域主标题*/
+#label_title1{
+	color: #ffffff;
+}
+
+/*顶部区域副标题*/
+#label_title2{
+	color: #ffffff;
+}
+
+/*body标题颜色*/
+#label_start,#label_history,#label_notice,#label_news{
+	color: #ffffff;
+}
+
+/*输入按钮内填充*/
+QPushButton{
+	padding:0px;
+}
+
+/*可用操作按钮颜色*/
+#pushButton_new,#pushButton_open,#pushButton_store,#pushButton_set,#label_history_tip,#widget_historyList>#label_tip,#widget_historyList>#pushButton_clear{
+	color: #3861e1;
+}
+
+/*新闻内容颜色*/
+#label_newContent{
+	color:  #ababab;
+}
+
+/*历史列表标题*/
+#Widget_Button_HistoryItem>#label_mainTip{
+	color:  #d6d6d6;
+}
+
+/*历史列表路径标记*/
+#Widget_Button_HistoryItem>#label_secTip{
+	color:  #c9c9c9;
+}
+
+/*历史列表关闭×颜色*/
+#Widget_Button_HistoryItem>#pushButton_close{
+	color:  #4ab4d3;
+}

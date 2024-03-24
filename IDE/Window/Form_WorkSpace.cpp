@@ -852,6 +852,14 @@ void Form_WorkSpace::setTipMangerStyle(QString style)
     Manger::workspace_tipManger->setStyleSheet(style);
 }
 
+//设置开始界面主题
+void Form_WorkSpace::setStartStyle(QString style)
+{
+    if(Window::start){
+        Window::start->setStyleSheet(style);
+    }
+}
+
 
 //设定主题
 void Form_WorkSpace::setTheme(QString themeName)

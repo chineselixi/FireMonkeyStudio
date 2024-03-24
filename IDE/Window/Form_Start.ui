@@ -14,30 +14,61 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#Form_Start{
+   <string notr="true">/*蓝色主题*/
+/*默认背景*/
+#Form_Start,#widget_body{
 	background-color: #f2f2f2;
 }
 
+/*顶部区域背景色*/
 #widget_title{
 	background-color: rgb(92, 45, 145);
 }
 
-#label_title1,#label_title2{
+/*顶部区域主标题*/
+#label_title1{
 	color: rgb(255, 255, 255);
 }
 
+/*顶部区域副标题*/
+#label_title2{
+	color: rgb(255, 255, 255);
+}
+
+/*body标题颜色*/
 #label_start,#label_history,#label_notice,#label_news{
 	color: rgb(0, 0, 0);
 }
 
+/*输入按钮内填充*/
 QPushButton{
 	padding:0px;
 }
 
+/*可用操作按钮颜色*/
 #pushButton_new,#pushButton_open,#pushButton_store,#pushButton_set,#label_history_tip,#widget_historyList&gt;#label_tip,#widget_historyList&gt;#pushButton_clear{
 	color: royalblue;
 }
-</string>
+
+/*新闻内容颜色*/
+#label_newContent{
+	color:  #2e2f30;
+}
+
+/*历史列表标题*/
+#Widget_Button_HistoryItem&gt;#label_mainTip{
+	color:  #2e2f30;
+}
+
+/*历史列表路径标记*/
+#Widget_Button_HistoryItem&gt;#label_secTip{
+	color:  #c9c9c9;
+}
+
+/*历史列表关闭×颜色*/
+#Widget_Button_HistoryItem&gt;#pushButton_close{
+	color:  #4ab4d3;
+}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <property name="leftMargin">
@@ -117,6 +148,12 @@ QPushButton{
           </property>
           <item>
            <widget class="QLabel" name="label_title1">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>52</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>32</pointsize>
@@ -177,7 +214,7 @@ QPushButton{
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <property name="spacing">
-              <number>0</number>
+              <number>20</number>
              </property>
              <property name="leftMargin">
               <number>40</number>
@@ -473,7 +510,7 @@ QPushButton{
            <widget class="QWidget" name="widget_right" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <property name="spacing">
-              <number>0</number>
+              <number>20</number>
              </property>
              <property name="leftMargin">
               <number>40</number>
@@ -543,7 +580,7 @@ QPushButton{
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label">
+                 <widget class="QLabel" name="label_newContent">
                   <property name="font">
                    <font>
                     <pointsize>12</pointsize>

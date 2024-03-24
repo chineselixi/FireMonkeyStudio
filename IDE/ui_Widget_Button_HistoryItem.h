@@ -51,7 +51,7 @@ public:
         horizontalLayout->addWidget(label_ico);
 
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName("verticalLayout");
         label_mainTip = new QLabel(Widget_Button_HistoryItem);
         label_mainTip->setObjectName("label_mainTip");
@@ -74,6 +74,9 @@ public:
         pushButton_close->setObjectName("pushButton_close");
         pushButton_close->setMinimumSize(QSize(16, 16));
         pushButton_close->setMaximumSize(QSize(26, 26));
+        QFont font1;
+        font1.setBold(true);
+        pushButton_close->setFont(font1);
         pushButton_close->setFlat(true);
 
         horizontalLayout->addWidget(pushButton_close);

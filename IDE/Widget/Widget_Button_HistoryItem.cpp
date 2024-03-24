@@ -28,7 +28,6 @@ void Widget_Button_HistoryItem::setMsg(QPixmap ico, QString title, QString tip, 
 void Widget_Button_HistoryItem::on_pushButton_clicked()
 {
     this->itemClose(this->windowTitle());
-    qDebug() <<this->windowTitle();
 }
 
 

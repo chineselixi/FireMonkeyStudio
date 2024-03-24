@@ -29,6 +29,8 @@ namespace System_OS {
         WINDOWS,
         MACOS,
         LINUX,
+        Android,
+        Ios,
         NON
     };
     extern OSType getOsType(); //获取当前操作系统类型

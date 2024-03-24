@@ -451,6 +451,6 @@ TRANSLATIONS = \
 
 
 
-DESTDIR = $$OUT_PWD/../../release/lib
+DESTDIR = $$OUT_PWD/../../release
 
 TARGET = qscintilla

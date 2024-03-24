@@ -27,6 +27,9 @@ public:
     void deleteItem(QString path);         //根据path删除item
     void deleteAll();                      //删除所有的item
 
+private:
+    void adjustListWidgetHeigh();          //调整列表框高度
+
 private slots:
     void on_pushButton_clear_clicked(); //清理全部被点击
 

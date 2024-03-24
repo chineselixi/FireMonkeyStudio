@@ -4,7 +4,8 @@
 #include "QApplication"
 #include "QDir"
 #include "QWidget"
-
+#include "QStandardPaths"
+#include "QMessageBox"
 
 //在环境变量中获取文件路径
 QString System_Env::getFilePathForEnvVar(QString fileName, QString suffix)
@@ -167,8 +168,17 @@ System_OS::OSType System_OS::getOsType()
         return OSType::WINDOWS;
     #elif defined(Q_OS_MAC)
         return OSType::MACOS;
+    #elif defined(Q_OS_ANDROID)
+        if(QSysInfo::productType().toLower().indexOf("android") != -1){
+            return OSType::Android;
+        }
+        else{
+            return OSType::LINUX;
+        }
     #elif defined(Q_OS_LINUX)
         return OSType::LINUX;
+    #elif defined(Q_OS_IOS)
+        return OSType::Ios;
     #else
         return OSType::NON;
     #endif
@@ -210,6 +220,10 @@ QString System_OS::getDynamicLibrarySuffix()
         return "so";
         break;
     }
+    case OSType::Android:{
+        return "so";
+        break;
+    }
     case OSType::MACOS:{
         return "dylib";
         break;
@@ -233,6 +247,12 @@ QString System_OS::getaApplicationDirPath_EX()
         if(t_index == -1) return t_appPath;
         return t_appPath.left(t_index);
         break;
+    }
+    case OSType::Android:{
+    }
+    case OSType::Ios:{
+        QStringList t_locs = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+        return t_locs[t_locs.length() - 1];
     }
     default:{
         return t_appPath;

@@ -51,9 +51,9 @@ unix {
 
 
 #load qsciscintilla
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../release/lib/ -lqscintilla
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../release/lib/ -lqscintillad
-else:unix: LIBS += -L$$OUT_PWD/../../release/lib/ -lqscintilla
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../release/ -lqscintilla
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../release/ -lqscintillad
+else:unix: LIBS += -L$$OUT_PWD/../../release/ -lqscintilla
 
 INCLUDEPATH += $$OUT_PWD/../../release
 DEPENDPATH += $$OUT_PWD/../../release

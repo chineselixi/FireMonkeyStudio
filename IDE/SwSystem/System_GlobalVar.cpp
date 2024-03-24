@@ -8,7 +8,7 @@ QString ProjectOpen::projectPath = "";//工程项目文件记录
 
 //窗口指针信息组
 Form_WorkSpace* Window::workSpace = nullptr;
-
+Form_Start* Window::start = nullptr;
 
 //管理器
 Plugin_Manger* Manger::pluginManger = nullptr;//插件管理器
