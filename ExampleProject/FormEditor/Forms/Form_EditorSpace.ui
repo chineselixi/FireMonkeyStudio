@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_EditorSpace</class>
+ <widget class="QWidget" name="Form_EditorSpace">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>907</width>
+    <height>559</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>窗口编辑器</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*更改默认背景
+#Form_EditorSpace,#editorScrollSpace,#scrollAreaWidgetContents{
+	background-color: rgb(160,160,160);
+	border:0px;
+}
+*/
+
+#mdiArea QScrollBar{
+height:15px;
+width:15px;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="Widget_MdiArea" name="mdiArea" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>500</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="Widget_widgetList" name="widgetList" native="true"/>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Widget_MdiArea</class>
+   <extends>QWidget</extends>
+   <header>Widgets/Widget_MdiArea.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Widget_widgetList</class>
+   <extends>QWidget</extends>
+   <header>Widgets/Widget_widgetlist.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
