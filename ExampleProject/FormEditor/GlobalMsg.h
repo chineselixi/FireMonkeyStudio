@@ -50,5 +50,4 @@ extern Plugin_Base* nowSelectPlugin;    //当前选择的插件
 }
 
 
-
 #endif // GLOBALMSG_H

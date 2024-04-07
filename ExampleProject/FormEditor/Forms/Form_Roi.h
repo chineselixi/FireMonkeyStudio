@@ -5,6 +5,8 @@
 #include "GlobalMsg.h"
 #include "QPoint"
 
+class Form_EditorSpace; //插件编辑器指针
+
 namespace Ui {
 class Form_Roi;
 }
@@ -17,11 +19,12 @@ class Form_Roi : public QWidget
 private:
     Ui::Form_Roi *ui;
 
-    QWidget* parentBase = nullptr;          //基础父空间组件，用于定位基础组件的位置
-    QWidget* editorSpaceWidget = nullptr;   //编辑定位的基础组件,用于确定基础父控件的偏移
+//    QWidget* parentBase = nullptr;              //基础父空间组件，用于定位基础组件的位置
+//    QWidget* editorSpaceWidget = nullptr;       //编辑定位的基础组件,用于确定基础父控件的偏移
 
+    Form_EditorSpace* editorSpaceForm = nullptr;    //编辑器空间
 
-    QList<widgetMsg>* widgets; //roi矩形组
+//    QList<widgetMsg>* widgets; //roi矩形组
     QColor roiColor = QColor(0,0,128); //选区颜色
     QColor roiBorderLineColor = QColor(202, 204, 207);        //描边线条颜色
     QColor roiMoveLineColor = QColor(100,100,100);          //移动轮廓线条颜色
@@ -63,9 +66,9 @@ public:
 
 
 public:
-    void roi_setSpaceWidget(QWidget* spaceEdit);    //设置空间组件，绘画都是以这个为定位
-    void roi_setParentBaseWidget(QWidget* parent);    //设置描述父空间组件
-    void roi_setWidgetMsgListPtr(QList<widgetMsg>* widgetMsgs); //添加组件列表指针
+//    void roi_setSpaceWidget(QWidget* spaceEdit);    //设置空间组件，绘画都是以这个为定位
+//    void roi_setParentBaseWidget(QWidget* parent);    //设置描述父空间组件
+//    void roi_setWidgetMsgListPtr(QList<widgetMsg>* widgetMsgs); //添加组件列表指针
     void roi_setStyle(QColor roiColor,int wid = 6); //设置选取样式
     QList<widgetMsg> roi_getSelectWidgetMsgs();     //取出控件组中被选中的控件
     void roi_setWidgetSelect(QWidget* widget, bool isSelect = true);   //设置某个组件被选中的状态
@@ -84,7 +87,6 @@ private:
     int getWidgetLocationState(int x,int y,widgetMsg& msg); //获取组件的位置状态，位置方位为1-8，-1为错误。widgetMsg为引用，若正常，则包含组件信息
     bool hasPack(int x,int y,widgetMsg& retMsg,QRect& retRect); //判断在当前位置是否存在容器
     bool isSubWidget(QWidget* parent,QWidget* subWidget);   //判断subWidget是否为parent的子控件
-    QString getUniqueName(QString baseName);    //根据一个初始名字，在列表中获取唯一不重复的名字
 
 protected:
     void mousePressEvent(QMouseEvent *event) override; //鼠标按下

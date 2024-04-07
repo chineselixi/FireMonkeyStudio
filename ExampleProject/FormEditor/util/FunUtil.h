@@ -5,6 +5,8 @@
 class QWidget;
 class QRect;
 
+class Plugin_Base;
+
 class FunUtil
 {
 public:

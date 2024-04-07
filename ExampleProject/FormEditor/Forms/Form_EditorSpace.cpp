@@ -23,7 +23,7 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
 
     //创建Roi
     this->roiWidget = new Form_Roi(this);
-    this->roiWidget->roi_setWidgetMsgListPtr(&this->widgets); //设置组件列表指针
+    //this->roiWidget->roi_setWidgetMsgListPtr(&this->widgets); //设置组件列表指针
 
     //当基础窗口尺寸被改变
     connect(this->roiWidget,&Form_Roi::onWidgetBaseGeometryChanged,this,&Form_EditorSpace::onParentBaseWidgetGeometryChanged);
@@ -38,23 +38,17 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
     connect(ui->mdiArea,&Widget_MdiArea::event_onScrollBarChange,this,&Form_EditorSpace::event_onMdiAreaScrollChange); //链接Mdiarea的滚动条改变
 
 
-    //创建一个主窗口
+    //初始化主窗口，创建一个最基础的容器控件
     Plugin_MainWindow* plgMW = new Plugin_MainWindow();
     this->baseWidget = plgMW->createWidgetInstance({0,0,450,320});
     this->baseWidget.objectName = "主窗口";//对象名
     this->baseWidget.pluginPtr = new Plugin_MainWindow();//处理的插件指针
     this->baseWidget.isSelect = true;//是否选择
     this->baseWidget.isPack = true;//是否为容器
+    this->widgets.append(this->baseWidget); //加入到控件列表
 
-    //设置最底层窗口为底层编辑窗口
-    this->roiWidget->roi_setSpaceWidget(ui->mdiArea);
-    this->roiWidget->roi_setParentBaseWidget(this->baseWidget.widget);
-
-    //加入到控件列表
-    this->widgets.append(this->baseWidget);
-
-    //创建基础的mdiArea
-    this->baseSubWindow = ui->mdiArea->addSubWindow(this->baseWidget.widget); //将底窗口添加到
+    //创建并且设置基础的mdiArea
+    this->baseSubWindow = ui->mdiArea->addSubWindow(this->baseWidget.widget); //将底窗口添加到MdiArea
     this->baseSubWindow->setAttribute(Qt::WA_StyledBackground); //脱离父窗口样式的覆盖
     this->baseSubWindow->setWindowFlags(Qt::FramelessWindowHint); //设置无边框
     this->baseSubWindow->setGeometry(this->baseWidget.widget->geometry()); //设置基础的宽高
@@ -62,50 +56,13 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
 
 
     //临时测试代码
-    Plugin_Button* plgBtn = new Plugin_Button;
-    widgetMsg t_btnMsg = plgBtn->createWidgetInstance({20,30,0,0});
-    plgMW->subWidgetEnter(this->baseWidget.widget,t_btnMsg.widget);
-    this->widgets.append(t_btnMsg);
-
-    widgetMsg t_wMsg = plgMW->createWidgetInstance({40,20,300,200});
-    t_wMsg.isSelect = true;
-    plgMW->subWidgetEnter(this->baseWidget.widget,t_wMsg.widget);
-    this->widgets.append(t_wMsg);
-    t_wMsg.widget->show();
-
-    t_btnMsg = plgBtn->createWidgetInstance({-20,50,200,100});
-    plgMW->subWidgetEnter(t_wMsg.widget,t_btnMsg.widget);
-    this->widgets.append(t_btnMsg);
-    t_btnMsg.widget->show();
-
-/*
-
-    //加载最基础的窗体信息，并且载入到列表
-    Plugin_MainWindow* t_mainObj = new Plugin_MainWindow;
-    this->widgetClassMsgLsit.append({
-        t_mainObj,
-        t_mainObj->getWidgetInstance(),
-    });
+    this->createWidgetMsgToList(new Plugin_Button,{20,30,0,0},this->baseWidget.pluginPtr,this->baseWidget.widget);
+    this->createWidgetMsgToList(new Plugin_MainWindow,{40,20,300,200},this->baseWidget.pluginPtr,this->baseWidget.widget);
 
 
-
-    //操作SubWindow
-    this->BaseSubWindow = ui->mdiArea->addSubWindow(t_mainObj->getWidgetInstance()); //将底窗口添加到
-    this->BaseSubWindow->setAttribute(Qt::WA_StyledBackground); //脱离父窗口样式的覆盖
-    this->BaseSubWindow->setGeometry(t_mainObj->getWidgetInstance()->geometry()); //设置基础的宽高
-    this->BaseSubWindow->move(10,10);
-
-
-    //创建顶部Roi的矩形画框
-    this->RoiWidget = new Form_Roi(this);
-    this->RoiWidget->raise();
-
-
-
-    //将信息插入到列表
-    ui->widgetList->addBaseItem(t_mainObj->getWidgetInstance(),QIcon(":/Logo/icon/Logo/Logo_32.png"),"主窗口","QMainWidget");
-    connect(ui->widgetList,&Widget_widgetList::event_onItemClick,this,&Form_EditorSpace::event_onTreeItemClick); //连接TreeWidget项目被点击
-*/
+    //设置为主窗口为选择状态
+    this->roiWidget->roi_setWidgetDeleteAllSelect();
+    this->roiWidget->roi_setWidgetSelect(this->baseWidget.widget,true);
 }
 
 
@@ -113,6 +70,61 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
 Form_EditorSpace::~Form_EditorSpace()
 {
     delete ui;
+}
+
+
+//根据一个初始名字，在列表中获取唯一不重复的名字
+QString Form_EditorSpace::getUniqueName(QString baseName)
+{
+    qsizetype t_startIndex = 0;
+    QString t_retNewName;
+    RENAME:
+    t_startIndex++;
+    t_retNewName = baseName+QString::number(t_startIndex);
+    for(widgetMsg t_widget : this->widgets){   //遍历所有组件
+        if(t_retNewName == t_widget.objectName){
+            goto RENAME;
+        }
+    }
+    return t_retNewName;
+}
+
+
+//创建插件，并且加入到列表
+QWidget *Form_EditorSpace::createWidgetMsgToList(Plugin_Base* pluginPtr,          //预创建插件的指针
+                                                 QRect geometry,                  //需要创建控件的矩形
+                                                 Plugin_Base* parentPluginPtr,    //父插件的的指针
+                                                 QWidget* parentWidget)           //父控件的指针
+{
+    //pluginPtr->createWidgetInstance(geometry)
+    widgetMsg t_createMsg = pluginPtr->createWidgetInstance(geometry);
+    t_createMsg.widget->setParent(parentWidget); //默认先把基础组件设置为父类
+    t_createMsg.objectName = this->getUniqueName(t_createMsg.objectName); //修改为唯一名称
+    t_createMsg.widget->setObjectName(t_createMsg.objectName);  //同时修改控件的唯一名称
+    parentPluginPtr->subWidgetEnter(parentWidget,t_createMsg.widget); //激活容器组件插件的组件进入方法
+    this->widgets.append(t_createMsg); //添加到控件列表信息
+    t_createMsg.widget->show();
+    return t_createMsg.widget;
+
+}
+
+
+//获取控件信息列表
+QList<widgetMsg>& Form_EditorSpace::getWidgetMsgs()
+{
+    return this->widgets;
+}
+
+//获取编辑容器控件指针
+QWidget *Form_EditorSpace::getEditorSpaceWidgetPtr()
+{
+    return ui->mdiArea;
+}
+
+//获取基础控件信息
+widgetMsg &Form_EditorSpace::getBaseWidgetMsg()
+{
+    return this->baseWidget;
 }
 
 

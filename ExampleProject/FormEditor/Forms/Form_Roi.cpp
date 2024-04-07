@@ -4,13 +4,16 @@
 #include "QMouseEvent"
 #include "util/FunUtil.h"
 #include "Plugins/Plugin_Base.h"
+#include "Forms/Form_EditorSpace.h"
 
 Form_Roi::Form_Roi(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Form_Roi)
 {
     ui->setupUi(this);
-    this->roi_setSpaceWidget(parent); //默认一父控件为调整组件
+
+    //保存父类控件
+    this->editorSpaceForm = (Form_EditorSpace*)parent;
 
     //根据出口尺寸，创建新的位图信息
     this->formPixmap = new QPixmap(this->width(),this->height());
@@ -28,24 +31,24 @@ Form_Roi::~Form_Roi()
 }
 
 
-//设置空间组件，绘画都是以这个为定位
-void Form_Roi::roi_setSpaceWidget(QWidget *spaceEdit)
-{
-    this->editorSpaceWidget = spaceEdit;
-}
+////设置空间组件，绘画都是以这个为定位
+//void Form_Roi::roi_setSpaceWidget(QWidget *spaceEdit)
+//{
+//    this->editorSpaceForm->getEditorSpaceWidgetPtr() = spaceEdit;
+//}
 
-//设置描述父空间组件
-void Form_Roi::roi_setParentBaseWidget(QWidget *parent)
-{
-    this->parentBase = parent;
-}
+////设置描述父空间组件
+//void Form_Roi::roi_setthis->editorSpaceForm->getBaseWidgetMsg().widgetWidget(QWidget *parent)
+//{
+//    this->editorSpaceForm->getBaseWidgetMsg().widget = parent;
+//}
 
 
-//添加组件列表指针
-void Form_Roi::roi_setWidgetMsgListPtr(QList<widgetMsg> *widgetMsgs)
-{
-    this->widgets = widgetMsgs;
-}
+////添加组件列表指针
+//void Form_Roi::roi_setWidgetMsgListPtr(QList<widgetMsg> *widgetMsgs)
+//{
+//    this->editorSpaceForm->getWidgetMsgs() = widgetMsgs;
+//}
 
 
 //设置选取样式
@@ -60,7 +63,7 @@ void Form_Roi::roi_setStyle(QColor roiColor, int wid)
 QList<widgetMsg> Form_Roi::roi_getSelectWidgetMsgs()
 {
     QList<widgetMsg> t_retMsg;
-    for(widgetMsg t_widget : *this->widgets){
+    for(widgetMsg t_widget : this->editorSpaceForm->getWidgetMsgs()){
         if(t_widget.isSelect){
             t_retMsg.append(t_widget);
         }
@@ -72,7 +75,7 @@ QList<widgetMsg> Form_Roi::roi_getSelectWidgetMsgs()
 //设置某个组件被选中的状态
 void Form_Roi::roi_setWidgetSelect(QWidget *widget, bool isSelect)
 {
-    for(widgetMsg& item : *this->widgets){
+    for(widgetMsg& item : this->editorSpaceForm->getWidgetMsgs()){
         if(item.widget == widget){
             item.isSelect = isSelect;
             return;
@@ -104,10 +107,10 @@ void Form_Roi::roi_selectRectWidget(QRect rect)
 
 
     //根据范围，选择范围内的控件
-    for(widgetMsg& item : *this->widgets){
-        if(editorSpaceWidget){
+    for(widgetMsg& item : this->editorSpaceForm->getWidgetMsgs()){
+        if(this->editorSpaceForm->getEditorSpaceWidgetPtr()){
             QRect t_wRect;
-            if(FunUtil::getWidgetRelativePosition(item.widget,this->editorSpaceWidget,t_wRect)){
+            if(FunUtil::getWidgetRelativePosition(item.widget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_wRect)){
                 if((t_wRect.left() > t_newRect.left() && t_wRect.left() < t_newRect.right()) ||
                     (t_wRect.right() < t_newRect.right() && t_wRect.right() > t_newRect.left())){
                     if((t_wRect.top() > t_newRect.top() && t_wRect.top() < t_newRect.bottom()) ||
@@ -127,7 +130,7 @@ void Form_Roi::roi_selectRectWidget(QRect rect)
 //设置组件全都不被选中
 void Form_Roi::roi_setWidgetDeleteAllSelect()
 {
-    for(widgetMsg& item : *this->widgets){
+    for(widgetMsg& item : this->editorSpaceForm->getWidgetMsgs()){
         item.isSelect = false;
     }
 }
@@ -138,7 +141,7 @@ void Form_Roi::roi_setWidgetDeleteAllSelectforParent(QWidget* parent)
 {
     QList<QWidget*> childrens = parent->findChildren<QWidget*>();
     for(QWidget* c : childrens){
-        for(widgetMsg& item : *(this->widgets)){
+        for(widgetMsg& item : this->editorSpaceForm->getWidgetMsgs()){
             if(item.widget == c){
                 item.isSelect = false;
             }
@@ -151,9 +154,9 @@ void Form_Roi::roi_setWidgetDeleteAllSelectforParent(QWidget* parent)
 void Form_Roi::drawPix()
 {
     //获取主窗口相对于编辑空间的偏移
-    if(!(parentBase && editorSpaceWidget)) return;
+    if(!(this->editorSpaceForm->getBaseWidgetMsg().widget && this->editorSpaceForm->getEditorSpaceWidgetPtr())) return;
     QRect t_pRec;
-    if(FunUtil::getWidgetRelativePosition(parentBase,editorSpaceWidget,t_pRec)){
+    if(FunUtil::getWidgetRelativePosition(this->editorSpaceForm->getBaseWidgetMsg().widget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_pRec)){
         this->offsetX = t_pRec.left();
         this->offsetY = t_pRec.top();
     }
@@ -171,7 +174,7 @@ void Form_Roi::drawPix()
     t_painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing); //抗锯齿
     formPixmap->fill(Qt::transparent); //透明色填充
 
-    if(this->widgets->length() == 0)return;
+    if(this->editorSpaceForm->getWidgetMsgs().length() == 0)return;
     //绘制描边虚线
     QPen t_pen(Qt::DashLine);
     QBrush t_brush;
@@ -188,7 +191,7 @@ void Form_Roi::drawPix()
     QList<QRect> t_rosRecs;
     for(widgetMsg t_widget : t_selectWidgets){
         QRect t_rect;    //获取矩形
-        if(!FunUtil::getWidgetRelativePosition(t_widget.widget,parentBase,t_rect)){
+        if(!FunUtil::getWidgetRelativePosition(t_widget.widget,this->editorSpaceForm->getBaseWidgetMsg().widget,t_rect)){
             return;
         }
 
@@ -216,7 +219,7 @@ void Form_Roi::drawPix()
          * 6 7 8
         */
         QRect t_rect;    //获取矩形
-        if(!FunUtil::getWidgetRelativePosition(t_widget.widget,parentBase,t_rect)){
+        if(!FunUtil::getWidgetRelativePosition(t_widget.widget,this->editorSpaceForm->getBaseWidgetMsg().widget,t_rect)){
             return;
         }
 
@@ -280,20 +283,20 @@ void Form_Roi::drawPix()
         t_painter.setBrush(t_brush);
 
         QWidget* t_objWidget = t_selectWidgets[0].widget;
-        if(t_objWidget != this->parentBase){    //不是底层窗口才开启定位
+        if(t_objWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){    //不是底层窗口才开启定位
             QRect t_objRect;
-            if(!FunUtil::getWidgetRelativePosition(t_objWidget,parentBase,t_objRect)){
+            if(!FunUtil::getWidgetRelativePosition(t_objWidget,this->editorSpaceForm->getBaseWidgetMsg().widget,t_objRect)){
                 return;
             }
 
             QWidget* t_parentWidget = t_objWidget->parentWidget();
             if(t_parentWidget != nullptr){ //存在父窗口，查询子窗口
-                if(t_parentWidget == editorSpaceWidget){
-                    t_parentWidget = this->parentBase;
+                if(t_parentWidget == this->editorSpaceForm->getEditorSpaceWidgetPtr()){
+                    t_parentWidget = this->editorSpaceForm->getBaseWidgetMsg().widget;
                 }
 
                 QRect t_parentRect;
-                if(!FunUtil::getWidgetRelativePosition(t_parentWidget,parentBase,t_parentRect)){  //父窗口矩形
+                if(!FunUtil::getWidgetRelativePosition(t_parentWidget,this->editorSpaceForm->getBaseWidgetMsg().widget,t_parentRect)){  //父窗口矩形
                     return;
                 }
 
@@ -321,10 +324,10 @@ void Form_Roi::drawPix()
                 this->drawRulerLine(&t_painter,QPoint(t_objRect.right() + this->offsetX,t_objRect.top() + this->offsetY),t_objRect.height(),false);
 
 
-                //如果不是在parentBase容器内的最底层控件，则控件还根据parentBase再次渲染距离
-                if(this->parentBase != nullptr && t_parentWidget != this->parentBase){
+                //如果不是在this->editorSpaceForm->getBaseWidgetMsg().widget容器内的最底层控件，则控件还根据this->editorSpaceForm->getBaseWidgetMsg().widget再次渲染距离
+                if(this->editorSpaceForm->getBaseWidgetMsg().widget != nullptr && t_parentWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){
                     QRect t_widgetParentRect;
-                    if(FunUtil::getWidgetRelativePosition(t_parentWidget,this->editorSpaceWidget,t_widgetParentRect)){
+                    if(FunUtil::getWidgetRelativePosition(t_parentWidget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_widgetParentRect)){
 
                         t_pen.setStyle(Qt::PenStyle::SolidLine);
                         t_pen.setWidth(1);
@@ -343,7 +346,7 @@ void Form_Roi::drawPix()
 
 
 
-    //绘制鼠标选框(如果起始是在parentBase且不在定位标记，或没有选择当前插件)
+    //绘制鼠标选框(如果起始是在this->editorSpaceForm->getBaseWidgetMsg().widget且不在定位标记，或没有选择当前插件)
     if(((this->startOnBase && this->nowSelectWidgetType == -1) || Plugin::nowSelectPlugin != nullptr) && this->mouseDown){
         t_pen.setStyle(Qt::PenStyle::NoPen);
         t_brush.setStyle(Qt::BrushStyle::SolidPattern);
@@ -361,7 +364,7 @@ void Form_Roi::drawPix()
             //当控件大小被调整的时候（控件调整的位置ID范围为1-8，对应从左到右，从上到下的8个点）
             if(this->nowSelectWidgetType >= 1 && this->nowSelectWidgetType <= 8){
                 QRect t_nowRect;
-                if(FunUtil::getWidgetRelativePosition(this->nowSelectWidget,this->parentBase,t_nowRect)){
+                if(FunUtil::getWidgetRelativePosition(this->nowSelectWidget,this->editorSpaceForm->getBaseWidgetMsg().widget,t_nowRect)){
                     t_rosRecs.clear();
                     t_nowRect = QRect(t_nowRect.left() + offsetX,t_nowRect.top() + offsetY,t_nowRect.width(),t_nowRect.height());
                     switch(this->nowSelectWidgetType){  //1-8都为缩放效果
@@ -427,7 +430,7 @@ void Form_Roi::drawPix()
                     //列举出移动预先描边位置
                     for(widgetMsg t_widget : t_selectWidgets){
                         QRect t_rect;    //获取矩形
-                        if(!FunUtil::getWidgetRelativePosition(t_widget.widget,parentBase,t_rect)){
+                        if(!FunUtil::getWidgetRelativePosition(t_widget.widget,this->editorSpaceForm->getBaseWidgetMsg().widget,t_rect)){
                             break;
                         }
                         t_x = t_rect.x() + (this->movePoint.x() - this->startPoint.x()) + this->offsetX;
@@ -611,7 +614,7 @@ void Form_Roi::getArrowPosition(QPoint begin, QPoint end, QPoint &arrow1, QPoint
 //判断当前控件是否为控件列表中的控件
 bool Form_Roi::isListWidget(QWidget *widget,widgetMsg*& msg)
 {
-    for(widgetMsg& item : *(this->widgets)){
+    for(widgetMsg& item : this->editorSpaceForm->getWidgetMsgs()){
         if(item.widget == widget){
             msg = &item;
             return true;
@@ -679,7 +682,7 @@ int Form_Roi::getWidgetLocationState(int x, int y, widgetMsg &msg)
 
     QRect t_wRect; //方位信息
     for(widgetMsg msgItem : t_widgets){
-        if(FunUtil::getWidgetRelativePosition(msgItem.widget,this->editorSpaceWidget,t_wRect)){
+        if(FunUtil::getWidgetRelativePosition(msgItem.widget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_wRect)){
             t_selectRect.append({msgItem,t_wRect});
         }
     }
@@ -716,16 +719,16 @@ int Form_Roi::getWidgetLocationState(int x, int y, widgetMsg &msg)
 //判断在当前位置是否存在容器
 bool Form_Roi::hasPack(int x, int y, widgetMsg &retMsg, QRect &retRect)
 {
-    QWidget* t_chWidget = this->editorSpaceWidget->childAt(x,y); //获取子组件
+    QWidget* t_chWidget = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(x,y); //获取子组件
     if(t_chWidget == nullptr){
         return false;
     }
 
     do{
-        for(widgetMsg t_widget : *this->widgets){   //遍历所有组件
+        for(widgetMsg t_widget : this->editorSpaceForm->getWidgetMsgs()){   //遍历所有组件
             if(t_chWidget == t_widget.widget && t_widget.isPack){   //查看当前组件是否为容器
                 QRect t_rec;
-                if(FunUtil::getWidgetRelativePosition(t_chWidget,this->editorSpaceWidget,t_rec)){
+                if(FunUtil::getWidgetRelativePosition(t_chWidget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_rec)){
                     if(t_rec.contains(x,y)){    //此控件为容器控件，且此控件包含当前坐标
                         retMsg = t_widget;
                         retRect = t_rec;
@@ -757,21 +760,6 @@ bool Form_Roi::isSubWidget(QWidget *parent, QWidget *subWidget)
 }
 
 
-//根据一个初始名字，在列表中获取唯一不重复的名字
-QString Form_Roi::getUniqueName(QString baseName)
-{
-    qsizetype t_startIndex = 0;
-    QString t_retNewName;
-    RENAME:
-    t_startIndex++;
-    t_retNewName = baseName+QString::number(t_startIndex);
-    for(widgetMsg t_widget : *this->widgets){   //遍历所有组件
-        if(t_retNewName == t_widget.objectName){
-            goto RENAME;
-        }
-    }
-    return t_retNewName;
-}
 
 
 
@@ -796,15 +784,15 @@ void Form_Roi::mousePressEvent(QMouseEvent *event)
     }
 
     //判断是否点击到了最底层基础窗口，如果是，则绘制选区
-    if(this->editorSpaceWidget){
-        QWidget* t_atChild = this->editorSpaceWidget->childAt(this->startPoint);
-        this->startOnBase = (t_atChild == this->parentBase); //是否从基础主窗口开始绘制的
+    if(this->editorSpaceForm->getEditorSpaceWidgetPtr()){
+        QWidget* t_atChild = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(this->startPoint);
+        this->startOnBase = (t_atChild == this->editorSpaceForm->getBaseWidgetMsg().widget); //是否从基础主窗口开始绘制的
     }
 
 //    //根据鼠标放开的坐标确定选择单个组件
 //    if(!this->ctrlDown){
 //        this->roi_setWidgetDeleteAllSelect();
-//        this->roi_setWidgetSelect(this->editorSpaceWidget->childAt(event->pos()),true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
+//        this->roi_setWidgetSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos()),true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
 //    }
 
     this->update();
@@ -861,7 +849,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                 this->roi_setWidgetDeleteAllSelect(); //删除所有选择
             }
             //根据鼠标放开的坐标确定选择单个组件
-            this->roi_setWidgetSelect(this->editorSpaceWidget->childAt(event->pos()),true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
+            this->roi_setWidgetSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos()),true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
 
             //激活控件被选择事件
             QList<QWidget*> t_wList;
@@ -872,7 +860,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
             //开始位置与结束位置不同，则是拖动
             if(this->nowSelectWidgetType >= 1 && this->nowSelectWidgetType <= 8){ //拖动尺寸改变大小
                 QRect t_rect;
-                if(FunUtil::getWidgetRelativePosition(this->nowSelectWidget,this->editorSpaceWidget,t_rect)){
+                if(FunUtil::getWidgetRelativePosition(this->nowSelectWidget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_rect)){
                     int x,y,w,h;
                     x = this->nowSelectWidget->x() + this->afterRect.x() - t_rect.x();
                     y = this->nowSelectWidget->y() + this->afterRect.y() - t_rect.y();
@@ -880,15 +868,15 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                     h = this->afterRect.height();
 
                     //判断是否选中了基础窗口
-                    if(this->nowSelectWidget != this->parentBase){
+                    if(this->nowSelectWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){
                         //没有选中基础窗口
                         this->nowSelectWidget->setGeometry({x,y,w,h});
                         this->onWidgetGeometryChanged(this->nowSelectWidget); //控件尺寸被改变
                     }
                     else{
                         //选中了基础窗口
-                        this->parentBase->setGeometry({0,0,w,h});
-                        this->onWidgetBaseGeometryChanged(this->parentBase->geometry()); //通知base窗口大小被改变
+                        this->editorSpaceForm->getBaseWidgetMsg().widget->setGeometry({0,0,w,h});
+                        this->onWidgetBaseGeometryChanged(this->editorSpaceForm->getBaseWidgetMsg().widget->geometry()); //通知base窗口大小被改变
                     }
                 }
             }
@@ -900,7 +888,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                 //基础窗口不允许移动，去除基础窗口的信息
                 QList<widgetMsg>::Iterator i;
                 for(i = t_selWidget.begin(); i < t_selWidget.end(); i++){
-                    if(i->widget == this->parentBase){  //删除元素并且跳出
+                    if(i->widget == this->editorSpaceForm->getBaseWidgetMsg().widget){  //删除元素并且跳出
                         t_selWidget.erase(i);
                         break;
                     }
@@ -924,7 +912,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
 
                             if(!this->isSubWidget(item.widget,t_packm.widget)){ //不是子项目才移动进去，不然造成，父窗口移到子窗口的错误
                                 QRect t_itemRect;
-                                if(FunUtil::getWidgetRelativePosition(item.widget,this->editorSpaceWidget,t_itemRect)){
+                                if(FunUtil::getWidgetRelativePosition(item.widget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_itemRect)){
                                     int x,y,w,h;
                                     x = t_itemRect.x() - t_packr.x() + t_endPoint.x() - this->startPoint.x();
                                     y = t_itemRect.y() - t_packr.y() + t_endPoint.y() - this->startPoint.y();
@@ -962,16 +950,15 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                 h = abs(h);
             }
 
-            widgetMsg t_createMsg = Plugin::nowSelectPlugin->createWidgetInstance({x,y,w,h});
-            t_createMsg.widget->setParent(this->parentBase); //默认先把基础组件设置为父类
-            t_createMsg.objectName = this->getUniqueName(t_createMsg.objectName); //修改为唯一名称
-            t_createMsg.widget->setObjectName(t_createMsg.objectName);  //同时修改控件的唯一名称
-            this->nowSelectPackMsg.pluginPtr->subWidgetEnter(this->nowSelectPackMsg.widget,t_createMsg.widget); //激活容器组件插件的组件进入方法
-            this->widgets->append(t_createMsg); //添加到控件列表信息
+            //创建组件到列表
+            QWidget* t_newCreateWidget = this->editorSpaceForm->createWidgetMsgToList(Plugin::nowSelectPlugin,
+                                                                                      {x,y,w,h},
+                                                                                      this->nowSelectPackMsg.pluginPtr,
+                                                                                      this->nowSelectPackMsg.widget);
 
             //只选择当前加入的控件
             this->roi_setWidgetDeleteAllSelect();
-            this->roi_setWidgetSelect(t_createMsg.widget,true);
+            this->roi_setWidgetSelect(t_newCreateWidget,true);
         }
 
         if(!this->ctrlDown){    //如果Ctrl没有被按下，那么就自动恢复指针
@@ -986,7 +973,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
 
     this->startOnBase = false;  //取消从base的标记
     this->mouseDown = false;    //取消鼠标按下标记
-    this->adjustSelect(this->editorSpaceWidget); //调整：若父类被选择，则自动抛弃所有子类
+    this->adjustSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()); //调整：若父类被选择，则自动抛弃所有子类
     this->adjustMouseStyle(event->pos().x(),event->pos().y());  //调整鼠标样式
     this->update();
 }

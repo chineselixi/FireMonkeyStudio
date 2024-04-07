@@ -26,6 +26,20 @@ public:
     explicit Form_EditorSpace(QWidget *parent = nullptr);
     ~Form_EditorSpace();
 
+public:
+    //根据一个初始名字，在列表中获取唯一不重复的名字
+    QString getUniqueName(QString baseName);
+    //创建插件，并且加入到列表
+    QWidget* createWidgetMsgToList(Plugin_Base* pluginPtr,          //预创建插件的指针
+                                   QRect geometry,                  //需要创建控件的矩形
+                                   Plugin_Base* parentPluginPtr,    //父插件的的指针
+                                   QWidget* parentWidget);          //父控件的指针
+    //获取控件信息列表
+    QList<widgetMsg>& getWidgetMsgs();
+    //获取编辑容器控件指针
+    QWidget* getEditorSpaceWidgetPtr();
+    //获取基础控件信息
+    widgetMsg& getBaseWidgetMsg();
 
 
 public:
