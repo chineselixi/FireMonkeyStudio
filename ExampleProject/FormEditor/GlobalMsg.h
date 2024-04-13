@@ -28,6 +28,7 @@ struct widgetMsg{
     QString objectName = "null";        //对象名
     Plugin_Base* pluginPtr = nullptr;   //处理的插件指针
     QWidget* widget = nullptr;          //控件指针
+    QString classSign = "NULL";         //类标记
     bool isSelect = false;              //是否选择
     bool isPack = false;                //是否为容器
     QList<AttributeNode> attrs;         //属性列表

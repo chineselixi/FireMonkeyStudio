@@ -10,9 +10,9 @@
 class Plugin_Base
 {
 public:
-    QString pluginTitle = "默认控件";    //插件标题
-    QString pluginTip = "默认的控件";    //插件提示
-    QString pluginSign = "null";        //插件标记，用于根据标记查找插件指针
+    QString pluginTitle = "默认控件";    //插件在组件箱的标题
+    QString pluginTip = "默认的控件";    //插件在组件箱的提示
+    QString pluginSign = "null";   //插件插件类标记
     QPixmap pluginIco;                  //插件图标
 
 public:

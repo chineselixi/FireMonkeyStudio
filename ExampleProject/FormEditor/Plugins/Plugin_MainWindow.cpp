@@ -18,6 +18,7 @@ widgetMsg Plugin_MainWindow::createWidgetInstance(QRect Geometry)
 {
     widgetMsg t_msg;
     t_msg.objectName = "窗体";
+    t_msg.classSign = "QWidget";
     t_msg.pluginPtr = this;
     t_msg.widget = new QWidget;
     t_msg.isPack = true;

@@ -16,6 +16,7 @@ widgetMsg Plugin_Button::createWidgetInstance(QRect Geometry)
 {
     widgetMsg t_msg;
     t_msg.objectName = "按钮";
+    t_msg.classSign = "QPushButton";
     t_msg.pluginPtr = this;         //出席消息的插件
     t_msg.widget = new QPushButton;     //组件指针
     t_msg.isPack = false;           //是否为容器，如果为true，则

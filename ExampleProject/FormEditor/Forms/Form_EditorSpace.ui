@@ -52,7 +52,21 @@ width:15px;
        </size>
       </property>
      </widget>
-     <widget class="Widget_widgetList" name="widgetList" native="true"/>
+     <widget class="QTreeWidget" name="treeWidget">
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ContiguousSelection</enum>
+      </property>
+      <column>
+       <property name="text">
+        <string>对象</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>类</string>
+       </property>
+      </column>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -62,12 +76,6 @@ width:15px;
    <class>Widget_MdiArea</class>
    <extends>QWidget</extends>
    <header>Widgets/Widget_MdiArea.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Widget_widgetList</class>
-   <extends>QWidget</extends>
-   <header>Widgets/Widget_widgetlist.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

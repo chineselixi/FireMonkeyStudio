@@ -37,15 +37,21 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
     connect(ui->mdiArea,&Widget_MdiArea::event_onResize,this,&Form_EditorSpace::event_onMdiAreaReSize); //链接MdiArea的尺寸改变信息
     connect(ui->mdiArea,&Widget_MdiArea::event_onScrollBarChange,this,&Form_EditorSpace::event_onMdiAreaScrollChange); //链接Mdiarea的滚动条改变
 
+    //绑定ROI
+    connect(this->roiWidget,&Form_Roi::onSubWidgetsChanged,this,&Form_EditorSpace::ROI_onSubWidgetsChanged); //子控件被选择
+    connect(this->roiWidget,&Form_Roi::onWidgetSelected,this,&Form_EditorSpace::ROI_onWidgetSelected);
+
 
     //初始化主窗口，创建一个最基础的容器控件
     Plugin_MainWindow* plgMW = new Plugin_MainWindow();
     this->baseWidget = plgMW->createWidgetInstance({0,0,450,320});
     this->baseWidget.objectName = "主窗口";//对象名
-    this->baseWidget.pluginPtr = new Plugin_MainWindow();//处理的插件指针
+    this->baseWidget.pluginPtr = plgMW;//处理的插件指针
+    this->baseWidget.widget->setObjectName(this->baseWidget.objectName);
     this->baseWidget.isSelect = true;//是否选择
     this->baseWidget.isPack = true;//是否为容器
     this->widgets.append(this->baseWidget); //加入到控件列表
+    this->buildTreeWidgetItem(this->baseWidget,true);
 
     //创建并且设置基础的mdiArea
     this->baseSubWindow = ui->mdiArea->addSubWindow(this->baseWidget.widget); //将底窗口添加到MdiArea
@@ -63,6 +69,7 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
     //设置为主窗口为选择状态
     this->roiWidget->roi_setWidgetDeleteAllSelect();
     this->roiWidget->roi_setWidgetSelect(this->baseWidget.widget,true);
+    this->setRootTreeItem(this->baseWidget.widget);
 }
 
 
@@ -77,12 +84,12 @@ Form_EditorSpace::~Form_EditorSpace()
 QString Form_EditorSpace::getUniqueName(QString baseName)
 {
     qsizetype t_startIndex = 0;
-    QString t_retNewName;
+    QString t_retNewName = baseName;
     RENAME:
-    t_startIndex++;
-    t_retNewName = baseName+QString::number(t_startIndex);
     for(widgetMsg t_widget : this->widgets){   //遍历所有组件
         if(t_retNewName == t_widget.objectName){
+            t_startIndex++;
+            t_retNewName = baseName+QString::number(t_startIndex); //更新名字
             goto RENAME;
         }
     }
@@ -101,11 +108,35 @@ QWidget *Form_EditorSpace::createWidgetMsgToList(Plugin_Base* pluginPtr,        
     t_createMsg.widget->setParent(parentWidget); //默认先把基础组件设置为父类
     t_createMsg.objectName = this->getUniqueName(t_createMsg.objectName); //修改为唯一名称
     t_createMsg.widget->setObjectName(t_createMsg.objectName);  //同时修改控件的唯一名称
+    t_createMsg.classSign = pluginPtr->pluginSign; //插件类型
     parentPluginPtr->subWidgetEnter(parentWidget,t_createMsg.widget); //激活容器组件插件的组件进入方法
     this->widgets.append(t_createMsg); //添加到控件列表信息
     t_createMsg.widget->show();
-    return t_createMsg.widget;
 
+    //同步组件删除
+    connect(t_createMsg.widget,&QWidget::destroyed,[=](){
+        //移除widget信息
+        for(qsizetype i = this->widgets.length() - 1; i >= 0; i--){
+            if(this->widgets[i].widget == t_createMsg.widget){
+                this->widgets.removeAt(i);
+                break;
+            }
+        }
+
+        //移除treeItem信息
+        for(qsizetype i = this->treeMsgList.length() - 1; i >= 0; i--){
+            if(this->treeMsgList[i].msg.widget == t_createMsg.widget){
+                delete this->treeMsgList[i].treeItem;
+                this->treeMsgList.removeAt(i);
+                break;
+            }
+        }
+    });
+
+    //插件Tree信息
+    this->buildTreeWidgetItem(t_createMsg);
+
+    return t_createMsg.widget;
 }
 
 
@@ -125,6 +156,85 @@ QWidget *Form_EditorSpace::getEditorSpaceWidgetPtr()
 widgetMsg &Form_EditorSpace::getBaseWidgetMsg()
 {
     return this->baseWidget;
+}
+
+
+//创建树组件节点
+void Form_EditorSpace::buildTreeWidgetItem(widgetMsg msg,bool isRoot)
+{
+    QTreeWidgetItem* t_treeItem = new QTreeWidgetItem();
+    t_treeItem->setText(0,msg.objectName);
+    t_treeItem->setText(1,msg.classSign);
+
+    if(isRoot) ui->treeWidget->addTopLevelItem(t_treeItem);
+    this->treeMsgList.append({msg,t_treeItem});
+
+    adjustTreeItem();
+}
+
+
+
+//根据treeItem获取关联Widget信息
+QWidget *Form_EditorSpace::getWidgetToItem(QTreeWidgetItem *item)
+{
+    for(treeNode node : treeMsgList){
+        if(node.treeItem == item){
+            return node.msg.widget;
+        }
+    }
+    return nullptr;
+}
+
+//设置树根
+void Form_EditorSpace::setRootTreeItem(QWidget *baseParent)
+{
+    for(treeNode node : treeMsgList){
+        if(node.msg.widget == baseParent){
+            ui->treeWidget->addTopLevelItem(node.treeItem);
+            ui->treeWidget->show();
+        }
+    }
+}
+
+
+//获取Widget父组件的treeItem指针
+QTreeWidgetItem *Form_EditorSpace::getWidgetParentTreeItemPtr(QWidget *widget)
+{
+    QWidget* t_parentWidget = widget;
+    STARTFOR:
+    t_parentWidget = t_parentWidget->parentWidget();
+    if(t_parentWidget != nullptr){
+        for(treeNode node : this->treeMsgList){
+            if(t_parentWidget == node.msg.widget){
+                return node.treeItem;
+            }
+        }
+        goto STARTFOR;
+    }
+    return nullptr;
+}
+
+
+//调整树item
+void Form_EditorSpace::adjustTreeItem()
+{
+    for(treeNode treeItem : this->treeMsgList){
+        if(treeItem.msg.widget != this->baseWidget.widget){
+            QTreeWidgetItem* t_ParentTreeItem = this->getWidgetParentTreeItemPtr(treeItem.msg.widget);
+            if(t_ParentTreeItem != nullptr && treeItem.treeItem != nullptr){
+
+                //上一个父移除才能设置新父
+                QTreeWidgetItem* t_parent = treeItem.treeItem->parent();
+                if(t_parent != nullptr){
+                    t_parent->removeChild(treeItem.treeItem);
+                }
+
+                //添加到新父
+                t_ParentTreeItem->addChild(treeItem.treeItem);
+                treeItem.treeItem->setExpanded(true);
+            }
+        }
+    }
 }
 
 
@@ -157,7 +267,28 @@ void Form_EditorSpace::onParentBaseWidgetGeometryChanged(QRect rect)
 //    if(baseSubWindow && baseWidget.widget){
 //        this->baseWidget.widget->setGeometry({0,0,rect.width(),rect.height()});
 //        this->baseSubWindow->setGeometry({10,10,rect.width(),rect.height()});
-//    }
+    //    }
+}
+
+
+//当ROI控件有子控件加入
+void Form_EditorSpace::ROI_onSubWidgetsChanged(QWidget *parentWidget)
+{
+    this->adjustTreeItem();
+}
+
+//当ROI控件被选择，参数：选择的控件列表
+void Form_EditorSpace::ROI_onWidgetSelected(QList<QWidget *> widgets)
+{
+    for(treeNode treeItem : this->treeMsgList){
+        treeItem.treeItem->setSelected(false);
+        for(QWidget* widgetItem : widgets){
+            if(treeItem.msg.widget == widgetItem){
+                treeItem.treeItem->setSelected(true);
+                break;
+            }
+        }
+    }
 }
 
 
@@ -181,26 +312,21 @@ void Form_EditorSpace::event_onMdiAreaReSize(QResizeEvent *resizeEvent)
 
 
 
-//当TreeItem被点击
-void Form_EditorSpace::event_onTreeItemClick(QWidget *widget)
-{
-//    RoiWidget->roi_ClearRec(); //清理矩形
-//    if(widget == nullptr) return;
-//    QRect t_rec = getWidgetAbsolutePos(widget);
-//    RoiWidget->roi_AddRec({
-//                           {widget,t_rec},
-//                           });
-//    this->RoiWidget->update();
 
-//    //加载属性信息
-//    QVector<Form_Roi::widgetRecMsg> t_widRecMsg = this->RoiWidget->roi_GetAllWidgetPtrs();
-//    QVector<Plugin_Base*> t_objs;
-//    for(int a = 0;a<t_widRecMsg.length();a++){
-//        WidgetClassMsg t_classMsg = this->getWidgetClassMsg(t_widRecMsg[a].widget);
-//        if(t_classMsg.classObj != nullptr){
-//            t_objs.append(t_classMsg.classObj);
-//        }
-//    }
-//    PropertyEditorPtr->loadPropertyMsgs(t_objs,this); //加载属性信息
+
+//当TreeItem被点击
+void Form_EditorSpace::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
+{
+    this->roiWidget->roi_setWidgetDeleteAllSelect();
+    QList<QTreeWidgetItem*> t_selectedItemList = ui->treeWidget->selectedItems();
+    for(treeNode treeItem : this->treeMsgList){
+        for(QTreeWidgetItem* si : t_selectedItemList){
+            if(treeItem.treeItem == si){
+                this->roiWidget->roi_setWidgetSelect(treeItem.msg.widget,true);
+                break;
+            }
+        }
+    }
+    this->roiWidget->update();
 }
 

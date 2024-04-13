@@ -16,6 +16,7 @@ widgetMsg Plugin_TabWidget::createWidgetInstance(QRect Geometry)
 {
     widgetMsg t_msg;
     t_msg.objectName = "选择夹";
+    t_msg.classSign = "QTabWidget";
     t_msg.pluginPtr = this;         //出席消息的插件
     t_msg.widget = new QTabWidget;     //组件指针
     t_msg.isPack = true;           //是否为容器，如果为true，则

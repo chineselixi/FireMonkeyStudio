@@ -5,6 +5,7 @@
 /.qmake.*
 /FMS.pro.user*
 /Makefile
+.qtc_clangd
 
 *.obj
 Makefile.*
