@@ -303,7 +303,6 @@ void Form_Roi::drawPix()
                 //绘制与父窗口相对的定位线条
                 t_pen.setColor(roiPositionLineColor);
                 t_painter.setPen(t_pen);
-                QLine lineTop,lineBottom,lineLeft,lineRight;
                 int x,y;
 
                 //画顶边和底边的线条
@@ -444,17 +443,17 @@ void Form_Roi::drawPix()
 
                     //判断当前位置是否存在其他容器
                     widgetMsg t_packm;
-                    QRect t_packr;
-                    if(hasPack(this->movePoint.x(),this->movePoint.y(),t_packm,t_packr) && this->nowSelectPackMsg.widget != nullptr){
-                        if(t_packm.widget != this->nowSelectPackMsg.widget){//判断是否是老的容器
-
-                            //绘制新容器
+                    QRect t_packRect;
+                    if(hasPack(this->movePoint.x(),this->movePoint.y(),t_packm,t_packRect) && this->nowSelectPackMsg.widget != nullptr){
+                        //判断是否是老的容器,并且起始组件不是容器
+                        if(t_packm.widget != this->nowSelectPackMsg.widget){
+                            //填充新容器矩形
                             t_pen.setStyle(Qt::PenStyle::NoPen);
                             t_brush.setStyle(Qt::BrushStyle::SolidPattern);
                             t_brush.setColor(packSignColor);
                             t_painter.setPen(t_pen);
                             t_painter.setBrush(t_brush);
-                            t_painter.drawRect(t_packr); //填充新容器矩形
+                            t_painter.drawRect(t_packRect); //填充新容器矩形
 
                             //绘制出提示文字
                             t_pen.setStyle(Qt::PenStyle::SolidLine);
@@ -716,7 +715,7 @@ int Form_Roi::getWidgetLocationState(int x, int y, widgetMsg &msg)
 }
 
 
-//判断在当前位置是否存在容器
+//判断在当前位置是否存在容器(存在返回真，并且retMsg返回信息)
 bool Form_Roi::hasPack(int x, int y, widgetMsg &retMsg, QRect &retRect)
 {
     QWidget* t_chWidget = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(x,y); //获取子组件
@@ -839,8 +838,6 @@ void Form_Roi::mouseMoveEvent(QMouseEvent *event)
 void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
 {
     QPoint t_endPoint = event->pos();   //结束坐标
-
-
     if(Plugin::nowSelectPlugin == nullptr){ //当前如果没有选择插件
         //判断开始位置与结束位置
         if(event->pos() == this->startPoint){
@@ -909,24 +906,26 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                     }
                     else{   //不在同一个容器里面，则需要对每个组件重新定位
                         for(widgetMsg item : t_selWidget){
-
                             if(!this->isSubWidget(item.widget,t_packm.widget)){ //不是子项目才移动进去，不然造成，父窗口移到子窗口的错误
                                 QRect t_itemRect;
+                                //判断并获取组件相对于父组件的位置
                                 if(FunUtil::getWidgetRelativePosition(item.widget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_itemRect)){
                                     int x,y,w,h;
+
                                     x = t_itemRect.x() - t_packr.x() + t_endPoint.x() - this->startPoint.x();
                                     y = t_itemRect.y() - t_packr.y() + t_endPoint.y() - this->startPoint.y();
                                     w = t_itemRect.width();
                                     h = t_itemRect.height();
-                                    item.widget->setParent(t_packm.widget);
+
+                                    bool t_isHidden = item.widget->isHidden();
+                                    item.widget->setParent(t_packm.widget); //提前设置父项目位置
                                     item.widget->setGeometry({x,y,w,h});  //根据新的容器
-                                    item.widget->show();
+                                    t_packm.pluginPtr->subWidgetEnter(t_packm.widget,item.widget); //通知插件子控件进入信息
+                                    item.widget->setHidden(t_isHidden);
                                 }
                             }
                         }
                         this->onSubWidgetsChanged(t_packm.widget); //这个容器有控件加入
-                    }
-                    for(widgetMsg item : this->roi_getSelectWidgetMsgs()){
                     }
                 }
             }

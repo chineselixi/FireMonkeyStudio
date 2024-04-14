@@ -1,6 +1,6 @@
 #include "Plugin_TabWidget.h"
 #include "QTabWidget"
-
+#include "util/FunUtil.h"
 
 Plugin_TabWidget::Plugin_TabWidget()
 {
@@ -49,6 +49,25 @@ widgetMsg Plugin_TabWidget::createWidgetInstance(QRect Geometry)
 void Plugin_TabWidget::adjustWidget(QWidget *widget, QList<AttributeNode> &attrs)
 {
 
+}
+
+
+//子控件加入
+void Plugin_TabWidget::subWidgetEnter(QWidget *packWidget, QWidget *subWidget)
+{
+    if(packWidget && subWidget){
+        QTabWidget* t_tabWidget = dynamic_cast<QTabWidget*>(packWidget);
+        if(t_tabWidget == nullptr)return;
+        QWidget* t_currenWidget = t_tabWidget->currentWidget(); //获取当前的widget
+        if(t_currenWidget == nullptr) return;
+
+        subWidget->setParent(t_currenWidget);
+
+        QRect t_rec;
+        if(FunUtil::getWidgetRelativePosition(t_currenWidget,packWidget,t_rec)){
+            subWidget->move(subWidget->x() - t_rec.x(),subWidget->y() - t_rec.y());
+        }
+    }
 }
 
 

@@ -12,6 +12,7 @@ public:
 public:
     widgetMsg createWidgetInstance(QRect Geometry = QRect()) override;          //获取默认组件实例
     void adjustWidget(QWidget* widget,QList<AttributeNode>& attrs) override; //根据组件指针与属性，调整此组件信息
+    void subWidgetEnter(QWidget* packWidget,QWidget* subWidget) override;   //子控件进入
 
 public:
     //代码被创建

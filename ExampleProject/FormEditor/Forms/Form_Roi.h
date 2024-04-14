@@ -31,7 +31,7 @@ private:
     QColor roiPositionLineColor = QColor(83, 138, 237);      //距离指示器线条颜色
     QColor positionSignTextColor = QColor(75, 123, 236);     //位置标记文本颜色
     QColor regionBoxColor = QColor(83, 138, 237,100);          //鼠标框选区域填充
-    QColor packSignColor = QColor(0, 0, 0,40);          //容器标记颜色
+    QColor packSignColor = QColor(83, 138, 237,40);          //容器标记颜色
     QColor packSignOldColor = QColor(26, 155, 52);          //老容器描边颜色
     QColor packSignTextColor = QColor(6, 82, 221);          //容器标记颜色
 
@@ -54,11 +54,7 @@ private:
     widgetMsg nowSelectPackMsg;         //当前选择的容器
     QRect nowSelectPackLocation;        //当前选择的容器位置
 
-
     QRect afterRect;    //控件调整后的尺寸
-
-
-
 
 public:
     explicit Form_Roi(QWidget *parent);
