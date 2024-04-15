@@ -24,8 +24,8 @@ proModel.files = $$PWD/RunConfig/proModel           # 要复制的文件或目�
 proModel.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 web.files = $$PWD/RunConfig/web           # 要复制的文件或目录
 web.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
-widgets.files = $$PWD/RunConfig/widgets           # 要复制的文件或目录
-widgets.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+#widgets.files = $$PWD/RunConfig/widgets           # 要复制的文件或目录
+#widgets.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 formStyle.files = $$PWD/RunConfig/formStyle           # 要复制的文件或目录
 formStyle.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 
