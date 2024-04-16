@@ -24,7 +24,7 @@ widgetMsg Plugin_Button::createWidgetInstance(QRect Geometry)
     t_msg.attrs = {{
         "按钮标题",         //属性显示标题
         "title",           //属性响应类名
-        "主窗口",           //属性初始值
+        "按钮",           //属性初始值
         true               //属性可编辑
     }};
     t_msg.events = {        {

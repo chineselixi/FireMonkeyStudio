@@ -30,6 +30,50 @@ Form_PropertyEditor::~Form_PropertyEditor()
 }
 
 
+//注册控件属性
+void Form_PropertyEditor::registerWidgetsAttr(QString editorSpaceSign, QList<widgetMsg> widgetMsgs)
+{
+    this->editorSpaceSign = editorSpaceSign;
+    this->widgetMsgs = widgetMsgs;
+}
+
+
+//获取相同的属性节点信息
+QList<AttributeNode> Form_PropertyEditor::getEqualAttrNodes()
+{
+    QList<AttributeNode> t_retNodes;
+    //找出相同属性
+    if(this->widgetMsgs.length() > 0){
+        QList<AttributeNode> t_equalAttrNodes = this->widgetMsgs[0].attrs;
+        for(qsizetype a = t_equalAttrNodes.length() - 1; a >= 0; a--){      //倒着遍历属性
+            for(qsizetype i = 0; i < this->widgetMsgs.length(); i++){
+                QList<AttributeNode> t_attrNodes = this->widgetMsgs[i].attrs;
+                for(qsizetype x = 0; x < t_attrNodes.length(); i++){
+                    if(t_equalAttrNodes[a].attrSign != t_attrNodes[x].attrSign ||
+                        t_equalAttrNodes[a].title != t_attrNodes[x].title ||
+                        t_equalAttrNodes[a].value != t_attrNodes[x].value){
+                        goto BREAK; //只要有一个不相等，就跳出这个属性
+                    }
+                }
+            }
+            continue; //到循环尾，跳过删除选项，保留这个属性，就是全组件都有的
+            BREAK:
+            t_equalAttrNodes.removeAt(a);
+        }
+    }
+}
+
+
+//显示控件组的属性
+void Form_PropertyEditor::showWidgetsAttr()
+{
+    //去除相同的属性
+    //存储相同属性的控件对象的widget指针
+
+    //激发消息
+}
+
+
 
 
 

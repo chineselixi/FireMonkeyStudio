@@ -51,8 +51,18 @@ width:15px;
         <height>0</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <hintingpreference>PreferNoHinting</hintingpreference>
+       </font>
+      </property>
      </widget>
      <widget class="QTreeWidget" name="treeWidget">
+      <property name="font">
+       <font>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
       <property name="selectionMode">
        <enum>QAbstractItemView::ContiguousSelection</enum>
       </property>

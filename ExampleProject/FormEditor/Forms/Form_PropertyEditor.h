@@ -33,10 +33,23 @@ private:
 
     //Plugin_Base* showWidgetObject = nullptr;//显示的窗口对象
 
-    QVector<Plugin_Base*> widgetObjects; //属性对象列表
-    Form_EditorSpace* editorObj = nullptr;
+    QVector<Plugin_Base*> widgetObjects; //属性对象列表（将淘汰）
+    Form_EditorSpace* editorObj = nullptr;//(将淘汰)
+
+
+    QString editorSpaceSign = ""; //编辑空间的标记信息
+    QList<widgetMsg> widgetMsgs;    //组件列表
 
 public:
+
+    void registerWidgetsAttr(QString editorSpaceSign,QList<widgetMsg> widgetMsgs); //注册控件属性
+
+    QList<AttributeNode> getEqualAttrNodes(); //获取相同的组件信息
+
+    void showWidgetsAttr(); //显示控件组的属性
+
+
+
     //void loadProertyMsg(Plugin_Base* obj); //加载控件对象
 
     void loadPropertyMsgs(QVector<Plugin_Base*> objs,Form_EditorSpace* editor); //加载对象组
@@ -47,6 +60,10 @@ public:
 
     template<class T>
     QVector<T> uniqueMsgList(QVector<T> v); //去除重复数据
+
+
+signals:
+    void onWidgetsAttrChanged(QString editorSpaceSign,QList<widgetMsg> widgetMsgs); //控件属性被改变事件
 
 
 public slots:

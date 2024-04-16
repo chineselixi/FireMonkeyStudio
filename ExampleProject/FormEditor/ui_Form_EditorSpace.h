@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_EditorSpace.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -53,9 +53,15 @@ public:
         mdiArea = new Widget_MdiArea(splitter);
         mdiArea->setObjectName("mdiArea");
         mdiArea->setMinimumSize(QSize(500, 0));
+        QFont font;
+        font.setHintingPreference(QFont::PreferNoHinting);
+        mdiArea->setFont(font);
         splitter->addWidget(mdiArea);
         treeWidget = new QTreeWidget(splitter);
         treeWidget->setObjectName("treeWidget");
+        QFont font1;
+        font1.setStyleStrategy(QFont::PreferDefault);
+        treeWidget->setFont(font1);
         treeWidget->setSelectionMode(QAbstractItemView::ContiguousSelection);
         splitter->addWidget(treeWidget);
 
