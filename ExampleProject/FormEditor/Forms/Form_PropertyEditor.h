@@ -44,7 +44,7 @@ public:
 
     void registerWidgetsAttr(QString editorSpaceSign,QList<widgetMsg> widgetMsgs); //注册控件属性
 
-    QList<AttributeNode> getEqualAttrNodes(); //获取相同的组件信息
+    QList<AttributeNode> getEqualAttrNodes(); //获取相同的属性节点信息
 
     void showWidgetsAttr(); //显示控件组的属性
 
