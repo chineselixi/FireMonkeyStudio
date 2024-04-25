@@ -67,13 +67,16 @@ void Plugin_TabWidget::adjustWidget(QWidget *widget, QList<AttributeNode> &attrs
     AttributeNode* t_attr = nullptr;
     t_attr = this->getListAttr(attrs,"基础","tabIndex");
     if(t_attr != nullptr){
-        t_tab->setCurrentIndex(t_attr->value.toInt());
-        t_attr->value.setValue(t_tab->currentIndex());
-        t_attr = this->getListAttr(attrs,"基础","tabTitle");
-        if(t_attr != nullptr){
-            t_attr->value.setValue(t_tab->tabText(t_tab->currentIndex()));
+        if(t_attr->value.toInt() != t_tab->currentIndex()){ //不是当前的选项卡才进行选择
+            t_tab->setCurrentIndex(t_attr->value.toInt());
+            t_attr->value.setValue(t_tab->currentIndex());
+            t_attr = this->getListAttr(attrs,"基础","tabTitle");
+            if(t_attr != nullptr){
+                t_attr->value.setValue(t_tab->tabText(t_tab->currentIndex()));
+            }
         }
     }
+
     t_attr = this->getListAttr(attrs,"基础","tabTitle");
     if(t_attr != nullptr){
         t_tab->setTabText(t_tab->currentIndex(),t_attr->value.toString());

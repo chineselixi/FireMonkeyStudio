@@ -1,5 +1,5 @@
 #include "Plugin_Base.h"
-
+#include "QMenu"
 
 
 //从列表获取属性指针
@@ -11,6 +11,18 @@ AttributeNode *Plugin_Base::getListAttr(QList<AttributeNode> &attrs, QString gro
         }
     }
     return nullptr;
+}
+
+//子控件进入(参数1为容器控件，是本插件插件的。参数2为进入的子控件)
+void Plugin_Base::subWidgetEnter(QWidget *packWidget, QWidget *subWidget)
+{
+
+}
+
+//菜单选项被按下
+void Plugin_Base::onMenuActionClick(QAction* action,widgetMsg* widget)
+{
+
 }
 
 //组件创建返回的代码

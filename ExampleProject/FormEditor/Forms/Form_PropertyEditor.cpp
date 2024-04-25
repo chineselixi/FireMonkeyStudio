@@ -22,6 +22,7 @@ Form_PropertyEditor::Form_PropertyEditor(QWidget *parent) :
     connect(variantPropertyManger,&QtVariantPropertyManager::valueChanged,this,&Form_PropertyEditor::PropertyValueChanged);    //属性值改变
     connect(enumPropertyMsnger,&QtEnumPropertyManager::valueChanged,this,&Form_PropertyEditor::EnumValueChanged);       //枚举值改变
 
+
     ui->propertyBox->setFactoryForManager(variantPropertyManger,variantPropertyFactory); //绑定管理器与编辑器，这样管理器才可以激发信号
     ui->propertyBox->setFactoryForManager(enumPropertyMsnger,enumPropertyFactory); //绑定枚举管理器与枚举工厂
 }
@@ -38,50 +39,188 @@ Form_PropertyEditor::~Form_PropertyEditor()
 //显示控件组的属性
 void Form_PropertyEditor::showWidgetsAttr(QString editorSpaceSign, widgetMsg* selectWidget)
 {
-    //保存widgetMsg
-    this->editorSpaceSign = editorSpaceSign;
-    this->nowSelectWidgetMsg = selectWidget;
-
-    //清空属性框
-    ui->propertyBox->clear();
-    this->propertyList.clear();
-
-    if(selectWidget == nullptr) return;
-
-    //显示属性
-    QtVariantProperty* t_group = nullptr;
-    t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),"对象");
-    t_group->addSubProperty(this->addProperty({tr("对象名"),NORMALGROUP,"objectName",selectWidget->objectName,{},true}));
-    ui->propertyBox->addProperty(t_group);
-
-    t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),"尺寸");
-    t_group->addSubProperty(this->addProperty({tr("默认尺寸"),NORMALGROUP,"geometry",selectWidget->widget->geometry(),{},true}));
-    t_group->addSubProperty(this->addProperty({tr("最小尺寸"),NORMALGROUP,"minimumSize",selectWidget->widget->minimumSize(),{},true}));
-    t_group->addSubProperty(this->addProperty({tr("最大尺寸"),NORMALGROUP,"maximumSize",selectWidget->widget->maximumSize(),{},true}));
-    ui->propertyBox->addProperty(t_group);
-
-    //显示基本属性
-    //分类
-    QMap<QString,QList<AttributeNode>> t_attrGroup;
-    for(AttributeNode an : selectWidget->attrs){
-        if(an.group.isEmpty()) an.group = tr("基础"); //没有分组标记的默认值
-        QList<AttributeNode> t_ans = t_attrGroup.value(an.group);
-        t_ans.append(an);
-        t_attrGroup.insert(an.group,t_ans);
+    static QList<AttributeNode> t_oldAttrNodes;
+    //验证参数，如果为空，则全部回收所有信息
+    if(selectWidget == nullptr){
+        this->editorSpaceSign.clear();
+        this->nowSelectWidgetMsg = nullptr;
+        this->variantPropertyManger->clear();
+        this->enumPropertyMsnger->clear();
+        ui->propertyBox->clear();
+        this->propertyList.clear();
+        return;
     }
 
-    //显示属性
-    for(QString key : t_attrGroup.keys()){
-        QList<AttributeNode> t_ans = t_attrGroup.value(key);
-        if(t_ans.length() > 0){
-            AttributeNode t_tempAn = t_ans[0];
-            t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),key);
+    //将属性按组分类
+    QMap<QString,QList<AttributeNode>> t_newAttrGroup;
+    for(AttributeNode an : selectWidget->attrs){
+        if(an.group.isEmpty()) an.group = tr("基础"); //没有分组标记的默认值
+        QList<AttributeNode> t_ans = t_newAttrGroup.value(an.group);
+        t_ans.append(an);
+        t_newAttrGroup.insert(an.group,t_ans);
+    }
+
+    if(editorSpaceSign != this->editorSpaceSign || selectWidget != this->nowSelectWidgetMsg){   //判断是否更新了组件信息
+        qDebug() << "新组件属性";
+        //选择了新的组件
+        //清空属性框
+        ui->propertyBox->clear();
+        this->propertyList.clear();
+
+        //显示属性
+        QtVariantProperty* t_group = nullptr;
+        t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),"对象");
+        t_group->addSubProperty(this->addProperty({tr("对象名"),NORMALGROUP,"objectName",selectWidget->objectName,{},true}));
+        ui->propertyBox->addProperty(t_group);
+
+        t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),"尺寸");
+        t_group->addSubProperty(this->addProperty({tr("默认尺寸"),NORMALGROUP,"geometry",selectWidget->widget->geometry(),{},true}));
+        t_group->addSubProperty(this->addProperty({tr("最小尺寸"),NORMALGROUP,"minimumSize",selectWidget->widget->minimumSize(),{},true}));
+        t_group->addSubProperty(this->addProperty({tr("最大尺寸"),NORMALGROUP,"maximumSize",selectWidget->widget->maximumSize(),{},true}));
+        ui->propertyBox->addProperty(t_group);
+
+        //按照分组显示创建并且显示属性
+        for(QString key : t_newAttrGroup.keys()){
+            QList<AttributeNode> t_ans = t_newAttrGroup.value(key);
+            if(t_ans.length() > 0){ //此分类组存在属性才开始分组
+                t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),key);
+                //this->propertyList.append({t_retProperty,an});    //记录属性指针与属性信息
+                for(AttributeNode anItem : t_ans){
+                    t_group->addSubProperty(this->addProperty(anItem));
+                }
+                ui->propertyBox->addProperty(t_group);
+                this->propertyList.append({t_group,AttributeNode()});   //保存组
+            }
+        }
+    }
+    else{
+        //只是更新了属性
+        //将老组分类
+        QMap<QString,QList<AttributeNode>> t_oldAttrGroup;
+        for(AttributeNode an : t_oldAttrNodes){
+            if(an.group.isEmpty()) an.group = tr("基础"); //没有分组标记的默认值
+            QList<AttributeNode> t_ans = t_oldAttrGroup.value(an.group);
+            t_ans.append(an);
+            t_oldAttrGroup.insert(an.group,t_ans);
+        }
+
+        QStringList groupSame,groupLack,groupNew;
+        this->getListDifference(t_oldAttrGroup.keys(),t_newAttrGroup.keys(),groupSame,groupLack,groupNew);
+
+        QtVariantProperty* t_group = nullptr;
+        //相同的组
+        for(QString item : groupSame){
+            //系统的组就判断组件是否相同
+            QMap<QString,AttributeNode> t_newGroupAttrSigns,t_oldGroupAttrSigns;
+            for(AttributeNode attrNode : t_newAttrGroup.value(item)){t_newGroupAttrSigns.insert(attrNode.attrSign,attrNode);}
+            for(AttributeNode attrNode : t_oldAttrGroup.value(item)){t_oldGroupAttrSigns.insert(attrNode.attrSign,attrNode);}
+
+            QStringList signSame,signLack,signNew;
+            this->getListDifference(t_oldGroupAttrSigns.keys(),t_newGroupAttrSigns.keys(),signSame,signLack,signNew);
+
+            //相同的属性
+            for(QString attrSignItem : signSame){
+                AttributeNode t_sa = t_newGroupAttrSigns.value(attrSignItem);
+                for(property& proi : propertyList){
+                    if(proi.attrNode.attrSign == t_sa.attrSign
+                        && proi.attrNode.group == t_sa.group){  //分组，标记相等
+                        proi.attrNode.value = t_sa.value;
+                        if(t_sa.enums.length() == 0){   //普通属性
+                            QtVariantProperty* t_vp = dynamic_cast<QtVariantProperty*>(proi.propertyPtr);
+                            if(t_vp)
+                            t_vp->setValue(t_sa.value);
+                        }
+                        else{   //枚举属性
+                            int t_index = -1;
+                            enumPropertyMsnger->setEnumNames(proi.propertyPtr,t_sa.enums);
+                            for(int i = 0; i < t_sa.enums.length(); i++){
+                                if(t_sa.enums[i] == t_sa.value.toString()){
+                                    t_index = i;
+                                    break;
+                                }
+                            }
+                            enumPropertyMsnger->setValue(proi.propertyPtr,t_index);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            //缺少的属性
+            for(QString attrSignItem : signLack){
+                for(qsizetype i = propertyList.length() - 1; i >= 0; i--){  //倒删属性
+                    if(propertyList[i].attrNode.attrSign == attrSignItem
+                        && propertyList[i].attrNode.group == item){
+                        ui->propertyBox->removeProperty(propertyList[i].propertyPtr);
+                        propertyList.removeAt(i);
+                        break;
+                    }
+                }
+            }
+
+            //新增的属性
+            if(signNew.length() > 0){
+                //获取当前组的指针信息
+                QtProperty* t_newAttrGroup = nullptr;
+                for(qsizetype i = propertyList.length() - 1; i >= 0; i--){  //倒删属性
+                    if(propertyList[i].propertyPtr->propertyName() == item){
+                        t_newAttrGroup = propertyList[i].propertyPtr;
+                        break;
+                    }
+                }
+
+                if(t_newAttrGroup){
+                    for(QString attrSignItem : signNew){
+                        AttributeNode t_sa = t_newGroupAttrSigns.value(attrSignItem);
+                        QtProperty* t_retAdd = this->addProperty(t_sa); //当前组新增属性
+                        t_newAttrGroup->addSubProperty(t_retAdd);
+                    }
+                }
+            }
+
+        }
+
+
+        //缺少的组
+        for(QString item : groupLack){
+            for(qsizetype a = propertyList.length() - 1; a >= 0; a--){
+                QtVariantProperty* t_vpro = dynamic_cast<QtVariantProperty*>(propertyList[a].propertyPtr);
+                if(t_vpro != nullptr && t_vpro->propertyType() == QtVariantPropertyManager::groupTypeId()){ //找到了这个组，删除组信息
+                    //先删除组的子项信息
+                    QList<QtProperty*> t_subs = t_vpro->subProperties(); //获取组的子项信息
+                    ui->propertyBox->removeProperty(t_vpro);    //移除这个组
+                    propertyList.removeAt(a);
+
+                    //遍历移除子项
+                    for(QtProperty* subItem : t_subs){
+                        for(qsizetype b = propertyList.length() - 1; b >= 0; b--){
+                            if(propertyList[b].propertyPtr == subItem){
+                                propertyList.removeAt(b);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        //新增的组
+        for(QString item : groupNew){
+            t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),item);
+            QList<AttributeNode> t_ans = t_newAttrGroup.value(item);
             for(AttributeNode anItem : t_ans){
                 t_group->addSubProperty(this->addProperty(anItem));
             }
             ui->propertyBox->addProperty(t_group);
+            this->propertyList.append({t_group,AttributeNode()});   //保存组
         }
     }
+
+    //更新属性信息
+    t_oldAttrNodes = selectWidget->attrs; //更新老的属性组
+    this->editorSpaceSign = editorSpaceSign;
+    this->nowSelectWidgetMsg = selectWidget;
 }
 
 
@@ -107,7 +246,7 @@ QtProperty *Form_PropertyEditor::addProperty(AttributeNode an)
         }
         enumPropertyMsnger->setValue(t_retProperty,t_index);
     }
-    propertyList.append({t_retProperty,an});    //记录属性指针与属性信息
+    this->propertyList.append({t_retProperty,an});    //记录属性指针与属性信息
     return t_retProperty;
 }
 
@@ -128,6 +267,39 @@ AttributeNode* Form_PropertyEditor::getAttr(QtProperty *property)
         }
     }
     return nullptr;
+}
+
+
+//两个字符串列表，返回两个元素系统部分，新较少的缺少部分和增加部分
+void Form_PropertyEditor::getListDifference(QStringList oldStrList,
+                                            QStringList newStrList,
+                                            QStringList &retSame,
+                                            QStringList &retLack,
+                                            QStringList &retNew)
+{
+    bool* t_sign = (bool*)malloc(oldStrList.length() * sizeof(bool));   //申请一块内存用于标记
+    for(int a = 0; a < oldStrList.length();a++)t_sign[a] = false;       //更改内存区域为0
+
+    for(int a = 0; a < newStrList.length(); a++){
+        for(int b = 0; b < oldStrList.length(); b++){
+            if(newStrList[a] == oldStrList[b]){ //存在相同的
+                retSame.append(newStrList[a]);    //新和旧系统的部分
+                t_sign[b] = true;   //标记这个位置是存在的
+                goto BREAKOLD;      //跳出循环
+            }
+        }
+        retNew.append(newStrList[a]); //新的存在，旧的不存在的部分
+        BREAKOLD:
+        continue;
+    }
+
+    //旧存在新的不存在的部分
+    for(int a = 0; a < oldStrList.length();a++){
+        if(t_sign[a] == false){
+            retLack.append(oldStrList[a]);
+        }
+    }
+    free(t_sign);//释放内存
 }
 
 
@@ -174,8 +346,8 @@ void Form_PropertyEditor::PropertyValueChanged(QtProperty *property,const QVaria
             t_attr->value = val;
             this->nowSelectWidgetMsg->pluginPtr->adjustWidget(this->nowSelectWidgetMsg->widget,this->nowSelectWidgetMsg->attrs); //调用插件更改属性
         }
-        this->onWidgetUpdate(this->editorSpaceSign,this->nowSelectWidgetMsg);   //激发事件更新事件
         this->showWidgetsAttr(this->editorSpaceSign,this->nowSelectWidgetMsg);  //更新显示的属性
+        this->onWidgetUpdate(this->editorSpaceSign,this->nowSelectWidgetMsg);   //激发事件更新事件
     }
 }
 

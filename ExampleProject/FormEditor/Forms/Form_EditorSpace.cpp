@@ -71,6 +71,7 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
 
 Form_EditorSpace::~Form_EditorSpace()
 {
+    if(Form::PropertyEditorPtr) Form::PropertyEditorPtr->showWidgetsAttr("",nullptr);
     delete ui;
 }
 

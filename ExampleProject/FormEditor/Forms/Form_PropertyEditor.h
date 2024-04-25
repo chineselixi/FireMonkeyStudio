@@ -49,14 +49,14 @@ private:
     QList<property> propertyList;   //属性节点组
 
 public:
-
     void showWidgetsAttr(QString editorSpaceSign, widgetMsg* selectWidget); //显示控件组的属性
-
 
 private:
 
     QtProperty* addProperty(AttributeNode an);    //添加属性信息
     AttributeNode* getAttr(QtProperty* property);  //根据QtProperty指针获取attr
+    void getListDifference(QStringList oldStrList,QStringList newStrList,QStringList& retSame,QStringList& retLack,QStringList& retNew); //两个字符串列表，返回两个元素系统部分，新较少的缺少部分和增加部分
+
 
 signals:
     void onWidgetNameChange(QString editorSpaceSign,widgetMsg* updateWidgetMessage,QString& newName); //控件名称被改变事件
