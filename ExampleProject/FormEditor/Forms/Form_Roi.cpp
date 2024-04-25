@@ -895,6 +895,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                     if(t_packm.widget == this->nowSelectPackMsg.widget){    //如果是在同一个容器内，则只改变坐标位置
                         int t_x = t_endPoint.x() - this->startPoint.x();
                         int t_y = t_endPoint.y() - this->startPoint.y();
+                        QList<QWidget*> t_ws;
                         for(widgetMsg item : t_selWidget){
                             item.widget->setGeometry(
                                 item.widget->x() + t_x,
@@ -902,9 +903,12 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                                 item.widget->width(),
                                 item.widget->height()
                                 );
+                            t_ws.append(item.widget);   //加入移动列表
                         }
+                        this->onWidgetMove(t_ws);   //激活组件移动事件
                     }
                     else{   //不在同一个容器里面，则需要对每个组件重新定位
+                        QList<QWidget*> t_ws;
                         for(widgetMsg item : t_selWidget){
                             if(!this->isSubWidget(item.widget,t_packm.widget)){ //不是子项目才移动进去，不然造成，父窗口移到子窗口的错误
                                 QRect t_itemRect;
@@ -922,10 +926,12 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                                     item.widget->setGeometry({x,y,w,h});  //根据新的容器
                                     t_packm.pluginPtr->subWidgetEnter(t_packm.widget,item.widget); //通知插件子控件进入信息
                                     item.widget->setHidden(t_isHidden);
+                                    t_ws.append(item.widget);   //加入移动列表
                                 }
                             }
                         }
-                        this->onSubWidgetsChanged(t_packm.widget); //这个容器有控件加入
+                        if(t_ws.length() > 0) this->onWidgetMove(t_ws); //激活组件移动事件
+                        this->onSubWidgetsChanged(t_packm.widget);      //这个容器有控件加入
                     }
                 }
             }
@@ -958,17 +964,13 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
             //只选择当前加入的控件
             this->roi_setWidgetDeleteAllSelect();
             this->roi_setWidgetSelect(t_newCreateWidget,true);
+            this->onWidgetSelected({t_newCreateWidget});
         }
 
         if(!this->ctrlDown){    //如果Ctrl没有被按下，那么就自动恢复指针
             Plugin::nowSelectPlugin = nullptr;
         }
-
-
     }
-
-
-
 
     this->startOnBase = false;  //取消从base的标记
     this->mouseDown = false;    //取消鼠标按下标记

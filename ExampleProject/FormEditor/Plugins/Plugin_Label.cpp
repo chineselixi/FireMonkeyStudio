@@ -23,9 +23,11 @@ widgetMsg Plugin_Label::createWidgetInstance(QRect Geometry)
     t_msg.isSelect = true;          //是否被选择
     t_msg.attrs = {{
         "标题",         //属性显示标题
+        "基础",            //分类信息
         "title",           //属性响应类名
         "标签",           //属性初始值
-        true               //属性可编辑
+        {},             //枚举选项
+        true            //属性可编辑
     }};
 
     if(Geometry.width() <= 0){Geometry.setWidth(54);}

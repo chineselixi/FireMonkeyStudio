@@ -14,6 +14,7 @@
 #include <QtWidgets/QItemDelegate>
 #include <QtWidgets/QStyle>
 #include <QtWidgets/QTreeWidget>
+#include "QObject"
 
 QT_BEGIN_NAMESPACE
 
@@ -402,8 +403,8 @@ void QtTreePropertyBrowserPrivate::init(QWidget *parent)
 
     m_treeWidget->setColumnCount(2);
     QStringList labels;
-    labels.append(QCoreApplication::translate("QtTreePropertyBrowser", "Property"));
-    labels.append(QCoreApplication::translate("QtTreePropertyBrowser", "Value"));
+    labels.append(QCoreApplication::translate("QtTreePropertyBrowser", "属性"));
+    labels.append(QCoreApplication::translate("QtTreePropertyBrowser", "值"));
     m_treeWidget->setHeaderLabels(labels);
     m_treeWidget->setAlternatingRowColors(true);
     m_treeWidget->setEditTriggers(QAbstractItemView::EditKeyPressed);

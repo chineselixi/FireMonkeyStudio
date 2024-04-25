@@ -21,12 +21,24 @@ widgetMsg Plugin_TabWidget::createWidgetInstance(QRect Geometry)
     t_msg.widget = new QTabWidget;     //组件指针
     t_msg.isPack = true;           //是否为容器，如果为true，则
     t_msg.isSelect = true;          //是否被选择
-    t_msg.attrs = {{
-        "当前索引",         //属性显示标题
-        "tabIndex",           //属性响应类名
-        "0",           //属性初始值
-        true               //属性可编辑
-    }};
+    t_msg.attrs = {
+        {
+            "当前索引",         //属性显示标题
+            "基础",            //分类信息
+            "tabIndex",         //属性响应类名
+            0,                //属性初始值
+            {},             //枚举选项
+            true            //属性可编辑
+        },
+        {
+            "TAB标题",         //属性显示标题
+            "基础",            //分类信息
+            "tabTitle",         //属性响应类名
+            "子夹1",                //属性初始值
+            {},             //枚举选项
+            true            //属性可编辑
+        }
+    };
     t_msg.events = {        {
         "选择夹被切换",          //事件显示的标题
         "onSwitch",         //事件代码属性名
@@ -48,6 +60,24 @@ widgetMsg Plugin_TabWidget::createWidgetInstance(QRect Geometry)
 //根据组件指针与属性，调整此组件信息
 void Plugin_TabWidget::adjustWidget(QWidget *widget, QList<AttributeNode> &attrs)
 {
+    //转换TAB，如果转换失败，则不调整
+    QTabWidget* t_tab = dynamic_cast<QTabWidget*>(widget);
+    if(t_tab == nullptr) return;
+
+    AttributeNode* t_attr = nullptr;
+    t_attr = this->getListAttr(attrs,"基础","tabIndex");
+    if(t_attr != nullptr){
+        t_tab->setCurrentIndex(t_attr->value.toInt());
+        t_attr->value.setValue(t_tab->currentIndex());
+        t_attr = this->getListAttr(attrs,"基础","tabTitle");
+        if(t_attr != nullptr){
+            t_attr->value.setValue(t_tab->tabText(t_tab->currentIndex()));
+        }
+    }
+    t_attr = this->getListAttr(attrs,"基础","tabTitle");
+    if(t_attr != nullptr){
+        t_tab->setTabText(t_tab->currentIndex(),t_attr->value.toString());
+    }
 
 }
 

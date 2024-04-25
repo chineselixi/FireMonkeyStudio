@@ -10,9 +10,32 @@ class Plugin_Base;
 //属性节点结构体
 struct AttributeNode{
     QString title;          //属性显示标题
+    QString group;          //分组标记
     QString attrSign;       //属性标记
     QVariant value;         //属性值
+    QList<QString> enums;  //附加的枚举，如果此项目长度大于0，则该属性为枚举属性
     bool canEdit = true;    //是否可编辑
+
+private:
+    bool equals(const AttributeNode& t_attr){
+        if(this->title == t_attr.title &&
+            this->group == t_attr.group &&
+            this->attrSign == t_attr.attrSign &&
+            this->enums == t_attr.enums){
+            return true;
+        }
+        return false;
+    }
+public:
+    bool operator==(const AttributeNode& t_attr){
+        return equals(t_attr) && this->value == t_attr.value;
+    }
+    bool operator ^(const AttributeNode& t_attr){
+        return equals(t_attr);
+    }
+    bool operator!=(const AttributeNode& t_attr){
+        return !equals(t_attr);
+    }
 };
 
 //事件节点结构体

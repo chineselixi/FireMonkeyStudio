@@ -25,9 +25,11 @@ widgetMsg Plugin_MainWindow::createWidgetInstance(QRect Geometry)
     t_msg.isSelect = true;
     t_msg.attrs = {{
         "窗口标题",         //属性显示标题
+        "基础",              //分类信息
         "windowTitle",     //属性响应类名
-        "主窗口",           //属性初始值
-        true               //属性可编辑
+        "窗口",           //属性初始值
+        {},             //枚举选项
+        true,            //属性可编辑
     }};
     t_msg.events = {        {
         "创建完毕",         //事件显示的标题

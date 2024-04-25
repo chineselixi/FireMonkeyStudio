@@ -24,6 +24,7 @@ private:
     };
 
 private:
+    QString editorSpaceSign = "";       //编辑器标记，用于区分多个编辑器
     Form_Roi* roiWidget = nullptr;      //选区绘画窗口指针
     widgetMsg baseWidget;               //基础底层控件
     QList<widgetMsg> widgets;           //编辑器内的控件列表
@@ -55,6 +56,10 @@ private:
     void setRootTreeItem(QWidget* baseParent); //设置树根
     QTreeWidgetItem* getWidgetParentTreeItemPtr(QWidget* widget); //获取Widget父组件的treeItem指针
     void adjustTreeItem(); //调整树item
+    void selectTreeItem(QList<QWidget *> widgets);  //根据组件列表选择对于的treeItem
+    void selectTreeItem(QList<widgetMsg> widgets);  //根据组件列表选择对于的treeItem
+    void showProperty(); //显示属性
+    widgetMsg* getWidgetMsg(QWidget* widget);   //获取Widget信息指针
 
 public:
     void event_onMdiAreaScrollChange(int dx, int dy); //当MdiArea滚动改变
@@ -62,12 +67,19 @@ public:
     void event_onObjectRename(QWidget* widget,QString newName); //设置对象新名称
 
 private slots:
+    //矩形选择器槽函数
     void ROI_onSubWidgetsChanged(QWidget* parentWidget);   //当ROI控件有子控件加入
     void ROI_onWidgetSelected(QList<QWidget*> widgets);    //当ROI控件被选择，参数：选择的控件列表
+    void ROI_onWidgetMove(QList<QWidget*> widgets);         //当控件移动
+    void ROI_onWidgetBaseGeometryChanged(QRect rect);       //baseWidget尺寸改变
+    void ROI_onWidgetGeometryChanged(QWidget* widget);      //组件尺寸改变
+
+    //属性编辑器槽函数
+    void PRO_onWidgetNameChange(QString editorSpaceSign,widgetMsg* updateWidgetMessage,QString& newName);    //目标控件对象名称被改变
+    void PRO_onWidgetUpdate(QString editorSpaceSign,widgetMsg* updateWidgetMessage);                        //控件属性被更新
 
 
     void on_splitter_splitterMoved(int pos, int index);//分割条比例调整
-    void onParentBaseWidgetGeometryChanged(QRect rect);   //baseWidget尺寸改变
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column); //当TreeItem被点击
 
 private:

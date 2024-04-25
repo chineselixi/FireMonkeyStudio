@@ -25,21 +25,22 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
     this->roiWidget = new Form_Roi(this);
     //this->roiWidget->roi_setWidgetMsgListPtr(&this->widgets); //设置组件列表指针
 
-    //当基础窗口尺寸被改变
-    connect(this->roiWidget,&Form_Roi::onWidgetBaseGeometryChanged,this,&Form_EditorSpace::onParentBaseWidgetGeometryChanged);
-
-//    void onWidgetBaseGeometryChanged(QRect rect);   //当基础窗口尺寸被改变
-//    void onWidgetSelected(QList<QWidget*> widgets); //当控件被选择，参数：选择的控件列表
-//    void onWidgetGeometryChanged(QWidget* widget);  //当控件尺寸被改变
-//    void onSubWidgetsChanged(QWidget* parentWidget);   //当控件有子控件加入
+    //绑定ROI
+    connect(this->roiWidget,&Form_Roi::onWidgetBaseGeometryChanged,this,&Form_EditorSpace::ROI_onWidgetBaseGeometryChanged);//当基础窗口尺寸被改变
+    connect(this->roiWidget,&Form_Roi::onWidgetGeometryChanged,this,&Form_EditorSpace::ROI_onWidgetGeometryChanged);//当组件尺寸被改变
+    connect(this->roiWidget,&Form_Roi::onSubWidgetsChanged,this,&Form_EditorSpace::ROI_onSubWidgetsChanged);    //子控件被选择
+    connect(this->roiWidget,&Form_Roi::onWidgetSelected,this,&Form_EditorSpace::ROI_onWidgetSelected);          //子控件被选择
+    connect(this->roiWidget,&Form_Roi::onWidgetMove,this,&Form_EditorSpace::ROI_onWidgetMove);                  //子控件位置移动
 
     //初始化MdiArea
     connect(ui->mdiArea,&Widget_MdiArea::event_onResize,this,&Form_EditorSpace::event_onMdiAreaReSize); //链接MdiArea的尺寸改变信息
     connect(ui->mdiArea,&Widget_MdiArea::event_onScrollBarChange,this,&Form_EditorSpace::event_onMdiAreaScrollChange); //链接Mdiarea的滚动条改变
 
-    //绑定ROI
-    connect(this->roiWidget,&Form_Roi::onSubWidgetsChanged,this,&Form_EditorSpace::ROI_onSubWidgetsChanged); //子控件被选择
-    connect(this->roiWidget,&Form_Roi::onWidgetSelected,this,&Form_EditorSpace::ROI_onWidgetSelected);
+    //绑定属性编辑器
+    if(Form::PropertyEditorPtr != nullptr){
+        connect(Form::PropertyEditorPtr,&Form_PropertyEditor::onWidgetNameChange,this,&Form_EditorSpace::PRO_onWidgetNameChange);   //对象名称被改变
+        connect(Form::PropertyEditorPtr,&Form_PropertyEditor::onWidgetUpdate,this,&Form_EditorSpace::PRO_onWidgetUpdate);           //属性更新
+    }
 
 
     //初始化主窗口，创建一个最基础的容器控件
@@ -59,12 +60,6 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
     this->baseSubWindow->setWindowFlags(Qt::FramelessWindowHint); //设置无边框
     this->baseSubWindow->setGeometry(this->baseWidget.widget->geometry()); //设置基础的宽高
     this->baseSubWindow->move(10,10);
-
-
-    //临时测试代码
-    this->createWidgetMsgToList(new Plugin_Button,{20,30,0,0},this->baseWidget.pluginPtr,this->baseWidget.widget);
-    this->createWidgetMsgToList(new Plugin_MainWindow,{40,20,300,200},this->baseWidget.pluginPtr,this->baseWidget.widget);
-
 
     //设置为主窗口为选择状态
     this->roiWidget->roi_setWidgetDeleteAllSelect();
@@ -238,6 +233,61 @@ void Form_EditorSpace::adjustTreeItem()
 }
 
 
+//根据组件列表选择对于的treeItem
+void Form_EditorSpace::selectTreeItem(QList<QWidget *> widgets)
+{
+    for(treeNode treeItem : this->treeMsgList){
+        treeItem.treeItem->setSelected(false);
+        for(QWidget* widgetItem : widgets){
+            if(treeItem.msg.widget == widgetItem){
+                treeItem.treeItem->setSelected(true);
+                break;
+            }
+        }
+    }
+}
+
+
+//根据组件列表选择对于的treeItem
+void Form_EditorSpace::selectTreeItem(QList<widgetMsg> widgets)
+{
+    for(treeNode treeItem : this->treeMsgList){
+        treeItem.treeItem->setSelected(false);
+        for(widgetMsg widgetItem : widgets){
+            if(treeItem.msg.widget == widgetItem.widget){
+                treeItem.treeItem->setSelected(true);
+                break;
+            }
+        }
+    }
+}
+
+
+//显示属性
+void Form_EditorSpace::showProperty()
+{
+    if(Form::PropertyEditorPtr){
+        QList<widgetMsg> t_ws = this->roiWidget->roi_getSelectWidgetMsgs();
+        if(widgets.length() > 0){
+            widgetMsg* t_wm = this->getWidgetMsg(t_ws[0].widget);
+            Form::PropertyEditorPtr->showWidgetsAttr("",t_wm);
+        }
+    }
+}
+
+
+//获取Widget信息指针
+widgetMsg *Form_EditorSpace::getWidgetMsg(QWidget *widget)
+{
+    for(qsizetype i = 0; i<widgets.length() ; i++){
+        if(this->widgets[i].widget == widget){
+            return &this->widgets[i];
+        }
+    }
+    return nullptr;
+}
+
+
 //窗体尺寸被改变
 void Form_EditorSpace::resizeEvent(QResizeEvent *event)
 {
@@ -252,43 +302,64 @@ void Form_EditorSpace::on_splitter_splitterMoved(int pos, int index)
 }
 
 
-//baseWidget尺寸改变
-void Form_EditorSpace::onParentBaseWidgetGeometryChanged(QRect rect)
-{
-    this->baseSubWindow->setGeometry(this->baseSubWindow->geometry().left(), //设置基础的宽高
-                                     this->baseSubWindow->geometry().top(),
-                                     rect.width(),
-                                     rect.height());
-
-
-
-//    this->baseSubWindow->move(10,10);
-
-//    if(baseSubWindow && baseWidget.widget){
-//        this->baseWidget.widget->setGeometry({0,0,rect.width(),rect.height()});
-//        this->baseSubWindow->setGeometry({10,10,rect.width(),rect.height()});
-    //    }
-}
-
 
 //当ROI控件有子控件加入
 void Form_EditorSpace::ROI_onSubWidgetsChanged(QWidget *parentWidget)
 {
     this->adjustTreeItem();
+    this->selectTreeItem(this->roiWidget->roi_getSelectWidgetMsgs());
+    this->showProperty();
 }
 
 //当ROI控件被选择，参数：选择的控件列表
 void Form_EditorSpace::ROI_onWidgetSelected(QList<QWidget *> widgets)
 {
-    for(treeNode treeItem : this->treeMsgList){
-        treeItem.treeItem->setSelected(false);
-        for(QWidget* widgetItem : widgets){
-            if(treeItem.msg.widget == widgetItem){
-                treeItem.treeItem->setSelected(true);
-                break;
-            }
-        }
-    }
+    //选择树列表项目
+    this->selectTreeItem(widgets);
+    //显示属性
+    this->showProperty();
+}
+
+
+//当控件移动
+void Form_EditorSpace::ROI_onWidgetMove(QList<QWidget *> widgets)
+{
+    //显示属性
+    this->showProperty();
+}
+
+
+//baseWidget尺寸改变
+void Form_EditorSpace::ROI_onWidgetBaseGeometryChanged(QRect rect)
+{
+    this->baseSubWindow->setGeometry(this->baseSubWindow->geometry().left(), //设置基础的宽高
+                                     this->baseSubWindow->geometry().top(),
+                                     rect.width(),
+                                     rect.height());
+    //显示属性
+    this->showProperty();
+}
+
+
+//组件尺寸改变
+void Form_EditorSpace::ROI_onWidgetGeometryChanged(QWidget* widget)
+{
+    //显示属性
+    this->showProperty();
+}
+
+
+//目标控件对象名称被改变
+void Form_EditorSpace::PRO_onWidgetNameChange(QString editorSpaceSign, widgetMsg *updateWidgetMessage, QString& newName)
+{
+    if(editorSpaceSign != this->editorSpaceSign || updateWidgetMessage == nullptr) return;
+    newName = this->getUniqueName(newName);
+}
+
+//控件属性被更新
+void Form_EditorSpace::PRO_onWidgetUpdate(QString editorSpaceSign, widgetMsg *updateWidgetMessage)
+{
+    this->roiWidget->update();  //如果位置改变，则更改选取样式
 }
 
 

@@ -4,10 +4,13 @@
 #include <QWidget>
 #include "GlobalMsg.h"
 #include "Plugins/Plugin_Base.h"
-#include "../qtpropertybrowser/qttreepropertybrowser.h"
+//#include "../qtpropertybrowser/qttreepropertybrowser.h"
 #include "../qtpropertybrowser/qtvariantproperty.h"
 #include "../qtpropertybrowser/qteditorfactory.h"
 
+
+
+#define NORMALGROUP "FIREMONKEYPROPERTY"
 
 
 class Form_EditorSpace; //编辑器指针，用于通知对象名
@@ -20,51 +23,44 @@ class Form_PropertyEditor : public QWidget
 {
     Q_OBJECT
 
+private:
+
+    //记录属性节点
+    struct property{
+        QtProperty* propertyPtr = nullptr;
+        AttributeNode attrNode;
+    };
+
 public:
     explicit Form_PropertyEditor(QWidget *parent = nullptr);
     ~Form_PropertyEditor();
 
 private:
     Ui::Form_PropertyEditor *ui;
-    QtVariantPropertyManager* propertyManger = nullptr; //创建抽象属性管理器
-    QtVariantEditorFactory * propertyFactory = nullptr;
-    QtEnumPropertyManager* propertyEnumMsnger= nullptr;
-    QtEnumEditorFactory* propertyEnumFactory = nullptr;
 
-    //Plugin_Base* showWidgetObject = nullptr;//显示的窗口对象
+    QtVariantPropertyManager* variantPropertyManger = nullptr;  //抽象普通属性管理器
+    QtEnumPropertyManager* enumPropertyMsnger= nullptr;         //抽象枚举属性管理器
 
-    QVector<Plugin_Base*> widgetObjects; //属性对象列表（将淘汰）
-    Form_EditorSpace* editorObj = nullptr;//(将淘汰)
+    QtVariantEditorFactory * variantPropertyFactory = nullptr;  //抽象工厂
+    QtEnumEditorFactory* enumPropertyFactory = nullptr;         //枚举工厂
 
-
-    QString editorSpaceSign = ""; //编辑空间的标记信息
-    QList<widgetMsg> widgetMsgs;    //组件列表
+    QString editorSpaceSign = "";   //当前选择的编辑器文本标记（可能存在多个编辑器）
+    widgetMsg* nowSelectWidgetMsg;    //当前选择的信息
+    QList<property> propertyList;   //属性节点组
 
 public:
 
-    void registerWidgetsAttr(QString editorSpaceSign,QList<widgetMsg> widgetMsgs); //注册控件属性
-
-    QList<AttributeNode> getEqualAttrNodes(); //获取相同的属性节点信息
-
-    void showWidgetsAttr(); //显示控件组的属性
+    void showWidgetsAttr(QString editorSpaceSign, widgetMsg* selectWidget); //显示控件组的属性
 
 
+private:
 
-    //void loadProertyMsg(Plugin_Base* obj); //加载控件对象
-
-    void loadPropertyMsgs(QVector<Plugin_Base*> objs,Form_EditorSpace* editor); //加载对象组
-    void removeProertyMsg_obj(Plugin_Base* obj); //移除控件对象，若不移除，则可能出现奔溃
-    void removeProertyMsg_editor(Form_EditorSpace* editor); //根据编辑器指针移除全部属性信息
-
-    void showProertyMsg(); //显示属性信息
-
-    template<class T>
-    QVector<T> uniqueMsgList(QVector<T> v); //去除重复数据
-
+    QtProperty* addProperty(AttributeNode an);    //添加属性信息
+    AttributeNode* getAttr(QtProperty* property);  //根据QtProperty指针获取attr
 
 signals:
-    void onWidgetsAttrChanged(QString editorSpaceSign,QList<widgetMsg> widgetMsgs); //控件属性被改变事件
-
+    void onWidgetNameChange(QString editorSpaceSign,widgetMsg* updateWidgetMessage,QString& newName); //控件名称被改变事件
+    void onWidgetUpdate(QString editorSpaceSign,widgetMsg* updateWidgetMessage); //控件属性被改变事件
 
 public slots:
     void PropertyValueChanged(QtProperty *property, const QVariant &value); //编辑的内容被改变

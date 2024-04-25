@@ -16,10 +16,11 @@ public:
     QPixmap pluginIco;                  //插件图标
 
 public:
+    AttributeNode* getListAttr(QList<AttributeNode> &attrs,QString group,QString attrSign);  //从列表获取属性指针
+
     virtual widgetMsg createWidgetInstance(QRect Geometry = QRect()) = 0;   //创建一个控件实例
     virtual void adjustWidget(QWidget* widget,QList<AttributeNode>& attrs) = 0; //根据组件指针与属性，调整此组件信息
     virtual void subWidgetEnter(QWidget* packWidget,QWidget* subWidget){};      //子控件进入(参数1为容器控件，是本插件插件的。参数2为进入的子控件)
-
 
     //组件创建返回的代码
     virtual QString code_onWidgetBuild(QWidget* widget, QList<AttributeNode> attrs, QList<EventNode> events);
