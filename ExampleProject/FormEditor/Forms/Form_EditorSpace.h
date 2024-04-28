@@ -49,6 +49,8 @@ public:
     QWidget* getEditorSpaceWidgetPtr();
     //获取基础控件信息
     widgetMsg& getBaseWidgetMsg();
+    //弹出菜单
+    void showMenu(widgetMsg msg,QPoint pos);
 
 private:
     void buildTreeWidgetItem(widgetMsg msg,bool isRoot = false);    //创建树组件节点
@@ -75,8 +77,8 @@ private slots:
     void ROI_onWidgetGeometryChanged(QWidget* widget);      //组件尺寸改变
 
     //属性编辑器槽函数
-    void PRO_onWidgetNameChange(QString editorSpaceSign,widgetMsg* updateWidgetMessage,QString& newName);    //目标控件对象名称被改变
-    void PRO_onWidgetUpdate(QString editorSpaceSign,widgetMsg* updateWidgetMessage);                        //控件属性被更新
+    void PRO_onWidgetNameChange(QWidget* widgetBase,widgetMsg* updateWidgetMessage,QString& newName);    //目标控件对象名称被改变
+    void PRO_onWidgetUpdate(QWidget* widgetBase,widgetMsg* updateWidgetMessage);                        //控件属性被更新
 
 
     void on_splitter_splitterMoved(int pos, int index);//分割条比例调整

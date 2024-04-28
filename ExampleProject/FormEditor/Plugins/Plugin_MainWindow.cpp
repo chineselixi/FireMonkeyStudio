@@ -37,8 +37,8 @@ widgetMsg Plugin_MainWindow::createWidgetInstance(QRect Geometry)
         "[=]()=>void"      //事件的lambda表达式
     }};
 
-    if(Geometry.width() == 0){Geometry.setWidth(450);}
-    if(Geometry.height() == 0){Geometry.setHeight(320);}
+    if(Geometry.width() == 0){Geometry.setWidth(200);}
+    if(Geometry.height() == 0){Geometry.setHeight(150);}
 
     t_msg.widget->setGeometry(Geometry);
     return t_msg;

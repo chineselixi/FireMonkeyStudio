@@ -2,6 +2,7 @@
 
 #include "QMdiSubWindow"
 #include "QKeyEvent"
+#include "QMenu"
 
 #include "Plugins/Plugin_MainWindow.h"
 #include "Form_PropertyEditor.h"
@@ -65,13 +66,16 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
     this->roiWidget->roi_setWidgetDeleteAllSelect();
     this->roiWidget->roi_setWidgetSelect(this->baseWidget.widget,true);
     this->setRootTreeItem(this->baseWidget.widget);
+
+    //显示属性
+    this->showProperty();
 }
 
 
 
 Form_EditorSpace::~Form_EditorSpace()
 {
-    if(Form::PropertyEditorPtr) Form::PropertyEditorPtr->showWidgetsAttr("",nullptr);
+    if(Form::PropertyEditorPtr) Form::PropertyEditorPtr->showWidgetsAttr(nullptr,nullptr);
     delete ui;
 }
 
@@ -152,6 +156,13 @@ QWidget *Form_EditorSpace::getEditorSpaceWidgetPtr()
 widgetMsg &Form_EditorSpace::getBaseWidgetMsg()
 {
     return this->baseWidget;
+}
+
+//弹出菜单
+void Form_EditorSpace::showMenu(widgetMsg msg, QPoint pos)
+{
+    QMenu m;
+    m.exec(pos);
 }
 
 
@@ -269,9 +280,9 @@ void Form_EditorSpace::showProperty()
 {
     if(Form::PropertyEditorPtr){
         QList<widgetMsg> t_ws = this->roiWidget->roi_getSelectWidgetMsgs();
-        if(widgets.length() > 0){
+        if(t_ws.length() > 0){
             widgetMsg* t_wm = this->getWidgetMsg(t_ws[0].widget);
-            Form::PropertyEditorPtr->showWidgetsAttr("",t_wm);
+            Form::PropertyEditorPtr->showWidgetsAttr(this->getEditorSpaceWidgetPtr(),t_wm);
         }
     }
 }
@@ -337,6 +348,7 @@ void Form_EditorSpace::ROI_onWidgetBaseGeometryChanged(QRect rect)
                                      this->baseSubWindow->geometry().top(),
                                      rect.width(),
                                      rect.height());
+    if(this->baseWidget.widget) this->baseWidget.widget->setGeometry(0,0,rect.width(),rect.height());
     //显示属性
     this->showProperty();
 }
@@ -351,15 +363,20 @@ void Form_EditorSpace::ROI_onWidgetGeometryChanged(QWidget* widget)
 
 
 //目标控件对象名称被改变
-void Form_EditorSpace::PRO_onWidgetNameChange(QString editorSpaceSign, widgetMsg *updateWidgetMessage, QString& newName)
+void Form_EditorSpace::PRO_onWidgetNameChange(QWidget* widgetBase, widgetMsg *updateWidgetMessage, QString& newName)
 {
-    if(editorSpaceSign != this->editorSpaceSign || updateWidgetMessage == nullptr) return;
+    if(widgetBase != this->baseWidget.widget || updateWidgetMessage == nullptr) return;
     newName = this->getUniqueName(newName);
 }
 
 //控件属性被更新
-void Form_EditorSpace::PRO_onWidgetUpdate(QString editorSpaceSign, widgetMsg *updateWidgetMessage)
+void Form_EditorSpace::PRO_onWidgetUpdate(QWidget* widgetBase, widgetMsg *updateWidgetMessage)
 {
+    if(widgetBase != this->getEditorSpaceWidgetPtr())return;
+    if(updateWidgetMessage->widget == this->baseWidget.widget){ //如果是底层窗口改变
+        this->ROI_onWidgetBaseGeometryChanged(this->baseWidget.widget->geometry());
+    }
+
     this->roiWidget->update();  //如果位置改变，则更改选取样式
 }
 

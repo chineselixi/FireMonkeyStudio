@@ -100,7 +100,7 @@ signals:
     void onWidgetBaseGeometryChanged(QRect rect);   //当基础窗口尺寸被改变
     void onWidgetSelected(QList<QWidget*> widgets); //当控件被选择，参数：选择的控件列表
     void onWidgetGeometryChanged(QWidget* widget);  //当控件尺寸被改变
-    void onWidgetMove(QList<QWidget*> widgets);     //当空间位置移动
+    void onWidgetMove(QList<QWidget*> widgets);     //当控件位置移动
     void onSubWidgetsChanged(QWidget* parentWidget);   //当控件有子控件加入
 
 

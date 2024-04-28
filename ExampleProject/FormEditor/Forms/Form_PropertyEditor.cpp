@@ -37,12 +37,12 @@ Form_PropertyEditor::~Form_PropertyEditor()
 
 
 //显示控件组的属性
-void Form_PropertyEditor::showWidgetsAttr(QString editorSpaceSign, widgetMsg* selectWidget)
+void Form_PropertyEditor::showWidgetsAttr(QWidget* signBaseWidget, widgetMsg* selectWidget)
 {
     static QList<AttributeNode> t_oldAttrNodes;
     //验证参数，如果为空，则全部回收所有信息
     if(selectWidget == nullptr){
-        this->editorSpaceSign.clear();
+        this->editorBaseWidget = nullptr;
         this->nowSelectWidgetMsg = nullptr;
         this->variantPropertyManger->clear();
         this->enumPropertyMsnger->clear();
@@ -59,27 +59,17 @@ void Form_PropertyEditor::showWidgetsAttr(QString editorSpaceSign, widgetMsg* se
         t_ans.append(an);
         t_newAttrGroup.insert(an.group,t_ans);
     }
-
-    if(editorSpaceSign != this->editorSpaceSign || selectWidget != this->nowSelectWidgetMsg){   //判断是否更新了组件信息
-        qDebug() << "新组件属性";
+    if(signBaseWidget != this->editorBaseWidget || selectWidget != this->nowSelectWidgetMsg){   //判断是否更新了组件信息
         //选择了新的组件
         //清空属性框
         ui->propertyBox->clear();
         this->propertyList.clear();
 
-        //显示属性
-        QtVariantProperty* t_group = nullptr;
-        t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),"对象");
-        t_group->addSubProperty(this->addProperty({tr("对象名"),NORMALGROUP,"objectName",selectWidget->objectName,{},true}));
-        ui->propertyBox->addProperty(t_group);
-
-        t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),"尺寸");
-        t_group->addSubProperty(this->addProperty({tr("默认尺寸"),NORMALGROUP,"geometry",selectWidget->widget->geometry(),{},true}));
-        t_group->addSubProperty(this->addProperty({tr("最小尺寸"),NORMALGROUP,"minimumSize",selectWidget->widget->minimumSize(),{},true}));
-        t_group->addSubProperty(this->addProperty({tr("最大尺寸"),NORMALGROUP,"maximumSize",selectWidget->widget->maximumSize(),{},true}));
-        ui->propertyBox->addProperty(t_group);
+        //显示基础属性
+        this->showBaseProperty(selectWidget->widget);
 
         //按照分组显示创建并且显示属性
+        QtProperty* t_group = nullptr;
         for(QString key : t_newAttrGroup.keys()){
             QList<AttributeNode> t_ans = t_newAttrGroup.value(key);
             if(t_ans.length() > 0){ //此分类组存在属性才开始分组
@@ -103,6 +93,28 @@ void Form_PropertyEditor::showWidgetsAttr(QString editorSpaceSign, widgetMsg* se
             t_ans.append(an);
             t_oldAttrGroup.insert(an.group,t_ans);
         }
+
+        //显示基础属性
+        QList<property*> t_baseProperty = this->getPropertyMsgByGroup(NORMALGROUP);
+        for(property* baseProItem : t_baseProperty){
+            if(baseProItem){
+                if(baseProItem->attrNode.attrSign == "geometry"){
+                    baseProItem->attrNode.value = this->nowSelectWidgetMsg->widget->geometry();
+                    this->variantPropertyManger->setValue(baseProItem->propertyPtr,baseProItem->attrNode.value);
+                }
+                else if(baseProItem->attrNode.attrSign == "minimumSize"){
+                    baseProItem->attrNode.value = this->nowSelectWidgetMsg->widget->minimumSize();
+                    this->variantPropertyManger->setValue(baseProItem->propertyPtr,baseProItem->attrNode.value);
+                }
+                else if(baseProItem->attrNode.attrSign == "maximumSize"){
+                    baseProItem->attrNode.value = this->nowSelectWidgetMsg->widget->maximumSize();
+                    this->variantPropertyManger->setValue(baseProItem->propertyPtr,baseProItem->attrNode.value);
+                }
+            }
+        }
+
+
+        //this->showBaseProperty(selectWidget->widget);
 
         QStringList groupSame,groupLack,groupNew;
         this->getListDifference(t_oldAttrGroup.keys(),t_newAttrGroup.keys(),groupSame,groupLack,groupNew);
@@ -219,7 +231,7 @@ void Form_PropertyEditor::showWidgetsAttr(QString editorSpaceSign, widgetMsg* se
 
     //更新属性信息
     t_oldAttrNodes = selectWidget->attrs; //更新老的属性组
-    this->editorSpaceSign = editorSpaceSign;
+    this->editorBaseWidget = signBaseWidget;
     this->nowSelectWidgetMsg = selectWidget;
 }
 
@@ -228,13 +240,25 @@ void Form_PropertyEditor::showWidgetsAttr(QString editorSpaceSign, widgetMsg* se
 //添加属性信息
 QtProperty *Form_PropertyEditor::addProperty(AttributeNode an)
 {
-    QtProperty* t_retProperty;
+    QtProperty* t_retProperty = nullptr;;
+    bool t_hasProperty = false;
+    for(property item : this->propertyList){
+        if(item.attrNode ^ an){
+            t_retProperty = item.propertyPtr;
+            t_hasProperty = true;
+            break;
+        }
+    }
+
     if(an.enums.length() == 0){ //默认属性
-        QtVariantProperty* t_vp = variantPropertyManger->addProperty(an.value.typeId(),an.title);
-        t_vp->setValue(an.value);
-        t_retProperty = t_vp;
+        if(t_retProperty == nullptr){       //列表不存在此属性，才创建
+            QtVariantProperty* t_vp = variantPropertyManger->addProperty(an.value.typeId(),an.title);
+            t_retProperty = t_vp;
+        }
+        variantPropertyManger->setValue(t_retProperty,an.value);
     }
     else{ //枚举属性
+        if(t_retProperty == nullptr)
         t_retProperty = enumPropertyMsnger->addProperty(an.title);
         enumPropertyMsnger->setEnumNames(t_retProperty,an.enums);
         int t_index = -1;
@@ -246,8 +270,23 @@ QtProperty *Form_PropertyEditor::addProperty(AttributeNode an)
         }
         enumPropertyMsnger->setValue(t_retProperty,t_index);
     }
+    t_retProperty->setEnabled(an.canEdit);
+    if(!t_hasProperty)
     this->propertyList.append({t_retProperty,an});    //记录属性指针与属性信息
     return t_retProperty;
+}
+
+
+//根据组获取属性节点信息
+QList<Form_PropertyEditor::property*> Form_PropertyEditor::getPropertyMsgByGroup(QString group)
+{
+    QList<property*> t_retPro;
+    for(Form_PropertyEditor::property& proItem : propertyList){
+        if(proItem.attrNode.group == group){
+            t_retPro.append(&proItem);
+        }
+    }
+    return t_retPro;
 }
 
 
@@ -303,6 +342,22 @@ void Form_PropertyEditor::getListDifference(QStringList oldStrList,
 }
 
 
+//显示基础的属性信息
+void Form_PropertyEditor::showBaseProperty(QWidget *widget)
+{
+    QtVariantProperty* t_group = nullptr;
+    t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),"对象");
+    t_group->addSubProperty(this->addProperty({tr("对象名"),NORMALGROUP,"objectName",widget->objectName(),{},true}));
+    ui->propertyBox->addProperty(t_group);
+
+    t_group = variantPropertyManger->addProperty(QtVariantPropertyManager::groupTypeId(),"尺寸");
+    t_group->addSubProperty(this->addProperty({tr("默认尺寸"),NORMALGROUP,"geometry",widget->geometry(),{},true}));
+    t_group->addSubProperty(this->addProperty({tr("最小尺寸"),NORMALGROUP,"minimumSize",widget->minimumSize(),{},true}));
+    t_group->addSubProperty(this->addProperty({tr("最大尺寸"),NORMALGROUP,"maximumSize",widget->maximumSize(),{},true}));
+    ui->propertyBox->addProperty(t_group);
+}
+
+
 
 //编辑的内容被改变
 void Form_PropertyEditor::PropertyValueChanged(QtProperty *property,const QVariant &val)
@@ -317,7 +372,7 @@ void Form_PropertyEditor::PropertyValueChanged(QtProperty *property,const QVaria
             if(t_attr->attrSign == "objectName"){
                 if(val.toString() != this->nowSelectWidgetMsg->widget->objectName()){
                     QString t_newName = val.toString();
-                    this->onWidgetNameChange(this->editorSpaceSign,this->nowSelectWidgetMsg,t_newName);
+                    this->onWidgetNameChange(this->editorBaseWidget,this->nowSelectWidgetMsg,t_newName);
                     this->nowSelectWidgetMsg->objectName = t_newName;
                     this->nowSelectWidgetMsg->widget->setObjectName(t_newName);
                     this->variantPropertyManger->setValue(property,t_newName);
@@ -346,8 +401,8 @@ void Form_PropertyEditor::PropertyValueChanged(QtProperty *property,const QVaria
             t_attr->value = val;
             this->nowSelectWidgetMsg->pluginPtr->adjustWidget(this->nowSelectWidgetMsg->widget,this->nowSelectWidgetMsg->attrs); //调用插件更改属性
         }
-        this->showWidgetsAttr(this->editorSpaceSign,this->nowSelectWidgetMsg);  //更新显示的属性
-        this->onWidgetUpdate(this->editorSpaceSign,this->nowSelectWidgetMsg);   //激发事件更新事件
+        this->showWidgetsAttr(this->editorBaseWidget,this->nowSelectWidgetMsg);  //更新显示的属性
+        this->onWidgetUpdate(this->editorBaseWidget,this->nowSelectWidgetMsg);   //激发事件更新事件
     }
 }
 

@@ -782,7 +782,7 @@ void Form_Roi::mousePressEvent(QMouseEvent *event)
         }
     }
 
-    //判断是否点击到了最底层基础窗口，如果是，则绘制选区
+    //判断是否点击到了最底层基础窗口，如果是，按住数百哦移动的时候绘制选区
     if(this->editorSpaceForm->getEditorSpaceWidgetPtr()){
         QWidget* t_atChild = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(this->startPoint);
         this->startOnBase = (t_atChild == this->editorSpaceForm->getBaseWidgetMsg().widget); //是否从基础主窗口开始绘制的
@@ -824,12 +824,7 @@ void Form_Roi::mouseMoveEvent(QMouseEvent *event)
     }
     else{   //当前是选择了插件的状态
         this->setCursor(Qt::CrossCursor);
-
     }
-
-
-
-
 
     this->update();
 }
@@ -846,12 +841,20 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                 this->roi_setWidgetDeleteAllSelect(); //删除所有选择
             }
             //根据鼠标放开的坐标确定选择单个组件
-            this->roi_setWidgetSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos()),true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
+            QWidget* t_selectChildWidget = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos());
+            if(t_selectChildWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){
+                t_selectChildWidget = this->editorSpaceForm->getBaseWidgetMsg().widget->childAt(event->pos());
+            }
 
-            //激活控件被选择事件
-            QList<QWidget*> t_wList;
-            for(widgetMsg item : this->roi_getSelectWidgetMsgs()){t_wList.append(item.widget);}
-            this->onWidgetSelected(t_wList);
+            //存在子组件才选中
+            if(t_selectChildWidget != nullptr){ //没有选择任何组件
+                this->roi_setWidgetSelect(t_selectChildWidget,true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
+                //激活控件被选择事件
+                QList<QWidget*> t_wList;
+                for(widgetMsg item : this->roi_getSelectWidgetMsgs()){t_wList.append(item.widget);}
+                this->onWidgetSelected(t_wList);
+            }
+
         }
         else{
             //开始位置与结束位置不同，则是拖动
@@ -881,7 +884,6 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                 widgetMsg t_packm;  //临时容器组件信息
                 QRect t_packr;      //容器位置信息
                 QList<widgetMsg> t_selWidget = this->roi_getSelectWidgetMsgs(); //获取选择的控件列表
-
                 //基础窗口不允许移动，去除基础窗口的信息
                 QList<widgetMsg>::Iterator i;
                 for(i = t_selWidget.begin(); i < t_selWidget.end(); i++){
@@ -890,7 +892,6 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                         break;
                     }
                 }
-
                 if(this->hasPack(t_endPoint.x(),t_endPoint.y(),t_packm,t_packr)){ //获取当前放开组件的容器
                     if(t_packm.widget == this->nowSelectPackMsg.widget){    //如果是在同一个容器内，则只改变坐标位置
                         int t_x = t_endPoint.x() - this->startPoint.x();

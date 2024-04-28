@@ -19,6 +19,12 @@ void Plugin_Base::subWidgetEnter(QWidget *packWidget, QWidget *subWidget)
 
 }
 
+//系统获取插件的右键菜单
+QList<QAction *> Plugin_Base::getMenuAction()
+{
+    return QList<QAction *>();
+}
+
 //菜单选项被按下
 void Plugin_Base::onMenuActionClick(QAction* action,widgetMsg* widget)
 {
