@@ -62,6 +62,7 @@ public:
         QFont font1;
         font1.setStyleStrategy(QFont::PreferDefault);
         treeWidget->setFont(font1);
+        treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         treeWidget->setSelectionMode(QAbstractItemView::ContiguousSelection);
         splitter->addWidget(treeWidget);
 

@@ -1,6 +1,10 @@
 #include "Plugin_Button.h"
 #include "QPushButton"
 
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "QJsonArray"
+
 
 Plugin_Button::Plugin_Button()
 {
@@ -27,14 +31,6 @@ widgetMsg Plugin_Button::createWidgetInstance(QRect Geometry)
             "基础",            //分类信息
             "title",        //属性响应类名
             "按钮",           //属性初始值
-            {},             //枚举选项
-            true,            //属性可编辑
-        },
-        {
-            "样式表",         //属性显示标题
-            "基础",            //分类信息
-            "style",        //属性响应类名
-            "",           //属性初始值
             {},             //枚举选项
             true,            //属性可编辑
         }};
@@ -70,6 +66,35 @@ void Plugin_Button::adjustWidget(QWidget *widget, QList<AttributeNode> &attrs)
     }
 
 }
+
+//获取配置文件
+QJsonObject Plugin_Button::getConfigure(widgetMsg& msg)
+{
+    QJsonObject t_retJsonObj;
+    QPushButton* t_btn = dynamic_cast<QPushButton*>(msg.widget);
+    if(t_btn != nullptr){
+        for(AttributeNode an : msg.attrs){
+            t_retJsonObj.insert(an.title,an.value.toJsonValue());
+        }
+    }
+    return t_retJsonObj;
+}
+
+
+//配置文件调整组件信息
+void Plugin_Button::configAdjustWidgetMsg(widgetMsg &msg, QJsonObject config, Fun_Get_Widget fun_getWidget)
+{
+    QPushButton* t_btn = dynamic_cast<QPushButton*>(msg.widget);
+    if(t_btn != nullptr){
+        for(AttributeNode& an : msg.attrs){
+            if(an.title == "title"){
+                an.value.setValue(config.value(an.title).toString());
+            }
+        }
+    }
+
+}
+
 
 
 //代码被创建

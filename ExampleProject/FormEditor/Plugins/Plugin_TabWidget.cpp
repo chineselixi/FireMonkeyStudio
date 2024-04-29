@@ -1,5 +1,10 @@
 #include "Plugin_TabWidget.h"
 #include "QTabWidget"
+
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "QJsonArray"
+
 #include "util/FunUtil.h"
 
 Plugin_TabWidget::Plugin_TabWidget()
@@ -101,6 +106,19 @@ void Plugin_TabWidget::subWidgetEnter(QWidget *packWidget, QWidget *subWidget)
             subWidget->move(subWidget->x() - t_rec.x(),subWidget->y() - t_rec.y());
         }
     }
+}
+
+
+//获取配置文件
+QJsonObject Plugin_TabWidget::getConfigure(widgetMsg& msg)
+{
+    return QJsonObject();
+}
+
+//配置文件调整组件信息
+void Plugin_TabWidget::configAdjustWidgetMsg(widgetMsg &msg, QJsonObject config, Fun_Get_Widget fun_getWidget)
+{
+
 }
 
 

@@ -3,13 +3,13 @@
 #include "QMdiSubWindow"
 #include "QKeyEvent"
 #include "QMenu"
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "QJsonArray"
+#include "util/FunUtil.h"
 
 #include "Plugins/Plugin_MainWindow.h"
 #include "Form_PropertyEditor.h"
-
-
-#include "Plugins/Plugin_MainWindow.h"
-#include "Plugins/Plugin_Button.h"
 
 
 #include "GlobalMsg.h"
@@ -55,6 +55,7 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
     this->widgets.append(this->baseWidget); //加入到控件列表
     this->buildTreeWidgetItem(this->baseWidget,true);
 
+
     //创建并且设置基础的mdiArea
     this->baseSubWindow = ui->mdiArea->addSubWindow(this->baseWidget.widget); //将底窗口添加到MdiArea
     this->baseSubWindow->setAttribute(Qt::WA_StyledBackground); //脱离父窗口样式的覆盖
@@ -69,6 +70,20 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
 
     //显示属性
     this->showProperty();
+
+    //创建右键菜单
+    mouseRightMenu = new QMenu(this);
+    menuActionRaise = mouseRightMenu->addAction("到最顶层");
+    menuActionLower = mouseRightMenu->addAction("到最底层");
+    mouseRightMenu->addSeparator();
+    menuActionCat = mouseRightMenu->addAction("剪切");
+    menuActionCopy = mouseRightMenu->addAction("复制");
+    menuActionPaste = mouseRightMenu->addAction("粘贴");
+    mouseRightMenu->addSeparator();
+    menuActionDel = mouseRightMenu->addAction("删除");
+    mouseRightMenu->addSeparator();
+    menuActionStyle = mouseRightMenu->addAction("更改样式表");
+    connect(mouseRightMenu,&QMenu::triggered,this,&Form_EditorSpace::on_menuTriggered); //事件激发
 }
 
 
@@ -126,11 +141,20 @@ QWidget *Form_EditorSpace::createWidgetMsgToList(Plugin_Base* pluginPtr,        
         //移除treeItem信息
         for(qsizetype i = this->treeMsgList.length() - 1; i >= 0; i--){
             if(this->treeMsgList[i].msg.widget == t_createMsg.widget){
+                //移除子树
+                for(int a = this->treeMsgList[i].treeItem->childCount() - 1; a>=0; a--){
+                    this->treeMsgList[i].treeItem->removeChild(this->treeMsgList[i].treeItem->child(a));
+                }
+                //回收本对象
                 delete this->treeMsgList[i].treeItem;
                 this->treeMsgList.removeAt(i);
                 break;
             }
         }
+
+        //关闭对象属性
+        if(Form::PropertyEditorPtr) Form::PropertyEditorPtr->showWidgetsAttr(nullptr,nullptr);
+
     });
 
     //插件Tree信息
@@ -159,10 +183,34 @@ widgetMsg &Form_EditorSpace::getBaseWidgetMsg()
 }
 
 //弹出菜单
-void Form_EditorSpace::showMenu(widgetMsg msg, QPoint pos)
+void Form_EditorSpace::showMenu(QWidget* widget, QPoint pos)
 {
-    QMenu m;
-    m.exec(pos);
+    this->menuSelectWidget = widget;
+    if(!this->menuSelectWidget) return;
+    this->mouseRightMenu->exec(pos);
+}
+
+
+//保存配置信息
+QString Form_EditorSpace::saveWidgetMsgToJson()
+{
+    QJsonDocument t_doc;
+    QJsonObject t_jsonObj;
+    QJsonArray t_jsonArray;
+
+    for(widgetMsg msgItem : widgets){
+        QJsonObject t_itemJsonObj;
+        t_itemJsonObj.insert("objName",msgItem.objectName);
+        t_itemJsonObj.insert("geometry",FunUtil::rectToString(msgItem.widget->geometry()));
+        t_itemJsonObj.insert("minimumSize",FunUtil::sizeToString(msgItem.widget->minimumSize()));
+        t_itemJsonObj.insert("maximumSize",FunUtil::sizeToString(msgItem.widget->maximumSize()));
+        t_itemJsonObj.insert("classSign",msgItem.classSign);
+        t_itemJsonObj.insert("isPack",msgItem.isPack);
+        t_itemJsonObj.insert("attrs",msgItem.pluginPtr->getConfigure(msgItem));
+        t_jsonArray.append(t_itemJsonObj);
+    }
+    t_doc.setArray(t_jsonArray);
+    return t_doc.toJson();
 }
 
 
@@ -300,6 +348,56 @@ widgetMsg *Form_EditorSpace::getWidgetMsg(QWidget *widget)
 }
 
 
+//复制组件
+void Form_EditorSpace::copyWidgets()
+{
+    this->copyList.clear();
+    for(widgetMsg witem : this->widgets){
+        if(witem.isSelect){ //如果是选择的话
+
+        }
+    }
+}
+
+
+//菜单触发
+void Form_EditorSpace::on_menuTriggered(QAction *action)
+{
+    widgetMsg* t_msg = this->getWidgetMsg(this->menuSelectWidget);
+    if(!t_msg) return;
+
+    //到最顶层
+    if(action == menuActionRaise){
+        t_msg->widget->raise();
+    }
+    //到最底层
+    else if(action == menuActionLower){
+        t_msg->widget->lower();
+    }
+    //剪切
+    else if(action == menuActionCat){
+
+    }
+    //复制
+    else if(action == menuActionCopy){
+
+    }
+    //粘贴
+    else if(action == menuActionPaste){
+
+    }
+    //删除
+    else if(action == menuActionDel){
+        if(t_msg->widget != this->baseWidget.widget)
+        delete t_msg->widget;
+    }
+    //样式表
+    else if(action == menuActionStyle){
+        t_msg->widget->lower();
+    }
+}
+
+
 //窗体尺寸被改变
 void Form_EditorSpace::resizeEvent(QResizeEvent *event)
 {
@@ -417,5 +515,11 @@ void Form_EditorSpace::on_treeWidget_itemClicked(QTreeWidgetItem *item, int colu
         }
     }
     this->roiWidget->update();
+}
+
+//控件树右键被点击
+void Form_EditorSpace::on_treeWidget_customContextMenuRequested(const QPoint &pos)
+{
+    this->showMenu(getWidgetToItem(ui->treeWidget->currentItem()),QCursor().pos());
 }
 

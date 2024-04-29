@@ -4,6 +4,10 @@
 
 #include "QPushButton"
 
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "QJsonArray"
+
 Plugin_MainWindow::Plugin_MainWindow()
 {
     this->pluginTitle = "窗体";
@@ -60,6 +64,20 @@ void Plugin_MainWindow::subWidgetEnter(QWidget* packWidget,QWidget* subWidget)
         subWidget->show();
         subWidget->raise();
     }
+}
+
+
+//获取配置文件
+QJsonObject Plugin_MainWindow::getConfigure(widgetMsg& msg)
+{
+    return QJsonObject();
+}
+
+
+//配置文件调整组件信息
+void Plugin_MainWindow::configAdjustWidgetMsg(widgetMsg &msg, QJsonObject config, Fun_Get_Widget fun_getWidget)
+{
+
 }
 
 

@@ -63,6 +63,9 @@ width:15px;
         <stylestrategy>PreferDefault</stylestrategy>
        </font>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
       <property name="selectionMode">
        <enum>QAbstractItemView::ContiguousSelection</enum>
       </property>

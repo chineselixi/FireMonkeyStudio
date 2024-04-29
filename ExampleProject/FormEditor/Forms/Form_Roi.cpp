@@ -765,36 +765,39 @@ bool Form_Roi::isSubWidget(QWidget *parent, QWidget *subWidget)
 //鼠标按下
 void Form_Roi::mousePressEvent(QMouseEvent *event)
 {
+    if (event->button() == Qt::LeftButton){ //鼠标左键被按下
+        this->startPoint = event->pos(); //获取按下的坐标
+        this->mouseDown = true; //鼠标是按下的
 
-    this->startPoint = event->pos(); //获取按下的坐标
-    this->mouseDown = true; //鼠标是按下的
-
-    //获取保存当前的容器信息
-    if(!hasPack(event->pos().x(),event->pos().y(),this->nowSelectPackMsg,this->nowSelectPackLocation)){
-        this->nowSelectPackMsg = widgetMsg();   //容器获取失败，制空容器内容
-        this->nowSelectPackLocation = QRect();
-    }
-    else{
-        //当前容器存在，且为组件输入，则只选择输入的父容器
-        if(Plugin::nowSelectPlugin){
-            this->roi_setWidgetDeleteAllSelect(); //清空所有的选择
-            this->roi_setWidgetSelect(this->nowSelectPackMsg.widget,true);
+        //获取保存当前的容器信息
+        if(!hasPack(event->pos().x(),event->pos().y(),this->nowSelectPackMsg,this->nowSelectPackLocation)){
+            this->nowSelectPackMsg = widgetMsg();   //容器获取失败，制空容器内容
+            this->nowSelectPackLocation = QRect();
         }
+        else{
+            //当前容器存在，且为组件输入，则只选择输入的父容器
+            if(Plugin::nowSelectPlugin){
+                this->roi_setWidgetDeleteAllSelect(); //清空所有的选择
+                this->roi_setWidgetSelect(this->nowSelectPackMsg.widget,true);
+            }
+        }
+
+        //判断是否点击到了最底层基础窗口，如果是，按住数百哦移动的时候绘制选区
+        if(this->editorSpaceForm->getEditorSpaceWidgetPtr()){
+            QWidget* t_atChild = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(this->startPoint);
+            this->startOnBase = (t_atChild == this->editorSpaceForm->getBaseWidgetMsg().widget); //是否从基础主窗口开始绘制的
+        }
+
+        //    //根据鼠标放开的坐标确定选择单个组件
+        //    if(!this->ctrlDown){
+        //        this->roi_setWidgetDeleteAllSelect();
+        //        this->roi_setWidgetSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos()),true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
+        //    }
+
+        this->update();
     }
 
-    //判断是否点击到了最底层基础窗口，如果是，按住数百哦移动的时候绘制选区
-    if(this->editorSpaceForm->getEditorSpaceWidgetPtr()){
-        QWidget* t_atChild = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(this->startPoint);
-        this->startOnBase = (t_atChild == this->editorSpaceForm->getBaseWidgetMsg().widget); //是否从基础主窗口开始绘制的
-    }
 
-//    //根据鼠标放开的坐标确定选择单个组件
-//    if(!this->ctrlDown){
-//        this->roi_setWidgetDeleteAllSelect();
-//        this->roi_setWidgetSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos()),true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
-//    }
-
-    this->update();
 
 }
 
@@ -825,159 +828,167 @@ void Form_Roi::mouseMoveEvent(QMouseEvent *event)
     else{   //当前是选择了插件的状态
         this->setCursor(Qt::CrossCursor);
     }
-
     this->update();
 }
 
 //鼠标放开
 void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
 {
-    QPoint t_endPoint = event->pos();   //结束坐标
-    if(Plugin::nowSelectPlugin == nullptr){ //当前如果没有选择插件
-        //判断开始位置与结束位置
-        if(event->pos() == this->startPoint){
-            //开始位置与结束位置相同，则是点击
-            if(!this->ctrlDown){    //如果不是多选，则删除全部选择后再次选择
-                this->roi_setWidgetDeleteAllSelect(); //删除所有选择
-            }
-            //根据鼠标放开的坐标确定选择单个组件
-            QWidget* t_selectChildWidget = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos());
-            if(t_selectChildWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){
-                t_selectChildWidget = this->editorSpaceForm->getBaseWidgetMsg().widget->childAt(event->pos());
-            }
-
-            //存在子组件才选中
-            if(t_selectChildWidget != nullptr){ //没有选择任何组件
-                this->roi_setWidgetSelect(t_selectChildWidget,true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
-                //激活控件被选择事件
-                QList<QWidget*> t_wList;
-                for(widgetMsg item : this->roi_getSelectWidgetMsgs()){t_wList.append(item.widget);}
-                this->onWidgetSelected(t_wList);
-            }
-
-        }
-        else{
-            //开始位置与结束位置不同，则是拖动
-            if(this->nowSelectWidgetType >= 1 && this->nowSelectWidgetType <= 8){ //拖动尺寸改变大小
-                QRect t_rect;
-                if(FunUtil::getWidgetRelativePosition(this->nowSelectWidget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_rect)){
-                    int x,y,w,h;
-                    x = this->nowSelectWidget->x() + this->afterRect.x() - t_rect.x();
-                    y = this->nowSelectWidget->y() + this->afterRect.y() - t_rect.y();
-                    w = this->afterRect.width();
-                    h = this->afterRect.height();
-
-                    //判断是否选中了基础窗口
-                    if(this->nowSelectWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){
-                        //没有选中基础窗口
-                        this->nowSelectWidget->setGeometry({x,y,w,h});
-                        this->onWidgetGeometryChanged(this->nowSelectWidget); //控件尺寸被改变
-                    }
-                    else{
-                        //选中了基础窗口
-                        this->editorSpaceForm->getBaseWidgetMsg().widget->setGeometry({0,0,w,h});
-                        this->onWidgetBaseGeometryChanged(this->editorSpaceForm->getBaseWidgetMsg().widget->geometry()); //通知base窗口大小被改变
-                    }
+    if (event->button() == Qt::LeftButton){ //鼠标左键被按下
+        QPoint t_endPoint = event->pos();   //结束坐标
+        if(Plugin::nowSelectPlugin == nullptr){ //当前如果没有选择插件
+            //判断开始位置与结束位置
+            if(event->pos() == this->startPoint){
+                //开始位置与结束位置相同，则是点击
+                if(!this->ctrlDown){    //如果不是多选，则删除全部选择后再次选择
+                    this->roi_setWidgetDeleteAllSelect(); //删除所有选择
                 }
-            }
-            else if(!this->startOnBase){ //改变位置
-                widgetMsg t_packm;  //临时容器组件信息
-                QRect t_packr;      //容器位置信息
-                QList<widgetMsg> t_selWidget = this->roi_getSelectWidgetMsgs(); //获取选择的控件列表
-                //基础窗口不允许移动，去除基础窗口的信息
-                QList<widgetMsg>::Iterator i;
-                for(i = t_selWidget.begin(); i < t_selWidget.end(); i++){
-                    if(i->widget == this->editorSpaceForm->getBaseWidgetMsg().widget){  //删除元素并且跳出
-                        t_selWidget.erase(i);
-                        break;
-                    }
+                //根据鼠标放开的坐标确定选择单个组件
+                QWidget* t_selectChildWidget = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos());
+                if(t_selectChildWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){
+                    t_selectChildWidget = this->editorSpaceForm->getBaseWidgetMsg().widget->childAt(event->pos());
                 }
-                if(this->hasPack(t_endPoint.x(),t_endPoint.y(),t_packm,t_packr)){ //获取当前放开组件的容器
-                    if(t_packm.widget == this->nowSelectPackMsg.widget){    //如果是在同一个容器内，则只改变坐标位置
-                        int t_x = t_endPoint.x() - this->startPoint.x();
-                        int t_y = t_endPoint.y() - this->startPoint.y();
-                        QList<QWidget*> t_ws;
-                        for(widgetMsg item : t_selWidget){
-                            item.widget->setGeometry(
-                                item.widget->x() + t_x,
-                                item.widget->y() + t_y,
-                                item.widget->width(),
-                                item.widget->height()
-                                );
-                            t_ws.append(item.widget);   //加入移动列表
+
+                //存在子组件才选中
+                if(t_selectChildWidget != nullptr){ //没有选择任何组件
+                    this->roi_setWidgetSelect(t_selectChildWidget,true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
+                    //激活控件被选择事件
+                    QList<QWidget*> t_wList;
+                    for(widgetMsg item : this->roi_getSelectWidgetMsgs()){t_wList.append(item.widget);}
+                    this->onWidgetSelected(t_wList);
+                }
+
+            }
+            else{
+                //开始位置与结束位置不同，则是拖动
+                if(this->nowSelectWidgetType >= 1 && this->nowSelectWidgetType <= 8){ //拖动尺寸改变大小
+                    QRect t_rect;
+                    if(FunUtil::getWidgetRelativePosition(this->nowSelectWidget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_rect)){
+                        int x,y,w,h;
+                        x = this->nowSelectWidget->x() + this->afterRect.x() - t_rect.x();
+                        y = this->nowSelectWidget->y() + this->afterRect.y() - t_rect.y();
+                        w = this->afterRect.width();
+                        h = this->afterRect.height();
+
+                        //判断是否选中了基础窗口
+                        if(this->nowSelectWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){
+                            //没有选中基础窗口
+                            this->nowSelectWidget->setGeometry({x,y,w,h});
+                            this->onWidgetGeometryChanged(this->nowSelectWidget); //控件尺寸被改变
                         }
-                        this->onWidgetMove(t_ws);   //激活组件移动事件
+                        else{
+                            //选中了基础窗口
+                            this->editorSpaceForm->getBaseWidgetMsg().widget->setGeometry({0,0,w,h});
+                            this->onWidgetBaseGeometryChanged(this->editorSpaceForm->getBaseWidgetMsg().widget->geometry()); //通知base窗口大小被改变
+                        }
                     }
-                    else{   //不在同一个容器里面，则需要对每个组件重新定位
-                        QList<QWidget*> t_ws;
-                        for(widgetMsg item : t_selWidget){
-                            if(!this->isSubWidget(item.widget,t_packm.widget)){ //不是子项目才移动进去，不然造成，父窗口移到子窗口的错误
-                                QRect t_itemRect;
-                                //判断并获取组件相对于父组件的位置
-                                if(FunUtil::getWidgetRelativePosition(item.widget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_itemRect)){
-                                    int x,y,w,h;
+                }
+                else if(!this->startOnBase){ //改变位置
+                    widgetMsg t_packm;  //临时容器组件信息
+                    QRect t_packr;      //容器位置信息
+                    QList<widgetMsg> t_selWidget = this->roi_getSelectWidgetMsgs(); //获取选择的控件列表
+                    //基础窗口不允许移动，去除基础窗口的信息
+                    QList<widgetMsg>::Iterator i;
+                    for(i = t_selWidget.begin(); i < t_selWidget.end(); i++){
+                        if(i->widget == this->editorSpaceForm->getBaseWidgetMsg().widget){  //删除元素并且跳出
+                            t_selWidget.erase(i);
+                            break;
+                        }
+                    }
+                    if(this->hasPack(t_endPoint.x(),t_endPoint.y(),t_packm,t_packr)){ //获取当前放开组件的容器
+                        if(t_packm.widget == this->nowSelectPackMsg.widget){    //如果是在同一个容器内，则只改变坐标位置
+                            int t_x = t_endPoint.x() - this->startPoint.x();
+                            int t_y = t_endPoint.y() - this->startPoint.y();
+                            QList<QWidget*> t_ws;
+                            for(widgetMsg item : t_selWidget){
+                                item.widget->setGeometry(
+                                    item.widget->x() + t_x,
+                                    item.widget->y() + t_y,
+                                    item.widget->width(),
+                                    item.widget->height()
+                                    );
+                                t_ws.append(item.widget);   //加入移动列表
+                            }
+                            this->onWidgetMove(t_ws);   //激活组件移动事件
+                        }
+                        else{   //不在同一个容器里面，则需要对每个组件重新定位
+                            QList<QWidget*> t_ws;
+                            for(widgetMsg item : t_selWidget){
+                                if(!this->isSubWidget(item.widget,t_packm.widget)){ //不是子项目才移动进去，不然造成，父窗口移到子窗口的错误
+                                    QRect t_itemRect;
+                                    //判断并获取组件相对于父组件的位置
+                                    if(FunUtil::getWidgetRelativePosition(item.widget,this->editorSpaceForm->getEditorSpaceWidgetPtr(),t_itemRect)){
+                                        int x,y,w,h;
 
-                                    x = t_itemRect.x() - t_packr.x() + t_endPoint.x() - this->startPoint.x();
-                                    y = t_itemRect.y() - t_packr.y() + t_endPoint.y() - this->startPoint.y();
-                                    w = t_itemRect.width();
-                                    h = t_itemRect.height();
+                                        x = t_itemRect.x() - t_packr.x() + t_endPoint.x() - this->startPoint.x();
+                                        y = t_itemRect.y() - t_packr.y() + t_endPoint.y() - this->startPoint.y();
+                                        w = t_itemRect.width();
+                                        h = t_itemRect.height();
 
-                                    bool t_isHidden = item.widget->isHidden();
-                                    item.widget->setParent(t_packm.widget); //提前设置父项目位置
-                                    item.widget->setGeometry({x,y,w,h});  //根据新的容器
-                                    t_packm.pluginPtr->subWidgetEnter(t_packm.widget,item.widget); //通知插件子控件进入信息
-                                    item.widget->setHidden(t_isHidden);
-                                    t_ws.append(item.widget);   //加入移动列表
+                                        bool t_isHidden = item.widget->isHidden();
+                                        item.widget->setParent(t_packm.widget); //提前设置父项目位置
+                                        item.widget->setGeometry({x,y,w,h});  //根据新的容器
+                                        t_packm.pluginPtr->subWidgetEnter(t_packm.widget,item.widget); //通知插件子控件进入信息
+                                        item.widget->setHidden(t_isHidden);
+                                        t_ws.append(item.widget);   //加入移动列表
+                                    }
                                 }
                             }
+                            if(t_ws.length() > 0) this->onWidgetMove(t_ws); //激活组件移动事件
+                            this->onSubWidgetsChanged(t_packm.widget);      //这个容器有控件加入
                         }
-                        if(t_ws.length() > 0) this->onWidgetMove(t_ws); //激活组件移动事件
-                        this->onSubWidgetsChanged(t_packm.widget);      //这个容器有控件加入
                     }
                 }
             }
         }
-    }
-    else{
-        //是插件进入,创建插件信息
-        if(this->nowSelectPackMsg.pluginPtr){
-            int x,y,w,h;
-            x = this->startPoint.x() - this->nowSelectPackLocation.x();
-            y = this->startPoint.y() - this->nowSelectPackLocation.y();
-            w = t_endPoint.x() - this->startPoint.x();
-            h = t_endPoint.y() - this->startPoint.y();
+        else{
+            //是插件进入,创建插件信息
+            if(this->nowSelectPackMsg.pluginPtr){
+                int x,y,w,h;
+                x = this->startPoint.x() - this->nowSelectPackLocation.x();
+                y = this->startPoint.y() - this->nowSelectPackLocation.y();
+                w = t_endPoint.x() - this->startPoint.x();
+                h = t_endPoint.y() - this->startPoint.y();
 
-            if(w < 0){
-                x += w;
-                w = abs(w);
+                if(w < 0){
+                    x += w;
+                    w = abs(w);
+                }
+                if(h < 0){
+                    y += h;
+                    h = abs(h);
+                }
+
+                //创建组件到列表
+                QWidget* t_newCreateWidget = this->editorSpaceForm->createWidgetMsgToList(Plugin::nowSelectPlugin,
+                                                                                          {x,y,w,h},
+                                                                                          this->nowSelectPackMsg.pluginPtr,
+                                                                                          this->nowSelectPackMsg.widget);
+
+                //只选择当前加入的控件
+                this->roi_setWidgetDeleteAllSelect();
+                this->roi_setWidgetSelect(t_newCreateWidget,true);
+                this->onWidgetSelected({t_newCreateWidget});
             }
-            if(h < 0){
-                y += h;
-                h = abs(h);
+
+            if(!this->ctrlDown){    //如果Ctrl没有被按下，那么就自动恢复指针
+                Plugin::nowSelectPlugin = nullptr;
             }
-
-            //创建组件到列表
-            QWidget* t_newCreateWidget = this->editorSpaceForm->createWidgetMsgToList(Plugin::nowSelectPlugin,
-                                                                                      {x,y,w,h},
-                                                                                      this->nowSelectPackMsg.pluginPtr,
-                                                                                      this->nowSelectPackMsg.widget);
-
-            //只选择当前加入的控件
-            this->roi_setWidgetDeleteAllSelect();
-            this->roi_setWidgetSelect(t_newCreateWidget,true);
-            this->onWidgetSelected({t_newCreateWidget});
         }
 
-        if(!this->ctrlDown){    //如果Ctrl没有被按下，那么就自动恢复指针
-            Plugin::nowSelectPlugin = nullptr;
+        this->startOnBase = false;  //取消从base的标记
+        this->mouseDown = false;    //取消鼠标按下标记
+        this->adjustSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()); //调整：若父类被选择，则自动抛弃所有子类
+        this->adjustMouseStyle(event->pos().x(),event->pos().y());  //调整鼠标样式
+        this->update();
+
+
+    }
+    else if (event->button() == Qt::RightButton){   //鼠标右键被放开
+        if(editorSpaceForm){
+            editorSpaceForm->showMenu(this->nowSelectWidget,QCursor().pos());   //弹出右键菜单
         }
     }
-
-    this->startOnBase = false;  //取消从base的标记
-    this->mouseDown = false;    //取消鼠标按下标记
-    this->adjustSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()); //调整：若父类被选择，则自动抛弃所有子类
-    this->adjustMouseStyle(event->pos().x(),event->pos().y());  //调整鼠标样式
-    this->update();
 }
 
 

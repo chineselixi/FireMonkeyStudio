@@ -2,6 +2,10 @@
 #include "QLabel"
 #include "QFont"
 
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "QJsonArray"
+
 Plugin_Label::Plugin_Label()
 {
     this->pluginTitle = "标签";
@@ -112,6 +116,26 @@ void Plugin_Label::adjustWidget(QWidget *widget, QList<AttributeNode> &attrs)
             t_label->setStyleSheet(t_label->styleSheet() + t_style.arg(t_label->objectName()).arg(t_attr->value.value<QColor>().name()));
         }
     }
+}
+
+//获取配置文件
+QJsonObject Plugin_Label::getConfigure(widgetMsg& msg)
+{
+    QJsonObject t_retJsonObj;
+    QLabel* t_btn = dynamic_cast<QLabel*>(msg.widget);
+    if(t_btn != nullptr){
+        for(AttributeNode an : msg.attrs){
+            t_retJsonObj.insert(an.title,an.value.toJsonValue());
+        }
+    }
+    return t_retJsonObj;
+}
+
+
+//配置文件调整组件信息
+void Plugin_Label::configAdjustWidgetMsg(widgetMsg &msg, QJsonObject config, Fun_Get_Widget fun_getWidget)
+{
+
 }
 
 

@@ -4,6 +4,8 @@
 
 class QWidget;
 class QRect;
+class QString;
+class QSize;
 
 class Plugin_Base;
 
@@ -18,6 +20,12 @@ public:
     /// \return 如果不存在此父组件，则返回false
     ///
     static bool getWidgetRelativePosition(QWidget* widget,QWidget* parentWidget,QRect& returnRect);
+
+    //不同转换
+    static QString rectToString(QRect rect);
+    static QRect stringToRect(QString str);
+    static QString sizeToString(QSize size);
+    static QSize stringToSize(QString str);
 };
 
 #endif // FUNUTIL_H
