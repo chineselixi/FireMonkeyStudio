@@ -110,15 +110,45 @@ void Plugin_TabWidget::subWidgetEnter(QWidget *packWidget, QWidget *subWidget)
 
 
 //获取配置文件
-QJsonObject Plugin_TabWidget::getConfigure(widgetMsg& msg)
+QJsonValue Plugin_TabWidget::getConfigure(widgetMsg& msg)
 {
-    return QJsonObject();
+    QJsonObject t_retJsonObj;
+    QTabWidget* t_tabWidget = dynamic_cast<QTabWidget*>(msg.widget);
+
+    if(t_tabWidget != nullptr){
+        for(qsizetype i = 0; i < t_tabWidget->count(); i++){
+            QJsonArray t_jsonArray;
+            QWidget* t_curWidget = t_tabWidget->widget(i);
+            QList<QWidget*> t_subWidgets = t_curWidget->findChildren<QWidget*>(Qt::FindDirectChildrenOnly);
+            for(QWidget* currSub : t_subWidgets){
+                t_jsonArray.append(currSub->objectName());
+            }
+            t_retJsonObj.insert(QString::number(i),t_jsonArray);    //保存索引与index
+        }
+    }
+    return t_retJsonObj;
 }
 
 //配置文件调整组件信息
-void Plugin_TabWidget::configAdjustWidgetMsg(widgetMsg &msg, QJsonObject config, Fun_Get_Widget fun_getWidget)
+void Plugin_TabWidget::configAdjustWidgetMsg(widgetMsg &msg, QJsonValue config, Fun_Get_Widget fun_getWidget)
 {
-
+    QJsonObject t_jsonObj = config.toObject();
+    QTabWidget* t_tabWidget = dynamic_cast<QTabWidget*>(msg.widget);    //转换为TabWidget
+    if(t_tabWidget != nullptr){
+        for(QString key : t_jsonObj.keys()){        //获取保存的key
+            qsizetype t_tabIndex = key.toInt();     //根据key获取index索引
+            if(t_tabIndex >= 0 && t_tabIndex < t_tabWidget->count()){           //判断索引是否在范围
+                QWidget* t_curWidget = t_tabWidget->widget(t_tabIndex);
+                QJsonArray t_jsonNames = t_jsonObj.value(key).toArray();        //查看配置文件中保存的对象名
+                for(QJsonValue jsonNode : t_jsonNames){
+                    QWidget* t_widget =  fun_getWidget(jsonNode.toString());    //根据对象名获取Widget
+                    if(t_widget != nullptr){
+                        t_widget->setParent(t_curWidget);       //还原父窗口
+                    }
+                }
+            }
+        }
+    }
 }
 
 

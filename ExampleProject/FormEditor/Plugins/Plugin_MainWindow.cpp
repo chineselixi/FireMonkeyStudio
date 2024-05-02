@@ -68,14 +68,14 @@ void Plugin_MainWindow::subWidgetEnter(QWidget* packWidget,QWidget* subWidget)
 
 
 //获取配置文件
-QJsonObject Plugin_MainWindow::getConfigure(widgetMsg& msg)
+QJsonValue Plugin_MainWindow::getConfigure(widgetMsg& msg)
 {
     return QJsonObject();
 }
 
 
 //配置文件调整组件信息
-void Plugin_MainWindow::configAdjustWidgetMsg(widgetMsg &msg, QJsonObject config, Fun_Get_Widget fun_getWidget)
+void Plugin_MainWindow::configAdjustWidgetMsg(widgetMsg &msg, QJsonValue config, Fun_Get_Widget fun_getWidget)
 {
 
 }

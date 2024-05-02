@@ -89,6 +89,23 @@ void Form_Roi::roi_setWidgetSelect(QWidget *widget, bool isSelect)
     }
 }
 
+//设置某个组件选中反转
+void Form_Roi::roi_setWidgetSelectReversal(QWidget *widget)
+{
+    for(widgetMsg& item : this->editorSpaceForm->getWidgetMsgs()){
+        if(item.widget == widget){
+            item.isSelect = !item.isSelect;
+            return;
+        }
+    }
+
+    //如果当前控件不在列表中，则搜索其父控件
+    widget = widget->parentWidget();
+    if(widget){
+        roi_setWidgetSelectReversal(widget);
+    }
+}
+
 
 //选择在此范围内的所有控件
 void Form_Roi::roi_selectRectWidget(QRect rect)
@@ -782,18 +799,29 @@ void Form_Roi::mousePressEvent(QMouseEvent *event)
             }
         }
 
-        //判断是否点击到了最底层基础窗口，如果是，按住数百哦移动的时候绘制选区
+        //判断是否点击到了最底层基础窗口，如果是，按住移动的时候绘制选区
         if(this->editorSpaceForm->getEditorSpaceWidgetPtr()){
             QWidget* t_atChild = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(this->startPoint);
-            this->startOnBase = (t_atChild == this->editorSpaceForm->getBaseWidgetMsg().widget); //是否从基础主窗口开始绘制的
+            this->startOnBase = (t_atChild == this->editorSpaceForm->getBaseWidgetMsg().widget); //判断是否是点击了基础窗口
+
+            //如果在任何窗口中都不存在此窗口，那么选择基础窗口作为点击的窗口
+            widgetMsg* t_wNsg;
+            if(!this->isListWidget(t_atChild,t_wNsg)){
+                t_atChild = this->editorSpaceForm->getBaseWidgetMsg().widget; //是基础组件
+                this->startOnBase = true;
+            }
+
+            //按下那一刻就选择一个组件
+            if(!this->startOnBase){
+                if(!this->ctrlDown){    //如果不是多选，则删除全部选择后再次选择
+                    if(this->roi_getSelectWidgetMsgs().length() == 1){
+                        this->roi_setWidgetDeleteAllSelect(); //删除所有选择
+                    }
+                }
+                qDebug() << "this->startOnBase2" << t_atChild << t_atChild->objectName() << this->startOnBase;
+                this->roi_setWidgetSelect(t_atChild,true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
+            }
         }
-
-        //    //根据鼠标放开的坐标确定选择单个组件
-        //    if(!this->ctrlDown){
-        //        this->roi_setWidgetDeleteAllSelect();
-        //        this->roi_setWidgetSelect(this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos()),true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
-        //    }
-
         this->update();
     }
 
@@ -843,10 +871,16 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                 if(!this->ctrlDown){    //如果不是多选，则删除全部选择后再次选择
                     this->roi_setWidgetDeleteAllSelect(); //删除所有选择
                 }
+
                 //根据鼠标放开的坐标确定选择单个组件
                 QWidget* t_selectChildWidget = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(event->pos());
                 if(t_selectChildWidget != this->editorSpaceForm->getBaseWidgetMsg().widget){
-                    t_selectChildWidget = this->editorSpaceForm->getBaseWidgetMsg().widget->childAt(event->pos());
+
+                    QRect t_rec;
+                    FunUtil::getWidgetRelativePosition(this->editorSpaceForm->getBaseWidgetMsg().widget,
+                                                       this->editorSpaceForm->getEditorSpaceWidgetPtr(),
+                                                       t_rec);
+                    t_selectChildWidget = this->editorSpaceForm->getBaseWidgetMsg().widget->childAt(event->pos().x() - t_rec.x(),event->pos().y() - t_rec.y());
                 }
 
                 //存在子组件才选中
@@ -875,6 +909,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                             //没有选中基础窗口
                             this->nowSelectWidget->setGeometry({x,y,w,h});
                             this->onWidgetGeometryChanged(this->nowSelectWidget); //控件尺寸被改变
+                            this->roi_setWidgetSelect(this->nowSelectWidget); //控件尺寸被改变
                         }
                         else{
                             //选中了基础窗口

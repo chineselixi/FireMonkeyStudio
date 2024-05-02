@@ -76,6 +76,8 @@ public:
     widgetMsg& getBaseWidgetMsg();
     //弹出菜单
     void showMenu(QWidget* widget,QPoint pos);
+    //获取当前以及子项目的widgetMsg信息组
+    QList<widgetMsg> getFamilyWidgetMsg(QWidget* parent);
     //保存配置信息
     QString saveWidgetMsgToJson();
 

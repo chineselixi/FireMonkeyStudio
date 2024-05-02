@@ -4,8 +4,14 @@
 
 class QWidget;
 class QRect;
+class QRectF;
 class QString;
-class QSize;
+class QSizeF;
+class QColor;
+class QPointF;
+class QLocale;
+class QSizePolicy;
+class QCursor;
 
 class Plugin_Base;
 
@@ -22,10 +28,26 @@ public:
     static bool getWidgetRelativePosition(QWidget* widget,QWidget* parentWidget,QRect& returnRect);
 
     //不同转换
-    static QString rectToString(QRect rect);
-    static QRect stringToRect(QString str);
-    static QString sizeToString(QSize size);
-    static QSize stringToSize(QString str);
+    static QString rectToString(QRectF rectf);
+    static QRectF stringToRect(QString str);
+
+    static QString sizeToString(QSizeF size);
+    static QSizeF stringToSize(QString str);
+
+    static QString pointToString(QPointF point);
+    static QPointF stringToPoint(QString str);
+
+    static QString localeToString(QLocale locale);
+    static QLocale stringToLocale(QString str);
+
+    static QString SizePolicyToString(QSizePolicy SizePolicy);
+    static QSizePolicy stringToSizePolicy(QString str);
+
+    static QString cursorToString(QCursor cursor);
+    static QCursor stringToSizeCursor(QString str);
+
+    static QString colorToString(QColor color);
+    static QColor stringToColor(QString str);
 };
 
 #endif // FUNUTIL_H

@@ -18,12 +18,15 @@ public:
 
 public:
     AttributeNode* getListAttr(QList<AttributeNode> &attrs,QString group,QString attrSign);  //从列表获取属性指针
+    static QJsonValue attributesToJson(QList<AttributeNode> attrs); //将属性转换为Json对象
+    static QList<AttributeNode> jsonArrayToAttrs(QJsonArray jsonArray); //将jsonArray转换为attrs
+    static QVariant jsonvalueToVariant(QJsonValue jsonValue, QMetaType::Type type); //将jsonValue转换为QVariant
 
     virtual widgetMsg createWidgetInstance(QRect Geometry = QRect()) = 0;   //创建一个控件实例
     virtual void adjustWidget(QWidget* widget,QList<AttributeNode>& attrs) = 0; //根据组件指针与属性，调整此组件信息
 
-    virtual QJsonObject getConfigure(widgetMsg& msg) = 0; //获取保存的配置文件
-    virtual void configAdjustWidgetMsg(widgetMsg& msg, QJsonObject config, Fun_Get_Widget fun_getWidget) = 0;   //配置文件调整组件信息
+    virtual QJsonValue getConfigure(widgetMsg& msg) = 0; //获取保存的配置文件
+    virtual void configAdjustWidgetMsg(widgetMsg& msg, QJsonValue config, Fun_Get_Widget fun_getWidget) = 0;   //配置文件调整组件信息
 
 
     //子控件进入(参数1为容器控件，是本插件插件的。参数2为进入的子控件)

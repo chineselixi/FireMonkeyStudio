@@ -68,6 +68,7 @@ public:
     void roi_setStyle(QColor roiColor,int wid = 6); //设置选取样式
     QList<widgetMsg> roi_getSelectWidgetMsgs();     //取出控件组中被选中的控件
     void roi_setWidgetSelect(QWidget* widget, bool isSelect = true);   //设置某个组件被选中的状态
+    void roi_setWidgetSelectReversal(QWidget* widget);   //设置某个组件选中反转
     void roi_selectRectWidget(QRect rect);  //选择在此范围内的所有控件
     void roi_setWidgetDeleteAllSelect();    //设置组件全都不被选中
     void roi_setWidgetDeleteAllSelectforParent(QWidget* parent);    //设置某个父组件下的子组件全都不被选中

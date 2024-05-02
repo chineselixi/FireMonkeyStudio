@@ -190,6 +190,28 @@ void Form_EditorSpace::showMenu(QWidget* widget, QPoint pos)
     this->mouseRightMenu->exec(pos);
 }
 
+//获取当前以及子项目的widgetMsg信息组
+QList<widgetMsg> Form_EditorSpace::getFamilyWidgetMsg(QWidget *parent)
+{
+    QList<widgetMsg> t_retSubs;
+    for(widgetMsg w : this->widgets){
+        if(w.widget == parent){
+            t_retSubs.append(w);
+            QList<QWidget*> t_parentChilds = parent->findChildren<QWidget*>(Qt::FindChildrenRecursively);
+            for(QWidget* child : t_parentChilds){
+                for(widgetMsg wi : this->widgets){
+                    if(wi.widget == child){
+                        t_retSubs.append(wi);
+                        break;
+                    }
+                }
+            }
+            break;
+        }
+    }
+    return t_retSubs;
+}
+
 
 //保存配置信息
 QString Form_EditorSpace::saveWidgetMsgToJson()
@@ -206,7 +228,9 @@ QString Form_EditorSpace::saveWidgetMsgToJson()
         t_itemJsonObj.insert("maximumSize",FunUtil::sizeToString(msgItem.widget->maximumSize()));
         t_itemJsonObj.insert("classSign",msgItem.classSign);
         t_itemJsonObj.insert("isPack",msgItem.isPack);
-        t_itemJsonObj.insert("attrs",msgItem.pluginPtr->getConfigure(msgItem));
+        t_itemJsonObj.insert("attrs",Plugin_Base::attributesToJson(msgItem.attrs));
+        t_itemJsonObj.insert("style",QString(msgItem.widget->styleSheet().toUtf8().toHex()));
+        t_itemJsonObj.insert("config",msgItem.pluginPtr->getConfigure(msgItem));
         t_jsonArray.append(t_itemJsonObj);
     }
     t_doc.setArray(t_jsonArray);
@@ -376,7 +400,7 @@ void Form_EditorSpace::on_menuTriggered(QAction *action)
     }
     //剪切
     else if(action == menuActionCat){
-
+        qDebug().noquote() << this->saveWidgetMsgToJson();
     }
     //复制
     else if(action == menuActionCopy){
