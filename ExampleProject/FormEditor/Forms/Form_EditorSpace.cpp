@@ -8,6 +8,7 @@
 #include "QJsonArray"
 #include "QFile"
 #include "util/FunUtil.h"
+#include "Forms/Form_StyleEditor.h"
 
 #include "Plugins/Plugin_MainWindow.h"
 #include "Form_PropertyEditor.h"
@@ -534,7 +535,7 @@ void Form_EditorSpace::on_menuTriggered(QAction *action)
     }
     //样式表
     else if(action == menuActionStyle){
-        t_msg->widget->lower();
+        Form_StyleEditor(this,t_msg->widget).exec();
     }
 }
 

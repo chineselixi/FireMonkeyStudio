@@ -39,14 +39,14 @@ bool FunUtil::getWidgetRelativePosition(QWidget *widget, QWidget* parentWidget, 
 //将QRect转换为字符串
 QString FunUtil::rectToString(QRectF rect)
 {
-    return QString::number(rect.x(),'f',0) + "|" + QString::number(rect.y(),'f',0) + "|" + QString::number(rect.width(),'f',0) + "|" + QString::number(rect.height(),'f',0);
+    return QString::number(rect.x(),'f',0) + "," + QString::number(rect.y(),'f',0) + "," + QString::number(rect.width(),'f',0) + "," + QString::number(rect.height(),'f',0);
 }
 
 //将QString转换为QRect
 QRectF FunUtil::stringToRect(QString str)
 {
     QRect t_rect;
-    QStringList t_sl = str.split("|");
+    QStringList t_sl = str.split(",");
     if(t_sl.length() == 4){
         t_rect.setRect(t_sl[0].toInt(),t_sl[1].toInt(),t_sl[2].toInt(),t_sl[3].toInt());
     }
@@ -56,14 +56,14 @@ QRectF FunUtil::stringToRect(QString str)
 //将QSize转换为字符串
 QString FunUtil::sizeToString(QSizeF size)
 {
-    return QString::number(size.width(),'f',0) + "|" + QString::number(size.height(),'f',0);
+    return QString::number(size.width(),'f',0) + "," + QString::number(size.height(),'f',0);
 }
 
 //将QString转换为QSize
 QSizeF FunUtil::stringToSize(QString str)
 {
     QSize t_size;
-    QStringList t_sl = str.split("|");
+    QStringList t_sl = str.split(",");
     if(t_sl.length() == 2){
         t_size.setWidth(t_sl[0].toDouble());
         t_size.setHeight(t_sl[1].toDouble());
@@ -74,14 +74,14 @@ QSizeF FunUtil::stringToSize(QString str)
 //位置转字符串
 QString FunUtil::pointToString(QPointF point)
 {
-    return QString::number(point.x(),'f',0) + "|" + QString::number(point.y(),'f',0);
+    return QString::number(point.x(),'f',0) + "," + QString::number(point.y(),'f',0);
 }
 
 //字符串转位置
 QPointF FunUtil::stringToPoint(QString str)
 {
     QPointF t_point;
-    QStringList t_sl = str.split("|");
+    QStringList t_sl = str.split(",");
     if(t_sl.length() == 2){
         t_point.setX(t_sl[0].toInt());
         t_point.setY(t_sl[1].toInt());
@@ -104,9 +104,9 @@ QLocale FunUtil::stringToLocale(QString str)
 //尺寸策略转字符串
 QString FunUtil::SizePolicyToString(QSizePolicy SizePolicy)
 {
-    return QString::number(SizePolicy.horizontalPolicy(),'f',0) + "|" +
-           QString::number(SizePolicy.verticalPolicy(),'f',0) + "|" +
-           QString::number(SizePolicy.horizontalStretch(),'f',0) + "|" +
+    return QString::number(SizePolicy.horizontalPolicy(),'f',0) + "," +
+           QString::number(SizePolicy.verticalPolicy(),'f',0) + "," +
+           QString::number(SizePolicy.horizontalStretch(),'f',0) + "," +
            QString::number(SizePolicy.verticalStretch(),'f',0);
 }
 
@@ -114,7 +114,7 @@ QString FunUtil::SizePolicyToString(QSizePolicy SizePolicy)
 QSizePolicy FunUtil::stringToSizePolicy(QString str)
 {
     QSizePolicy t_sizePolicy;
-    QStringList t_sl = str.split("|");
+    QStringList t_sl = str.split(",");
     if(t_sl.length() == 4){
         t_sizePolicy.setHorizontalPolicy(QSizePolicy::Policy(t_sl[0].toInt()));
         t_sizePolicy.setVerticalPolicy(QSizePolicy::Policy(t_sl[1].toInt()));
