@@ -79,6 +79,7 @@ private:
     void drawRulerLine(QPainter* painter,QPoint start,int length,bool isRows); //绘制测量标线
     void getArrowPosition(QPoint begin,QPoint end,QPoint& arrow1,QPoint& arrow2,int arrowLineLength = 4);   //根据起始与中止点的坐标计算出箭头中止点的坐标
     bool isListWidget(QWidget* widget,widgetMsg*& msg); //判断当前控件是否为控件列表中的控件
+    QWidget* getExistWidget(QWidget* widget);   //获取widget在列表中存在的widget
     void adjustSelect(QWidget* parentWidget); //调整选取选择项，父类和子类都被选择，则主动放弃子类
     void adjustMouseStyle(int mouseX,int mouseY);    //调整鼠标的样式
     int getWidgetLocationState(int x,int y,widgetMsg& msg); //获取组件的位置状态，位置方位为1-8，-1为错误。widgetMsg为引用，若正常，则包含组件信息

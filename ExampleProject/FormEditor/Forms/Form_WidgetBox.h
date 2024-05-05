@@ -29,11 +29,9 @@ public:
 
 public:
     void addPlguin(Plugin_Base* plg); //添加插件
-
-
-
     void Init(QString dirPath,QString plgSuffix = "dll"); //初始化Widget
     void selectItem(int index); //选择项目
+    Plugin_Base* findPluginBySign(QString sign);    //根据sign查找插件
 
 private:
     void findPlugin(QString path,QVector<QString>& retFiles,QString plgSuffix = "wgt"); //查找寻找插件文件

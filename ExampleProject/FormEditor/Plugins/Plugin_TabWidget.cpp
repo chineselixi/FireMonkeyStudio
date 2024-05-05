@@ -116,6 +116,9 @@ QJsonValue Plugin_TabWidget::getConfigure(widgetMsg& msg)
     QTabWidget* t_tabWidget = dynamic_cast<QTabWidget*>(msg.widget);
 
     if(t_tabWidget != nullptr){
+        QJsonObject t_objIndex;
+        QJsonObject t_objName;
+
         for(qsizetype i = 0; i < t_tabWidget->count(); i++){
             QJsonArray t_jsonArray;
             QWidget* t_curWidget = t_tabWidget->widget(i);
@@ -123,8 +126,11 @@ QJsonValue Plugin_TabWidget::getConfigure(widgetMsg& msg)
             for(QWidget* currSub : t_subWidgets){
                 t_jsonArray.append(currSub->objectName());
             }
-            t_retJsonObj.insert(QString::number(i),t_jsonArray);    //保存索引与index
+            t_objIndex.insert(QString::number(i),t_jsonArray);    //保存索引与index
+            t_objName.insert(QString::number(i),t_tabWidget->tabText(i));    //保存索引与名字
         }
+        t_retJsonObj.insert("indexNames",t_objIndex);
+        t_retJsonObj.insert("tabText",t_objName);
     }
     return t_retJsonObj;
 }
@@ -135,17 +141,24 @@ void Plugin_TabWidget::configAdjustWidgetMsg(widgetMsg &msg, QJsonValue config, 
     QJsonObject t_jsonObj = config.toObject();
     QTabWidget* t_tabWidget = dynamic_cast<QTabWidget*>(msg.widget);    //转换为TabWidget
     if(t_tabWidget != nullptr){
-        for(QString key : t_jsonObj.keys()){        //获取保存的key
+        QJsonObject t_objIndex = t_jsonObj.value("indexNames").toObject();
+        QJsonObject t_objName = t_jsonObj.value("tabText").toObject();
+
+
+        for(QString key : t_objIndex.keys()){        //获取保存的key
             qsizetype t_tabIndex = key.toInt();     //根据key获取index索引
             if(t_tabIndex >= 0 && t_tabIndex < t_tabWidget->count()){           //判断索引是否在范围
                 QWidget* t_curWidget = t_tabWidget->widget(t_tabIndex);
-                QJsonArray t_jsonNames = t_jsonObj.value(key).toArray();        //查看配置文件中保存的对象名
+                QJsonArray t_jsonNames = t_objIndex.value(key).toArray();        //查看配置文件中保存的对象名
                 for(QJsonValue jsonNode : t_jsonNames){
                     QWidget* t_widget =  fun_getWidget(jsonNode.toString());    //根据对象名获取Widget
                     if(t_widget != nullptr){
                         t_widget->setParent(t_curWidget);       //还原父窗口
                     }
                 }
+
+                //保存Tab标题
+                t_tabWidget->setTabText(t_tabIndex,t_objName.value(key).toString("tab"));
             }
         }
     }

@@ -70,14 +70,37 @@ void Plugin_MainWindow::subWidgetEnter(QWidget* packWidget,QWidget* subWidget)
 //获取配置文件
 QJsonValue Plugin_MainWindow::getConfigure(widgetMsg& msg)
 {
-    return QJsonObject();
+    QJsonValue t_retValue;
+    QWidget* t_widget = dynamic_cast<QWidget*>(msg.widget);
+
+    if(t_widget != nullptr){
+        QJsonArray t_jsonArray;
+
+        QList<QWidget*> t_subWidgets = t_widget->findChildren<QWidget*>(Qt::FindDirectChildrenOnly);
+        for(QWidget* currSub : t_subWidgets){
+            if(!currSub->objectName().isEmpty()){
+                t_jsonArray.append(currSub->objectName());
+            }
+        }
+        t_retValue = t_jsonArray;
+    }
+    return t_retValue;
 }
 
 
 //配置文件调整组件信息
 void Plugin_MainWindow::configAdjustWidgetMsg(widgetMsg &msg, QJsonValue config, Fun_Get_Widget fun_getWidget)
 {
-
+    QWidget* t_widget = dynamic_cast<QWidget*>(msg.widget);    //转换为TabWidget
+    if(t_widget != nullptr){
+        QJsonArray t_jsonArray = config.toArray();
+        for(QJsonValue value : t_jsonArray){
+            QWidget* t_subWidget = fun_getWidget(value.toString());
+            if(t_subWidget){
+                t_subWidget->setParent(t_widget);
+            }
+        }
+    }
 }
 
 

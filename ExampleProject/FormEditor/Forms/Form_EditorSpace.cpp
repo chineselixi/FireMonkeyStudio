@@ -6,16 +6,18 @@
 #include "QJsonDocument"
 #include "QJsonObject"
 #include "QJsonArray"
+#include "QFile"
 #include "util/FunUtil.h"
 
 #include "Plugins/Plugin_MainWindow.h"
 #include "Form_PropertyEditor.h"
+#include "Form_WidgetBox.h"
 
 
 #include "GlobalMsg.h"
 #include "QScrollBar"
 
-Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
+Form_EditorSpace::Form_EditorSpace(QWidget *parent,QString jsonPath) :
     QWidget(parent),
     ui(new Ui::Form_EditorSpace)
 {
@@ -45,15 +47,27 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
 
 
     //初始化主窗口，创建一个最基础的容器控件
-    Plugin_MainWindow* plgMW = new Plugin_MainWindow();
-    this->baseWidget = plgMW->createWidgetInstance({0,0,450,320});
-    this->baseWidget.objectName = "主窗口";//对象名
-    this->baseWidget.pluginPtr = plgMW;//处理的插件指针
-    this->baseWidget.widget->setObjectName(this->baseWidget.objectName);
-    this->baseWidget.isSelect = true;//是否选择
-    this->baseWidget.isPack = true;//是否为容器
-    this->widgets.append(this->baseWidget); //加入到控件列表
-    this->buildTreeWidgetItem(this->baseWidget,true);
+    if(jsonPath.isEmpty()){
+        //没有配置文件，直接创建基础窗口
+        Plugin_MainWindow* plgMW = new Plugin_MainWindow();
+        this->baseWidget = plgMW->createWidgetInstance({0,0,450,320});
+        this->baseWidget.objectName = "主窗口";//对象名
+        this->baseWidget.pluginPtr = plgMW;//处理的插件指针
+        this->baseWidget.widget->setObjectName(this->baseWidget.objectName);
+        this->baseWidget.isSelect = true;//是否选择
+        this->baseWidget.isPack = true;//是否为容器
+        this->widgets.append(this->baseWidget); //加入到控件列表
+        this->buildTreeWidgetItem(this->baseWidget,true);
+    }
+    else{
+        //根据配置文件读取json数据
+        QFile t_file(jsonPath);
+        t_file.open(QIODevice::ReadOnly);
+        this->jsonBuildWidgetMsgs(t_file.readAll());
+        t_file.close();
+    }
+
+
 
 
     //创建并且设置基础的mdiArea
@@ -67,6 +81,7 @@ Form_EditorSpace::Form_EditorSpace(QWidget *parent) :
     this->roiWidget->roi_setWidgetDeleteAllSelect();
     this->roiWidget->roi_setWidgetSelect(this->baseWidget.widget,true);
     this->setRootTreeItem(this->baseWidget.widget);
+    this->adjustTreeItem();     //调整树item
 
     //显示属性
     this->showProperty();
@@ -123,43 +138,15 @@ QWidget *Form_EditorSpace::createWidgetMsgToList(Plugin_Base* pluginPtr,        
     t_createMsg.widget->setParent(parentWidget); //默认先把基础组件设置为父类
     t_createMsg.objectName = this->getUniqueName(t_createMsg.objectName); //修改为唯一名称
     t_createMsg.widget->setObjectName(t_createMsg.objectName);  //同时修改控件的唯一名称
-    t_createMsg.classSign = pluginPtr->pluginSign; //插件类型
+    //t_createMsg.pluginSign = pluginPtr->pluginSign; //插件类型
     parentPluginPtr->subWidgetEnter(parentWidget,t_createMsg.widget); //激活容器组件插件的组件进入方法
     this->widgets.append(t_createMsg); //添加到控件列表信息
     t_createMsg.widget->show();
 
-    //同步组件删除
-    connect(t_createMsg.widget,&QWidget::destroyed,[=](){
-        //移除widget信息
-        for(qsizetype i = this->widgets.length() - 1; i >= 0; i--){
-            if(this->widgets[i].widget == t_createMsg.widget){
-                this->widgets.removeAt(i);
-                break;
-            }
-        }
-
-        //移除treeItem信息
-        for(qsizetype i = this->treeMsgList.length() - 1; i >= 0; i--){
-            if(this->treeMsgList[i].msg.widget == t_createMsg.widget){
-                //移除子树
-                for(int a = this->treeMsgList[i].treeItem->childCount() - 1; a>=0; a--){
-                    this->treeMsgList[i].treeItem->removeChild(this->treeMsgList[i].treeItem->child(a));
-                }
-                //回收本对象
-                delete this->treeMsgList[i].treeItem;
-                this->treeMsgList.removeAt(i);
-                break;
-            }
-        }
-
-        //关闭对象属性
-        if(Form::PropertyEditorPtr) Form::PropertyEditorPtr->showWidgetsAttr(nullptr,nullptr);
-
-    });
+    this->setSyncDeleteWidget(t_createMsg.widget);  //绑定同步删除方法
 
     //插件Tree信息
     this->buildTreeWidgetItem(t_createMsg);
-
     return t_createMsg.widget;
 }
 
@@ -213,28 +200,122 @@ QList<widgetMsg> Form_EditorSpace::getFamilyWidgetMsg(QWidget *parent)
 }
 
 
+
+
 //保存配置信息
-QString Form_EditorSpace::saveWidgetMsgToJson()
+QString Form_EditorSpace::widgetMsgsToJson(QList<widgetMsg> widgetList)
 {
     QJsonDocument t_doc;
     QJsonObject t_jsonObj;
     QJsonArray t_jsonArray;
 
-    for(widgetMsg msgItem : widgets){
+    t_jsonObj.insert("version",1);                                          //版本
+    t_jsonObj.insert("develop","DEV");                                      //开发渠道
+    t_jsonObj.insert("baseName",this->baseWidget.widget->objectName());     //基础名字
+    for(widgetMsg msgItem : widgetList){
         QJsonObject t_itemJsonObj;
-        t_itemJsonObj.insert("objName",msgItem.objectName);
-        t_itemJsonObj.insert("geometry",FunUtil::rectToString(msgItem.widget->geometry()));
-        t_itemJsonObj.insert("minimumSize",FunUtil::sizeToString(msgItem.widget->minimumSize()));
-        t_itemJsonObj.insert("maximumSize",FunUtil::sizeToString(msgItem.widget->maximumSize()));
-        t_itemJsonObj.insert("classSign",msgItem.classSign);
-        t_itemJsonObj.insert("isPack",msgItem.isPack);
-        t_itemJsonObj.insert("attrs",Plugin_Base::attributesToJson(msgItem.attrs));
-        t_itemJsonObj.insert("style",QString(msgItem.widget->styleSheet().toUtf8().toHex()));
-        t_itemJsonObj.insert("config",msgItem.pluginPtr->getConfigure(msgItem));
+        t_itemJsonObj.insert("objName",msgItem.objectName);                                         //对象名
+        t_itemJsonObj.insert("geometry",FunUtil::rectToString(msgItem.widget->geometry()));         //矩形区域
+        t_itemJsonObj.insert("minimumSize",FunUtil::sizeToString(msgItem.widget->minimumSize()));   //最小尺寸
+        t_itemJsonObj.insert("maximumSize",FunUtil::sizeToString(msgItem.widget->maximumSize()));   //最大尺寸
+        t_itemJsonObj.insert("pluginSign",msgItem.pluginPtr->pluginSign);                                      //类标记
+        t_itemJsonObj.insert("isPack",msgItem.isPack);                                              //是否为尺寸
+        t_itemJsonObj.insert("attrs",Plugin_Base::attributesToJson(msgItem.attrs));                 //属性标记
+        t_itemJsonObj.insert("style",QString(msgItem.widget->styleSheet().toUtf8().toHex()));       //样式表
+        t_itemJsonObj.insert("config",msgItem.pluginPtr->getConfigure(msgItem));                    //自定义配置信息
         t_jsonArray.append(t_itemJsonObj);
     }
-    t_doc.setArray(t_jsonArray);
+    t_jsonObj.insert("widgets",t_jsonArray);
+    t_doc.setObject(t_jsonObj);
     return t_doc.toJson();
+}
+
+
+//根据Json文本构建对象
+bool Form_EditorSpace::jsonBuildWidgetMsgs(QString jsonString)
+{
+    this->widgets.clear();
+    this->treeMsgList.clear();
+
+    QJsonDocument t_jsonDoc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject t_jsonObj = t_jsonDoc.object();
+
+    int t_version = t_jsonObj.value("varsion").toInt(1);
+    QString t_develop = t_jsonObj.value("develop").toString("DEV");
+    QString t_baseName = t_jsonObj.value("baseName").toString();
+
+    struct t_widgetMsgAttach{
+        widgetMsg wmsg;
+        QJsonArray attrJson;
+        QString styleSheet;
+        QJsonValue config;
+    };
+
+    //根据配置文件创建信息
+    QList<t_widgetMsgAttach> t_tempWidgetMsgs;  //临时存放对象列表
+    QJsonArray t_jsonArray = t_jsonObj.value("widgets").toArray();
+    for(QJsonValue t_jsonValue : t_jsonArray){
+        QJsonObject t_itemJsonObj = t_jsonValue.toObject();
+        if(!Form::widgetBoxPtr) return false;
+
+        QString t_pluginSign = t_itemJsonObj.value("pluginSign").toString();
+        Plugin_Base* t_plugin = Form::widgetBoxPtr->findPluginBySign(t_pluginSign); //根据插件标记获取插件
+        if(!t_plugin)return false;
+
+        QRect t_geometry = FunUtil::stringToRect(t_itemJsonObj.value("geometry").toString()).toRect();  //矩形区域
+
+        //直接初始化的信息
+        t_widgetMsgAttach t_wma;
+        t_wma.wmsg = t_plugin->createWidgetInstance(t_geometry); //获取控件信息
+        t_wma.wmsg.isPack = t_itemJsonObj.value("isPack").toBool();        //包标记
+        t_wma.wmsg.objectName = t_itemJsonObj.value("objName").toString(); //设置对象名
+        t_wma.wmsg.widget->setObjectName(t_wma.wmsg.objectName);
+        t_wma.wmsg.widget->setMinimumSize(FunUtil::stringToSize(t_itemJsonObj.value("minimumSize").toString()).toSize());  //最小尺寸
+        t_wma.wmsg.widget->setMaximumSize(FunUtil::stringToSize(t_itemJsonObj.value("maximumSize").toString()).toSize());  //最大尺寸
+
+        //暂时不能初始化的信息
+        t_wma.attrJson = t_itemJsonObj.value("attrs").toArray();  //设置属性
+        t_wma.styleSheet = QByteArray::fromHex(t_itemJsonObj.value("style").toString().toUtf8());    //设置样式表
+        t_wma.config = t_itemJsonObj.value("config");   //自定义配置信息
+
+        //保存基础base
+        if(t_wma.wmsg.objectName == t_baseName){
+            this->baseWidget = t_wma.wmsg;
+        }
+
+        t_tempWidgetMsgs.append(t_wma);
+    }
+
+    //获取组件方法
+    Fun_Get_Widget fun_getWidget = [&](QString objName)->QWidget*{
+        for(t_widgetMsgAttach& wmaItem : t_tempWidgetMsgs){
+            if(wmaItem.wmsg.objectName == objName){
+                return wmaItem.wmsg.widget;
+            }
+        }
+        return nullptr;
+    };
+
+    //全局加入到父窗口信息
+    for(t_widgetMsgAttach& wmaItem : t_tempWidgetMsgs){
+        if(this->baseWidget.widget && wmaItem.wmsg.widget != this->baseWidget.widget){  //设置默认父组件
+            wmaItem.wmsg.widget->setParent(this->baseWidget.widget);
+            this->setSyncDeleteWidget(wmaItem.wmsg.widget); //绑定同步删除配置信息
+        }
+        //创建树信息
+        this->buildTreeWidgetItem(wmaItem.wmsg,false);
+    }
+
+    //调整属性与配置文件
+    for(t_widgetMsgAttach& wmaItem : t_tempWidgetMsgs){
+        wmaItem.wmsg.attrs = Plugin_Base::jsonArrayToAttrs(wmaItem.attrJson);   //以json更新attr
+        wmaItem.wmsg.pluginPtr->adjustWidget(wmaItem.wmsg.widget,wmaItem.wmsg.attrs);   //更新属性
+        wmaItem.wmsg.widget->setStyleSheet(wmaItem.styleSheet); //更新style
+        wmaItem.wmsg.pluginPtr->configAdjustWidgetMsg(wmaItem.wmsg,wmaItem.config,fun_getWidget);   //更新配置文件
+
+        this->widgets.append(wmaItem.wmsg); //保存组件信息
+    }
+    return true;
 }
 
 
@@ -354,7 +435,7 @@ void Form_EditorSpace::showProperty()
         QList<widgetMsg> t_ws = this->roiWidget->roi_getSelectWidgetMsgs();
         if(t_ws.length() > 0){
             widgetMsg* t_wm = this->getWidgetMsg(t_ws[0].widget);
-            Form::PropertyEditorPtr->showWidgetsAttr(this->getEditorSpaceWidgetPtr(),t_wm);
+            Form::PropertyEditorPtr->showWidgetsAttr(this->baseWidget.widget,t_wm);
         }
     }
 }
@@ -369,6 +450,42 @@ widgetMsg *Form_EditorSpace::getWidgetMsg(QWidget *widget)
         }
     }
     return nullptr;
+}
+
+
+//绑定同步删除
+void Form_EditorSpace::setSyncDeleteWidget(QWidget *widget)
+{
+    //同步组件删除
+    connect(widget,&QWidget::destroyed,[=](){
+
+        qDebug() << "删除Widget信息" << widget;
+
+        //移除widget信息
+        for(qsizetype i = this->widgets.length() - 1; i >= 0; i--){
+            if(this->widgets[i].widget == widget){
+                this->widgets.removeAt(i);
+                break;
+            }
+        }
+
+        //移除treeItem信息
+        for(qsizetype i = this->treeMsgList.length() - 1; i >= 0; i--){
+            if(this->treeMsgList[i].msg.widget == widget){
+                //移除子树
+                for(int a = this->treeMsgList[i].treeItem->childCount() - 1; a>=0; a--){
+                    this->treeMsgList[i].treeItem->removeChild(this->treeMsgList[i].treeItem->child(a));
+                }
+                //回收本对象
+                delete this->treeMsgList[i].treeItem;
+                this->treeMsgList.removeAt(i);
+                break;
+            }
+        }
+
+        //关闭对象属性
+        if(Form::PropertyEditorPtr) Form::PropertyEditorPtr->showWidgetsAttr(nullptr,nullptr);
+    });
 }
 
 
@@ -400,7 +517,7 @@ void Form_EditorSpace::on_menuTriggered(QAction *action)
     }
     //剪切
     else if(action == menuActionCat){
-        qDebug().noquote() << this->saveWidgetMsgToJson();
+        qDebug().noquote() << this->widgetMsgsToJson(this->widgets);
     }
     //复制
     else if(action == menuActionCopy){
@@ -534,6 +651,7 @@ void Form_EditorSpace::on_treeWidget_itemClicked(QTreeWidgetItem *item, int colu
         for(QTreeWidgetItem* si : t_selectedItemList){
             if(treeItem.treeItem == si){
                 this->roiWidget->roi_setWidgetSelect(treeItem.msg.widget,true);
+                this->showProperty();
                 break;
             }
         }

@@ -59,6 +59,18 @@ void Form_WidgetBox::addPlguin(Plugin_Base *plg)
 }
 
 
+//根据sign查找插件
+Plugin_Base *Form_WidgetBox::findPluginBySign(QString sign)
+{
+    for(widgetPluginMsg item : List_widgetPlg){
+        if(item.plg != nullptr && item.plg->pluginSign == sign){
+            return item.plg;
+        }
+    }
+    return nullptr;
+}
+
+
 QSize Form_WidgetBox::sizeHint() const
 {
     return QSize(180, 900); /* 在这里定义dock的初始大小 */

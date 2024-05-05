@@ -640,11 +640,25 @@ bool Form_Roi::isListWidget(QWidget *widget,widgetMsg*& msg)
 }
 
 
+//获取widget在列表中存在的widget
+QWidget *Form_Roi::getExistWidget(QWidget *widget)
+{
+    if(widget == nullptr) return nullptr;
+    widgetMsg* msg = nullptr;
+    if(this->isListWidget(widget,msg)){
+        return widget;
+    }
+    else{
+        QWidget* t_parent = widget->parentWidget();
+        return this->getExistWidget(t_parent);
+    }
+}
+
+
 //调整选取选择项，父类和子类都被选择，则主动放弃子类
 void Form_Roi::adjustSelect(QWidget* parent)
 {
     QList<QWidget*> subs = parent->findChildren<QWidget*>();
-
     for(QWidget* item : subs){
         widgetMsg* subMsg = nullptr;
         if(this->isListWidget(item,subMsg)){    //如果当前widget是控件列表的widget，且是选择状态，则取消选择所有子组件
@@ -801,7 +815,7 @@ void Form_Roi::mousePressEvent(QMouseEvent *event)
 
         //判断是否点击到了最底层基础窗口，如果是，按住移动的时候绘制选区
         if(this->editorSpaceForm->getEditorSpaceWidgetPtr()){
-            QWidget* t_atChild = this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(this->startPoint);
+            QWidget* t_atChild = this->getExistWidget(this->editorSpaceForm->getEditorSpaceWidgetPtr()->childAt(this->startPoint));
             this->startOnBase = (t_atChild == this->editorSpaceForm->getBaseWidgetMsg().widget); //判断是否是点击了基础窗口
 
             //如果在任何窗口中都不存在此窗口，那么选择基础窗口作为点击的窗口
@@ -818,15 +832,11 @@ void Form_Roi::mousePressEvent(QMouseEvent *event)
                         this->roi_setWidgetDeleteAllSelect(); //删除所有选择
                     }
                 }
-                qDebug() << "this->startOnBase2" << t_atChild << t_atChild->objectName() << this->startOnBase;
                 this->roi_setWidgetSelect(t_atChild,true); //将某个组件设置为选中，如果这个组件不存在，则扫描其服组件
             }
         }
         this->update();
     }
-
-
-
 }
 
 //鼠标移动
@@ -1030,8 +1040,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
 //鼠标双击
 void Form_Roi::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    // this->update();
-    // qDebug() << "mouseDoubleClickEvent";
+
 }
 
 

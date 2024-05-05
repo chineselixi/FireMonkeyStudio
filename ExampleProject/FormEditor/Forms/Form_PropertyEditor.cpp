@@ -367,7 +367,6 @@ void Form_PropertyEditor::PropertyValueChanged(QtProperty *property,const QVaria
     AttributeNode* t_attr = this->getAttr(property);
     if(t_attr){
         if(t_attr->value == val) return;
-
         if(t_attr->group == NORMALGROUP){   //内置属性被改变
             if(t_attr->attrSign == "objectName"){
                 if(val.toString() != this->nowSelectWidgetMsg->widget->objectName()){

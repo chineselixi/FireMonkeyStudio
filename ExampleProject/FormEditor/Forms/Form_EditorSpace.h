@@ -57,7 +57,7 @@ private:
     QList<copyWidgetNode> copyList; //记录复制节点列表
 
 public:
-    explicit Form_EditorSpace(QWidget *parent = nullptr);
+    explicit Form_EditorSpace(QWidget *parent = nullptr,QString jsonPath = "");
     ~Form_EditorSpace();
 
 public:
@@ -79,7 +79,9 @@ public:
     //获取当前以及子项目的widgetMsg信息组
     QList<widgetMsg> getFamilyWidgetMsg(QWidget* parent);
     //保存配置信息
-    QString saveWidgetMsgToJson();
+    QString widgetMsgsToJson(QList<widgetMsg> widgetList);
+    //根据Json文本构建对象
+    bool jsonBuildWidgetMsgs(QString jsonString);
 
 private:
     void buildTreeWidgetItem(widgetMsg msg,bool isRoot = false);    //创建树组件节点
@@ -91,6 +93,7 @@ private:
     void selectTreeItem(QList<widgetMsg> widgets);  //根据组件列表选择对于的treeItem
     void showProperty(); //显示属性
     widgetMsg* getWidgetMsg(QWidget* widget);   //获取Widget信息指针
+    void setSyncDeleteWidget(QWidget* widget);   //绑定同步删除
     void copyWidgets(); //复制组件
 
 public:
