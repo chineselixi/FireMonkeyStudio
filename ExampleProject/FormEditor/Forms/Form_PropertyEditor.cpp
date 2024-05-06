@@ -394,10 +394,13 @@ void Form_PropertyEditor::PropertyValueChanged(QtProperty *property,const QVaria
             if(t_attr->enums.length() > 0 && val.typeId() == QVariant::Int){
                 int t_index = val.toInt();
                 if(t_index >= 0 && t_index <= t_attr->enums.length() - 1){
-                    val.fromValue(t_attr->enums[t_index]);
+                    t_attr->value = t_attr->enums[t_index];
                 }
             }
-            t_attr->value = val;
+            else{
+                t_attr->value = val;
+            }
+
             this->nowSelectWidgetMsg->pluginPtr->adjustWidget(this->nowSelectWidgetMsg->widget,this->nowSelectWidgetMsg->attrs); //调用插件更改属性
         }
         this->showWidgetsAttr(this->editorBaseWidget,this->nowSelectWidgetMsg);  //更新显示的属性
