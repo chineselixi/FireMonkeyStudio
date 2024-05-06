@@ -4,8 +4,11 @@ release/
 debug/
 .qtc_clangd/
 .cache/
+*-Debug/
+*-Release/
 .qmake.*
-FMS.pro.user*
 Makefile
-*.obj
 Makefile.*
+*.obj
+*.pro.user.*
+*.stash
