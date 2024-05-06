@@ -479,9 +479,6 @@ void Form_EditorSpace::setSyncDeleteWidget(QWidget *widget)
 {
     //同步组件删除
     connect(widget,&QWidget::destroyed,[=](){
-
-        qDebug() << "删除Widget信息" << widget;
-
         //移除widget信息
         for(qsizetype i = this->widgets.length() - 1; i >= 0; i--){
             if(this->widgets[i].widget == widget){
@@ -638,11 +635,10 @@ void Form_EditorSpace::PRO_onWidgetNameChange(QWidget* widgetBase, widgetMsg *up
 //控件属性被更新
 void Form_EditorSpace::PRO_onWidgetUpdate(QWidget* widgetBase, widgetMsg *updateWidgetMessage)
 {
-    if(widgetBase != this->getEditorSpaceWidgetPtr())return;
+    if(widgetBase != this->baseWidget.widget)return;
     if(updateWidgetMessage->widget == this->baseWidget.widget){ //如果是底层窗口改变
         this->ROI_onWidgetBaseGeometryChanged(this->baseWidget.widget->geometry());
     }
-
     this->roiWidget->update();  //如果位置改变，则更改选取样式
 }
 

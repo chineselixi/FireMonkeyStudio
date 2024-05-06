@@ -83,40 +83,43 @@ void Plugin_MainWindow::adjustWidget(QWidget *widget, QList<AttributeNode> &attr
         QList<QWidget*> t_subWidgets = t_widget->findChildren<QWidget*>(Qt::FindDirectChildrenOnly);
 
         if(t_layoutStr == "无布局"){
-            t_widget->setLayout(new QGridLayout);
+            delete t_widget->layout();
+
         }
         else if(t_layoutStr == "垂直布局"){
+            delete t_widget->layout();
             QVBoxLayout* t_vbl = new QVBoxLayout(t_widget);
             //按照顶部排序
             for(qsizetype a = 0; a<t_subWidgets.length(); a++){
                 for(qsizetype b = 0; b<t_subWidgets.length() - a - 1; b++){
                     if(t_subWidgets[b]->geometry().top() > t_subWidgets[b + 1]->geometry().top()){
                         QWidget* t_w;
-                        t_w = t_subWidgets[a];
-                        t_subWidgets[a] = t_subWidgets[b];
-                        t_subWidgets[b] = t_w;
+                        t_w = t_subWidgets[b];
+                        t_subWidgets[b] = t_subWidgets[b + 1];
+                        t_subWidgets[b + 1] = t_w;
                     }
                 }
             }
             for(qsizetype i = 0; i<t_subWidgets.length(); i++){
-                t_vbl->addWidget(t_subWidgets[i],i);
+                t_vbl->addWidget(t_subWidgets[i],1);
             }
         }
         else if(t_layoutStr == "水平布局"){
+            delete t_widget->layout();
             QHBoxLayout* t_hbl = new QHBoxLayout(t_widget);
             //按照顶部排序
             for(qsizetype a = 0; a<t_subWidgets.length(); a++){
                 for(qsizetype b = 0; b<t_subWidgets.length() - a - 1; b++){
                     if(t_subWidgets[b]->geometry().left() > t_subWidgets[b + 1]->geometry().left()){
                         QWidget* t_w;
-                        t_w = t_subWidgets[a];
-                        t_subWidgets[a] = t_subWidgets[b];
-                        t_subWidgets[b] = t_w;
+                        t_w = t_subWidgets[b];
+                        t_subWidgets[b] = t_subWidgets[b + 1];
+                        t_subWidgets[b + 1] = t_w;
                     }
                 }
             }
             for(qsizetype i = 0; i<t_subWidgets.length(); i++){
-                t_hbl->addWidget(t_subWidgets[i],i);
+                t_hbl->addWidget(t_subWidgets[i],1);
             }
         }
         else if(t_layoutStr == "网格布局"){

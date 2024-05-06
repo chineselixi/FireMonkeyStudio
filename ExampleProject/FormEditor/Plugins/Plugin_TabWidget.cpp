@@ -120,12 +120,12 @@ void Plugin_TabWidget::onMenuActionClick(QAction *action, widgetMsg *widget)
         t_tabWidget->setCurrentIndex(t_tabWidget->count() - 1);
     }
     else if(action->text() == "删除当前子夹"){
-        t_tabWidget->removeTab(t_tabWidget->currentIndex());
+        delete t_tabWidget->widget(t_tabWidget->currentIndex());
     }
     else if(action->text() == "删除末尾子夹"){
         int t_count = t_tabWidget->count();
         if(t_count > 0){
-            t_tabWidget->removeTab(t_count - 1);
+            delete t_tabWidget->widget(t_count - 1);
         }
     }
 
