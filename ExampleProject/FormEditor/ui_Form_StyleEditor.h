@@ -10,6 +10,7 @@
 #define UI_FORM_STYLEEDITOR_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
@@ -31,6 +32,9 @@ public:
         if (Form_StyleEditor->objectName().isEmpty())
             Form_StyleEditor->setObjectName("Form_StyleEditor");
         Form_StyleEditor->resize(449, 349);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Logo/icon/Logo/Logo_32.png"), QSize(), QIcon::Normal, QIcon::Off);
+        Form_StyleEditor->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(Form_StyleEditor);
         verticalLayout->setSpacing(4);
         verticalLayout->setObjectName("verticalLayout");

@@ -196,7 +196,7 @@ QVariant Plugin_Base::jsonvalueToVariant(QJsonValue jsonValue, QMetaType::Type t
 
 
 //子控件进入(参数1为容器控件，是本插件插件的。参数2为进入的子控件)
-void Plugin_Base::subWidgetEnter(QWidget *packWidget, QWidget *subWidget)
+void Plugin_Base::onSubWidgetEnter(QWidget *packWidget, QWidget *subWidget)
 {
 
 }

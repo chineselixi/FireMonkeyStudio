@@ -12,9 +12,13 @@ public:
 public:
     widgetMsg createWidgetInstance(QRect Geometry = QRect()) override;          //获取默认组件实例
     void adjustWidget(QWidget* widget,QList<AttributeNode>& attrs) override; //根据组件指针与属性，调整此组件信息
-    void subWidgetEnter(QWidget* packWidget,QWidget* subWidget) override;   //子控件进入
     QJsonValue getConfigure(widgetMsg& msg) override;  //获取配置文件
     void configAdjustWidgetMsg(widgetMsg& msg, QJsonValue config, Fun_Get_Widget fun_getWidget) override;   //配置文件调整组件信息
+    QList<QAction*> getMenuAction() override;   //获取菜单选项
+
+public:
+    void onSubWidgetEnter(QWidget* packWidget,QWidget* subWidget) override;     //当子控件进入
+    void onMenuActionClick(QAction* action,widgetMsg* widget) override;         //当菜单选项被点击
 
 public:
     //代码被创建

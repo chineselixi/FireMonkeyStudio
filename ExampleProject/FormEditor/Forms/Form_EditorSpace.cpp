@@ -140,7 +140,7 @@ QWidget *Form_EditorSpace::createWidgetMsgToList(Plugin_Base* pluginPtr,        
     t_createMsg.objectName = this->getUniqueName(t_createMsg.objectName); //修改为唯一名称
     t_createMsg.widget->setObjectName(t_createMsg.objectName);  //同时修改控件的唯一名称
     //t_createMsg.pluginSign = pluginPtr->pluginSign; //插件类型
-    parentPluginPtr->subWidgetEnter(parentWidget,t_createMsg.widget); //激活容器组件插件的组件进入方法
+    parentPluginPtr->onSubWidgetEnter(parentWidget,t_createMsg.widget); //激活容器组件插件的组件进入方法
     this->widgets.append(t_createMsg); //添加到控件列表信息
     t_createMsg.widget->show();
 
@@ -175,6 +175,26 @@ void Form_EditorSpace::showMenu(QWidget* widget, QPoint pos)
 {
     this->menuSelectWidget = widget;
     if(!this->menuSelectWidget) return;
+    widgetMsg* t_msg = this->getWidgetMsg(this->menuSelectWidget);
+    if(!t_msg) return;
+
+    //删除原来的菜单
+    static QList<QAction*> t_omenu;
+    if(t_omenu.length() > 0){
+        for(QAction* v : t_omenu) {
+            this->mouseRightMenu->removeAction(v);
+        }
+        t_omenu.clear();
+    }
+
+    //更新菜单
+    t_omenu = t_msg->pluginPtr->getMenuAction();
+    t_omenu.append(this->mouseRightMenu->addSeparator());
+    for(qsizetype i = 0; i < t_omenu.length() - 1; i++){
+        this->mouseRightMenu->addAction(t_omenu[i]);
+    }
+
+    //弹出菜单
     this->mouseRightMenu->exec(pos);
 }
 
@@ -508,6 +528,7 @@ void Form_EditorSpace::on_menuTriggered(QAction *action)
     widgetMsg* t_msg = this->getWidgetMsg(this->menuSelectWidget);
     if(!t_msg) return;
 
+
     //到最顶层
     if(action == menuActionRaise){
         t_msg->widget->raise();
@@ -536,6 +557,11 @@ void Form_EditorSpace::on_menuTriggered(QAction *action)
     //样式表
     else if(action == menuActionStyle){
         Form_StyleEditor(this,t_msg->widget).exec();
+    }
+    //插件菜单
+    else{
+        t_msg->pluginPtr->onMenuActionClick(action,t_msg);
+        this->showProperty();
     }
 }
 

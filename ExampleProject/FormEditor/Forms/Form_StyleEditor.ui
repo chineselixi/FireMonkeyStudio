@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>样式表</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../res.qrc">
+    <normaloff>:/Logo/icon/Logo/Logo_32.png</normaloff>:/Logo/icon/Logo/Logo_32.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>4</number>
@@ -50,7 +54,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

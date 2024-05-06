@@ -57,7 +57,7 @@ void Plugin_MainWindow::adjustWidget(QWidget *widget, QList<AttributeNode> &attr
 
 
 //子控件进入(参数1为容器控件，是本插件插件的。参数2为进入的子控件)
-void Plugin_MainWindow::subWidgetEnter(QWidget* packWidget,QWidget* subWidget)
+void Plugin_MainWindow::onSubWidgetEnter(QWidget* packWidget,QWidget* subWidget)
 {
     if(packWidget && subWidget){
         subWidget->setParent(packWidget);

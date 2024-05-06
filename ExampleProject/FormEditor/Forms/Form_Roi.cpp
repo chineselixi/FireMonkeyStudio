@@ -973,7 +973,7 @@ void Form_Roi::mouseReleaseEvent(QMouseEvent *event)
                                         bool t_isHidden = item.widget->isHidden();
                                         item.widget->setParent(t_packm.widget); //提前设置父项目位置
                                         item.widget->setGeometry({x,y,w,h});  //根据新的容器
-                                        t_packm.pluginPtr->subWidgetEnter(t_packm.widget,item.widget); //通知插件子控件进入信息
+                                        t_packm.pluginPtr->onSubWidgetEnter(t_packm.widget,item.widget); //通知插件子控件进入信息
                                         item.widget->setHidden(t_isHidden);
                                         t_ws.append(item.widget);   //加入移动列表
                                     }

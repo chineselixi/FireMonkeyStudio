@@ -90,8 +90,8 @@ void Plugin_TabWidget::adjustWidget(QWidget *widget, QList<AttributeNode> &attrs
 }
 
 
-//子控件加入
-void Plugin_TabWidget::subWidgetEnter(QWidget *packWidget, QWidget *subWidget)
+//当子控件加入
+void Plugin_TabWidget::onSubWidgetEnter(QWidget *packWidget, QWidget *subWidget)
 {
     if(packWidget && subWidget){
         QTabWidget* t_tabWidget = dynamic_cast<QTabWidget*>(packWidget);
@@ -106,6 +106,34 @@ void Plugin_TabWidget::subWidgetEnter(QWidget *packWidget, QWidget *subWidget)
             subWidget->move(subWidget->x() - t_rec.x(),subWidget->y() - t_rec.y());
         }
     }
+}
+
+
+//当菜单选项被点击
+void Plugin_TabWidget::onMenuActionClick(QAction *action, widgetMsg *widget)
+{
+    if(action == nullptr || widget == nullptr) return;
+    QTabWidget* t_tabWidget = dynamic_cast<QTabWidget*>(widget->widget);
+    if(t_tabWidget == nullptr) return;
+    if(action->text() == "添加新子夹"){
+        t_tabWidget->addTab(new QWidget(),"子夹" + QString::number(t_tabWidget->count() + 1));
+        t_tabWidget->setCurrentIndex(t_tabWidget->count() - 1);
+    }
+    else if(action->text() == "删除当前子夹"){
+        t_tabWidget->removeTab(t_tabWidget->currentIndex());
+    }
+    else if(action->text() == "删除末尾子夹"){
+        int t_count = t_tabWidget->count();
+        if(t_count > 0){
+            t_tabWidget->removeTab(t_count - 1);
+        }
+    }
+
+    //调整显示属性
+    AttributeNode* t_attr = this->getListAttr(widget->attrs,"基础","tabIndex");
+    if(t_attr != nullptr){t_attr->value = t_tabWidget->currentIndex();}
+    t_attr = this->getListAttr(widget->attrs,"基础","tabTitle");
+    if(t_attr != nullptr){t_attr->value = t_tabWidget->tabText(t_tabWidget->currentIndex());}
 }
 
 
@@ -162,6 +190,16 @@ void Plugin_TabWidget::configAdjustWidgetMsg(widgetMsg &msg, QJsonValue config, 
             }
         }
     }
+}
+
+
+//获取菜单选项
+QList<QAction *> Plugin_TabWidget::getMenuAction()
+{
+    static QAction* static_add = new QAction("添加新子夹");
+    static QAction* static_delNow = new QAction("删除当前子夹");
+    static QAction* static_delLast = new QAction("删除末尾子夹");
+    return {static_add,static_delNow,static_delLast};
 }
 
 
