@@ -12,3 +12,4 @@ Makefile.*
 *.obj
 *.pro.user.*
 *.stash
+*.pro.user
