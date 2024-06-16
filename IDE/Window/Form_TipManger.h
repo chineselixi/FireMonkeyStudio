@@ -45,8 +45,6 @@ public:
     void setTipCanClose(uint16_t id, bool canClose);        //设置提示能够关闭
     void setTipShowTime(uint16_t id, qint64 showTime);      //设置提示时间
 
-//protected:
-//    bool event(QEvent *event) override;     //事件接口
 
 private:
     Ui::Form_TipManger *ui;
