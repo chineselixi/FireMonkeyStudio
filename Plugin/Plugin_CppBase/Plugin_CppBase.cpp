@@ -17,6 +17,8 @@
 #include "QCoreApplication"
 #include "../../IDE/SwSystem/System_UtilFun.h" //获取系统工具类
 #include "../../IDE/SwSystem/System_GlobalVar.h"
+#include "util/LspClient.h"
+
 
 #if defined(Q_OS_WIN)
 #include "windows.h"
@@ -184,6 +186,10 @@ void Plugin_CppBase::event_onLoading()
 {
     //加载设置信息
     Form_settings_Compile::loadSetting(System_File::readFile(OUTSETFILE)); //加载设置信息
+
+    //加载clangd(测试代码)
+    LspClient::getLspClientInstance("D:/QT/Tools/QtCreator/bin/clang/bin/clangd.exe","cpp");
+    LspClient::getLspClientInstance()->initialize();
     return;
 }
 

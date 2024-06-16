@@ -5,7 +5,7 @@
 #include <QWidget>
 #include "QTimer"
 #include "../../../IDE/Plugin/Plugin_Base.h"
-
+#include "../util/LspClient.h"
 
 #define UPDATETIME 2000
 
@@ -102,6 +102,9 @@ public slots:
     void event_customContextMenuRequested(const QPoint &pos); //上下文菜单被请求
     void event_marginClicked(int margin, int line, Qt::KeyboardModifiers state); //边缘标记区域被点击
     void event_zoomChanged(); //缩放被改变
+
+    //LSP完成事件激发
+    void onCompletion(QList<LspClient::CompletionNode> completionNodes);
 
     //定时器事件
     void event_timer_textChanged(); //定时器文件被改变

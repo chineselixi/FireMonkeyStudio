@@ -4,6 +4,7 @@
 #include "../../../IDE/SwSystem/System_UtilFun.h"
 #include "../../QScintilla/src/Qsci/qscilexercpp.h"
 #include "../../../IDE/SwSystem/System_UtilFun.h"
+
 //#include "../Plugin_CppBase.h"
 
 Form_CodeEditor::Form_CodeEditor(Plugin_Base* plg,QWidget *parent) :
@@ -18,6 +19,9 @@ Form_CodeEditor::Form_CodeEditor(Plugin_Base* plg,QWidget *parent) :
 
     //绑定Timer
     connect(&saveTimer,&QTimer::timeout,this,&Form_CodeEditor::event_timer_textChanged);
+
+    //绑定LSP服务器自动完成信息
+    connect(LspClient::getLspClientInstance(),&LspClient::onCompletion,this,&Form_CodeEditor::onCompletion);
 }
 
 Form_CodeEditor::~Form_CodeEditor()
@@ -26,8 +30,8 @@ Form_CodeEditor::~Form_CodeEditor()
     this->event_timer_textChanged();
     delete ui;
 
-    //删除自身信息
-    //formList.removeOne(this);
+    //移除LSP
+    LspClient::getLspClientInstance()->didClose(this->nowOpenFilePath); //关闭文件
 }
 
 
@@ -235,9 +239,11 @@ bool Form_CodeEditor::loadForFile(QString fileName)
 {
     QFile file(fileName);
     if(file.open(QIODevice::ReadOnly) == false) return false;
-    this->setText(file.readAll()); //从本地加载文件
+    QString t_all = file.readAll();
+    this->setText(t_all); //从本地加载文件
     file.close();
     this->nowOpenFilePath = fileName; //保存当前打开的文件名
+    LspClient::getLspClientInstance()->didOpen(this->nowOpenFilePath,t_all); //打开文件
     return true;
 }
 
@@ -394,6 +400,13 @@ void Form_CodeEditor::event_marginClicked(int margin, int line, Qt::KeyboardModi
 void Form_CodeEditor::event_zoomChanged()
 {
     //qDebug() << ui->sciEditor->SendScintilla(QsciScintillaBase::SCI_GETZOOM); //获取缩放级别
+}
+
+
+//LSP补全事件激发
+void Form_CodeEditor::onCompletion(QList<LspClient::CompletionNode> completionNodes)
+{
+
 }
 
 
