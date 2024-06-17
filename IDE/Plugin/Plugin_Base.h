@@ -4,6 +4,8 @@
 
 #include "QObject"
 #include "Plugin_Global.h"
+#include "../InterFace/InterFace_CompletionTip.h"
+
 //#include "../module/mod_settingsFormBase.h"
 //#include "../../QScintilla/src/Qsci/qsciscintilla.h"
 
@@ -143,7 +145,7 @@ private:
     PluginGlobalMsg::codeEditorFun CodeEditor_removeForMangerPtr = nullptr;    //将代码编辑器从管理器移除
 
     //自动完成提示
-    PluginGlobalMsg::suggest_getCompletionFun Suggest_getCompletionInstancePtr = nullptr;
+    InterFace_CompletionTip* Suggest_getCompletionInstancePtr = nullptr;
 
 public:
     //初始化信息，由IDE侧载，可复写

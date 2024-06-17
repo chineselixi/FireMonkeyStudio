@@ -501,10 +501,7 @@ bool Plugin_Base::codeEditor_removeForManger(QObject *obj)
 //获取自动完成实例
 InterFace_CompletionTip *Plugin_Base::suggest_getCompletionInstance()
 {
-    if(Suggest_getCompletionInstancePtr){
-        return Suggest_getCompletionInstancePtr();
-    }
-    return nullptr;
+    return Suggest_getCompletionInstancePtr;
 }
 
 //QWidget *Plugin_Base::widget_getSubWidgetPtr(QWidget *parentWidget, QString subObjctName)

@@ -9,6 +9,7 @@
 #include "SwSystem/System_History.h"
 #include "SwSystem/System_SystemSetting.h"
 #include "SwSystem/System_UtilFun.h"
+#include "Window/Form_CompletionTip.h"
 
 #include "QCoreApplication"
 
@@ -118,6 +119,9 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
 
     //初始化主题操作接口
     this->themeChanged_init_building(); //设置主题设置获取接口
+
+    //初始化建议补全
+    this->suggest_init_building();  //设置建议补全
 }
 
 
@@ -338,6 +342,18 @@ void Plugin_Manger::themeChanged_init_building()
         if(this->List_plg[a].plgPth != nullptr){
             this->List_plg[a].plgPth->Theme_get = t_getPtr;
             this->List_plg[a].plgPth->Theme_set = t_setPtr;
+        }
+    }
+}
+
+
+//建议与补全绑定
+void Plugin_Manger::suggest_init_building()
+{
+    for(int a = 0;a < List_plg.length();a++){
+        if(this->List_plg[a].plgPth != nullptr){
+            Form_CompletionTip::getInstance();
+            this->List_plg[a].plgPth->Suggest_getCompletionInstancePtr = (InterFace_CompletionTip*)(Form_CompletionTip::getInstance());
         }
     }
 }

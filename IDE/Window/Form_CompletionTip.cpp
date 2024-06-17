@@ -3,17 +3,31 @@
 #include "../Widget/Widget_Button_CompletionItem.h"
 #include "QFocusEvent"
 
+Form_CompletionTip* completionTipInstance = nullptr;
+
 Form_CompletionTip::Form_CompletionTip(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form_CompletionTip)
 {
     ui->setupUi(this);
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::WindowStaysOnTopHint);
+
+    //设置无边框和总在最上面
+    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
 }
 
 Form_CompletionTip::~Form_CompletionTip()
 {
     delete ui;
+}
+
+//获取单例实例
+Form_CompletionTip *Form_CompletionTip::getInstance()
+{
+    if(completionTipInstance == nullptr){
+        completionTipInstance = new Form_CompletionTip();
+    }
+    return completionTipInstance;
 }
 
 void Form_CompletionTip::addTip(
@@ -80,6 +94,12 @@ void Form_CompletionTip::showMenu(QPoint point, TipSelectFunction tipFun)
     ui->listWidget->setCurrentRow(0);
     this->show();
     this->setFocus();
+}
+
+//隐藏菜单
+void Form_CompletionTip::hidden()
+{
+    this->hide();
 }
 
 

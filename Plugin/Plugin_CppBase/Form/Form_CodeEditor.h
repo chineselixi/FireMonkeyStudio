@@ -8,7 +8,7 @@
 #include "../util/LspClient.h"
 
 #define UPDATETIME 2000
-
+#define COMPLETION 500
 
 namespace Ui {
 class Form_CodeEditor;
@@ -25,14 +25,23 @@ private:
 
     QVector<int> debugsSign; //调试标记
     QString nowOpenFilePath; //当前打开的文件路径
-    QTimer saveTimer;
+    QTimer saveTimer;    //保存定时器
+    QTimer completionTimer;     //自动补全定时器
 
     //标记线索引
     int signLineIndex_squiggle = -1; //波浪线
     int signLineIndex_straight = -1; //直线
 
+    //是否为第一次设置文本(避免检查弹窗)
+    bool isFirstText = true;
+
     //自身指针索引
     //static QList<Form_CodeEditor*> formList;
+
+    //编辑框光标位置
+    int cursorLine = 0;     //所在行
+    int cursorIndex = 0;    //所在行索引
+    QPoint cursorPos;       //所在的坐标
 
 public:
     explicit Form_CodeEditor(Plugin_Base* plg,QWidget *parent = nullptr);
@@ -107,7 +116,8 @@ public slots:
     void onCompletion(QList<LspClient::CompletionNode> completionNodes);
 
     //定时器事件
-    void event_timer_textChanged(); //定时器文件被改变
+    void event_timer_autoSave(); //自动保存定时器事件
+    void event_timer_completion();  //自动补全完成定时器事件
 
 
 signals:

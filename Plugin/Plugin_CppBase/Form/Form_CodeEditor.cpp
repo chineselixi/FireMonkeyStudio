@@ -17,8 +17,11 @@ Form_CodeEditor::Form_CodeEditor(Plugin_Base* plg,QWidget *parent) :
 
     this->intiCodeEditor(); //初始化代码编辑器
 
-    //绑定Timer
-    connect(&saveTimer,&QTimer::timeout,this,&Form_CodeEditor::event_timer_textChanged);
+    //绑定自动保存Timer
+    connect(&saveTimer,&QTimer::timeout,this,&Form_CodeEditor::event_timer_autoSave);
+
+    //绑定智能提示Timer
+    connect(&completionTimer,&QTimer::timeout,this,&Form_CodeEditor::event_timer_completion);
 
     //绑定LSP服务器自动完成信息
     connect(LspClient::getLspClientInstance(),&LspClient::onCompletion,this,&Form_CodeEditor::onCompletion);
@@ -27,11 +30,14 @@ Form_CodeEditor::Form_CodeEditor(Plugin_Base* plg,QWidget *parent) :
 Form_CodeEditor::~Form_CodeEditor()
 {
     //保存信息
-    this->event_timer_textChanged();
+    this->event_timer_autoSave();
     delete ui;
 
     //移除LSP
     LspClient::getLspClientInstance()->didClose(this->nowOpenFilePath); //关闭文件
+
+    //隐藏提示
+    cppPlgPtr->suggest_getCompletionInstance()->hidden();
 }
 
 
@@ -252,7 +258,7 @@ bool Form_CodeEditor::loadForFile(QString fileName)
 void Form_CodeEditor::setText(QString str)
 {
     ui->sciEditor->setText(str);
-
+    this->isFirstText = true;
 }
 
 //添加代码
@@ -370,15 +376,32 @@ QList<Form_CodeEditor *> Form_CodeEditor::getForms()
 //事件：文本发生改变
 void Form_CodeEditor::event_textChanged()
 {
+    //通知LSP服务器改变文本
+    LspClient::getLspClientInstance()->didChange(this->getSavePath(),this->getText());
+
     //三秒自动保存
     this->saveTimer.stop();
     this->saveTimer.start(UPDATETIME);
+
+    //通知补全提示功能
+    if(!this->isFirstText){
+        this->completionTimer.stop();
+        this->completionTimer.start(COMPLETION);
+    }
+    this->isFirstText = false;
+
+
 }
 
 //事件：光标位置发生改变
 void Form_CodeEditor::event_cursorPositionChanged(int line, int index)
 {
-
+    this->cursorLine = line;
+    this->cursorIndex = index;
+    int position = ui->sciEditor->positionFromLineIndex(line,index);
+    int x = ui->sciEditor->SendScintilla(QsciScintillaBase::SCI_POINTXFROMPOSITION, 0, position);
+    int y = ui->sciEditor->SendScintilla(QsciScintillaBase::SCI_POINTYFROMPOSITION, 0, position);
+    this->cursorPos = this->mapToGlobal(QPoint(x,y + ui->sciEditor->textHeight(line)));
 }
 
 //事件：上下文菜单被请求
@@ -406,23 +429,64 @@ void Form_CodeEditor::event_zoomChanged()
 //LSP补全事件激发
 void Form_CodeEditor::onCompletion(QList<LspClient::CompletionNode> completionNodes)
 {
+    if(completionNodes.length() == 0){
+        cppPlgPtr->suggest_getCompletionInstance()->hidden();
+        return;
+    }
+    cppPlgPtr->suggest_getCompletionInstance()->clearAll();
+
+    for(LspClient::CompletionNode item : completionNodes){
+
+        //添加提示内容
+        cppPlgPtr->suggest_getCompletionInstance()->addTip(
+            item.kind,                       //提示类型
+            item.filterText,             //过滤文本
+            item.insertText,             //插入文本
+            item.insertTextFormat,           //插入类型
+            item.label,                  //提示的文本
+            item.score,                   //排序值，越大越前面
+            item.sortText,               //排序文本
+            item.newText,                //要替换的文本
+            item.startLine,         //开始行
+            item.startCharacter,    //开始文本列
+            item.endLine,           //结束行
+            item.endCharacter       //结束文本列
+            );
+    }
+
+    cppPlgPtr->suggest_getCompletionInstance()->showMenu(
+        this->cursorPos,
+        [=](uint16_t startLine,uint16_t startCharacter,uint16_t endLine,uint16_t endCharacter, QString newText){
+            qDebug() << "newText" << newText;
+        });
+
+    //让编辑器再次获取到焦点
+    ui->sciEditor->activateWindow();
+    ui->sciEditor->setFocus();
 
 }
 
 
-//定时器文件被改变
-void Form_CodeEditor::event_timer_textChanged()
+//自动保存定时器事件
+void Form_CodeEditor::event_timer_autoSave()
 {
     this->saveTimer.stop();
     System_File::writeFile(this->getSavePath(),ui->sciEditor->text().toUtf8());
     this->onTimeOut(); //激发外部定时器消息
 }
 
+//自动补全完成定时器事件
+void Form_CodeEditor::event_timer_completion()
+{
+    this->completionTimer.stop();
+    LspClient::getLspClientInstance()->completion(this->nowOpenFilePath,this->cursorLine,this->cursorIndex);    //发送提示补全消息
+}
+
 
 //保存文件
 void Form_CodeEditor::onSave()
 {
-    this->event_timer_textChanged();
+    this->event_timer_autoSave();
 }
 
 

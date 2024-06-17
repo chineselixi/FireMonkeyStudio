@@ -89,6 +89,8 @@ public:
 
     void themeChanged_init_building(); //主题操作绑定
 
+    void suggest_init_building(); //建议与补全绑定
+
     void codeEditorManger_init_building(
                                     PluginGlobalMsg::funStr_void CodeEditor_save,     //保存指定路径代码编辑器内的代码
                                     PluginGlobalMsg::fun_void CodeEditor_saveAll,     //保存全部已打开代码

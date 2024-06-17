@@ -28,6 +28,8 @@ public:
         if (Form_CompletionTip->objectName().isEmpty())
             Form_CompletionTip->setObjectName("Form_CompletionTip");
         Form_CompletionTip->resize(200, 400);
+        Form_CompletionTip->setMinimumSize(QSize(200, 0));
+        Form_CompletionTip->setMaximumSize(QSize(400, 16777215));
         verticalLayout = new QVBoxLayout(Form_CompletionTip);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName("verticalLayout");

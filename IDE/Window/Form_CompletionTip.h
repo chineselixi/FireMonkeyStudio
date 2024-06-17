@@ -38,9 +38,14 @@ private:
     TipSelectFunction selectItemFun = nullptr;
 
 
-public:
+private:
     explicit Form_CompletionTip(QWidget *parent = nullptr);
     ~Form_CompletionTip();
+
+public:
+
+    //获取单例实例
+    static Form_CompletionTip* getInstance();
 
     //添加一个提示消息
     void addTip(
@@ -56,13 +61,16 @@ public:
         uint16_t startCharacter = 0,    //开始文本列
         uint16_t endLine = 0,           //结束行
         uint16_t endCharacter = 0       //结束文本列
-    );
+    ) override;
 
     //关闭所有提示
     void clearAll() override;
 
     //显示菜单（左上角位置）
     void showMenu(QPoint point, TipSelectFunction tipFun) override;
+
+    //隐藏菜单
+    virtual void hidden() override;
 
     //调整菜单尺寸和位置
     void adjustWindowRec() override;

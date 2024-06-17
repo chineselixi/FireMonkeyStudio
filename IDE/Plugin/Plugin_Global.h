@@ -6,7 +6,8 @@
 #include "QDockWidget"
 #include "QToolBar"
 #include "functional"
-#include "../InterFace/InterFace_CompletionTip.h"
+//#include "../InterFace/InterFace_CompletionTip.h"
+
 
 namespace PluginGlobalMsg{
 
@@ -218,7 +219,7 @@ typedef std::function<QWidget*()> widgetFun_getWidget; //获取QWidget
 typedef std::function<bool(QObject* plg)> codeEditorFun;    //添加或删除代码编辑器对象
 
 //建议(自动完成与悬浮提示)
-typedef std::function<InterFace_CompletionTip*()> suggest_getCompletionFun;
+//typedef std::function<InterFace_CompletionTip*()> suggest_getCompletionFun;
 
 }
 
