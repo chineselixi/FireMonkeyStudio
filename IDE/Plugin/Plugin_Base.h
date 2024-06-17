@@ -142,6 +142,9 @@ private:
     PluginGlobalMsg::codeEditorFun CodeEditor_addToMangerPtr = nullptr;    //将代码编辑器添加到管理器
     PluginGlobalMsg::codeEditorFun CodeEditor_removeForMangerPtr = nullptr;    //将代码编辑器从管理器移除
 
+    //自动完成提示
+    PluginGlobalMsg::suggest_getCompletionFun Suggest_getCompletionInstancePtr = nullptr;
+
 public:
     //初始化信息，由IDE侧载，可复写
     virtual libMsg getBaseMsg(){return self_BaseMsg;}; //获取基础的类信息
@@ -230,6 +233,9 @@ public: //插件的基础方法
     void codeEditor_saveAll();                          //保存全部代码
     bool codeEditor_addToManger(QObject* obj);          //添加到编辑器管理器当中，注意，若对象销毁，则自动删除
     bool codeEditor_removeForManger(QObject* obj);      //从编辑器管理器删除
+
+    //自动完成与悬停提示
+    InterFace_CompletionTip* suggest_getCompletionInstance();  //获取自动完成实例
 
 public: //(可阻拦事件)事件触发，返回true则继续触发其他插件的同类型时间，返回false则阻止触发其他插件
     virtual bool event_onModLoadFinish(){return true;};//当模块加载完毕，将第一时间激发此插件，禁止在获取实例处获得

@@ -86,6 +86,7 @@ SOURCES += \
     module/mod_settingsFormBase.cpp
 
 HEADERS += \
+    InterFace/InterFace_CompletionTip.h \
     Plugin/Plugin_Base.h \
     Plugin/Plugin_CodeEditorInterface.h \
     Plugin/Plugin_Global.h \

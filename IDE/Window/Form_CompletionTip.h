@@ -4,12 +4,13 @@
 #include <QWidget>
 #include "QListWidgetItem"
 #include "../Widget/Widget_Button_CompletionItem.h"
+#include "../InterFace/InterFace_CompletionTip.h"
 
 namespace Ui {
 class Form_CompletionTip;
 }
 
-class Form_CompletionTip : public QWidget
+class Form_CompletionTip : public QWidget,InterFace_CompletionTip
 {
     Q_OBJECT
 
@@ -31,15 +32,6 @@ private:
         Widget_Button_CompletionItem* widget;     //列表项目自定义控件
         QListWidgetItem* item;      //列表项目
     };
-
-
-    typedef std::function<void(
-                uint16_t startLine,         //替换的开始行
-                uint16_t startCharacter,    //替换的开始列
-                uint16_t endLine,           //替换的结束行
-                uint16_t endCharacter,      //替换的结束列
-                QString newText)>
-        TipSelectFunction;
 
     QList<TipNode> TipNodeList;     //通知列表
     QPoint showPoint;   //显示的位置
@@ -67,22 +59,22 @@ public:
     );
 
     //关闭所有提示
-    void clearAll();
+    void clearAll() override;
 
     //显示菜单（左上角位置）
-    void showMenu(QPoint point, TipSelectFunction tipFun);
+    void showMenu(QPoint point, TipSelectFunction tipFun) override;
 
     //调整菜单尺寸和位置
-    void adjustWindowRec();
+    void adjustWindowRec() override;
 
     //选择选项
-    void selectItem(TipSelectFunction tipFun);
+    void selectItem(TipSelectFunction tipFun) override;
 
     //选择上一个
-    void up();
+    void up() override;
 
     //选择下一个
-    void down();
+    void down() override;
 
 
 protected:

@@ -498,6 +498,15 @@ bool Plugin_Base::codeEditor_removeForManger(QObject *obj)
     return false;
 }
 
+//获取自动完成实例
+InterFace_CompletionTip *Plugin_Base::suggest_getCompletionInstance()
+{
+    if(Suggest_getCompletionInstancePtr){
+        return Suggest_getCompletionInstancePtr();
+    }
+    return nullptr;
+}
+
 //QWidget *Plugin_Base::widget_getSubWidgetPtr(QWidget *parentWidget, QString subObjctName)
 //{
 //    return System_Widget::getSubWidgetPtr(parentWidget,subObjctName);
