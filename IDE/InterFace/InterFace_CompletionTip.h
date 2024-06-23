@@ -39,7 +39,7 @@ public:
     virtual void adjustWindowRec() = 0;
 
     //选择选项
-    virtual void selectItem(TipSelectFunction tipFun) = 0;
+    virtual void selectItem(TipSelectFunction tipFun = nullptr) = 0;
 
     //选择上一个
     virtual void up() = 0;

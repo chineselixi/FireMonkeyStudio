@@ -19,4 +19,7 @@
         <file>resources/icon/folder.png</file>
         <file>resources/icon/subtract.png</file>
     </qresource>
+    <qresource prefix="/setting">
+        <file>resources/setting/clangd.png</file>
+    </qresource>
 </RCC>

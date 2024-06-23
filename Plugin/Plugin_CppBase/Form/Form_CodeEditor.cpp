@@ -3,14 +3,17 @@
 #include "QFile"
 #include "../../../IDE/SwSystem/System_UtilFun.h"
 #include "../../QScintilla/src/Qsci/qscilexercpp.h"
+//#include "../../../QScintilla/src/Qsci/qscilexercustom.h"
+#include "../QScintilla/src/Qsci/qsciapis.h"
 #include "../../../IDE/SwSystem/System_UtilFun.h"
+
 
 //#include "../Plugin_CppBase.h"
 
 Form_CodeEditor::Form_CodeEditor(Plugin_Base* plg,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form_CodeEditor),
-    cppPlgPtr(plg)
+    pluginPtr(plg)
 {
     ui->setupUi(this);
     //formList.append(this); //保存自身
@@ -37,13 +40,16 @@ Form_CodeEditor::~Form_CodeEditor()
     LspClient::getLspClientInstance()->didClose(this->nowOpenFilePath); //关闭文件
 
     //隐藏提示
-    cppPlgPtr->suggest_getCompletionInstance()->hidden();
+    pluginPtr->suggest_getCompletionInstance()->hidden();
 }
 
 
 //初始化代码编辑器
 void Form_CodeEditor::intiCodeEditor()
 {
+    //设置插件指针
+    ui->sciEditor->setPluginPtr(this->pluginPtr);
+
     //事件链接
     connect(ui->sciEditor, SIGNAL(customContextMenuRequested(const QPoint&)),this,SLOT(event_customContextMenuRequested(const QPoint&)));//弹出上下文菜单
     connect(ui->sciEditor, SIGNAL(textChanged()),this, SLOT(event_textChanged()));//文本改变
@@ -84,10 +90,6 @@ void Form_CodeEditor::intiCodeEditor()
 
     //    this->setFont(font1);
 
-    ui->sciEditor->setAutoCompletionSource(QsciScintilla::AcsAll);   //设置源，自动补全所有地方出现的
-    ui->sciEditor->setAutoCompletionCaseSensitivity(true);   //设置自动补全大小写敏感
-    ui->sciEditor->setAutoCompletionThreshold(1);    //设置每输入2个字符就会出现自动补全的提示
-
     //设置自动缩进
     ui->sciEditor->setAutoIndent(true);
 
@@ -113,9 +115,9 @@ void Form_CodeEditor::intiCodeEditor()
     //自动填充
     //Acs[None|All|Document|APIs]
     //禁用自动补全提示功能|所有可用的资源|当前文档中出现的名称都自动补全提示|使用QsciAPIs类加入的名称都自动补全提示
-    ui->sciEditor->setAutoCompletionSource(QsciScintilla::AcsAll);//自动补全。对于所有Ascii字符
-    //editor->setAutoCompletionCaseSensitivity(false);//大小写敏感度，设置lexer可能会更改，不过貌似没啥效果
-    ui->sciEditor->setAutoCompletionThreshold(1);//设置每输入一个字符就会出现自动补全的提示
+    //ui->sciEditor->setAutoCompletionSource(QsciScintilla::AcsAPIs);//自动补全。对于所有Ascii字符
+    //ui->sciEditor->setAutoCompletionCaseSensitivity(true);//大小写敏感度，设置lexer可能会更改，不过貌似没啥效果
+    //ui->sciEditor->setAutoCompletionThreshold(1);//设置每输入一个字符就会出现自动补全的提示
 
 
 
@@ -201,9 +203,28 @@ void Form_CodeEditor::setCodeEditorThemeColor(
     QFontMetrics fontmetrics(font);
     ui->sciEditor->setMarginWidth(0, fontmetrics.horizontalAdvance("0000"));
 
-    //高亮解析器
+    //设置词法分析器高亮解析器词法分析器
     QsciLexer *textLexer = new QsciLexerCPP;
     textLexer->setFont(font);
+
+
+    //测试自动补全
+//    QsciAPIs* apis = new QsciAPIs(textLexer);
+//    QStringList tips = {
+//                            "test_autocompletion",
+//                            "add(int arg_1, float arg_2) Add two integers together",
+//                            "subtract(int arg_1, test arg_2)",
+//                            "subtract(float arg_1, float arg_2)",
+//                            "subtract(test arg_1, test arg_2)",
+//                            "divide(float div_1, float div_2)",
+//                            "some_func(arg_3)"
+//    };
+//    for(QString item : tips){
+//        apis->add(item);
+//    }
+//    apis->prepare();
+
+
 
     textLexer->setColor(Normal);
     textLexer->setPaper(Paper);         //文本背景颜色
@@ -224,7 +245,7 @@ void Form_CodeEditor::setCodeEditorThemeColor(
     textLexer->setColor(PreProcessor,QsciLexerCPP::PreProcessor); //预处理器颜色
     textLexer->setColor(VerbatimString,QsciLexerCPP::VerbatimString); //未闭合的字符串
     textLexer->setColor(Regex,QsciLexerCPP::Regex); //正则表达式
-    ui->sciEditor->setLexer(textLexer);//给QsciScintilla设置词法分析器
+    ui->sciEditor->setLexer(textLexer);//给QsciScintilla设置词法分析器高亮解析器词法分析器
 
     ui->sciEditor->setCaretForegroundColor(CaretForeground);  //光标颜色
     ui->sciEditor->setCaretLineBackgroundColor(CaretLineBackground);//光标所在行背景颜色
@@ -384,13 +405,11 @@ void Form_CodeEditor::event_textChanged()
     this->saveTimer.start(UPDATETIME);
 
     //通知补全提示功能
+    this->completionTimer.stop();
     if(!this->isFirstText){
-        this->completionTimer.stop();
         this->completionTimer.start(COMPLETION);
     }
     this->isFirstText = false;
-
-
 }
 
 //事件：光标位置发生改变
@@ -422,6 +441,7 @@ void Form_CodeEditor::event_marginClicked(int margin, int line, Qt::KeyboardModi
 //事件：缩放被改变
 void Form_CodeEditor::event_zoomChanged()
 {
+    pluginPtr->suggest_getCompletionInstance()->hidden();
     //qDebug() << ui->sciEditor->SendScintilla(QsciScintillaBase::SCI_GETZOOM); //获取缩放级别
 }
 
@@ -430,15 +450,14 @@ void Form_CodeEditor::event_zoomChanged()
 void Form_CodeEditor::onCompletion(QList<LspClient::CompletionNode> completionNodes)
 {
     if(completionNodes.length() == 0){
-        cppPlgPtr->suggest_getCompletionInstance()->hidden();
+        pluginPtr->suggest_getCompletionInstance()->hidden();
         return;
     }
-    cppPlgPtr->suggest_getCompletionInstance()->clearAll();
+    pluginPtr->suggest_getCompletionInstance()->clearAll();
 
+    //加入菜单
     for(LspClient::CompletionNode item : completionNodes){
-
-        //添加提示内容
-        cppPlgPtr->suggest_getCompletionInstance()->addTip(
+        pluginPtr->suggest_getCompletionInstance()->addTip(
             item.kind,                       //提示类型
             item.filterText,             //过滤文本
             item.insertText,             //插入文本
@@ -451,19 +470,23 @@ void Form_CodeEditor::onCompletion(QList<LspClient::CompletionNode> completionNo
             item.startCharacter,    //开始文本列
             item.endLine,           //结束行
             item.endCharacter       //结束文本列
-            );
+        );
     }
 
-    cppPlgPtr->suggest_getCompletionInstance()->showMenu(
+    //显示菜单
+    pluginPtr->suggest_getCompletionInstance()->showMenu(
         this->cursorPos,
         [=](uint16_t startLine,uint16_t startCharacter,uint16_t endLine,uint16_t endCharacter, QString newText){
-            qDebug() << "newText" << newText;
+            ui->sciEditor->setSelection(startLine,startCharacter,endLine,endCharacter);
+            ui->sciEditor->replaceSelectedText(newText);
+            this->isFirstText = true;
         });
 
     //让编辑器再次获取到焦点
+    this->activateWindow();
+    this->setFocus();
     ui->sciEditor->activateWindow();
     ui->sciEditor->setFocus();
-
 }
 
 
@@ -599,4 +622,8 @@ void Form_CodeEditor::event_onFilePathChanged(QString newFilePath)
 {
     this->nowOpenFilePath = newFilePath;
 }
+
+//失去焦点
+
+
 

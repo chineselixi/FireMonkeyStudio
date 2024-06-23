@@ -23,7 +23,7 @@
 
 #include <QObject>
 
-#include <Qsci/qsciglobal.h>
+#include "qsciglobal.h"
 #include <Qsci/qscilexercpp.h>
 
 

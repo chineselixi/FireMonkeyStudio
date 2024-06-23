@@ -56,6 +56,7 @@ SOURCES += \
     Widget/Widget_Button_CompletionItem.cpp \
     Window/Form_About.cpp \
     Window/Form_Begin.cpp \
+    Window/Form_CompletionTip.cpp \
     Window/Form_Content.cpp \
     Window/Form_Editor.cpp \
     Window/Form_Index.cpp \
@@ -73,7 +74,7 @@ SOURCES += \
     Window/Form_WorkSpace.cpp \
     Window/Form_TipManger.cpp \
     Window/Form_Start.cpp \
-    Window/Form_CompletionTip.cpp \
+#    Window/Form_CompletionTip.cpp \
     Window/settingWindow/Form_settings_Basic.cpp \
     Window/settingWindow/Form_settings_Color.cpp \
     Window/settingWindow/Form_settings_DataBase.cpp \
@@ -109,6 +110,7 @@ HEADERS += \
     Widget/Widget_Button_CompletionItem.h \
     Window/Form_About.h \
     Window/Form_Begin.h \
+    Window/Form_CompletionTip.h \
     Window/Form_Content.h \
     Window/Form_Editor.h \
     Window/Form_Index.h \
@@ -126,7 +128,7 @@ HEADERS += \
     Window/Form_WorkSpace.h \
     Window/Form_TipManger.h \
     Window/Form_Start.h \
-    Window/Form_CompletionTip.h \
+#    Window/Form_CompletionTip.h \
     Window/settingWindow/Form_settings_Basic.h \
     Window/settingWindow/Form_settings_Color.h \
     Window/settingWindow/Form_settings_DataBase.h \
@@ -151,6 +153,7 @@ FORMS += \
     Widget/Widget_Button_CompletionItem.ui \
     Window/Form_About.ui \
     Window/Form_Beginui.ui \
+    Window/Form_CompletionTip.ui \
     Window/Form_Content.ui \
     Window/Form_Editor.ui \
     Window/Form_Index.ui \
@@ -168,7 +171,7 @@ FORMS += \
     Window/Form_WorkSpace.ui \
     Window/Form_TipManger.ui \
     Window/Form_Start.ui \
-    Window/Form_CompletionTip.ui \
+#    Window/Form_CompletionTip.ui \
     Window/settingWindow/Form_settings_Basic.ui \
     Window/settingWindow/Form_settings_Color.ui \
     Window/settingWindow/Form_settings_DataBase.ui \

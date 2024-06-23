@@ -24,7 +24,7 @@
 #include <QObject>
 #include <QChar>
 
-#include <Qsci/qsciglobal.h>
+#include "qsciglobal.h"
 #include <Qsci/qscilexer.h>
 
 

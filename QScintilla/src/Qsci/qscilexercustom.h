@@ -21,7 +21,7 @@
 #ifndef QSCILEXERCUSTOM_H
 #define QSCILEXERCUSTOM_H
 
-#include <Qsci/qsciglobal.h>
+#include "qsciglobal.h"
 #include <Qsci/qscilexer.h>
 
 

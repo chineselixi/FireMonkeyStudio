@@ -13,7 +13,7 @@ Form_CompletionTip::Form_CompletionTip(QWidget *parent) :
     this->setWindowFlags(Qt::WindowStaysOnTopHint);
 
     //设置无边框和总在最上面
-    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Popup);
 }
 
 Form_CompletionTip::~Form_CompletionTip()
@@ -124,7 +124,10 @@ void Form_CompletionTip::adjustWindowRec()
 //选择选项
 void Form_CompletionTip::selectItem(TipSelectFunction tipFun)
 {
-    this->selectItemFun = tipFun;
+    if(tipFun){
+        this->selectItemFun = tipFun;
+    }
+    this->on_listWidget_itemClicked(ui->listWidget->currentItem()); //激活这个事件
 }
 
 //选择上一个
@@ -145,6 +148,7 @@ void Form_CompletionTip::hideEvent(QHideEvent *event)
 {
     this->selectItemFun = nullptr;
 }
+
 
 
 //item被点击

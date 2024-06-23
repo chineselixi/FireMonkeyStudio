@@ -76,7 +76,7 @@ public:
     void adjustWindowRec() override;
 
     //选择选项
-    void selectItem(TipSelectFunction tipFun) override;
+    void selectItem(TipSelectFunction tipFun = nullptr) override;
 
     //选择上一个
     void up() override;

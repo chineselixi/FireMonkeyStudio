@@ -21,7 +21,7 @@ class Form_CodeEditor : public QWidget,public Plugin_CodeEditorInterface
 private:
     Ui::Form_CodeEditor *ui;
 
-    Plugin_Base* cppPlgPtr = nullptr; //cpp插件指针
+    Plugin_Base* pluginPtr = nullptr; //cpp插件指针
 
     QVector<int> debugsSign; //调试标记
     QString nowOpenFilePath; //当前打开的文件路径
@@ -134,6 +134,9 @@ public:
 
 private:
     void event_onFilePathChanged(QString newFilePath) override;         //文件被保存事件
+
+
+
 
 };
 

@@ -25,7 +25,7 @@
 
 #include <QList>
 
-#include <Qsci/qsciglobal.h>
+#include "qsciglobal.h"
 #include <Qsci/qscicommand.h>
 
 

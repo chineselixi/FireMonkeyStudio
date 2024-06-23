@@ -25,7 +25,7 @@
 #include <QObject>
 #include <QString>
 
-#include <Qsci/qsciglobal.h>
+#include "qsciglobal.h"
 
 
 class QsciScintilla;

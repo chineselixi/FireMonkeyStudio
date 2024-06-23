@@ -70,7 +70,7 @@ public:
     {
         if (Form_settings_Git->objectName().isEmpty())
             Form_settings_Git->setObjectName("Form_settings_Git");
-        Form_settings_Git->resize(800, 723);
+        Form_settings_Git->resize(800, 560);
         verticalLayout_4 = new QVBoxLayout(Form_settings_Git);
         verticalLayout_4->setSpacing(20);
         verticalLayout_4->setObjectName("verticalLayout_4");

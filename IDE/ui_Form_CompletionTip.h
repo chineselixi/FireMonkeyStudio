@@ -29,7 +29,10 @@ public:
             Form_CompletionTip->setObjectName("Form_CompletionTip");
         Form_CompletionTip->resize(200, 400);
         Form_CompletionTip->setMinimumSize(QSize(200, 0));
-        Form_CompletionTip->setMaximumSize(QSize(400, 16777215));
+        Form_CompletionTip->setMaximumSize(QSize(600, 16777215));
+        Form_CompletionTip->setStyleSheet(QString::fromUtf8("#Form_CompletionTip{\n"
+"    border: 2px solid;\n"
+"}"));
         verticalLayout = new QVBoxLayout(Form_CompletionTip);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName("verticalLayout");

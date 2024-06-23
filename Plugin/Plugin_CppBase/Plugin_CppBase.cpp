@@ -12,7 +12,10 @@
 //#include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "Form/Form_CodeEditor.h"
 #include "Form/Form_Attributee.h"
+
 #include "Form/settingForm/Form_settings_Compile.h"
+#include "Form/settingForm/Form_settings_Clangd.h"
+
 #include "util/GccUtil.h"
 #include "QCoreApplication"
 #include "../../IDE/SwSystem/System_UtilFun.h" //获取系统工具类
@@ -281,12 +284,18 @@ void Plugin_CppBase::event_onLoadSettingsWidget(settingMsgList &msgList)
 {
     //设置创建设置信息
     settingWidgetMsg setWidgetMsg;
+
+    //加载GCC设置信息
     setWidgetMsg.ico_32px = QPixmap(":/WidgetIcon/icon/WidgetIcon/setting/comple.png");
     setWidgetMsg.title = QObject::tr("GCC生成");
     setWidgetMsg.settingWidget = new Form_settings_Compile(this,nullptr); //创建设置窗口，传递本对象
+    msgList.append(setWidgetMsg);//加载设置到列表
 
-    //加载设置到列表
-    msgList.append(setWidgetMsg);
+    //设置Clangd设置信息
+    setWidgetMsg.ico_32px = QPixmap(":/setting/resources/setting/clangd.png");
+    setWidgetMsg.title = QObject::tr("Clangd");
+    setWidgetMsg.settingWidget = new Form_settings_Clangd(this,nullptr); //创建设置窗口，传递本对象
+    msgList.append(setWidgetMsg);//加载设置到列表
 
     return;
 }
