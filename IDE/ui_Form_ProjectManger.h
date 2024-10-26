@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_ProjectManger.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -85,25 +85,25 @@ public:
         action_AddFolder->setObjectName("action_AddFolder");
         action_AddFolder->setEnabled(false);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/ProjectView/icon/Theme/Blue/Image/ProJectView/ToolBar/NewSolutionFolder_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/ProjectView/icon/Theme/Blue/Image/ProJectView/ToolBar/NewSolutionFolder_16x.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         action_AddFolder->setIcon(icon);
         action_AddForm = new QAction(Form_ProjectManger);
         action_AddForm->setObjectName("action_AddForm");
         action_AddForm->setEnabled(false);
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/ProjectView/icon/Theme/Blue/Image/ProJectView/ToolBar/AddForm_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8(":/ProjectView/icon/Theme/Blue/Image/ProJectView/ToolBar/AddForm_16x.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         action_AddForm->setIcon(icon1);
         action_AddNewFile = new QAction(Form_ProjectManger);
         action_AddNewFile->setObjectName("action_AddNewFile");
         action_AddNewFile->setEnabled(false);
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/ProjectView/icon/Theme/Blue/Image/ProJectView/ToolBar/AddNamespace_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QString::fromUtf8(":/ProjectView/icon/Theme/Blue/Image/ProJectView/ToolBar/AddNamespace_16x.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         action_AddNewFile->setIcon(icon2);
         action_AddHasFile = new QAction(Form_ProjectManger);
         action_AddHasFile->setObjectName("action_AddHasFile");
         action_AddHasFile->setEnabled(false);
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/ProjectView/icon/Theme/Blue/Image/ProJectView/ToolBar/AddClass_16x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QString::fromUtf8(":/ProjectView/icon/Theme/Blue/Image/ProJectView/ToolBar/AddClass_16x.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         action_AddHasFile->setIcon(icon3);
         verticalLayout = new QVBoxLayout(Form_ProjectManger);
         verticalLayout->setSpacing(0);

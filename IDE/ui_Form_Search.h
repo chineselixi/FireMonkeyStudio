@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_Search.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -92,7 +92,7 @@ public:
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
         cbFind = new QComboBox(widget);
         cbFind->setObjectName("cbFind");
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(cbFind->sizePolicy().hasHeightForWidth());
@@ -140,7 +140,7 @@ public:
 
         gridLayout_2->addWidget(chkRegular, 2, 0, 1, 1);
 
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         gridLayout_2->addItem(verticalSpacer_4, 3, 0, 1, 1);
 
@@ -195,7 +195,7 @@ public:
 
         verticalLayout_2->addWidget(widget_2);
 
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         verticalLayout_2->addItem(verticalSpacer_3);
 
@@ -218,7 +218,7 @@ public:
 
         verticalLayout->addWidget(btnReplace);
 
-        verticalSpacer_2 = new QSpacerItem(20, 15, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        verticalSpacer_2 = new QSpacerItem(20, 15, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
 
         verticalLayout->addItem(verticalSpacer_2);
 
@@ -227,7 +227,7 @@ public:
 
         verticalLayout->addWidget(btnClose);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
 

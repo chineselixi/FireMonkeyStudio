@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Widget_Button_HistoryItem.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -36,7 +36,7 @@ public:
         Widget_Button_HistoryItem->resize(220, 50);
         Widget_Button_HistoryItem->setMinimumSize(QSize(0, 50));
         Widget_Button_HistoryItem->setMaximumSize(QSize(16777215, 50));
-        Widget_Button_HistoryItem->setCursor(QCursor(Qt::PointingHandCursor));
+        Widget_Button_HistoryItem->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         horizontalLayout = new QHBoxLayout(Widget_Button_HistoryItem);
         horizontalLayout->setSpacing(5);
         horizontalLayout->setObjectName("horizontalLayout");

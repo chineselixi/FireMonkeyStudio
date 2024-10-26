@@ -28,8 +28,10 @@ web.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD�
 #widgets.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 formStyle.files = $$PWD/RunConfig/formStyle           # 要复制的文件或目录
 formStyle.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+plg.files = $$PWD/RunConfig/plg           # 要复制的文件或目录
+plg.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 
-COPIES += config proModel web widgets formStyle # 配置COPIES
+COPIES += config proModel web widgets formStyle plg # 配置COPIES
 
 
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_VisualFolder.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -149,7 +149,7 @@ public:
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName("verticalLayout_3");
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         verticalLayout_3->addItem(verticalSpacer);
 
@@ -157,7 +157,7 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_2);
 
@@ -169,7 +169,7 @@ public:
 
         horizontalLayout_4->addWidget(label_img);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer);
 
@@ -191,7 +191,7 @@ public:
 
         verticalLayout_3->addLayout(verticalLayout_2);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         verticalLayout_3->addItem(verticalSpacer_2);
 
@@ -201,13 +201,13 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_5);
 
-        verticalSpacer_3 = new QSpacerItem(20, 9, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_3 = new QSpacerItem(20, 9, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         verticalLayout_4->addItem(verticalSpacer_3);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName("horizontalLayout_6");
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_3);
 
@@ -223,7 +223,7 @@ public:
 
         horizontalLayout_6->addWidget(pushButton_close);
 
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_4);
 

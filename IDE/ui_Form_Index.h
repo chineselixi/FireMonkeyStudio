@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_Index.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -30,7 +30,7 @@ public:
         Form_Index->setMinimumSize(QSize(890, 500));
         Form_Index->setMaximumSize(QSize(890, 500));
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/WidgetIcon/icon/WidgetIcon/logo/Logo_128.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/WidgetIcon/icon/WidgetIcon/logo/Logo_128.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         Form_Index->setWindowIcon(icon);
         Form_Index->setStyleSheet(QString::fromUtf8(""));
         label = new QLabel(Form_Index);

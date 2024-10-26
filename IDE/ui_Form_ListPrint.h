@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_ListPrint.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -43,7 +43,7 @@ public:
         gridLayout->setContentsMargins(0, 0, 0, 0);
         treeWidget = new QTreeWidget(Form_ListPrint);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/CompileTip/icon/compileTip/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/CompileTip/icon/compileTip/ok.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
         __qtreewidgetitem->setIcon(0, icon);
         treeWidget->setObjectName("treeWidget");

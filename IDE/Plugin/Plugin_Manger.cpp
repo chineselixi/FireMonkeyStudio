@@ -55,6 +55,7 @@ void Plugin_Manger::findPlugin(QString path, QVector<QString>& retFiles,QString 
 void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
 {
     QVector<QString> t_pathList;
+    QString t_errLoadStr; //加载错误的插件
     this->findPlugin(dirPath,t_pathList,plgSuffix); //扫描plg插件
 
     for(int a=0;a<t_pathList.length();a++){
@@ -74,10 +75,22 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
                     goto ADDMSG;
                 }
             }
+
+
+            t_errLoadStr.append(t_lib->errorString() + "\n");
             delete t_lib;
         }
     ADDMSG:
         this->List_plg.append(t_plgMsg); //添加实例插件
+    }
+
+    //提示没有被加载成功插件
+    if(!t_errLoadStr.isEmpty()){
+        QMessageBox* t_messagebox = new QMessageBox(QMessageBox::Warning,QObject::tr("插件加载失败"),QObject::tr("加载插件出现错误，以下是具体错误信息：") + "\n" + t_errLoadStr);
+        t_messagebox->setModal(false);//设置为非模态
+        t_messagebox->setAttribute(Qt::WA_DeleteOnClose); //关掉消息框后删除指针
+        t_messagebox->setWindowFlags(Qt::WindowStaysOnTopHint);
+        t_messagebox->show();
     }
 
 

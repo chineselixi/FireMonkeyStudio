@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Widget_HistoryList.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -60,14 +60,14 @@ public:
 
         horizontalLayout_clear->addWidget(label_tip);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_clear->addItem(horizontalSpacer_2);
 
         pushButton_clear = new QPushButton(Widget_HistoryList);
         pushButton_clear->setObjectName("pushButton_clear");
         pushButton_clear->setFont(font);
-        pushButton_clear->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_clear->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_clear->setFlat(true);
 
         horizontalLayout_clear->addWidget(pushButton_clear);

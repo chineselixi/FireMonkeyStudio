@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_settings_Qt.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -100,7 +100,7 @@ public:
 
         horizontalLayout->addWidget(pushButton);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
 
@@ -129,7 +129,7 @@ public:
 
         horizontalLayout_2->addWidget(checkBox);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
 
@@ -150,7 +150,7 @@ public:
 
         horizontalLayout_3->addWidget(label_4);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
@@ -171,7 +171,7 @@ public:
 
         horizontalLayout_4->addWidget(checkBox_2);
 
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_4);
 
@@ -189,7 +189,7 @@ public:
         gridLayout_2->setObjectName("gridLayout_2");
         treeWidget = new QTreeWidget(groupBox_2);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/CompileTip/icon/compileTip/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/CompileTip/icon/compileTip/ok.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
         __qtreewidgetitem->setIcon(0, icon);
         treeWidget->setObjectName("treeWidget");
@@ -206,7 +206,7 @@ public:
 
         verticalLayout_2->addWidget(groupBox_2);
 
-        verticalSpacer = new QSpacerItem(20, 111, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 111, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         verticalLayout_2->addItem(verticalSpacer);
 

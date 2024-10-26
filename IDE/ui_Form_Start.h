@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_Start.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.0
+** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -203,7 +203,7 @@ public:
 
         pushButton_new = new QPushButton(widget);
         pushButton_new->setObjectName("pushButton_new");
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(pushButton_new->sizePolicy().hasHeightForWidth());
@@ -216,7 +216,7 @@ public:
         font4.setStrikeOut(false);
         font4.setKerning(true);
         pushButton_new->setFont(font4);
-        pushButton_new->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_new->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_new->setFocusPolicy(Qt::StrongFocus);
         pushButton_new->setLayoutDirection(Qt::LeftToRight);
         pushButton_new->setInputMethodHints(Qt::ImhNone);
@@ -224,7 +224,7 @@ public:
 
         gridLayout->addWidget(pushButton_new, 1, 0, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(153, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(153, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         gridLayout->addItem(horizontalSpacer, 1, 1, 2, 1);
 
@@ -236,7 +236,7 @@ public:
         font5.setPointSize(12);
         font5.setKerning(true);
         pushButton_open->setFont(font5);
-        pushButton_open->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_open->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_open->setLayoutDirection(Qt::LeftToRight);
         pushButton_open->setFlat(true);
 
@@ -247,7 +247,7 @@ public:
         sizePolicy.setHeightForWidth(pushButton_store->sizePolicy().hasHeightForWidth());
         pushButton_store->setSizePolicy(sizePolicy);
         pushButton_store->setFont(font5);
-        pushButton_store->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_store->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_store->setLayoutDirection(Qt::LeftToRight);
         pushButton_store->setFlat(true);
 
@@ -258,13 +258,13 @@ public:
         sizePolicy.setHeightForWidth(pushButton_set->sizePolicy().hasHeightForWidth());
         pushButton_set->setSizePolicy(sizePolicy);
         pushButton_set->setFont(font5);
-        pushButton_set->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_set->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_set->setLayoutDirection(Qt::LeftToRight);
         pushButton_set->setFlat(true);
 
         gridLayout->addWidget(pushButton_set, 4, 0, 1, 1);
 
-        verticalSpacer = new QSpacerItem(20, 61, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 61, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         gridLayout->addItem(verticalSpacer, 5, 0, 1, 1);
 
