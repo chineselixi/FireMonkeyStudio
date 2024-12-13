@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>184</width>
-    <height>49</height>
+    <width>186</width>
+    <height>61</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,7 +50,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/WidgetIcon/icon/WidgetIcon/newCreate/open1.png</pixmap>
+      <pixmap resource="../icons.qrc">:/WidgetIcon/icon/WidgetIcon/newCreate/open1.png</pixmap>
      </property>
     </widget>
    </item>
@@ -75,7 +75,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -91,7 +91,7 @@
       <widget class="QLabel" name="label_tip">
        <property name="font">
         <font>
-         <pointsize>9</pointsize>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="text">
@@ -108,6 +108,61 @@
        </property>
        <property name="textInteractionFlags">
         <set>Qt::LinksAccessibleByMouse</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="tipItem_pgBar">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>4</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>4</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>6</pointsize>
+        </font>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#tipItem_pgBar{background-color:#C8C8C8;color:white;}#tipItem_pgBar::chunk{background-color:#2688ff;}
+</string>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="invertedAppearance">
+        <bool>false</bool>
+       </property>
+       <property name="textDirection">
+        <enum>QProgressBar::TopToBottom</enum>
+       </property>
+       <property name="format">
+        <string/>
        </property>
       </widget>
      </item>
@@ -131,6 +186,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

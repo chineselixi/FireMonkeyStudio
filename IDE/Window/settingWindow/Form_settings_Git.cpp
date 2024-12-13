@@ -31,7 +31,7 @@ void Form_settings_Git::Init()
 
     //初始化Path
     ui->lineEdit_gitPath->setText(Setting::git_path);//读取GitPath路径信息
-    ui->lineEdit_master->setText(Setting::git_branch);//读取branch
+//    ui->lineEdit_master->setText(Setting::git_branch);//读取branch
 
     //将变量信息添加到界面
     ui->checkBox_track->setChecked(Setting::git_track); //自动跟踪
@@ -68,8 +68,8 @@ void Form_settings_Git::Event_use()
     Setting::git_path = ui->lineEdit_gitPath->text();
     Setting::sys_setting->changeSetting("Git","path",ui->lineEdit_gitPath->text()); //保存gitPth
 
-    Setting::git_branch = ui->lineEdit_master->text();
-    Setting::sys_setting->changeSetting("Git","branch",ui->lineEdit_master->text()); //保存分支
+//    Setting::git_branch = ui->lineEdit_master->text();
+//    Setting::sys_setting->changeSetting("Git","branch",ui->lineEdit_master->text()); //保存分支
 
     Setting::git_track = (ui->checkBox_track->checkState() == 2); //git自动跟踪
     Setting::sys_setting->changeSetting("Git","track",Setting::git_track); //保存track
@@ -89,7 +89,7 @@ void Form_settings_Git::Event_use()
     t_process.waitForFinished();
     t_process.start(Setting::git_path,{"config","--global","user.password",ui->lineEdit_psw->text()}); //保存密码
     t_process.waitForFinished();
-    t_process.start(Setting::git_path,{"config","--global","init.defaultbranch",ui->lineEdit_master->text()}); //保存分支信息
+//    t_process.start(Setting::git_path,{"config","--global","init.defaultbranch",ui->lineEdit_master->text()}); //保存分支信息
     t_process.waitForFinished();
 }
 
@@ -156,7 +156,7 @@ void Form_settings_Git::on_btn_test_clicked()
                 ui->lineEdit_userName->setText(Str::getSubStr(t_normalPut,"user.name=","\n"));//读取用户名
                 ui->lineEdit_email->setText(Str::getSubStr(t_normalPut,"user.email=","\n"));//读取邮箱
                 ui->lineEdit_psw->setText(Str::getSubStr(t_normalPut,"user.password=","\n"));//读取密码
-                ui->lineEdit_master->setText(Str::getSubStr(t_normalPut,"init.defaultbranch=","\n"));//读取分支
+//                ui->lineEdit_master->setText(Str::getSubStr(t_normalPut,"init.defaultbranch=","\n"));//读取分支
             }
         }
     }

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_settings_Git.ui'
 **
-** Created by: Qt User Interface Compiler version 6.7.2
+** Created by: Qt User Interface Compiler version 6.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -61,9 +61,6 @@ public:
     QCheckBox *checkBox_outMsg;
     QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout_3;
-    QLabel *label_3;
-    QLineEdit *lineEdit_master;
-    QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *Form_settings_Git)
@@ -246,22 +243,6 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        label_3 = new QLabel(groupBox_2);
-        label_3->setObjectName("label_3");
-        label_3->setMinimumSize(QSize(100, 0));
-        label_3->setMaximumSize(QSize(100, 16777215));
-
-        horizontalLayout_3->addWidget(label_3);
-
-        lineEdit_master = new QLineEdit(groupBox_2);
-        lineEdit_master->setObjectName("lineEdit_master");
-
-        horizontalLayout_3->addWidget(lineEdit_master);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer_2);
-
 
         verticalLayout_2->addLayout(horizontalLayout_3);
 
@@ -297,8 +278,6 @@ public:
         checkBox_track->setText(QCoreApplication::translate("Form_settings_Git", "\350\207\252\345\212\250\350\267\237\350\270\252\346\211\200\346\234\211\347\232\204\346\226\207\344\273\266", nullptr));
         checkBox_pushAddDate->setText(QCoreApplication::translate("Form_settings_Git", "\346\217\220\344\272\244\346\227\266\346\267\273\345\212\240\346\217\220\344\272\244\346\227\245\346\234\237", nullptr));
         checkBox_outMsg->setText(QCoreApplication::translate("Form_settings_Git", "\350\276\223\345\207\272\346\217\220\344\272\244\344\277\241\346\201\257", nullptr));
-        label_3->setText(QCoreApplication::translate("Form_settings_Git", "\351\273\230\350\256\244\346\217\220\344\272\244\345\210\206\346\224\257\357\274\232", nullptr));
-        lineEdit_master->setText(QCoreApplication::translate("Form_settings_Git", "master", nullptr));
     } // retranslateUi
 
 };

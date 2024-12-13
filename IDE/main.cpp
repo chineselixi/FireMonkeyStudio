@@ -32,7 +32,8 @@ void loadSettings(); //加载设置信息
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //a.setFont(QFont("Consolas"));
+    QApplication::setAttribute(Qt::AA_Use96Dpi);
+    //a.setFont(QFont("Microsoft HaHei UI"));
 
     //load setting information
     //加载设置信息

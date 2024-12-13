@@ -440,7 +440,8 @@ void Plugin_Manger::workSpace_init_tipsManger(PluginGlobalMsg::tipFun_postStr ti
                                               PluginGlobalMsg::tipFun_setTipType tipsFun_setType,
                                               PluginGlobalMsg::tipFun_setTipPixmap tipsFun_setPix,
                                               PluginGlobalMsg::tipFun_setTipCanClose tipsFun_setCanClose,
-                                              PluginGlobalMsg::tipFun_setTipShowTime tipsFun_changeShowTime)
+                                              PluginGlobalMsg::tipFun_setTipShowTime tipsFun_changeShowTime,
+                                              PluginGlobalMsg::tipFun_setProgressIndex tipFun_setProgressIndex)
 {
     for(int a = 0;a < List_plg.length();a++){
         if(this->List_plg[a].plgPth != nullptr){
@@ -453,6 +454,7 @@ void Plugin_Manger::workSpace_init_tipsManger(PluginGlobalMsg::tipFun_postStr ti
             this->List_plg[a].plgPth->tipsFun_setType = tipsFun_setType;
             this->List_plg[a].plgPth->tipsFun_setPix = tipsFun_setPix;
             this->List_plg[a].plgPth->tipsFun_setCanClose = tipsFun_setCanClose;
+            this->List_plg[a].plgPth->tipsFun_setProgressIndex = tipFun_setProgressIndex;
             this->List_plg[a].plgPth->tipsFun_changeShowTime = tipsFun_changeShowTime;
         }
     }

@@ -28,9 +28,13 @@ public:
 public:
     void setTipTitle(QString title);           //设置提示标题
     void setTipText(QString title);            //设置提示文本
-    void setTipType(PluginGlobalMsg::TipType type);                 //设置提示类型
+    void setTipType(PluginGlobalMsg::TipType type);              //设置提示类型
     void setTipPixmap(QPixmap pixmap, bool save = true);         //设置提示图片
-    void setTipCanClose(bool canClose);        //设置提示能够关闭
+    void setTipCanClose(bool canClose);     //设置提示能够关闭
+    void setProgressIndex(short index);     //设置进度条进度，-1为不显示
+    bool progressIsShow();  //进度条是否显示
+    int getProgressIndex(); //获取进度
+
 
 private slots:
     void on_btn_close_clicked();    //关闭控件

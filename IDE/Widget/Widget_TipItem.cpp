@@ -52,6 +52,8 @@ void Widget_TipItem::setTipText(QString text)
 //设置提示类型
 void Widget_TipItem::setTipType(PluginGlobalMsg::TipType type)
 {
+    ui->tipItem_pgBar->setStyleSheet("#tipItem_pgBar{background-color:#C8C8C8;color:white;}#tipItem_pgBar::chunk{background-color:#2688ff;}");
+
     switch(type){
     case PluginGlobalMsg::TipType::Custom:{}                 //自定义信息
     default:{
@@ -68,6 +70,7 @@ void Widget_TipItem::setTipType(PluginGlobalMsg::TipType type)
     }
     case PluginGlobalMsg::TipType::Error:{                   //错误通知
         this->setTipPixmap(QPixmap(":/TipManger/icon/TipManger/error.png"),false);
+        ui->tipItem_pgBar->setStyleSheet("#tipItem_pgBar{background-color:#C8C8C8;color:white;}#tipItem_pgBar::chunk{background-color:red;}");
         break;
     }
     case PluginGlobalMsg::TipType::None:{                    //无图标通知
@@ -98,9 +101,31 @@ void Widget_TipItem::setTipCanClose(bool canClose)
 }
 
 
+//设置进度条进度，-1为不显示
+void Widget_TipItem::setProgressIndex(short index)
+{
+    ui->tipItem_pgBar->setHidden(index < 0);
+    ui->tipItem_pgBar->setValue(index);
+}
+
+//进度条是否显示
+bool Widget_TipItem::progressIsShow()
+{
+    return !ui->tipItem_pgBar->isHidden();
+}
+
+//获取进度
+int Widget_TipItem::getProgressIndex()
+{
+    return ui->tipItem_pgBar->value();
+}
+
+
 //关闭控件
 void Widget_TipItem::on_btn_close_clicked()
 {
-    this->retFun(thisId);
+    if(this->retFun != nullptr){
+        this->retFun(thisId);
+    }
 }
 

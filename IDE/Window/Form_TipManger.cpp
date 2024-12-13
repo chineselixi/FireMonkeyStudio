@@ -15,7 +15,7 @@ Form_TipManger::~Form_TipManger()
 }
 
 //添加一个提示消息
-uint16_t Form_TipManger::addTip(QString title, QString tip, qint64 showTime, TipType type, QPixmap pixmap, bool canClose)
+uint16_t Form_TipManger::addTip(QString title, QString tip, qint64 showTime, int progressIndex, TipType type, QPixmap pixmap, bool canClose)
 {
     std::function<void(uint16_t id)> t_fun = [=](uint16_t id){
         this->closeTip(id);
@@ -27,14 +27,21 @@ uint16_t Form_TipManger::addTip(QString title, QString tip, qint64 showTime, Tip
     t_node->widget = new Widget_TipItem(t_node->id,title, tip,type,pixmap,canClose,t_fun);
     t_node->item->setSizeHint(QSize(184,49));        //设置每一个项目的高度
     t_node->closeTime = QDateTime::currentMSecsSinceEpoch() + showTime;
-    connect(&t_node->timer,&QTimer::timeout,[t_node,this](){
-        qint64 t_d = t_node->closeTime - QDateTime::currentMSecsSinceEpoch();
-        if(t_d > 0){    //还剩时间，则再次等待
-            t_node->timer.start(t_d + 10);
+    t_node->widget->setProgressIndex(progressIndex);
+
+    connect(&t_node->timer,&QTimer::timeout,[t_node,showTime,this](){
+        if(t_node->widget->progressIsShow() && t_node->widget->getProgressIndex() != 100){  //进度条在显示，并且进度不为100的时候继续显示，并且更新时间
+            t_node->closeTime = QDateTime::currentMSecsSinceEpoch() + showTime;
         }
-        else{   //等待完毕，结束这个通知
-            t_node->timer.stop();
-            this->closeTip(t_node->id);
+        else{
+            qint64 t_d = t_node->closeTime - QDateTime::currentMSecsSinceEpoch();
+            if(t_d > 0){    //还剩时间，则再次等待
+                t_node->timer.start(t_d + 10);
+            }
+            else{   //等待完毕，结束这个通知
+                t_node->timer.stop();
+                this->closeTip(t_node->id);
+            }
         }
     });
 
@@ -168,6 +175,17 @@ void Form_TipManger::setTipCanClose(uint16_t id, bool canClose)
     for(i = TipNodeList.begin(); i != TipNodeList.end(); i++){
         if((*i)->id == id){
             (*i)->widget->setTipCanClose(canClose);
+            return;
+        }
+    }
+}
+
+void Form_TipManger::setTipProgressIndex(uint16_t id, short progressIndex)
+{
+    std::list<TipNode*>::iterator i;
+    for(i = TipNodeList.begin(); i != TipNodeList.end(); i++){
+        if((*i)->id == id){
+            (*i)->widget->setProgressIndex(progressIndex);
             return;
         }
     }

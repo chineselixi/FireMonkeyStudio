@@ -42,6 +42,9 @@ private:
     bool needClearMarginSign = false; //是否需要清理边界标记
     bool needClearTextSign = false;   //是否需要清理文本标记
 
+    uint16_t compileTipIndex = 0;   //编译的提示标记
+    uint16_t runTipIndex = 0;       //运行提示标记
+
 public:
     Plugin_CppBase();
 

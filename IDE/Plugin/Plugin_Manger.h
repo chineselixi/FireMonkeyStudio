@@ -120,7 +120,8 @@ public:
                                    PluginGlobalMsg::tipFun_setTipType tipsFun_setType, //设置提示类型
                                    PluginGlobalMsg::tipFun_setTipPixmap tipsFun_setPix, //设置提示图片
                                    PluginGlobalMsg::tipFun_setTipCanClose tipsFun_setCanClose, //设置提示能够关闭
-                                   PluginGlobalMsg::tipFun_setTipShowTime  tipsFun_changeShowTime //设置提示时间
+                                   PluginGlobalMsg::tipFun_setTipShowTime  tipsFun_changeShowTime, //设置提示时间
+                                   PluginGlobalMsg::tipFun_setProgressIndex tipFun_setProgressIndex //设置提示进度
                                    ); //初始化通知管理器
 
     void workSpace_init_statusOperate(PluginGlobalMsg::statusbarFun_setProgressIndex statusFun_changedProgressIndex, //设置状态栏进度条进度

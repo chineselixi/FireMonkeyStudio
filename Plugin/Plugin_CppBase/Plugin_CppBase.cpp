@@ -670,7 +670,9 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
 
 
         //运行成功
-        this->tip_addTip(tr("通知"),tr("编译成功"),2000,PluginGlobalMsg::TipType::Normal);
+        this->tip_setTipType(this->compileTipIndex,PluginGlobalMsg::TipType::Normal);
+        this->tip_setProgressIndex(this->compileTipIndex,100);  //设置错误进度
+        this->tip_setTipText(this->compileTipIndex,tr("编译成功"));
 
         //运行之前运行
         if(t_settingMsg.s61_useRunBefore) this->runCommand(attrAdjust(t_settingMsg.s61_runBeforeEditor,t_settingMsg,t_attr,proPath,t_exeFile));
@@ -746,7 +748,10 @@ void Plugin_CppBase::event_run(QString proPath, QVector<QString> compileFiles)
         //运行错误运行
         if(t_settingMsg.s61_useRunError) this->runCommand(attrAdjust(t_settingMsg.s61_runErrorEditor,t_settingMsg,t_attr,proPath,t_exeFile));
     }
-    this->tip_addTip(tr("停止"),tr("运行失败"),5000,PluginGlobalMsg::TipType::Error);
+
+    this->tip_setTipType(this->runTipIndex,PluginGlobalMsg::TipType::Error);
+    this->tip_setProgressIndex(this->runTipIndex,100);  //设置错误进度
+    this->tip_setTipText(this->runTipIndex,tr("运行失败"));
     this->print_printList("",QObject::tr("运行失败"),t_proName,"",0,0,0,PluginGlobalMsg::printIcoType::error,QColor("red"));
 }
 
@@ -831,15 +836,24 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
     QElapsedTimer t_runTime;
     t_runTime.restart();
 
+    //更新提示索引
+    this->tip_closeTip(this->compileTipIndex);
+    this->compileTipIndex = this->tip_addTip("编译",tr("开始编译"),0,5000,PluginGlobalMsg::TipType::Normal);
+
+
     //判断输入参数是否合法
     if(compileFiles.length() == 0){
         this->print_printList("",QObject::tr("需要编译的文件为空，不存在编译信息"),t_proName,"",0,0,0,PluginGlobalMsg::printIcoType::error,QColor("red"));
-        this->tip_addTip(tr("失败"),tr("需要编译的文件为空，不存在编译信息"),5000,PluginGlobalMsg::TipType::Error);
+        this->tip_setTipType(this->compileTipIndex,PluginGlobalMsg::TipType::Error);
+        this->tip_setProgressIndex(this->compileTipIndex,100);  //设置错误进度
+        this->tip_setTipText(this->compileTipIndex,tr("需要编译的文件为空，不存在编译信息"));
         return "";
     }
     if(!QDir(proPath).exists()){
         this->print_printList("",QObject::tr("工程不存在"),t_proName,proPath,0,0,0,PluginGlobalMsg::printIcoType::error,QColor("red"));
-        this->tip_addTip(tr("失败"),tr("工程不存在"),5000,PluginGlobalMsg::TipType::Error);
+        this->tip_setTipType(this->compileTipIndex,PluginGlobalMsg::TipType::Error);
+        this->tip_setProgressIndex(this->compileTipIndex,100);  //设置错误进度
+        this->tip_setTipText(this->compileTipIndex,tr("需要编译的文件为空，不存在编译信息"));
         return "";
     }
 
@@ -1121,6 +1135,10 @@ QString Plugin_CppBase::event_compile(QString proPath, QVector<QString> compileF
         this->print_printTextSpace(QColor("blue"),QObject::tr("开始链接："));
         this->print_printTextSpace(QColor("#1a9b34"),t_settingMsg.s4_compileMsg.fp_gpp + " " + t_parameterList.join(" "));
 
+        this->tip_setTipType(this->compileTipIndex,PluginGlobalMsg::TipType::Normal);
+        this->tip_setProgressIndex(this->compileTipIndex,80);
+        this->tip_setTipText(this->compileTipIndex,tr("开始链接"));
+
         t_process.start(t_settingMsg.s4_compileMsg.fp_gpp,t_parameterList); //开始编译
         t_process.waitForReadyRead(); //等待输出
         QString t_normalPut = QString().fromLocal8Bit(t_process.readAllStandardOutput()); //读取控制台信息
@@ -1167,7 +1185,8 @@ void Plugin_CppBase::event_runStarted()
     this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::compile,false); //允许编译
     this->menu_setWorkSpaceActionEnable(PluginGlobalMsg::toolBarAction::staticCompile,false); //允许静态编译
 
-    this->tip_addTip("开始运行","程序开始运行",2000,PluginGlobalMsg::TipType::Normal); //提示消息
+    this->tip_closeTip(this->runTipIndex);
+    this->runTipIndex = this->tip_addTip("开始运行","程序开始运行",0,5000,PluginGlobalMsg::TipType::Normal); //提示消息
 }
 
 //程序运行完毕
@@ -1182,6 +1201,16 @@ void Plugin_CppBase::event_runFinished(int exitCode, QProcess::ExitStatus exitSt
     QString t_proName = this->projectManger_getProjectInfo(this->runProPath).proName; //获取工程名称
     this->print_printList("",QObject::tr("执行完成，程序已退出！"),t_proName,"",0,0,0,PluginGlobalMsg::printIcoType::ok);
     this->print_printTextSpaceLine(QColor(),QObject::tr("执行完成，程序已退出！退出代码:") + QString::number(exitCode));
+
+
+    if(exitCode != 0){
+        this->tip_setTipType(this->runTipIndex,PluginGlobalMsg::TipType::Error);
+        this->tip_setProgressIndex(this->runTipIndex,100);
+        this->tip_setTipText(this->runTipIndex,tr("程序异常退出"));
+    }
+    else{
+        this->tip_closeTip(this->runTipIndex);
+    }
 }
 
 //程序开始运行

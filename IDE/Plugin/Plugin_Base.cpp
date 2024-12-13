@@ -321,9 +321,9 @@ void Plugin_Base::tip_postTipStr(QString str,int showTime)
 }
 //add notification to notification manager 
 //添加通知到通知管理器中
-uint16_t Plugin_Base::tip_addTip(QString title, QString tip, qint64 showTime, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose)
+uint16_t Plugin_Base::tip_addTip(QString title, QString tip, short progressIndex, qint64 showTime, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose)
 {
-    if(tipsFun_addTip) return tipsFun_addTip(title, tip, type, pixmap, canClose, showTime);
+    if(tipsFun_addTip) return tipsFun_addTip(title, tip, type, pixmap, canClose, progressIndex, showTime);
     return 0;
 }
 //close a notification according to id ,if notification is not exsiting,return false 
@@ -370,6 +370,12 @@ void Plugin_Base::tip_setTipPixmap(uint16_t index, QPixmap pixmap)
 void Plugin_Base::tip_setCanClose(uint16_t index, bool canClose)
 {
     if(tipsFun_setCanClose) tipsFun_setCanClose(index,canClose);
+}
+//set tip index
+//设置提示进度
+void Plugin_Base::tip_setProgressIndex(uint16_t index, short progressIndex)
+{
+    if(tipsFun_setProgressIndex) tipsFun_setProgressIndex(index,progressIndex);
 }
 //set tip time 
 //设置提示时间

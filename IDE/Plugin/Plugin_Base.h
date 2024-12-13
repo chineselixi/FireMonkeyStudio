@@ -120,6 +120,7 @@ private:
     PluginGlobalMsg::tipFun_setTipType tipsFun_setType = nullptr; //设置提示类型
     PluginGlobalMsg::tipFun_setTipPixmap tipsFun_setPix = nullptr; //设置提示图片
     PluginGlobalMsg::tipFun_setTipCanClose tipsFun_setCanClose = nullptr; //设置提示能够关闭
+    PluginGlobalMsg::tipFun_setProgressIndex tipsFun_setProgressIndex = nullptr; //设置提示进度
     PluginGlobalMsg::tipFun_setTipShowTime  tipsFun_changeShowTime = nullptr; //设置提示时间
 
     //状态栏输出通知，和状态栏按钮操作
@@ -202,7 +203,7 @@ public: //插件的基础方法
 
     //提示消息
     void tip_postTipStr(QString str,int showTime); //投递字符串到状态栏
-    uint16_t tip_addTip(QString title = "", QString tip = "", qint64 showTime = 5000,  PluginGlobalMsg::TipType type = PluginGlobalMsg::TipType::None, QPixmap pixmap = QPixmap(), bool canClose = true); //添加通知到通知管理器中
+    uint16_t tip_addTip(QString title = "", QString tip = "", short progressIndex = -1, qint64 showTime = 5000,  PluginGlobalMsg::TipType type = PluginGlobalMsg::TipType::None, QPixmap pixmap = QPixmap(), bool canClose = true); //添加通知到通知管理器中
     bool tip_closeTip(uint16_t id); // 根据ID关闭一个停止，通知不存在则返回false
     bool tip_hasTip(uint16_t index); //判断是否存在这个通知
     void tip_setTipTitle(uint16_t index, QString title);//设置提示标题
@@ -210,6 +211,7 @@ public: //插件的基础方法
     void tip_setTipType(uint16_t index, PluginGlobalMsg::TipType type); //设置提示类型
     void tip_setTipPixmap(uint16_t index, QPixmap pixmap); //设置提示图片
     void tip_setCanClose(uint16_t index, bool canClose); //设置提示能够关闭
+    void tip_setProgressIndex(uint16_t index, short progressIndex); //设置提示进度
     void tip_setTipShowTime(uint16_t index, qint64 newShowTime); //设置提示时间
 
     //状态栏输出通知，和状态栏按钮操作

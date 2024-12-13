@@ -19,7 +19,7 @@ class Form_TipManger : public QWidget
         Widget_TipItem* widget;     //列表项目自定义控件
         QListWidgetItem* item;      //列表项目
         QTimer timer;               //定时器
-        qint64 closeTime = 0;     //关闭的时间戳
+        qint64 closeTime = 0;       //关闭的时间戳
     };
 
     std::list<TipNode*> TipNodeList;     //通知列表
@@ -31,7 +31,7 @@ public:
     explicit Form_TipManger(QWidget *parent = nullptr);
     ~Form_TipManger();
 
-    uint16_t addTip(QString title = "", QString tip = "", qint64 showTime = 5000, TipType type = TipType::None, QPixmap pixmap = QPixmap(), bool canClose = true);       //添加一个提示消息
+    uint16_t addTip(QString title = "", QString tip = "", qint64 showTime = 5000, int progressIndex = -1,TipType type = TipType::None, QPixmap pixmap = QPixmap(), bool canClose = true);       //添加一个提示消息，如果进度为-1，则不显示进度，进度到达100后才使用超时时间
     bool closeTip(uint16_t id);                             //关闭一个提示
     void closeAll();                                        //关闭所有提示
     bool hasTip(uint16_t id);                               //是否还存在此提示
@@ -43,6 +43,7 @@ public:
     void setTipType(uint16_t id, PluginGlobalMsg::TipType type);                 //设置提示类型
     void setTipPixmap(uint16_t id, QPixmap pixmap);         //设置提示图片
     void setTipCanClose(uint16_t id, bool canClose);        //设置提示能够关闭
+    void setTipProgressIndex(uint16_t id, short progressIndex);      //设置提示进度
     void setTipShowTime(uint16_t id, qint64 showTime);      //设置提示时间
 
 

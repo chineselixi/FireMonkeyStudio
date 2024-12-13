@@ -69,18 +69,24 @@ Form_WorkSpace::Form_WorkSpace(QWidget *parent) :
 
 
     //展示出基本通知消息
-    Manger::workspace_tipManger->addTip(tr("欢迎"),tr("欢迎使用FMS"),10000,Form_TipManger::TipType::Normal);
+    Manger::workspace_tipManger->addTip(tr("欢迎"),tr("欢迎使用FMS"),10000,-1,Form_TipManger::TipType::Normal);
+
+
+    //添加状态栏显示按钮
     //Manger::workspace_tipManger->addTip(tr("插件"),tr("发现部分插件API缺省"),500000,Form_TipManger::TipType::Warning);
     widget_statusbar->setBtn5(tr("插件"),QIcon(),"",[=](QString sign){
         this->on_action_pluginManger_triggered(); //打开插件管理器
     });
+    widget_statusbar->setBtn6(tr("git"),QIcon(),"",[=](QString sign){
+        this->on_action_pluginManger_triggered(); //打开插件管理器
+    });
 
+
+    //状态栏提示
     ui->statusbar->showMessage(tr("欢迎使用FMS"),30000);
 
+    //状态栏进度隐藏
     widget_statusbar->setProgress(-1); //隐藏进度
-
-
-
 }
 
 Form_WorkSpace::~Form_WorkSpace()
@@ -168,8 +174,8 @@ void Form_WorkSpace::init()
         [=](QString str,int showTime){  //投递字符串到状态栏
             this->ui->statusbar->showMessage(str,showTime);
         },
-        [=](QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, qint64 showTime)->uint16_t{ //添加通知到通知管理器中
-            return Manger::workspace_tipManger->addTip(title,tip,showTime,type,pixmap,canClose);
+        [=](QString title, QString tip, PluginGlobalMsg::TipType type, QPixmap pixmap, bool canClose, int progressIndex, qint64 showTime)->uint16_t{ //添加通知到通知管理器中
+            return Manger::workspace_tipManger->addTip(title,tip,showTime,progressIndex,type,pixmap,canClose);
         },
         [=](uint16_t id)->bool{ //根据id关闭这个通知
             return Manger::workspace_tipManger->closeTip(id);
@@ -194,6 +200,9 @@ void Form_WorkSpace::init()
         },
         [=](uint16_t id, qint64 newShowTime){    //设置提示时间
             Manger::workspace_tipManger->setTipShowTime(id,newShowTime);
+        },
+        [=](uint16_t id, short progressIndex){    //设置提示进度
+            Manger::workspace_tipManger->setTipProgressIndex(id,progressIndex);
         });
 
 

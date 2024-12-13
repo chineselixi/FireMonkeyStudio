@@ -555,7 +555,7 @@ void Form_New::on_pushButton_createProject_clicked()
 
     //保存历史记录
     //保存工程历史
-    HistoryList::sys_proHistory->addMsg(ui->lineEdit_projectName->text(),t_newPath + "/ico.png",t_proPath,QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm"));
+    HistoryList::sys_proHistory->addMsg(ui->lineEdit_projectName->text(),t_newPath + "/ico.png",t_newPath,QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm"));
     HistoryList::sys_proHistory->clearRepeat(); //清理重复数据
     HistoryList::sys_proHistory->saveHisList(); //保存历史记录
     //保存模板历史
