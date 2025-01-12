@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Form_Start.ui'
 **
-** Created by: Qt User Interface Compiler version 6.7.2
+** Created by: Qt User Interface Compiler version 6.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -366,7 +366,7 @@ public:
     void retranslateUi(QWidget *Form_Start)
     {
         Form_Start->setWindowTitle(QCoreApplication::translate("Form_Start", "Form", nullptr));
-        label_title1->setText(QCoreApplication::translate("Form_Start", "FireMonkey Studio 2024 Dev", nullptr));
+        label_title1->setText(QCoreApplication::translate("Form_Start", "FireMonkey Studio 2025 Dev", nullptr));
         label_title2->setText(QCoreApplication::translate("Form_Start", "\350\267\250\345\271\263\345\217\260\351\233\206\346\210\220\345\274\200\345\217\221\347\216\257\345\242\203", nullptr));
         label_start->setText(QCoreApplication::translate("Form_Start", "\345\274\200\345\247\213", nullptr));
         pushButton_new->setText(QCoreApplication::translate("Form_Start", "\346\226\260\345\273\272\345\267\245\347\250\213", nullptr));

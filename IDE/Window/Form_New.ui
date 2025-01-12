@@ -146,7 +146,7 @@ QPushButton:!enabled{
             </font>
            </property>
            <property name="text">
-            <string>FireMonkey Studio 2024</string>
+            <string>FireMonkey Studio 2025</string>
            </property>
           </widget>
          </item>
