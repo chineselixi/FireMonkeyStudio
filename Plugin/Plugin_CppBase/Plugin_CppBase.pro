@@ -13,7 +13,13 @@ CONFIG += c++17
 DESTDIR = $$OUT_PWD/../../release/plg/Plugin_CppBase/
 TARGET = Plugin_CppBase
 
-message($$OUT_PWD)
+
+INCLUDEPATH += \
+    $$PWD/
+
+
+message(test1 $$OUT_PWD)
+message(test2 $$PWD)
 
 SOURCES += \
     Form/Form_Attribute.cpp \

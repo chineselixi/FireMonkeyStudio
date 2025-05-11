@@ -10,11 +10,17 @@ TEMPLATE = app
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 #输出的文件路径
-DESTDIR = $$OUT_PWD/../release
+DESTDIR = $${OUT_PWD}/build/output
+
 #输出的文件名
 TARGET = FMS
 
-#子项目
+#引用自身目录
+INCLUDEPATH += \
+    $$PWD/
+
+
+message(outDESTDIR2 $${OUTPUTPATH})
 
 
 #复制文件到构建的目标目录.
@@ -30,6 +36,10 @@ formStyle.files = $$PWD/RunConfig/formStyle           # 要复制的文件或目
 formStyle.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 plg.files = $$PWD/RunConfig/plg           # 要复制的文件或目录
 plg.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+
+runConfig.files = $$PWD/RunConfig/
+runConfig.path = $${DESTDIR}
+
 
 COPIES += config proModel web widgets formStyle plg # 配置COPIES
 
@@ -194,9 +204,9 @@ icons.qrc \
 
 
 #load qsciscintilla
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release/ -lqscintilla
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/ -lqscintilla
-else:unix: LIBS += -L$$OUT_PWD/../release/ -lqscintilla
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release/ -lqscintilla
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/ -lqscintilla
+#else:unix: LIBS += -L$$OUT_PWD/../release/ -lqscintilla
 
 
 #using android files

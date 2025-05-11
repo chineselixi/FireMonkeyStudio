@@ -19,7 +19,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "../Widget/Widget_HistoryList.h"
+#include "Widget/Widget_HistoryList.h"
 
 QT_BEGIN_NAMESPACE
 

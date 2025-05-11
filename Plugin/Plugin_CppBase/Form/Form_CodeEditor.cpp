@@ -4,7 +4,7 @@
 #include "../../../IDE/SwSystem/System_UtilFun.h"
 #include "../../QScintilla/src/Qsci/qscilexercpp.h"
 //#include "../../../QScintilla/src/Qsci/qscilexercustom.h"
-#include "../QScintilla/src/Qsci/qsciapis.h"
+#include "../../QScintilla/src/Qsci/qsciapis.h"
 #include "../../../IDE/SwSystem/System_UtilFun.h"
 
 
