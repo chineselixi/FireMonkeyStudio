@@ -120,6 +120,12 @@ void Form_WorkSpace::init()
     this->move( t_screen.center() - this->geometry().center());
 
 
+    //=================操作系统特殊设置项=================
+    if(System_OS::getOsType() == System_OS::OSType::Android){
+        ui->menubar->setNativeMenuBar(false); //在Android上面关闭原生显示，采用Qt桌面效果
+    }
+
+
     //=================将编译模式选择插入到工具栏=================
     ui->toolBar->insertAction(ui->action_toolBar_compile,ui->toolBar->addWidget(ui->comboBox_compileMode));
 

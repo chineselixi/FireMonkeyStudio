@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/resFile">
         <file>res/ThemeTemplate.txt</file>
+        <file>res/README.txt</file>
     </qresource>
 </RCC>

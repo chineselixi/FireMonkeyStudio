@@ -1,7 +1,9 @@
 #ifndef WIDGET_SCICODEEDITOR_H
 #define WIDGET_SCICODEEDITOR_H
 
-#include "../../../QScintilla/src/Qsci/qsciscintilla.h"
+//#include "qsciscintilla"
+#include "Qsci/qsciscintilla.h"
+
 #include "../../../IDE/Plugin/Plugin_Base.h"
 
 class Widget_SciCodeEditor : public QsciScintilla

@@ -1,7 +1,7 @@
 #include "System_UtilFun.h"
 #include "System_SystemSetting.h"
 #include "QApplication"
-
+#include "QMessageBox"
 
 System_SystemSetting::System_SystemSetting(QString settingFile):objFile(settingFile)
 {
@@ -46,9 +46,11 @@ void System_SystemSetting::removeClass(QString className)
 QString System_SystemSetting::readThemeStyle(QString styleName, QString formName)
 {
     if(formName.isEmpty()) formName = "Form_WorkSpace"; //默认加载工作空间类似的主题
-    QFile t_qss(System_OS::getaApplicationDirPath_EX() + "/formStyle/" + styleName + "/" + formName + ".style");
+    QString t_styleFilePath = System_OS::getaApplicationDirPath_EX() + "/formStyle/" + styleName + "/" + formName + ".style";
+    QFile t_qss(t_styleFilePath);
     t_qss.open(QFile::ReadOnly);
     QString t_retStyle = t_qss.readAll();
     t_qss.close();
+//    QMessageBox::information(nullptr,"",t_styleFilePath);
     return t_retStyle;
 }

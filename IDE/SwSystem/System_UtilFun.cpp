@@ -139,7 +139,7 @@ bool System_File::copyPath(QString srcPath, QString newPath, std::function<bool 
     //复制文件夹
     for(QString& item : t_folders){
 
-        if(!QDir().mkpath(newPath + item)){
+        if(!QDir().mkpath(newPath + "/" + item)){
             return false;
         }
         if(indexFun){
@@ -149,7 +149,7 @@ bool System_File::copyPath(QString srcPath, QString newPath, std::function<bool 
 
     //复制文件
     for(QString& item : t_files){
-        if(!QFile(srcPath + item).copy(newPath + item) && !QFile(newPath + item).exists()){
+        if(!QFile(srcPath + item).copy(newPath + "/" + item) && !QFile(newPath + "/" + item).exists()){
             return false;
         }
         if(indexFun){

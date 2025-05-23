@@ -9,7 +9,7 @@
 #include "QElapsedTimer"
 #include "QMainWindow"
 
-//#include "../../QScintilla/src/Qsci/qsciscintilla.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
+//#include "/*qsciscintilla*/.h" //注意，这里是外部的QSciscintilla库，引入此文件需要在Pro文件中静态对应的dll与lib
 #include "Form/Form_CodeEditor.h"
 #include "Form/Form_Attributee.h"
 

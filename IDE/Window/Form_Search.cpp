@@ -28,7 +28,6 @@ Form_Search::Form_Search(QWidget *parent) :
 {
     ui->setupUi(this);
     this->init();
-    getFileProName("C:/Users/31914/Desktop/testProject/src/main.cpp");
 }
 
 Form_Search::~Form_Search()

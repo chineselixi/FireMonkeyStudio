@@ -1,0 +1,27 @@
+@PACKAGE_INIT@
+
+set(QScintilla_VERSION @PACKAGE_VERSION@)
+
+# Export include directories to the configuration file
+set(QScintilla_INCLUDE_DIR @CMAKE_INSTALL_PREFIX@/include)
+
+set(QScintilla_BINARY_DIR @CMAKE_INSTALL_PREFIX@/bin)
+
+set(QScintilla_LIBRARY_DIR @CMAKE_INSTALL_PREFIX@/lib)
+
+# Declare dependencies for find_package(QScintilla)
+include(CMakeFindDependencyMacro)
+find_dependency(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets Gui PrintSupport)
+
+# Set libraries
+set(QScintilla_LIBRARIES QScintilla::QScintilla)
+
+# Provide the library target
+add_library(QScintilla::QScintilla SHARED IMPORTED)
+set_target_properties(QScintilla::QScintilla PROPERTIES
+    IMPORTED_LOCATION "${CMAKE_INSTALL_PREFIX}/lib/${CMAKE_SHARED_LIBRARY_PREFIX}qscintilla2_qt${QT_VERSION_MAJOR}${CMAKE_SHARED_LIBRARY_SUFFIX}"
+    INTERFACE_INCLUDE_DIRECTORIES "${QSCINTILLA_INCLUDE_DIRS}"
+)
+
+# Include the exported targets
+include("${CMAKE_CURRENT_LIST_DIR}/QScintillaTargets.cmake")

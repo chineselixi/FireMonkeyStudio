@@ -11,11 +11,10 @@ CONFIG += c++17
 
 
 
-DESTDIR = $${OUT_PWD}/build/output/plg/Plugin_IdeBase
+DESTDIR = $$OUT_PWD/../../release/plg/Plugin_IdeBase
 TARGET = Plugin_IdeBase
 
-INCLUDEPATH += \
-    $$PWD/
+
 
 SOURCES += \
     Form/Form_Terminal.cpp \

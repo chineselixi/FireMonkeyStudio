@@ -14,6 +14,7 @@
 #include "QCoreApplication"
 
 #include "QMessageBox"
+#include "QFileDialog"
 
 Plugin_Manger::Plugin_Manger()
 {
@@ -62,6 +63,13 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
         PluginMsg t_plgMsg; //插件信息
         t_plgMsg.filePath = t_pathList[a];
 
+//        QString fileName = QFileDialog::getOpenFileName(nullptr, "", dirPath, "linrary Files (*.so)");
+//        t_plgMsg.filePath = fileName;
+
+        qDebug() << HistoryList::sys_pluginHistory->has(t_pathList[a].replace(System_OS::getaApplicationDirPath_EX(),"<pluginPath>"));
+
+        qDebug() << t_pathList[a].replace(System_OS::getaApplicationDirPath_EX(),"<pluginPath>");
+
         if(HistoryList::sys_pluginHistory->has(t_pathList[a].replace(System_OS::getaApplicationDirPath_EX(),"<pluginPath>"))){ //检查插件是否已经启用
             QLibrary* t_lib = new QLibrary(t_plgMsg.filePath); //加载插件（以动态库的形式加载插件，插件本身就是一个动态库）
             if(t_lib->load()){
@@ -75,7 +83,6 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
                     goto ADDMSG;
                 }
             }
-
 
             t_errLoadStr.append(t_lib->errorString() + "\n");
             delete t_lib;
@@ -112,14 +119,14 @@ void Plugin_Manger::initPlugin(QString dirPath,QString plgSuffix)
         if(this->List_plg[a].plgPth == nullptr){ //遇到空插件则立即跳出
             break;
         }
-        for(int b=0;b<this->List_plg.length() - 1 - a;b++){
+        for(int b=a+1;b<this->List_plg.length();b++){
             if(this->List_plg[b].plgPth == nullptr){ //遇到空插件则立即跳出
                 break;
             }
-            if(this->List_plg[b].plgPth->self_BaseMsg.level < this->List_plg[b + 1].plgPth->self_BaseMsg.level){
-                PluginMsg t_plgMsg = this->List_plg[b];
-                this->List_plg[b] = this->List_plg[b+1];
-                this->List_plg[b+1] = t_plgMsg;
+            if(this->List_plg[a].plgPth->self_BaseMsg.level < this->List_plg[b].plgPth->self_BaseMsg.level){
+                PluginMsg t_plgMsg = this->List_plg[a];
+                this->List_plg[a] = this->List_plg[b];
+                this->List_plg[b] = t_plgMsg;
             }
         }
     }

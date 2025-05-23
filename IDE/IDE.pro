@@ -10,36 +10,26 @@ TEMPLATE = app
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 #输出的文件路径
-DESTDIR = $${OUT_PWD}/build/output
-
+DESTDIR = $$OUT_PWD/../release
 #输出的文件名
 TARGET = FMS
 
-#引用自身目录
-INCLUDEPATH += \
-    $$PWD/
-
-
-message(outDESTDIR2 $${OUTPUTPATH})
+#子项目
 
 
 #复制文件到构建的目标目录.
 config.files = $$PWD/RunConfig/config           # 要复制的文件或目录
-config.path = $${OUT_PWD}/build/output # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+config.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 proModel.files = $$PWD/RunConfig/proModel           # 要复制的文件或目录
-proModel.path = $${OUT_PWD}/build/output # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+proModel.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 web.files = $$PWD/RunConfig/web           # 要复制的文件或目录
-web.path = $${OUT_PWD}/build/output # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+web.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 #widgets.files = $$PWD/RunConfig/widgets           # 要复制的文件或目录
-#widgets.path = $$OUT_PWD # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+#widgets.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 formStyle.files = $$PWD/RunConfig/formStyle           # 要复制的文件或目录
-formStyle.path = $${OUT_PWD}/build/output # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+formStyle.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 plg.files = $$PWD/RunConfig/plg           # 要复制的文件或目录
-plg.path = $${OUT_PWD}/build/output # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
-
-runConfig.files = $$PWD/RunConfig/
-runConfig.path = $${DESTDIR}
-
+plg.path = $$OUT_PWD/../release # 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
 
 COPIES += config proModel web widgets formStyle plg # 配置COPIES
 
@@ -204,9 +194,9 @@ icons.qrc \
 
 
 #load qsciscintilla
-#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/ -lqscintilla
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/ -lqscintilla
-#else:unix: LIBS += -L$$OUT_PWD/ -lqscintilla
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release/ -lqscintilla
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../release/ -lqscintilla
+else:unix: LIBS += -L$$OUT_PWD/../release/ -lqscintilla
 
 
 #using android files
@@ -221,8 +211,8 @@ icons.qrc \
 #}
 
 
-INCLUDEPATH += $$OUT_PWD
-DEPENDPATH += $$OUT_PWD
+INCLUDEPATH += $$OUT_PWD/../release
+DEPENDPATH += $$OUT_PWD/../release
 
 contains(ANDROID_TARGET_ARCH,arm64-v8a) {
     ANDROID_PACKAGE_SOURCE_DIR = \

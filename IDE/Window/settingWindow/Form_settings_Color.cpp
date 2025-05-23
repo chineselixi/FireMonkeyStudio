@@ -98,7 +98,7 @@ void Form_settings_Color::Event_use()
     Setting::style_dailyTips = ui->checkBox_dailyTips; //每日一贴
     Setting::sys_setting->changeSetting("Style","dailyTips",Setting::style_dailyTips); //保存每日一贴
 
-
+//    QApplication::setFont(QFont(Setting::style_font));
 
     Form_SystemSettings::changeThream(Setting::style_themeName); //实时更改主题
     return;

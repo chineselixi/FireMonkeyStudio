@@ -17,7 +17,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="settingTabs">
      <property name="currentIndex">
-      <number>0</number>
+      <number>5</number>
      </property>
      <property name="movable">
       <bool>false</bool>
@@ -1129,9 +1129,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>770</width>
-                <height>966</height>
+                <y>-537</y>
+                <width>777</width>
+                <height>1008</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1464,7 +1464,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <customwidget>
    <class>Widget_List</class>
    <extends>QWidget</extends>
-   <header>Form/settingForm/Widget/Widget_List.h</header>
+   <header>Widget/Widget_List.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
